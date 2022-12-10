@@ -1,0 +1,546 @@
+\chapter{Basic topology}
+\label{ch::topology}
+
+In this chapter, we present the basic concepts of \textit{topology}. Topology is useful to us because it generalizes ideas from calculus such as \textit{convergence} and \textit{continuity} to an abstract setting where no concept of distance is required. Instead of ``distance'', topology relies on the concept of what are called \textit{open sets}. Primarily, we require topology in order to use the topological concept of an \textit{$n$-manifold}, which is a \textit{topological space} that ``looks like $\R^n$'' at each point.
+
+We just said that topology generalizes ideas of calculus. More accurately, topology generalizes the ideas of \textit{real analysis}, which is the technical framework which calculus relies upon. As the name implies, real analysis is essentially the study of the real numbers $\R$. As the reader is not assumed to have a real analysis background or a topology background, we will introduce real analysis concepts and their generalizations in topology simultaneously. In my opinion, it is actually best to learn the introductory concepts of real analysis and topology at the same time, as the general apparatus of topology, not being bogged down by the nitty-gritty details of real analysis, helps one more quickly realize ``what is going on''.
+
+\section*{The standard topology on $\R$}
+
+\subsection*{Open sets, closed sets and their characterizations}
+
+We begin our investigation of the basic concepts of topology- \textit{open sets} and \textit{closed sets}- by starting in the context of the real numbers $\R$.
+
+\begin{defn}
+    (Open set in $\R$).
+    
+    An \textit{open set in $\R$} is an arbitrary union of open intervals in $\R$.
+    
+    Recall, an open interval in $\R$ is a set of the form $(a, b) = \{ x \mid a < x < b, \spc a, b \in \R \}$. By ``arbitrary union'', we mean that there is no restriction on how many sets occur in the union: there can be finitely many, countably infinitely many, or uncountably infinitely many.
+\end{defn}
+
+\begin{defn}
+    (Interior points and interior of $A \subseteq \R$).
+    
+    Let $A \subseteq \R$ be any subset of $\R$. A point $x \in A$ is called an \textit{interior point of $A$} iff there exists an open set contained in $A$ that contains $x$. Symbolically, $x \in A$ is an interior point iff ${\exists \text{open } U_x \ni x \spc U_x \subseteq A}$. 
+    
+    We define the \textit{interior} of $A$ to be the set of all interior points of $A$,
+    
+    \begin{align*}
+        \iint(A) := \{ x \in A \mid \text{$x$ is an interior point of $A$} \}.
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+    (Interior point characterization of open sets in $\R$).
+    
+    A subset $A \subseteq \R$ is open iff each $x \in A$ is an interior point, i.e., iff $A = \iint(A)$. Equivalently, $A$ is open iff $A \subseteq \iint(A)$, since $A \supseteq \iint(A)$ is always true.
+\end{theorem}
+
+\begin{proof}
+    We show that $(\text{$A$ is open}) \iff (\text{each $x \in A$ is an interior point})$.
+    
+    ($\implies$). If $A$ is open, then every $x \in A$ is contained in an open set $U_x \subseteq A$, namely, $U_x = A$ for all $x$.
+    
+    ($\impliedby)$. If every $x \in A$ is contained in an open set $U_x \subseteq A$, then $A = \cup_{x \in A} U_x$. (We have $\cup_{x \in A} U_x \subseteq A$ since each $U_x \subseteq A$, and $A \subseteq \cup_{x \in A} U_x$ since each $x \in A$ is in $U_x$). We defined an open set in $\R$ to be an arbitrary union of open sets in $\R$, so $A$ is open. 
+\end{proof}
+
+Next, see what the interior point characterization of open sets implies for complements of open sets.
+
+\begin{deriv}
+    (Limit points in $\R$).
+    
+    Each of the lines in the following derivation are logically equivalent. Skim this derivation, but don't try to understand it on the first pass- some new notation that is used in the derivation is defined after the derivation!
+    
+    \begin{align*}
+        U \text{ is open} \\
+        U = \iint(U) \iff U \subseteq \iint(U) \iff
+        \forall x \in U \spc x \in \iint(U) \\
+        \forall x \in U \spc \exists \text{open } U_x \ni x \spc U_x \subseteq U \\
+        \forall x \in U \spc \exists \text{open } U_x \ni x \spc U_x \cap U^c = \emptyset \\
+        \forall x \spc x \notin U^c \implies \text{not}(\forall \text{open } U_x \ni x \spc \spc U_x \cap U^c \neq \emptyset) \\
+        \forall x \spc x \notin U^c \implies \text{not}(\forall \text{open } U_x \ni x \spc \spc U_x \cap U^c - \{x\} \neq \emptyset) \\
+        \forall x \spc x \notin U^c \implies x \notin (U^c)' \\
+        \forall x \spc x \in (U^c)' \implies x \in U^c \\
+        (U^c)' \subseteq U^c.
+    \end{align*}
+    
+    Note that line 6 follows from line 5 because we can subtract $x$ out of $U_x \cap U^c$ due to the hypothesis ``$x \notin U^c$''. Line 6 implies line 5 for the same reason. Line 7 implies line 8 due to the contrapositive.
+    
+    In line 7, the notation ``$(U^c)'$'' relies upon    the notion of a limit point of a subset of $\R$, in the following way. We say $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff  $\forall \text{open } U_x \spc \spc U_x \cap U^c - \{x\} \neq \emptyset$. That is, $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff every open set containing $x$ intersects $A$ at a point other than $x$. The set of limit points of $A$ is denoted $A'$.
+    
+    The above shows that $U$ is open iff $(U^c)' \subseteq U^c$. In words, a set is open iff its complement contains all of its limit points. For this reason, we define a \textit{closed set in} $\R$ to be any set which is the complement of an open set, or, equivalently, any set which contains all of its limit points. We call the fact that $C$ is closed iff $C' \subseteq C$ the \textit{limit point characterization of closed sets}. We repeat these definitions below.
+\end{deriv}
+
+\begin{defn}
+    (Limit point in $\R$).
+    
+    Let $A \subseteq \R$ be any subset of $\R$. We say $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff every open set containing $x$ intersects $A$ at a point other than $x$. Symbolically, $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff  ${\forall \text{open } U_x \spc \spc U_x \cap U^c - \{x\} \neq \emptyset}$.
+    
+    The set of limit points of $A$ is denoted $A'$.
+\end{defn}
+
+\begin{defn}
+    (Closed set in $\R$).
+    
+    A subset $A \subseteq \R$ of $\R$ is said to be \textit{closed} iff $A$ is the complement of some open subset of $\R$. Equivalently, $A \subseteq \R$ is closed iff $A$ contains all of its limit points.
+\end{defn}
+
+\begin{remark}
+     (Open vs. closed).
+     
+     Subsets of $\R$ can be open but not closed, closed but not open, both and closed, or neither open nor closed. (This will be true for general topological spaces as well).
+\end{remark}
+
+\begin{theorem}
+    (Limit point characterization of closed sets in $\R$).
+    
+    A subset $A \subseteq \R$ is closed iff $A$ contains all of its limit points.
+\end{theorem}
+
+\begin{remark}
+     (Characterizations of open sets and closed sets in $\R$).
+     
+     We have seen that open sets in $\R$ are characterized by the ``interior point characterization of open sets'', while closed sets in $\R$ are characterized by the ``limit point characterization of closed sets''.
+\end{remark}
+
+%\begin{remark}
+%     \textbf{put this somewhere else}
+     
+%     Still looking at the above proof, we can notice that we accidentally proved $x \in \iint(U)$ iff $x \notin (U^c)'$. So, we proved $x \in \iint(U)$ iff $x \in ((U^c)')^c$, which means $\iint(U) = ((U^c)')^c \iff \iint(U)^c = (U^c)'$. The one to remember is $\iint(U)^c = (U^c)'$.
+%\end{remark}
+
+\section{Topological spaces}
+
+To discover the general apparatus of topology, we investigate unions and intersections of open and closed sets in $\R$. It quickly follows from the definition of an open set as an arbitrary union of open intervals that an arbitrary union of open sets in $\R$ is an open set in $\R$. DeMorgan's laws then imply that an arbitrary intersection of closed sets in $\R$ is a closed set in $\R$.
+
+What about intersections of open sets $\R$- or, equivalently, by DeMorgan's laws- unions of closed sets in $\R$? Well, any infinite union of closed sets in $\R$ is not necessarily closed: consider $\cup_{i = 1}^\infty \{\frac{1}{n}\} = \{\frac{1}{n} \mid n \in \N \}$, which does not contain its limit point of $0$. Perhaps at least finite unions of closed sets must be closed (i.e., perhaps a finite union of sets that contain their limit points itself contains all its limit points)? This is indeed the case.
+
+The following definition of a topological space is motivated by these properties of unions and intersections of open and closed sets in $\R$. Before this definition, we need some more technical language.
+
+%However, when defining the general notion of a \textit{topological space}, we will \textit{require} that finite unions of closed sets be closed, because this property will not be guaranteed by the other properties of a topological space. We will require general topological spaces to have the same fundamental property of $\R$ that causes finite unions of closed sets to be closed. (This fundamental property will be that ``a basis refines with interior points'').
+
+\newpage
+
+\begin{defn}
+    (Covers and generating sets).
+    
+    Let $X$ be any set. A set $\CCCC$ of subsets of $X$ is a \textit{cover} of $X$ iff $\cup_{C \in \CCCC} C = X$.
+    
+    Let $\tau$ be any set. A set $\CCCC$ \textit{generates} $\tau$ iff each $U \in \tau$ is an arbitrary union of the elements of $\CCCC$; that is, iff each $U \in \tau$ is $U = \cup_{\alpha \in I} C_\alpha$, where $\{C_\alpha\}_{\alpha \in I} \subseteq \CCCC$.
+\end{defn}
+
+We can now define topological spaces.
+
+\begin{defn}
+    (Topological space).
+    
+    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. We say that $(X, \tau)$ is a \textit{topological space}, and that $\tau$ is a \textit{topology} on $X$, iff...
+
+    \begin{enumerate}
+        \item There is a cover $\B$ of $X$ that generates $\tau$.
+        \begin{itemize}
+            \item Note: for the same reasons as earlier, when we had $X = \R$ and $\tau = \{\text{open sets} \subseteq \R\}$, (1) is equivalent to the general version of the interior point characterization of open sets, which is in turn equivalent to the general version of the limit point characterization of closed sets.
+            \begin{itemize}
+                \item Interior points and limit points will be defined analogously as to how they were before, and the ``general versions'' of the interior and limit point characterizations, which are obtained from the versions we've seen by substituting in a general topological space $X$ in for where we before wrote $\R$, are indeed true due to analogous arguments. 
+            \end{itemize}
+            \item (1) is also equivalent to: ``arbitrary unions of open sets are open'', which is equivalent to ``arbitrary intersections of closed sets are closed''.
+        \end{itemize}
+        \item Finite unions of closed sets are closed $\iff$ finite intersections of open sets are open.
+    \end{enumerate}
+
+    We interpret the elements of $\tau$ as being open sets. Formally, we say that $U \subseteq X$ is an \textit{open set} iff $U \in \tau$.
+\end{defn}
+
+\begin{remark}
+     ($\R^n$ with the standard topology).
+     
+     In the section ``Topology on $\R$'', we were really doing topology on $(\R, \text{std})$, where $\text{std}$ is the \textit{standard topology on $\R$}, $\text{std} := \{ \text{subsets of $\R$ that are arbitrary unions of open intervals in $\R$} \}$. In general, the \textit{standard topology on $\R^n$} is 
+     $\{ \text{subsets of $\R^n$ that are arbitrary unions of open intervals in $\R^n$} \}$.
+\end{remark}
+
+\begin{defn}
+    (Topological space).
+    
+    The above definition of a topology can quickly be seen to be equivalent to the following most common definition, which makes no mention of a generating cover. The most common definition requires $\tau$ to satisfy the following:
+
+    \begin{enumerate}
+        \item[3.] Arbitrary unions of open sets are open.
+        \begin{itemize}
+            \item As noted in (1), we have that (1) and (3) are equivalent.
+        \end{itemize}
+        \item[4.] Finite intersections of open sets are open.
+    \end{enumerate}
+\end{defn}
+
+\begin{remark}
+     ($\emptyset, X \in \tau$).
+     
+     Most definitions of a topological space explicitly require that the empty set and $X$ are open subsets of $X$. This requirement is implied by the above definition. Obviously, $X \in \tau$, since $\tau$ generates $X$. It's less easy to see that $\emptyset$ is also generated by $\tau$, but this is true too, since the empty set is the empty union of any collection of open sets (an empty union is a union that employs the empty set as its indexing set).
+\end{remark}
+
+\subsection*{Bases}
+
+Our first definition of a topological space $(X, \tau)$ involved a cover $\B$ that generated $X$. There was also another condition- we required finite intersections of open sets to be open. We would like to impose additional requirements on $\B$ so that finite intersections of elements of $\B$ are guaranteed to also be in $\B$. If we find such requirements, then $\B$ will induce a topology on $X$, in the sense that the set $\tau$ whose elements are arbitrary unions of elements of $\B$ will be a topology on $X$. The following definition and theorem present this condition.
+
+\begin{defn}
+    (Refining with interior points).
+    
+    If $\B$ is a cover of some set $X$, we say that $\B$ \textit{refines with interior points} iff \\ ${\forall B_1, B_2 \in \B \spc \spc x \in B_1 \cap B_2 \implies \exists B_3 \in \B \spc x \in B_3}$.  
+\end{defn}
+
+\begin{theorem}
+    (Finite intersections of open sets are open iff the cover ``refines with interior points'').
+    
+    If $\B$ is a cover that generates $\tau$, then finite intersections of open sets are open iff $\B$ refines with interior points.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    ($\implies$). Assume that finite intersections of open sets are open. We must show that $\B$ refines with interior points.
+    
+    Basis elements are by definition open, so if $B_1, B_2 \in \B$, then $B_1 \cap B_2$ is a finite intersection of open sets, and is thus open. By the interior point characterization of open sets, $x \in B_1 \cap B_2$ implies there is some open set $U \ni x$ such that $U \subseteq B_1 \cap B_2$. Because $U$ is open, it is a union of basis elements, $U = \cup_{i \in \{3, 4, ... \}} B_i$. Since $x$ is in $U$, it must be in $B_j$, for some $j \in \{3, 4, ... \}$. Relabel $B_j$ to be $B_3$ to match the syntax of the theorem.
+
+    ($\impliedby$). Assume $\B$ is a basis; that is, assume that $\B$ is a cover that refines with interior points. We want to show that finite unions of closed sets are closed. By DeMorgan's laws, we can instead show that finite intersections of open sets are open. 
+
+    So, set $V = \cap_{i = 1}^n U_i$, where the $U_i$ are open. If any $U_i$ is empty, then their intersection is $\emptyset$, which is open, so assume no $U_i$ is empty. We show that $V$ is open by showing it satisfies the interior point characterization of open sets. Consider $x \in V$. Then $x \in U_i$ for all $i$. Each $U_i$ is a union of basis elements, so, for each $U_i$, we have $x \in B_i$ for some $B_i \in \B$. Thus $x \in \cap_{i = 1}^n B_i$. Using induction on the fact that $\B$ refines with interior points, there is a $B_x \in \B \spc x \in B_x \subseteq \cap_{i = 1}^n B_i$. We have $\cap_{i = 1}^n B_i = \cup_{x \in V} B_x$, so $\cap_{i = 1}^n B_i$ is open.
+\end{proof}
+
+\begin{defn}
+    (Basis for a topological space).
+    
+    A cover $\B$ for $X$ is called a \textit{basis} iff $\B$ refines with interior points, that is, iff \\ ${\forall B_1, B_2 \in \B \spc \spc x \in B_1 \cap B_2 \implies \exists B_3 \in \B \spc x \in B_3}$.
+    
+    The reader may wonder whether topological bases satisfy a condition similar to linear independence, since bases of vector spaces are linearly independent sets. They do not; topological bases are not like bases of vector spaces in this regard.
+\end{defn}
+
+\begin{theorem}
+    Every basis generates a topological space, and every topological space has a basis.
+\end{theorem}
+
+\begin{proof}
+    For the first part of the theorem, recall that the whole point of defining a basis was to find the types of generating covers that generate topological spaces.
+    
+    For the second part, note that if $(X, \tau)$ is a topological space, then $\tau$ is a basis for $X$.
+\end{proof}
+
+\subsection*{Basic facts about topological spaces}
+
+We now state the generalizations of the topological results we found in the context of $\R$. We do not state any proofs in this section, as the arguments given in the ``Topology in $\R$'' section all generalize easily.
+
+\begin{defn}
+    (Open set).
+    
+    Let $(X, \tau)$ be a topological space. As was mentioned previously, an \textit{open set} in $X$ is an element of $\tau$. We often refer to open sets in $X$ as simply ``open sets''.
+    
+    Open sets are also often called \textit{neighborhoods}. A \textit{neighborhood of a point $x \in X$} is an open set which contains $x$.
+\end{defn}
+
+\begin{defn}
+    (Interior points and interior).
+    
+    Let $(X, \tau)$ be a topological space, and  $A \subseteq X$. A point $x \in A$ is called an \textit{interior point of $A$} iff there exists an open set contained in $A$ that contains $x$. Symbolically, $x \in A$ is an interior point iff ${\exists \text{open } U_x \ni x \spc U_x \subseteq A}$. 
+    
+    We define the \textit{interior} of $A$ to be the set of all interior points of $A$,
+    
+    \begin{align*}
+        \iint(A) := \{ x \in A \mid \text{$x$ is an interior point of $A$} \}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+    (Interior point characterization of open sets).
+    
+    Let $(X, \tau)$ be a topological space, and let $A \subseteq X$. Then $A$ is open iff each $x \in A$ is an interior point, i.e., iff $A = \iint(A)$. Equivalently, $A$ is open iff $A \subseteq \iint(A)$, since $A \supseteq \iint(A)$ is always true.
+\end{defn}
+
+
+\begin{defn}
+    (Limit point).
+    
+    Let $(X, \tau)$ be a topological space, and let $A \subseteq X$. We say $x \in A$ is a \textit{limit point of $A$} iff every open set containing $x$ intersects $A$ at a point other than $x$. Symbolically, $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff  ${\forall \text{open } U_x \spc \spc U_x \cap U^c - \{x\} \neq \emptyset}$.
+    
+    The set of limit points of $A$ is denoted $A'$.
+\end{defn}
+
+\begin{defn}
+    (Closed set).
+    
+    Let $(X, \tau)$ be a topological space. A subset $A \subseteq X$ is said to be \textit{closed} iff $A$ is the complement of some open set. Equivalently, $A \subseteq X$ is closed iff $A$ contains all of its limit points.
+\end{defn}
+
+\begin{theorem}
+    (Limit point characterization of closed sets).
+    
+    Let $(X, \tau)$ be a topological space. A subset $A \subseteq X$ is closed iff $A$ contains all of its limit points.
+\end{theorem}
+
+\subsection*{The subspace topology}
+
+The following definition and theorem justify what we would might naturally assume the phrase ``open set in $Y \subseteq X$'' means.
+
+\begin{defn}
+    (Subspace topology).
+    
+    Let $(X, \tau_X)$ be a topological space, and let $Y \subseteq X$. The \textit{subspace topology} $\tau_Y$ is defined to be the topology on $Y$ whose open sets are $\tau_Y := \{U \cap Y \mid \text{$U$ is open in $X$}\}$.
+
+    If $A \subseteq Y$, then we say that $A$ is \textit{open in $Y$} iff $A \in \tau_Y$, and we say that $A$ is \textit{closed in $Y$} iff $X - A$ is open in $Y$.
+\end{defn}
+
+\begin{theorem}
+    Let $(X, \tau_X)$ be a topological space, and consider $Y \subseteq X$. If $A \subseteq Y$, then $A$ is closed in $Y$ iff $A = C \cap Y$, where $C$ is closed in $X$. 
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    
+    \indent ($\implies$). Suppose $A$ is closed in $Y$. Then $Y - A$ is open in $Y$, so $Y - A = U \cap Y$ for some $U$ that is open in $X$. Thus $A = Y - (Y - A) = Y - (Y \cap U) = Y - U = Y \cap (X - U)$. So, $A = (X - U) \cap Y$, where $X - U$ is closed in $X$.
+    
+    ($\impliedby$). Suppose $A = C \cap Y$, where $C$ is closed in $X$. Now, we show that $Y - A$ is open in $Y$. We have $Y - A = Y - (C \cap Y) = Y \cap (X - C)$. Thus $Y - A = (X - C) \cap Y$, where $X - C$ is open in $X$, meaning $(X - C) \cap Y$ is open in $Y$.
+\end{proof}
+
+%\subsection*{Summary}
+
+%We start by defining the elements of a \textit{topology} $\tau$ on a set $X$ to be generated by a cover $\B$ of $X$. (In the motivating example of $\R$, the elements of $\B$ are open intervals). In noticing the \textit{interior point characterization of open sets}, we discover the definition of an \textit{interior point}. The interior point characterization of open sets states that $U$ is open iff $U = \iint(U)$. 
+
+%Next, we rephrase the characterization of open sets in terms of complements of open sets, and discover the definitions \textit{limit point}, \textit{closed set}, and the theorem that is the \textit{limit point characterization of closed sets}. The limit point characterization of closed sets states that $A$ is closed iff $A' \subseteq A$, where $A'$ is the set of limit points of $A$. A closer look at the proof of this reveals that the proof hinged upon the fact that $\iint(U)^c = (U^c)'$.
+
+\newpage
+
+\section*{Interior, closure, and boundary}
+\label{ch::topology::section::int_cl_bdy}
+
+For the purposes of differential forms, understanding this section in depth is not necessary. Some familiarity with this section on a intuitive level is required, though.
+
+\begin{theorem}
+    (Equivalent definitions of interior).
+    
+    Let $(X, \tau)$ be a topological space. The \textit{interior} of $A \subseteq X$ is
+    
+    \begin{itemize}
+        \item $\iint(A) := \{ x \in A \mid \text{$x$ is an interior point of $A$} \}$, by definition.
+        \item The ``largest'' open set contained in $A$; that is, the union of all open sets contained in $A$.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    We need to show
+    
+    \begin{align*}
+        \{ x \in A \mid \text{$x$ is an interior point of $A$} \}
+        =
+        \bigcup_{U \subseteq X, U \in \tau} U.
+    \end{align*}
+    
+    The proof of this is quick: $x \in A$ is an interior point of $A$ iff there exists an open set $U_x \subseteq A$ containing $x$ iff $x$ is in the union of open sets contained in $X$.
+\end{proof}
+
+\begin{defn}
+    (Closure).
+    
+    Let $(X, \tau)$ be a topological space. The \textit{closure} $\cl(A)$ of $A \subseteq X$ is the ``smallest'' closed set that contains $A$; that is, it is the intersection of all closed sets containing $A$.
+\end{defn}
+
+\begin{theorem}
+    (Condition for being in the closure).
+    
+    Let $(X, \tau)$ be a topological space, and let $A \subseteq X$. We have
+    
+    \begin{align*}
+        x \in \cl(A) &\iff \forall \text{closed } C \supseteq A \spc x \in C \\
+        &\iff \forall \text{open } U \spc U \cap A = \emptyset \implies x \notin U \\
+        &\iff \forall \text{open } U \ni x \spc U \cap A \neq \emptyset.
+    \end{align*}
+    
+    In the second line, we've used $U = C^c$. The third line follows from the second because \\ ${(P \text{ and } \text{not } Q) \iff (Q \implies P)}$.
+    
+    In all, we have 
+    
+    \begin{align*}
+        x \in \cl(A) \iff \forall \text{open } U \ni x \spc U \cap A \neq \emptyset.
+    \end{align*}
+\end{theorem}
+
+\begin{remark}
+     (Being in the closure vs. being a limit point).
+     
+     Notice that the condition for being in the closure is just a little bit weaker than the condition for being a limit point. Recall, $x \in A$ is a limit point of $A$ iff $\forall \text{open } U \ni x \spc U \cap A - \{x\} \neq \emptyset$.
+\end{remark}
+
+%\begin{defn}
+%    (Isolated point).
+    
+%    Isolated points are $A - A'$?
+%\end{defn}
+
+%\begin{theorem}
+%    $\cl(A) = A \cup A'$ so $\cl(A) = (A - A') \sqcup A'$
+%\end{theorem}
+
+\begin{defn}
+    (Boundary).
+    
+    Let $(X, \tau)$ be a topological space. The \textit{boundary} $\pd A$ of $A \subseteq X$ is defined to be $\pd A := \cl(A) - \iint(A)$.
+\end{defn}
+
+\newpage
+
+\section{Continuous functions and homeomorphisms}
+
+\subsection*{Limits and continuity for functions $A \subseteq \R \rightarrow \R$}
+
+\begin{defn}
+    (Open balls).
+    
+    We denote the \textit{open ball in $\R^n$ of radius $r$ centered at $\xx \in \R^n$} by $B(r, x)$: ${B(r, \xx) = \{\yy \in \R^n \mid d(\xx, \yy) < r\}}$, where $d(\xx, \yy) = ||\xx - \yy|$, and where $||\cdot||$ is the norm on $\R^n$ induced by the dot product on $\R^n$.
+\end{defn}
+
+\begin{defn}
+    (Limit of a function $A \subseteq \R \rightarrow \R$).
+    
+    Let $A \subseteq \R$, and consider a function $f:A \subseteq \R \rightarrow \R$. We write $\lim_{x \rightarrow x_0} f(x) = L$ iff $\forall \epsilon > 0 \spc \exists \delta > 0 \spc x \in B(\delta, x_0) - \{x_0\} \implies f(x) \in B(\epsilon, L)$.
+\end{defn}
+
+\begin{defn}
+    (Continuity of a function $A \subseteq \R \rightarrow \R$ at a point).
+    
+    Let $A \subseteq \R$, and consider a function $f:A \subseteq \R \rightarrow \R$. We say that \textit{$f$ is continuous at $x_0 \in A$} iff $\forall \epsilon > 0 \spc \exists \delta > 0 \spc x \in B(\delta, x_0) \implies f(x) \in B(\epsilon, f(x_0))$
+\end{defn}
+
+\begin{theorem}
+    (Condition for continuity for functions $A \subseteq \R \rightarrow \R$).
+    
+    Let $A \subseteq \R$. A function $f:A \subseteq \R \rightarrow \R$ is continuous at $x_0 \in A$ iff $\lim_{x \rightarrow x_0} f(x) = f(x_0)$.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \indent ($\implies$). If $f$ is continuous at $x_0$, then we immediately know $\lim_{x \rightarrow x_0} f(x) = f(x_0)$ because $x \in B(\delta, x_0)$ is a weaker condition than $x \in B(\delta, x_0) - \{x_0\}$. 
+    
+    ($\impliedby$). Suppose that $\forall \epsilon > 0 \text{ } \exists \delta > 0 \text{ s.t. } x \in B(\delta, x) \cap A - \{x_0\} \implies f(x) \in B(\epsilon, f(x_0))$. We need to show that when $x = x_0$ we have $f(x) \in B(\epsilon, f(x_0))$. But this follows immediately because $f(x_0) \in B(\epsilon, f(x_0))$ for any $\epsilon$, as $f(x_0) = f(x_0)$.
+    
+    %There is a more roundabout way to prove the above, which distinguishes between limit points and isolated points.
+    
+    %Again, we already know that continuity at $x_0$ implies $\lim_{x \rightarrow x_0} f(x) = f(x_0)$. We will again show that $\lim_{x \rightarrow x_0} f(x) = f(x_0)$ implies continuity at $x_0$.
+    
+    %Case 1: there is no $\delta$ for which $x \in B(\delta, x) \cap A - \{x_0\}$. In other words, $x_0$ is an isolated point. Then by false hypothesis, $f$ is continuous at $x_0$. (Also by false hypothesis, you can show that limits are isolated points are not unique).
+    
+    %Case 2: there is some $\delta$ for which the continuity condition is true. Then we're done. In this case, $x_0$ is a limit point.
+\end{proof}
+
+\subsection*{Limits and continuity for functions on subsets of topological spaces}
+
+%\begin{defn}
+%    (Metric space).
+    
+%    A topological space $(X, \tau)$ is said to be a \textit{metric space} iff there exists a binary function $d:X \times X \rightarrow \R$, called the \textit{distance function}, for which
+    
+%    \begin{itemize}
+%        \item The triangle inequality holds. That is, $d(x, y) + d(y, z) \leq d(x, z)$ for all $x, y, z \in X$.
+%        \item $d(x, y) = d(y, x)$ for all $x, y \in X$.
+%        \item $d(x, y) \geq 0$, with $d(x, y) = 0$ iff $x = y$, for all $x, y \in X$.
+%    \end{itemize}
+    
+%    In a metric space, we again have a notion of open ball. Similarly to before, we define $B(x, r) = \{y \in X \mid d(x, y) < r \}$.
+%\end{defn}
+
+\begin{defn}
+    (Limit of a function on a subset of a topological space).
+    
+    Let $X$ and $Y$ be topological spaces, let $A \subseteq X$, and consider a function $f:A \subseteq X \rightarrow Y$. We write $\lim_{x \rightarrow x_0} f(x) = L$ iff 
+    $\forall \text{open } V \ni L, V \subseteq Y  \spc \exists \text{open } U \ni x_0, U \subseteq X \spc f(U - \{x_0\}) \subseteq V$.
+    
+    %http://math.soimeme.org/~arunram/Preprints/181212Cntfcns.pdf
+\end{defn}
+
+\begin{defn}
+    (Continuity of a function on a subset of a topological space).
+    
+    Let $X$ and $Y$ be topological spaces, let $A \subseteq X$, and consider a function $f:A \subseteq X \rightarrow Y$.  We say that \textit{$f$ is continuous at $x_0 \in A$} iff $\forall \text{open } V \ni f(x_0), V \subseteq Y \spc \exists \text{open } U \ni x_0, U \subseteq X \spc f(U) \subseteq V$.
+\end{defn}
+
+\begin{remark}
+    (Topological limits and continuity generalize real analytical notions).
+
+    Note, the earlier definitions of the limit of a function $A \subseteq \R \rightarrow \R$ and continuity at a point for a function $A \subseteq \R \rightarrow \R$ can both be viewed as a special case of the just-stated corresponding definitions for topological spaces. Specifically, these earlier definitions are the special case in which $(X, \tau_X) = (Y, \tau_Y) = (\R, \text{std})$, each $V$ is $V = B(\epsilon, L)$, and each $U$ is $U = B(\delta, x_0)$.
+\end{remark}
+
+\begin{theorem}
+    (Condition for continuity for functions on subsets of topological spaces).
+    
+    Let $X$ and $Y$ be topological spaces, and let $A \subseteq X$. A function $f:A \subseteq X \rightarrow Y$ is continuous at $x_0 \in A$ iff $\lim_{x \rightarrow x_0} f(x) = f(x_0)$.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \indent ($\implies$). If $f$ is continuous at $x_0$, then we immediately know $\lim_{x \rightarrow x_0} f(x) = f(x_0)$ because $f(U) \subseteq V$ is a weaker condition than $f(U - \{x_0\}) \subseteq V$. 
+    
+    ($\impliedby$). Suppose that $\forall \text{open } V \ni f(x_0), V \subseteq Y \spc \exists \text{open } U \ni x_0, U \subseteq X \spc f(U - \{x_0\}) \subseteq V$. We need to show that when $x = x_0$ we have $f(x) \in V$ for any open $V \ni x_0$. But this is true by definition of $V$; we have $f(x_0) \in V$.
+\end{proof}
+
+We now present the classic topological interpretation of a continuous function.
+
+\begin{defn}
+    (Continuous function).
+    
+    Let $X$ and $Y$ be topological spaces, and let $A \subseteq X$. A function $f:A \subseteq X \rightarrow Y$ is called \textit{continuous} iff it is continuous at every $x \in A$.
+\end{defn}
+
+\begin{theorem}
+    (The inverse image of a continuous function preserves openness and closedness).
+    
+    Let $X$ and $Y$ be topological spaces, and let $A \subseteq X$. A function $f:A \subseteq X \rightarrow Y$ is continuous iff the following equivalent conditions hold:
+    
+    \begin{itemize}
+        \item For all open sets $V \subseteq Y$, the subset $f^{-1}(V) \subseteq X$ is open in $X$.
+        \item For all closed sets $D \subseteq Y$, the subset $f^{-1}(D) \subseteq X$ is closed in $X$.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    Left as an exercise.
+\end{proof}
+
+\subsubsection*{Homeomorphisms}
+
+\begin{defn}
+    (Homeomorphism).
+    
+    Let $(X, \tau_X)$ and $(Y, \tau_Y)$ be topological spaces. A \textit{homeomorphism} is an injective function ${X \rightarrow Y}$ that is continuous and has a continuous inverse.
+\end{defn}
+
+\section*{Compact and Hausdorff topological spaces}
+
+This section briefly details the last two topological notions we require to define manifolds.
+
+\subsection*{Compactness}
+
+\begin{defn}
+    (Compact topological space).
+    
+    Let $(X, \tau)$ be a topological space. A cover $\CCCC$ for $X$ is said to be an \textit{open cover} iff every set $A \in \CCCC$ is open. We say that $(X, \tau)$ is \textit{compact} iff for every open cover $\OOOO$ of $X$, there exists a finite open cover $\OOOO'$ of $X$ with $\OOOO' \subseteq \OOOO$. More succintly, $(X, \tau)$ is \textit{compact} iff every open cover of $X$ admits a finite subcover.
+\end{defn}
+
+\begin{defn}
+    (Compactness in $\R^n$ with the standard topology).
+    
+    A set $A \subseteq \R^n$, where $\R^n$ has the standard topology, is compact iff $A$ is closed and bounded\footnote{A subset of $\R^n$ is \textit{bounded} iff there exists some open ball that contains it.}.
+\end{defn}
+
+\begin{proof}
+    See any textbook on topology.
+\end{proof}
+
+\subsection*{Hausdorff spaces}
+
+We need to know what Hausdorff spaces are because manifolds are special types of Hausdorff topological spaces.
+
+\begin{defn}
+    (Hausdorff space).
+    
+    Let $(X, \tau)$ be a topological space. We say that \textit{$(X, \tau)$ is Hausdorff} iff $\forall x \in X \spc \forall y \in X \spc \exists \text{open } U, V \spc U \cap V = \emptyset$. Intuitively, a topological space is Hausdorff iff every two points in that space can be ``separated'' by taking open sets about each point.
+\end{defn}
+
+%\begin{theorem}
+%    (In a Hausdorff space, compact implies closed).
+%\end{theorem}

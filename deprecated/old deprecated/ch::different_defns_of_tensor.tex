@@ -1,0 +1,36 @@
+\chapter{Different definitions of tensor}
+
+\subsection*{$\binom{p}{q}$ tensors}
+
+$\ootimes$, $\owedge$ and interp as multilinear maps
+
+\subsection*{Exterior powers}
+
+\subsubsection{Pushforward and pullback}
+
+(Pullback). Originally was $(\otimes_q \ff^*)(\phi^1 \otimes ... \otimes \phi^q) = \ff^*(\phi^1) \otimes ... \otimes \ff^*(\phi^q)$, extended linearly. Now have $(\ootimes_q \ff^*)(\phi^1 \otimes ... \otimes \phi^q) = (\ff^*(\phi^1) \ootimes ... \ootimes \ff^*(\phi^q)) = ((\phi^1 \circ \ff) \ootimes ... \ootimes (\phi^q \circ \ff)) = ((\phi^1 \circ \ff) \ootimes ... \ootimes (\phi^q \circ \ff)) = (\phi^1 \circ \ootimes ... \ootimes \phi^q) \circ \ff$. Check this last equality by evaluating both sides on $(\vv_1, ..., \vv_q)$. Extending linearly, we see $(\ootimes_q \ff^*)(\TT) = \TT \circ \ff = \ff^*(\TT)$. That is, $(\ootimes_q \ff^*)(\TT)(\vv_1, ..., \vv_q) = \TT(\ff(\vv_1), ..., \ff(\vv_q))$.
+
+\subsection{Differential forms}
+
+\begin{theorem}
+    (Pullback of a differential form).
+    
+    Recall from [...] that if $W$ and $Z$ are vector spaces of dimension and $\gg:W \rightarrow Z$ is a linear map, then the pullback $\Lambda^k \gg^*:\Lambda^k(Z^*) \rightarrow \Lambda^k(W^*)$ is defined by $\gg^*(\TT) = \TT \circ \gg = \gg^*(\TT)$. Therefore, the above definition implies
+    
+    \begin{align*}
+        \Big( (\overline{\Omega^k} \ff^*)(\omega) \Big)_\pp = \omega_{\ff(\pp)} \circ d\ff_\pp = (d\ff_\pp)^*(\omega_{\ff(\pp)}).
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        (\overline{\Omega^k} \ff^*)(\omega) = \omega_{\ff(\pp)} \circ d\ff_\pp.
+    \end{align*}
+    
+    More explicitly, $(\overline{\Omega^k} \ff^*)(\omega)$ is defined at each point $\pp \in M$ by
+    
+    \begin{align*}
+        \Big((\overline{\Omega^k} \ff^*)(\omega) \Big)_\pp (\vv_1, ..., \vv_k) = \omega_{\ff(\pp)}(d\ff_\pp(\vv_1), ..., d\ff_\pp(\vv_k)).
+    \end{align*}
+\end{theorem}
+

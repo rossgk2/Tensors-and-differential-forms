@@ -1,0 +1,529 @@
+\section*{Matrices as representative of linear functions [OLD]}
+
+\begin{deriv}
+\label{ch::lin_alg::deriv::primitive_matrix}
+
+    (Primitive matrix of a linear function $V \rightarrow K^m$). 
+    
+    The fundamental idea behind this theorem is the definition of a linear function. Recall from Definition \ref{ch::lin_alg::defn::linear_function} that the action of a linear function on any vector is determined by the function does to a basis.
+    
+    To start, let $V$ be a finite-dimensional vector space over a field $K$, let $E$ be a basis for $V$, and consider a linear function $\ff:V \rightarrow K^m$. Then from the definition of $[\cdot]_E$ (see Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis}) we have $\vv = \sum_{i = 1}^n ([\vv]_E)_i \ee_i$, so
+    
+    \begin{align*}
+        \ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i).
+    \end{align*}
+    
+    This is just an expression of the fact that linear functions are completely determined by what they do to a set of basis vectors.
+    
+    Why not just specify what $\ff$ is by storing the transformed basis vectors? This exactly what we will do. We define the \textit{matrix-vector product} between a \textit{matrix} $\AA = (a_{ij})$, which is a two-dimensional grid of scalars from $K$ whose $ij$ entry is denoted $a_{ij}$, and a \textit{column vector} $\cc = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix} \in K^{\dim(V)}$:
+    
+    \begin{align*}
+        \boxed
+        {
+            \AA \cc = 
+            \begin{pmatrix} 
+                \aa_1 & \hdots & \aa_n
+            \end{pmatrix}
+            \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+            :=
+            \sum_{i = 1}^n c_i \aa_i
+        }
+    \end{align*}
+    
+    Note that the $\aa_i$ are column vectors in $K^m$, so the matrix $\AA$ is indeed a grid of scalars from $K$. This definition was contrived so that the action of $\ff$ on a vector $\vv$ is expressed with such a matrix-vector product:
+    
+    \begin{align*}
+        \ff(\vv) = \begin{pmatrix} \ff(\ee_1) & \hdots & \ff(\ee_n) \end{pmatrix} \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix}
+        = \begin{pmatrix} \ff(\ee_1) & \hdots & \ff(\ee_n) \end{pmatrix} [\vv]_E.
+    \end{align*}
+    
+    Note that because $\ff$ maps into $K^m$, each $\ff(\ee_i)$ is a column vector in $K^m$. So the matrix in the above expression, containing $\ff(\ee_i)$ as its $i$th column, is grid of scalars- just as was the $\AA$ in the definition of matrix-vector product.
+    
+    Now we see that, \textit{after choosing a basis $E$ for $V$}, a linear function $\ff:V \rightarrow K^m$ corresponds to its so-called \textit{primitive matrix relative to the basis $E$},
+    
+    \begin{align*}
+        \begin{pmatrix} 
+            \ff(\ee_1) & \hdots & \ff(\ee_n)
+        \end{pmatrix}
+        =
+        \ff(E).
+    \end{align*}
+    
+    (The right hand side of the above equation relies on the convention of Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors}).
+    
+     We can summarize the above in an alternate form: the primitive matrix $\ff(E)$ of $\ff:V \rightarrow K^m$ relative to $E$ must satisfy the characterizing property:
+    
+    \begin{align*}
+        \boxed{\ff(\vv) = \ff(E) [\vv]_E}
+    \end{align*}
+    
+    (The right hand side of the above equation is a matrix-vector product).
+\end{deriv}
+
+\begin{deriv}
+\label{ch::lin_alg::deriv::matrix_wrt_bases}
+    (Matrix of a linear function relative to bases).
+    
+    What about the previous approach is ``primitive''? Well, it is ``primitive'' in the sense that it works for linear functions $V \rightarrow K^m$, but not for linear functions $V \rightarrow W$, where $W$ is an arbitrary finite-dimensional vector space. This is because the output of a linear function mapping into an arbitrary finite-dimensional vector space such as $W$ isn't necessarily a tuple of scalars and could be something like a polynomial.
+    
+    Let $V$ and $W$ finite-dimensional vector spaces over a field $K$ with bases $E$ and $F$, respectively. Given a linear function $\ff:V \rightarrow W$, we can still produce a matrix from $\ff$, even though it may not be the case that $W = K^m$, if we choose a basis for $W$. So, let $F$ be a basis for $W$. Now, note that $[\cdot]_F \circ \ff:V \rightarrow K^{\dim(W)}$ is a linear function, since a composition of linear functions is also a linear function (prove this fact as an exercise). We will make use of the primitive matrix of $[\cdot]_F \circ \ff:V \rightarrow K^{\dim(W)}$ relative to $E$, which is $([\cdot]_F \circ \ff)(E)$. 
+    
+    One can quickly verify that if $\gg$ and $\hh$ are composable linear functions on finite-dimensional vector spaces, then $(\hh \circ \gg)(E) = \hh(\gg(E))$. Thus, the matrix we are interested in (the primitive matrix of $[\cdot]_F \circ \ff$) is $([\cdot]_F \circ \ff)(E) = [\ff(E)]_F$.
+    
+    A more explicit form for $[\ff(E)]_F$ follows from the convention of Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors}:
+    
+    \begin{align*}
+        \boxed
+        {
+            [\ff(E)]_F = \begin{pmatrix} [\ff(\ee_1)]_F & \hdots & [\ff(\ee_n)]_F \end{pmatrix}
+        }
+    \end{align*}
+    
+    By looking at the characterization of the primitive matrix of a linear function $V \rightarrow K^m$ from above, we see that $[\ff(E)]_F$ must satisfy the characterizing property
+    
+    \begin{align*}
+        \boxed
+        {
+            [\ff(\vv)]_F = [\ff(E)]_F [\vv]_E
+        }
+    \end{align*}
+    
+    (The right-hand side of the above equation is a matrix-vector product).
+    
+    If one knows the bases $E$ and $F$, and also knows the matrix $[\ff(E)]_F$, then they can determine how $\ff$ will act on any input vector. For this reason, we refer to $[\ff(E)]_F$ as \textit{the matrix of $\ff$ relative to the bases $E$ and $F$}.
+\end{deriv}
+
+\begin{remark}
+    (An alternate meaning to ``matrix relative to $E$'' to be aware of).
+    
+    Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and consider a linear function $\ff:V \rightarrow V$. Let $\EE$ be the matrix whose $i$th column is $\ee_i$.
+    
+    First, note that since the linear function $\cc \mapsto \EE \cc$ preserves linear independence\footnote{To show $\cc \mapsto \EE \cc$ preserves linear independence, it is enough to show that it does so for the standard basis.}, $\EE$ is invertible (recall Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}). Thus, for all $\vv \in V$ we have $\EE [\vv]_E = \vv$ and $[\vv]_E = \EE^{-1} \vv$. 
+    
+    Now, consider the matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$, which satisfies $[\ff(\vv)]_E = [\ff(E)]_E [\vv]_E$. Multiplying each side of this equation by $\EE$ on the left, we have $\ff(\vv) = \EE \spc [\ff(E)]_E [\vv]_E$. Then since $[\vv]_E = \EE^{-1} \vv$ we have ${\ff(\vv) = (\EE \spc [\ff(E)]_E \EE^{-1}) \vv}$.
+    
+    Because $\ff(\vv) = (\EE \spc [\ff(E)]_E \EE^{-1}) \vv$, people often refer to $\EE \spc \ff(E) \EE^{-1}$ as ``the matrix of $\ff$ relative to $E$ and $E$'', or as ``the matrix of $\ff$ relative to $E$''. This convention is incompatible with the convention of our own definition, which says that matrix of $\ff$ relative to $E$ and $E$ is $[\ff(E)]_E = \EE^{-1} \ff(E)$. Since it \textit{is} a common convention to refer to the matrix $[\ff(E)]_F$ as ``the matrix of $\ff$ relative to $E$ and $F$'', we will stick with our convention and ignore the convention which gives a special name to $\EE^{-1} \spc \ff(E) \EE$.
+\end{remark}
+
+\begin{remark}
+    (Matrix-vector product pedagogy). 
+    
+    All the linear algebra texts I have read always present the relationship between linear functions and matrices in the following way: first define matrices as grids of scalars (often in the context of systems of linear equations), then define a linear function as satisfying the second condition of Definition \ref{ch::lin_alg::defn::linear_function}, and then prove that each linear function has a matrix. This is bad pedagogy; there should be no need to conjecture and prove that a matrix-vector product corresponds to the action of a linear function, because this fact is apparent from Derivation \ref{ch::lin_alg::deriv::primitive_matrix}.
+    
+    It's important to emphasize that definition of matrix-vector product is therefore really no more than a definition. We decided that writing a grid of scalars next to a vector in the specific way of Derivation \ref{ch::lin_alg::deriv::primitive_matrix} should produce the output of Derivation \ref{ch::lin_alg::deriv::primitive_matrix} because this is what formalizes the correspondence between linear functions and the lists of their transformed basis vectors. Now, it is true that this definition of matrix-vector product leads to somewhat complicated formulas for the $i$th entry of a matrix-vector product and for the $ij$ entry of a matrix-matrix product (these formulas will be presented in Theorems \ref{ch::lin_alg::thm::coordinates_of_matrix_vector_product} and \ref{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}). Upon seeing these index-notation formulas, remember that they are consequences, and are not ``just the way things are''!
+\end{remark}
+
+Now that we have discovered that grids of scalars- matrices- are relevant to linear algebra, we make two basic definitions regarding them before continuing our investigations.
+
+\begin{defn}
+    (Identity matrix).
+    
+    Let $K$ be a field, and consider the identity function on $K^n$, which is the function $\II_{K_n}:K^n \rightarrow K^n$ defined by $\II_{K_n}(\cc) = \cc$. The primitive matrix of $\II_{K_n}$ relative to the standard basis $\sE$ is called the \textit{($n \times n$) identity matrix}. We denote the identity matrix by $\II$ rather than by the more verbose notation $\II_{K_n}(\sE)$.
+    
+    The $i$th column of the identity matrix is $\II_{K_n}(\see_i) = \see_i$, so, the identity matrix has a diagonal of $1$'s, with $0$'s everywhere else.
+\end{defn}
+
+\begin{defn}
+    (Invertibility of matrices).
+    
+    Consider an $m \times n$ matrix $\AA$ whose entries are from a field $K$. Let $\ff:K^n \rightarrow K^m$ be the linear function defined by $\ff(\cc) = \AA \cc$. (So, $\ff(\sE) = \AA$). Since only same-dimension vector spaces can be linearly isomorphic, we must have $n = m$ if $\ff$ is invertible. That is, $\AA$ must be a square matrix if $\ff$ is invertible.
+    
+    If $\AA$ is a square matrix and $\ff$ is indeed invertible, we say that the matrix $\AA$ is \textit{invertible}, and use $\AA^{-1}$ to denote the primitive matrix of $\ff^{-1}$ relative to $\sE$.
+    
+    Of course, for any invertible matrix $\AA$, the inverse matrix $\AA^{-1}$ is the unique matrix for which ${\AA^{-1} \AA = \II = \AA \AA^{-1}}$.
+\end{defn}
+
+We now investigate the relationship between primitive matrices and matrices with respect to bases. It turns out that primitive matrices can be interpreted to be matrices with respect to bases, and that matrices with respect to bases can be interpreted to be primitive matrices!
+
+\begin{remark}
+\label{ch::lin_alg::rmk::primitive_matrix_as_matrix_wrt_bases}
+
+    (Primitive matrix as special case of matrix relative to bases). 
+    
+    The primitive matrix $\ff(E)$ of a linear function $\ff:V \rightarrow K^m$ relative to $E$ is the matrix $\ff(E) = [\ff(E)]_{\sE}$ of $\ff:V \rightarrow K^m$ relative to the bases $E$ and $\sE$, where $\sE$ is the standard basis for $K^m$, and where $\ff(E)$ is the matrix resulting from a linear function $V \rightarrow K^m$ acting on a list of vectors (see Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors}). The key fact here is that $\left[\begin{pmatrix} c_1 \\ \vdots \\ c_m \end{pmatrix}\right]_\sE = \begin{pmatrix} c_1 \\ \vdots \\ c_m \end{pmatrix}$ for all column vectors $\begin{pmatrix} c_1 \\ \vdots \\ c_m \end{pmatrix} \in K^m$.
+\end{remark}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::f_EF}
+
+    (Matrices with respect to bases are the primitive matrices of linear functions $K^n \rightarrow K^m$).
+    
+    The previous remark discussed how primitive matrices can be regarded as matrices with respect to bases. This theorem explores the converse of the last remark: we will see that every matrix with respect to bases can be viewed as a primitive matrix of a linear function $K^n \rightarrow K^m$. (Note, this converse was already explored to some extent in Derivation \ref{ch::lin_alg::deriv::matrix_wrt_bases}, as in that theorem, we interpreted $[\ff(E)]_F$ as the primitive matrix of $[\cdot]_F \circ \ff:V \rightarrow K^m$).
+    
+    Let $V$ and $W$ be a finite-dimensional vector spaces with bases $E$ and $F$, respectively. We know from Derivation \ref{ch::lin_alg::deriv::matrix_wrt_bases} that every linear function $\ff:V \rightarrow W$ corresponds to the matrix $[\ff(E)]_F$ of $\ff$ relative to $E$ and $F$, where $[\ff(E)]_F$ is characterized by the equation $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$. Rephrase this equation as $([\cdot]_F \circ \ff)(\vv) = [\ff(E)]_F [\vv]_E$ and set $\cc = [\vv]_E$ to obtain
+    
+    \begin{align*}
+        ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\cc) = [\ff(E)]_F \spc \cc.
+    \end{align*}
+    
+    Now we define $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff_{E,F} := [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}
+        }
+    \end{align*}
+
+    so that the above rephrases as
+    
+    \begin{align*}
+        \ff_{E,F}(\cc) = [\ff(E)]_F \spc \cc = [\ff(E)]_F [\cc]_\sE,
+    \end{align*}
+    
+    where $\sE$ is the standard basis for $K^n$. Here, we have used the fact that for $\cc \in K^n$, we have $[\cc]_\sE = \cc$.
+    
+    Looking at the characterizing property of a primitive matrix (see the last box of Derivation \ref{ch::lin_alg::deriv::primitive_matrix}), we see that $[\ff(E)]_F$ is the primitive matrix of $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ relative to $\sE$. Recall from the previous remark that we can notate the primitive matrix of $\ff_{E,F}$ relative to $\sE$ by $\ff_{E,F}(\sE)$ to restate the fact of the previous sentence:
+    
+    \begin{align*}
+        \boxed
+        {
+            \underbrace{\ff_{E,F}(\sE)}_{\text{primitive matrix of $\ff_{E,F}$ relative to $\sE$}}
+            =
+            \underbrace{[\ff(E)]_F}_{\text{matrix of $\ff$ relative to $E$ and $F$}}
+        }
+    \end{align*}
+
+    We can additionally understand $\ff_{E,F}$ to be the ``induced'' linear function for which this diagram commutes:
+    
+    \begin{center}
+        % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRRkAjFVqMWbAGIA9YAB0FULAFsAFOwCUXbrxAZseAkRHlx9Zq0QgA6nr5HBp0mOqWpNuYuVr1tnW5xGCgAc3giUAAzACcIVSQyEBwIJDMJKzZkJQBjKAgcCgB9AFEAAgBeMpKQagY6ACMYBgAFfmMhEBisUIALHAcQWPikACZqFKQAZndJaxBshTyC4ulKsulB4YTEdMnEGYzPEAAVIuAS0mldOsbmtqcTG26+gZ5ouJ2k-fGj+ZOglwgA
+        \begin{tikzcd}
+            V \arrow[d, "{[\cdot]_E}"'] \arrow[r, "\ff"] & W \arrow[d, "{[\cdot]_F}"] \\
+            K^{\dim(V)} \arrow[r, "{\ff_{E,F}}"']            & K^{\dim(W)}
+        \end{tikzcd}
+    \end{center}
+        
+    To say the diagram ``commutes'' is just another way of saying $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. We think of $\ff_{E,F}$ as being \textit{induced} by the choice of $\ff$.
+    
+    %Note that the input of $\ff_{E, F}$ is best thought of as being expressed relative to the basis $E$ of $V$, since
+        
+    %\begin{align*}
+    %    \ff_{E, F}([\vv]_E) = [\ff(\vv)]_F.
+    %\end{align*}
+\end{theorem}
+
+[segway to compositions of linear functions]
+
+\begin{defn}
+\label{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive}
+
+    (Composition of linear functions that map into $K^m$ and $K^p$). 
+    
+    Let $V$ be a finite-dimensional vector space over a field $K$, and consider linear functions $\ff:V \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$. Let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, $\sE = \{\see_1, ..., \see_m\}$ be the standard basis for $K^m$, and $\sF = \{\sff_1, ..., \sff_p\}$ be the standard basis for $K^p$.
+    
+    The composition $\gg \circ \ff:V \rightarrow K^p$ is also a linear function (prove this as an exercise). Since $\gg \circ \ff$ is a linear function $V \rightarrow K^p$, its primitive matrix relative to $E$ (see Derivation \ref{ch::lin_alg::deriv::primitive_matrix}) is
+    
+    \begin{align*}
+        \begin{pmatrix}
+            (\gg \circ \ff)(\ee_1) & \hdots & (\gg \circ \ff)(\ee_n)
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \gg(\ff(\ee_1)) & \hdots & \gg(\ff(\ee_n))
+        \end{pmatrix}.
+    \end{align*}
+    
+    But $\ff:V \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$, so $\ff$ and $\gg$ also have primitive matrices. The primitive matrix of $\ff$ relative to $E$ is $\ff(E)$ and the primitive matrix of $\gg$ relative to $\sE$ is $\gg(\sE)$, so the above becomes
+    
+    \begin{align*}
+        \begin{pmatrix}
+            \gg(\sE) \ff(\ee_1) & \hdots & \gg(\sE) \ff(\ee_n)
+        \end{pmatrix}
+        =
+        \begin{pmatrix} 
+            \gg(\sE) (\ff(E))_1 & \hdots & \gg(\sE) (\ff(E))_n.
+        \end{pmatrix}
+    \end{align*}
+    
+    (In the above, $(\ff(E))_i$ is the $i$th column of $\ff(E)$, and $\gg(\sE) \ff(\ee_i)$ denotes the matrix-vector product between the matrix $\gg(\sE)$ and the vector $\ff(\ee_i) \in K^m$.
+    
+    Given an $m \times n$ matrix $\AA$ and a
+    $p \times m$ matrix $\BB$, we define the \textit{matrix-matrix product} $\BB \AA$ to be the matrix
+    
+    \begin{align*}
+        \boxed
+        {
+            \BB \AA := \begin{pmatrix} \BB \aa_1 & \hdots & \BB \aa_n \end{pmatrix}
+        }
+    \end{align*}
+    
+    so that the primitive matrix of $\gg \circ \ff$ relative to $E$ is a matrix-matrix product:
+    
+    \begin{align*}
+        (\text{primitive matrix of $\gg \circ \ff$ relative to $E$}) = \gg(\sE) \spc \ff(E)
+    \end{align*}
+    
+    We call $\BB \AA$ the \textit{matrix-matrix} product of $\BB$ and $\AA$. So, the right-hand side of the most recent equation is the matrix-matrix product of $\gg(\sE)$ and $\ff(E)$.
+    
+    Note that $(\BB \AA) \vv = \BB (\AA \vv)$ because $(\gg \circ \ff)(\vv) = \gg(\ff(\vv))$.
+\end{defn}
+
+\begin{remark}
+    (Compatibility of matrices for matrix-matrix products). The composition of two linear functions is only defined when the output space of one is the entire input space of the other. Thus, the matrix-matrix product $\BB \AA$ of an $m \times n$ matrix with an $r \times s$ matrix $\BB$ is only defined when $r = n$.
+\end{remark}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}
+
+    (Matrix-matrix products of linear functions mapping into finite-dimensional vector spaces). 
+    
+    Let $V, W, Y$ be finite-dimensional vector spaces, with bases $E, F, G$, respectively, and let $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ be linear functions. We will use the previous definition to produce a matrix relative to bases for the linear function $\gg \circ \ff:V \rightarrow Y$.
+    
+    The matrix of $\gg \circ \ff$ relative to $E$ and $G$ is the same as the primitive matrix for $(\gg \circ \ff)_{E,G}$ relative to $E$ (see Theorem \ref{ch::lin_alg::thm::f_EF}). We will therefore compute this later matrix. We have
+    
+    \begin{align*}
+        (\gg \circ \ff)_{E,G} = ([\cdot]_G \circ \gg \circ [\cdot]_{F^{-1}}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}
+    \end{align*}
+    
+    Note that $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$, $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, and $(\gg \circ \ff)_{E,G}:K^{\dim(V)} \rightarrow K^{\dim(Y)}$, so we are in the situation of the previous definition. Thus, the primitive matrix of $(\gg \circ \ff)_{E,F}$ relative to $E$ is the matrix-matrix product of the primitive matrix of $\gg_{F,G}$ relative to $F$ and the primitive matrix of $\ff_{E,F}$ relative to $E$:
+    
+    \begin{align*}
+        (\text{primitive matrix of $(\gg \circ \ff)_{E,G}$ relative to $E$}) =  [\gg(F)]_G [\ff(E)]_F.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        \boxed
+        {
+            (\text{matrix of $\gg \circ \ff$ relative to $E$ and $G$}) = [\gg(F)]_G [\ff(E)]_F
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::coordinates_of_matrix_vector_product}
+    ($i$th entry of matrix-vector product).
+    
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$ and let $\cc = \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix} \in K^n$ be a column vector. Referring to the definition of matrix-vector product in Derivation \ref{ch::lin_alg::deriv::primitive_matrix}, we see the matrix-vector product $\AA \cc$ has the following $i$th entry:
+    
+    \begin{align*}
+            (\AA \cc)_i = 
+            \begin{pmatrix}
+                a_{1,1} & \hdots & a_{1,n} \\
+                \vdots & & \vdots \\
+                a_{m, 1} & \hdots & a_{m, n}
+            \end{pmatrix}
+            \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+            =
+            c_1
+            \begin{pmatrix} a_{1,1} \\ \vdots \\ a_{m,1} \end{pmatrix}
+            +
+            ...
+            +
+            c_n
+            \begin{pmatrix} a_{1,n} \\ \vdots \\ a_{m,n} \end{pmatrix}
+            =
+            \begin{pmatrix} c_1 a_{1, 1} + ... + c_n a_{1, n} \\ \vdots \\ c_n a_{m, 1} + ... + c_n a_{m, n} \end{pmatrix}.
+    \end{align*}
+
+
+    Therefore,
+    
+    \begin{align*}
+        \boxed
+        {
+            (\AA \cc)_i = (\text{$i$th row of $\AA$}) \cdot \cc
+        }
+    \end{align*}
+    
+    Here $\cdot:K^n \times K^n \rightarrow K$ denotes the \textit{dot product} of vectors in $K^n$, defined by
+    
+    \begin{align*}
+        \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+        \cdot
+        \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+        =
+        c_1 c_1 + ... + c_n c_n.
+    \end{align*}
+    
+    Since the dot product must take two column vectors as input, what we technically mean by ``$i$th row of $\AA$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
+    
+    The last section of this chapter discusses the dot product in depth.
+\end{theorem}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}
+
+    ($ij$ entry of matrix-matrix product). 
+    
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$ and $\BB = (b_{ij})$ be an $n \times p$ matrix with entries in $K$. Then the $ij$ entry of the matrix-matrix product $\BB \AA$ can be computed using the definition of matrix-matrix product (Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}) and the previous theorem:
+    
+    \begin{align*}
+        (\BB \AA)_{ij}
+        = 
+        \BB
+        \begin{pmatrix}
+            \aa_1 & \hdots & \aa_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \BB \aa_1 & \hdots & \BB \aa_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \AA \cdot \aa_1 & \hdots & \AA \cdot \aa_n \\
+            \vdots & & \vdots \\
+            \bb_m \cdot \aa_1 & \hdots & \bb_m \cdot \aa_n
+        \end{pmatrix}.
+    \end{align*}
+    
+    Here $\aa_i$ is the $i$th column of $\AA$ and $\bb_i$ is the $i$th row of $\BB$. So we get
+    
+    \begin{align*}
+        \boxed
+        {
+            (\BB \AA)_{ij} = (\text{$i$th row of $\BB$}) \cdot (\text{$j$th column of $\AA$})
+        }
+    \end{align*}
+    
+    Similarly as in the previous theorem, what we mean by ``$i$th row of $\BB$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
+\end{theorem}
+
+\section*{Matrices and change of basis [OLD]}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::change_of_basis_for_vectors}
+    
+    (Change of basis).
+    
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. We will now discover how to relate $[\vv]_E$ to $[\vv]_F$.
+    
+    To start, consider the special case $V = K^n$. Let $\EE$ and $\FF$ be the matrices with $i$th columns $\ee_i$ and $\ff_i$, respectively. Then for $\cc \in K^n$ we have $\FF [\cc]_F = \cc = \EE [\cc]_E$, so $[\cc]_F = \FF^{-1} \EE [\cc]_E$. By the definition of matrix-matrix multiplication (Definition \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive}), we have
+    
+    \begin{align*}
+        \FF^{-1} \EE = \FF^{-1} \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} = \begin{pmatrix} \FF^{-1} \ee_1 & \hdots & \FF^{-1} \ee_n \end{pmatrix}
+        = \begin{pmatrix} [\ee_1]_F & \hdots & [\ee_n]_F \end{pmatrix}
+        = [\cdot]_F(E) := [\EE]_F,
+    \end{align*}
+    
+    where we have used the notation $[\EE]_F := [\cdot]_F(E)$ that was originally defined in Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors}.
+    
+    Therefore
+    
+    \begin{align*}
+        [\cc]_F = [\EE]_F [\cc]_E.
+    \end{align*}
+    
+    We now generalize this result to one that holds when $V$ is an arbitrary finite-dimensional vector space.
+    
+    The matrix $[\cdot]_F(E) = [\EE]_F$ was the centerpiece of the above argument. To generalize, we notice that the primitive matrix of $[\cdot]_F$ relative to $E$ is $[\cdot]_F(E) = [\EE]_F$. The characterizing property of primitive matrices (see the very end of Derivation \ref{ch::lin_alg::deriv::primitive_matrix}) then implies that for any $\vv \in V$, we have
+    
+    \begin{align*}
+        \boxed
+        {
+            [\vv]_F = [\EE]_F [\vv]_E
+        }
+    \end{align*}
+    
+    It's also worth noting that since $[\EE]_F = [\II_V(E)]_F$, then $[\EE]_F$ is the matrix of the identity $\II_V$ on $V$. So, the above can be restated as
+    
+    \begin{align*}
+        [\cdot]_F = [\II_V(E)]_F \circ [\cdot]_E.
+    \end{align*}
+    
+    This equation is not of much practical use, but it does give more insight; it is a good sanity check that the identity on $V$ is involved in changing bases, since representing a vector with different bases does not change the vector itself.
+\end{theorem}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::I_EF}
+    ($(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$).
+    
+    Let $V$ be a vector space. The identity function $\II_V:V \rightarrow V$ on $V$ satisfies $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$. As a corollary, we have $[\EE]_F^{-1} = [\FF]_E$.
+\end{theorem}
+
+\begin{proof}
+    Given any bases $E, F$ of $V$, Theorem \ref{ch::lin_alg::thm::f_EF} defines $\ff_{E,F} := [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. Therefore $(\II_V)_{E,F} = [\cdot]_F \circ [\cdot]_E^{-1}$. Since the definition of $\ff_{E,F}$ holds for any two bases of $V$, we can switch $E$ and $F$ to obtain $(\II_V)_{F,E} = [\cdot]_E \circ [\cdot]_F^{-1}$. The claim follows.
+    
+    We obtain the corollary by starting with $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$ and taking the primitive matrices of each side, relative to $E$ and $F$, respectively.
+\end{proof}
+
+\begin{comment}
+    %Unnecessary/impractical
+    \begin{theorem}
+        (Change of basis for linear functions). 
+        
+        Let $V$ and $W$ be finite-dimensional vector spaces. Let $E, G$ be bases of $V$, let $F, H$ be bases of $W$, and consider a linear function $\ff:V \rightarrow W$. Then $\ff_{E,F}$ and $\ff_{G,H}$ are related by
+        
+        \begin{align*}
+            \ff_{G,H} = [\cdot]_H \circ [\cdot]_{F^{-1}} \circ \ff_{E,F} \circ [\cdot]_E \circ [\cdot]_{G^{-1}}.
+        \end{align*}
+        
+        This is because $\ff_{E,F}$ was defined as $\ff_{E,F} := [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. (See Theorem \ref{ch::lin_alg::thm::f_EF}). But $[\cdot]_H \circ [\cdot]_{F^{-1}} = (\II_W)_{F,H}$ and $[\cdot]_E \circ [\cdot]_{G^{-1}} = (\II_V)_{G,F}$, so
+        
+        \begin{align*}
+            \ff_{G,H} = (\II_W)_{F, H} \circ \ff_{E,F} \circ (\II_V)_{G,F}.
+        \end{align*}
+        
+        We now translate the above equation into a statement about primitive matrices. Since the primitive matrix of a composition of functions is the product of matrices taken relative to the appropriate bases (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}), we have
+    
+        \begin{align*}
+            [\ff(G)]_H = [\II_W(F)]_H [\ff(E)]_F [\II_V(G)]_F = [\FF]_H [\ff(E)]_F [\GG]_F = [\FF]_H [\ff(E)]_F [\FF]_G^{-1}.
+        \end{align*}
+        
+        The last equality follows from the previous theorem.
+        
+    \end{theorem}
+\end{comment}
+
+\begin{theorem}
+\label{thm::lin_alg::thm::change_of_bases_fns_common_special_case}
+    (Change of basis for linear functions).
+
+    [Already encapsulated in the notion of $[\ff(E)]_F$. Just use $V = W$.]
+    
+    The theorem that has just been stated is what people refer to when they speak of changing the bases of a linear function's matrix.
+\end{theorem}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::change_of_basis_with_basis_vectors}
+    (Change of basis in terms of basis vectors).
+    
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. By the definition of $[\cdot]_F$, we have
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff_i = \sum_{j = 1}^n ([\ff_i]_E)_j \ee_j = \sum_{j = 1}^n ([\FF]_E)_{ji} \ee_j
+        }
+    \end{align*}
+    
+    In the last equality, we have used that $[\ff_i]_E$ is the $i$th column of $[\FF]_E$.
+\end{theorem}
+
+\begin{remark}
+    (On the order of proving change of basis theorems). 
+    
+    Most linear algebra texts first prove the previous theorem and use it to show a version of the first equation in the box of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}. This approach for proving Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors} was not used because it involves quite a bit more matrix algebra than the approach supplied in this text. However, it good to know that these theorems are equivalent.
+\end{remark}
+
+==================================
+
+\begin{theorem}
+\label{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}
+
+    (Matrix-matrix products of linear functions mapping into finite-dimensional vector spaces). 
+    Let $V, W, Y$ be finite-dimensional vector spaces, with bases $E, F, G$, respectively, and let $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ be linear functions. We will use the previous definition to produce a matrix relative to bases for the linear function $\gg \circ \ff:V \rightarrow Y$.
+    
+    The matrix of $\gg \circ \ff$ relative to $E$ and $G$ is the same as the primitive matrix for $(\gg \circ \ff)_{E,G}$ relative to $E$ (see Theorem \ref{ch::lin_alg::thm::f_EF}). We will therefore compute this later matrix. We have
+    
+    \begin{align*}
+        (\gg \circ \ff)_{E,G} = ([\cdot]_G \circ \gg \circ [\cdot]_{F^{-1}}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}
+    \end{align*}
+    
+    Note that $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$, $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, and $(\gg \circ \ff)_{E,G}:K^{\dim(V)} \rightarrow K^{\dim(Y)}$, so we are in the situation of the previous definition. Thus, the primitive matrix of $(\gg \circ \ff)_{E,F}$ relative to $E$ is the matrix-matrix product of the primitive matrix of $\gg_{F,G}$ relative to $F$ and the primitive matrix of $\ff_{E,F}$ relative to $E$:
+    
+    \begin{align*}
+        (\text{primitive matrix of $(\gg \circ \ff)_{E,G}$ relative to $E$}) =  [\gg(F)]_G [\ff(E)]_F.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        \boxed
+        {
+            (\text{matrix of $\gg \circ \ff$ relative to $E$ and $G$}) = [\gg(F)]_G [\ff(E)]_F
+        }
+    \end{align*}
+\end{theorem}

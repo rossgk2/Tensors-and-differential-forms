@@ -1,0 +1,2859 @@
+\chapter{Linear algebra}
+\label{ch::lin_alg}
+
+\begin{comment}
+\textbf{This chapter uses some unconventional notation.} The unconventional notation will be introduced in a natural way, so there is no need to know any of it now. This is just a ``heads up'' for those who have experience with linear algebra. Here is the list of unconventional notation used in this chapter:
+
+\begin{itemize}
+    \item Unconventional combinations of symbols are used, such as:
+    \begin{itemize}
+        \item ``$\ff(E)$'' (this denotes a function acting on a list of vectors)
+        \item ``$[\ff(E)]_F$'' (this is explicit notation for a matrix relative to bases) \item ``$\ff_{E,F}$'' (you'll have to find out!)
+    \end{itemize}
+    \item To notate the $i$th component of a vector $\vv$ relative to a basis $E$, we write $([\vv]_E)_i$ instead of $v_i$. This notation may seem unnecessarily verbose, but it has the advantage of making any involvement of bases apparent.
+\end{itemize}
+
+
+\vspace{.25cm}
+
+\textbf{Notation for covariance and contravariance is not used in this chapter.} The use of both upper and lower indices to distinguish between ``covariant'' and ``contravariant'' will not be used in the following chapter of linear algebra review to prevent confusion. Only lower indices will be used. (If you don't know what ``covariant'' or ``contravariant'' means, that is 100\% expected. Covariance and contravariance are explained later).
+\end{comment}
+
+Linear algebra is the study of \textit{linear elements}- which are more commonly known as \textit{vectors}- and of functions that ``respect'' the algebraic structure of linear elements.
+
+[TO-DO]
+
+\newpage
+
+\section{Vectors}
+
+\begin{defn}
+    (Intuitive definition of vector).
+    
+    Intuitively, a \textit{vector} is a locationless directed line segment. By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other.
+    
+    This intuitive definition is formally problematic because the definitions of \textit{directed line segment} and \textit{point} depend on each other; they are circular definitions.
+
+    \begin{itemize}
+        \item A \textit{directed line segment} can be specified by listing a start and end \textit{point}.
+        \item A \textit{point} is arrived at by following a path constructed of \textit{directed line segments}.
+    \end{itemize}
+    
+    not only that...
+    
+    \begin{itemize}
+        \item defining \textit{locationless directed line segment} requires thinking of a difference of points as being a locationless directed line segment
+        \item defining \textit{point} requires thinking of a sum of directed line segments 
+    \end{itemize}
+    
+    begin with element of $\R^n$ is locationless directed line segment
+    
+    
+    a point is an element of $\R^n$
+    a locationless directed line segment requires a notion of increment
+    
+    
+    Fortunately, we can escape this circular logic if we can give a definition of \textit{directed line segment} or of \textit{point} that depends on a more primitive mathematical object, as, if this is the case, then the definitions no longer both depend on each other.
+\end{defn}
+
+To perform this ``escape'', we will use elements of $\R^n$ as the primitive mathematical objects that underlie the notion of \textit{point}.
+
+\subsection*{$\R^n$}
+
+\begin{defn}
+    ($\R^n$).
+    
+    Let $n$ be a positive integer. Recall that if $S$ is any set, then $S^n$ denotes the set of length-$n$ tuples with entries from $S$:
+    
+    \begin{align*}
+        S^n := \underbrace{S \times ... \times S}_{\text{$n$ times}} = \{(x_1, ..., x_n) \mid x_1, ..., x_n \in S\}.
+    \end{align*}
+    
+    In particular, $\R^n$ is the set of length-$n$ tuples whose entries are real numbers: 
+    
+    \begin{align*}
+        \R^n = \underbrace{\R \times ... \times \R}_{\text{$n$ times}} = \{(x_1, ..., x_n) \mid x_1, ..., x_n \in \R\}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+    (Column notation for elements of $\R^n$).
+    
+    To save horizontal writing space, we will use the following \textit{column notation} to denote elements of $\R^n$, and write $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ rather than $(x_1, ..., x_n) \in \R^n$. Thus we have
+    
+    \begin{align*}
+        \R^n = \underbrace{\R \times ... \times \R}_{\text{$n$ times}} = \Bigg\{ \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \mid x_1, ..., x_n \in \R \Bigg\}.
+    \end{align*}
+    
+    When we wish to refer to an element of $\R^n$ without explicitly specifying what its entries are, we use a bold letter, and say something like ``let $\xx \in \R^n$''.
+\end{defn}
+
+Now that we have defined $\R^n$ and introduced notation to represent elements of $\R^n$, we define an \textit{addition} operation $+:\R^n \times \R^n \rightarrow \R^n$ and a \textit{scalar multiplication} operation $\cdot: \R \times \R^n \rightarrow \R^n$, and investigate the algebraic properties of these operations.
+
+\begin{defn}
+    (Addition and scalar multiplication in $\R^n$).
+    
+    We define \textit{addition} $+:\R^n \times \R^n \rightarrow \R^n$ and \textit{scalar multiplication} $\cdot:\R \times \R^n \rightarrow \R^n$ operations as follows.
+    
+    As a preliminary, wen note for $\xx_1, \xx_2 \in \R^n$ we use the notation $\xx_1 + \xx_2 := +(\xx_1, \xx_2)$, and that for $c \in \R, \xx \in \R^n$ we use the notation $c \xx := \cdot(c, \xx)$.
+    
+    We define
+    
+    \begin{align*}
+        \underbrace
+        {
+            \begin{pmatrix}
+                x_1 \\ \vdots \\ x_n
+            \end{pmatrix}
+        }_\xx
+        +
+        \underbrace
+        {
+            \begin{pmatrix}
+                y_1 \\ \vdots \\ y_n
+            \end{pmatrix}
+        }_\yy
+        &:=
+        \underbrace
+        {
+            \begin{pmatrix}
+                x_1 + y_1 \\ \vdots \\ x_n + y_n
+            \end{pmatrix}
+        }_{\xx + \yy}
+        \\
+        c
+        \underbrace
+        {
+            \begin{pmatrix}
+                x_1 \\ \vdots \\ x_n
+            \end{pmatrix}
+        }_\xx
+        &:=
+        \underbrace
+        {
+            \begin{pmatrix}
+                c x_1 \\ \vdots \\ c x_n
+            \end{pmatrix}
+        }_{c \xx}.
+    \end{align*}
+\end{defn}
+
+The above addition operation $+$ and scalar multiplication operation $\cdot$ are algebraically sensible because they obey properties one would expect of an ``addition operation'' and a ``multiplication operation''.
+
+\begin{theorem}
+    (Properties of $+$ and $\cdot$ $\R^n$).
+    
+    $+:\R^n \times \R^n \rightarrow \R^n$ satisfies the following properties:
+    
+    \begin{enumerate}
+        \item (Existence of additive identity). 
+        \item (Existence of additive inverses).
+        \item (Associativity of $+$). For all $\xx_1, \xx_2, \xx_3 \in \R^n$, $(\xx_1 + \xx_2) + \xx_3 = \xx_1 + (\xx_2 + \xx_3)$.
+        \item (Commutativity of $+$). For all $\xx_1, \xx_2 \in \R^n$, $\xx_1 + \xx_2 = \xx_2 + \xx_1$.
+    \end{enumerate}
+    
+    $\cdot:\R \times \R^n \rightarrow \R$ satisfies the following properties:
+    
+    \begin{enumerate}
+        \item (Left-associativity of $\cdot$). For all $c_1, c_2 \in \R$ and $\xx \in \R^n$, $c_2(c_1 \xx) = c_2 c_1 \xx$.
+        \item (Existence of multiplicative identity). For all $\xx \in \R^n$, $1 \xx = \xx$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    [...]
+
+    The associativity and commutativity of $+$ follow from the associativity and commutativity of addition of real numbers. The left-associativity of $\cdot$ follows from the associativity of real numbers.
+\end{proof}
+
+\subsection*{Vectors in $\R^n$}
+
+Now we define \textit{point}, \textit{directed line segment}, and \textit{vector} in terms of elements of $\R^n$.
+
+\begin{defn}
+    (Point in $\R^n$).
+    
+    You are likely familiar with using elements of $\R^2$, such as $(x, y) \in \R^2$, to specify the two-dimensional position that has horizontal coordinate $x$ and vertical coordinate $y$. We can similarly describe positions in three dimensional space by letting $(x, y, z) \in \R^3$ denote the position with horizontal coordinate $y$, vertical coordinate $z$, and depth coordinate $x$. As for elements of $\R^4$ and $\R^5$, well, humans are not really capable of visualizing these higher dimensional spaces in the same way we visualize $\R^3$, but we can still consider an element $(x, y, z, w) \in \R^4$ to be a ``four dimensional position'', or an element $(p_1, p_2, p_3, p_4, p_5) \in \R^5$ to be a ``five dimensional position''.
+    
+   In general, an element $\pp = (p_1, ..., p_n)$ of $\R^n$ can be thought of as an ``$n$-dimensional position''. For this reason, we define a \textit{point in $\R^n$} to be an element of $\R^n$.
+\end{defn}
+
+\begin{defn}
+    (Directed line segment in $\R^n$).
+    
+    A \textit{directed line segment} in $\R^n$ is a tuple of the form $(\pp, \qq)$, where $\pp$ and $\qq$ are points in $\R^n$. That is, a directed line segment in $\R^n$ is an element of $\R^n \times \R^n$, where we make sure to think of each $\R^n$ in the Cartesian product as being ``the set of all points in $\R^n$''.
+    
+    Given a directed line segment $\boldsymbol{\ell} = (\pp, \qq)$, we call $\pp$ the \textit{start point} of $\boldsymbol{\ell}$ and $\qq$ the \textit{end point} of $\boldsymbol{\ell}$.
+\end{defn}
+
+Now that we have defined \textit{directed line segment}, we only need to know of the following interpretation of vector addition in order to be able to formally define what a \textit{locationless directed line segment} is.
+
+\begin{deriv}
+    (Addition in $\R^n$ as point plus directed line segment).
+    
+    \begin{itemize}
+        \item take a directed line segment $\boldsymbol{\ell} = (\pp, \qq)$
+        \item consider the difference $\pp - \qq$
+        \item so far this only has algebraic meaning
+        \item notice $(p_1 - q_1, p_2 - q_2) = $ (horizontal distance from $\pp$ to $\qq$, vertical distance `` ``) to obtain geometric meaning
+        \item this geometric meaning involves the directed line segment that goes from $\pp$ to $\qq$, \textit{not} a locationless directed line segment (so no circular logic!)
+    \end{itemize}
+    
+    how would this go for addition?
+    \begin{itemize}
+        \item doesn't make sense to add points, so we'd have to add directed line segments
+        \item would only be defined when end point of first is start point of second; $(\pp, \qq) + (\qq, \rr) := (\pp, \rr)$
+    \end{itemize}
+    
+    \textbf{===============}
+    
+    What is the geometric interpretation of these addition and subtraction operations? To answer this, it helps to consider the case $n = 2$ since it is hard to visualize $\R^n$ for arbitrary $n$.
+    
+    
+    
+    Notice that the directed line segment $\boldsymbol{\ell} = \Bigg( \begin{pmatrix} p_1 \\ p_2 \end{pmatrix}, \begin{pmatrix} p_1 + v_1 \\ p_2 + v_2 \end{pmatrix} \Bigg)$ is the directed line segment whose start point is $\pp = \begin{pmatrix} p_1 \\ p_2 \end{pmatrix}$ and whose endpoint lies in the direction of 
+    
+    and let $ \in \R^2$ be an element of $\R^2$ (don't think of $\vv$ as being a point!), and consider the expression $\pp + \vv$:
+    
+    \begin{align*}
+        \underbrace
+        {
+            \begin{pmatrix}
+                p_1 \\ p_2
+            \end{pmatrix}
+        }_\pp
+        +
+        \underbrace
+        {
+            \begin{pmatrix}
+                v_1 \\ v_2
+            \end{pmatrix}
+        }_\vv
+        :=
+        \underbrace
+        {
+            \begin{pmatrix}
+                p_1 + v_1 \\ p_2 + v_2
+            \end{pmatrix}
+        }_{\pp + \vv}
+    \end{align*}
+\end{deriv}
+
+\begin{defn}
+    (Vector in $\R^n$).
+    
+    A \textit{vector} in $\R^n$ is a locationless directed line segment in $\R^n$:
+    
+    $(\pp_1, \qq_1) = (\pp_2, \qq_2)$ iff $\pp_2 - \pp_1 = \qq_2 - \qq_1$
+\end{defn}
+
+\begin{remark}
+    There are various ways to interpret what elements of $\R^n$ represent. Such interpretations can often seem elaborate and perhaps confusing, so remember that this definition applies no matter the interpretation; at the end of the day, an element of $\R^n$ is always a length-$n$ tuple whose entries are real numbers.
+\end{remark}
+
+\begin{deriv}
+    (Geometric interpretation of addition in $\R^n$; vectors).
+
+    
+    
+    We see that $\pp + \vv$ is the point in $\R^2$ obtained by starting at $\pp$, traveling $v_1$ units along the horizontal axis, and then traveling $v_2$ units along the vertical axis. In other words, $\pp + \vv$ is the end point of the directed line segment that has $\pp$ as a start point, that has a ``rise'' of $v_2$, and that has a ``run'' of $v_1$. Notice here that the tuple $(v_1, v_2) \in \R^2$ \textit{represents} the directed line segment with ``rise'' $v_2$ and ``run'' $v_1$.
+    
+    We will refer to elements of $\R^2$ that we think of as representing directed line segments in this way as \textit{vectors in $\R^2$}.
+    
+    
+    Thus, we can think of $\pp + \vv$ as being the point in $\R^2$ obtained by starting at $\pp$ and then traveling along the directed line segment that is described by the tuple $(v_1, v_2)$.
+    
+     We have just discovered that we can 
+\end{deriv}
+
+\begin{deriv}
+    (Vectors in $\R^n$).
+    
+    Notice that in the above $\ww$ represented a line segemnet
+    
+    Given a point $\pp = (p_1, p_2)$ in $\R^2$ and an element $\vv = (v_1, v_2) \in \R^2$, we can obtain the point $(p_1 + v_1, p_2 + v_2) \in \R^2$ by adding the corresponding components of $\pp$ and $\vv$. What
+    
+    
+    and $\qq = (q_1, q_2)$ in $\R^2$, we define the \textit{vector between $\pp$ and $\qq$} to be the directed line segment that starts at $\pp$ and ends at $\qq$.
+    
+    
+    For an element $(v_1, ..., v_n) \in \R^n$ where $n > 3$, some vague notions of ``$n$-dimensional position'' and ``traveling in the direction of a directed line segment in $n$-dimensional space'' will have to suffice, since we can't easily visualize more than three spatial dimensions.
+    
+    When an element of $\R^n$ is thought of as being a directed line segments, we call it a \textit{vector in $\R^n$}.
+\end{deriv}
+
+
+The following definitions provide algebraic tools we can use to reason about points in $\R^n$.
+
+
+
+Given that points in $\R^n$ can be added together, you might suspect that they can be subtracted as well. They can! The following two definitions explain the details.
+
+\begin{theorem}
+    (The zero element of $\R^n$).
+    
+    There is an element $\mathbf{0}$ of $\R^n$ that satisfies $\vv + \mathbf{0} = \vv = \mathbf{0} + \vv$ for all $\vv \in \R^n$. We call $\textbf{0}$ the \textit{zero element} of $\R^n$. As you may have guessed, $\mathbf{0}$ is the element of $\R^n$ that has a zero in every entry:
+    
+    \begin{align*}
+        \mathbf{0} = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}.
+    \end{align*}
+    
+    Referring to the definition of addition in $\R^n$, we can check that this definition of $\mathbf{0}$ does indeed satisfy $\vv + \mathbf{0} = \vv = \mathbf{0} + \vv$ for all $\vv \in \R^n$.
+    
+    When interpreted to be a point, the zero element is often called ``the origin''.
+\end{theorem}
+
+\begin{theorem}
+    (Additive inverses of points in $\R^n$).
+    
+    For every point $\vv \in \R^n$, there is a point $-\vv$ in $\R^n$ such that $\vv + (-\vv) = \mathbf{0}$. Specifically, we have
+    
+    \begin{align}
+        -\begin{pmatrix}
+            v_1 \\ \vdots \\ v_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -v_1 \\ \vdots \\ -v_n
+        \end{pmatrix}.
+    \end{align}
+    
+    We call $-\vv$ the \textit{additive inverse} of $\vv$. Of course, we colloquially refer to $-\vv$ as ``minus $\vv$''. 
+    
+    As mentioned, there is indeed a notion of \textit{subtraction in $\R^n$}: we use the notation $\vv - \ww$ to mean $\vv + (-\ww)$. If $\ww = \begin{pmatrix} w_1 \\ w_2 \end{pmatrix}$, one can interpret the point $\vv - \ww$ to be the point that is arrived at by starting at $\vv$, traveling $-w_1$ units on the horizontal axis, and then traveling $-w_2$ units on the vertical axis.
+\end{theorem}
+
+Having introduced the notions of vector addition, additive inverse, and vector subtraction, we now present two properties that are characteristic of vector addition.
+
+\subsubsection*{Vectors in $\R^n$}
+
+\textbf{merge these interpretations into the above definitions; it's best to talk about points in $\R^n$ and vectors in $\R^n$ at the same time rather than one section after another}
+
+\begin{deriv}
+    (Interpretation of vector addition).
+    
+    Previously, we defined an addition operation on $\R^n$, and gave intuition for what $\vv + \ww$ meant when $\vv \in \R^n$ and $\ww \in \R^n$ were considered to be points. There is a related but slightly different interpretation of the addition operation when $\vv$ and $\ww$ are considered to be vectors. We can imagine $\vv + \ww$ as being the result of starting at the start point of $\vv$, then traveling according to the vector $\vv$ to reach the end point of $\vv$, then applying ``locationlessness'' to place the start point of $\ww$ on the end point of $\vv$, and then traveling to the end point of $\ww$. The directed line segment that reaches from ``overall'' beginning to the ``overall'' end is $\vv + \ww$. Thus, if we first imagine connecting the end point of $\vv$ to the start point of $\ww$, then $\vv + \ww$ is represented by the directed line segment that connects the start point of $\vv$ to the end point of $\ww$. This interpretation is often called the ``tail-to-tip method'', since one computes $\vv + \ww$ by forming the vector by drawing a straight line from the ``tail'' of $\vv$ to the ``tip'' of $\ww$. 
+\end{deriv}
+
+\begin{deriv}
+    (Interpretation of the zero vector).
+    
+    Noticing that for any $\vv \in \R^n$ we have $\vv - \vv = \mathbf{0}$, we can conclude that the zero vector can be interpreted to be the vector whose start and end points coincide. Thus, the zero vector is not a locationless line segment but a locationless point!
+\end{deriv}
+
+\begin{deriv}
+    (Interpretation of a vector's additive inverse, interpretation of vector subtraction).
+    
+    To obtain an interpretation of a vector's additive inverse in the vector context, first recall that for any $\vv \in \R^n$ the additive inverse $-\vv$ satisfies $\vv + (-\vv) = \mathbf{0}$. Since the start and end points of $\mathbf{0}$ coeincide, we now ask: if we are to follow the above interpretation of vector addition, how can we make the start point of the sum $\vv + (-\vv)$ coincide with the end point of the sum, i.e., to make the start point of $\vv$ coincide with the end point of $-\vv$? Recall from the above tail-to-tip method for vector addition that we are indeed free to vary the start point of $\vv$ and the end point of $-\vv$, so we can impose that the start point of $\vv$ is the end point of $-\vv$. So, we now know what the end point of $-\vv$ is. What about the start point of $-\vv$? Recall additionally that the tail-to-tip method imposes on us that the end point of the first vector in the sum, $\vv$, must be the start point of the second vector in the sum, $-\vv$. Thus, the end point of $-\vv$ is the start point of $\vv$. In all, we have shown that the start point of $-\vv$ is the end point of $\vv$ and that the end point of $-\vv$ is the start point of $\vv$, so we can interpret $-\vv$ to be the line segment that has the same length as $\vv$ but that goes in the opposite direction.
+    
+    To interpret $\vv - \ww$ when $\vv, \ww \in \R^n$ are vectors, just consider $\vv - \ww$ to be $\vv + (-\ww)$, and make use of the interpretations of vector addition and a vector's additive inverse.
+\end{deriv}
+
+The following definition presents one operation on vectors that we haven't introduced yet.
+
+\begin{defn}
+    (Scaling of vectors).
+
+    If $\vv = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \in \R^n$ is a vector, we can ``grow'' and ``shrink'' $\vv$ by scaling its entries. Formally, given a real number $c \in \R$, we define the following \textit{vector scaling} operation $\cdot:\R \times \R^n \rightarrow \R^n$:
+    
+    \begin{align*}
+        c \cdot
+        \begin{pmatrix}
+            v_1 \\ \vdots \\ v_n
+        \end{pmatrix}
+        :=
+        \begin{pmatrix}
+            cv_1 \\ \vdots \\ cv_n
+        \end{pmatrix}.
+    \end{align*}
+    
+    In practice, for $c \in \R$ and $\vv \in \R^n$, we write ``$c \vv$'' to mean $c \cdot \vv$''.
+    
+    Note, there is not really a clear geometric interpretation of this operation when $\vv \in \R^n$ is considered to be a point rather than a vector.
+\end{defn}
+
+\begin{remark}
+    (Scalars).
+    
+    Since we can scale vectors in $\R^n$ by elements of $\R$, we often refer to elements of $\R$ as \textit{scalars}.
+\end{remark}
+
+\begin{remark}
+    (Vector terminology).
+    
+    Since the set of points in $\R^n$ is equal to the set of vectors in $\R^n$, we will from this point forward prefer the word ``vector'' instead of the word ``point'', while keeping in mind that we can think of a vector as being a directed line segment or a location.
+\end{remark}
+
+\subsection*{Properties of $+$ and $\cdot$ in $\R^n$}
+
+We have proved several properties of the vector addition operation $+:\R^n \times \R^n \rightarrow \R^n$ that we restate in the below (1.1), (1.2), (1.3), and (1.4). In the below (2), we state a property of the scalar multiplication operation $\cdot:\R \times \R^n \rightarrow \R^n$, and in the below (3), we state properties involving both $+$ and $\cdot$.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::prop_operations_Rn}
+    (Properties of $+$ and $\cdot$ in $\R^n$).
+        \begin{enumerate}
+            \item (Properties of $+$).
+            \begin{enumerate}
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in V$ such that for all $\vv \in \R^n$, $\vv + \mathbf{0} = \vv$.
+                \item[1.2.] (Closure under additive inverses). For all $\vv \in \R^n$ there exists $-\vv \in \R^n$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in \R^n$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in \R^n$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+            \end{enumerate}
+            \item (Normalization for $\cdot$). $1 \vv = \vv$ for all $\vv \in \R^n$.
+            \item (Compatibility of $+$ and $\cdot$).
+            \begin{enumerate}
+                \item[3.1.] For all $\vv_1, \vv_2 \in \R^n$ and $c \in \R$, $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
+                \item[3.2.] For all $\vv \in \R^n$ and $c_1, c_2 \in \R$, $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
+                \item[3.3.] For all $\vv \in \R^n$ and $c_1, c_2 \in \R$, $c_2 (c_1 \vv) = c_2 c_1 \vv$.
+            \end{enumerate}
+        \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+   To check (2) and (3), refer to the definitions of vector addition $+:\R^n \times \R^n \rightarrow \R^n$ and scalar multiplication $\cdot:\R \times \R^n \rightarrow \R^n$.
+\end{proof}
+
+\newpage
+
+\subsection*{Vector-containing sets}
+
+[motivation: recap how geometric interpretations of points and vectors in $\R^n$ is underpinned by algebraic characterization]
+
+At this point, we use the idea that a set like $\R^n$ can be spanned by another set to define an abstract notion of ``vector-containing set''. 
+
+\begin{defn}
+    (Vector-containing set over $\R$).
+    
+    Suppose that $S$ is a set for which there exist functions $+:S \times S \rightarrow S$ and $\cdot:\R \times S \rightarrow S$. We say that $S$ is a \textit{vector-containing set over $\R$} iff the operations $+$ and $\cdot$ satisfy the typical\footnote{When you try to remember these properties, there is no need to be incredibly specific. You don't need to list out ``existence of additive identity'', ``closure under additive inverses'', and so on \textit{every} time you remind yourself of what a vector-containing set over $\R$ is!} properties one would expect of ``vector addition'' and ``vector scaling''. That is, $S$ is a vector-containing set over $\R$ iff $+$ and $\cdot$ satisfy the properties listed in Theorem \ref{ch::lin_alg::thm::prop_operations_Rn}:
+    
+    \begin{enumerate}
+        \item (Properties of $+$).
+        \begin{enumerate}
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
+                \item[1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+            \end{enumerate}
+        \item (Normalization for $\cdot$). $1 \vv = \vv$ for all $\vv \in S$.
+        \item (Properties of $+$ and $\cdot$).
+        \begin{enumerate}
+            \item[3.1.] (Properties of $+$).
+            \begin{enumerate}
+                \item[3.1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
+                \item[3.1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[3.1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[3.1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+            \end{enumerate}
+            \item[3.2.] (Compatibility of $+$ and $\cdot$).
+            \begin{enumerate}
+                \item[3.2.1.] For all $\vv_1, \vv_2 \in S$ and $c \in \R$, $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
+                \item[3.2.2.] For all $\vv \in S$ and $c_1, c_2 \in \R$, $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
+                \item[3.2.3.] For all $\vv \in S$ and $c_1, c_2 \in \R$, $c_2 (c_1 \vv) = c_2 c_1 \vv$.
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+    
+    When $S$ is a vector-containing set over $\R$, we refer to elements of $S$ as \textit{vectors}. As before, elements of $\R$ are sometimes called \textit{scalars}.
+\end{defn}
+
+This abstract characterization of a vector-containing set is useful because many sets that at first glance don't seem to contain vectors actually do, in a sense.
+
+\begin{remark}
+    (Examples of vector-containing sets over $\R$).
+    
+    Here are some examples of vector-containing sets over $\R$:
+    
+    \begin{itemize}
+        \item $\R^n$, for any positive integer $n$. (This one isn't intended to be surprising).
+        \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect.
+    \end{itemize}
+\end{remark}
+
+Now that we have defined what a ``vector-containing set over $\R$'' is, it is reasonable to introduce some more abstraction. In place of ``vector-containing sets over $\R$'', we will now consider ``vector-containing sets over $K$'', where $K$ is the set-with-structure that contains the scalars. In other words, in the same way that a vector is ``something that lives in a vector-containing set'', we will define a scalar to be ``something that lives in a `scalar space' ''.  Unfortunately, the terminology ``scalar space'' is nonstandard;  ``scalar spaces'' are actually called \textit{fields}.
+
+\newpage
+
+\begin{defn}
+    (Field). 
+    
+    Suppose that $K$ is a set for which there exist functions $+:K \times K \rightarrow K$ and $\cdot:K \times K \rightarrow K$. We say that the tuple $(K, +, \cdot)$ is a \textit{field} iff it satisfies\footnote{In the terminology of abstract algebra, a field can be defined to be (1) an ``integral domain that is closed under multiplicative inverses'' or (2) as a ``commutative division ring''.} the following:
+
+    \begin{enumerate}
+        \item $K$ is a ``commutative group under addition''. This means that conditions 1.1 through 1.5 must hold.
+        \begin{enumerate}
+            \item[1.1.] (Closure under $+$). For all $c_1, c_2 \in K$, $c_1 + c_2 \in K$.
+            \item[1.2.] (Existence of additive identity). There exists $0 \in K$ such that for all $c \in K$, $0 + c = c = c + 0$.
+            \item[1.3.] (Associativity of $+$). For all $c_1, c_2, c_3 \in K$, $(c_1 + c_2) + c_3 = c_1 + (c_2 + c_3)$.
+            \item[1.4.] (Closure under additive inverses). For all $c \in K$ there exists $-c \in K$ such that $(-c) + c = 0 = c + (-c)$.
+            \item[1.5.] (Commutativity of $+$). For all $c_1, c_2 \in K$, $c_1 + c_2 = c_2 + c_1$.
+        \end{enumerate}
+        \item $K$ is a ``commutative group under multiplication''. This means that conditions 2.1 through 2.5 must hold.
+        \begin{enumerate}
+            \item[2.1.] (Closure under $\cdot$). For all $c_1, c_2 \in K$, $c_1 \cdot c_2 \in K$.
+            \item[2.2.] (Existence of multiplicative identity). There exists $1 \in K$ such that for all $c \in K$, $1 \cdot c = c = c \cdot 1$.
+            \item[2.3.] (Associativity of $\cdot$). For all $c_1, c_2, c_3 \in K$, $(c_1 \cdot c_2) \cdot c_3 = c_1 \cdot (c_2 \cdot c_3)$.
+            \item[2.4.] (Closure under multiplicative inverses). For all $k \in K$ with $k \neq 0$, there exists $\frac{1}{c} \in K$ such that $\frac{1}{c} \cdot c = 1 = c \cdot \frac{1}{c}$.
+            \item[2.5.] (Commutativity of $\cdot$). For all $c_1, c_2 \in K$, $c_1 \cdot c_2 = c_2 \cdot c_1$.
+        \end{enumerate}
+        \item ($\cdot$ distributes over $+$). For all $c_1, c_2, c_3 \in K$, $(c_1 + c_2) \cdot c_3 = c_1 \cdot c_3 + c_2 \cdot c_3$.
+    \end{enumerate}
+
+    Colloquially, we often say ``let $K$ be a field'' instead of ``let $(K, +, \cdot)$ be a field''.
+    
+    Recall that the whole point of defining a field is to formalize the notion of what a ``scalar'' is. For this reason, elements of a field are called \textit{scalars}.
+\end{defn}
+
+\begin{remark}
+    (Examples of fields).
+    
+    \begin{itemize}
+        \item $\R$ is a field.
+        \item The complex numbers $\C = \{ a + b\sqrt{-1} \mid a, b \in \R\}$ are a field.
+    \end{itemize}
+\end{remark}
+
+\begin{remark}
+    (Don't memorize the definition of a field!).
+    
+    It's not necessary to memorize all the conditions for a field. Just remember that a field is ``a set that contains elements which one can add, subtract, multiply, and divide''. In this book, you can imagine an arbitrary field $K$ as being $\R$ almost all of the time\footnote{It's true that there is more to it when the field is a \textit{finite field}, but this is not a major concern in this book.}.
+\end{remark}
+
+Without further ado, we define ``vector-containing set over a field''.
+
+\begin{defn}
+\label{ch::lin_alg::defn::vector_space}
+    (Vector-containing set over a field).
+    
+    Suppose that $K$ is a field, that $S$ is a set, and that there exist functions $+:S \times S \rightarrow S$ and $\cdot:K \times S \rightarrow S$. We say that the tuple $(S, K, +, \cdot)$ is a \textit{vector-containing set}, or, more colloquially, that ``$S$ is a vector-containing set over $K$'', iff:
+    
+    \begin{enumerate}
+        \item (Properties of $+$).
+        \begin{enumerate}
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
+                \item[1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+            \end{enumerate}
+        \item (Normalization for $\cdot$). $1 \vv = \vv$ for all $\vv \in S$.
+        \item (Properties of $+$ and $\cdot$).
+        \begin{enumerate}
+            \item[3.1.] (Properties of $+$).
+            \begin{enumerate}
+                \item[3.1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
+                \item[3.1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[3.1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[3.1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+            \end{enumerate}
+            \item[3.2.] (Compatibility of $+$ and $\cdot$).
+            \begin{enumerate}
+                \item[3.2.1.] For all $\vv_1, \vv_2 \in S$ and $c \in K$, $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
+                \item[3.2.2.] For all $\vv \in S$ and $c_1, c_2 \in K$, $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
+                \item[3.2.3.] For all $\vv \in S$ and $c_1, c_2 \in K$, $c_2 (c_1 \vv) = c_2 c_1 \vv$.
+            \end{enumerate}
+        \end{enumerate}
+    \end{enumerate}
+    
+    Elements of vector-containing sets are called ``vectors''.
+    
+    In practice, we often don't explicitly mention a field, and say ``let $S$ be a vector-containing sets'' instead of ``let $S$ be a vector-containing set over a field $K$''.
+\end{defn}
+
+\newpage
+
+\subsection*{Vector spaces}
+
+[Motivation for thinking about linear combinations...]
+
+\begin{defn}
+    (Linear combination).
+    
+    Let $S = \{\vv_1, ..., \vv_k\}$ be a finite vector-containing set over a field $K$. We define a \textit{linear combination of the vectors in $S$}, or, more colloquially, a \textit{linear combination of $\vv_1, ..., \vv_k$}, to be a vector of the form
+    
+    \begin{align*}
+        c_1 \vv_1 + ... + c_k \vv_k,
+    \end{align*}
+    
+    where $c_1, ..., c_k$ are some scalars in $K$. So, a linear combination of $\vv_1, ..., \vv_k$ is a ``weighted sum'' involving $\vv_1, ..., \vv_k$.
+    
+    How do we define ``linear combination'' when $S$ is an arbitrary set that could be empty or contain infinitely many vectors? It is easy to extend the idea of the above definition to this more general setting. For an arbitrary vector-containing set $S$ over a field $K$, we define a \textit{linear combination of the vectors in $S$} to be a sum of the form
+    
+    \begin{align*}
+        \sum_{c \in C, \vv \in S} c \vv,
+    \end{align*}
+    
+    where $C$ is some subset of $K$.
+\end{defn}
+
+\begin{defn}
+    (Span).
+    
+    Let $S = \{\vv_1, ..., \vv_k\}$ be a finite vector-containing set over a field $K$. We define the \textit{span} of $S$, or, more colloquially, the \textit{span of $\vv_1, ..., \vv_k$}, to be the set of all linear combinations of $\vv_1, ..., \vv_k$:
+    
+     \begin{align*}
+        \spann(S) = \spann(\{\vv_1, ..., \vv_k\}) := \Big\{ c_1 \vv_1 + ... + c_k \vv_k \mid c_1, ..., c_k \in K \Big\}.
+    \end{align*}
+    
+    For geometric intuition, notice that if $\vv_1, ..., \vv_k \in \R^n$, then $\spann(\{\vv_1, ..., \vv_k\})$ is the $k$-dimensional plane spanned by $\vv_1, ..., \vv_k$ that is embedded in $\R^n$. For example, if $\vv, \ww \in \R^3$, then ${\spann(\{\vv, \ww\}) = \{ c \vv + d \ww \mid c, d \in \R \}}$ is the $2$-dimensional plane spanned by $\vv$ and $\ww$ in $\R^3$.
+    
+    In the more general case when $S$ could be empty or infinite, we define the span of $S$ to be the set of all convergent linear combinations of the vectors in $S$:
+    
+    \begin{align*}
+        \spann(S) := \Big\{ \ww = \sum_{c \in C, \vv \in S} c \vv \mid C \subseteq K \text{ and $\ww$ converges} \Big\}.
+    \end{align*}
+\end{defn}
+
+[More motivation...]. Without further ado, we define ``vector space over a field''.
+
+\begin{defn}
+\label{ch::lin_alg::defn::vector_space}
+    (Vector space over a field).
+    
+    Suppose that $K$ is a field, that $V$ is a set, and that there exist functions $+:V \times V \rightarrow V$ and $\cdot:K \times V \rightarrow V$. We say that the tuple $(V, K, +, \cdot)$ is a \textit{vector space}, or, more colloquially, that ``$V$ is a vector space over $K$'', iff 
+
+    \begin{enumerate}
+        \item $(V, K, +, \cdot)$ is a vector-containing set.
+        \item $V$ is spanned by some vector-containing set, i.e., there is a vector-containing set $S$ for which $V = \spann(S)$. 
+    \end{enumerate}
+    
+    Elements of vector spaces are called ``vectors''.
+    
+    In practice, we often don't explicitly mention a field, and say ``let $V$ be a vector space'' instead of ``let $V$ be a vector space over a field $K$''.
+\end{defn}
+
+\begin{theorem}
+    (``Linear spaces'').
+    
+    [should this just be inside the definition? we can make this a remark about the span condition]
+    
+    Every subset of $\R^n$ that is a vector space is a plane.
+
+    European mathematicians tend to call vector spaces \textit{linear spaces}
+
+    \textit{linear elements}
+\end{theorem}
+
+\begin{remark}
+    Vector-containing sets and subsets of vector spaces are one and the same: vector-containing sets are subsets of vector spaces, and subsets of vector spaces are vector-containing sets. From this point on, we will favor ``subset of a vector space'' over ``vector-containing set'', because the terminology ``vector-containing set'' is nonstandard.
+\end{remark}
+
+All of the examples of vector-containing sets over $\R$ we gave before are actually vector spaces.
+
+\begin{remark}
+    (Examples of vector spaces).
+    
+    Here are some examples of vector spaces:
+    
+    \begin{itemize}
+        \item $\R^n$, for any positive integer $n$. (This one isn't intended to be surprising).
+        \item $K^n$, for any positive integer $n$.
+        \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item The set of polynomials with rational coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect.
+    \end{itemize}
+    
+    Here are some examples of vector-containing sets that are \textit{not} vector spaces:
+    
+    \begin{itemize}
+        \item $\Big\{ \mathbf{0}, \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \end{pmatrix} \Big\} \subseteq \R^2$
+        \item $\{ z \geq ax + by \mid \text{$a, b$ not both zero} \} \subseteq \R^3$
+        \item $\{ x_n \geq c_1 x_1 + ... + c_{n - 1} x_{n - 1} \mid \text{$c_1, ..., c_{n - 1}$ not all zero}\} \subseteq \R^n$
+    \end{itemize}
+\end{remark}
+
+\begin{remark}
+    (Why is the generality of ``vector space'' useful?)
+    
+    In this book, we will often consider arbitrary vector space and use it as a ``base'' from which to construct more vector spaces, while secretly imagining the ``base'' vector space as being $\R^n$. Dealing in the abstraction of vector spaces makes it easier to see precisely how vector spaces produced from $\R^n$ are related to $\R^n$ by removing any doubt as to whether coordinates, which are easy to run into when one deals with $\R^n$ explicitly, are fundamentally at play.
+\end{remark}
+
+Now that we have defined what a vector space is in full generality, we present an alternative characterization of vector spaces that is easier in practice to check than the above definition. 
+
+\begin{deriv}
+    (Vector spaces are closed under addition and scalar multiplication).
+    
+    Suppose $V$ is a vector space over a field $K$. Working heuristically, we can discover that the spanning condition satisfied by vector spaces is equivalent to another condition:
+    
+    \begin{align*}
+        &\text{There is a vector-containing set $S$ for which $V = \spann(S)$.} \\
+        &\quad \quad \quad \quad \quad \quad \iff \\
+        &\text{For all $\vv_1, \vv_2 \in V$ we have $\vv_1 + \vv_2 \in V$ (``$V$ is closed under vector addition'')} \\
+        &\quad \quad \quad \quad \quad \quad \spc \spc \text{and} \\
+        &\text{for all $c \in K$ and $\vv \in V$ we have $c \vv \in V$ (``$V$ is closed under vector scaling'')}.
+    \end{align*}
+    
+    The idea for showing that the hypothesis implies the first part of the conclusion (the part before the ``and'') is this: if we assume that $V$ is spanned by some vector-containing set $S$, then we can compute $\vv_1 + \vv_2$ by writing $\vv_1$ and $\vv_2$ as ``weighted sums'' of elements from $S$, and the result, being a (longer) weighted sum of elements from $S$, is thus in $V$. Similar reasoning shows the second part of the conclusion. The reverse implication is simple: there is always a vector-containing set spanning $V$, since every vector-containing set spans itself.
+\end{deriv}
+
+When determining whether a set $V$ is a vector space or not, it is almost always easier to check the above closure conditions than to check if there is a set that spans $V$. Thus, the following characterization of vector spaces is almost always what one should use when testing if a set is a vector space.
+
+\begin{theorem}
+    (Alternate characterization of vector spaces).
+    
+    Suppose that $K$ is a field, that $V$ is a set, and that there exist functions $+:V \times V \rightarrow V$ and $\cdot:K \times V \rightarrow V$. The tuple $(V, K, +, \cdot)$ is a vector space iff
+    
+    \begin{enumerate}
+        \item $(V, K, +, \cdot)$ is a vector-containing set.
+        \item ``$V$ is closed under vector addition and vector scaling''.
+        \begin{enumerate}
+            \item[2.1.] (Closure under $+$). For all $\vv_1, \vv_2 \in V$, $\vv_1 + \vv_2 \in V$.
+            \item[2.2.] (Closure under $\cdot$). For all $c \in \R$ and $\vv \in V$, $c \vv \in V$.
+        \end{enumerate}
+    \end{enumerate}
+\end{theorem}
+
+\subsubsection*{Miscellaneous facts about vector spaces}
+
+\begin{theorem}
+    (``Obvious'' facts about the additive identity and additive inverses).
+    
+    If $V$ is a vector space, we have $0 \vv = \mathbf{0}$ and $-\vv = (-1) \vv$ for all $\vv \in V$.
+\end{theorem}
+
+\begin{proof}
+   Both facts follow from the fact that if $V$ is a vector space then $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$ for all $\vv \in V$ and $c_1, c_2 \in K$.
+   
+   For the first fact, we note that $0 \vv + 0 \vv = (0 + 0) \vv = 0 \vv$ and subtract $0 \vv$ from both sides to obtain $0 \vv = \mathbf{0}$. To prove the second fact, we must verify that $\vv + (-1) \vv = \mathbf{0}$. This is the case because $\vv + (-1) \vv = 1 \vv + (-1) \vv = (1 - 1) \vv = 0 \vv$; we have $0 \vv = \mathbf{0}$ via the first fact.
+\end{proof}
+
+\begin{remark}
+    ($\emptyset$ is not a vector space).
+    
+    The empty set $\emptyset$ is not a vector space over any field because it contains no additive identity.
+\end{remark}
+
+\subsection*{Vector subspaces}
+
+\begin{defn}
+\label{ch::lin_alg::defn::vector_subspace}
+    (Vector subspace). 
+    
+    If $V$ and $W$ are vector spaces over $K$ and $W \subseteq V$, then $W$ is a \textit{vector subspace} of $V$.
+\end{defn}
+
+\begin{remark}
+    (Examples of vector subspaces).
+    
+    \begin{itemize}
+        \item $\R^2$ is a vector subspace of $\R^3$.
+        \item $\R^n$ is a vector subspace of $\R^m$ whenever $n < m$.
+        \item Any line in the plane is a vector subspace of $\R^2$.
+        \item A line in three-dimensional space is not a vector subspace of $\R^2$ but is a vector subspace of $\R^3$.
+        \item Two-dimensional planes of the form $\spann(\vv, \ww)$, for nonzero $\vv, \ww \in \R^3$, are not vector subspaces of $\R^2$ but are vector subspaces of $\R^3$.
+        \item Two-dimensional planes of the form $\spann(\vv, \ww)$, for nonzero $\vv, \ww \in \R^4$, are not vector subspaces of $\R^3$ but are vector subspaces of $\R^4$.
+        \item ``$k$-dimensional planes'' of the form $\spann(\{\vv_1, ..., \vv_k\})$, for nonzero $\vv_1, ..., \vv_k \in \R^n$, are not vector subspaces of $\R^k$ for $k < n$, but are vector subspaces of $\R^n$.
+    \end{itemize}
+\end{remark}
+
+\newpage
+
+\subsection*{Linear independence}
+
+In this subsection, we introduce the concept of \textit{linear independence}, which will serve as formal footing that can be used to justify future geometric intuitions.
+
+\begin{defn}
+    (Linear independence).
+    
+    Let $V$ be a vector space. If $S = \{\vv_1, ..., \vv_k\}$ is a finite subset of $V$, then we say $S$ is \textit{linearly independent} iff for all $i$ we have $\vv_i \notin \spann(\{\vv_1, ..., \cancel{\vv_i}, ..., \vv_k\})$.
+    
+    Intuitively, $S$ is linearly independent if every vector inside it is required to produce $\spann(S)$. Indeed, we prove in Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets} that removing a vector from a linearly independent set produces a set whose span is a proper subset of what it was before.
+    
+    To generalize the notion of linear independence to arbitrary subsets of $V$, we say that a subset $S \subseteq V$ is linearly independent iff for all $\vv \in S$ we have $\vv \notin \spann(S - \{\vv\})$.
+    
+    A subset of vector space is called \textit{linearly dependent} if it is not linearly independent.
+\end{defn}
+
+\begin{theorem}
+    Any subset of a vector space that contains $\mathbf{0}$ is linearly dependent.
+\end{theorem}
+
+\begin{proof}
+    If a subset $S$ of a vector space contains $\mathbf{0}$, then the condition $(\forall \vv \spc \vv \notin \spann(S - \{\vv\}))$ is violated by $\vv = \mathbf{0}$, since $\mathbf{0}$ is in the span of every set.
+\end{proof}
+
+\begin{theorem}
+    A single-element subset $\{\vv\}$ of a vector space is linearly independent iff $\vv \neq \mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+   $\{\vv\}$ is linearly independent iff $\vv \notin \spann(\{\vv\} - \{\vv\}) = \spann(\emptyset) = \{\mathbf{0}\}$, i.e., iff $\vv \neq \mathbf{0}$.
+\end{proof}
+
+\begin{theorem}
+    (Condition for linear independence).
+    
+    Let $V$ be a vector space over a field $K$. The set $\{\vv_1, ..., \vv_k\}$ is linearly dependent iff there are scalars $c_1, ..., c_k \in K$ not all $0$ such that
+    
+    \begin{align*}
+        c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}.
+    \end{align*}
+    
+    More generally, a subset $S \subseteq V$ is linearly dependent iff there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which
+    
+    \begin{align*}
+        \sum_{c \in C, \vv \in S} c \vv = \mathbf{0}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \textbf{TO-DO: account for $S = \emptyset$}
+     
+   We show the more general statement $(\text{$S$ is linearly dependent}) \iff (\exists C \neq \{0\} \spc \sum_{c \in C, \vv \in S} c \vv = \mathbf{0})$.
+   
+   ($\implies$). Assume $S$ is linearly dependent. Then $S$ is not linearly independent, so there is some $\vv \in S$ for which $\vv \in \spann(S - \{\vv\})$. This makes $\vv$ a linear combination of vectors from $S - \{\vv\}$, $\vv = \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww$, where $C \subseteq K$. Subtracting $\vv$ from both sides of the previous equation, we have $-\vv + \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww = \mathbf{0}$. That is, we have $\sum_{d \in D, \ww \in S} d \ww = \mathbf{0}$, where $D \subseteq K$ is such that the coefficients on elements of $S - \{\vv\}$ are from $C$ and where the coefficient on $\vv$ is $-1$. Since $-1 \in D$, we have shown, as desired, that there is a subset $D \neq \{0\}$ of $K$ such that $\sum_{c \in D, \ww \in S} d \ww = \mathbf{0}$.
+   
+   ($\impliedby$). Assume there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which $\sum_{c \in C, \vv \in S} c \vv = \mathbf{0}$. Since $C \neq \{0\}$, then some $d \in C$ is nonzero, and we can therefore divide by $d$. Supposing that $d$ is the coefficient of $\uu \in S$, we subtract the part of the sum not involving $d \uu$ from both sides of the previous equation and then divide by $d$ to obtain $\uu = -\frac{1}{d}\sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} c \vv = \sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} - \frac{c \vv}{d}$. Thus $\uu \in \spann(S - \{\uu\})$; $\uu$ violates the linear independence condition, so $S$ is linearly dependent.
+\end{proof}
+
+\begin{lemma}
+    \label{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}
+    (Adding and removing vectors from linearly independent and dependent sets).
+
+    \begin{enumerate}
+        \item Appending a vector not in the span of a linearly independent set to that linearly independent set produces another linearly independent set.
+        \item Any subset of a linearly independent set is also linearly independent.
+        \item Appending a vector to a linearly dependent set produces another linearly dependent set.
+        \item Removing a vector from a linearly dependent set does not change the span of that set.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+   Left as exercise.
+\end{proof}
+
+
+\newpage
+
+\subsection*{Basis and dimension}
+
+This subsection builds on the concept of linear independence to define the concepts of \textit{basis} and \textit{dimension}. A \textit{basis} for a vector space will be defined to be a spanning set of that vector space with as few vectors in it as possible; a basis is a ``minimal spanning set''. The \textit{dimension} of a \textit{finite-dimensional} vector space will be defined to be the number of vectors in any basis for it.
+
+\begin{defn}
+    (Finite- and infinite- dimensionality).
+    
+    A vector space is said to be \textit{finite-dimensional} iff it is spanned by a finite set of vectors and is said to be \textit{infinite-dimensional} iff this is not the case.
+\end{defn}
+
+\begin{defn}
+    (Basis for a finite-dimensional vector space). 
+    
+    Let $V$ be a finite-dimensional vector space. We say that a subset $E \subseteq V$ is a \textit{basis} for $V$ iff
+    
+    \begin{enumerate}
+        \item $E$ spans $V$.
+        \item The number of vectors in $E$ is minimal. (I.e. if $F$ is another set of vectors spanning $V$, then $F$ contains at least as many vectors as $E$, $|F| \geq |E|$).
+    \end{enumerate}
+\end{defn}
+
+\begin{defn}
+    (Dimension of a finite-dimensional vector space).
+    
+    Let $V$ be a finite-dimensional vector space. The \textit{dimension} $\dim(V)$ of $V$ is the number of basis vectors in a basis for $V$.
+\end{defn}
+
+\begin{remark}
+    ($0$-dimensional vector spaces). 
+    
+    The empty set $\emptyset$ is a basis for $\{\mathbf{0}\}$, and so $\{\mathbf{0}\}$ is a zero-dimensional vector space. Since $\emptyset$ is the only set with cardinality zero, it is the only basis with cardinality zero; thus, $\{\mathbf{0}\}$ is the only $0$-dimensional vector space.
+\end{remark}
+
+The following lemma enables us to obtain a more useful characterization of bases.
+
+\begin{lemma}
+\label{ch::lin_alg::lemma::dimension}
+    (Linearly independent spanning set lemma). 
+    
+    For any $n$-dimensional vector space $V$ with $n \neq 0$, we have the following equivalent facts:
+    
+    \begin{enumerate}
+        \item A set of more than $n$ vectors is linearly dependent.
+        \item A set of less than $n$ vectors does not span $V$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    First we show the logical equivalence.
+    
+    ($(1) \implies (2)$). Suppose for contradiction that a set $F$ of vectors with $|F| < n$ spans $V$. Remove vectors from $F$ until a linearly independent set $G$ is obtained. Since removing vectors from linearly dependent sets does not change their span, we know $G$ spans $V$. Thus, $G$ is a linearly independent spanning set with $|G| < n$. Since $n > |G|$, it follows from $(1)$ that any set of $n$ vectors is linearly dependent; contradiction.
+    
+    ($(2) \implies (1)$). Suppose for contradiction that a set $F$ of vectors with $|F| > n$ is linearly independent. Add vectors to $F$ until a spanning set $G$ of $V$ is obtained. Since adding vectors to linearly independent sets that are not in the span of those sets preserves linear independence, we know $G$ is linearly independent. Thus, $G$ is a linearly independent spanning set with $|G| > n$. Since $n < |G|$, it follows from $(2)$, that any set of $n$ vectors does not span $V$; contradiction.
+
+    Now, we prove that $(1)$ is true.
+    
+    TO-DO. See p. 30 of \textit{Linear and Geometric Algebra} by Alan MacDonald.
+\end{proof}
+
+\begin{theorem}
+    (Bases for finite-dimensional vector spaces are linearly independent spanning sets).
+    
+    Let $V$ be a finite-dimensional vector space. A set $E$ of vectors is a basis for $V$ iff
+    
+    \begin{enumerate}
+        \item $E$ spans $V$.
+        \item $E$ is linearly independent.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    We show $(\text{$E$ is a minimal spanning set of $V$}) \iff (\text{$E$ is linearly independent})$.
+    
+    (Case $E \neq \emptyset$).
+    
+    \indent ($\implies$). Suppose that $E$ is a minimal spanning set of $V$. We need to show that $E$ is linearly independent, so suppose for contradiction that $E$ is linearly dependent. If $E$ is linearly dependent, we can remove a vector from $E$ without changing $\spann(E) = V$, so, $E$ is not minimal; contradiction.
+    
+    \indent ($\impliedby$). Suppose that $E$ spans $V$ and that $E$ is linearly independent. We need to show that $|E|$ is a minimal spanning set of $V$, i.e., that a set of less than $|E|$ vectors does not span $V$. This is precisely what fact (2) of Lemma \ref{ch::lin_alg::lemma::dimension} tells us.
+    
+    (Case $E = \emptyset$). Since there is only one $E$ satisfying $E = \emptyset$, the if-and-only-if we need to show simplifies to an \textit{and} statement: $(\text{$\emptyset$ is a minimal spanning set of $V$}) \text{ and } (\text{$\emptyset$ is linearly independent})$. The first statement here is clearly true: $\emptyset$ is a minimal spanning set because there aren't any sets that contain fewer than zero vectors. The second statement, which is equivalent to $(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$, is true by false hypothesis, since\footnote{$(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$ is equivalent to $(\forall \vv \spc \vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\}))$. Because $\vv \in \emptyset$ is false for every $\vv$, the overall implication $\vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\})$ is true for every $\vv$.} there is no $\vv$ for which ``$\vv \in \emptyset$'' is a true statement.
+    
+    
+\end{proof}
+
+Because the minimality condition in the definition we gave for ``basis'' boils down to a comparison of cardinalities of spanning sets, it is only applicable to finite-dimensional vector spaces. The above theorem suggests a more general definition that applies to all vector spaces, however.
+
+\begin{defn}
+    (Basis).
+    
+    Let $V$ be a vector space. We say that a set $E$ of vectors is a \textit{basis} for $V$ iff
+   
+   \begin{enumerate}
+        \item $E$ spans $V$.
+        \item $E$ is linearly independent.
+    \end{enumerate}
+\end{defn}
+
+\begin{theorem}
+    Every finite-dimensional vector space has a basis.
+\end{theorem}
+
+\begin{proof}
+    Let $V$ be a finite-dimensional vector space, and take a finite set $E = \{\ee_1, ..., \ee_n\}$ of vectors that span $V$. Remove vectors from $E$ one by one. At some point, we must obtain a linearly independent set\footnote{We can always just remove all vectors to obtain $\emptyset$, which is linearly independent}. That is, there must be some $i$ for which $E_i := E - \{\ee_1, ..., \ee_i\}$ is linearly independent and for which all $E_j$, $j < i$, are linearly dependent. In particular, $E_{i - 1}$ is a linearly dependent set that spans $V$. Applying the fact that removing a vector from a linearly dependent set does not change the span of that set, we can conclude that since $E_i$ is obtained by removing a vector from $E_{i - 1}$, we have $\spann(E_i) = \spann(E_{i - 1}) = V$. Thus, $E_i$ is a linearly independent set that spans $V$; it is a basis for $V$.
+\end{proof}
+
+\begin{defn}
+    (Standard basis for $K^n$).
+    
+    Let $K$ be a field, and consider $K^n$ as a vector space over $K$. We define the \textit{standard basis} of $K^n$ to be the basis $\sE = \{\see_1, ..., \see_n\}$, where the $j$th entry of $\see_i$ is $1$ when $j = i$ and $0$ otherwise.
+\end{defn}
+
+\begin{proof}
+   We should check that $\sE$ is indeed a basis. Checking that $\sE$ spans $K^n$ is easy and is left as an exercise.
+   
+   For linear independence, consider the equation $c_1 \see_1 + ... + c_n \see_n = \mathbf{0}$, where $c_1, ..., c_n \in K$. The equation can be rewritten as $\begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix} = \mathbf{0}$, which is true only when $c_i = 0$ for all $i$. In all we have that $c_1 \see_1 + ... + c_n \see_n = \mathbf{0}$ only when $c_1, ..., c_n = 0$, so $\see_1, ..., \see_n$ are linearly independent.
+\end{proof}
+
+\begin{remark}
+    (Why not define dimensionality in terms of bases?). 
+    
+    It is tempting to define a finite-dimensional vector spaces to be those that have finite bases. This definition would be equivalent to the one we've put in place as far as finite-dimensional vector spaces are concerned, but it becomes problematic for infinite-dimensional vector spaces. If we take the Axiom of Choice to be false, then not all vector spaces spanned by an infinite number of vectors have a basis. Thus, if we defined ``infinite-dimensional'' to mean ``has an infinite basis'', then, assuming the Axiom of Choice is false, not all vector spaces spanned by an infinite number of vectors would be classified as ``infinite-dimensional''! For this reason, it is best to define an infinite-dimensional vector space to be one spanned by an infinite number of vectors rather than one that has as an infinite basis.
+\end{remark}
+
+\begin{remark}
+    (Vector spaces that \textit{don't} have bases?).
+    
+    The statement ``every vector space, including infinite-dimensional vector spaces, has a basis'' is equivalent to the Axiom of Choice.
+\end{remark}
+
+\newpage
+
+\section{Linear functions}
+
+At the beginning of the previous section, it was said that the two fundamental ideas underlying linear algebra are those of ``objects that behave like vectors'' and of ``functions that preserve the decomposition of their input vectors''. We learned that ``objects that behave like vectors'' are elements of vector spaces. Now, we will investigate ``functions that preserve the decomposition of their input vectors'', which are more formally referred to as \textit{linear functions}.
+
+\begin{defn}
+\label{ch::lin_alg::defn::linear_function_intuitive}
+    (Linear function). 
+    
+    Let $V$ and $W$ be vector spaces over a field $K$. A function $\ff:V \rightarrow W$ is said to be \textit{linear} iff we have $\ff(c_1 \vv_1 + c_2 \vv_2) = c_1 \ff(\vv_1) + c_2 \ff(\vv_2)$ for all $c_1, c_2 \in K$ and $\vv_1, \vv_2 \in V$.
+    
+    What does this definition really mean, though? It may help understanding to introduce the notation $\ww_1 := \ff(\vv_1)$ and $\ww_2 := \ff(\vv_2)$. With this notation, we see that $\ff$ is linear iff we have the following for every $c_1, c_2 \in K$ and $\vv_1, \vv_2 \in V$:
+    
+    \begin{align*}
+        \vv_1 \overset{\ff}{\mapsto} \ww_1 &\text{ and } \vv_2 \overset{\ff}{\mapsto} \ww_2 \\
+        &\implies \\
+        c_1 \vv_1 + c_2 \vv_2 &\overset{\ff}{\mapsto} c_1 \ww_1 + c_2 \ww_2
+    \end{align*}
+    
+    So, roughly speaking, $\ff$ is linear iff elements in $V$ ``interact'' in the same way as do their corresponding elements in the image $\ff(V)$.
+    
+    Linear functions are also referred to as \textit{linear transformations}, \textit{linear operators}, or \textit{linear maps}. We will stick with the terminology ``linear function''.
+\end{defn}
+
+\begin{remark}
+    (``Linear'' in ``linear function'' means ``vector'').
+    
+    Initially, one might be confused as to what is actually ``linear'' about a linear function, and ask something like, ``What do linear functions have to do with lines?'' The answer is that the ``linear'' in ``linear function'' is meant to connote ``linear element''. (Recall that elements of vector spaces are also sometimes called ``linear elements''). Linear functions are called such because they are the functions that play nicely with linear elements. A better name for ``linear function'' would be ``vector-respecting function''.
+\end{remark}
+
+We now quickly present an slightly alternative characterization of linear functions. This is the characterization that is most often used for the definition of a linear function in other texts, and is often easier to check than the above definition in practice.
+
+\begin{theorem}
+    (The most common characterization of linear functions).
+    
+    Let $V$ and $W$ be vector spaces over a field $K$. A function $\ff:V \rightarrow W$ is linear iff
+    
+    \begin{enumerate}
+        \item $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in V$.
+        \item $\ff(c\vv) = c\ff(\vv)$ for all $c \in K$ and $\vv \in V$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+   Left as exercise.
+\end{proof}
+
+This characterization of linear functions quickly generalizes to the following fact.
+
+\begin{theorem}
+    (Generalization of the most common characterization of linear functions).
+    
+    Let $V$ and $W$ be vector spaces over a field $K$. A function $\ff:V \rightarrow W$ is linear iff
+    
+    \begin{align*}
+        \ff \Big(\sum_{i = 1}^n c_i \vv_i \Big) = \sum_{i = 1}^n c_i \ff(\vv_i) \text{ for all } c_1, ..., c_n \in K \text{ and } \vv_1, ..., \vv_n \in V.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Left as exercise.
+\end{proof}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_have_zero_in_image}
+    (Every linear function includes $\mathbf{0}$ in its image).
+    
+    Every linear function includes $\mathbf{0}$ in its image because $\ff(0 \cdot \vv) = 0 \cdot \ff(\vv) = \mathbf{0}$ for linear function $\ff$ and any vector $\vv$.
+    
+    Somewhat counterintuitively, this means that only lines that pass through the origin $\mathbf{0}$ can be images of linear functions.
+\end{theorem}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::basis_sent_to_any_ordered_list}
+    (Any basis can get sent to any list of vectors by some linear function).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces and let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$. For all $\ww_1, ..., \ww_n \in W$, there exists a linear function sending $\ee_i \mapsto \ww_i$.
+\end{theorem}
+
+\begin{proof}
+    For any linear function $\ff$, we have $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. We want to construct a linear function $\gg$ with $\gg(\ee_i) = \ww_i$. Thinking about replacing the $\ff(\ee_i)$ in the previous sum with $\ww_i$ gives us the idea to define $\gg(\vv) := \sum_{i = 1}^n ([\vv]_E)_i \ww_i$. It is straightforward to check that we indeed have $\gg(\ee_i) = \ww_i$ and that $\gg$ is linear.
+\end{proof}
+
+Now that we are familiar with theoretical characterizations of linear functions, we will investigate linear functions from a geometric perspective.
+
+\begin{remark}
+    (Examples of linear functions $\R^2 \rightarrow \R^2$).
+    
+    The following are examples of linear functions from $\R^2$ to $\R^2$:
+    
+    \begin{itemize}
+        \item rotations about the origin
+        \item reflection across a line through the origin
+        \item projection onto a line through the origin
+    \end{itemize}
+    
+    In order to convince yourself that the above functions are linear, check that each above function $\ff$ satisfies $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c \vv) = c \vv$.
+\end{remark}
+
+The following theorem gives further geometric intuition for how linear functions behave.
+
+\begin{theorem}
+    Linear functions $\R^n \rightarrow \R^n$ fix the origin and keep parallel lines parallel.
+\end{theorem}
+
+\begin{proof}
+   Let $\ff$ be a linear function $\R^n \rightarrow \R^n$. Theorem \ref{ch::lin_alg::thm::linear_functions_have_zero_in_image} showed that $\ff(\mathbf{0}) = \mathbf{0}$, so it remains to show that $\ff$ sends parallel lines to parallel lines. 
+   
+   Consider two parallel lines in $\R^n$ described by $\eell_1(t) = \vv_0 + t\vv$ and $\eell_2(t) = \ww_0 + t\vv$. We have $\ff(\eell_1(t)) = \ff(\vv_0) + t \ff(\vv)$ and $\ff(\eell_2(t)) = \ff(\ww_0) + t \ff(\vv)$. These transformed lines are parallel because they have the same direction vector, $\ff(\vv)$.
+\end{proof}
+
+\newpage
+
+\subsection*{Kernel and image of linear functions}
+
+\begin{defn}
+    (Kernel, image of a linear function).
+    
+    Let $V$ and $W$ be vector spaces, and let $\ff:V \rightarrow W$ be a linear function. The \textit{kernel} of $\ff$ is the set of all vectors that get sent to $\mathbf{0}$ by $\ff$:
+    
+    \begin{align*}
+        \ker(\ff) := \ff^{-1}(\{\mathbf{0}\}) = \{ \vv \in V \mid \ff(\vv) = \mathbf{0} \}.
+    \end{align*}
+    
+    The \textit{image} of $\ff$ is the set of all vectors that are mapped to by $\ff$:
+    
+    \begin{align*}
+        \im(\ff) := \ff(V) = \{ \ww \in W \mid \exists \vv \in V \spc \ww = \ff(\vv) \}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+\label{ch::lin_alg::defn::rank}
+    (Rank of a linear function). 
+    
+    Let $V$ and $W$ be vector spaces, and let $\ff:V \rightarrow W$ be a linear function. The \textit{rank} of $\ff$ is defined to be $\dim(\ff(V))$, the dimension of the image of $\ff$.
+\end{defn}
+
+\begin{theorem}
+    (Kernel and image are vector subspaces). 
+    
+    Let $V$ and $W$ be vector spaces, and let $\ff:V \rightarrow W$ be a linear function. The kernel of $\ff$ is a vector subspace of $V$ and the image of $\ff$ is a vector subspace of $W$.
+\end{theorem}
+
+\begin{proof}
+   Left as exercise.
+\end{proof}
+
+\begin{defn}
+    (Trivial kernel).
+    
+    Since $\{\mathbf{0}\}$ is the smallest (in the sense of set-containment) kernel possible for a linear function, we say that the kernel of a linear function is \textit{trivial} iff it is equal to $\{\mathbf{0}\}$.
+\end{defn}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::linear_fn_1-1_trivial_kernel}
+    (One-to-one linear functions have trivial kernels). 
+    
+    Let $V$ and $W$ be vector spaces. A linear function $\ff:V \rightarrow W$ is one-to-one iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$. That is, a linear function is one-to-one iff it has a trivial kernel.
+\end{theorem}
+
+\begin{proof}
+    We use the contrapositive and prove that $\ff$ has a nontrivial kernel iff it is not one-to-one.
+    
+    ($\implies$). $\ff$ has a nontrivial kernel $\iff$ there is a nonzero $\vv \in V$ for which $\ff(\vv) = \mathbf{0} \implies$ for any $\vv_1 \in V$ we have $\ff(\vv_1 + \vv) = \ff(\vv_1) + \ff(\vv) = \ff(\vv_1) + \mathbf{0} = \ff(\vv_1) \implies \ff$ is not one-to-one.
+    
+    ($\impliedby$). $\ff$ is not one-to-one $\iff$ for some $\vv_1, \vv_2 \in V$ with $\vv_1 \neq \vv_2$ we have $\ff(\vv_1) = \ff(\vv_2) \implies \ff(\vv_1) - \ff(\vv_2) = \ff(\vv_1 - \vv_2) = \mathbf{0}$. Since $\vv_1 \neq \vv_2$, we know $\vv_1 - \vv_2 \neq \mathbf{0}$, and so $\ff$ has a nontrivial kernel.
+\end{proof}
+
+\begin{remark}
+    The idea in the above proof is that vectors in the preimage of every $\ww \in W$ ``differ by an element of the kernel''. You could prove the following fact to formalize this further: $\vv_1, \vv_2 \in \ff^{-1}(\ww)$ for some $\ww \in \ff(V)$ if and only if $\vv_2 = \vv_1 + \vv$, where $\vv_1 \in V$ and $\vv \in \ff^{-1}(\{\mathbf{0}\})$.
+\end{remark}
+
+\begin{theorem}
+\label{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}
+
+    (Only one-to-one linear functions preserve linear independence). 
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces. A linear function $\ff:V \rightarrow W$ preserves the linear independence of vectors iff it is one-to-one. That is, 
+    
+    \begin{align*}
+       (\vv_1, ..., \vv_k \text{ are linearly independent}) &\implies (\ff(\vv_1), ..., \ff(\vv_n) \text{ are linearly independent})\\
+        \text{if} \text{ } &\text{and only if} \\
+        \ff \text{ } &\text{is one-to-one}
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a trivial kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(v_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_n)$ are linearly independent, as claimed.
+    
+    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_n)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a trivial kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
+    
+    Since $V$ is finite-dimensional, there is a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$. Expressing $\vv$ relative to $E$, we have $\ff(\vv) = \ff\Big(\sum_{i = 1}^n ([\vv]_E)_i \ee_i\Big) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. The hypothesis implies that $\ff(\ee_1), ..., \ff(\ee_n)$ are linearly independent, so $([\vv]_E)_i = 0$ for all $i$ is the only solution to $\sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. Thus $([\vv]_E)_i = 0$ for all $i$, i.e., $\vv = \mathbf{0}$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::main_dim}
+    (Main dimension theorem).
+    
+    Let $V$ and $W$ be vector spaces, and let $\ff:V \rightarrow W$ be a linear function. If $V$ is finite-dimensional, then $\ff^{-1}(\{\mathbf{0}\})$ and $\ff(V)$ are also finite-dimensional, and we have
+
+    \begin{align*}
+        \dim(\ff(V)) = \dim(V) - \dim(\ff^{-1}(\{\mathbf{0}\})).
+    \end{align*}
+    
+    Also, if $\ff^{-1}(\{\mathbf{0}\})$ and $\ff(V)$ are finite-dimensional, then $V$ must be finite-dimensional, and the same relationship with dimensions holds.
+    
+    This result is commonly called the \textit{rank-nullity theorem}.
+\end{theorem}
+
+\begin{proof}
+    We prove the first part of the theorem (before ``Also'').
+    
+    If $V$ is finite-dimensional, then $\ff^{-1}(\{\mathbf{0}\})$ is also finite-dimensional since $\ff^{-1}(\{\mathbf{0}\}) \subseteq V$, so we can choose a basis $\{\ee_1, ..., \ee_k\}$ for $\ff^{-1}(\{\mathbf{0}\})$. Using the uniqueness of dimension and Lemma \ref{ch::lin_alg::lemma::dimension}, one can show \textbf{add footnote} that it is possible to add vectors $\ee_{k + 1}, ..., \ee_n$ to this basis so that it becomes $\{\ee_1, ..., \ee_k, \ee_{k + 1}, ..., \ee_n\}$, a basis for $V$. Since $\dim(\ff^{-1}(\{\mathbf{0}\})) = k$ and $\dim(V) = n$, we want to show $\dim(\ff(V)) = \dim(V) - \dim(\ff^{-1}(\{\mathbf{0}\})) = n - k$; we want to show $\dim(\ff(V)) = n - k$.
+
+    Since $\ff:V \rightarrow W$ is linear, we have ${\ff(\vv) = ([\vv]_E)_1 \ff(\ee_1) + ... + ([\vv]_E)_k \ff(\ee_k) + ([\vv]_E)_{k + 1} \ff(\ee_{k + 1}) + ... + ([\vv]_E)_n \ff(\ee_n)}$. Because $\ee_1, ..., \ee_k \in \ff^{-1}(\{\mathbf{0}\})$, this simplifies to ${\ff(\vv) = ([\vv]_E)_{k + 1} \ff(\ee_{k + 1}) + ... + ([\vv]_E)_n \ff(\ee_n)}$. 
+    
+    Therefore, any $\ww \in \ff(V)$ is in the span of $\{\ee_{k + 1}, ..., \ee_n\}$. We will show that $\{\ee_{k + 1}, ..., \ee_n\}$ is a basis for $\ff(V)$. Once know this, then, since there are $n - k$ of these vectors, we have shown $\dim(\ff(V)) = n - k$, which is what we want.
+    
+    It remains to show $\{\ee_{k + 1}, ..., \ee_n\}$ is a linearly independent set. Suppose for the sake of contradiction it's linearly dependent, i.e., that there are $c_{k + 1}, ..., c_n$ not all zero such that $c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = \mathbf{0}$. By the linearity of $\ff$, this is equivalent with $\ff(c_{k + 1} \ee_{k + 1} + ... + c_n \ee_n) = \mathbf{0}$ for some $c_i$'s not all zero. Thus $c_{k + 1} \ee_{k + 1} + ... + c_n \ee_n \in \ff^{-1}(\{\mathbf{0}\}) = \spann(\{\ee_1, ..., \ee_k\})$, which means $c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = d_1 \ee_1 + ... + d_k \ee_k$ for some $c_i$'s and $d_i$'s not all zero. Then $-(d_1 \ee_1 + ... + d_k \ee_k) + c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = 0$ for some $c_i$'s and $d_i$'s not all zero. But $\{\ee_1, ..., \ee_n\}$ is a basis for $V$, so this cannot happen. Thus $\ff(\ee_{k + 1}), ..., \ff(\ee_n)$ are linearly independent.
+\end{proof}
+
+\subsection*{Linear isomorphisms}
+
+\begin{defn}
+\label{ch::lin_alg::defn::linear_iso}
+    (Linear isomorphism).
+    
+    Let $V$ and $W$ be vector spaces over a field $K$. Iff $\ff:V \rightarrow W$ is an invertible linear function, i.e. iff it is a bijection\footnote{Recall from Theorem \ref{ch::logic_pf_fns::thm::invertible_iff_bijection} that any (not necessarily linear) function is invertible iff it is a bijection.}, then it is called a \textit{linear isomorphism}, or an \textit{isomorphism (of vector spaces)}.
+    
+    Let's quickly explain this terminology. Recall that when we have a linear function $\ff:V \rightarrow W$, then elements in $V$ ``interact'' in the same way as do their corresponding elements in $\ff(V)$. When $\ff$ is also invertible, then $\ff(V)$ is \textit{all} of $W$, so, not only are all interactions in $V$ ``mirrored'' in $W$, but all interactions in $W$ are also mirrored in $V$! Thus, when $\ff$ is linear and invertible, $V$ and $W$ are in some sense the ``same'' vector space. For this reason, when $V$ and $W$ are isomorphic, we often say that an element $\vv \in V$ can be \textit{identified} with an element $\ww \in W$.
+    
+    We write $V \cong W$ to denote that the vector spaces $V$ and $W$ are isomorphic. Note that $\cong$ is an equivalence relation.
+\end{defn}
+
+The following theorem tells us that the inverse of a linear isomorphism is also a linear isomorphism.
+
+\begin{theorem}
+    (The inverse of a linear function is also a linear function).
+    
+    If $\ff:V \rightarrow W$ is an invertible linear function, then the inverse $\ff^{-1}$ is also a linear function.
+\end{theorem}
+
+\begin{proof}
+     Left as exercise.
+\end{proof}
+
+\begin{comment} % Unnecessary for proof of next theorem since we can just use main dimension theorem
+    \begin{lemma}
+    \label{ch::lin_alg::lemma::linear_isos_provide_bases}
+       (Linear isomorphisms provide bases).
+        
+       Let $V$ and $W$ be finite-dimensional vector spaces, and suppose $\ff:V \rightarrow W$ is a linear isomorphism. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then $\ff(E) = \{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis for $W$. 
+        
+       As a corollary, we see that finite-dimensional vector spaces that are isomorphic to each other must have the same dimension.
+    \end{lemma}
+    
+    \begin{proof}
+      Since $\ff$ is onto, then for all $\ww \in W$ there exists a $\vv \in V$ for which $\ff(\vv) = \ww$. Let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. Then for all $\ww \in W$ we have $\ww = \ff(\sum_{i = 1}^n ([\vv]_E)_i \ee_i) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. Thus, the $\ff(\ee_i)$ span $W$. Since $E$ is a basis and $\ff$ has a trivial kernel (it is one-to-one), then the $\ff(\ee_i)$ are linearly independent because one-to-one linear functions preserve the linear independence of vectors (see the previous lemma). Thus, $\{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis for $W$.
+    \end{proof}
+\end{comment}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_fn_1-1_iff_onto}
+    
+    (A linear function of finite-dimensional vector spaces of the same dimension is one-to-one iff it is onto).
+    
+    Let $V$ and $W$ be finite dimensional vector spaces with same dimension, $\dim(V) = \dim(W)$, and let ${\ff:V \rightarrow W}$ be a linear function. Then $\ff$ is one-to-one iff $\ff$ is onto. In other words, $\ff$ is a linear isomorphism iff it is either one-to-one or onto.
+\end{theorem}
+
+\begin{proof}
+    We use the contrapositive to show that, assuming the hypotheses, $\ff$ is not one-to-one iff it is not onto.
+    
+    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this is equivalent to $\dim(V) > \dim(\ff(V))$. We assumed $\dim(V) = \dim(W)$, so this is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y$ and $Z$ are finite-dimensional vector spaces, then $\dim(Y) < \dim(Z)$ iff $Y \subsetneq Z$. So, $\dim(W) > \dim(\ff(V))$ is equivalent to equivalent to $W \supsetneq \ff(V)$, i.e., to $\ff$ not being onto.
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::same_dim_iff_isomorphic}
+    (Finite-dimensional vector spaces have the same dimension iff they are isomorphic).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces. Then there exists a linear isomorphism $V \rightarrow W$ iff $\dim(V) = \dim(W)$.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then $\ff$ preserves linear independence of vectors. Therefore, if $E = \{\ee_1, ..., \ee_n\}$ is a basis of $n$ vectors for $V$ then $\{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis of $n$ vectors for $W$. Thus $\dim(V) = \dim(W)$.
+    
+    ($\impliedby$). It suffices to show that every $n$-dimensional vector space is isomorphic to $K^n$. So, let $V$ be an $n$-dimensional vector space, and let $E$ be a basis for $V$. In Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis} we will define the linear function $[\cdot]_E:V \rightarrow K^n$; Theorem \ref{ch::lin_alg::thm::[]E_invertible} will show that $[\cdot]_E$ is a linear isomorphism.
+\end{proof}
+
+\begin{defn}
+\label{ch::lin_alg::defn::natural_iso}
+    (Natural linear isomorphism).
+    
+    Roughly speaking, a linear isomorphism is said to be ``natural'' if it does not depend on a choice of basis. This definition of ``natural'' is not completely technically correct, but it will suffice for our purposes, because the converse (any linear isomorphism which depends on a choice of basis is unnatural) \textit{is} true. To read more about what ``natural'' really means, look up ``natural isomorphism category theory'' online.
+\end{defn}
+
+\subsection*{Coordinatization of vectors}
+
+\begin{defn}
+\label{ch::lin_alg::defn::coordinates_relative_to_basis}
+
+    (Coordinates of a finite-dimensional vector relative to a basis).
+    
+    Let $V$ be a finite-dimensional vector space over a field $K$, and let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. Given a vector $\vv \in V$, we define $[\vv]_E$ to be the vector in $K^{\dim(V)}$ that stores the \textit{coordinates of $\vv$ relative to the basis $E$}. Formally, $[\vv]_E$ is the tuple of scalars 
+    
+    \begin{align*}
+        [\vv]_E := \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix} \in K^n
+    \end{align*}
+    
+    for which
+    
+    \begin{align*}
+        \vv = ([\vv]_E)_1 \ee_1 + ... + ([\vv]_E)_n \ee_n.
+    \end{align*}
+    
+    We are guaranteed that such scalars exist because $E$, being a basis for $V$, spans $V$.
+\end{defn}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::[]E_invertible}
+    ($[\cdot]_E$ is an invertible linear function).
+    
+    If $V$ is a finite-dimensional vector space with basis $E$, then $[\cdot]_E:V \rightarrow K^{\dim(V)}$ is an invertible linear function.
+\end{theorem}
+
+\begin{proof}
+    For linearity, we show that $[\vv_1 + \vv_2]_E = [\vv_1]_E + [\vv_2]_E$ and that $[c\vv]_E = c[\vv]_E$.
+    
+    We have
+        
+    \begin{align*}
+        [\vv_1 + \vv_2]_E
+        &= \Big[\Big(\sum_{i = 1}^n ([\vv_1]_E)_i \ee_i + \sum_{i = 1}^n ([\vv_2]_E)_i \ee_i\Big)\Big]_E \\
+        &= \Big[\Big(\sum_{i = 1}^n \Big(([\vv_1]_E)_i + ([\vv_2]_E)_i \Big) \ee_i \Big)\Big]_E
+        = 
+        \begin{pmatrix} ([\vv_1]_E)_1 + ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_1]_E)_m + ([\vv_2]_E)_m \end{pmatrix}
+        =
+        \begin{pmatrix} ([\vv_1]_E)_1 \\ \vdots \\ ([\vv_1]_E)_m \end{pmatrix}
+        +
+        \begin{pmatrix} ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_2]_E)_m \end{pmatrix} \\
+        &= [\vv_1]_E + [\vv_2]_E.
+    \end{align*}
+        
+    Now we show $[c \vv]_E = c [\vv]_E$. Since $[\vv]_E = \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix}$, we have $\vv = \sum_{i = 1}^n ([\vv]_E)_i \ee_i$, and $c \vv = c \sum_{i = 1}^n ([\vv]_E)_i \ee_i = \sum_{i = 1}^n c ([\vv]_E)_i \ee_i$. By the definition of $[\cdot]_E$, we see $([c \vv]_E)_i = c ([\vv]_E)_i$, so $[c \vv]_E = c [\vv]_E$. Therefore $[\cdot]_E$ is linear. $[\cdot]_E$ is invertible because it sends basis vectors to basis vectors, and therefore preserves linear independence.
+
+    %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a trivial kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
+\end{proof}
+
+\newpage
+
+\section{Coordinatization of linear functions with matrices}
+\label{ch::lin_alg::section::coordinatization_of_linear functions}
+
+\subsection*{Standard matrices}
+
+In the previous section, we saw that when we have a finite-dimensional vector space $V$ with a basis $E$, we can represent any vector $\vv \in V$ by taking its coordinates $[\vv]_E$ relative to $E$. In this section, we discover that when we have finite-dimensional vector spaces $V$, $W$ with respective bases $E$, $F$, we can also coordinatize a linear function $\ff:V \rightarrow W$ by making use of the bases $E$ and $F$. The first step in doing so is to identify said $\ff$ with a linear function $K^{\dim(V)} \rightarrow K^{\dim(W)}$. The next definition shows us how to produce this linear function.
+
+\begin{defn}
+    \label{ch::lin_alg::defn::f_EF}
+    (Induced linear function from $K^{\dim(V)}$ to $K^{\dim(W)}$).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$, and let $E$ and $F$ be the respective bases of $V$ and $W$. Whenever we have a linear function $\ff:V \rightarrow W$, there is also an \textit{induced} linear function $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ for which this diagram commutes:
+    
+    \begin{center}
+        % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRRkAjFVqMWbAGIA9YAB0FULAFsAFOwCUXbrxAZseAkRHlx9Zq0QgA6nr5HBp0mOqWpNuYuVr1tnW5xGCgAc3giUAAzACcIVSQyEBwIJDMJKzZkJQBjKAgcCgB9AFEAAgBeMpKQagY6ACMYBgAFfmMhEBisUIALHAcQWPikACZqFKQAZndJaxBshTyC4ulKsulB4YTEdMnEGYzPEAAVIuAS0mldOsbmtqcTG26+gZ5ouJ2k-fGj+ZOglwgA
+        \begin{tikzcd}
+            V \arrow[d, "{[\cdot]_E}"'] \arrow[r, "\ff"] & W \arrow[d, "{[\cdot]_F}"] \\
+            K^{\dim(V)} \arrow[r, "{\ff_{E,F}}"']            & K^{\dim(W)}
+        \end{tikzcd}
+    \end{center}
+        
+    A diagram like the one above is said to ``commute'' iff the compositions of functions corresponding to different paths through the diagram are the same whenever the paths have the same start and end nodes. So, to say that the above diagram commutes is to say that $[\cdot]_F \circ \ff = \ff_{E,F} \circ [\cdot]_E$. That is,
+    
+    \begin{empheq}[box = \fbox]{align*}
+        \ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}.
+    \end{empheq}
+    
+    Concretely, the commutative diagram tells us that we can think of $\ff_{E,F}$ as accepting an input that is expressed relative to the basis $E$ for $V$ and producing an output that is expressed relative to the basis $F$ for $W$.
+\end{defn}
+
+As we continue our investigations into the coordinatization of a linear function $\ff:V \rightarrow W$, we can restrict ourselves to the case where $V = K^n$ and $W = K^m$, where $K$ is the field and $n$ and $m$ are positive integers. This is because any linear function $\ff$ \textit{not} of this form can immediately be identified\footnote{The map $\ff \mapsto \ff_{E,F}$ is a linear isomorphism.} with the linear function $\ff_{E,F}$ that \textit{is} of this form: just send $\ff \mapsto \ff_{E,F}$!
+
+The following derivation shows us how to coordinatize a linear function $K^n \rightarrow K^m$.
+
+\begin{deriv}
+\label{ch::lin_alg::deriv::standard_matrix}
+    (Standard matrix of a linear function $K^n \rightarrow K^m$). 
+    
+    Let $K$ be a field, and consider a linear function $\ff:K^n \rightarrow K^m$. For any vector $\vv \in K^n$, we have 
+    
+    \begin{align*}
+        \vv =
+        \begin{pmatrix} ([\vv]_\sE)_1 \\ \vdots \\ 0 \end{pmatrix} + ... + \begin{pmatrix} 0 \\ \vdots \\ ([\vv]_\sE)_n \end{pmatrix},
+    \end{align*}
+    
+    and so using the linearity of $\ff$, we find that
+    
+    \begin{align*}
+        \ff(\vv) &= 
+        \ff
+        \Bigg(
+            \begin{pmatrix} ([\vv]_\sE)_1 \\ \vdots \\ 0 \end{pmatrix} + ... + \begin{pmatrix} 0 \\ \vdots \\ ([\vv]_\sE)_n \end{pmatrix}
+        \Bigg)
+        =
+        \ff \Bigg( 
+        \begin{pmatrix} 
+                ([\vv]_\sE)_1 \\ 0 \\ \vdots \\ 0 
+        \end{pmatrix} \Bigg)
+        +
+        ...
+        +
+        \ff \Bigg(
+        \begin{pmatrix} 
+                0 \\ 0 \\ \vdots \\ ([\vv]_\sE)_n 
+        \end{pmatrix} \Bigg) \\
+        &=
+        ([\vv]_\sE)_1
+        \ff \Bigg(
+        \begin{pmatrix} 
+                1 \\ 0 \\ \vdots \\ 0 
+        \end{pmatrix} \Bigg)
+        +
+        ...
+        +
+        ([\vv]_\sE)_n
+        \ff \Bigg(
+        \begin{pmatrix} 
+                0 \\ 0 \\ \vdots \\ 1 
+        \end{pmatrix} \Bigg).
+    \end{align*}
+    
+    The above equation can be written more compactly as
+    
+    \begin{align*}
+        \ff(\vv) = \ff\Big( \sum_{i = 1}^n ([\vv]_\sE)_i \see_i \Big) = \sum_{i = 1}^n \ff(([\vv]_\sE)_i \see_i) = \sum_{i = 1}^n ([\vv]_\sE)_i \ff(\see_i).
+    \end{align*}
+    
+    (Recall that the $j$th component of $\see_i$ is $1$ when $i = j$ and $0$ otherwise, and that $\sE = \{\see_1, ..., \see_n\}$ is the standard basis of $K^n$).
+    
+    Thinking more about the above, we see that the action of $\ff$ on an arbitrary $\vv \in K^n$ is determined by $\ff(\see_1), ..., \ff(\see_n)$. That is, if we know $\ff(\see_1), ..., \ff(\see_n)$, then we can figure out what $\ff$ is!
+    
+    Formally, we have discovered a function $\pp$ that takes as input the ordered list $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$, the vector $\vv \in K^n$, and produces $\ff(\vv) \in K^m$ as output:
+    
+    \begin{align*}
+        \pp\Big( \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}, \vv \Big) := ([\vv]_E)_1 \ff(\see_1) + ... + ([\vv]_E)_n \ff(\see_n) = \ff(\vv).
+    \end{align*}
+    
+    We turn our attention to the ordered list of column vectors that is an input to $\pp$:
+    
+    \begin{align*}
+        \begin{pmatrix} 
+            \ff(\see_1) & \hdots & \ff(\see_n)
+        \end{pmatrix}.
+    \end{align*}
+    
+    This ordered list of $n$ many column vectors from $K^m$ can be interpreted to be a grid of scalars with $m$ rows and $n$ columns. In general, an $m$ by $n$ grid of scalars is called a \textit{$m \times n$ matrix}. ($m \times n$ is read as ``$m$ by $n$'').
+    
+    Of course, the above matrix isn't just ``any old matrix'': this matrix represents\footnotemark the linear function $\ff$! For this reason, the above matrix is called the \textit{standard matrix of $\ff:K^n \rightarrow K^m$}.
+    
+    \footnotetext{\label{ch::lin_alg::footnote::standard_matrix_rep} When we say that the standard matrix of $\ff:K^n \rightarrow K^m$ ``represents'' $\ff$, we mean that the function $\FF$ that associates a linear function with its standard matrix is a bijection between the set of linear functions $K^n \rightarrow K^m$ and the set of $m \times n$ matrices. Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list} implies that $\FF$ is onto. Showing that $\FF$ is one-to-one is a simple exercise.}
+\end{deriv}
+
+\begin{deriv}
+    (Matrix-vector product).
+    
+    The previous derivation showed that a linear function $\ff:K^n \rightarrow K^m$ is represented by its standard matrix, $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$. In this derivation, we formalize the notion of using $\ff$'s standard matrix to determine $\ff$ itself.
+    
+    The previous derivation showed that there is a function $\pp$ that returns $\ff(\vv)$ when given the standard matrix of $\ff$ and a vector $\vv$; specifically
+    
+    \begin{align*}
+        \pp\Big( \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}, \vv \Big) := ([\vv]_E)_1 \ff(\see_1) + ... + ([\vv]_E)_n \ff(\see_n) = \ff(\vv).
+    \end{align*}
+    
+    Notice that since the columns of the standard matrix of $\ff$ vary over $K^m$, and since $([\vv]_\sE)_1, ..., ([\vv]_\sE)_n$ vary\footnotemark over $K$, we can now restate the action of $\pp$ in terms of an arbitrary $m \times n$ matrix $\AA$ having $i$th column $\aa_i$ and an arbitrary column vector $\vv \in K^n$:
+    
+    \footnotetext{The $i$th column of $\ff(\sE)$ is $\ff(\ee_i)$. Each $\ff(\ee_i)$ can vary over $K^m$ because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}. The $([\vv]_E)_i$ vary over $K$ because $\vv$ varies over $K^n$.}
+    
+    \begin{align*}
+        \pp\Bigg(
+            \underbrace
+            {\begin{pmatrix} 
+                \aa_1 & \hdots & \aa_n
+            \end{pmatrix}}_\AA,
+            \underbrace{
+            \begin{pmatrix} 
+                v_1 \\ \vdots \\ v_n 
+            \end{pmatrix}}_\vv
+            \Bigg)
+            =
+            v_1 \aa_1 + ... + v_n \aa_n.
+    \end{align*}
+    
+    So, $\pp$ is really a function that accepts an $m \times n$ matrix and $n$-dimensional column vector as input and that produces an $m$-dimensional column vector as output. For this reason, we will call $\pp$ the \textit{matrix-vector product}.
+    
+    No one actually uses the letter $\pp$ when notating matrix-vector products. Instead, we simply establish the convention that writing a column vector to the right of a matrix indicates the evaluation of the corresponding matrix-vector product. That is, given an $m \times n$ matrix $\AA = \begin{pmatrix} \aa_1 \hdots & \aa_n \end{pmatrix}$ and a column vector $\vv \in K^m$, we define
+    
+    \begin{align*}
+        \boxed
+        {
+            \AA \vv =
+            \underbrace
+            {\begin{pmatrix} 
+                \aa_1 & \hdots & \aa_n
+            \end{pmatrix}}_\AA
+            \underbrace{
+            \begin{pmatrix} 
+                v_1 \\ \vdots \\ v_n 
+            \end{pmatrix}}_\vv
+            :=
+            v_1 \aa_1 + ... + v_n \aa_n
+        }
+    \end{align*}
+    
+    Expanding out the columns of $\AA$, here is what the above definition looks like when written out more explicitly:
+    
+    \begin{align*}
+        \underbrace
+        {\begin{pmatrix} 
+            a_{11} & \hdots & a_{1n} \\
+            \vdots & \hdots & \vdots \\
+            a_{m1} & \hdots & a_{mn}
+        \end{pmatrix}}_\AA
+        \underbrace{
+        \begin{pmatrix} 
+            v_1 \\ \vdots \\ v_n 
+        \end{pmatrix}}_\vv
+        :=
+        v_1 
+        \begin{pmatrix} a_{11} \\ \vdots \\ a_{m1} \end{pmatrix}
+        + ... + v_n 
+        \begin{pmatrix} a_{1n} \\ \vdots \\ a_{mn} \end{pmatrix}.
+    \end{align*}
+\end{deriv}
+
+Now that we have the notation of the matrix-vector product, we can restate and expand upon the fact ``$\pp(\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}, \vv) = \ff(\vv)$''.
+
+\begin{theorem}
+    (Characterizing property of standard matrices, verbosely stated).
+    
+    Let $K$ be a field and let $\ff:K^n \rightarrow K^m$ be a linear function. The standard matrix $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$ of $\ff$ is the unique matrix satisfying
+    
+    \begin{align*}
+        \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix} \vv = \ff(\vv) \text{ for all $\vv \in K^n$}.
+    \end{align*}
+    
+    (The left side of the above equation is a matrix-vector product).
+\end{theorem}
+
+\begin{proof}
+   Derivation \ref{ch::lin_alg::deriv::standard_matrix} showed that $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$ satisfies the equation. What we have not yet shown is that the standard matrix is the \textit{only} matrix satisfying this equation. To prove this, suppose that some  matrix $\AA$ satisfies $\AA \vv = \ff(\vv)$ for all $\vv \in K^n$. We need to show $\AA$ is in fact equal to the standard matrix of $\ff$.
+   
+   Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list} guarantees that there is a linear function $\gg$ such that $\begin{pmatrix} \gg(\see_1) & \hdots & \gg(\see_n) \end{pmatrix} = \AA$. Thus $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix} \vv = \begin{pmatrix} \gg(\see_1) & \hdots & \gg(\see_n) \end{pmatrix} \vv$ for all $\vv \in K^n$. That is, $\ff(\vv) = \gg(\vv)$ for all $\vv \in K^n$, so $\ff = \gg$, and $\AA = \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$, which is the standard matrix of $\ff$.
+\end{proof}
+
+To make notating standard matrices more compact, we make the following definition.
+
+\begin{defn}
+\label{ch::lin_alg::defn::linear_fn_acts_on_vectors}
+    (Function acting on a list).
+    
+    Let $X$ and $Y$ by sets, let $f:X \rightarrow Y$ be a function, and let $L = \begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix}$ be a finite list of elements of $X$. We define the notation
+    
+    \begin{align*}
+        f(L) := \begin{pmatrix} f(x_1) & \hdots & f(x_n) \end{pmatrix}.
+    \end{align*}
+\end{defn}
+
+The following theorem illustrates the succinctness of this new notation.
+
+\begin{theorem}
+    (Compact notation for standard matrix).
+    
+    Let $K$ be a field and let $\ff:K^n \rightarrow K^m$ be a linear function. The standard matrix of $\ff$ is
+    
+    \begin{align*}
+        \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix} = \ff(\begin{pmatrix} \see_1 & ... & \see_n \end{pmatrix}) = \ff(\sE),
+    \end{align*}
+    
+    where, in a slight abuse of notation, we use $\sE$ here to denote the \textit{list} $\begin{pmatrix} \see_1 & \hdots & \see_n \end{pmatrix}$ whose $i$th element is $\see_i$ rather than the \textit{set} $\{\see_1, ..., \see_n\}$ containing $\see_1, ..., \see_n$. (It is necessary to distinguish between lists and sets because sets have no ordering).
+\end{theorem}
+
+Now, we can restate the characterizing property of standard matrices concisely.
+
+\begin{theorem}
+    (Characterizing property of standard matrices).
+    \label{ch::lin_alg::thm::characterizing_property_of_standard_matrix}
+    
+    Let $K$ be a field and let $\ff:K^n \rightarrow K^m$ be a linear function. The standard matrix $\ff(\sE)$ of $\ff$ is the unique matrix satisfying the following characterizing property:
+    
+    \begin{align*}
+        \boxed{
+            \ff(\sE) [\vv]_E = \ff(\vv) \text{ for all $\vv \in K^n$}
+        }
+    \end{align*}
+    
+    (The left side of the above equation is a matrix-vector product).
+\end{theorem}
+
+[segway]
+
+\begin{theorem}
+    (A composition of linear functions is also linear).
+    
+    Let $V, W$, and $Y$ be vector spaces over the same field. If $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions, then the composition $\gg \circ \ff$ is also a linear function.
+\end{theorem}
+
+\begin{proof}
+   Left as an exercise.
+\end{proof}
+
+Since we know that a composition of linear functions is another linear function and that every linear function is represented by the matrix, we naturally ask: ``What is the matrix of a composition of linear functions''?
+
+\begin{defn}
+\label{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}
+    (Standard matrix of a composition of linear functions, matrix-matrix product). 
+    
+    Let $K$ be a field, and consider linear functions $\ff:K^n \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$. Additionally, let $\sE = \{\ee_1, ..., \ee_n\}$ be the standard basis for $K^n$, $\sF = \{\see_1, ..., \see_m\}$ be the standard basis for $K^m$, and $\sG = \{\see_1, ..., \see_p\}$ be the standard basis for $K^p$.
+    
+    Since $\gg \circ \ff$ is a linear function $K^n \rightarrow K^p$, it has a standard matrix, $(\gg \circ \ff)(\sE)$:
+    
+    \begin{align*}
+        (\gg \circ \ff)(\sE)
+        &=
+        \begin{pmatrix}
+            (\gg \circ \ff)(\see_1) & \hdots & (\gg \circ \ff)(\see_n)
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            \gg(\ff(\see_1)) & \hdots & \gg(\ff(\see_n))
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            \gg(\sF) \ff(\see_1) & \hdots & \gg(\sF) \ff(\see_n)
+        \end{pmatrix}.
+    \end{align*}
+    
+    Recalling that $\ff(\see_i)$ is the $i$th column of $\ff(\sE)$, the standard matrix of $\ff$, we see that
+    
+    \begin{align*}
+        (\gg \circ \ff)(\sE) = 
+        \begin{pmatrix} 
+            \gg(\sF) (\ff(\sE))_1 & \hdots & \gg(\sF) (\ff(\sE))_n
+        \end{pmatrix}.
+    \end{align*}
+    
+    Thus, the standard matrix $(\gg \circ \ff)(\sE)$ depends on the standard matrices $\ff(\sE)$ and $\gg(\sE)$. In other words, we have discovered that there is a function $\PP$ that takes the standard matrices $\ff(\sE)$ and $\gg(\sF)$ as input and returns the standard matrix $(\gg \circ \ff)(\sE)$ as output:
+    
+    \begin{align*}
+        \PP(\gg(\sF), \ff(\sE)) := \begin{pmatrix} 
+            \gg(\sF) (\ff(\sE))_1 & \hdots & \gg(\sF) (\ff(\sE))_n
+        \end{pmatrix}.
+    \end{align*}
+    
+    Since $\ff(\sE)$ varies over $K^{m \times n}$ and $\gg(\sF)$ varies over $K^{m \times p}$, we can restate the action of $\PP$ in terms of arbitrary matrices $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix} \in K^{m \times n}$ and $\BB \in K^{m \times p}$:
+    
+    \begin{align*}
+        \PP \Bigg(\BB, \underbrace{\begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}}_\AA \Bigg) := 
+        \begin{pmatrix} \BB \aa_1 & \hdots & \BB \aa_n \end{pmatrix}.
+    \end{align*}
+    
+    Just as was the case with the matrix-vector product $\pp$, no one actually uses the letter $\PP$ when notating matrix-matrix products. Instead, we establish the convention that writing two matrices of compatible sizes next to each other indicates the evaluation of the corresponding matrix-matrix product. That is, given an $m \times n$ matrix $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and a $p \times m$ matrix $\BB$, we define
+
+    \begin{align*}
+        \boxed
+        {
+            \BB \AA 
+            =
+            \BB
+            \underbrace
+            {\begin{pmatrix} 
+                \aa_1 & \hdots & \aa_n
+            \end{pmatrix}}_\AA
+            := \begin{pmatrix} \BB \aa_1 & \hdots & \BB \aa_n \end{pmatrix}
+        }
+    \end{align*}
+    
+    With the above definition, the standard matrix $(\gg \circ \ff)(\sE)$ of $\gg \circ \ff$ relative to $\sE$ is expressed as the matrix-matrix product $\gg(\sF) \spc \ff(\sE)$:
+    
+    \begin{align*}
+        (\gg \circ \ff)(\sE) = \gg(\sF) \spc \ff(\sE).
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+    (Compatibility of matrices for matrix-matrix products). 
+    
+    We now expand on what was meant when we said the matrix-matrix product $\BB \AA$ is only defined when the sizes of $\BB$ and $\AA$ are ``compatible''.
+    
+    Consider that the composition $\gg \circ \ff$ of linear functions $\ff$ and $\gg$ is only defined when the output space of $\ff$ is the entire input space of $\gg$, i.e., when the dimension of $\ff$'s output is the same as the dimension of $\gg$'s input. Because of this, the matrix-matrix product $\BB \AA$ of an $m \times n$ matrix with an $r \times s$ matrix $\BB$ is only defined when $r = n$, i.e., when $\BB$ has as many columns as $\AA$ has rows.
+\end{remark}
+
+\begin{remark}
+    Expanding out the columns of $\BB \AA$, here is what the matrix-matrix product $\BB \AA$ looks like when written out more explicitly:
+    
+    \begin{align*}
+        \underbrace
+        {\begin{pmatrix} 
+            b_{11} & \hdots & b_{1m} \\
+            \vdots & \hdots & \vdots \\
+            b_{p1} & \hdots & b_{pm}
+        \end{pmatrix}}_\BB
+        \underbrace
+        {\begin{pmatrix} 
+            a_{11} & \hdots & a_{1n} \\
+            \vdots & \hdots & \vdots \\
+            a_{m1} & \hdots & a_{mn}
+        \end{pmatrix}}_\AA
+        &:=
+        \begin{pmatrix}
+            \underbrace
+            {\begin{pmatrix} 
+                b_{11} & \hdots & b_{1m} \\
+                \vdots & \hdots & \vdots \\
+                b_{p1} & \hdots & b_{pm}
+            \end{pmatrix}}_\BB
+            \begin{pmatrix} a_{11} \\ \vdots \\ a_{m1} \end{pmatrix}
+            &
+            \hdots
+            &
+            \underbrace
+            {\begin{pmatrix} 
+                b_{11} & \hdots & b_{1m} \\
+                \vdots & \hdots & \vdots \\
+                b_{p1} & \hdots & b_{pm}
+            \end{pmatrix}}_\BB
+            \begin{pmatrix} a_{1n} \\ \vdots \\ a_{mn} \end{pmatrix}
+        \end{pmatrix} \\
+        &=
+        \begin{pmatrix}
+            b_{11} a_{11} ... b_{1m} a_{m1} &
+            \hdots
+            &
+            b_{11} a_{1n} + ... + b_{1m} a_{mn}
+            \\
+            \vdots & & \vdots \\
+            \\
+            b_{p1} a_{11} ... b_{pm} a_{m1} &
+            \hdots & b_{p1} a_{1n} + ... + b_{pm} a_{mn}
+        \end{pmatrix}.
+    \end{align*}
+    
+    Don't try to make too much sense of this now. Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_matrix_product} makes thinking about entries of matrix-matrix products much more tractable.
+\end{remark}
+
+\newpage
+
+\subsection*{Matrices}
+
+The previous section showed us that matrices are important because they can be used to represent linear functions. We now provide explanations for how ideas about linear functions translate over to results ideas about matrices.
+
+First, we restate the earlier hasty definition of ``matrix''; in this definition we also define some new notation for matrix entries and for the set of all $m \times n$ matrices over a field.
+
+\begin{defn}
+    (Matrix).
+    
+    Let $K$ be a field. An \textit{$m \times n$ matrix (with entries in $K$)} is a ``grid'' of elements of $K$ with $m$ rows and $n$ columns. For example, the following is a matrix with three rows and two columns that has entries in $\R$:
+    
+    \begin{align*}
+        \begin{pmatrix}
+            -1 & \frac{3}{4} \\
+            \pi & 0 \\
+            5 & -11
+        \end{pmatrix}.
+    \end{align*}
+    
+    The entry in the $i$th row and $j$th column of a matrix is called the \textit{$ij$ entry} of that matrix. (For example, the above matrix has a $21$ entry of $\pi$). Specifying matrices by describing their $ij$th entry is relatively common. We write ``$\AA = (a_{ij})$'' iff $\AA$ is the matrix with $ij$ entry $a_{ij}$.
+    
+    We also define $K^{m \times n}$ to be the set of $m \times n$ matrices with entries in $K$.
+\end{defn}
+
+\begin{defn}
+    (Identity matrix).
+    
+    Let $K$ be a field, and consider the identity function on $K^n$, which is the function $\II_{K_n}:K^n \rightarrow K^n$ defined by $\II_{K^n}(\vv) = \vv$. The standard matrix of $\II_{K^n}$ relative to the standard basis $\sE$ is called the \textit{($n \times n$) identity matrix}. Notice that since the $i$th column of the identity matrix is $\II_{K_n}(\see_i) = \see_i$, it follows that the identity matrix has a diagonal of $1$'s, with $0$'s everywhere else; its $ij$ entry is $1$ if $i = j$ and $0$ if $i \neq j$. 
+    
+    The $3 \times 3$ identity matrix, for example, is
+    
+    \begin{align*}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{pmatrix}.
+    \end{align*}
+    
+    We denote the identity matrix by $\II$ rather than by the more verbose notation $\II_{K^n}(\sE)$, and infer $n$ from context.
+\end{defn}
+
+This following topic of ``matrix transposes'' does not become significant until Chapter \ref{ch::bilinear_forms_metric_tensors}. We give the definition anyhow because matrix transposes do appear occasionally before Chapter \ref{ch::bilinear_forms_metric_tensors}, even if not in a theoretically significant way.
+
+\begin{defn}
+    (Transpose of a matrix).
+
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$ is the matrix whose $ij$ entry is the $ji$ entry of $\AA$}: $\AA^\top := (a_{ji})$. 
+    
+    For any matrix $\AA$, the columns of $\AA^\top$ are the rows of $\AA$, and the rows of $\AA^\top$ are the columns of $\AA$.
+\end{defn}
+
+Now we return to the relationship between linear functions and matrices.
+
+\begin{theorem}
+    (Linear functions from matrices).
+    
+    If $\AA$ is an $m \times n$ matrix with entries in a field $K$, then the function $\vv \mapsto \AA \vv$ is linear, and $\AA$ is the standard matrix of this function.
+\end{theorem}
+
+\begin{proof}
+    Define $\ff$ by $\ff(\vv) = \AA \vv$. We will show that $\ff$ is linear and that $\AA = \ff(\sE)$.
+
+    Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, we can interpret the $i$th column $\aa_i$ of $\AA$ to be $\gg(\see_i)$ for some linear function $\gg$. Thus $\AA = \gg(\sE)$, and so $\ff(\vv) = \AA \vv = \gg(\sE) \vv = \gg(\sE) [\vv]_\sE$. The characterizing property of standard matrices says that $\gg(\sE) [\vv]_\sE = \gg(\vv)$, so we have $\ff(\vv) = \gg(\vv)$ for all $\vv \in K^n$, i.e. $\ff = \gg$. Since $\gg$ is linear, $\ff$ is also linear.
+    
+    The standard matrix $\ff(\sE)$ of $\ff$ has $i$th column $\ff(\see_i) = \AA \see_i$. Compute the matrix-vector product $\AA \see_i$ to verify that $\AA \see_i = \aa_i$, where $\aa_i$ is the $i$th column of $\AA$. This tells us that $\ff(\see_i) = \aa_i$, which means $\ff(\sE) = \AA$.
+    
+    %Since we have $\AA \vv = \ff(\vv)$ and $\ff(\sE) \vv = \ff(\vv)$, the uniqueness of standard matrices implies that $\AA = \ff(\sE)$. \textbf{Now we have to show that $\ff(\sE) = \gg(\sE)$, where $\gg(\vv) = \AA \vv$}.
+\end{proof}
+
+\begin{theorem}
+    (Properties of the matrix-vector product).
+    
+    Practically speaking, the linearity of the function $\vv \mapsto \AA \vv$ translates into properties of the matrix-vector product: we have $\AA(\vv + \ww) = \AA \vv + \AA \ww$ and $\AA(c\vv) = c(\AA \vv)$ for any matrix $\AA$, column vectors $\vv$ and $\ww$, and scalar $c$. 
+\end{theorem}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_matrices_bijection}
+    (Bijection between linear functions and matrices).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. The set of linear functions from $V$ to $W$ and the set of $\dim(W) \times \dim(V)$ matrices with entries in $K$ are in bijection.
+\end{theorem}
+
+\begin{proof}
+   The set of linear functions $V \rightarrow W$ is in bijection with the set of linear functions ${K^{\dim(V)} \rightarrow K^{\dim(W)}}$, since the functions $\ff \mapsto \ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E$ and $\gg \mapsto [\cdot]_F^{-1} \circ \gg \circ [\cdot]_E^{-1}$ are inverses. Thus, it suffices to show the set of linear functions $K^{\dim(V)} \rightarrow K^{\dim(W)}$ is in bijection with $K^{\dim(V) \times \dim(W)}$. We claim that the function $\FF$ sending a linear function $\ff:K^{\dim(V)} \rightarrow K^{\dim(W)}$ to its standard matrix $\ff(\sE) \in K^{\dim(W) \times \dim(V)}$ is a bijection. Derivation \ref{ch::lin_alg::deriv::standard_matrix}  hints\footnote{If $\ff$ and $\gg$ are distinct linear functions, then, because linear functions are determined by what they do to the standard basis, there must be some $\see_i$ for which $\ff(\see_i) \neq \gg(\see_i)$. This causes the standard matrices of $\ff$ and $\gg$ to differ (in the $i$th column).} at a proof that $\FF$ is one-to-one, and Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list} shows that $\FF$ is onto.
+\end{proof}
+
+Restate definition of matrix-vector product for convenience:
+
+\begin{defn}
+    (Matrix-vector product).
+
+    Let $K$ be a field. Given $\AA \in K^{m \times n}$ with $i$th column $\aa_i$ and $\vv \in K^n$ with $i$th entry $v_i$, we define the \textit{matrix-vector product} $\AA \vv$ to be the following:
+
+    \begin{align*}
+        \AA \vv =
+        \underbrace
+        {\begin{pmatrix} 
+            \aa_1 & \hdots & \aa_n
+        \end{pmatrix}}_\AA
+        \underbrace{
+        \begin{pmatrix} 
+            v_1 \\ \vdots \\ v_n 
+        \end{pmatrix}}_\vv
+        :=
+        v_1 \aa_1 + ... + v_n \aa_n.
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::coordinates_of_matrix_vector_product}
+    ($i$th entry of matrix-vector product).
+    
+        Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$ and let $\vv = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \in K^n$ be a column vector. Referring to the definition of matrix-vector product in Derivation \ref{ch::lin_alg::deriv::standard_matrix}, we see the matrix-vector product $\AA \vv$ is equal to the following:
+    
+    \begin{align*}
+            \AA \vv = 
+            \begin{pmatrix}
+                a_{11} & \hdots & a_{1n} \\
+                \vdots & & \vdots \\
+                a_{i1} & \hdots & a_{in} \\
+                \vdots & & \vdots \\
+                a_{m1} & \hdots & a_{mn}
+            \end{pmatrix}
+            \begin{pmatrix} v_1 \\ \vdots \\ \vdots \\ \vdots \\ v_n \end{pmatrix}
+            =
+            v_1
+            \begin{pmatrix} a_{11} \\ \vdots \\ a_{i1} \\ \vdots \\ a_{m1} \end{pmatrix}
+            +
+            ...
+            +
+            v_n
+            \begin{pmatrix} a_{1n} \\ \vdots \\ a_{in} \\ \vdots \\ a_{mn} \end{pmatrix}
+            =
+            \begin{pmatrix} v_1 a_{11} + ... + v_n a_{1n} \\ \vdots \\ v_1 a_{i1} + ... + v_n a_{in} \\ \vdots \\ v_1 a_{m1} + ... + v_n a_{mn} \end{pmatrix}.
+    \end{align*}
+
+    Therefore, the $i$th entry $(\AA \vv)_i$ of $\AA \vv$ is $v_i a_{i1} + ... + v_n a_{in} $, which is
+    
+    \begin{align*}
+        \boxed
+        {
+            (\AA \vv)_i = (\text{$i$th row of $\AA$}) \cdot \vv
+        }
+    \end{align*}
+    
+    Here $\cdot:K^n \times K^n \rightarrow K$ denotes the \textit{dot product} of vectors in $K^n$, defined by
+    
+    \begin{align*}
+        \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}
+        \cdot
+        \begin{pmatrix} w_1 \\ \vdots \\ w_n \end{pmatrix}
+        =
+        v_1 w_1 + ... + v_n w_n.
+    \end{align*}
+    
+    Since the dot product must take two column vectors as input, what we technically mean by ``$i$th row of $\AA$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
+    
+    The last section of this chapter discusses the dot product in depth.
+\end{theorem}
+
+[segway to compositions of linear functions]
+
+We now state some facts about matrix-matrix products. First, we restate the definition of the matrix-matrix product for convenience.
+
+\begin{defn}
+    (Matrix-matrix product).
+
+    Let $K$ be a field. Given $\AA \in K^{m \times n}$ with $i$th column $\aa_i$ and $\BB \in K^{p \times m}$, we define the \textit{matrix-matrix product} $\BB \AA$ to be the following:
+
+    \begin{align*}
+        \BB \AA = \BB \underbrace{\begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}}_\AA := 
+        \begin{pmatrix} \BB \aa_1 & \hdots & \BB \aa_n \end{pmatrix}.
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+    (Matrix-matrix products are associative).
+    
+    One would expect that $(\BB \AA) \vv = \BB (\AA \vv)$ for all column vectors $\vv$ when $\AA$ and $\BB$ are ``compatible'' matrices. This is indeed true because the corresponding linear functions $\ff$ and $\gg$ satisfy $(\gg \circ \ff)(\vv) = \gg(\ff(\vv))$.
+\end{remark}
+
+\begin{defn}
+    (Invertibility of matrices).
+    
+    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff the function $\vv \mapsto \AA \vv$ is invertible. If $\AA$ is invertible, then we use $\AA^{-1}$ to denote the standard matrix of the inverse of $\vv \mapsto \AA \vv$. We have $\AA^{-1} \AA = \II = \AA \AA^{-1}$ for all invertible matrices $\AA$.
+
+    Since only same-dimension vector spaces can be linearly isomorphic, we must have $n = m$ for an $m \times n$ matrix $\AA$ to be invertible. That is, $\AA$ must be a \textit{square matrix} for it to be invertible.
+\end{defn}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}
+
+    ($ij$ entry of matrix-matrix product). 
+    
+    Let $K$ be a field, let $\AA = (a_{ij}) \in K^{m \times n}$, and let $\BB = (b_{ij}) \in K^{m \times p}$. The $ij$ entry of the matrix-matrix product $\BB \AA$ can be computed by using the definition of the matrix-matrix product (Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}) together with the fact that the $i$th entry of the matrix-vector product $\AA \vv$ is $(\text{$i$th row of $\AA$}) \cdot \vv$, where $\cdot$ is the dot product. We have
+    
+    \begin{align*}
+        \BB \AA
+        = 
+        \BB
+        \begin{pmatrix}
+            \aa_1 & \hdots & \aa_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \BB \aa_1 & \hdots & \BB \aa_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \bb_1 \cdot \aa_1 & \hdots & \bb_1 \cdot \aa_n \\
+            \vdots & & \vdots \\
+            \bb_m \cdot \aa_1 & \hdots & \bb_m \cdot \aa_n
+        \end{pmatrix},
+    \end{align*}
+    
+    where $\aa_i$ is the $i$th column of $\AA$ and $\bb_i$ is the $i$th row of $\BB$. So the $ij$ entry $(\BB \AA)_{ij}$ of $\BB \AA$ is $\bb_i \cdot \aa_j$, which is
+    
+    \begin{align*}
+        \boxed
+        {
+            (\BB \AA)_{ij} = (\text{$i$th row of $\BB$}) \cdot (\text{$j$th column of $\AA$})
+        }
+    \end{align*}
+    
+    As was the case in Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_vector_product}, what we mean by ``$i$th row of $\BB$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
+\end{theorem}
+
+\begin{remark}
+    (Matrix pedagogy). 
+    
+    Most linear algebra texts present the relationship between linear functions and matrices in the following way: first define matrices in the context of systems of linear equations (we have not seen how matrices are related to systems of linear equations), then define a linear function to be one for which $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c\vv) = c\ff(\vv)$ for all vectors $\vv, \ww$ and scalars $c$, and then prove that each linear function has a standard matrix. This is bad pedagogy; there should be no need to conjecture and prove that a matrix-vector product corresponds to the action of a linear function, because this fact is apparent from Derivation \ref{ch::lin_alg::deriv::standard_matrix}. (Furthermore, while systems of linear equations are an important application of linear algebra, and while their study does enhance our knowledge about the kernels of linear functions, they should not be the starting point).
+    
+    Oftentimes, linear algebra texts present the formula for the $i$th entry of a matrix-vector product and the formula for the $ij$ entry of a matrix-matrix product as facts that should be memorized rather than understood. Be wary of this! You \textit{should not} memorize these formulas. If you can't quite remember them, try to derive them by starting with the fact that linear functions on finite-dimensional vector spaces are determined by what they do to bases, and by following the derivations given in this book!
+\end{remark}
+
+\newpage
+
+\subsection*{Matrices relative to bases}
+
+We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are finite-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^{\dim(V)} \rightarrow K^{\dim(W)}$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
+
+In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. The theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+
+\begin{deriv}
+\label{ch::lin_alg::deriv::matrix_relative_to_bases}
+    (Matrix relative to bases).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$ with bases $E$ and $F$, and consider a linear function $\ff:V \rightarrow W$. 
+    
+    The standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ represents $\ff_{E,F}$, and $\ff_{E,F}$ represents $\ff$, so\footnote{Again, when we say that $\hh$ \textit{represents} $\gg$, we mean that the map sending $\gg \mapsto \hh$ is a bijection.} we conclude by transitivity that $\ff_{E,F}(\sE)$ represents $\ff$. For this reason, we define the \textit{matrix of $\ff$ relative to $E$ and $F$} to be the standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}$.
+    
+    
+    Now, let's investigate $\ff_{E,F}(\sE)$ itself. We have $\ff_{E,F}(\sE) = ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\sE) = \Big[\ff\Big([\cdot]_E^{-1}(\sE)\Big)\Big]_F$. Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and thus $[\cdot]_E^{-1}(\sE) = E$. So: 
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff_{E,F}(\sE) = [\ff(E)]_F
+        }
+    \end{align*}
+    
+    Thus, the matrix of a linear function $\ff:V \rightarrow W$ relative to the bases $E$ and $F$ for $V$ and $W$ is $[\ff(E)]_F$. Explicitly, $[\ff(E)]_F$ looks like this:
+    
+    \begin{align*}
+        [\ff(E)]_F =
+        \begin{pmatrix}
+            [\ff(\ee_1)]_F & \hdots & [\ff(\ee_n)]_F
+        \end{pmatrix}
+    \end{align*}
+    
+    The characterizing property of standard matrices for linear functions $K^n \rightarrow K^m$ gives us the following equivalent statements:
+    
+    \begin{align*}
+        \ff_{E,F}(\vv) &= \ff_{E,F}(\sE) \spc \vv \text{ for all $\vv \in K^n$} \\
+        ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\vv) &= [\ff(E)]_F \spc \vv \text{ for all $\vv \in K^n$} \\
+        ([\cdot]_F \circ \ff)(\vv_1) &= [\ff(E)]_F [\vv_1]_E \text{ for all $\vv_1 \in V$} \\
+        [\ff(\vv_1)]_F &= [\ff(E)]_F [\vv_1]_E \text{ for all $\vv_1 \in V$}
+    \end{align*}
+    
+    So, we have the following characterizing property for matrices relative to bases:
+    
+    \begin{align*}
+        \boxed
+        {
+            [\ff(\vv)]_F = [\ff(E)]_F [\vv]_E \text{ for all $\vv \in V$}
+        }
+    \end{align*}
+    
+    This characterizing property tells a similar story as does the commutative diagram that describes $\ff_{E,F}$: it says that we can think of the function $\uu \mapsto [\ff(E)]_F \uu$ as accepting an input that is expressed relative to the basis $E$ for $V$ and as producing an output that is expressed relative to the basis $F$ for $W$.
+\end{deriv}
+
+\begin{remark}
+\label{ch::lin_alg::rmk::standard_matrix_as_matrix_wrt_bases}
+    (Standard matrix as special case of matrix relative to bases). 
+    
+    The standard matrix $\ff(\sE)$ of a linear function $\ff:K^n \rightarrow K^m$ is the matrix $\ff(\sE) = [\ff(\sE)]_\sE$ of $\ff:K^n \rightarrow K^m$ relative to the bases $\sE$ and $\sE$.
+\end{remark}
+
+Not all linear algebra resources use the above notion of matrices relative to bases and instead investigate matrices of the form $\EE^{-1} \AA \EE$. The following theorem explains that such matrices arise as a special case of matrices relative to bases.
+
+\begin{theorem}
+    (Matrices of linear functions $K^n \rightarrow K^n$ relative to $E$ and $E$).
+    
+    Let $K$ be a field, let $E$ be a basis for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is
+    
+    \begin{align*}
+        \ff(E)_E = \EE^{-1} \ff(\sE) \EE,
+    \end{align*}
+    
+    where $\EE$ is the matrix whose $i$th column is $\ee_i$.
+\end{theorem}
+
+\begin{proof}
+   The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is the standard matrix $\ff_{E,E}(\sE)$ of $\ff_{E,E} = [\cdot]_E \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,E}(\sE) = [\cdot]_E(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. To complete the proof, we will determine the standard matrices $[\cdot]_E(\sE)$ and $[\cdot]_E^{-1}(\sE)$.
+   
+   Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and\footnote{In Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} we used the facts from the sentence this footnote appears in to conclude $[\cdot]_E^{-1}(\sE) = E$ rather than $[\cdot]_E^{-1}(\sE) = \EE$. We are able to use the latter matrix notation $\EE$ now because we are in the special situation where $E$ is a basis of $K^n$, so the list $E$ of vectors is a list of \textit{column} vectors, i.e. a matrix.} thus $[\cdot]_E^{-1}(\sE) = \EE$. Also, since $[\cdot]_E$ is the inverse of $[\cdot]_E^{-1}$, we have $[\cdot]_E(\sE) = ([\cdot]_E^{-1}(\sE))^{-1} = \EE^{-1}$. Using the two facts $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$, we conclude that $([\cdot]_E \circ \ff \circ [\cdot]_E^{-1})(\sE) = [\cdot]_E(\sE) \spc  \ff(\sE) \spc [\cdot]_E^{-1}(\sE) = \EE^{-1} \ff(\sE) \EE$.
+\end{proof}
+
+\begin{comment} % Unnecessary; doesn't add much
+    \begin{theorem}
+    \label{ch::lin_alg::thm::action_linear_fn_arbitrary_vector_via_matrix_relative_to_bases}
+    
+        (Action of linear function on arbitrary vector via matrix relative to bases).
+    
+        Let $V$ and $W$ be finite-dimensional vector spaces over a field with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. If $\ff:V \rightarrow W$ is a linear function, then 
+    
+        \begin{align*}
+            \ff(\vv) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\vv]_E)_j \ff_i.
+        \end{align*}
+        
+        As a corollary, we have $\ff(\ee_i) = \sum_{j = 1}^n ([\ff(E)]_F)_{ji} \ff_i$.
+    \end{theorem}
+    
+    \begin{proof}
+      To prove the main statement, start with $\ff(\vv) = \sum_{i = 1}^n ([\ff(\vv)]_F)_i \ff_i$. Since $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$, then $([\ff(\vv)]_F)_i = ([[\ff(E)]_F [\vv]_E]_\sE)_i = (\text{$i$th row of $[\ff(E)]_F$}) \cdot [\vv]_E = \sum_{j = 1}^n ([\ff(E)]_F)_{ij} ([\vv]_E)_j$. Thus $\ff(\vv) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\vv]_E)_j \ff_i$.
+       
+      For the corollary, use the main statement to obtain the following: $\ff(\ee_k) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\ee_k]_E)_j \ff_i = \sum_{ij} ([\ff(E)]_F)_{ij} \delta_{kj} \ff_i = \sum_{i = 1}^n ([\ff(E)]_F)_{ik} \ff_i$. Rename $i$ to $j$ and $k$ to $i$ to obtain the result.
+    \end{proof}
+\end{comment}
+
+\subsection*{Change of basis}
+
+We will now discover how when we have a finite-dimensional vector space with bases $E$ and $F$ we can relate $[\vv]_E$ to $[\vv]_F$ for any vector $\vv$.
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::change_of_basis_for_vectors}
+    
+    (Change of basis).
+
+    % Old motivation from investigating a special case; feel that general way is elegant enough that investigating special case just adds verbosity
+    
+    % To start, consider the special case $V = K^n$. Then we can let $\EE$ and $\FF$ be the matrices with $i$th columns $\ee_i$ and $\ff_i$, respectively. For $\vv \in K^n$, we have $\FF [\vv]_F = \vv = \EE [\vv]_E$, so $[\vv]_F = \FF^{-1} \EE [\vv]_E$.
+    
+    % Now, we investigate the matrix $\FF^{-1} \EE$ of the previous expression.
+    
+    % By the definition of matrix-matrix multiplication (Definition \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}), we have
+    
+    % \begin{align*}
+    %     \FF^{-1} \EE = \FF^{-1} \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} = \begin{pmatrix} \FF^{-1} \ee_1 & \hdots & \FF^{-1} \ee_n \end{pmatrix}
+    %     = \begin{pmatrix} [\ee_1]_F & \hdots & [\ee_n]_F \end{pmatrix}
+    %     = [\cdot]_F(E) := [\EE]_F,
+    % \end{align*}
+    
+    % where we have defined the notation $[\EE]_F := [\cdot]_F(E)$.
+    
+    % Therefore
+    
+    % \begin{align*}
+    %      [\vv]_F = [\EE]_F [\vv]_E.
+    % \end{align*}
+    
+    % We now generalize this result to one that holds when $V$ is an arbitrary finite-dimensional vector space.
+    
+    % The matrix $[\EE]_F$ was the centerpiece of the above argument. To generalize, we notice that the matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[\cdot]_F(E) = [\EE]_F$.
+    
+    % The characterizing property of matrices relative to bases then implies that for any $\vv \in V$, we have
+    
+    % \begin{align*}
+    %     \boxed
+    %     {
+    %         [\vv]_F = [\EE]_F [\vv]_E
+    %     }
+    % \end{align*}
+    
+    Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. 
+    
+    The characterizing property of matrices relative to $E$ and $F$ says that for any linear function $\ff:V \rightarrow V$, we have $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$. In particular, when $\ff$ is the identity $\II_V$ on $V$, we obtain
+    
+    \begin{align*}
+        \boxed
+        {
+            [\vv]_F = [\EE]_F [\vv]_E
+        }
+    \end{align*}
+    
+    where $\EE$ is the list whose $i$th entry is $\ee_i$.
+    
+    \textbf{make consistent the convention where we say $\EE$ is the matrix whose $i$th entry is $\ee_i$, or the list whose $i$th entry is $\ee_i$, or where we don't say anything at all}
+    
+    It is a good sanity check that the identity on $V$ is involved in changing bases, since representing a vector with different bases does not change the vector itself.
+\end{theorem}
+
+\begin{remark}
+    (Alternate proof of change of basis).
+    
+    Here is an alternate proof to the above. The matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[[\cdot]_F(E)]_\sE = [\cdot_F(E)] = [\EE]_F$. Using the characterizing property of matrices relative to bases, we have $[\vv]_F = [[\cdot]_F(E)]_\sE [\vv]_E = [\EE]_F [\vv]_E$.
+\end{remark}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::I_EF}
+    ($(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$).
+    
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. The identity function $\II_V:V \rightarrow V$ on $V$ satisfies $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$. As a corollary, we have $[\EE]_F^{-1} = [\FF]_E$.
+\end{theorem}
+
+\begin{proof}
+    Since $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$, then $(\II_V)_{E,F} = [\cdot]_F \circ [\cdot]_E^{-1}$ and $(\II_V)_{F,E} = [\cdot]_E \circ [\cdot]_F^{-1}$. We clearly have $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::change_of_basis_with_basis_vectors}
+    (Change of basis in terms of basis vectors).
+    
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. By the definition of $[\cdot]_E$, we have
+    
+    \begin{align*}
+        \ff_i = \sum_{j = 1}^n ([\ff_i]_E)_j \ee_j = \sum_{j = 1}^n ([\FF]_E)_{ji} \ee_j,
+    \end{align*}
+    
+    where $\FF$ is the matrix whose $i$th column is $\ff_i$.
+    
+    In the last equality, we have used that $[\ff_i]_E$ is the $i$th column of $[\FF]_E$.
+\end{theorem}
+
+\begin{comment} %Unnecessary/impractical
+    \begin{theorem}
+        (Change of basis for linear functions). 
+        
+        Let $V$ and $W$ be finite-dimensional vector spaces. Let $E, G$ be bases of $V$, let $F, H$ be bases of $W$, and consider a linear function $\ff:V \rightarrow W$. Then $\ff_{E,F}$ and $\ff_{G,H}$ are related by
+        
+        \begin{align*}
+            \ff_{G,H} = [\cdot]_H \circ [\cdot]_{F^{-1}} \circ \ff_{E,F} \circ [\cdot]_E \circ [\cdot]_{G^{-1}}.
+        \end{align*}
+        
+        This is because $\ff_{E,F}$ was defined as $\ff_{E,F} := [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. (See Theorem \ref{ch::lin_alg::thm::f_EF}). But $[\cdot]_H \circ [\cdot]_{F^{-1}} = (\II_W)_{F,H}$ and $[\cdot]_E \circ [\cdot]_{G^{-1}} = (\II_V)_{G,F}$, so
+        
+        \begin{align*}
+            \ff_{G,H} = (\II_W)_{F, H} \circ \ff_{E,F} \circ (\II_V)_{G,F}.
+        \end{align*}
+        
+        We now translate the above equation into a statement about primitive matrices. Since the primitive matrix of a composition of functions is the product of matrices taken relative to the appropriate bases (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}), we have
+    
+        \begin{align*}
+            [\ff(G)]_H = [\II_W(F)]_H [\ff(E)]_F [\II_V(G)]_F = [\FF]_H [\ff(E)]_F [\GG]_F = [\FF]_H [\ff(E)]_F [\FF]_G^{-1}.
+        \end{align*}
+        
+        The last equality follows from the previous theorem.
+        
+    \end{theorem}
+\end{comment}
+
+
+\begin{remark}
+    (On the order of proving change of basis theorems). 
+    
+    Most linear algebra texts first prove the previous theorem and use it to show a version of the first equation in the box of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}. This approach for proving Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors} was not used because it involves quite a bit more matrix algebra than the approach supplied in this text. However, it good to know that these theorems are equivalent.
+\end{remark}
+
+\newpage
+
+\section{Systems of linear equations with matrices}
+
+This section presents how systems of linear equations can be solved by using concepts from linear algebra.
+
+Reading this section is entirely unnecessary for the remaining content in this book. This treatment of systems of linear equations has only been provided to serve as a superior alternative to the traditional approach of teaching linear algebra (which is: start with systems of linear equations, define the matrix-vector product, and then haphazardly discover the other linear algebra material we have covered). The approach we take emphasizes that linear algebra should not be introduced as a field of study that is discovered by starting with systems of linear equations\footnote{Linear algebra \textit{did} historically grow out of the study of systems of linear equations. Just remember that the historical approach is not always the most enlightening one!}, and that systems of linear equations should be viewed as an application of linear algebra.
+
+Before we study systems of linear equations, we will discuss the equation of a plane.
+
+\begin{deriv}
+    (Equation of an $n$-dimensional plane).
+    
+    [In all, we have seen that an $n$-dimensional plane can be represented as a set of points $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ which satisfy an equation of the form
+    
+    \begin{align*}
+        a_1 x_1 + ... + a_n x_n = b.
+    \end{align*}
+    ]
+    
+    An equation whose solution set is a plane is often called a \textit{equation for a plane}. Less commonly, such an equation is called a \textit{linear equation}\footnote{Although linear equations are related to linear functions (since the dot product is a bilinear function), the word ``linear`` in ``linear function'' has a different meaning than it does in ``linear equation''}. 
+\end{deriv}
+
+\begin{defn}
+    (System of linear equations).
+    
+    A system of linear equations is simply a set of linear equations such as the following:
+    
+    \begin{align*}
+        a_{1,1} x_1 + &... + a_{1,n} x_n = b_1, \\
+        a_{2,1} x_1 + &... + a_{2,n} x_n = b_2, \\
+        &\vdots \\
+        a_{m,1} x_1 + &... + a_{m,n} x_n = b_m.
+    \end{align*}
+    
+    Just as was the case with linear equations, when one considers a system of linear equations, one is typically interested in the set of points  $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ that satisfy all equations in the system.
+\end{defn}
+
+\begin{deriv}
+    (Number of solutions to systems of linear equations). 
+    
+    no solutions, infinitely many solutions, or exactly one solution.
+\end{deriv}
+
+\begin{proof}
+    three different proofs: (1) reasoning about $n$-dimensional planes and induction; (2) reasoning about $\ff(\xx) = \bb$ where $\ff:\R^n \rightarrow \R^m$ is the linear function representing the system and considering cases $n < m$, $n = m$, $n > m$; (3) reasoning about $\AA \xx = \bb$, RREFing, and considering analogous cases to ones in (2)
+    
+    (1)
+    
+    the intersection of two $n$-dimensional planes is a plane whose dimension is either $n$ or $n - 1$.
+    
+    consider a system of linear equations. the solution set to the system is the intersection of the $m$ many $n$-dimensional planes $P_{11}, ..., P_{1m}$ represented by the $m$ equations in $n$ unknowns. Set $P_{21} := P_{11} \cap P_{12}, P_{22} := P_{13} \cap P_{14}$, etc., with $P_{2 \spc \text{floor}(m/2)}$ being $P_{1\spc m - 1} \cap P_{1m}$ when $m$ is even and $P_{1m}$ when $m$ is odd. We claim that it is possible to choose the $P_{1i}$ so that the $P_{2j}$ are whatever we want them to be. (Proof of claim: easy when $m$ is even. When $m$ is odd, use the case when $m$ is even and then simply choose $P_{1n}$ to be whatever we want).
+\end{proof}
+
+\begin{deriv}
+    (Systems of linear equations correspond to vector equations).
+    
+    Consider the system of linear equations
+    
+    \begin{align*}
+        a_{1,1} x_1 + &... + a_{1,n} x_n = b_1, \\
+        a_{2,1} x_1 + &... + a_{2,n} x_n = b_2, \\
+        &\vdots \\
+        a_{m,1} x_1 + &... + a_{m,n} x_n = b_m.
+    \end{align*}
+    
+    We can represent this system of equations in an alternate form to the above by reorganizing information. If we collect all the coefficents $a_{i,j}$ into a matrix $\AA$,
+    
+    \begin{align*}
+        \AA
+        =
+        \begin{pmatrix}
+            a_{1, 1} & \hdots & a_{1, n} \\
+            a_{2, 1} & \hdots & a_{2, n} \\
+            & \vdots & \\
+            a_{m, 1} & \hdots & a_{m, n} \\
+        \end{pmatrix},
+    \end{align*}
+    
+    and also collect the $x_i$ and $b_i$ into a vectors $\xx$ and $\bb$,   
+    
+    \begin{align*}
+        \xx
+        =
+        \begin{pmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{pmatrix}, \quad
+        \bb
+        =
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix},
+    \end{align*}
+    
+    then the above system of equations corresponds to the tuple $(\AA, \xx, \bb)$. We can go a step further, however.
+    
+    Notice that the system of linear equations that arises from the vector equation $\AA \xx = \bb$ is exactly the system of linear equations we started with. 
+    
+    The vector equation
+    
+    \begin{align*}
+        \underbrace
+        {\begin{pmatrix}
+            a_{1, 1} & \hdots & a_{1, n} \\
+            a_{2, 1} & \hdots & a_{2, n} \\
+            & \vdots & \\
+            a_{m, 1} & \hdots & a_{m, n} \\
+        \end{pmatrix}}_{\AA}
+        \underbrace{
+        \begin{pmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{pmatrix}}_{\xx}
+        =
+        \underbrace
+        {\begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix}}_{\bb}
+    \end{align*}
+    
+    is equivalent to
+    
+\begin{align*}
+        \begin{pmatrix}
+            \begin{pmatrix} a_{1, 1} & \hdots & a_{1, n} \end{pmatrix} \cdot \xx \\
+            \begin{pmatrix} a_{2, 1} & \hdots & a_{2, n} \end{pmatrix} \cdot \xx \\
+            \vdots \\
+            \begin{pmatrix} a_{m, 1} & \hdots & a_{m, n} \end{pmatrix} \cdot \xx
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix},
+\end{align*}
+
+which is equivalent to
+
+\begin{align*}
+    \begin{pmatrix}
+            a_{1, 1} x_1 + ... + a_{1, n} x_n \\
+            a_{2, 1} x_1 + ... + a_{2, n} x_n \\
+            \vdots \\
+            a_{m, 1} x_1 + ... + a_{m, n} x_n
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_n
+        \end{pmatrix}.
+\end{align*}
+
+The set of equations obtained by equating the components of the vectors on either sides of the equality is the original system of equations we began with.
+
+\end{deriv}
+
+\begin{theorem}
+    (Row operations are linear transformations).
+\end{theorem}
+
+\begin{remark}
+    (Column operations).
+\end{remark}
+
+\begin{comment}
+    \begin{lemma}
+        (The rows of an invertible matrix form a basis for $K^n$).
+        
+        Suppose $\AA$ is an $n \times n$ matrix with entries in a field $K$. If $\AA$ is invertible, then it has a trivial kernel, and so by considering the equation $\AA \vv = \mathbf{0} \iff \sum_i v_i \aa_i = \mathbf{0}$ we see that $\AA$ has $n$ linearly independent columns, i.e., the columns of $\AA$ form a basis for $K^n$.
+        
+        If $\AA$ is invertible, then $\AA^\top$ is also invertible (with $(\AA^\top)^{-1} = (\AA^{-1})^\top$). And if $\AA^\top$ is invertible, then the columns of $\AA^\top$ (i.e. the rows of $\AA$ form a basis for $K^n$).
+        
+        In all, we see that if $\AA$ is invertible, then the rows of $\AA$ form a basis for $K^n$ and the columns of $\AA$ also form a basis for $K^n$.
+    \end{lemma}
+\end{comment}
+
+\begin{lemma}
+    (A linear function is invertible iff it is a composition of elementary linear functions).
+    
+    Equivalently, a matrix is invertible iff it is a product of elementary matrices.
+\end{lemma}
+
+\begin{proof}
+   
+\end{proof}
+
+\begin{theorem}
+    (A matrix is invertible iff its RREF is the identity matrix).
+\end{theorem}
+
+\begin{proof}
+   
+   \mbox{} \\ \indent
+   ($\implies$). Consider an arbitrary invertible matrix $\AA$. Since $\AA$ is invertible, it is a product of elementary matrices, $\AA = \EE_i ... \EE_1$.
+
+   
+   
+   
+   ($\impliedby$). Suppose $\text{rref}(\AA) = \II$. Since RREF is obtained by performing a sequence of row operations, and since performing a row operation is equivalent to multiplying on the left by an elementary matrix, we have $\text{rref}(\AA) = \EE_i ... \EE_1$ for some elementary matrices $\EE_1, ..., \EE_i$. Thus $\EE_i ... \EE_1 \AA = \II$. Elementary matrices are invertible, so we see that
+   
+   [...]
+   
+   row operations correspond to invertible linear functions. since columns are LI iff invertible and (only) linear functions preserve LI, RREF must be identity iff invertible.
+\end{proof}
+
+\section{Eigenvectors and eigenvalues}
+
+[This section not required for rest of book]
+
+\begin{defn}
+    (Eigenvectors and eigenvalues of a linear function).
+    
+    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is said to be an \textit{eigenvector (of $\ff$)} iff there is a scalar $c \in K$ such that $\ff(\vv) = c \vv$. Iff $\vv$ is indeed an eigenvector of $\ff$, then the $c \in K$ for which $\ff(\vv) = c \vv$ is said to be the \textit{eigenvalue (corresponding to $\vv$)}.
+    
+    In other words, the eigenvectors of a linear function are the vectors that get sent to scalar multiples of themselves by the function, and the eigenvalues corresponding to those eigenvectors are the scalars involved in said scalar multiples.
+\end{defn}
+
+\begin{remark}
+    (``Characteristic vectors'').
+    
+    The word ``eigen'' within ``eigenvector'' is German. Back when eigenvectors were first defined, English-speaking mathematicians called them ``characteristic vectors''. This terminology is not used today, but is helpful to keep it in mind, as we will see that, in some cases, a linear function is completely specified if its eigenvectors and corresponding eigenvalues are known.
+\end{remark}
+
+\begin{theorem}
+    Let $V$ be a vector space. A linear function $\ff:V \rightarrow V$ be a linear function is invertible the only eigenvalue with $0$ as its eigenvector is the zero vector $\mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+   Consider the contrapositive. Some nonzero eigenvector $\vv$ has $0$ as its eigenvalue iff $\ff$ has a nontrivial kernel, which is equivalent to $\ff$ not being invertible.
+\end{proof}
+
+\begin{remark}
+    (Eigenvectors, eigenvalues, and zero).
+    
+    According to the above definition, $\mathbf{0}$ is an eigenvector of every linear function, with its corresponding eigenvalue being $0$. 
+    
+    Some authors explicitly disallow $\mathbf{0}$ from being an eigenvector of any linear function (and thus disallow $0$ from being an eigenvalue of any linear function) in their definition of ``eigenvector'' so that the condition ``the only eigenvector with $0$ as an eigenvalue is $\mathbf{0}$'' is equivalent to the condition ``$0$ is not an eigenvalue''. The later is easier to say than the former.
+\end{remark}
+
+\begin{theorem}
+    (Intuition for an invertibility condition).
+    
+    [intuition on what a determinant is]
+    
+    $\ff$ is not invertible iff for any basis $E$ of $V$, the set $\ff(E)$ is linearly dependent
+
+    [$n$-dimensional volume spanned by a linearly dependent set is $0$]
+\end{theorem}
+
+\begin{deriv}
+    (Characterization of eigenvectors and eigenvalues).
+
+    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be linear function. In this derivation, we will discover a characterization of the eigenvectors and eigenvalues of $\ff$.
+    
+    Suppose $\vv \in V$ is an eigenvector of $\ff$. Then
+    
+    \begin{align*}
+        &\exists c \in K \st \ff(\vv) = c \vv \\
+        \iff &\exists c \in K \st \ff(\vv) - c \vv = \mathbf{0} \\
+        \iff &\exists c \in K \st \ff(\vv) - c\II(\vv) = \mathbf{0}, \text{ where $\II$ is the identity on $V$} \\
+        \iff &\exists c \in K \st (\ff - c\II)(\vv) = \mathbf{0} \\
+        \iff &\exists c \in K \st \vv \in \ker(\ff - c\II).
+    \end{align*}
+
+    [use $\II_V$?]
+    
+    (In the last line of the above, $\ff - c\II$ is the linear function defined by $(\ff - c\II)(\vv) = \ff(\vv) - c\II(\vv)$.)
+    
+    In all, we see that $\vv \in V$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
+    
+    An argument analogous to the one above shows that $c$ is a nonzero eigenvalue of $\ff$ iff ${\exists \vv \neq \mathbf{0} 
+    \spc \vv \in \ker(\ff - c \II)}$, i.e., iff $\ker(\ff - c\II) \neq \{\mathbf{0}\}$. Since $\ker(\ff - c\II) \neq \{\mathbf{0}\}$ iff $\det(\ff - c\II) = 0$ (see the previous theorem), we have in all that $c$ is a nonzero eigenvalue of $\ff$ iff $\det(\ff - c \II) = 0$.
+    
+    So:
+    
+    \begin{align*}
+        \text{eigenvectors of $\ff$} &= \bigcup_{c \in K} \ker(\ff - c \II) \\
+        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+    \end{align*}
+    
+    We can get even more specific with our characterization of the eigenvectors of $\ff$. Notice that, in the above union, we need not include kernels that are just $\{\mathbf{0}\}$, since every kernel contains $\mathbf{0}$. An equivalent union consists of nontrivial kernels, i.e., of kernels of noninvertible linear functions, i.e., of kernels of linear functions with determinant $0$. This gives us the following:
+    
+    \begin{align*}
+        \text{eigenvectors of $\ff$} &=
+        \bigcup_{\substack{c \in K \\ c \spc : \spc \det(\ff - c \II) = 0}} \ker(\ff - c \II) = 
+        \bigcup_{\substack{c \in K \\ c \spc : \spc \text{$c$ is a nonzero eigenvalue of $\ff$}}} \ker(\ff - c \II)
+        \\
+        \quad
+        \\
+        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+    \end{align*}
+    
+\end{deriv}
+
+\newpage
+
+\section{The dot product}
+
+Most explanations of the dot product engage in at least one of two pedagogically problematic approaches. 
+
+The most common of these approaches is: first, define the dot product as $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$; second, show that this initial definition implies $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ by using the law of cosines. This is the wrong way of doing things for two reasons: firstly, there is much more motivation (such as further investigation of vector projections or the physical concept of work) for defining $\vv_1 \cdot \vv_2 := ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ and then proving $\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$, rather than starting with $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$. Secondly, the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is unintuitive (to me, at least).}. There is a much better way to prove that $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ implies $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$, which we present. 
+
+The second problematic approach arises when an author \textit{does} decide to start with the geometrically intuitive definition, $\vv_1 \cdot \vv_2 := ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$. Authors will prove that $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ follows as a result of the law of cosines. Again, using the law of cosines gives no intuition. Instead, $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ should be proved by showing and then using the bilinearity of the dot product. The law of cosines should never be used in proving the equivalence of the two dot product formulas. When the equivalence between these two formulas is shown correctly, the law of cosines can be shown as a consequence.
+
+\vspace{.5cm}
+
+The cross product also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_pwrs} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_pwrs} because understanding cross products requires understanding determinants).
+
+\subsection*{Magnitude and angle in $\R^n$}
+\label{ch::lin_alg::subsection::mag_and_angle_Rn}
+
+\begin{defn}
+\label{ch::lin_alg::defn::length_in_Rn}
+    (Length of a vector in $\R^n$). 
+    
+    Let $\sE$ be the standard basis for $\R^n$. In analogy to the Pythagorean theorem, we define the \textit{length} of a vector $\vv \in \R^n$ to be $||\vv|| := \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}$.
+\end{defn}
+
+\begin{defn}
+    (Unit vector hat notation). 
+    
+    For $\vv \in \R^n$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^n$.
+\end{defn}
+
+\begin{defn}
+    (Unsigned angle between vectors in $\R^n$).
+    
+    Let vectors $\vv_1, \vv_2 \in \R^n$ have the same length $r = ||\vv_1|| = ||\vv_2||$, and consider the $n$-sphere that of radius $r$ results when the initial points of $\vv_1, \vv_2$ coincide. (The initial points of $\vv_1, \vv_2$ are the center of the sphere). Let $s$ be the length of the shortest path on the $n$-sphere from $\vv_1$ to $\vv_2$. We define the \textit{unsigned angle $\theta$ between $\vv_1$ and $\vv_2$} to be the ratio $\theta := \frac{s}{r}$. When two vectors don't have the same length, we define the unsigned angle between them to be the unsigned angle between two vectors that point in the same directions but that have the same length.
+    
+    Note, we have used the descriptor ``unsigned'' because, since $s, r \geq 0$, we know $\theta \geq 0$.
+\end{defn}
+
+\begin{defn}
+    (Perpendicular vectors in $\R^n$). We say that two vectors in $\R^n$ are \textit{perpendicular}, or \textit{orthogonal}, iff the unsigned angle between them is $\frac{\pi}{2}$.
+\end{defn}
+
+Moreso than prematurely introducing the dot product, the purpose of the following theorem is to engage with the intuitive definition of angle as $\theta := \frac{s}{r}$, which is so often abandoned in higher mathematics.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::unsigned_angle_Rn}
+    (Unsigned angle formula in $\R^n$).
+    
+    The unsigned angle $\theta$ between vectors $\vv_1, \vv_2 \in \R^n$ with the same length $r = ||\vv_1|| = ||\vv_2||$ is
+    
+    \begin{align*}
+        \theta = \text{arccos}\Big( \sum_{i = 1}^n [\hat{\vv}_1]_\sE)_i  ([\hat{\vv}_2]_\sE)_i \Big).
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+   We prove the theorem for the case $n = 2$. For the general case, one would make use of the following description of the $n$-sphere of radius $r$, which uses generalized spherical coordinates\footnote{See \url{https://en.wikipedia.org/wiki/N-sphere\#spherical\%20coordinates} for more.}:
+   
+   \begin{align*}
+       \xx \begin{pmatrix} t_1 \\ ... \\ t_{n - 1} \end{pmatrix}
+       =
+       r \sum_{i = 1}^n \Big( \sin(t_1) ... \sin(t_{i - 1}) \cos(t_i) \see_i \Big)
+       =
+       r
+       \begin{pmatrix}
+            \cos(t_1) \\
+            \sin(t_1) \cos(t_2) \\
+            \sin(t_1) \cos(t_2) \cos(t_3) \\
+            \vdots \\
+            \sin(t_1) ... \sin(t_{i - 1}) \cos(t_i) \\
+            \vdots \\
+            \sin(t_1) ... \sin(t_{n - 1}) \cos(t_n)
+       \end{pmatrix},
+   \end{align*}
+   
+   where $t_1, ..., t_{n - 2} \in [0, \pi]$, $t_{n - 1} \in [0, 2\pi)$.
+   
+   Since we are considering the case $n = 2$, we have
+   
+   \begin{align*}
+       \xx(t) = r \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}.
+   \end{align*}
+   
+   We compute $\theta$ as
+   
+   \begin{align*}
+       \theta = \frac{s}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d \xx(t)}{dt} \Big|\Big| dt = \frac{1}{r} \int_{t_1}^{t_2} r \spc dt = \int_{t_1}^{t_2} dt = t_2 - t_1.
+   \end{align*}
+   
+   Since $t_i$, $i \in \{1, 2\}$ are such that $\xx(t_i) = \vv_i$, we have $t_i = \text{arccos}(\frac{([\vv_i]_\sE)_1}{r})$. So
+   
+   \begin{align*}
+       \theta = t_2 - t_1 
+       = \text{arccos}\Big(\frac{([\vv_2]_\sE)_1}{r}\Big) - \text{arccos}\Big(\frac{[\vv_1]_\sE)_1}{r}\Big).
+   \end{align*}
+   
+   The cosine angle addition identity $\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha) \sin(\beta)$ implies\footnote{Solve the first identity for $\gamma = \cos(\alpha)$ and $\delta = \cos(\beta)$ to obtain the second identity in terms of $\gamma$ and $\delta$.} the identity $\text{arccos}(\alpha) + \text{arccos}(\beta) = \text{arccos}(\alpha \beta - \sqrt{1 - \alpha^2}\sqrt{1 - \beta^2})$. Using this identity with the fact that ${([\vv_i]_\sE)_1^2 + ([\vv_i]_\sE)_2^2 = 1}$, $i \in \{1, 2\}$, the above becomes
+   
+   \begin{align*}
+       \theta &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{1 - \Big(\frac{([\vv_1]_\sE)_1}{r}\Big)^2} \sqrt{1 - \Big(\frac{([\vv_2]_\sE)_1}{r}\Big)^2} \Bigg) \\
+       &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{\frac{r^2 - ([\vv_1]_\sE)_1^2}{r^2}} \sqrt{\frac{r^2 - ([\vv_2]_\sE)_1^2}{r^2}} \Bigg) \\
+       &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{\frac{([\vv_1]_\sE)_2^2}{r^2}} \sqrt{\frac{([\vv_2]_\sE)_2^2}{r^2}} \Bigg) \\
+       &= \text{arccos}\Big(\frac{([\vv_1]_\sE)_2) ([\vv_2]_\sE)_1) + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2}{r^2}\Big) \\
+       &= \text{arccos}\Big( \frac{([\vv_1]_\sE)_1}{r} \frac{([\vv_2]_\sE)_1}{r} + \frac{([\vv_1]_\sE)_2}{r} \frac{([\vv_2]_\sE)_2}{r} \Big) \\
+       &= \text{arccos}\Big(([\hat{\vv}_1]_\sE)_1  ([\hat{\vv}_2]_\sE)_1 + ([\hat{\vv}_2]_\sE)_1 ([\hat{\vv}_2]_\sE)_2\Big) \\
+       &= \text{arccos}\Big( \sum_{i = 1}^2 [\hat{\vv}_1]_\sE)_i ([\hat{\vv}_2]_\sE)_i \Big).
+   \end{align*}
+   
+   The second to last step follows because $r = ||\vv_1|| = ||\vv_2||$.
+\end{proof}
+
+\newpage
+
+\subsection*{The dot product}
+\label{ch::lin_alg::section::dot_product}
+
+Now that we have a notion of perpendicularity between vectors in $\R^n$, we can define the notion of vector projection, which is the main idea involved in the dot product.
+
+\begin{defn}
+\label{ch::lin_alg::defn::vector_proj}
+    (Vector projection in $\R^n$).
+    
+    Consider vectors $\vv_1, \vv_2, (\vv_2)_\perp \in \R^n$, where $(\vv_2)_\perp$ is perpendicular to $\vv_2$.
+    
+    The \textit{vector projection} of $\vv_1$ onto $\vv_2$ is the unique vector $\proj(\vv_1 \rightarrow \vv_2) := (v_1)_{||} \hat{\vv}_2$ such that ${\vv_1 = (v_1)_{||} \hat{\vv}_2 + (v_1)_\perp (\hat{\vv}_2)_\perp}$, where $(v_1)_{||}, (v_1)_\perp \in K$.
+\end{defn}
+
+\begin{remark}
+    Note that, for $\vv_1, \vv_2 \in \R^n$, we have $\proj(\vv_1 \rightarrow \vv_2) = \proj(\vv_1 \rightarrow \hat{\vv}_2)$ because $\hat{\hat{\vv}}_2 = \hat{\vv}_2$.
+\end{remark}
+
+\begin{defn}
+    (Dot product). 
+    
+    The \textit{dot product on $\R^n$} is the function $\cdot:\R^n \times \R^n \rightarrow \R$ defined by
+    
+    \begin{align*}
+        \vv_1 \cdot \vv_2 := || \proj(\vv_1 \rightarrow \vv_2) || \spc ||\vv_2||.
+    \end{align*}
+    
+    Why do we care about the dot product? The primary reason is that ${\vv_1 \cdot \vv_2 = \proj(\vv_1 \rightarrow \vv_2)}$ when $||\vv_2|| = 1$, so investigating the dot product can tell us more about vector projections\footnote{We will indeed find that the dot product tells us something about projections in Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product}!}. Another reason is that in physics, the \textit{work} done by a force $\FF$ along a displacement $\Delta \xx$ is defined to be the product of the magnitude of the force that ``aligns'' with the displacement with the magnitude of the displacement\footnote{A negative sign occurs when the force opposes the displacement.}; i.e., work is defined to be $\FF \cdot \Delta \xx$.
+\end{defn}
+
+Before moving on to more important business, we quickly note the following fact relating the dot product and the length of a vector.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::length_in_Rn}
+    (Length in $\R^n$ in terms of dot product).
+    
+    For any $\vv \in \R^n$, we have $||\vv|| = \sqrt{\vv \cdot \vv}$.
+\end{theorem}
+
+\begin{proof}
+   $\vv \cdot \vv = ||\proj(\vv \rightarrow \vv)|| \spc ||\vv|| = ||\vv||^2$, so $\sqrt{\vv \cdot \vv} = ||\vv||$.
+\end{proof}
+
+Now, we set out to show that the dot product is a bilinear function. We do so by appealing to the fact that the dot product involves vector projection. 
+
+\begin{lemma}
+    (Projection onto a vector is a linear function).
+    
+    Let $\vv_1, \vv_2 \in \R^n$. The map $\vv_1 \mapsto \proj(\vv_1 \rightarrow \vv_2)$ is linear.
+\end{lemma}
+
+\begin{proof}
+    Define $\ff:\R^n \rightarrow \R$ by $\ff(\vv_1) = \proj(\vv_1 \rightarrow \vv_2)$. We show $\ff(\vv_1 + \vv_2) = \ff(\vv_1) + \ff(\vv_2)$ and $\ff(c\vv_1) = c\ff(\vv_1)$.
+    
+    \begin{align*}
+        \ff(\vv_1 + \vv_2) &= \ff\Big(\Big((v_1)_{||}\hat{\vv}_2 + (v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) + \Big((v_2)_{||}\hat{\vv}_2 + (v_2)_\perp (\hat{\vv}_2)_\perp \Big) \Big) \\
+        &= \ff \Big(\Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\vv}_2 + \Big((v_1)_\perp + (v_2)_\perp) \Big) (\hat{\vv}_2)_\perp \Big) \\
+        &= \proj\Big(\Big[ \Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\vv}_2 + \Big((v_1)_\perp + (v_2)_\perp \Big) (\hat{\vv}_2)_\perp \Big] \rightarrow \vv_2 \Big) \\
+        &= \Big((v_1)_{||} + (v_2)_{||}) \Big) \hat{\vv}_2 = (v_1)_{||} \hat{\vv}_2 + (v_2)_{||} \hat{\vv}_2
+        = \proj(\vv_1 \rightarrow \vv_2) + \proj(\vv_2 \rightarrow \vv_2) = \ff(\vv_1) + \ff(\vv_2).
+    \end{align*}
+    
+    \begin{align*}
+        \ff(c \vv_1) &= 
+        \ff \Big(c \Big((v_1)_{||}\hat{\vv}_2 + (v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) \Big) = 
+        \ff\Big(c(v_1)_{||}\hat{\vv}_2 + c(v_1)_{\perp}(\hat{\vv}_2)_\perp \Big)
+        = \proj\Big(\Big(c(v_1)_{||}\hat{\vv}_2 + c(v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) \rightarrow \vv_2 \Big) \\
+        &= c (v_1)_{||} \hat{\vv}_2 = c \proj(\vv_1 \rightarrow \vv_2) = c \ff(\vv_1).
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::geom_dot_product_bilinear}
+    (The dot product is a bilinear function).
+    
+    The dot product is a bilinear function. That is, $(\vv_1, \vv_2) \mapsto \vv_1 \cdot \vv_2$ is linear in the argument $\vv_1$ when $\vv_2$ is fixed, and is linear in the argument $\vv_2$ when $\vv_1$ is fixed.
+\end{theorem}
+
+\begin{proof}
+    The dot product is symmetric, so it suffices to show that it is a linear function in either argument; it suffices to show that $\ff:\R^n \rightarrow \R$ defined by $\ff(\vv_1) = \vv_1 \cdot \vv_2$ is a linear function. Well, ${\ff(\vv_1) = ||\vv_2||\proj(\vv_1 \rightarrow \vv_2)}$, and we know that $\proj(\vv_1 \rightarrow \vv_2)$ is linear in $\vv_2$. Since $\ff$ is the result of scaling a linear function by $||\vv_2||$, it too is a linear function.
+\end{proof}
+
+Knowing that the dot product is bilinear allows us to derive an alternate ``algebraic'' (as opposed to ``geometric'') expression for the dot product of two vectors in $\R^n$. Before we derive this alternate expression, though, we will need to note the following basic fact.
+
+\begin{lemma}
+    Let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis for $\R^n$. We have
+    
+    \begin{align*}
+        \see_i \cdot \see_j = 
+        \begin{cases}
+            1 & i = j \\
+            0 & i \neq j
+        \end{cases}
+        = \delta_{ij}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+   The lemma is equivalent to the statement $||\proj(\see_i \rightarrow \see_j)|| = \delta_{ij}$, which is easily proved.
+\end{proof}
+
+\begin{deriv}
+    (Algebraic dot product on $\R^n$). 
+    
+    We can now derive an ``algebraic'' formula for the dot product, using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
+    
+    We will make use of the following general fact about bilinear functions. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
+    
+    \begin{align*}
+        B(\vv_1, \vv_2) &= B\Big(\sum_{i = 1}^n ([\vv_1]_E)_i \ee_i, \sum_{i = 1}^n ([\vv_1]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n ([\vv_1]_E)_i B\Big(\ee_i, \sum_{i = 1}^n ([\vv_1]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n \sum_{j = 1}^n ([\vv_1]_E)_i ([\vv_2]_E)_i B(\ee_i, \ee_j).
+    \end{align*}
+    
+    In the above, we've written $\vv_1$ and $\vv_2$ as sums of basis vectors and then used the linearity of $B$ in each argument.
+    
+   The dot product is a bilinear function $\cdot:\R^n \times \R^n \rightarrow \R$, so the above fact can be applied to the dot product. We know from the previous lemma that $B(\see_i, \see_j) = \delta_{ij}$, so we have
+    
+    \begin{align*}
+        \vv_1 \cdot \vv_2 = \sum_{i = 1}^n \sum_{j = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i \delta_{ij} = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        \boxed
+        {
+            \vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i
+        }
+    \end{align*}
+\end{deriv}
+
+We could have proved the following theorem immediately after defining $\vv_1 \cdot \vv_2 := ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$. The usefulness of this next theorem, however, wouldn't have been apparent until knowing that $\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::vector_proj_dot_product}
+    (Vector projection in terms of dot product).
+    
+    If $\vv_1, \vv_2 \in \R^n$, then
+    
+    \begin{align*}
+        \boxed
+        {
+            \proj(\vv_1 \rightarrow \vv_2) = \frac{\vv_1 \cdot \vv_2}{||\vv_2||} \hat{\vv}_2 = \frac{\vv_1 \cdot \vv_2}{\vv_2 \cdot \vv_2} \vv_2
+        }
+    \end{align*}
+    
+    If one didn't know the algebraic formula for the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic dot product allows for easy computation of the expressions $\vv_1 \cdot \vv_2$ and $\vv_2 \cdot \vv_2$ whenever we know the coordinates of $\vv_1$ and $\vv_2$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv_1$ and $\vv_2$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^n$.
+\end{theorem}
+
+\begin{proof}
+   Since $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, then $||\proj(\vv_1 \rightarrow \vv_2)|| = \frac{\vv_1 \cdot \vv_2}{||\vv_2||}$. We have $\proj(\vv_1 \rightarrow \vv_2) = ||\proj(\vv_1 \rightarrow \vv_2)|| \widehat{\proj(\vv_1 \rightarrow \vv_2)} = \frac{\vv_1 \cdot \vv_2}{||\vv_2||} \hat{\vv}_2$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::dot_prod_and_angle}
+    (Unsigned angle between vectors and dot product).
+    
+    Before we discovered the algebraic dot product, Theorem \ref{ch::lin_alg::thm::unsigned_angle_Rn} showed 
+    
+    \begin{align*}
+        \theta = \text{arccos}\Big(\sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i\Big),
+    \end{align*}
+    
+    as a consequence of the definition $\theta := \frac{s}{r}$. Now that we know about the algebraic dot product, we can say that the signed angle $\theta$ between $\vv_1, \vv_2 \in \R^n$ is
+    
+    \begin{align*}
+        \theta = \text{arccos}(\hat{\vv}_1 \cdot \hat{\vv}_2)
+    \end{align*}
+    
+    Notably, since  $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||}$, the above implies that
+    
+    \begin{align*}
+        \vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta).
+    \end{align*}
+\end{theorem}
+
+\begin{remark}
+    (Dot product as a function of unsigned angle in $\R^2$).
+    
+    One can easily show that $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ in $\R^2$ by using trigonometry. Trigonometry shows $||\proj(\vv_1 \rightarrow \vv_2)|| = ||\vv_1|| \cos(\theta)$, so we have $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2|| = ||\vv_1|| \cos(\theta) ||\vv_2|| = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$.
+\end{remark}
+
+Now that we have used the geometric definition of the dot product to derive an ``algebraic'' formula for the dot product, we will show that one can start with the ``algebraic'' formula as a definition and discover the geometric formula. We need the following definition and two lemmas before we can do this.
+
+\begin{defn}
+\label{ch::lin_alg::defn::orthogonal_linear_fn_Rn}
+    (Orthogonal linear function on $\R^n$).
+    
+    We say that a linear function $\ff:\R^n \rightarrow \R^n$ is \textit{orthogonal} iff it preserves length, i.e., iff $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^n$.
+    
+    (``Orthogonal linear function'' is a somewhat misleading name. It's true that certain facts about orthogonal linear functions involve orthogonal \textit{vectors}, but orthogonal linear functions aren't ``perpendicular'' to other orthogonal linear functions in some sense).
+\end{defn}
+
+\begin{lemma}
+\label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
+    (Orthogonal linear functions on $\R^n$ preserve algebraic dot product).
+    
+    Let $\ff:\R^n \rightarrow \R^n$ be an orthogonal linear function. Then $\ff$ preserves the algebraic dot product on $\R^n$: $\vv_1 \cdot \vv_2 = \ff(\vv_1) \cdot \ff(\vv_2)$.
+\end{lemma}
+
+\begin{proof}
+    By definition, orthogonal linear functions on $\R^n$ preserve length. Thus, if we showed that  $\vv_1 \cdot \vv_2$ depends on $||\vv_1||$ and $||\vv_2||$ (on lengths), it would follow that the algebraic dot product is preserved by orthogonal linear functions. This is what we will do.
+
+    We need to show that $\vv_1 \cdot \vv_2$ depends on $||\vv_1||$ and $||\vv_2||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv_1 + \vv_2||^2 = (\vv_1 + \vv_2) \cdot (\vv_1 + \vv_2) = \vv_1 \cdot \vv_1 + 2 \vv_1 \cdot \vv_2 + \vv_2 \cdot \vv_2 = ||\vv_1||^2 + 2 \vv_1 \cdot \vv_2 + ||\vv_2||^2$. Solve for $\vv_1 \cdot \vv_2$ to see that $\vv_1 \cdot \vv_2$ does indeed depend on $||\vv_1||$ and $||\vv_2||$:
+    
+   \begin{align*}
+        \vv_1 \cdot \vv_2 = \frac{1}{2}\Big(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2) \Big).
+    \end{align*}
+\end{proof}
+
+\begin{lemma}
+    \label{ch::lin_alg::lemma::rotated_projection_length}
+        (Rotated projection is projection of rotated vectors). 
+        
+        Let $\vv_1, \vv_2 \in \R^n$. If $\ff$ is a rotation\footnote{See Definition \ref{ch::exterior_pwrs::defn::n-rotation} in Chapter \ref{ch::exterior_pwrs} to see what it means for a function to be an \textit{$n$-rotation}. All we need to know for the purposes of the dot product is that all $n$-rotations are length-preserving.}, then $||\ff(\proj(\vv_1 \rightarrow \vv_2)|| = ||\proj(\ff(\vv_1) \rightarrow \ff(\vv_2))||$.
+    \end{lemma}
+    
+    \begin{proof}
+        We have $\vv_1 = (v_1)_{||} \hat{\vv}_1 + (v_1)_\perp (\hat{\vv}_1)_\perp$, so $\ff(\vv_1) = (v_1)_{||} \ff(\hat{\vv}_2) + (v_1)_\perp \ff((\hat{\vv}_2)_\perp)$. The claim follows if we show (1) that $\ff(\hat{\vv}_2) = \widehat{\ff(\vv_2)}$ and (2) that $\ff((\hat{\vv}_2)_\perp) = \widehat{\ff(\vv_2)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\vv_2$ to $(\vv_2)_\perp$, because rotations commute with each other, and because rotations are length-preserving.
+    \end{proof}
+
+\begin{theorem}
+    (Algebraic dot product formula implies geometric dot product formula).
+    
+    We've used the bilinearity of the geometrically defined dot product to derive the algebraic dot product formula; we've showed that defining $\cdot:\R^n \rightarrow \R^n$ by ${\vv_1 \cdot \vv_2 := ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||}$ implies ${\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i}$.
+    
+    We now show that we can do things the other way around: we can derive the geometric dot product formula from the algebraic dot product formula. More specifically, we will show that defining $\cdot:\R^n \rightarrow \R^n$ by ${\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i}$ implies that ${\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||}$.
+\end{theorem}
+
+\begin{proof}
+    Consider $\vv_1, \vv_2 \in \R^n$, and let $\ff$ be the rotation satisfying $\ff(\hat{\vv}_2) = \see_1$, that is, $\ff(\vv_2) = ||\vv_2||\see_1$.
+    
+    Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product} says that orthogonal linear functions on $\R^n$ preserve the algebraic dot product, so
+    
+    \begin{align*}
+        \vv_1 \cdot \vv_2 
+        = \ff(\vv_1) \cdot \ff(\vv_2) 
+        = \ff(\vv_1) \cdot ||\vv_2|| \see_1 
+        = \begin{pmatrix} ([\ff(\vv_1)]_\sE)_1 \\ \vdots \\ ([\ff(\vv_1)]_\sE)_n \end{pmatrix}
+        \cdot 
+        \begin{pmatrix} ||\vv_2|| \\ 0 \\ \vdots \\ 0 \end{pmatrix} 
+        = 
+        ([\ff(\vv_1)]_\sE)_1 ||\vv_2||.
+    \end{align*}
+    
+    We have
+    
+    \begin{align*}
+        ([\ff(\vv_1)]_\sE)_1
+        &= \proj(\ff(\vv_1) \rightarrow \see_1) 
+        = \proj(\ff(\vv_1) \rightarrow \ff(\hat{\vv}_2))
+        = \proj(\ff(\vv_1) \rightarrow \widehat{\ff(\vv_2)}) \\
+        &= \proj(\ff(\vv_1) \rightarrow \ff(\vv_2)) 
+        = \proj(\vv_1 \rightarrow \vv_2),
+    \end{align*}
+    
+    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, which is the definition of the geometric dot product on $\R^n$.
+\end{proof}
+
+Most proofs of the above theorem use the law of cosines. I personally do not find the law of cosines intuitive, and believe it is best seen as a consequence of the equivalence between the geometric and algebraic dot product formulas. We prove the law of cosines in this way in the next theorem.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::law_of_cosines}
+    (Law of cosines in $\R^n$). 
+    
+    Consider vectors $\vv_1, \vv_2 \in \R^n$. We can interpret $\vv_1, \vv_2$ and $\vv_1 - \vv_2$ as the oriented side lengths of a triangle; then, the angle $\theta$ between $\vv_2$ and $\vv_1$ is the angle opposite to the side $\vv_1 - \vv_2$.
+
+    The ``law of cosines'' is the fact that $||\vv_1 - \vv_2||^2 = ||\vv_1||^2 + ||\vv_2||^2 - 2 ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$. Note that by using $\theta = 0$, we recover the Pythagorean theorem.
+\end{theorem}
+
+\begin{proof}
+   $||\vv_1 - \vv_2||^2 = (\vv_1 - \vv_2) \cdot (\vv_1 - \vv_2) = \vv_1 \cdot \vv_1 - 2 \vv_1 \cdot \vv_2 + \vv_2 \cdot \vv_2 = ||\vv_1||^2 + ||\vv_2||^2 - 2 ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$.
+\end{proof}
+
+\begin{remark}
+    The above theorem reveals that the algebraic dot product (on $\R^2$) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
+\end{remark}
+

@@ -1,0 +1,867 @@
+\chapter{A motivated introduction to tensors}
+\label{ch::motivated_intro}
+
+In this chapter, we introduce the idea of a \textit{tensor}, since tensors underpin differential forms. There are two key ideas that we must formalize before we define what a tensor is.
+
+One of the ideas is that of a ``multilinear element''. Recall that elements of vector spaces (vectors) can be thought of as ``linear elements''. Thus, we can say ``linear functions respect the decomposition of linear elements''. After defining the notion of \textit{multilinear function}, we will define the notion of ``multilinear elements''. Multilinear elements will be objects that (in a sense) are respected by multilinear functions. Formally, mutlilinear elements will be elements of \textit{tensor product spaces}. 
+
+There are two main contributions of tensor product spaces to the overarching theory of tensors: tensor product spaces formalize the structure of how ``multilinear things'' behave, and they allow multilinear functions to be identified with linear functions. Tensor product spaces do not account for the entire theory of tensors, though, even though the name might make you think this. One more key idea, described below, is required.
+
+The second key idea in the theory of tensors is to think of linear functions as vectors- that is, as elements of vector spaces. We achieve this by decomposing linear functions into linear combinations of simpler linear functions. Most introductory linear algebra classes approach this idea by proving the fact that the set of $m \times n$ matrices form a vector space. We take this idea and run with it to discover \textit{dual spaces}. Soon after, we utilize the two key ideas, (1) tensor product spaces and (2) dual spaces, to prove the theorem which underlies the definition of a \textit{$(p, q)$ tensor}.
+
+\section{Multilinear functions and tensor product spaces}
+
+\begin{defn}
+    (Multilinear function).
+    
+    Let $V_1, ..., V_k, W$ be vector spaces over a field $K$. We say a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is \textit{$k$-linear} iff for all $\vv_1 \in V_1, ..., \vv_i \in V_i, ..., \vv_k \in V_k$, the function $\ff_i:V_i \rightarrow W$ defined by $\ff_i(\vv_1, ..., \vv_i, ..., \vv_k) = \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is linear. In other words, $\ff$ is \textit{$k$-linear} iff it is ``linear in each argument''. 
+    
+    When $k$ is clear from the context, $k$-linear functions are called \textit{multilinear functions}. Note that a $1$-linear function is simply a linear function. A $2$-linear function is called a \textit{bilinear function}.
+\end{defn}
+
+\begin{example}
+    (Examples of multilinear functions). 
+    
+    The dot product on $\R^n$ is a bilinear function on $\R^n \times \R^n$. If you have encountered the determinant before, you might recall that it is a multilinear function.
+\end{example}
+
+\begin{defn}
+    (Vector space of multilinear functions).
+    
+    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling. In particular, the case $k = 1$ implies that $\LLLL(V \rightarrow W)$ denotes the set of linear functions $V \rightarrow W$.
+\end{defn}
+
+\begin{proof}
+     The proof that $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ is indeed a vector space is left as an exercise.
+\end{proof}
+
+Elements of a vector space can be considered to be ``linear elements'' because their decompositions relative to a basis are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' We will see that elements of tensor product spaces are  ``multilinear elements''.
+
+\newpage
+
+\begin{defn}
+\label{ch::motivated_intro::defn::tensor_product_space}
+    (Tensor product space).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. The \textit{tensor product space} $V_1 \otimes ... \otimes V_k$ is defined to be the vector space over $K$ whose elements are from the set $V_1 \times ... \times V_k$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $V_1 \otimes ... \otimes V_k$ as $\vv_1 \otimes ... \otimes \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
+    
+    The equivalence relation is defined by the condition that, for all $\vv_1, ..., \vv_k \in V$ and $c \in K$, we have:
+    
+    \begin{align*}
+        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{i1} \otimes \vv_{i + 1} ... \otimes \vv_k \\
+        &+ \\
+        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{i2} \otimes \vv_{i + 1} ... \otimes \vv_k \\
+        &= \\
+        \vv_1 \otimes ... \otimes \vv_{i - 1} \otimes (\vv_{i1} &+ \vv_{i2}) \otimes \vv_{i + 1} ... \otimes \vv_k
+    \end{align*}
+    
+    and
+    
+    \begin{align*}
+        c (\vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_i \otimes \vv_{i + 1} ... \otimes \vv_k ) \\
+        &= \\
+        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes (c \vv_i) \otimes \vv_{i + 1} ... \otimes \vv_k.
+    \end{align*}
+    
+    These operations were contrived to be such that the ``comma in disguise'' $\otimes$ appears to be a multilinear function. We did this because we want elements of tensor product spaces to be ``multilinear elements''.
+    
+    When the context is clear, we will refer to elements of tensor product spaces as ``tensors''.
+\end{defn}
+
+\begin{remark}
+    (Tensor terminology). 
+    
+    Some authors use the word ``tensor'' to mean ``$(p, q)$ tensor''. (We have not defined $(p, q)$ tensors yet, but we will in Definition \ref{ch::motivated_intro::defn::pq_tensor}). We will use the word ``tensor'' to either mean an element of a tensor product space or a $(p, q)$ tensor, but we only do this when the meaning is clear from context.
+\end{remark}
+
+\begin{defn}
+    (Elementary tensor). 
+    
+    Let $V_1, ..., V_k$ be vector spaces, and consider the tensor product space $V_1 \otimes ... \otimes V_k$. An element of $V_1 \otimes ... \otimes V_k$ that is of the form $\vv_1 \otimes ... \otimes \vv_k$ is called an \textit{elementary tensor}. Intuitively, an elementary tensor is an element that is \textit{not} a linear combination of two or more other nonzero tensors. An element of $V_1 \otimes ... \otimes V_k$ that is not an elementary tensor is called a \textit{nonelementary tensor}.
+\end{defn}
+
+\begin{theorem}
+    (Associativity of tensor product). 
+    
+    Let $V_1, V_2, V_3$ be vector spaces. Then there are natural isomorphisms
+    
+    \begin{align*}
+        (V_1 \otimes V_2) \otimes V_3 \cong V_1 \otimes V_2 \otimes V_3 \cong V_1 \otimes (V_2 \otimes V_3).
+    \end{align*}
+    
+    That is, these spaces are ``the same'', since an element of one can ``naturally'' be identified as an element of the other. (See Definition \ref{ch::lin_alg::defn::linear_iso} for a discussion of linear isomorphisms). These identifications are ``natural'' in the sense that they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
+\end{theorem}
+
+\begin{proof}
+    Since an isomorphism of vector spaces is a linear map, it is enough to define an isomorphism on elementary tensors and ``extend with linearity''. To construct the required isomorphisms, we will recall the definition of a tensor product space as a quotient space, so that elementary tensors of $(V_1 \otimes V_2) \otimes V_3$ are of the form $((\vv_1, \vv_2), \vv_3)$, elementary tensors of $V_1 \otimes V_2 \otimes V_3$ are of the form $(\vv_1, \vv_2, \vv_3)$, and elementary tensors of $V_1 \otimes (V_2 \otimes V_3)$ are of the form $(\vv_1, (\vv_2, \vv_3))$. For the first isomorphism, we send $((\vv_1, \vv_2), \vv_3) \mapsto (\vv_1, \vv_2, \vv_3)$, and for (reverse of) the second isomorphism, we send $(\vv_1, (\vv_2, \vv_3)) \mapsto (\vv_1, \vv_2, \vv_3)$. We leave it to the reader to check that these maps are indeed linear and injective; surjectivity follows from fact that these maps ``extend with linearity''. When extending with linearity, it will be necessary to use the fact that $\otimes$ (that is, the outermost comma) appears to be a multilinear function.
+\end{proof}
+
+\newpage
+
+\begin{theorem}
+\label{ch::motivated_intro::thm::basis_dim_tensor_product_space}
+    (Basis and dimension of a tensor product space). 
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \otimes ... \otimes V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
+    
+    \begin{align*}
+        \{ \ee_{1i_1} \otimes ... \otimes \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+      It suffices to show that if $V$ and $W$ are finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, then
+      
+      \begin{align*}
+          \{\ee_i \otimes \ff_j \mid i \in \{1, ..., n\}, j \in \{1, ..., m\} \}
+      \end{align*}
+      
+      is a basis of $V \otimes W$.
+      
+      To show that this set spans $V \otimes W$, it suffices to show it spans the set of elementary tensors in $V \otimes W$, since any tensor in $V \otimes W$ is a linear combination of elementary tensors. For an elementary tensor $\vv \otimes \ww \in V \otimes W$, we have
+      
+      \begin{align*}
+          \vv \otimes \ww = \sum_{i = 1}^n ([\vv]_E)^i ([\ww]_F)^j \ee_i \otimes \ff_j,
+      \end{align*}
+      
+      by the seeming-bilinearity of $\otimes$.
+      
+      To show linear independence, assume that $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j$ is the zero tensor. We must show that all of the $T_{i,j}$'s are $0$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \Big(\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j\Big) \cdot 0 = \ee_i \otimes \mathbf{0}$ for some $i$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$ for $\vv \in V$, or $\mathbf{0} \otimes \ww$ for $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{i,j}$ are $0$.
+\end{proof}
+
+The following theorem formalizes the notion that multilinear functions preserve the decomposition of multilinear elements. More precisely, it states that a multilinear function uniquely corresponds to a linear function on a tensor product space, which is a function that preserves the decomposition of an element of a tensor product space.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::universal_prop_tensor_prod}
+    (Universal property of the tensor product).
+
+    Let $V_1, V_2, W$ be vector spaces, and let $\ff:V_1 \times V_2 \rightarrow W$ be a bilinear function. Then there exists a linear function $\hh_\ff:V_1 \otimes V_2 \rightarrow W$ with $\ff = \hh_\ff \circ \gg$ that uniquely depends on $\ff$, where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$ is invertible.
+\end{theorem}
+
+\begin{proof}
+    First we send $(\vv_1, \vv_2) \overset{\gg}{\mapsto} \vv_1 \otimes \vv_2$ and then $\vv_1 \otimes \vv_2 \overset{\hh_\ff}{\mapsto} \ff(\vv_1, \vv_2)$, where we impose that $\hh_\ff$ be linear. (Note, requiring that $\hh_\ff$ is linear implies that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor, since defining how $\hh_\ff$ acts on elementary tensors is enough to determine how $\hh_\ff$ acts on any tensor). We have $\ff = \hh_\ff \circ \gg$ when we restrict both sides so that they only apply to ``elementary'' vectors $(\vv_1, \vv_2) \in V_1 \times V_2$. Using the bilinearity of $\ff$ and the seeming-bilinearity of $\otimes$, we can ``extend'' this statement to a statement that applies to any vector $(\vv_1, \vv_2) \in V_1 \times V_2$. Thus $\ff = \hh_\ff \circ \gg$. The composition map $\circ$ is well-defined, so $\hh_\ff = \ff \circ \gg$ is uniquely determined.
+    
+    We have shown everything except for the fact that $\gg$ is invertible. Show this by proving that $\gg$ has a trivial kernel.
+\end{proof}
+
+Using the previous theorem to define a natural isomorphism of vector spaces yields the following more general result.
+
+\begin{theorem}
+\label{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}
+    (Multilinear functions are naturally identified with linear functions on tensor product spaces).
+    
+    Let $V_1, ..., V_k, W$ be vector spaces. Then the vector space of multilinear functions $V_1 \times ... \times V_k \rightarrow W$ is naturally isomorphic to the vector space of linear functions $V_1 \otimes ... \otimes V_k \rightarrow W$:
+    
+    \begin{align*}
+        \LLLL(V_1 \times ... \times V_k \rightarrow W) \cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W).
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    We prove the theorem for the case $k = 2$, and show $\LLLL(V_1 \times V_2 \rightarrow W) \cong \LLLL(V_1 \otimes V_2 \rightarrow W)$. The general result follows by using induction with the associativity of the Cartesian product $\times$ of sets and the tensor product $\otimes$ of vector spaces.
+    
+    To construct a linear isomorphism $\LLLL(V_1 \times V_2 \rightarrow W) \mapsto \LLLL(V_1 \otimes V_2 \rightarrow W)$, we send \\ ${\ff \in \LLLL(V_1 \times V_2 \rightarrow W) \mapsto \hh_\ff = \ff \circ \gg^{-1}}$, where $\gg$ and $\hh_\ff$ are from the proof of Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}.
+    
+    This map is linear because, given vector spaces $Y, Z, W$, the map $\circ$ which composes linear functions, $\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)$, is a bilinear map. (Check this fact for yourself. The consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). It is an injection because we know from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod} that $\hh_\ff$ is uniquely determined by $\ff$. Since the map is a linear injection between two vector spaces of the same dimension, it is a linear isomorphism.
+\end{proof}
+
+\begin{remark}
+    (The sense in which multilinear functions respect multilinear elements).
+    
+    We can use the previous theorem to formalize precisely how multilinear functions respect the decomposition of multilinear elements.
+    
+    We know linear functions respect the decomposition of their input, so the decomposition of $\vv_1 \otimes ... \otimes \vv_k$ is respected by any linear function that acts on it. The theorem tells us that the action of a linear function on the tensor $\vv_1 \otimes ... \otimes \vv_k$ can be identified with the action of a multilinear function on the tuple of vectors $(\vv_1, ..., \vv_k)$. Thus, the equivalence class $[\vv_1 \otimes ... \otimes \vv_k]_=$ given by the equivalence relation $=$ used to define tensor products space in Definition \ref{ch::motivated_intro::defn::tensor_product_space} is respected by that multilinear function as well. Every multilinear function can be identified with a linear function, so this reasoning applies to all multilinear functions.
+\end{remark}
+
+\newpage
+
+\section{A motivated introduction to $(p, q)$ tensors}
+\label{ch::motivated_intro::sec::motivated_intro}
+
+Now we will discover the theorem which generalizes the two key notions (thinking of linear functions as vectors and ``multilinear elements'') discussed at the beginning of the chapter. Since we now have familiarity with the first key idea, ``accidentally'' discovering and formalizing the second idea as we go is hopefully not too ambitious.
+
+The theorem we will discover is that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, where $V^*$ is the \textit{dual vector space} to $W$. We can see that the two key ideas (the first being thinking of linear functions as vectors and the second being ``multilinear elements'') are represented in this theorem with formal notation: the theorem includes a dual vector space $V^*$, which (we will see) indicates that thinking of linear functions as vectors is involved, and it also includes the tensor product $\otimes$, which indicates that multilinear structure is involved.
+
+To begin this discovery, let $V$ and $W$ be finite-dimensional vector spaces over a field $K$ with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, respectively, and consider a linear function $\ff:V \rightarrow W$. We will analyze $\ff$ by considering its matrix relative to $E$ and $F$. This matrix, as is the case with any matrix, is a weighted sum of matrices with a 1 in only one entry and 0's in all other entries. For example, a $3 \times 2$ matrix $(a_{ij})$ is expressed with a weighted sum of this style as
+
+\begin{align*}
+    \begin{pmatrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22} \\
+        a_{31} & a_{32}
+    \end{pmatrix}
+    =
+    a_{11}
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & 0 \\
+        0 & 0
+    \end{pmatrix}
+    +
+    a_{12}
+    \begin{pmatrix}
+        0 & 1 \\
+        0 & 0 \\
+        0 & 0
+    \end{pmatrix}
+    +
+    a_{21}
+    \begin{pmatrix}
+        0 & 0 \\
+        1 & 0 \\
+        0 & 0
+    \end{pmatrix}
+    +
+    a_{22}
+    \begin{pmatrix}
+        0 & 0 \\
+        0 & 1 \\
+        0 & 0
+    \end{pmatrix}
+    +
+    a_{31}
+    \begin{pmatrix}
+        0 & 0 \\
+        0 & 0 \\
+        1 & 0
+    \end{pmatrix}
+    +
+    a_{32}
+    \begin{pmatrix}
+        0 & 0 \\
+        0 & 0 \\
+        0 & 1
+    \end{pmatrix}.
+\end{align*}
+
+Let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n = K^{\dim(V)}$ and let $\sF = \{\sff_1, ..., \sff_m\}$ be the standard basis of $K^m = K^{\dim(W)}$. So, in the example, $\sE = \{\see_1, \see_2\}$ and $\sF = \{\sff_1, \sff_2, \sff_3\}$. The first ``big leap'' is to notice that the $m \times n$ matrix with $ij$ entry $1$ and all other entries 0 is $\sff_i \see_j^\top$, where $\sff_i \see_j^\top$ is the product of a $m \times 1$ matrix with a $1 \times n$ matrix (see Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}). This means that the above $3 \times 2$ matrix can be expressed as
+
+\begin{align*}
+    \begin{pmatrix}
+        a_{11} & a_{12} \\
+        a_{21} & a_{22} \\
+        a_{31} & a_{32}
+    \end{pmatrix}
+    =
+    a_{11} \sff_1 \see_1^\top + a_{12} \sff_1 \see_2^\top 
+    + a_{21} \sff_2 \see_1^\top + a_{22} \sff_2 \see_2^\top +
+    a_{31} \sff_3 \see_1^\top + a_{32} \sff_3 \see_2^\top
+    = \sum_{\substack{i \in \{1, 2, 3\} \\ j \in \{1, 2\}}} a_{ij} \sff_i \see_j^\top.
+\end{align*}
+
+Therefore, the matrix of $\ff$ relative to $E$ and $F$ is of the form
+
+\begin{align*}
+    \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} a_{ij} \sff_i \see_j^\top,
+\end{align*}
+
+for some $a_{ij} \in K$.
+
+What we have done is decompose the matrix of $\ff$ relative to $E$ and $F$ relative to the basis $\{ \see_i \sff_j^\top \}$ of $m \times n$ matrices. This choice of basis for the space of $m \times n$ matrices stems from our choice of the standard bases $\sE$ and $\sF$ for $K^n$ and $K^m$. Nothing is stopping us from using different bases, however. Suppose $G = \{\gg_1, ..., \gg_n\}$ is a basis for $K^n$ and $H = \{\hh_1, ..., \hh_m\}$ is a basis for $K^m$. Then $\{ \gg_i \hh_j^\top \}$ is also a basis of the vector space of $m \times n$ matrices, so the matrix of $\ff$ relative to $E$ and $F$ is of the form
+
+\begin{align*}
+    \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \gg_i \hh_j^\top,
+\end{align*}
+
+for some $b_{ij} \in K$.
+
+We now convert this discussion of matrices into a discussion about the linear functions they represent. We started with the matrix $(a_{ij})$ of a linear function $\ff$ relative to bases. But what linear functions do the matrices in the above weighted sum represent? 
+
+Consider one of the matrices in the weighted sum, $\gg_i \hh_j^\top$. Initially, we may be tempted to directly investigate the linear function represented by $\gg_i \hh_j^\top$. This will work, but we can be even more specific; $\gg_i \hh_j^\top$ is a matrix-matrix product, so it corresponds to a composition of linear functions (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive} and possibly Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}). Asking ``to what linear functions do $\gg_i$ and $\hh_j^\top$ correspond?'' will prove fruitful.
+
+Linear functions are composed from right to left, so we will first consider $\hh_j^\top$. The linear function $K^n \rightarrow K$ represented by the $1 \times n$ matrix $\hh_j^\top$ is the function $\phi_{\hh_j}$ defined by $\phi_{\hh_j}(\cc) = \hh_j^\top \cc$. Note that the image of $\phi_{\hh_j}$ is the field $K$, which is a 1-dimensional vector space. So $\phi_{\hh_j}$ is a rank-1 linear map (see Definition \ref{ch::lin_alg::defn::rank}).
+
+Now we consider the $m \times 1$ matrix $\gg_i$. In the matrix-matrix product, $\gg_i$ is written to the left of $\hh_j^\top$, so it must accept a scalar as input. The linear map $K \rightarrow K^m$ represented by $\gg_i$ is thus $\gg_i(c) = c \gg_i$, where we have used $\gg_i$ on the left hand side to denote a linear map and on the right hand side to denote a vector. Note, the image of the map $\gg_i:K \rightarrow K^m$ is $\spann(\gg_i)$, which is 1-dimensional; $\gg_i$ is also a rank-1 linear map.
+
+The matrix-matrix product $\gg_i \hh_j^\top$ then corresponds to the linear function $\gg_i \circ \phi_{\hh_j}:K^n \rightarrow K$, where $\gg_i$ again denotes the linear map $K \rightarrow K^m$ defined by $\gg_i(c) = c \gg_i$. Note that  $\gg_i \circ \phi_{\hh_j}$ is also a rank-1 linear map.
+
+Overall, we have shown that the matrix with respect to bases of a linear function $\ff:V \rightarrow W$ can be expressed as a linear combination of the (primitive (see Derivation \ref{ch::lin_alg::deriv::primitive_matrix})) matrices that represent the linear maps $\gg_i \circ \phi_{\hh_j}$. Therefore, the linear function $\ff_{E,F}:K^n \rightarrow K^m$ that is induced by the choice of bases $E$ and $F$ (see Theorem \ref{ch::lin_alg::thm::f_EF}) is a linear combination of the linear functions $\gg_i \circ \phi_{\hh_j}$:
+
+\begin{align*}
+    \ff_{E, F} = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} (\gg_i \circ \phi_{\hh_j}),
+\end{align*}
+
+where the $b_{ij}$ are the same as in the above sum. So, $\ff:V \rightarrow W$ is very similar:
+
+\begin{align*}
+    \ff = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} (\gg_i' \circ \phi_{\hh_j}'),
+\end{align*}
+
+where $\gg_i':K \rightarrow W$ and $\phi_{\hh_j}':V \rightarrow K$ are such that $(\gg_i')_{E,F} = \gg_i$ and $(\phi_{\hh_j}')_{E,F} = \phi_{\hh_j}$. Note that $\gg_i' \circ \phi_{\hh_j}':V \rightarrow W$.
+
+At the beginning of this discussion, we chose bases $E$ and $F$ for $V$ and $W$. At this point, we have seen enough motivation to justify getting rid of bases\footnote{We can get rid of bases to some extent by avoiding coordinates relative to bases. However, we can't truly escape the notion of bases because we need to speak of rank-1 linear functions; this implies a notion of dimension, and thus of bases.}. The following theorem is a basis-independent reinterpretation of the above statement.
+
+\begin{theorem}
+    Any linear function $V \rightarrow W$ is a linear combination of rank-1 linear functions $V \rightarrow W$.
+\end{theorem}
+
+To recover the particular format of the above basis-dependent result, we use the previous theorem in conjunction with the following theorem.
+
+\begin{theorem}
+    Let $V$ and $W$ be vector spaces. Any rank-1 linear function $V \rightarrow W$ can be expressed as $\ww \circ \phi$, for some $\ww \in W$ and some linear function $\phi:V \rightarrow K$, where $\ww:K \rightarrow W$ is the linear map defined by $\ww(c) = c \ww$.
+\end{theorem}
+
+\begin{proof}
+    Let $\ff$ be a rank-1 linear function $V \rightarrow W$. Then the image of $\ff$ is $\ff(V) = \spann(\ww)$ for some $\ww \in W$, so, for all $\vv \in V$, $\ff(\vv) = c\ww$ for some $c \in K$.
+    
+    Define $\phi(\vv) = d$, where $d$ is the unique scalar in $K$ such that $\ff(\vv) = d \ww$. Define $\ww(c) = c \ww$. 
+    
+    With these definitions, then for all $\vv \in V$ we have $(\ww \circ \phi)(\vv) = \ww(\phi(\vv)) = \ww(d) = d\ww = \ff(\vv)$. Thus $\ff = \ww \circ \phi$.
+    
+    It remains to show that the maps $\ww$ and $\phi$ are linear. Clearly, $\ww$ is linear. To show $\phi$ is linear, we show $\phi(\vv_1 + \vv_2) = \phi(\vv_1) + \phi(\vv_2)$; the proof that $\phi(c\vv) = c\phi(\vv)$ is similar.
+    
+    We have $\phi(\vv_1 + \vv_2) = d_{12}$, where $d_{12}$ is the unique scalar for which $\ff(\vv_1 + \vv_2) = d_{12} \ww$. Consider the condition ``$\ff(\vv_1 + \vv_2) = d_{12} \ww$'' for a moment. Since $\ff$ is linear, the condition becomes $\ff(\vv_1) + \ff(\vv_2) = d_{12} \ww$, i.e., $d_1 \ww + d_2 \ww = d_{12} \ww$. We know $\ww \neq \mathbf{0}$ (if it were, then $\ff$ would be rank-0), so $(d_1 + d_2) \ww = d_{12} \ww$, which implies $d_1 + d_2 = d_{12}$.
+    
+    Thus, we have $\phi(\vv_1 + \vv_2) = d_{12}$, where $d_{12} = d_1 + d_2$; we have $\phi(\vv_1 + \vv_2) = d_{12} = d_1 + d_2 = \phi(\vv_1) + \phi(\vv_2)$. A similar argument shows that $\phi(c\vv) = c\phi(\vv)$, so $\phi$ is linear.
+\end{proof}
+
+Therefore, since any linear function $V \rightarrow W$, where $V$ and $W$ are finite-dimensional, is a finite sum of rank-1 linear functions, we have
+
+\begin{align*}
+    \ff = \sum_{\substack{i \in \{1, ..., n\}}} c_{ij} (\ww_i \circ \phi_j),
+\end{align*}
+
+where $\ww_i \in \LLLL(K \rightarrow W)$ is defined by $\ww_i(c) = c \ww_i$, $\phi_j \in \LLLL(V \rightarrow K)$, and $c_{ij} \in K$.
+
+This is the basis-independent generalization of the above equation we were after.
+
+Since we have seen that linear functions $V \rightarrow K$ play a fundamental role in this decomposition, we make the following definition.
+
+\begin{defn}
+\label{ch::motivated_intro::defn::dual_space_1}
+    (Dual vector space).
+    
+    Let $V$ be a (not necessarily finite-dimensional) vector space over a field $K$. The \textit{dual vector space} to $V$ is the vector space over $K$, denoted $V^*$, consisting of the linear functions $V \rightarrow K$ under the operations of function addition and function scaling:
+    
+    \begin{align*}
+        V^* := \LLLL(V \rightarrow K).
+    \end{align*}
+\end{defn}
+
+\vspace{.5cm}
+
+One final ``big leap'' will complete our discovery. Recall, our original goal was to show \\ ${\LLLL(V \rightarrow W) \cong W \otimes V^*}$. So, somehow, tensor product spaces will have to become involved.
+
+We begin constructing the isomorphism by starting with $\ff \in \LLLL(V \rightarrow W)$ and decomposing it as described previously:
+
+\begin{align*}
+    \ff = \sum_{\substack{i \in \{1, ..., n\}}} c_{ij} (\ww_i \circ \phi_j),
+\end{align*}
+
+where $\ww_i \in \LLLL(K \rightarrow W)$ is defined by $\ww_i(c) = c \ww_i$, $\phi_j \in V^*$, and $c_{ij} \in K$.
+
+The idea is to define a linear isomorphism $\FF:\LLLL(V \rightarrow W) \rightarrow W \otimes V^*$ that sends the rank-1 element ${(\ww_i \circ \phi_j) \in \LLLL(V \rightarrow W)}$ to the elementary tensor $\ww_i \otimes \phi_j \in W \otimes V^*$:
+
+\begin{align*}
+    \underbrace{\ww_i \circ \phi_j}_{\in \LLLL(V \rightarrow W)} \overset{\FF}{\longmapsto} \underbrace{\ww_i \otimes \phi_j}_{\in W \otimes V^*}.
+\end{align*}
+
+We need to show that $\FF$ is a linear bijection. Ultimately, this is the case because $\otimes$ is a bilinear map, and as $\otimes$ correspondingly appears to be bilinear.
+
+First, we show $\FF$ is linear on rank-1 compositions of the form $(\ww \circ \phi) \in \LLLL(V \rightarrow W)$. (Note, such ${\text{rank-1}}$ compositions are similar to elementary tensors in the sense that they do not need to be expressed as a linear combination of two or more other compositions). So, we need to show that
+
+\begin{align*}
+    \FF(\ff_1 + \ff_2) &= \FF(\ff_1) + \FF(\ff_2) \\
+    \FF(c\ff) &= c\FF(\ff),
+\end{align*}
+
+for all elementary compositions $\ff_1, \ff_2, \ff \in \LLLL(V \rightarrow W)$ and scalars $c \in K$.
+
+More explicitly, we need $\FF$ to satisfy
+
+\begin{align*}
+    \ww_i \circ \phi_k + \ww_j \circ \phi_k 
+    &\overset{\FF}{\longmapsto}
+    \ww_i \otimes \phi_k + \ww_j \otimes \phi_k
+    \\
+    \ww_i \circ \phi_j + \ww_i \circ \phi_k 
+    &\overset{\FF}{\longmapsto}
+    \ww_i \otimes \phi_j + \ww_i \otimes \phi_k
+    \\
+    c (\ww_i \circ \phi_j)
+    &\overset{\FF}{\longmapsto}
+    c (\ww_i \otimes \phi_j),
+\end{align*}
+
+where $\ww_i \in \LLLL(K \rightarrow W)$ is defined by $\ww_i(c) = c \ww_i$, $\phi_j \in V^*$, and $c \in K$.
+
+As was alluded to before, the above is achieved due to the bilinearity of $\circ$ and the seeming-bilinearity\footnote{The fact that $\circ$ is bilinear might seem rather abstract. It may be helpful to note that a familiar consequence of $\circ$ being bilinear is the fact that matrix multiplication distributes over matrix addition. So, for example, $\AA(\BB + \CC) = \AA \BB + \AA \CC$)} of $\otimes$:
+
+\begin{align*}
+    \ww_i \circ \phi_k + \ww_j \circ \phi_k 
+    = (\ww_i + \ww_j) \circ \phi_k
+    &\overset{\FF}{\longmapsto}
+    (\ww_i + \ww_j) \otimes \phi_k = \ww_i \otimes \phi_k + \ww_j \otimes \phi_k
+    \\
+    \ww_i \circ \phi_j + \ww_i \circ \phi_k 
+    = \ww_i \circ (\phi_j + \phi_k)
+    &\overset{\FF}{\longmapsto}
+    \ww_i \otimes \phi_j + \ww_i \otimes \phi_k
+    = \ww_i \otimes (\phi_j + \phi_k)
+    \\
+    c (\ww_i \circ \phi_j)
+    = (c \ww_i) \circ \phi_j
+    &\overset{\FF}{\longmapsto}
+    (c \ww_i) \otimes \phi_j
+    = c (\ww_i \otimes \phi_j).
+\end{align*}
+
+Because $\FF$ is linear on elementary compositions, we \textit{impose} that is linear on nonelementary compositions to ensure its action on any defined $\ff \in \LLLL(V \rightarrow W)$ is defined, as such an $\ff$ is a linear combination of elementary compositions. This also ``shows'' that $\FF$ is linear for any $\ff \in \LLLL(V \rightarrow W)$.
+
+The bijectivity of $\FF$ now follows easily. $\FF$ is surjective because any nonelementary tensor coorresponds to a ``nonelementary composition'', i.e., a linaer combination of elementary compositions. $\FF$ is injective because it is injective when restricted to elementary compositions; the linearity of $\FF$ implies that this extends to ``nonelementary compositions''. These are the main ideas of how to prove bijectivity; the explicit check is left to the reader.
+
+So, we have proved the following theorem.
+
+\begin{theorem}
+\label{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}
+    ($\LLLL(V \rightarrow W) \cong W \otimes V^*$ naturally). 
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces. Then there is a natural isomorphism
+    
+    \begin{align*}
+        \LLLL(V \rightarrow W) \cong W \otimes V^*.
+    \end{align*}
+    
+    This isomorphism is natural because it does not depend on a choice of basis. (See Definition \ref{ch::lin_alg::defn::natural_iso}).
+\end{theorem}
+
+\begin{remark}
+    (Rank-1 linear transformations correspond to elementary tensors).
+    
+    In the derivation above, we saw that the natural isomorphism sends a rank-1 linear transformation $\ww \circ \phi$, which we called an ``elementary compositions'', to an elementary tensor $\ww \otimes \phi$.
+    
+    Of course, not all linear transformations are rank-1, just as not all elements of $W \otimes V^*$ are elementary!
+\end{remark}
+
+\begin{remark}
+    (Tensor product space as the structure behind composition).
+    
+    In the derivation above, the bilinearity of $\circ$ corresponded to the seeming-bilinearity of $\otimes$. These two notions of bilinearity are slightly different. The notion of bilinearity which $\circ$ satisfies ultimately depends on how linear functions act on vectors, because the linearity condition $(\ff_1 + \ff_2) \circ \gg = \ff_1 \circ \gg + \ff_2 \circ \gg$ ultimately depends on the definition of the function $\ff_1 + \ff_2$, which is $(\ff_1 + \ff_2)(\vv) = \ff_1(\vv) + \ff_2(\vv)$ (see, the vector $\vv$ is involved!). The notion of bilinearity which $\otimes$ satisfies is simpler in the sense that it does not depend on previous notions in this way; $\otimes$ expresses all the structure that matters without unnecessary excess.
+\end{remark}
+
+\begin{remark}
+    (The two key ideas). 
+    
+    Now that we have gone through the derivation, we can specifically see how the two key ideas of thinking of linear functions as vectors and ``multilinear elements'' have manifested.
+    
+    We thought of the linear function $\ff:V \rightarrow W$ as a vector when we decomposed it into a linear combination of ``elementary compositions''. The notion of dual spaces allowed us to further abstract away the component $\phi \in V^* = \LLLL(V \rightarrow K)$ in the ``elementary composition'' $\ww \circ \phi$.
+    
+    In order distill ``elementary compositions'' $\ww \circ \phi$ down into objects which express the key aspects of their bilinear structure, we used the seeming-bilinearity of $\otimes$.
+\end{remark}
+
+\newpage
+
+\section{Introduction to dual spaces}
+
+Recall that dual spaces are crucial to the concept of a $(p, q)$ tensor because they allow us to think of linear functions $V \rightarrow V$ as vectors. As was previously mentioned, every linear function $V \rightarrow V$ is a linear combination of elements of $V^*$.
+
+We now restate the definition of a dual space and make some additional remarks.
+
+\begin{defn}
+\label{ch::motivated_intro::defn::dual_space_2}
+    (Dual space). 
+    
+    Let $V$ be a (not necessarily finite-dimensional) vector space over a field $K$. The \textit{dual vector space} to $V$ is the vector space over $K$, denoted $V^*$, consisting of the linear functions $V \rightarrow K$ under the operations of function addition and function scaling:
+    
+    \begin{align*}
+        V^* := \LLLL(V \rightarrow K).
+    \end{align*}
+    
+    Elements of $V^*$ have various names. They may be called \textit{dual vectors}, \textit{covectors}, \textit{linear functionals}, or even \textit{linear $1$-forms} (not to be mistaken with the notion of a \textit{differential} 1-form).
+\end{defn}
+
+\begin{defn}
+\label{ch::motivated_intro::defn::covariance_contravariance}
+    (Covariance and contravariance).
+    
+    Let $V$ be a vector space. For reasons that will be explained later, in Remark \ref{ch::bilinear_forms_metric_tensors::rmk::covar_contarvar_real_meaning}, dual vectors (elements of $V^*$) are said to be \textit{covariant vectors}, or \textit{covectors}, and vectors (elements of $V$) are said to be \textit{contravariant vectors}.
+    
+    The coordinates of a covariant vector relative to a basis are indexed by lower subscripts; contrastingly, covaraint vectors themselves are indexed by upper subscripts. So, for example, we would write a linear combination of covariant vectors as $c_1 \phi^1 + ... + c_n \phi^n$.
+    
+    Contravariant vectors and their coordinates follow the opposite conventions. Coordinates of contravariant vectors are indexed by upper subscripts, and contravariant vectors themselves are indexed by lower subscripts. We would write a linear combination of contravariant vectors as $c^1 \vv_1 + ... + c^n \vv_n$.
+    
+    The deeper meaning behind covariance and contravariance will be explained in Remark \ref{ch::bilinear_forms_metric_tensors::rmk::covar_contarvar_real_meaning}.
+\end{defn}
+
+\subsection*{Bases for dual spaces}
+
+\begin{deriv}
+\label{ch::motivated_intro::deriv::induced_dual_basis}
+    (Induced dual basis).
+    
+    Let $V$ be a finite-dimensional vector space and let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. We can discover a basis for $V^*$ by using the basis $E$ for $V$ to decompose an arbitrary $\phi \in V^*$ into a basis sum. 
+    
+    To achieve this decomposition, we utilize the correspondence between linear transformations and matrices. Any element $\phi \in V^* = \LLLL(V \rightarrow K)$ is represented relative to the basis $E$ by the (primitive) $1 \times n$ matrix $\phi(E)$ (see Derivation \ref{ch::lin_alg::deriv::primitive_matrix} and Remark \ref{ch::lin_alg::rmk::primitive_matrix_as_matrix_wrt_bases}).
+    
+    Recall from Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} that the matrix $\phi(E)$ is
+    
+    \begin{align*}
+        \phi(E)
+        =
+        \begin{pmatrix} 
+            \phi(\ee_1) & \hdots & \phi(\ee_n)
+        \end{pmatrix}.
+    \end{align*}
+    
+    Now we express $\phi(E)$ as a linear combination of ``basis'' row matrices:
+    
+    \begin{align*}
+        \phi(E) = \sum_{i = 1}^n \phi(\ee_i) \see_i^\top.
+    \end{align*}
+    
+    Thus, the action of any $\phi \in V^*$ on $\vv \in V$ is expressed as
+
+    \begin{align*}
+        \phi(\vv) = \phi(E) [\vv]_E 
+        = \Big( \sum_{i = 1}^n \phi(\ee_i) \see_i^\top \Big) \vv 
+        = \sum_{i = 1}^n \Big( \phi(\ee_i) \see_i^\top \vv \Big).
+    \end{align*}
+    
+    Now, we reinterpret each $\see_i^\top \vv$ in the sum as the action of some linear linear function on $\vv$. Specifically, we define $\phi_{\ee_i}$ to be the element of $V^*$ defined by $\phi_{\ee_i}(\vv) = \see_i^\top \vv$. In other words, $\phi_{\ee_i}$ is the linear function $V \rightarrow K$ represented by the matrix $\see_i^\top$.
+    
+    With this new definition, the above becomes
+    
+    \begin{align*}
+        \phi(\vv) 
+        = \sum_{i = 1}^n \Big( \phi(\ee_i) \phi_{\ee_i}(\vv) \Big)
+        = \Big( \sum_{i = 1}^n \phi(\ee_i) \phi_{\ee_i} \Big)(\vv).
+    \end{align*}
+    
+    So, in all, we have
+    
+    \begin{align*}
+        \phi = \sum_{i = 1}^n \phi(\ee_i) \phi_{\ee_i}.
+    \end{align*}
+    
+    We see that any $\phi \in V^*$ is a linear combination of the $\phi_{\ee_i}$, so the $\phi_{\ee_i}$ span $V^*$. The $\phi_{\ee_i}$ are also linearly independent because they are represented by the linearly independent (primitive) row-matrices $\see_i^\top$. Thus, the set $E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}$ is a basis for $V^*$. Since $E^*$ depends on $E$, we call $E^*$ the \textit{dual basis for $V^*$ induced by $E$}. We will often refer to $E^*$ simply as the \textit{induced dual basis}.
+\end{deriv}
+
+\begin{theorem}
+\label{ch::motivated_intro::deriv::dim_dual_space}
+    (Dimension of dual space to a finite-dimensional vector space).
+    
+    If $V$ is a finite-dimensional vector space, then $\dim(V^*) = \dim(V)$. Applying this fact again, we see $\dim(V^{**}) = \dim(V^*) = \dim(V)$.
+\end{theorem}
+
+\begin{proof}
+    In the previous derivation, we started with the assumption that $V$ is finite-dimensional, and eventually saw that the dual basis induced by a choice of basis for $V$ contains $n$ elements.
+\end{proof}
+
+\begin{theorem}
+    (Characterizations of an induced dual basis).
+     
+    Let $V$ be a finite-dimensional vector space. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then the dual basis $E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}$ for $V^*$ induced by $E$ is characterized by the following equivalent conditions.
+    
+    \vspace{.25cm}
+    
+    For each $i \in \{1, ..., n\}$,
+     
+    \begin{enumerate}
+        \item $\phi_{\ee_i}$ is the element of $V^*$ that is represented relative to $E$ by the (primitive) matrix $\see_i^\top$. That is, $\phi_{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
+        \item $\phi_{\ee_i}(\vv) = ([\vv]_E)^i$.
+        \item $\phi_{\ee_i}(\ee_j) = \delta_{ij}$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    The first and second items are obviously equivalent. We show that the second condition is equivalent to the third condition; we show $(\phi_{\ee_i}(\vv) = ([\vv]_E)^i \iff \phi_{\ee_i}(\ee_j) = \delta_{ij})$. To prove the forward direction, substitute $\vv = \ee_j$. As for the reverse direction, we have $\phi_{\ee_i}(\vv) = \sum_{j = 1}^n ([\vv]_E)^j \phi(\ee_j) = \sum_{j = 1}^n ([\vv]_E)^j \delta_{ij} = ([\vv]_E)^i$.
+\end{proof}
+
+\begin{remark}
+\label{ch::motivated_intro::rmk::unnatural_iso_V_V*}
+    (An ``unnatural'' isomorphism $V \cong V^*$).
+    
+    Suppose we've chosen a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, so that we have the induced dual basis $E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}$ for $V^*$. We can define a linear isomorphism $V \rightarrow V^*$ that is defined on basis vectors by $\ee_i \mapsto \phi_{\ee_i}$.
+    
+    This isomorphism is \textit{not} natural (see Definition \ref{ch::lin_alg::defn::natural_iso}) because it depends on how we choose the basis $E$ for $V$. Additionally, the map $\ee_i \mapsto \phi_{\ee_i}$ is only onto when $V$ is finite-dimensional, because when $V$ is infinite-dimensional the cardinality of $V^*$ is strictly greater than the cardinality of $V$.
+\end{remark}
+
+\begin{remark}
+    (We don't always have to choose induced bases).
+    
+    We don't have to pick a basis of $V$ to pick a basis for $V^*$. Derivation \ref{ch::motivated_intro::deriv::induced_dual_basis} showed that when $V$ is finite-dimensional, then $V^*$ is finite-dimensional. Therefore, when $V$ is finite-dimensional, we can pick an \textit{arbitrary} basis for $V^*$.
+\end{remark}
+
+\subsubsection*{Corresponding elements of dual spaces induced by bases}
+
+\begin{defn}
+    (Corresponding elements of dual spaces induced by bases).
+    
+    Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the dual basis for $V^*$ induced by $E$, and let $E^{**} = \{\Phi_{\phi^{\ee_1}}, ..., \Phi_{\phi^{\ee_n}}\}$ be the dual basis for $V^{**}$ induced by $E^*$. Additionally, let $\FF:V \rightarrow V^*$ be the isomorphism that sends $\ee_i \mapsto \phi^{\ee_i}$ and let $\GG:V^* \rightarrow V^{**}$ be the isomorphism that sends $\phi^{\ee_i} \mapsto \Phi_{\phi^{\ee_i}}$. We define the notation $\phi^\vv := \FF(\vv)$ and $\Phi_\phi := \GG(\phi)$.
+\end{defn}
+
+\begin{theorem}
+    \label{ch::motivated_intro::thm::Phiphiv_eq_Phiv}
+    ($\Phi_{\phi^\vv} = \Phi_\vv$).
+
+    Assume the hypotheses of the previous definition. We have $\Phi_{\phi^\vv} = \Phi_\vv$, where $\Phi_\vv$ is defined by $\Phi_\vv(\phi) := \phi(\vv)$ (this is the definition for $\Phi_\vv$ given in Theorem \ref{ch::motivated_intro::thm::V_iso_double_dual}).
+\end{theorem}
+
+\begin{proof}
+    To prove the theorem, we check that $\GG(\FF(\vv)) = \Phi_\vv$, where $\Phi_\vv(\phi) := \phi(\vv)$, holds for all $\vv \in V$. Since $\vv = \sum_{i = 1}^n ([\vv]_E)^i \ee_i$, we have $\FF(\vv) = \sum_{i = 1}^n ([\vv]_E)^i \phi^{\ee_i}$ and $\GG(\FF(\vv)) = \sum_{i = 1}^n ([\vv]_E)^i \Phi_{\phi^{\ee_i}}$. Thus, $\Big(\GG(\FF(\vv))\Big)(\phi) = \sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big)$. Applying Theorem ..., we have $([\vv]_E)^i = \phi^{\ee_i}(\vv)$ and $\Phi_{\phi^{\ee_i}}(\phi) = ([\phi]_{E^*})^i$, so $\sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big) = \sum_{i = 1}^n \Big( ([\phi]_{E^*})^i \phi^{\ee_i}(\vv) \Big) = \Big(\sum_{i = 1}^n ([\phi]_{E^*})^i \phi^{\ee_i}\Big)(\vv) = \phi(\vv) = \Phi_\vv(\phi)$.
+\end{proof}
+
+\begin{theorem}
+    \label{ch::bilinear_forms_metric_tensors::thm:vv_E_eq_phi_vv_Estar}
+    
+    ($[\vv]_E = [\phi^\vv]_{E^*}$).
+    
+    Assume the hypotheses of the previous definition. We have $[\vv]_E = [\phi^\vv]_{E^*}$ for any $\vv \in V$.
+\end{theorem}
+
+\begin{proof}
+    The theorem is true precisely because $\FF(\ee_i) = \phi^{\ee_i}$. A more explicit check is left to the reader.
+\end{proof}
+
+\begin{remark}
+    (The misleading star notation for dual vectors).
+    
+    Some authors use $\vv^*$ to denote $\phi^\vv$, while also using $\{\ee_1^*, ..., \ee_n^*\}$ to denote an \textit{arbitrary} basis of $V^*$. This notation is misleading because it is suggestive of the false equation $\ee_i^* = \ee_i^*$, where the first $*$ is from the definition of $\vv^*$ and where the second $*$ is part of a basis vector $\ee_i^*$. The equation is false because it is equivalent to the following claim: ``if $\{\epsilon^1, ..., \epsilon_n\}$ is an arbitrary basis of $V^*$ then $\phi^{\ee_i} = \epsilon^i$'', which is false because it is possible to pick a basis for $V^*$ that is not the induced dual basis.
+\end{remark}
+
+\subsection*{The double dual}
+
+\begin{theorem}
+\label{ch::motivated_intro::thm::V_iso_double_dual}
+    ($V \cong V^{**}$ naturally). 
+    
+    Let $V$ be a finite-dimensional vector space. Once we have taken the dual $V^*$ of $V$, we might ask ``what happens if we take the dual again?''. The answer is that taking the ``double dual'' essentially returns the original space.
+    
+    More formally, when $V$ is finite-dimensional, then there is a natural linear isomorphism $V \rightarrow V^{**}$ that sends $\vv \mapsto \Phi_\vv$, where $\Phi_\vv:V^* \rightarrow K$ is the element of $V^{**}$ defined by $\Phi_\vv(\phi) = \phi(\vv)$.
+\end{theorem}
+
+\begin{proof}
+    Define $\FF:V \rightarrow V^{**}$ by $\FF(\vv) = \Phi_\vv$. We need to show that $\FF$ is linear, one-to-one, and onto. Checking linearity is straightforward; $\FF$ is linear regardless of the dimensionality of $V$. As for showing that $\FF$ is one-to-one and onto, first recall from Theorem \ref{ch::motivated_intro::deriv::dim_dual_space} that since $V$ is finite-dimensional we have $\dim(V) = \dim(V^{**})$. Thus, to show that $\FF$ is an isomorphism it suffices to show that $\FF$ has a trivial kernel.
+    
+    We have the following: if $\FF(\vv) = \mathbf{0}$, then $\Phi_\vv$ is the zero function, and so $\Phi_\vv(\phi) \phi(\vv) = 0$ for all $\phi \in V^*$. One would think that this most recent statement implies $\vv = \mathbf{0}$, and this is indeed the case, because the contrapositive of $((\forall \phi \in V^* \spc \phi(\vv) = 0) \implies \vv = \mathbf{0})$, which is $(\vv \neq \mathbf{0} \implies (\exists \phi \in V^* \spc \phi(\vv) \neq 0))$, is clearly true: if $\vv \neq \mathbf{0}$, then for any basis $E$ of $V$, some component $([\vv]_E)^i \neq 0$ of $\vv$ is nonzero, and thus the element of $V^*$ defined by $\vv \mapsto ([\vv]_E)^i$ sends $\vv$ to a nonzero scalar, as desired.
+\end{proof}
+
+\subsection*{The dual transformation}
+
+\begin{defn}
+\label{ch::motivated_intro::defn::dual_transf}
+    (Dual transformation).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces, and let $\ff:V \rightarrow W$ be a linear function.
+    The \textit{dual transformation of $\ff$}, also called the \textit{transpose of $\ff$}, is the linear function $\ff^*:W^* \rightarrow V^*$ defined by $\ff^*(\psi) = \psi \circ \ff$.
+\end{defn}
+
+\begin{theorem}
+    (Dual transformation is represented by transpose matrix).
+
+    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, and let $E^*$ and $F^*$ be the induced dual bases for $V^*$ and $W^*$. Consider a linear function $\ff:V \rightarrow W$. Recall that $[\ff(E)]_F$ denotes the matrix of $\ff:V \rightarrow W$ relative to $E$ and $F$. The matrix $[\ff^*(F^*)]_{E^*}$ of $\ff^*:W^* \rightarrow V^*$ relative to $F^*$ and $E^*$ is $[\ff(E)]_F^{\top}$.
+\end{theorem}
+
+\begin{proof}
+    Let $E = \{\ee_1, ..., \ee_n\}$, $F = \{\ff_1, ..., \ff_m\}$, $E^* = \{\epsilon_1, ..., \epsilon_n\}$, $F^* = \{\delta_1, ..., \delta_n\}$. We will show that the $ij$ entry of $[\ff^*(F^*)]_{E^*}$ is the $ji$ entry of $[\ff(E)]_F$.
+    
+    The $j$th column of $[\ff^*(F^*)]_{E^*}$ is $[\ff^*(\delta_j)]_{E^*}$. The $i$th entry of this column is $([\ff^*(\delta_j)]_{E^*})_i$. By\footnote{Though this theorem is from a later chapter, its proof is understandable now. If this is your first time reading this book, then, when reading the theorem, ignore the upper and lower indices, and pretend that all indices are lower.} Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}, we have $([\ff^*(\delta_j)]_{E^*})_i = \ff^*(\delta_j)(\ee_i)$. Then $\ff^*(\delta_j)(\ee_i) = (\delta_j \circ \ff)(\ee_i) = \delta_j(\ff(\ee_i)) = ([\ff(\ee_i)]_F)_j$, which is the $ji$ entry of $[\ff(E)]_F$.
+\end{proof}
+
+\begin{remark}
+    (Motivations for defining the dual transformation).
+    
+    The previous theorem reveals a new way to motivate the definition of the dual transformation. The first motivated definition, which we have already seen in Definition \ref{ch::motivated_intro::defn::dual_transf}, is ``given a linear function $\ff:V \rightarrow W$, the dual transformation is the natural linear function $W^* \rightarrow V^*$''. The second motivated definition, which is informed by the previous theorem, is ``if $\AA$ is the matrix of $\ff$ with respect to some bases, what linear transformation does $\AA^\top$ correspond to?''.
+\end{remark}
+
+\begin{theorem}
+     (Dual of a composition).
+     
+     Let $U, V, W$ be finite-dimensional vector spaces, and let $\ff:U \rightarrow V$, $\gg:V \rightarrow W$ be linear functions. Then $(\gg \circ \ff)^* = \gg^* \circ \ff^*$. 
+     
+     This fact is what underlies the fact $(\AA \BB)^\top = \BB^\top \AA^\top$, which tells how to transpose a matrix-matrix product.
+\end{theorem}
+
+\begin{proof}
+     Left as an exercise.
+\end{proof}
+
+\newpage
+
+\section{$(p, q)$ tensors}
+
+Before our detour into the world of dual spaces, we derived Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}, and learned that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\FF(V \rightarrow W) \cong W \otimes V^*$. One implication of this theorem is of particular interest: the vector space of linear maps $V \rightarrow V$ is naturally isomorphic to $V \otimes V^*$. The characterization of linear maps $V \rightarrow V$ as elements of $V \otimes V^*$ lends itself to generalization. We can generalize the notion of linear function by ``tensor-producting in'' more copies of $V$ and $V^*$! This is the idea behind the following definition.
+
+\begin{defn}
+    (Tensor space).
+    
+    Let $V$ be a vector space. We define a \textit{tensor space on $V$}, or more colloquially, a \textit{tensor space}, to be a vector space of the form $V_1 \otimes ... \otimes V_k$, where each $V_i$ is either $V$ or $V^*$.
+    
+    The \textit{type} of a tensor space on $V$ is the sequence of positive integer superscripts and subscripts constructed in the pattern of the following examples\footnote{It is possible to give a formal definition of this notion of ``type'', but any such definition will be verbose and not particularly illustrative of the concept.}$^{,}$ \footnote{This convention goes against Definition \ref{ch::motivated_intro::defn::covariance_contravariance}, which sets the convention that vectors are associated with subscripts and covectors are associated with superscripts. This is necessary because we want the pattern of subscripts and superscripts in a tensor's type to mirror the pattern of subscripts and superscripts in a tensor's coordinates.}:
+    
+    \begin{itemize}
+        \item The type of the tensor space $V \otimes V^* \otimes V$ is $^1{}_1{}^1$.
+        \item The type of the tensor space $V^* \otimes (V)^{\otimes 3}$ is $_1{}^3$.
+        \item The type of the tensor space $(V)^{\otimes 2} \otimes V^* \otimes V$ is $^2{}_1{}^1$.
+    \end{itemize}
+    
+    We additionally define a \textit{tensor on $V$}, or more colloquially, a \textit{tensor}, to be an element of a tensor space on $V$. The \textit{type} of a tensor on $V$ is the type of the tensor space of which the tensor is a member.
+\end{defn}
+
+\begin{defn}
+\label{ch::motivated_intro::defn::pq_tensor_coords}
+    (Coordinates of a tensor).
+
+    Let $V$ be a finite-dimensional vector space over a field $K$ with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$, and let $T = V_1 \otimes ... \otimes V_k$ be a tensor space on $V$. The \textit{coordinates of a tensor $\TT \in T$ relative to $E$ and $E^*$} are the scalars indexed by $i_1, ..., i_k$ such that
+    
+    \begin{itemize}
+        \item $i_\ell$ is a superscript iff $V_\ell = V$ and $i_\ell$ is a subscript iff $V_\ell = V^*$.
+        \item When we omit subscripts and superscripts and denote the scalar indexed by $i_1, ..., i_k$ by $T(i_1, ..., i_k)$, we have 
+        
+        \begin{align*}
+            \TT = \sum_{i_1, ..., i_k \in \{1, ..., n\}} T(i_1, ..., i_k) \spc \ww(i_1) \otimes ... \otimes \ww(i_k),
+        \end{align*}
+        
+        where $\ww(i_\ell) = \ee_{i_\ell}$ iff $V_\ell = V$ and $\ww(i_\ell) = \epsilon^{i_\ell}$ iff $V_\ell = V^*$.
+    \end{itemize}
+    
+    For example, the coordinates of a tensor $\SS \in V^* \otimes V \otimes V^*$ are the $S_{i_1}{}^{i_2}{}_{i_3}$ such that
+    
+    \begin{align*}
+        \SS = \sum_{i_1, i_2, i_3 \in \{1, ..., n\}} S_{i_1}{}^{i_2}{}_{i_3} \spc \epsilon^{i_1} \otimes \ee_{i_2} \otimes \epsilon^{i_3}.
+    \end{align*}
+    
+    % \begin{align*}
+    %     \TT = \sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \spc \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
+    % \end{align*}
+    
+    Each coordinate of a tensor can be thought of as occupying a position in a           ``multidimensional matrix'', where each $i_k$ is associated with an orthogonal axis. (E.g., if a tensor's type is $^1{}_1$ or $_1{}^1$, then that tensor's coordinates are stored in a two-dimensional matrix.
+\end{defn}
+
+\begin{defn}
+    \label{ch::motivated_intro::defn::pq_tensor}
+    
+    ($(p, q)$ tensor).
+    
+    Let $V$ be a vector space. We define the vector space $T_{p,q}(V)$ of \textit{$(p, q)$ tensors on $V$} to be the tensor space on $V$ of type $^p{}_q$. That is, the vector space $T_{p,q}(V)$ of $(p, q)$ tensors on $V$ is defined to be $T_{p,q}(V) := V^{\otimes p} \otimes (V^*)^{\otimes q}$.
+\end{defn}
+
+\begin{remark}
+    ($(1, 1)$ tensors).
+    
+    The vector space of $(1, 1)$ tensors on $V$ is equal to the vector space of linear functions $V \rightarrow V$.
+\end{remark}
+
+\begin{remark}
+    (Multilinearity and ``recursive linearity'').
+    
+    [TO-DO: mention second physicist's definition of tensor, call it ``recursive linearity''. This defn is equivalent to above defn of $(p, q)$ tensor when $V = \R^n$, due to the second boxed equation of Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}.]
+\end{remark}
+
+\begin{remark}
+    ($\delta^{ij}$ vs. $\delta^i{}_j$ vs. $\delta^i{}_j$).
+    
+    One may be confused when they consider that there are three ways to write the Kronecker delta: $\delta^{ij}, \delta^i{}_j$, and $\delta_{ij}$. The difference between these functions of $i$ and $j$ is straightforward: $\delta^{ij}$ is used for coordinates of a $(2, 0)$ tensor, $\delta^i{}_j$ is used for a coordinates of a $(1, 1)$ tensor, and $\delta_{ij}$ is used for coordinates of a $(0, 2)$ tensor. All three functions of $i$ and $j$ are defined, as usual, to be $1$ when $i = j$ and $0$ otherwise.
+\end{remark}
+
+\begin{remark}
+\label{ch::motivated_intro::rmk::many_defs_tensor}
+    (There are many definitions of ``tensor'').
+    
+    There are many ways to define the notion of a ``tensor''. Here are three common ways to define what a tensor is that differ from our definition.
+    
+    \begin{itemize}
+        \item (A physicist's definition of a tensor). Physicists and engineers most commonly define tensors to be ``multidimensional matrices'' that follow the ``the tensor transformation law'' (which is really a change of basis formula; we will derive this in Theorem \ref{ch::bilinear_forms_metric_tensors::thm::ricci}). This definition of tensor is clearly unmotivated, as it describes how tensors behave before explaining what they really are.
+        \item (The more ``concrete'' but less insightful mathematical definition of a tensor). Mathematicians often define a $(p, q)$ tensor to be a multilinear map $(V^*)^{\times p} \times V^{\times q} \rightarrow K$. This definition is equivalent to the one we have used (we see why in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}), but it is less preferable because it obscures the concept of a ``multilinear element'' that tensor product spaces so nicely capture.
+        \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``$n$th order tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear map that sends a $(n - 1)$ order tensor to a vector in $V$, where a tensor of order $2$ is defined to be a linear map $V \rightarrow V$. This definition works because we have the natural isomorphism $T^1_1(V) = V \otimes V^* \cong \FF(V \rightarrow V)$. Note also that, when a basis for $V$ is fixed (which is often always done in physics, since often we have $V = \R^3$, so we can use the standard basis), there is no ambiguity when one says ``second order tensor'', as $T^2_0(V) \cong T^1_1(V) \cong T^0_2(V)$ due to the (unnatural) isomorphism $V \cong V^*$ that is obtained by choosing a basis (see Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*}).
+    \end{itemize}
+    
+\end{remark}
+
+\begin{defn}
+    (Valence and order of a tensor). 
+    
+    The \textit{valence} of a $(p, q)$ tensor is the tuple $(p, q)$. The \textit{order} of a $(p, q)$ tensor is $p + q$.
+\end{defn}
+
+\begin{theorem}
+\label{ch::motivated_intro::thm::four_fundamental_isos}
+
+    (Four fundamental natural isomorphisms for $(p, q)$ tensors). 
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. Then there exist natural isomorphisms
+    
+    \begin{empheq}[box = \fbox]{align*}
+        \LLLL(V_1 \times ... \times V_k \rightarrow W) &\cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W)
+        \\
+        \LLLL(V \rightarrow W) &\cong W \otimes V^*
+        \\
+        (V \otimes W)^* &\cong V^* \otimes W^*
+    \end{empheq}
+    
+    Importantly, application of the first and third line, and the fact that $Y \cong Y^{**}$ naturally for any vector space $Y$, yields
+    
+    \begin{align*}
+        T_{p,q}(V) \cong (T_{p,q}(V))^{**} = (V^{\otimes p} \otimes (V^*)^{\otimes q})^{**} \cong ((V^*)^{\otimes p} \otimes V^{\otimes q})^* = \LLLL((V^*)^{\otimes p} \otimes V^{\otimes q} \rightarrow K)
+        \cong
+        \LLLL((V^*)^{\times p} \times V^{\times q} \rightarrow K).
+    \end{align*}
+    
+    so we have the natural isomorphism
+    
+    \begin{align*}
+        \boxed
+        {
+            T_{p,q}(V) = V^{\otimes p} \otimes (V^*)^{\otimes q}
+            \cong
+            \LLLL((V^*)^{\times p} \times V^{\times q} \rightarrow K)
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The first line in the first box is Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}, and the second line in the first box is Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}. We need to prove the third line in the first box; we need to prove that \textit{taking the dual distributes over the tensor product}.
+    
+    We do so by defining an isomorphism in the ``reverse'' direction. We define this isomorphism on elementary tensors and extend linearly. Given $\phi \otimes \psi \in V^* \otimes W^*$, we produce the linear map $\ff_{\phi \otimes \psi} \in (V \otimes W)^*$, where $\ff_{\phi \otimes \psi}:V \otimes W \rightarrow K$ is defined by $\ff_{\phi \otimes \psi}(\vv \otimes \ww) = \phi(\vv) \psi(\ww)$. The explicit check that this is a linear isomorphism is left to the reader.
+\end{proof}
+
+
+\begin{remark}
+    (The four-fold nature of $(p, q)$ tensors).
+    
+    We have defined a $(p, q)$ tensor to be an element of a tensor product space; a $(p, q)$ tensor is a ``multilinear element''. Due to the important natural isomorphisms of the previous theorem we can think of $(p, q)$ tensors in the four ways depicted by this diagram:
+    
+    \begin{center}
+        \begin{tikzcd}
+         \substack{\text{multilinear element}
+         \\ \text{(element of a tensor product space)}} \arrow[<->]{dd} &  & \text{multilinear function} \arrow[<->]{ll} \\
+                                               &  &                                       \\
+        \substack{\text{linear element} 
+        \\ \text{(element of a vector space)}} \arrow[<->]{rr}      &  &  \text{linear function} \arrow[<->]{uu}     
+        \end{tikzcd}
+    \end{center}
+    
+    It's instructive to apply these interpretations to vectors and to dual vectors. Vectors are $1$-linear elements by definition, and they are less obviously linear functions because they are naturally identifiable with elements of $V^{**}$. Dual vectors are linear functions by definition, and they are less obviously $1$-linear elements because they form a vector space.
+\end{remark}
+
+\begin{theorem}
+    (Other useful natural isomorphisms for $(p, q)$ tensors).
+
+    Let $V$ and $W$ be (not necessarily finite-dimensional) vector spaces over $K$. Then we have natural isomorphisms
+
+     \begin{align*}
+         V \otimes K &\cong V \\
+         V \otimes W &\cong W \otimes V.
+     \end{align*}
+     
+     The proof of this theorem is left as an exercise.
+\end{theorem}
+
+\begin{comment}
+    This theorem and proof have been removed because:
+    
+    \begin{enumerate}
+        \item the part of this proof that is written out below is equivalent to the proof that every rank-1 linear function $V \rightarrow W$ is of the form $\ww \circ \phi$. 
+        \item the proof of surjectivity, which is omitted below, is equivalent to the proof that every linear function $V \rightarrow W$ is a linear combination of rank-1 linear functions $V \rightarrow W$
+    \end{enumerate}
+    
+    so the entirety of this proof has been covered previously in this text; this proof is not really a concise ``trick'' as I once thought
+    
+    \vspace{.5cm}
+    
+    We now present the traditional proof of the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. This proof is very economical, but, since it defines an isomorphism $W \otimes V^* \rightarrow \LLLL(V \rightarrow W)$ going in the ``reverse'' direction, one is unlikely to discover this construction until they have proved $\LLLL(V \rightarrow W) \cong W \otimes V^*$ by more intuitive means.
+    
+    \begin{proof}
+         We define an isomorphism $W \otimes V^* \rightarrow \LLLL(V \rightarrow W)$ by $\ww \otimes \phi \mapsto f_{\ww \otimes \phi}:V \rightarrow W$, $f_{\ww \otimes \phi}(\vv_0) = \phi(\vv_0) \ww$. That is, $f_{\ww \otimes \phi} = \ww \circ \phi$. Since $V^* \otimes W$ is finite-dimensional, it is enough to show that this map is linear and injective; surjectivity follows automatically from Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}.
+    \end{proof}
+\end{comment}

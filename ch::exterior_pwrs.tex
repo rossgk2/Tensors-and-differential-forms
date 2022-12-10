@@ -1,0 +1,1621 @@
+\chapter{Exterior powers, the determinant, and orientation}
+\label{ch::exterior_pwrs}
+
+This chapter focuses on \textit{antisymmetric tensors}. We need to know about these because differential forms, when evaluated a point, are antisymmetric tensors. Antisymmetric tensors are also closely related to the determinant; we will define the determinant and explore this relationship in the second part of this chapter. We will also show how to use antisymmetric tensors- or, more specifically, elements of a \textit{top exterior power}- to give \textit{orientation} to a finite dimensional vector space. Lastly, we investigate \textit{pushing forward} and \textit{pulling back} elements of top exterior powers, as this concept will be necessary for discussing integration of differential forms in Chapter \ref{ch::diff_forms}.
+
+\section{Exterior powers}
+
+\subsection*{Antisymmetric tensors}
+
+\begin{defn}
+    (Permutations on $\{1, ..., n\}$).
+    
+    Let $X$ be any set. A \textit{permutation on $X$} is a bijection $X \rightarrow X$. Intuitively, a permutation on $X$ is thought of as redistributing the names of the elements of $X$.
+    
+    We use $S_n$ to denote the \textit{set of permutations on $\{1, ..., n\}$}. Formally, $S_n := \{ \text{$\{1, ..., n\} \rightarrow \{1, ... n \}$} \}$.
+\end{defn}
+
+\begin{remark}
+    (Sign of a permutation).
+    
+    Without proof, we will use the fact that every permutation in $S_n$ can be decomposed into a composition of ``two-element swaps''. (Formally, ``two-element swaps'' are called \textit{transpositions}). The \textit{sign} function on permutations in $S_n$ is the function $\sgn:S_n \rightarrow \{-1, 1\}$ defined by $\sgn(\sigma) := (-1)^n$, where $n$ is the number of ``two-element swaps'' that occur in \textit{any} of the decompositions of $\sigma$ into only two-element swaps. An equivalent definition of $\sgn$ is
+    
+    \begin{align*}
+        \sgn(\sigma) := 
+        \begin{cases}
+            1 & \text{there are an even number of ``two-element'' swaps in any decomposition of $\sigma$} \\
+            -1 & \text{there are an odd number of ``two-element'' swaps in any decomposition of $\sigma$}
+        \end{cases}.
+    \end{align*}
+    
+    It may seem surprising that $\sgn$ is a well-defined function. That is, it may seem surprising that the parity (the ``evenness'' or ``oddness'') of the number of two-element swaps in a permutation's decomposition into only two-element swaps is always the same. This might seem relatively surprising, but it's true! (We do not prove this statement about permutations, either).
+\end{remark}
+
+\begin{defn}
+    (Permuting an element of a tensor product space).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define the map $(\cdot)^\sigma:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
+    
+    \begin{align*}
+        (\vv_1 \otimes ... \otimes \vv_k)^\sigma := \vv_{\sigma(1)} \otimes ... \otimes \vv_{\sigma(k)}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::antisymmetric_tensor}
+    (Antisymmetric tensor). 
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We say a tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff $\TT^\sigma = \sgn(\sigma) \TT$.
+\end{defn}
+
+\begin{defn}
+    (Algebra).
+    
+    Consider a tuple $(A, K, +, \cdot, \star)$, where $(A, K, +, \cdot)$ is a vector space. We say that $A$ is an \textit{algebra over $K$} iff $\star:A \times A \rightarrow A$ is bilinear with respect to $+$ and $\cdot$.
+\end{defn}
+
+\begin{remark}
+\label{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}
+    (We want to construct an algebra of antisymmetric tensors).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. Observe that the tuple
+    
+    \begin{align*}
+        (\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \otimes )
+    \end{align*}
+    
+    is \textit{not} an algebra, since the tensor product $\otimes$ of antisymmetric two tensors in $V_1 \otimes ... \otimes V_k$ is \textit{not} necessarily another antisymmetric tensor. Consider, for example, the\footnote{$\vv_1$ is antisymmetric because its only permutation $\vv_1^\sigma$ is equal to $\vv_1^\sigma = \sgn(\sigma) \vv_1$, where $\sigma = i$ is the identity. For the same reason, $\vv_2$ is antisymmetric.} antisymmetric $(1, 0)$ tensors (i.e. vectors) $\vv_1$ and $\vv_2$; their tensor product $\vv_1 \otimes \vv_2$ does not satisfy $\vv_1 \otimes \vv_2 = -\vv_2 \otimes \vv_1$.
+    
+    We will construct a function $\wedge:(V_1 \otimes ... \otimes V_k) \times (V_1 \otimes ... \otimes V_k) \rightarrow V_1 \otimes ... \otimes V_k$, called the \textit{wedge product}, such that 
+    
+    \begin{align*}
+        (\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \wedge )
+    \end{align*}
+    
+    \textit{is} an algebra.
+\end{remark}
+
+\subsection*{Constructing the wedge product}
+
+\begin{defn}
+    (Antisymmetrization of elements of tensor product spaces).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We define an \textit{antisymmetrizing function} ${\alt:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k}$ that converts any tensor $\TT \in V_1 \otimes ... \otimes V_k$ into an antisymmetric tensor in $V_1 \otimes ... \otimes V_k$. We define $\alt$ on elementary tensors and extend linearly: for an elementary tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define
+    
+    \begin{align*}
+        \alt(\TT) := \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma.
+    \end{align*}
+    
+    When $\TT$ is antisymmetric, then the sum argument is $\sgn(\sigma) \TT^\sigma = \sgn(\sigma)^2 \TT = \TT$, and so the sum is $k! \TT$. Thus, the division by $k!$ ensures that $\alt(\TT) = \TT$ when $\TT$ is an antisymmetric tensor.
+    
+    How might you come up with this formula? Well, you first might start by noticing the case of $k = 2$, without the division by $2!$. That is, notice that when given an arbitrary tensor $\vv_1 \otimes \vv_2$, we can form the antisymmetric tensor $\vv \otimes \ww - \ww \otimes \vv$.
+\end{defn}
+
+\begin{proof}
+    We need to show that $\alt(\TT)$ is antisymmetric, i.e., that $\alt(\TT)^\pi = \sgn(\pi) \alt(\TT)$. We have
+            
+    \begin{align*}
+        \alt(\TT)^\pi &= \Big(\sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)\Big)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) \TT^{\pi \circ \sigma}.
+    \end{align*}
+            
+    Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\tau \in S_k$ there is a $\sigma \in S_k$ such that $\tau = \pi \circ \sigma$; namely, $\sigma = \pi^{-1} \circ \tau$. So the sum becomes
+            
+    \begin{align*}
+        \sum_{\tau \in S_k} \sgn(\pi^{-1} \circ \tau) \TT^\tau &= \sgn(\pi^{-1}) \sum_{\tau \in S_k} \sgn(\tau) \TT^\tau = -\sgn(\pi) \alt(\TT).
+    \end{align*}
+    
+    This shows $\alt(\TT)^\pi = \sgn(\pi) \alt(\TT)$.
+\end{proof}
+
+\begin{defn}
+    (Wedge product).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We define the \textit{wedge product} \\ ${\wedge: (V_1 \otimes ... \otimes V_k) \otimes (V_1 \otimes ... \otimes V_k) \rightarrow \alt((V_1 \otimes ... \otimes V_k) \otimes (V_1 \otimes ... \otimes V_k))}$ by $\TT \wedge \SS := \alt(\TT \otimes \SS)$.
+\end{defn}
+
+\begin{lemma}
+    (Lemma for associativity of wedge product). 
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field, and consider $\TT, \SS \in V_1 \otimes ... \otimes V_k$. If $\alt(\TT) = \mathbf{0}$, then $\TT \wedge \SS = \mathbf{0} = \SS \wedge \TT$.
+\end{lemma}
+
+\begin{proof}
+    \newcommand{\pit}{[\pi]_\tau}
+
+    (This proof requires some abstract algebra. Understanding this proof is not really necessary to understand exterior powers, so you can take this theorem as an axiom if you want).
+
+    Assume $\alt(\TT) = \mathbf{0}$. Let $T = \vv_{i_1} \otimes ... \otimes \vv_{i_{k}}$ and $\SS = \vv_{j_1} \otimes ... \otimes \vv_{j_k}$. We must show $\alt(\TT \otimes \SS) = \mathbf{0}$. 
+    
+    To do so, let $H$ be the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_k$, and consider the right cosets $\{H \sigma \mid \sigma \in S_{2k}\}$ of $H$ in $S_{2k}$. Since these right cosets partition $S_{2k}$, then
+    
+    \begin{align*}
+        \alt(\TT \otimes \SS) &= \sum_{\pit \sigma \in \{\text{right cosets}\}} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} = \sum_{\sigma \in S_{2k}} \sum_{\pit \in H} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} \\
+        &= \sum_{\sigma \in S_{2k}} \Big(\sum_{\pit \in H} \text{sgn}({\pit}) (\TT \otimes \SS)^{\pit} \Big)^{\sigma}.
+    \end{align*}
+    
+    Since $\pit \in H$, where $H$ is the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_{\ell}$, then $(\TT \otimes \SS)^{\pit} = \TT^{\pit} \otimes \SS$. With this, the innermost sum becomes
+    
+    \begin{align*}
+        \sum_{\pit \in H} \text{sgn}({\pit}) (\TT \otimes \SS)^{\pit} 
+        = \sum_{\pit \in H} \text{\sgn}({\pit}) \TT^{\pit} \otimes \SS
+        = \Big(\sum_{\pit \in H} \text{sgn}({\pit}) \TT^{\pit}\Big) \otimes \SS.
+    \end{align*}
+    
+    Now define $\pi \in S_{k}$ by $\pi = \tau^{-1} \pit \tau$, where $\tau = (i_1, ..., i_{k})$ (i.e. $\tau(i) = j_i$). Then the above is
+    
+    \begin{align*}
+        \Big(\sum_{\pi S_{k}} \text{sgn}({\pi}) \TT^{\pi}\Big) \otimes \SS 
+        = \alt(\TT) \otimes \SS 
+        = \mathbf{0} \otimes \SS
+        = \mathbf{0}.
+    \end{align*}
+    
+    The last equality follows by the seeming-multilinearity of $\otimes$. 
+\end{proof}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::wedge_associativity}
+    (Wedge product is associative). 
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. Then for all $\TT, \SS, \RR \in V_1 \otimes ... \otimes V_k$, we have $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR)$, and are therefore justified in denoting both as $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR) := \TT \wedge \SS \wedge \RR$.
+\end{theorem}
+
+\begin{proof}
+    We will show $(\TT \wedge \SS) \wedge \RR = \alt(\TT \otimes \SS \otimes \RR)$; a similar argument shows $\TT \wedge (\SS \wedge \RR) = \alt(\TT \otimes \SS \otimes \RR)$.
+    
+    First, we have by definition of $\wedge$ that 
+    
+    \begin{align*}
+        (\TT \wedge \SS) \wedge \RR = \alt((\TT \wedge \SS) \otimes \RR)
+    \end{align*}
+    
+    Subtracting $\alt(\TT \otimes \SS \otimes \RR)$ from both sides and using linearity of $\alt$, we get that
+    
+    \begin{align*}
+        (\TT \wedge \SS) \wedge \RR - \alt(\TT \otimes \SS \otimes \RR) = \alt((\TT \wedge \SS - \TT \otimes \SS) \otimes \RR) = (\TT \wedge \SS - \TT \otimes \SS) \wedge \RR.
+    \end{align*}
+    
+    If we show $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$, then our claim is true. The previous lemma says that if $\alt(\TT \wedge \SS - \TT \otimes \SS) = \mathbf{0}$, then  $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$. And this is true, since $\alt(\TT \wedge \SS - \TT \otimes \SS) = \alt(\TT \wedge \SS) - \alt(\TT \otimes \SS) = \TT \wedge \SS - \TT \wedge \SS = \mathbf{0}$, by linearity of $\alt$ and with use of the fact that $\TT \wedge \SS$ is antisymmetric.
+\end{proof}
+
+\subsection*{Wedge product spaces and exterior powers}
+
+\begin{theorem}
+    (Properties of the wedge product).
+    
+    Let $V_1, ..., V_k$ be vector space over a field $K \neq \Z/2\Z$, and consider the tensor product space $V_1 \otimes ... \otimes V_k$. The wedge product $\wedge$ satisfies the following properties...
+    
+    \begin{enumerate}
+        \item $\wedge$ looks as if it is bilinear, just as was the case with $\otimes$. That is, ...
+        \begin{enumerate}
+            \item[1.1.] $(\TT + \SS) \wedge \RR = \TT \wedge \RR + \SS \wedge \RR$ for all $\TT, \SS, \RR \in V_1 \otimes ... \otimes V_k$.
+            \item[1.2.] $\TT \wedge (\SS + \RR) = \TT \wedge \SS + \TT \wedge \RR$ for all $\TT, \SS, \RR \in V_1 \otimes ... \otimes V_k$.
+            \item[1.3.] $(c\TT) \wedge \SS = c(\TT \wedge \SS) = \TT \wedge (c \SS)$ for all $\TT, \SS \in V_1 \otimes ... \otimes V_k$ and $c \in K$.
+        \end{enumerate}
+        \item $\wedge$ is associative, just as was the case with $\otimes$: $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR)$ for all $\TT, \SS \in V_1 \otimes ... \otimes V_k$. 
+        \item $\wedge$ looks as it it is an antisymmetric map: $\TT \wedge \SS = -\SS \wedge \TT$ for all $\TT, \SS \in V_1 \otimes ... \otimes V_k$.
+        \item $\wedge$ is \textit{skew-commutative}: if $\TT \in V_1 \otimes ... \otimes V_k$ and $\SS \in V_1 \otimes ... \otimes V_\ell$, then $\SS \wedge \TT = (-1)^{k + \ell} (\TT \wedge \SS)$.
+        \item $\TT \wedge \TT = \mathbf{0}$ for all $\TT \in V_1 \otimes ... \otimes V_k$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+   Property (1) follows by checking the definition $\TT \wedge \SS := \alt(\TT \otimes \SS)$. Property (2) was proved in Theorem \ref{ch::exterior_pwrs::thm::wedge_associativity}. Property (3) follows from the definition of $\alt$. Conditions (3) and (4) are logically equivalent, and conditions (3) and (5) are logically equivalent when $K \neq \Z/2\Z$. (Again, we need to require $K \neq \Z/2\Z$ here so that $2 \neq 0$, which allows division by $2$). 
+\end{proof}
+
+In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that we wanted to find a function $\wedge:(V_1 \otimes ... \otimes V_k) \times (V_1 \otimes ... \otimes V_k) \rightarrow V_1 \otimes ... \otimes V_k$ for which the tuple $(\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \wedge )$ is an algebra. We have done so by constructing the wedge product $\wedge$, and now formalize this result with the next definitions.
+
+\begin{defn}
+    (Wedge product space). 
+    
+    Let $V_1, ..., V_k$ be vector spaces over a field $K$. We define the \textit{wedge product space} $V_1 \wedge ... \wedge V_k$ to be the algebra 
+    
+    \begin{align*}
+        V_1 \wedge ... \wedge V_k := (\alt(V_1 \otimes ... \otimes V_k), K, +, \cdot, \wedge).
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+    (Basis and dimension for wedge product spaces).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \wedge ... \wedge V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
+    
+    \begin{align*}
+        \{ \ee_{1i_1} \otimes ... \otimes \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+   See the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
+\end{proof}
+
+\begin{theorem}
+    (Exterior powers).
+    
+    Let $V$ be a vector space. We define the \textit{$k$th exterior power $\Lambda^k(V)$} of $V$ to be the wedge product space $\Lambda^k(V) := V^{\wedge k}$.
+\end{theorem}
+
+\begin{theorem}
+    (Basis and dimension of exterior powers).
+    
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. Then $\Lambda^k(V)$ is a $\binom{n}{k}$ dimensional vector space with basis
+    
+    \begin{align*}
+        \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid k \in \{1, ..., n\} \text{ and } (i_1, ..., i_k) \text{ is strictly increasing} \}.
+    \end{align*}
+    
+    Note, $(i_1, ..., i_k)$ must be strictly increasing because $\vv \wedge \vv = \mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+   To show that this set spans $\Lambda^k(V)$, use the seeming-multilinearity of $\wedge$ as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
+   
+   For linear independence, note that if the sequence $i_1, ..., i_k$ were not strictly increasing, then we would have a $\mathbf{0}$ in the claimed basis, which would make our claimed basis a linearly dependent set. Since there is no $\mathbf{0}$ in the claimed basis, we can follow the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
+\end{proof}
+
+%\begin{remark}
+%    Intuition of $k$-blades and volume
+%\end{remark}
+
+\begin{defn}
+    (Alternating function).
+    
+    Let $V_1, ..., V_k, W$ be vector spaces over the same field. We say a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is a \textit{$k$-alternating function} iff for all $\sigma \in S_n$, we have $\ff(\vv_{\sigma(1)}, ..., \vv_{\sigma(k)}) = \sgn(\sigma) \ff(\vv_1, ..., \vv_k)$. Equivalently, $\ff$ is $k$-alternating iff $\ff(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_k) = -\ff(\vv_1, ..., \vv_j, ..., \vv_i, ..., \vv_k)$ for all $i \in \{1, ..., k\}$.
+    
+    When $k$ is clear from the context, $k$-linear functions are called \textit{alternating functions}.
+\end{defn}
+
+\begin{remark}
+\label{ch::exterior_pwrs::rmk::alternating_antisymmetric}
+
+    (``Antisymmetric'' vs. ``alternating'').
+    
+    Many authors refer to the ``antisymmetric tensors'' of Definition \ref{ch::exterior_pwrs::defn::antisymmetric_tensor} as ``alternating tensors''. Doing so is technically incorrect, because an ``alternating tensor'' is an element of a certain ``quotient algebra''. This quotient algebra is isomorphic to an algebra of antisymmetric tensors only when the characteristic of the field $K$ is infinity. (We have and will not discuss field characteristics). In other words, ``antisymmetric tensors'' are only the same as ``alternating tensors'' in certain special cases.
+    
+    Given the previous paragraph, one might think that ``alternating functions'' should really be called ``antisymmetric functions''. This is actually not the case. We are correct to define the functions of the above to be ``alternating functions'' because the alternating functions of the above definition correspond to alternating tensors (which, remember, are elements of a certain quotient algebra) via \textit{the universal property of the exterior algebra}. So, alternating functions share the same level of generality as alternating tensors (which we have not defined). Antisymmetric tensors, which we have defined, are what are ``more specific''.
+    
+    We have not defined what the exterior algebra is (and won't), but it is good to know this context.
+\end{remark}
+
+\begin{defn}
+    (Vector space of alternating functions).
+    
+    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $(\alt \LLLL)(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-alternating functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling.
+\end{defn}
+
+\begin{theorem}
+    (Universal property for exterior powers).
+    
+    Let $V_1, V_2, W$ be vector spaces over the same field, and let $\ff:V_1 \times V_2 \rightarrow W$ be an alternating bilinear function. Then there exists a linear function $\hh:V_1 \wedge V_2 \rightarrow W$ with $\ff = \hh \circ \gg$ where $\hh$ uniquely depends on $\ff$, and where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$.
+    
+    In Remark \ref{ch::exterior_pwrs::rmk::alternating_antisymmetric}, we mentioned that there exists a ``universal property of the exterior algebra''. Note that this theorem is \textit{not} the universal property of the exterior algebra, but a special case of it. (As mentioned before, we have not stated the universal property of the exterior algebra, and will not state it in this book).
+\end{theorem}
+
+\begin{proof}
+    The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the maps we define in this proof are extended using antisymmetry and bilinearity, rather than just bilinearity.
+\end{proof}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::fundamental_isos_exterior_pwrs}
+    (Fundamental natural isomorphisms for exterior powers). 
+    
+    Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos} stated that there are natural isomorphisms
+    
+    \begin{align*}
+        \LLLL(V_1 \times ... \times V_k \rightarrow W) &\cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W) \\
+        \LLLL(V \rightarrow W) &\cong W \otimes V^* \\
+        (V \otimes W)^* &\cong V^* \otimes W^* \\
+        T_{p,q}(V) &\cong T_{q,p}(V^*)
+    \end{align*}
+    
+    Analogously, there are natural isomorphisms
+    
+    \begin{empheq}[box = \fbox]{align*}
+        (\alt \LLLL)(V_1 \times ... \times V_k \rightarrow W) &\cong (\alt \LLLL)(V_1 \wedge ... \wedge V_k \rightarrow W) \\
+        (\alt \LLLL)(V \rightarrow W) &\cong W \wedge V^* \\
+        (V \wedge W)^* &\cong V^* \wedge W^* \\
+        \Lambda^k(V)^* &\cong \Lambda^k(V^*)
+    \end{empheq}
+\end{theorem}
+
+\begin{proof}
+     To show the first equation in the box, show that the map sending an alternating bilinear function to its unique linear counterpart defined on wedge product spaces (which is guaranteed to exist by the universal property for exterior powers) is a linear isomorphism. (This is what we did when we proved the coorresponding fact for tensor product spaces; those steps can essentially be repeated for this proof. See Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}). This proves the first equation for the case $k = 2$. The general result follows by induction.  
+     
+    To prove the second line, use a similar isomorphism as was presented at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}, when we derived the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. That is, take an element $\ff \in (\alt \LLLL)(V \rightarrow W)$, decompose it into a linear combination of ``alternating elementary compositions'', and then send each alternating elementary composition $\ww \circ \phi \mapsto \ww \wedge \phi$. The formal check that this map is a linear isomorphism is essentially the same as the check described at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}.
+    
+    The third line in the box is proved similarly as was in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}; the only difference is that it is necessary to extend with antisymmetry and bilinearity rather than just bilinearity. The fourth line follows from the third line.
+    
+    %read \url{https://math.stackexchange.com/questions/18595/exterior-power-of-dual-space/18628#18628}. even better, ask Owen
+\end{proof}
+
+\newpage
+
+\subsection*{Pushforward and pullback}
+
+[segway]
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::pushforward_on_Tk0}
+    (Pushforwards and pullbacks).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual $\ff^*:W^* \rightarrow V^*$. We define the following \textit{pushforward} and \textit{pullback} maps on $T^k_0(V) = V^{\otimes k}$ and $T_{0,k}(W) = (W^*)^{\otimes k}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
+    
+    \begin{align*}
+        \vv_1 \otimes ... \otimes \vv_k \in T^k_0(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T^k_0(W) \quad \text{(``pushforward on $T^k_0(V)$'')} \\
+        \psi_1 \otimes ... \otimes \psi_k \in T_{0,k}(W) &\overset{\otimes_{0, k} \ff^*}{\longmapsto} \ff^*(\psi_1) \otimes ... \otimes \ff^*(\psi_k) \in T_{0,k}(V) \quad \text{(``pullback on $T_{0,k}(W)$'')}.
+    \end{align*}
+    
+    We also define the following \textit{pushforward} and \textit{pullback} maps on $\Lambda^k(V) = V^{\wedge k}$ and $\Lambda^k(W^*) = (W^*)^{\wedge k}$, respectively, extending each with the seeming-multilinearity and antisymmetry of $\wedge$, for $k \leq n$:
+    
+    \begin{align*}
+        \vv_1 \wedge ... \wedge \vv_k \in \Lambda^k(V) &\overset{\Lambda^k \ff}{\longmapsto} \ff(\vv_1) \wedge ... \wedge \ff(\vv_k) \in \Lambda^k(W) \quad \text{(``pushforward on $\Lambda^k(V)$'')} \\
+        \psi^1 \wedge ... \wedge \psi^k \in \Lambda^k(W^*) &\overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^k) \in \Lambda^k(V^*) \quad \text{(``pullback on $\Lambda^k(W^*)$'')}.
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+\label{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}
+    (Star notation for pushforward and pullback).
+    
+    The above notation of using $\otimes_{0, k} \ff:V \rightarrow W$ and $\Lambda^k \ff$ for the pushforwards and using ${\otimes_{k, 0} \ff^*:W^* \rightarrow V^*}$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$. Somewhat less commonly, pushforwards are denoted by ${\ff_*:T^k_0(V) \rightarrow T^k_0(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$.
+    
+    Once the above definitions of pushforward and pullback are understood, this ``star notation'' can be useful. But it can be difficult to understand what the various pushforwards and pullbacks are if this notation is used from the start, due to the potential for confusing the dual $\ff^*:W^* \rightarrow V^*$ with either of the pullbacks ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}, {\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
+    
+    We will use the star notation after we define a pullback of a differential form in Chapter \ref{ch::diff_forms}. Until then, we do not use the star notation.
+\end{remark}
+
+\newpage
+
+\section{The determinant}
+
+\label{ch::exterior_pwrs::determinant}
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::determinant}
+    (The determinant).
+    
+    Let $K$ be a field, and let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n$. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\cc_1, ..., \cc_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\cc_1, ..., \cc_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
+    
+    \begin{enumerate}
+        \item $\det(\see_1, ..., \see_n) = 1$, since we want the unit $n$-cube to have an $n$-dimensional volume of $1$.
+        \item $\det$ is multilinear, because...
+        \begin{itemize}
+            \item The volume of a parallelapiped that is the disjoint union of two smaller parallelapipeds should be the sum of the volumes of the smaller parallelapipeds.
+            \item Scaling one of the sides of a parallelapiped by $c \in K$ should increase that paralellapiped's volume by a factor of $c$. 
+        \end{itemize}
+        \item $\det(\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n) = 0$ when $\cc_i = \cc_j$ for all $\cc_k \in K$, $k \in \{1, ..., n\}$. This should hold because when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume is zero.
+    \end{enumerate}
+    
+    When $K \neq \Z/2\Z$ so that $2 \neq 0$, which enables division by $2$, then, due to the multilinearity of $\det$, the third axiom is logically equivalent to $\det$ being an alternating function. (Proof left as exercise). This is the case when $K = \R$, for example. The fact that $\det$ is (almost always) alternating means that our intuitive assumptions about volume require that volume be \textit{signed}, or \textit{oriented}; the volume of the parallelapiped spanned by $\cc_1, ..., \cc_j, ..., \cc_i, ..., \cc_n$ is the negation of the volume of the parallelapiped spanned by $\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n$.
+    
+    The fact that the third axiom is logically equivalent to alternatingness also gives us a concise characterization of the determinant: $\det:(K^n)^{\times n} \rightarrow K$, when $K \neq \Z/2\Z$, is the unique multilinear alternating function satisfying $\det(\see_1, ..., \see_n) = 1$. \textbf{pretty sure we can't claim this until seeing permutation formula for $\det$}
+\end{defn}
+
+\begin{defn}
+    (Determinant of a square matrix). 
+    
+    We define the \textit{determinant of a square matrix} to be the result of applying $\det$ to the column vectors of that matrix.
+\end{defn}
+
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::consequent_det_props}
+    (Consequent properties of the determinant). 
+    
+    \begin{enumerate}
+    \setcounter{enumi}{3}
+        \item $\det$ is an alternating function when $K \neq \Z/2\Z$.
+        \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\cc_1, ..., \cc_i, ..., \cc_n) = \det(\cc_1, ..., \cc_i + \sum_{j = 1, j \neq i}^n d_j \cc_j, ..., \cc_n)$ for all $i \in \{1, ..., n\}$.
+        \item $\det(\cc_1, ..., \cc_n) = 0$ iff $\{\cc_1, ..., \cc_n\}$ is a linearly dependent set.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \begin{enumerate}
+    \setcounter{enumi}{4}
+        \item 
+        
+        Using the axiom $\det(\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n) = 0$ when $\cc_i = \cc_j$ together with the multilinearity of the determinant, we have
+        
+        \begin{align*}
+            \det(\cc_1, ..., \cc_i, ..., \cc_n)
+            &= \det(\cc_1, ..., \cc_i, ..., \cc_n) + \sum_{j = 1, j \neq i}^n \Big( d_j \det(\cc_1, ..., \cc_j, ..., \cc_j, ..., \cc_n) \Big) \\
+            &= \det\Big( \cc_1, ..., \cc_i + \sum_{j = 1, j \neq i}^n (d_j \cc_j), ..., \cc_n \Big).
+        \end{align*}
+        
+        \item 
+        \mbox{}
+        \\ \indent ($\det(\cc_1, ..., \cc_n) = 0 \implies \{\cc_1, ..., \cc_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
+        \\ \indent ($\det(\cc_1, ..., \cc_n) = 0 \impliedby \{\cc_1, ..., \cc_n\}$ is a linearly dependent set). Suppose for contradiction that the determinant of a set of $n$ linearly independent vectors is zero. These $n$ linearly independent vectors form a basis for $K^n$, so we have shown that the determinant of a basis set is zero. But then, using multilinearity together with the invariance of $\det$ under linearly combining some vectors into a different vector, we can show that $\det(\cc_1, ..., \cc_n) = 0$ for \textit{all} $\cc_1, ..., \cc_n \in K^n$. This contradicts the first axiom that specifies $\det(\see_1, ..., \see_n) = 1$.
+    \end{enumerate}
+\end{proof}
+
+\begin{deriv}
+    (Permutation formula for the determinant).
+    
+    We now derive \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::exterior_pwrs::defn::determinant} exists; since this formula is derived from the axioms of the determinant, it is also a unique formula for the determinant.
+    
+    Consider vectors $\cc_1, ..., \cc_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\cc_i]_\sE)^j$. Then...
+    
+    \begin{align*}
+        \det((a^i_j)) = \det(\cc_1, ..., \cc_n)
+        &= \det \Big(\sum_{i_1 = 1}^n a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
+        &= \sum_{i_1 = 1}^n \det \Big( a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
+        &\vdots \\
+        &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
+        &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}), \text{ where $i_1, ..., i_n$ are distinct from each other} \\
+        &= \sum_{\sigma \in S_n}
+        \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}) \\
+        &= \sum_{\sigma \in S_n}
+        a^1_{\sigma(1)} ... a^n_{\sigma(n)} \det(\see_{\sigma(1)}, ..., \see_{\sigma(n)}) \\
+        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \text{sgn}(\sigma)
+        \det(\see_1, ..., \see_n) \\
+        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \text{sgn}(\sigma)
+    \end{align*}
+    
+    Therefore, we have
+    
+    \begin{align*}
+        \boxed
+        {
+            \det(\cc_1, ..., \cc_n) = \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma)
+        }
+    \end{align*}
+    
+    In this derivation, we have mostly used the multilinearity of the determinant. Though, the expression labeled with ``where $i_1, ..., i_n$ are distinct from each other'' results from the previous line due to the third axiom of the determinant, $\det(\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n) = 0$ when $\cc_i = \cc_j$.
+    
+    There are four major steps in the derivation. The first step is to use the multilinearity of the determinant to turn the determinant of $(a^i_j)$ into a sum of the determinants of matrices that only have one nonzero entry in each column (see the line directly above the line labeled with ``where $i_1, ..., i_n$ are distinct from each other''). The second step is to disregard all determinants in this previous sum whose matrix arguments have two or more columns that have their nonzero entries in the same row (i.e. whose matrix arguments are matrices of linearly dependent columns). This leaves us with a sum of determinants of diagonal matrices whose columns have been shuffled (this corresponds to the line labeled with ``where $i_1, ..., i_n$ are distinct from each other'' and the line directly below it). The third step, which corresponds to the third to last line, is to use multilinearity to pull out all the constants. The fourth step is to use the alternatingness of the determinant so that every determinant argument in the sum is the identity matrix; this results in multiplying each term in the sum by $\sgn(\sigma)$.
+\end{deriv}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::det_transpose_invariant}
+    
+    (Determinant of a matrix is transpose-invariant).
+    
+    Let $\AA$ be a square matrix with entries in $K$. Recall from the discussion after the statement of the permutation formula for the determinant that the determinant of a matrix is a sum of determinants of diagonal matrices whose columns have been shuffled. Each shuffled diagonal matrix in this sum can be momentarily converted to a diagonal matrix, transposed, and then re-shuffled (so that the columns of the shuffled-transposed-reshuffled matrix are in the order of the columns of the original shuffled diagonal matrix). Reversing the expansion that was accomplished with the multilinearity of $\det$ in the derivation of the permutation formula for the determinant, we see that the sum of the determinants of these shuffled-transposed-reshuffled matrices is equal to the determinant of $\AA^\top$. Therefore
+    
+    \begin{align*}
+        \det(\AA) = \det(\AA^\top).
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    (Laplace expansion for the determinant).
+    
+    Consider an $n \times n$ matrix $\AA = (a^i_j)$, and let $\AA^i_j$ denote the so-called \textit{$ij$ minor matrix} obtained by erasing the $i$th row and $j$th column of $\AA$. We have
+    
+    \begin{align*}
+        \det(\AA) = \sum_{i = 1}^{n} a^i_j \det(\AA^i_j) \text{ for all $i \in \{1, ..., n\}$} \\
+        \det(\AA) = \sum_{j = 1}^{n} a^i_j \det(\AA^i_j) \text{ for all $j \in \{1, ..., n\}$}
+    \end{align*}
+    
+    The first equation is called the \textit{Laplace expansion for the determinant along the $i$th row}, and the second equation is called the \textit{Laplace expansion for the determinant along the $j$th column}. Note that each equation implies the other because $\det(\AA) = \det(\AA^\top)$.
+\end{theorem}
+    
+\begin{proof}
+    We prove the second equation of the theorem.
+    
+    Consider all terms in the permutation formula's sum for $\det(\AA)$ that have the factor $a^i_j$. Let $\BB$ denote the shuffled diagonal matrix that corresponds to one of these terms. We can view $\det(\BB)$ as $\det(\BB) = \pm a^i_j \det(\BB^i_j)$, where $\BB^i_j$ is the determinant of the matrix obtained by removing the $i$th column and $j$th row from $\BB$. The $\pm$ sign is a result of the fact that the matrices $\BB$ and $\BB^i_j$ may have different inversion counts.
+
+    The main effort of this proof is to determine the $\pm$ sign and specify how the inversion counts of $\BB$ and $\BB^i_j$ differ.
+    
+    As a first step, note that the difference in the inversion count between $\BB$ and $\BB^i_j$ is the number of inversions that involve $a^i_j$. Thus, our problem reduces to determining an expression for the number of inversions that involve $a^i_j$. So, divide the matrix $\BB$ into quadrants that are centered on $a^i_j$. Let $k_1, k_2, k_3, k_4$ be the number of inversions in the upper left, upper right, lower left, and bottom right corners of $\AA$, respectively. The number of inversions involving $a^i_j$ is $k_2 + k_3$. Since we know $k_1 + k_2 + 1 = i$ and $k_1 + k_3 + 1 = j$, we have $k_2 + k_3 = i + j - 2 - 2k_1 = i + j - 2(k_1 + 1)$. (We also know $k_1 + k_2 + k_3 + k_4 = n$, but this is not that helpful). Thus, if $\sigma$ is the permutation corresponding to $\BB$ and $\pi$ is the permutation corresponding to $\BB^i_j$, then $\sgn(\sigma) = \sgn(\pi)(-1)^{i + j - 2(k_1 + 1)} = \sgn(\pi)(-1)^{i + j}$. Thus $\sgn(\sigma) = (-1)^{i + j}\sgn(\pi) \iff \sgn(\pi) = (-1)^{i + j}\sgn(\sigma)$. 
+    
+    So,
+    
+    \begin{align*}
+        a^i_j \det(\BB^i_j) &= a^i_j \sum_{\pi \in S_n} a^{\pi(1)}_1 ... \cancel{a^{\pi(i)}_j} ..., a^{\pi(n)}_n \sgn(\pi) \\
+        &= a^i_j \sum_{\sigma \in S_n} a^{\pi(1)}_1 ... \cancel{a^{\pi(i)}_j} ..., a^{\pi(n)}_n (-1)^{i + j} \sgn(\sigma) \\
+        &= (-1)^{i + j} a^i_j \det(\BB)
+    \end{align*}
+    
+    Thus $a^i_j \det(\BB^i_j) = (-1)^{i + j} a^i_j \det(\BB) \iff \det(\BB) = (-1)^{i + j} a^i_j \det(\BB^i_j)$. Now sum all of the $\BB$'s (the diagonal shuffled matrices) to get $\det(\AA) = \sum_{j = 1}^{n} a^i_j \det(\AA^i_j)$.
+\end{proof}
+    
+%\begin{theorem}
+%    (Determinant of an upper triangular matrix).
+%\end{theorem}
+
+%\begin{theorem}
+%    (Adjoint and Cramer's rule).
+%\end{theorem}
+
+\begin{defn}
+    (Determinant of a linear function).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces \textit{of the same dimension}, and let $E$ and $F$ be be bases for $V$ and $W$. We define the \textit{determinant of a linear function $\ff:V \rightarrow W$} to be the determinant of the matrix of $\ff$ relative to $E$ and $F$, $\det(\ff) := \det([\ff(E)]_F)$.
+\end{defn}
+
+\begin{remark}
+    We have not yet shown that the determinant of a linear function $V \rightarrow V$ is well-defined; we have not shown that it doesn't on the basis chosen for $V$. We will see that this is the case soon.
+\end{remark}
+
+\begin{theorem}
+    (Determinant of a matrix is dual-invariant).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Consider also the dual $\ff:W^* \rightarrow V^*$ (recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}). Then $\det(\ff^*) = \det(\ff)$.
+\end{theorem}
+
+\begin{proof}
+    Recall from\footnote{Technically, the equivalent conditions of the definition we reference only apply to linear functions $V \rightarrow V$. This is not an issue because $V$ and $W$ have the same dimension; if we want to be very formal, we can use the linear function $\widetilde{\ff}:V \rightarrow V$ that is obtained from $\ff$ by identifying $W \cong V$ with the identification that sends basis vectors of $W$ to basis vectors of $V$.} condition (3) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn} that if $\AA$ is the matrix of $\ff$ relative to orthonormal bases $\hU_1$ and $\hU_2$, then the matrix of $\ff^*$ relative to the induced dual bases $\hU_2^*$ and $\hU_1^*$ is $\AA^\top$. Since the determinant of a matrix is transpose-invariant (recall Theorem \ref{ch::exterior_pwrs::thm::det_transpose_invariant},) we have $\det(\ff) = \det(\AA) = \det(\AA^\top) = \det(\ff^*)$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::rmk::top_pushforward_det}
+    (The pushforward on the top exterior power is multiplication by the determinant).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces over a field $K$, let $\ff:V \rightarrow W$ be a linear function, and consider $\Lambda^n(V)$. We call $\Lambda^n(V)$ the \textit{top exterior power of $V$} because $n$ is the largest positive integer for which $\Lambda^k(V)$ is not a zero-dimensional vector space. Consequently, it is the exterior power of smallest dimension; $\dim(\Lambda^n(V)) = \binom{n}{n} = 1$.
+    
+    Now consider the pushforward $\Lambda^n \ff: \Lambda^n(V) \rightarrow \Lambda^n(W)$ on the top exterior power, which (recall Definition \ref{ch::exterior_pwrs::defn::pushforward_on_exterior_pwr}
+) is defined on elementary tensors by $\vv_1 \wedge ... \wedge \vv_n \mapsto \ff(\vv_1) \wedge ... \wedge \ff(\vv_n)$ and is extended with multilinearity. Defined this way, the pushforward $\Lambda^n \ff$ is a multilinear alternating map. This pushforward is also a map of 1-dimensional vector spaces, so it must be multiplication by a constant. We will determine what this constant is.
+    
+    Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and consider the action of the pushforward on the basis vectors of $E$,
+    
+    \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge \ff(\ee_n).
+    \end{align*}
+    
+    Because $\Lambda^n(\ff)$ is multilinear and alternating, the wedge product is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n)) = \det([\ff(E)]_F) = \det(\ff)$. So, set $(a^i_j) = [\ff(E)]_F$, and then use essentially the same argument as was made to derive the permutation formula on the left hand side of the above. We obtain
+    
+    \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge 
+        \ff(\ee_n) 
+        &= \sum_{\sigma \in S_n} \Big( a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n \Big)
+        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
+        &= \det([\ff(E)]_F) (\ee_1 \wedge ... \wedge \ee_n)
+        = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+    \end{align*}
+    
+   So, we have the statement on the basis $E$
+   
+   \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge 
+        \ff(\ee_n) = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+   \end{align*}
+   
+   Using the seeming-multilinearity of $\wedge$, we can extend this fact to apply to any list of vectors in $V$:
+   
+   \begin{align*}
+       \boxed
+       {
+        \ff(\vv_1) \wedge ... \wedge \ff(\vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}
+       }
+   \end{align*}
+   
+   We can explicitly involve the pullback $\Lambda^n \ff$ and write the above as
+   
+   \begin{align*}
+       (\Lambda^n \ff)(\vv_1 \wedge ... \wedge \vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}.
+   \end{align*}
+   
+   Thus, $\Lambda^n(\ff)$ is multiplication by $\det(\ff)$.
+\end{theorem}
+
+\begin{remark}
+    (Determinant is well-defined).
+    
+    The above theorem provides a unique characterization of $\det(\ff)$ that does not involve any bases. This shows that $\det(\ff)$ is basis-independent and thus that the determinant of a function is well-defined.
+\end{remark}
+
+\begin{theorem}
+    (The pullback on the top exterior power is multiplication by the determinant).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Consider additionally the dual $\ff^*:W^* \rightarrow V^*$ (recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}). Then, applying the previous theorem and using that $\det(\ff) = \det(\ff^*)$, we see that the pullback $\Lambda^n \ff^*$ on the top exterior power satisfies
+    
+    \begin{align*}
+        (\Lambda^n \ff^*)(\ww_1 \wedge ... \wedge \ww_n) = \det(\ff) ( \ww_1 \wedge ... \wedge \ww_n ) \text{ for all $\ww_1, ..., \ww_n \in V$}.
+    \end{align*}
+    
+    That is,
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff^*(\ww_1) \wedge ... \wedge \ff^*(\ww_n) = \det(\ff)(\ww_1 \wedge ... \wedge \ww_n)
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    (Product rule for determinants). Let $V, W$ and $Z$ be finite-dimensional vector spaces of the same dimension, and consider linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Z$. Then $\det(\gg \circ \ff) = \det(\gg) \det(\ff)$. Thus, if $\AA$ is an $m \times n$ matrix and $\BB$ is an $n \times p$ matrix, then $\det(\BB \AA) = \det(\BB) \det(\AA)$.
+\end{theorem}
+
+\begin{proof}
+   Set $n := \dim(V) = \dim(W) = \dim(Z)$. By the previous theorem, $\det(\gg \circ \ff)$ satisfies
+   
+   \begin{align*}
+       (\gg \circ \ff)(\vv_1) \wedge ... \wedge (\gg \circ \ff)(\vv_n) = \det(\gg \circ \ff) (\vv_1 \wedge ... \wedge \vv_n)
+   \end{align*}
+   
+   for all $\vv_1, ..., \vv_n \in V$.
+   
+   Notice that the left side is
+   
+   \begin{align*}
+       \gg(\ff(\vv_1)) \wedge ... \wedge \gg(\ff(\vv_n)) = \det(\gg) (\ff(\vv_1) \wedge ... \wedge \ff(\vv_n)) =
+       \det(\gg) \det(\ff) (\vv_1 \wedge ... \wedge \vv_n).
+   \end{align*}
+   
+   Thus
+   
+   \begin{align*}
+       \det(\gg \circ \ff) (\vv_1 \wedge ... \wedge \vv_n) = \det(\gg) \det(\ff) (\vv_1 \wedge ... \wedge \vv_n).
+   \end{align*}
+   
+   This is a statement on the basis vector $\vv_1 \wedge ... \wedge \vv_n$ of $\Lambda^n(V)$. Extending this statement to a statement on any vector $\TT \in \Lambda^n(V)$, we have $\det(\gg \circ \ff) \TT = \det(\gg) \det(\ff) \TT$. Thus ${(\det(\gg \circ \ff) - \det(\gg) \det(\ff)) \TT = \mathbf{0}}$ for all $\TT \in \Lambda^n(V)$. Since we can choose $\TT \neq \mathbf{0}$, this forces $\det(\gg \circ \ff) - \det(\gg) \det(\ff) = 0$.
+\end{proof}
+
+\begin{theorem}
+    (Determinant of an inverse function).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Then $\det(\ff^{-1}) = \frac{1}{\det(\ff)}$.
+\end{theorem}
+
+\begin{proof}
+   We have $\det(\ff \circ \ff^{-1}) = \det(\II) = 1$, and $\det(\ff \circ \ff^{-1}) = \det(\ff) \det(\ff^{-1})$ by the previous theorem, so $\det(\ff) \det(\ff^{-1}) = 1$.
+\end{proof}
+
+%\begin{proof}
+    % For CTRL-F: well-defined, well-defined
+
+    %Let $\tU_1$ and $\tU_2$ be additional positively oriented orthonormal bases for $V$ and $W$.
+    
+    %[TO-DO]
+    
+    %$[\ff(G)]_H = \ff_{G, H}(\sE)$, and $\ff_{E, F} = [\cdot]_F \circ [\cdot]_{G^{-1}} \circ \ff_{G, H} \circ [\cdot]_H \circ [\cdot]_E^{-1}$.
+
+    %The matrix $[\widetilde{\ff}(F)]_F$ of $\widetilde{\ff}$ relative to $F$ and $F$ is related to the matrix $[\widetilde{\ff}(E)]_E$ of $\widetilde{\ff}$ relative to $E$ and $E$ by $[\widetilde{\ff}(F)]_F = [\FF]_F [\widetilde{\ff}(E)]_E [\FF]_F^{-1}$ (see Theorem \ref{thm::lin_alg::thm::change_of_bases_fns_common_special_case}). Therefore, by the previous theorem, $\det(\widetilde{\ff})$ is well-defined, because $\det([\widetilde{\ff}(F)]_F) = \det([\FF]_F [\widetilde{\ff}(E)]_E[\FF]_F^{-1}) = \det([\FF]_F) \det([\widetilde{\ff}(E)]_E) \det([\FF]_F^{-1}) = \det([\widetilde{\ff}(E)]_E)$, so $\det([\widetilde{\ff}(F)]_F) = \det([\widetilde{\ff}(E)]_E)$.
+%\end{proof}
+
+\newpage
+
+\section{Orientation of finite-dimensional vector spaces}
+\label{ch::exterior_pwrs::section::orientation}
+%\begin{itemize}
+%    \item \url{https://arxiv.org/pdf/1103.5263.pdf}
+%    \item \url{https://en.wikipedia.org/wiki/Cartan\%E2\%80\%93Dieudonn\%C3\%A9_theorem}
+%    \item \url{https://en.wikipedia.org/wiki/Rotor_(mathematics)#:~:text=A\%20rotor\%20is\%20an\%20object,the\%20Cartan\%E2\%80\%93Dieudonn\%C3\%A9\%20theorem).}
+%    \item \url{https://en.wikipedia.org/wiki/Geometric_algebra#Rotating_systems}
+%    \item \url{https://www.euclideanspace.com/maths/algebra/clifford/d4/transforms/index.htm}
+%\end{itemize}
+
+\textit{Orientation} is the mathematical formalization of the notions of ``clockwise'' and ``counterclockwise''; it is the notion which distinguishes different ``rotational configurations'' from each other.
+
+Our discussion of orientation will be as follows. First, we define an \textit{orientation on an inner product space} to be a choice of an ordered orthonormal basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
+
+After we finish the definition of orientation for inner product spaces, we end the subsection on oriented inner product spaces by presenting the fact that the determinant ``tracks'' orientation. This fact allows us to generalize the notion of orientation to finite dimensional vector spaces that may or may not have an inner product. Lastly, we show how the top exterior power of a finite-dimensional vector space can be used for the purposes of orientation.
+
+\subsection*{First notions of orientation for inner product spaces}
+
+\begin{defn}
+    (Ordered basis).
+    
+    We will formalize the notion of orientation relying on the concept of an ordered basis. An \textit{ordered basis} is a basis for a finite-dimensional vector space in which the order that vectors are specified matters. 
+    
+    For example, if $V$ is a 2-dimensional vector space, then the ordered bases $E_1 = \{\ee_1, \ee_2\}$ and $E_2 = \{\ee_2, \ee_1\}$ for $V$ are not equal, $E_1 \neq E_2$.
+\end{defn}
+
+\begin{defn}
+    (Permutation acting on an ordered basis). 
+    
+    Let $E = \{\ee_1, ..., \ee_n\}$ be an ordered basis for some finite-dimensional vector space. Given a permutation $\sigma \in S_n$, we define $E^\sigma := \{\ee_{\sigma(1)}, ..., \ee_{\sigma(n)}\}$.
+\end{defn}
+
+We now discover a consequence of imposing that the bases under consideration be ordered.
+
+\begin{deriv}
+\label{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}
+    (Intuition for the antisymmetry of ordered bases).
+    
+    Consider the plane $\R^2$, and consider also two permutations of the standard ordered basis $\sE = \{\see_1, \see_2\}$ for $\R^2$: $\{\see_1, \see_2\}$ and $\{\see_1, -\see_2\}$. (Draw these ordered bases out on paper). Notice that no matter how you rotate the entire second ordered basis (rotate each vector in the second ordered basis by the same amount), it is impossible to make all vectors from the second ordered basis simultaneously align with their counterparts from the first ordered basis. This is also impossible for the ordered bases $\{\see_1, \see_2\}$ and $\{\see_2, \see_1\}$. Finally, consider the ordered bases $\{\see_1, \see_2\}$ and $\{-\see_2, \see_1\}$ of $\R^2$. It \textit{is} possible to make each vector from the first ordered basis with its counterpart from the second ordered basis by rotating either the entire first ordered basis or the entire second ordered basis.
+    
+    What we have discovered is that \textit{swapping adjacent vectors in an ordered basis of two vectors produces an ordered basis that is} equivalent under rotation \textit{to the ordered basis obtained from the original by negating one of the vectors that have been swapped}. We refer to this fact as the \textit{antisymmetry of ordered bases}.
+\end{deriv}
+
+We would now like to work towards a more precise statement of the antisymmetry of ordered bases. The notion of \textit{rotational equivalence} is what will facilitate this formalization. Before we define rotational equivalence, however, we must formalize what a ``rotation'' is. The following definition accomplishes this.
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::2-rotation}
+    ($2$-rotation).
+    
+    Let $V$ be a $2$-dimensional inner product space, and let $\hU$ be an orthonormal ordered basis for $V$.
+    A \textit{$2$-rotation on the $2$-dimensional inner product space $V$} is a linear function $\RR_\theta:V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is
+    
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(\theta) & \sin(\theta) \\
+            \sin(\theta) & -\cos(\theta)
+        \end{pmatrix}
+    \end{align*}
+    
+    for some $\theta \in [0, 2\pi)$.
+    
+    Now consider the case when $V$ is an $n$-dimensional inner product space, $n > 2$. Suppose ${\hU = \{\huu_1, ..., \huu_n\}}$ is an orthonormal ordered basis for $V$. An \textit{extension (to $V$) of a $2$-rotation on the oriented\footnote{When we say ``oriented subspace'', we mean that the orientation of $\spann(\uu_i, \uu_j)$ is given by the ordered basis $\{\huu_i, \huu_j\}$.} subspace} $\spann(\huu_i, \huu_j) \subseteq V$ \textit{is a linear function $V \rightarrow V$ for which there exist $i, j$ such that}:
+    
+    \begin{itemize}
+        \item the map $(\vv_i, \vv_j) \mapsto \RR_\theta(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n)$ is a $2$-rotation on $\spann(\vv_i, \vv_j)$
+        \item the map $(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n) \mapsto \RR_\theta(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n)$ is the identity \\ on $\spann(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n)$.
+    \end{itemize}
+    
+    Note that the extension of a $2$-rotation restricts to a $2$-rotation on the subspace $\spann(\huu_i, \huu_j)$. It's also worth noting that the matrix of such an extension relative to $\hU$ and $\hU$ is, for some $i, j \in \{1, ..., n\}$,
+    
+    \begin{align*}
+        \kbordermatrix
+        {
+             & & & \text{$i$th column} &  & \text{$j$th column}   \\
+             & 1 & \hdots & \cos(\theta) & 0 & -\sin(\theta) & 0 \\
+             & 0 & & 0 & \vdots & 0 & \vdots \\
+             & 0 & & \vdots & 1 & \vdots & \vdots \\
+             & \vdots & & 0 & \vdots & 0 & \vdots \\
+             & 0 & \hdots & \sin(\theta)  & 0 & \cos(\theta) & 1
+        }.
+    \end{align*}
+    
+    (The columns other than the $i$th and $j$th columns are the columns of the $n \times n$ identity matrix).
+    
+    If $\RR_\theta$ is a $2$-rotation on a $2$-dimensional inner product space or is an extension of a $2$-dimensional  rotation on an $n$-dimensional inner product space, it is simply called a \textit{$2$-dimensional  rotation}, or a \textit{$2$-rotation}. In this looser terminology, the phrase ``a $2$-rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$'' really means ``an extension of a $2$-rotation, defined on the oriented subspace $\spann(\huu_i, \huu_j)$''.
+\end{defn}
+
+\begin{defn}
+    (Equivalence under rotation for $2$-dimensional inner product spaces).
+    
+    We define orthonormal ordered bases $\hU = \{\huu_1, \huu_2\}$ and $\tU = \{\tuu_1, \tuu_2\}$ of a 2-dimensional inner product space $V$ to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+\end{defn}
+
+\begin{theorem}
+    (Antisymmetry of ordered bases for a $2$-dimensional inner product space).
+    
+    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = \{\huu_1, \huu_2\}$ be an orthonormal ordered basis of a $2$-dimensional inner product space $V$. When $\theta = -\frac{\pi}{2}$ or $\theta = \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
+    
+    \begin{align*}
+        \pm
+        \begin{pmatrix}
+            0 & -1 \\
+            1 & 0
+        \end{pmatrix}.
+    \end{align*}
+    
+    Computing $\RR_\theta(\hU) = \RR_\theta(\{\huu_1, \huu_2\})$ for $\theta = -\frac{\pi}{2}, \frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
+    
+    \begin{align*}
+        \{\huu_1, \huu_2\} &\sim \{-\huu_2, \huu_1\} \sim \{\huu_2, -\huu_1\} \\
+        \{\huu_2, \huu_1 \} &\sim \{-\huu_1, \huu_2\} \sim \{\huu_1, - \huu_2\}.
+    \end{align*}
+
+    This is what we noticed in the informal discussion of Derivation \ref{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}.
+\end{theorem}
+
+We now generalize the equivalence under rotation and the antisymmetry of ordered bases to $n$-dimensional inner product spaces.
+
+\begin{defn}
+    (Equivalence under rotation for $n$-dimensional inner product spaces).
+    
+    We define orthonormal ordered bases $\hU = \{\huu_1, ..., \huu_n\}$ and $\tU = \{\tuu_1, ..., \tuu_n\}$ of an $n$-dimensional inner product space $V$ to be \textit{equivalent under rotation}, and thus write $\hU \sim \tU$, iff there is a composition of $2$-dimensional rotations $\RR = \RR_k \circ ... \circ \RR_1$, defined on some oriented subspaces $\spann(\huu_i, \huu_j)$, for which $\RR(\hU) = \tU$. This notion of ``equivalence under rotation'' is indeed an equivalence relation on orthonormal ordered bases of $V$.
+\end{defn}
+
+\begin{theorem}
+    (Antisymmetry of ordered bases for an $n$-dimensional inner product space).
+    
+     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional  rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$, we have
+    
+    \begin{align*}
+        \{\huu_1, ..., \huu_i, \huu_{i + 1}, ..., \huu_n\}
+        \sim
+        -\{\huu_1, ..., \huu_{i + 1}, \huu_i, ..., \huu_n\}.
+    \end{align*}
+    
+    Equivalently, for any orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$ and any permutation $\sigma \in S_n$,
+    
+    \begin{align*}
+        \{\huu_1, ..., \huu_n\}
+        \sim
+        \sgn(\sigma) \{\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}\}.
+    \end{align*}
+\end{theorem}
+
+\begin{defn}
+    (Orientation of permuted ordered bases).
+    
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ for $V$. Suppose $\hU^\sigma = \{\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}\}$, where $\sigma \in S_n$, is a permutation of $\hU$ that is not rotationally equivalent to $\hU$ (so choose any $\sigma$ with $\sgn(\sigma) = - 1$). By the antisymmetry of ordered bases, any other permutation $\hU^\pi = \{\huu_{\pi(1)}, ..., \huu_{\pi(n)}\}$, $\pi \in S_n$, of $\hU$ is rotationally equivalent either to $\hU$ or to $\hU^\sigma$. In other words, there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
+    
+    We can now begin to set up the notion of orientation. An \textit{orientation for the $n$-dimensional inner product space $V$} is a choice of an orthonormal ordered basis $\hU$ for $V$. When $V$ is given the orientation $\hU$, then the \textit{orientation of a permutation of $\hU$ (relative to $\hU$)} is said to be \textit{positive} iff that permutation of $\hU$ is rotationally equivalent to $\hU$, and is said to be \textit{negative} otherwise. Per the previous paragraph, every permutation of $\hU$ is either positively oriented or negatively oriented relative to $\hU$.
+\end{defn}
+
+\begin{remark}
+\label{ch::exterior_pwrs::rmk::formalization_ccw_cw}
+    (The formalization of ``counterclockwise'' and ``clockwise'').
+    
+    At the beginning of this section, we said that orientation would formalize the notions of ``clockwise'' and ``counterclockwise''. This formalization has been achieved by the previous definition.
+    
+    A \textit{counterclockwise rotational configuration} is another name for the orientation given to $\R^3$ by the standard basis, \textit{when we use the normal} human \textit{convention} of drawing the ordered basis $\sE = \{\see_1, \see_2, \see_3\}$ such that $\sE$ can be rotated so that $\see_1$ points out of the page, $\see_2$ points to the right, and $\see_3$ points upwards on the page. In this visual convention, the direction of each basis vector corresponds to its position in $\sE$. Counterclockwise rotational configurations are also called ``right handed coordinate systems''.
+    
+    A \textit{clockwise rotational configuration} then corresponds to the ordered bases which are not rotationally equivalent to $\sE$. One such ordered basis, $\{-\see_1, \see_2, \see_3\}$, can be depicted using the visual convention just established by drawing $\see_1$ as pointing into the page (i.e. $-\see_1$ points out of the page), $\see_2$ as pointing to the right, and $\see_3$ as pointing upwards on the page. Clockwise rotational configurations are also called ``left handed coordinate systems''.
+    
+    We could have easily picked a different visual convention (i.e. a different permutation of in/out, left/right, up/down) to represent the ordering of the basis that is considered to orient the space.
+\end{remark}
+
+At this point, we need some definitions and facts about $n$-rotations before we complete our development of orientation.
+
+\subsection*{Rotations in $n$-dimensions}
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::n-rotation}
+    ($n$-rotation).
+    
+    An \textit{$n$-rotation on an $n$-dimensional inner product space} is a composition of extensions of $2$-rotations on that space.
+\end{defn}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::n_dim_rot_det_1}
+    Every $n$-rotation is an orthogonal linear function.
+\end{theorem}
+
+\begin{proof}
+    Every $n$-rotation is a composition of $2$-rotations, which are orthogonal linear functions.
+\end{proof}
+
+\begin{lemma}
+\label{ch::exterior_pwrs::thm::3_rot_acts_on_subspaces}
+    (In three dimensions, every $2$-dimensional orthonormal ordered basis is ``rotationally close'' to a permuted orthonormal basis).
+    
+    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = \{ \tuu_1, \tuu_2 \}$ and $\hU = \{ \huu_1, \huu_2 \}$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there exists a $3$-rotation which takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
+\end{lemma}
+
+\begin{proof}
+   By definition, a $3$-rotation is of the form $\RR = \RR_\gamma \circ \RR_\beta \circ \RR_\alpha$, where $\RR_\alpha, \RR_\beta$, and $\RR_\gamma$ are $2$-rotations. (Sidenote: $\alpha, \beta, \gamma \in [0, 2\pi)$ are called \textit{Euler angles}).
+   
+   We must show that there exist $\alpha, \beta, \gamma$ for which $\RR(\tU) = \hU$. To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$. $2$-rotations are orthogonal linear functions, so they preserve the orthonormality of bases. Thus, $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$, so $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$. Therefore, $\RR(\tU) = \{\huu_1, \pm \huu_2 \}$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
+   
+   %\textbf{proof that such $\alpha, \beta, \gamma$ exist?} 
+\end{proof}
+
+\begin{remark}
+    The contribution of the previous lemma to the theorem we prove next is that the previous lemma captures the notion of rotating a lesser dimensional subspace within a higher dimensional ambient vector space. This machinery is required in the next theorem in the case when $n$ is odd.
+\end{remark}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
+     (In $n$ dimensions, any ordered basis is ``rotationally close'' to a permuted orthonormal basis).
+     
+     Let $V$ be an $n$-dimensional vector space, let $k \leq n$, and consider $k$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = \{ \tuu_1, ..., \tuu_n \}$ and $\hU = \{ \huu_1, ..., \huu_n \}$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there is an $n$-rotation taking $\tU$ to some permutation $\hU^\sigma$ of $\hU$. 
+\end{theorem}
+
+\begin{proof}
+   When $n \in \{2, 3\}$, the previous lemma yields the desired $n$-rotation as a composition of $3$-rotations (for $n = 2$, just take the restriction of the $3$-rotations). We need to show that the theorem holds when $n > 3$. We consider the cases when $n$ is even and $n$ is odd.
+   
+   If $n$ is even, then, for $i \in \{1, ..., n\}$, let $\RR_i$ be the $3$-rotation taking $\{ \huu_i,  \huu_{i + 1} \}$ to $\{ \tuu_{\sigma_i(i)},  \tuu_{\sigma_i(i + 1)} \}$, where $\sigma_i \in S(\{i, i + 1\})$ is some permutation. Then $\RR_{\frac{n}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\sigma$, where $\sigma \in S_n$ is the permutation defined by $\sigma(i) = \sigma_{j(i)}(i)$, where $j(i) = i$ when $i$ is odd and $j(i) = i - 1$ when $i$ is even.
+            
+    If $n$ is odd, then let $\RR$ be the $3$-rotation taking $\{ \huu_{n - 2}, \huu_{n - 1}, \huu_n \}$ to \\ $\{ \tuu_{\sigma_{n - 2}(n - 2)}, \tuu_{\sigma_{n - 2}(n - 1)}, \tuu_{\sigma_{n - 2}(n)} \}$, where $\sigma_{n - 2} \in S(\{n - 2, n - 1, n\})$ is some permutation.
+            
+    By the previous case (when $n$ was even), there is a composition $\RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ of $3$-rotations taking $\tU - \{\tuu_{n - 2}, \tuu_{n - 1}, \tuu_n\}$ to $\hU - \{\huu_{n - 2}, \huu_{n - 1}, \huu_n\})^\sigma$, for some permutation $\sigma \in S_n$. Thus $\RR \circ \RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\pi$, where $\pi(i) = \sigma(i)$ when $i \in \{1, ..., n - 3\}$ and $\pi(i) = \sigma_{n - 2}(i)$ when $i \in \{n - 2, n - 1, n\}$.
+\end{proof}
+
+\subsection*{Completing the definition of orientation for inner product spaces}
+
+\begin{defn}
+    (Orientation of arbitrary ordered bases).
+    
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$ for $V$. We know how to ``orient'' ordered bases for $V$ that happen to be permutations of $\hU$. Now, we generalize the notion of orientation so that it applies to any ordered orthonormal basis of $V$.
+    
+    We define the \textit{orientation of an orthonormal ordered basis $E$ of $V$} that is not a permutation of $\hU$ to be the orientation of the unique permuted orthonormal basis $\hU^\sigma$, $\sigma \in S^n$, of $\hU$ for which there exists an $n$-rotation taking $E$ to $\hU^\sigma$.
+    
+    Then, we define the \textit{orientation of an arbitrary orthonormal ordered basis $E$ of $V$} to be the orientation of the unique orthonormal basis $\hU_E$ obtained from performing the Gram-Schmidt process on $E$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}).
+\end{defn}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::det_tracks_orientation}
+    (The determinant tracks orientation). 
+    
+    Let $V$ be an $n$-dimensional inner product space with an orientation given by an orthonormal ordered basis $\hU$. Let $E = \{\ee_1, ..., \ee_n\}$ be any ordered basis (not necessarily orthonormal) of $V$. We have $\det([\EE]_{\hU}) > 0$ iff $E$ is positively oriented relative to $\hU$, and $\det([\EE]_{\hU}) < 0$ iff $E$ is negatively oriented relative to $\hU$.
+\end{theorem}
+
+\begin{proof}
+   This proof has two overarching steps. First, we pass the definition of orientation for arbitrary ordered bases of $V$ to the definition of orthonormal ordered bases of $V$ by obtaining an orthonormal ordered basis $\hU_E$ from $E$. Then we pass the definition of orientation for orthonormal ordered bases of $V$ that are not permutations of $\hU$ to the definition of orientation for orthonormal ordered bases of $V$ that are permutations of $\hU$.
+   
+   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $\{[\ee_1]_{\hU}, ..., [\ee_n]_{\hU}\}$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::exterior_pwrs::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = \{\tuu_1, ..., \tuu_n\}$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
+   
+   \begin{align*}
+       \det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU}) = \det([\tuu_1]_{\hU}, ..., [\tuu_n]_{\hU})
+       =
+       \det([\hU_E]_{\hU}).
+   \end{align*}
+   
+   In performing this first step of the proof, the determinant has stayed the same as we've passed from $E$ to $\hU_E$. We now show that the determinant continues to stay the same as we pass from  $\hU_E$ to some permutation $\hU^\sigma$ of $\hU$.
+   
+   Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis} says that there is a $n$-rotation $\RR$ taking $\hU_E$ to $\hU^\sigma$, for some $\sigma \in S_n$, and Theorem \ref{ch::exterior_pwrs::thm::n_dim_rot_det_1} guarantees that $\det(\RR) = 1$. Thus, since $\hU^\sigma = \RR(\hU_E)$, we have
+   
+   \begin{align*}
+        \det([\hU_E]_{\hU}) 
+        = \det([\RR(\hU_E)]_{\hU}) \det([\hU_E]_{\hU})
+        = \det([(\RR \circ \II)(\hU_E)]_{\hU})
+        = \det([\RR(\hU_E)]_{\hU})
+        = \det([\hU^\sigma]_{\hU}).
+   \end{align*}
+   
+   To conclude the proof, we will show that $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$; once we have shown this, we are done, since $\sgn(\sigma) \det([\hU]_{\hU}) = \sgn(\sigma) \det(\II) = \sgn(\sigma)$. Since any permutation is a composition of ``swaps'' (a ``swap'' is a permutation defined on a two-element set), then $\hU^\sigma$ can be obtained from $\hU$ by repeatedly swapping vectors in $\hU$. Whenever vectors are swapped in the determinant, the sign of the determinant is multiplied by $-1$. This accounts for the $\sgn(\sigma)$ factor in the equation $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$.
+\end{proof}
+
+\subsection*{Orientation of finite-dimensional vector spaces}
+
+\label{ch::exterior_pwrs::orientation_finite_dim_vector_space}
+
+The fact that the determinant tracks orientation is the main result of our discussion of orientation. Because determinants do not rely on the existence of an inner product, the determinant can be used to generalize the notion of orientation to any finite-dimensional vector space.
+
+\begin{defn}
+\label{ch::exterior_pwrs::defn::orientation_finite_dim_vector_space}
+    (Orientation of a finite-dimensional vector space).
+    
+    Let $V$ be a finite-dimensional vector space (not necessarily an inner product space). An \textit{orientation on $V$} is a choice of ordered basis $E$ for $V$. (Notice here that $E$ is not necessarily orthonormal, because $V$ might not have an inner product!). If we have given $V$ the orientation $E$, then we say that an ordered basis $F$ of $V$ is \textit{positively oriented (relative to $E$)} iff $\det([\FF]_E) > 0$, and that $F$ is \textit{negatively oriented (relative to $E$)} iff $\det([\FF]_E) < 0$.
+    
+    A finite-dimensional vector space that has an orientation is called an \textit{oriented (finite-dimensional) vector space}.
+\end{defn}
+ 
+\begin{remark}
+    (Antisymmetry of ordered bases).
+    
+    Notice that we still have the previous antisymmetry of ordered bases due to the antisymmetry of the determinant.
+\end{remark}
+ 
+We now show how the top exterior power of a vector space can be used to describe orientation. 
+
+\begin{theorem}
+\label{ch::exterior_pwrs::defn::orientation_with_top_degree_wedges}
+
+    (Orientation with top degree wedges).
+    
+    Let $V$ be a finite-dimensional vector space with an orientation $E = \{\ee_1, ..., \ee_n\}$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
+    
+    Notice, we can identify $E = \{\ee_1, ..., \ee_n\}$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
+    
+    Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
+\end{theorem}
+
+As a last sidenote, the following theorem gives some justification as to why our definition of $n$-rotation was a good definition. (Strictly speaking, though, the justification is somewhat circular, since we used the notion of $n$-rotations to explain how the determinant- which is involved in the justification- tracks orientation).
+
+\begin{theorem}
+    If $V$ is an $n$-dimensional inner product space, then 
+    
+    \begin{align*}
+        \{\text{$n$-rotations on $V$}\} = \{\text{orthogonal linear functions $V \rightarrow V$ with determinant 1}\}
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \scriptsize Proof idea is from jagr2808. 
+    \normalsize \\
+    \indent ($\subseteq$). This is just Theorem \ref{ch::exterior_pwrs::thm::n_dim_rot_det_1}.
+    
+    \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$ to another orthonormal basis $\ff(\hU) = \{\ff(\huu_1), ..., \ff(\huu_n)\}$.
+
+    Let $\RR_1$ be the $2$-rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a map from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
+    
+    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-rotation always exists because $\det(\ff) = 1$ implies that $\{\ff(\huu_1), ..., \ff(\huu_n)\}$ has the same orientation as $\{\huu_1, ..., \huu_n\}$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-rotations.
+    
+    Thus, since $\ff = \RR_n^{-1} \circ (\RR_n \circ \ff)$, we see $\ff$ is a composition of the $2$-rotations $\RR_n^{-1}$ and $\RR_n^{-1} \circ \ff$.
+    
+    %If T is an orthogonal endomorphism then T maps the standard basis e_1, ..., e_n to an orthonormal basis u_1, ..., u_n.
+
+    %Let R be the 2-rotation sending u_1 to e_1. Then RT is an endomorphism in SO(n) that fixes e_1, so we can think of it as an endomorphism in SO(n-1) on the orthogonal complement. By induction RT is the composition of 2-rotations. And T = R-1RT, so T is as well.
+\end{proof}
+
+\newpage
+
+\section{Exterior powers as vector spaces of functions}
+
+%\begin{defn}
+%    (Contraction between dual exterior powers).
+    
+%    Let $V$ be an $n$-dimensional vector space over a field $K$, and consider the $k$th exterior power $\Lambda^k(V)$, as well as the $k$th exterior power $\Lambda^k(V^*$). Recall from Definition \ref{ch::bilinear_forms_metric_tensors::defn::tensor_contraction} that there is\footnote{In the referenced definition, we use $C$, rather than $C'$, to denote the bilinear form on $V$ and $V^*$. We have chosen to use $C'$ here for the bilinear form on $V$ and $V^*$ so that we can use $C$ to denote the bilinear function $\Lambda^k(V) \times \Lambda^k(V^*) \rightarrow K$ we describe.} a natural bilinear form $C'$ on $V$ and $V^*$ defined by $C'(\vv, \phi) = \phi(\vv)$. Using the bilinear form $C'$ on $V$ and $V^*$, we can produce a bilinear function $C:\Lambda^k(V) \times \Lambda^k(V^*) \rightarrow K$ defined on elementary wedges, and extended with antisymmetry and seeming-multilinearity, by
+
+%    \begin{align*}
+%        C(\vv_{\sigma(1)} \wedge ... \wedge \vv_{\sigma(k)}, \phi_{\pi(1)} \wedge ... \wedge \phi_{\pi(k)}) &:= \sgn(\pi \circ \sigma) C'(\vv_1, \phi_1) ... C'(\vv_k, \phi_k) \\
+%        &= \sgn(\pi \circ \sigma) \phi_1(\vv_1) ... \phi_k(\vv_k).
+%    \end{align*}
+%\end{defn}
+
+%\begin{remark}
+%    Consider the title of the previous definition. In the previous definition, we describe a map $C:\Lambda^k(V) \times \Lambda^k(V^*) \rightarrow K$. Notice that because there is a natural isomorphism $\Lambda^k(V^*) \cong \Lambda^k(V)^*$ (recall Theorem \ref{ch::exterior_pwrs::thm::fundamental_isos_exterior_pwrs}), the map $C$ does induce a map $\widetilde{C}:\Lambda^k(V) \times \Lambda^k(V)^* \rightarrow K$, which is truly a contraction between ``dual exterior powers''. (In practice, we don't use $\widetilde{C}$, because we prefer to keep $\Lambda^k(V^*)$ ``as it is'').
+%\end{remark}
+
+When we first encountered $(p, q)$ tensors, we learned that $(p, q)$ tensors can be identified with multilinear functions; we saw that $T_{p,q}(V) \cong \LLLL((V^*)^{\times p} \times V^{\times q} \rightarrow K)$ is a natural isomorphism when $V$ is a finite-dimensional vector space. When $V_1, ..., V_k$ are finite-dimensional vector spaces, we similarly\footnote{$V_1^* \otimes ... \otimes V_k^* \cong (V_1 \otimes ... \otimes V_k)^* = \LLLL(V_1 \otimes ... \otimes V_k \rightarrow K) \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$.} have the natural isomorphism ${V_1^* \otimes ... \otimes V_k^* \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)}$.
+
+Wedge product spaces and exterior powers can also be interpreted as vector spaces of functions. We will need to interpret exterior powers as spaces of functions in the setting of differential forms. Our two goals in this subsection are to (1) present that a $k$-wedge of covectors in $V^*$ can act on $k$ vectors from $V$ to produce a scalar and to (2) give a new presentation of the pullback of a $k$-wedge of covectors.
+
+To achieve our goals, we first formalize some notation about the alternative interpretations of tensor product spaces, $(p, q)$ tensors, wedge product spaces, and exterior powers.
+
+\begin{deriv}
+    (Tensor product that operates on tensors that are treated as functions).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces, and consider that $V_1^* \otimes ... \otimes V_k^* \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ naturally. Observe that the involvement of $\otimes$ in $V_1^* \otimes ... \otimes V_k^*$ induces a binary operation $\totimes$ on $\LLLL(V_1 \times ... \times V_k \rightarrow K)$. We construct $\totimes$ by explicitly constructing a natural isomorphism $V_1^* \otimes ... \otimes V_k^*  \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$, and giving new notation to the output of this isomorphism. 
+    
+    The natural isomorphism $V_1^* \otimes ... \otimes V_k^* \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ is defined on the elementary tensor $\phi^1 \otimes ... \otimes \phi^k \in V_1^* \otimes ... \otimes V_k^*$, and extended with the seeming-multilinearity of $\otimes$ and the corresponding actual multilinearity of the newly-defined $\totimes$. The isomorphism sends
+    
+    %It is most illuminating to construct the isomorphism $V_1 \otimes ... \otimes V_k  \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ by defining an isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$. Once we have this isomorphism involving $k$, then we automatically have the full isomorphism involving $p, q$, since the identification $V \cong V^{**}$ provides a way to turn the isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$ into an isomorphism $T^k_0(V) \cong \LLLL(V^{\times k} \rightarrow K)$; we can ``piece together'' the two isomorphisms involving $k$ to obtain the full isomorphism involving $p, q$. We construct the isomorphism this way to emphasize the action of elements of $V^*$ on elements of $V^*$ and the action of elements of $V \cong V^{**}$ on elements of $V^*$.
+    
+    \begin{align*}
+        \phi^1 \otimes ... \otimes \phi^k \mapsto \phi^1 \totimes ... \totimes \phi^k,
+    \end{align*}
+    
+    where $\phi^1 \totimes ... \totimes \phi^k:V^{\times k} \rightarrow K$ is the multilinear function defined by
+    
+    \begin{align*}
+        (\phi^1 \totimes ... \totimes \phi^k)(\vv_1, ..., \vv_k) := \phi^1(\vv_1) ... \phi^k(\vv_k).
+    \end{align*}
+    
+    Note, we have essentially reused the idea of the natural isomorphism from the third bullet point of Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos} (this isomorphism is discussed in the proof of the referenced theorem).
+\end{deriv}
+
+\begin{defn}
+    (Tensor product spaces as vector spaces of functions).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. We define $V_1^* \totimes ... \totimes V_k^*$ to be the vector space spanned by elements of the form $\phi^1 \totimes ... \totimes \phi^k$, where $\phi^i \in V_i^*$. Thus, 
+    
+    \begin{align*}
+        V_1^* \totimes ... \totimes V_k^* = \LLLL(V_1^* \times ... \times V_k^* \rightarrow K).
+    \end{align*}
+    
+    We also define $V_1 \totimes ... \totimes V_k := V_1^{**} \totimes ... \totimes V_k^{**} = \LLLL(V_1^{**} \times ... \times V_k^{**} \rightarrow K)$.
+\end{defn}
+
+\begin{theorem}
+    (Natural isomorphisms relating $\otimes$ and $\totimes$).
+     
+    For finite-dimensional vector spaces $V$ and $W$, we have $V^* \totimes W^* \cong V^* \otimes W^*$ naturally. From this, it follows that $V \totimes W \cong V \otimes W$ naturally. Induction then gives that $V^{\totimes k} \cong V^{\otimes k}$.
+\end{theorem}
+
+\begin{proof}
+    To prove the first statement, send elementary tensors to elementary tensors via the linear map $\phi \totimes \psi \mapsto \phi \otimes \psi$, and extend this map with linearity. The rest follows easily.
+\end{proof}
+
+\begin{defn}
+    ($(p, q)$ tensors as functions).
+    
+    We define $\tT_{p,q}(V) := (V^*)^{\totimes p} \totimes V^{\totimes q}$. Note that, due to the previous theorem, there is a natural isomorphism $T_{p,q}(V) \cong \tT_{p,q}(V)$.
+\end{defn}
+
+\begin{deriv}
+    (Alternization of elements of $V_1 \totimes ... \totimes V_k$).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces, and consider the wedge product space $V_1^* \wedge ... \wedge V_k^*$. Due to the existence of the $\alt$ function on $V_1^* \wedge ... \wedge V_k^*$, the isomorphism $V_1^* \otimes ... \otimes V_k^* \cong V_1^* \totimes ... \totimes V_k^*$ induces a function $\talt:V_1^* \totimes ... \totimes V_k^* \rightarrow V_1^* \totimes ... \totimes V_k^*$:
+    
+    \begin{align*}
+        \talt(\TT) = \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma,
+    \end{align*}
+    
+    where $(\cdot)^\sigma$ is a permutation on elements of $V_1^* \totimes ... \totimes V_k^*$ induced by a permutation on elements of $V_1^* \totimes ... \totimes V_k^*$. To be extra clear, $(\cdot)^\sigma:V_1^* \totimes ... \totimes V_k^* \rightarrow V_1^* \totimes ... \totimes V_k^*$ is defined on elementary ``tensors'', and extended with multilinearity, by $(\phi^1 \totimes ... \totimes \phi^k)^\sigma = \phi^{\sigma(1)} \totimes ... \totimes \phi^{\sigma(k)}$.
+\end{deriv}
+
+\begin{deriv}
+    (Wedge product that operates on tensors that are treated as functions).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces. The wedge product ${\wedge:(V_1^* \otimes ... \otimes V_k^*)^{\times 2} \rightarrow \alt((V_1^* \otimes ... \otimes V_k^*)^{\otimes 2})}$ induces a wedge product ${\twedge: (V_1 \totimes ... \totimes V_k^*)^{\times 2} \rightarrow \talt((V_1^* \totimes ... \totimes V_k^*)^{\totimes 2})}$ defined by $\TT \twedge \SS = \talt(\TT \totimes \SS)$. The wedge product $\twedge$ is an alternating multilinear function because $\wedge$ is antisymmetric and appears multilinear.
+\end{deriv}
+
+\begin{defn}
+    (Wedge product spaces as vector spaces of functions).
+    
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. We define $V_1^* \twedge ... \twedge V_k^*$ to be the vector space spanned by elements of the form $\phi^1 \twedge ... \twedge \phi^k$, where $\phi^i \in V_i^*$. Thus,
+    
+    \begin{align*}
+        V_1^* \twedge ... \twedge V_k^* = (\alt \LLLL)(V_1 \times ... \times V_k \rightarrow K).
+    \end{align*}
+    
+    We also define $V_1 \twedge ... \twedge V_k := V_1^{**} \twedge ... \twedge V_k^{**} = (\alt \LLLL)(V_1^{**} \times ... \times V_k^{**} \rightarrow K)$.
+\end{defn}
+
+\begin{theorem}
+    (Natural isomorphisms relating $\wedge$ and $\twedge$).
+     
+    For finite-dimensional vector spaces $V$ and $W$, we have $V^* \twedge W^* \cong V^* \wedge W^*$ naturally. From this, it follows that $V \twedge W \cong V \wedge W$ naturally. Induction then gives that $V^{\twedge k} \cong V^{\wedge k}$.
+\end{theorem}
+
+\begin{proof}
+    To prove the first statement, send elementary tensors to elementary tensors via the linear map $\phi \twedge \psi \mapsto \phi \wedge \psi$, and extend this map with linearity and antisymmetry. The rest follows easily.
+\end{proof}
+
+\begin{defn}
+    (Exterior powers as vector spaces of functions).
+    
+    Let $V$ be a finite-dimensional vector space over a field $K$. Because the previous definition shows \\ ${\Lambda^k(V^*) = (V^*)^{\wedge k} \cong (V^*)^{\twedge k}}$ naturally, we define $\tLambda^k(V^*) := (V^*)^{\twedge k} = (\alt \LLLL)(V^{\times k} \rightarrow K)$.
+\end{defn}
+
+%\begin{defn}
+%    (Action of an element of $\Lambda^k(V^*)$ on an element of $\Lambda^k(V)$).
+    
+%    Let $V$ be an $n$-dimensional vector space over a field $K$. Due to the existence of the contraction between dual exterior powers, an element of $\Lambda^k(V^*)$ can be thought of having a natural action on elements of $\Lambda^k(V)$. To formalize this, we will define the following notation for $\phi^1 \wedge ... \wedge \phi^k \in \Lambda^k(V^*)$.
+    
+%    \begin{align*}
+%        (\phi^{\pi(1)} \wedge ... \wedge \phi^{\pi(k)})(\vv_{\sigma(1)}, ..., \vv_{\sigma(k)}) &:= C(\vv_{\sigma(1)} \wedge ... \wedge \vv_{\sigma(k)}, \phi_{\pi(1)} \wedge ... \wedge \phi_{\pi(k)}) \\
+%        &= \sgn(\pi \circ \sigma) C'(\vv_1, \phi_1) ... C'(\vv_k, \phi_k) \\
+%        &= \sgn(\pi \circ \sigma) \phi_1(\vv_1) ... \phi_k(\vv_k).
+%    \end{align*}
+%\end{defn}
+
+We have now laid out the landscape for the interpretation of tensor product spaces and wedge product spaces as vector spaces of functions. In doing so, we described explicitly how $\totimes$ acts on multilinear functions to produce a multilinear function. To complete this section, we show how $\twedge$ acts on alternating multilinear functions to produce an alternating multilinear function, and present the pullback of elements of exterior powers in the context where exterior powers are thought of as vector spaces of functions.
+
+\begin{lemma}
+\label{ch::exterior_pwrs::lemma::pushforward_on_dual}
+
+    (Pushforward on the dual is multiplication by $\det(\phi^i(\ee_j))$).
+    
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. For all $\phi^1, ..., \phi^n \in V^*$, we have
+    
+    \begin{align*}
+        \phi^1 \wedge ... \wedge \phi^n = \det(\ff^*) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n},
+    \end{align*}
+    
+    because the pushforward on a top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}). Since the matrix of $\ff^*$ relative to $E^*$ and $E^*$ has $i$th column $[\phi^i]_{E^*}$, we have
+    
+    \begin{align*}
+        \phi^1 \wedge ... \wedge \phi^n &= \det \begin{pmatrix} [\phi^1]_{E^*} & \hdots & [\phi^1]_{E^*} \end{pmatrix} \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n} \\
+        &= \det(\phi^i(\ee_j)) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n}.
+    \end{align*}
+    
+    To obtain the last expression, recall the fact that for any $\phi \in V^*$ and basis $F^*$ of $V^*$ induced by a basis $F = \{\ff_1, ..., \ff_n\}$ of $V$, we have $([\phi]_{F^*})_i = \phi(\ff_i)$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}).
+\end{lemma}
+
+\begin{remark}
+    Interestingly, the fact $\det(\ff^*) = \det(\ff)$ does \textit{not} come in useful for the current line of argument (the ``current line of argument'' started with the previous lemma).
+\end{remark}
+
+\begin{lemma}
+\label{ch::exterior_pwrs::lemma::action_dual_wedge_dual_basis}
+    (Action of dual $n$-wedge on dual basis).
+    
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. Consider an element $\phi^1 \twedge ... \twedge \phi^n \in \tLambda^n(V^*)$. We have
+    
+    \begin{align*}
+        (\phi^{\ee_1} \twedge ... \twedge \phi^{\ee_n})(\ee_1, ..., \ee_n) = 1.
+    \end{align*} 
+\end{lemma}
+
+\begin{proof}
+    Using a similar argument to the one that showed the permutation formula for the determinant on the $\phi^{\ee_i}$, we have
+    
+    \begin{align*}
+        \phi^{\ee_1} \twedge ... \twedge \phi^{\ee_n} = \talt(\phi^{\ee_1} \twedge ... \totimes \phi^{\ee_n}) 
+        = \sum_{\sigma \in S_n} \sgn(\sigma) \phi^{\ee_{\sigma(1)}} \totimes ... \totimes \phi^{\ee_{\sigma(n)}}.
+    \end{align*}
+            
+    Therefore 
+    
+    \begin{align*}
+         (\phi^{\ee_1} \twedge ... \twedge \phi^{\ee_n})(\ee_1, ..., \ee_n) 
+         = \Big( \sum_{\sigma \in S_n} \sgn(\sigma) \phi^{\ee_{\sigma(1)}} \totimes ... \totimes \phi^{\ee_{\sigma(n)}} \Big) (\ee_1, ..., \ee_n) 
+         = \sum_{\sigma \in S_n} \Big( \sgn(\sigma) ( \phi^{\ee_{\sigma(1)}} \totimes ... \totimes \phi^{\ee_{\sigma(n)}})(\ee_1, ..., \ee_n) \Big). 
+    \end{align*}
+    
+    Now we focus on the inner term, $(\phi^{\ee_{\sigma(1)}} \totimes ... \totimes \phi^{\ee_{\sigma(n)}})(\ee_1, ..., \ee_n)$. By definition of $\totimes$, we have
+            
+    \begin{align*}
+        (\phi^{\ee_{\sigma(1)}} \totimes ... \totimes \phi^{\ee_{\sigma(n)}})(\ee_1, ..., \ee_n) 
+        =
+        \phi^{\ee_{\sigma(1)}}(\ee_1) ... \phi^{\ee_{\sigma(n)}}(\ee_n) 
+    \end{align*}
+            
+    Since $\epsilon^{\sigma(i)}(\ee_j) = \delta^{\sigma(i)}{}_j$, the only permutation $\sigma \in S_n$ for which the above expression is nonzero is the identity permutation $i$; when $\sigma = i$, the above is $1$. Thus, we have
+    
+    \begin{align*}
+        (\phi^{\ee_1} \twedge ... \twedge \phi^{\ee_n})(\ee_1, ..., \ee_n) = \sgn(i) \cdot 1 = 1 \cdot 1 = 1. 
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+\label{ch::exterior_pwrs::thm::action_dual_k_wedge_on_vectors}
+    (Action of dual $n$-wedge on vectors).
+    
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. Consider an element $\phi^1 \twedge ... \twedge \phi^n \in \tLambda^n(V^*)$. We have
+    
+    \begin{align*}
+        (\phi^1 \twedge ... \twedge \phi^n)(\ee_1, ..., \ee_n) = \det(\phi^i(\ee_j)).
+    \end{align*}
+    
+    By extending with antisymmetry and multilinearity, we have
+    
+    \begin{align*}
+        \boxed
+        {
+            (\phi^1 \twedge ... \twedge \phi^n)(\vv_1, ..., \vv_n) = \det(\phi^i(\vv_j)) \text{ for all $\vv_1, ..., \vv_n \in V$}
+        }
+    \end{align*}
+    
+    The action of $\phi^1 \twedge ... \twedge \phi^n$ on $\vv_1, ..., \vv_n$ can be interpreted as follows. First notice that the above is nonzero only when $\vv_1, ..., \vv_n$ are linearly independent, i.e., when $E := \{\vv_1, ..., \vv_n\}$ is a basis\footnote{Quick proof that $(\text{linearly independent}) \implies (\text{basis})$ in this scenario. If $E := \{\vv_1, ..., \vv_n\}$ is not a basis for $V$, then $E$ is a linearly independent set of $n$ vectors that doesn't span $V$, so we need to add more linearly independent vectors to $E$ in order to obtain a basis; that is, $\dim(V) > n$, which is a contradiction.}. Thus, when $\vv_1, ..., \vv_n$ are linearly independent, we can interpret $\phi^i(\vv_j)$ in the style of Lemma \ref{ch::exterior_pwrs::lemma::pushforward_on_dual} as $\phi^i(\vv_j) = ([\phi^i]_{E^*})^j$, where ${E^* := \{\phi^{\vv_1}, ..., \phi^{\vv_n}\}}$ is the dual basis for $V^*$ induced by the basis $E$ for $V$:
+    
+    \begin{align*}
+        (\phi^1 \twedge ... \twedge \phi^n)(\vv_1, ..., \vv_n) = \det \begin{pmatrix} [\phi^1]_{E^*} & \hdots & [\phi^1]_{E^*} \end{pmatrix} \text{ when $\vv_1, ..., \vv_n$ are linearly independent}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+   The first of the previous two lemmas implies $\phi^1 \twedge ... \twedge \phi^n = \det(\ff^*) \phi^{\ee_1} \twedge ... \twedge \phi^{\ee_n}$. (We have just put $\sim$'s over the $\wedge$'s of the first lemma). Combine this with the second of the previous two lemmas.
+\end{proof}
+
+So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a function, can act on vectors from $V$. Lastly, we present the pushforward and pullback of elements of exterior powers when exterior powers are interpreted to be spaces of functions. (We are interested in the pullback, but present the pushforward for completeness).
+
+\subsubsection{Pushforward and pullback on vector spaces of functions}
+
+\begin{deriv}
+    (Pushforward on $\tT^k_0(V)$)
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0} defined the pushforward $\otimes_{k, 0} \ff: T^k_0(V) \rightarrow T^k_0(W)$ by
+    
+    \begin{align*}
+        \vv_1 \otimes ... \otimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k).
+    \end{align*}
+    
+    The natural isomorphisms $T^k_0(V) \cong \tT^k_0(V)$ and $T^k_0(W) \cong \tT^k_0(W)$ induce a pushforward map $\totimes^k_0 \ff:\tT^k_0(V) \rightarrow \tT^k_0(W)$ defined by
+    
+    \begin{align*}
+        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff(\vv_1) \totimes ... \totimes \ff(\vv_k).
+    \end{align*}
+    
+    Notice that by definition of $\totimes$, we have $ \ff(\vv_1) \totimes ... \totimes \ff(\vv_k) = (\ff^{\totimes k})(\vv_1, ..., \vv_i)$. Therefore
+    
+    \begin{align*}
+        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff^{\totimes k}(\vv_1, ..., \vv_k).
+    \end{align*}
+\end{deriv}
+
+\begin{deriv}
+\label{ch::exterior_pwrs::deriv::pullback_on_tT0k}
+    (Pullback on $\tT_{0,k}(W)$).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pullback_on_T0k} defined the pullback $\otimes_{k, 0} \ff^*: T_{0,k}(W) \rightarrow T_{0,k}(V)$ by
+    
+    \begin{align*}
+        \psi^1 \totimes ... \totimes \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k).
+    \end{align*}
+    
+    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes^0_k \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
+    
+    \begin{align*}
+        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes^0_k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
+    \end{align*}
+    
+    It can be checked using the definition of $\totimes$ that $(\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff) = (\psi^1 \totimes ... \totimes \psi^k) \circ \ff$. Therefore
+    
+    \begin{align*}
+        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes^0_k \ff^*}{\longmapsto}
+        (\psi^1 \totimes ... \totimes \psi^k) \circ \ff.
+    \end{align*}
+    
+    The above is a statement on the elementary tensor $\psi^1 \totimes ... \totimes \psi^k$. Extending this statement using the multilinearity of $\totimes$, we have
+    
+    \begin{align*}
+        \TT \in \tT_{0,k}(W) \overset{\totimes^0_k \ff^*}{\longmapsto} \TT \circ \ff \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
+    \end{align*}
+    
+    Since $\TT \circ \ff = \ff^*(\TT)$, this is equivalent to
+    
+    \begin{align*}
+        \TT \in \tT_{0,k}(W) \overset{\totimes^0_k \ff^*}{\longmapsto} \ff^*(\TT) \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
+    \end{align*}
+    
+    Since elements of $\tT_{0,k}(V)$ act on $k$ vectors from $V$, we now ask, how does $\otimes_{0, k} \ff^*$ act on $k$ vectors from $V$? Well,
+    
+    \begin{align*}
+        \otimes_{0, k} \ff^*(\vv_1, ..., \vv_k) = \ff^*(\TT)(\vv_1, ..., \vv_k) = (\TT \circ \ff)(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k)).
+    \end{align*}
+    
+    Thus $\otimes_{0, k} \ff^*$ acts on $k$ vectors from $V$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            \otimes_{0, k} \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))
+        }
+    \end{align*}
+\end{deriv}
+
+\begin{deriv}
+    (Pushforward on $\tLambda^k(V)$).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_exterior_pwr} defined the pushforward $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ by
+    
+    \begin{align*}
+        \vv_1 \wedge ... \wedge \vv_k \overset{\Lambda^k \ff}{\longmapsto} \ff(\vv_1) \wedge ... \wedge \ff(\vv_k).
+    \end{align*}
+    
+    Equivalently,
+    
+    \begin{align*}
+        \alt(\vv_1 \otimes ... \otimes \vv_k) \overset{\Lambda^k \ff}{\longmapsto} \alt(\otimes_{k, 0} \ff(\vv_1 \otimes ... \otimes 
+        \vv_k)).
+    \end{align*}
+    
+    Since the pushforward $\otimes_{k, 0}:T^k_0(V) \rightarrow T^k_0(W)$ induces the pushforward $\totimes^k_0:\tT^k_0(V) \rightarrow \tT^k_0(W)$, then we obtain a pushforward $\tLambda^k \ff:\tLambda^k(V) \rightarrow \tLambda^k(W)$ defined by
+    
+    \begin{align*}
+        \vv_1 \twedge ... \twedge \vv_k = \talt(\vv_1 \totimes ... \totimes \vv_k) \overset{\tLambda^k \ff}{\longmapsto} \talt(\totimes^k_0 \ff(\vv_1 \totimes ... \totimes \vv_k)) = \ff^{\twedge k}(\vv_1, ..., \vv_k).
+    \end{align*}
+    
+    That is,
+    
+    \begin{align*}
+        \vv_1 \twedge ... \twedge \vv_k \overset{\tLambda^k \ff}{\longmapsto} \ff^{\twedge k}(\vv_1, ..., \vv_k).
+    \end{align*}
+\end{deriv}
+
+\begin{deriv}
+\label{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns}
+    (Pullback on $\tLambda^k(W^*)$).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_exterior_pwr} defined the pullback $\Lambda^k \ff^*:\Lambda^k(W^*) \rightarrow \Lambda^k(V^*)$ by
+    
+    \begin{align*}
+        \psi^1 \wedge ... \wedge \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^k).
+    \end{align*}
+    
+    Equivalently,
+    
+    \begin{align*}
+        \alt(\psi^1 \otimes ... \otimes \psi^k) \overset{\Lambda^k \ff^*}{\longmapsto} \alt(\otimes_{0, k} \ff^*(\psi^1 \otimes ... \otimes \psi^k)).
+    \end{align*}
+    
+    Since the pullback $\otimes_{0, k} \ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)$ induces the pullback $\totimes^0_k \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)$, then we obtain a pullback $\tLambda^k \ff^*:\tLambda^k(W^*) \rightarrow \tLambda^k(V^*)$ defined by
+    
+    \begin{align*}
+        \psi^1 \twedge ... \twedge \psi^k = \talt(\psi^1 \totimes ... \totimes \psi^k) \overset{\tLambda^k \ff^*}{\longmapsto}
+        &\talt(\totimes^0_k \ff^*(\psi^1 \totimes ... \totimes \psi^k)) \\ 
+        &= \talt((\psi^1 \totimes ... \totimes \psi^k) \circ \ff) = \talt(\psi^1 \totimes ... \totimes \psi^k) \circ \ff
+        = (\psi^1 \twedge ... \twedge \psi^k) \circ \ff.
+    \end{align*}
+    
+    (The equality between the rightmost expression of the first line and the leftmost expression of the second line uses the fact that $\totimes \ff^*(\TT) = \ff^*(\TT)$, which is presented in Derivation \ref{ch::exterior_pwrs::deriv::pullback_on_tT0k}. The validity of the second equals sign in the second line has not been proven, but it is quickly checked).
+    
+    Overall, the above line reads
+    
+    \begin{align*}
+        \psi^1 \twedge ... \twedge \psi^k \overset{\tLambda^k \ff^*}{\longmapsto} (\psi^1 \twedge ... \twedge \psi^k) \circ \ff.
+    \end{align*}
+    
+    Extending with the multilinearity and alternatingness of $\twedge$, we extend this statement to
+    
+    \begin{align*}
+        \TT \in \Lambda^k(W^*) \overset{\tLambda^k \ff^*}{\longmapsto} \TT \circ \ff = \ff^*(\TT) \in \Lambda^k(V^*).
+    \end{align*}
+    
+    Therefore, $\tLambda^k \ff^*:\tLambda^k(W^*) \rightarrow \tLambda^k(V^*)$ acts on $k$ vectors from $V$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            \tLambda^k \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))
+        }
+    \end{align*}
+    
+    In appearance, it seems that $\tLambda^k \ff^*$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes^0_k \ff^*$, since $\totimes^0_k \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on alternating multilinear maps $\TT$, while $\totimes^0_k \ff^*$ acts on multilinear (not necessarily alternating) maps $\TT$.
+\end{deriv}
+
+\newpage
+
+\section{The cross product}
+\label{ch::exterior_pwrs::section::cross_product}
+
+At the end of Chapter \ref{ch::lin_alg}, we presented an explanation for the dot product that remedies two common problematic ways to explain the dot product. The cross product also comes with two common pedagogical problems. We describe and remedy those here.
+
+The first pedagogical problem with the cross product is that the complicated algebraic formula for the cross product is rarely explained. (The formula is $\vv \times \ww = \Big( ([\vv_1]_E)^2 ([\vv_2]_E)^3 - ([\vv_1]_E)^3 ([\vv_2]_E)^2 \Big) - \Big( ([\vv_1]_E)^1 ([\vv_2]_E)^3 - ([\vv_1]_E)^3 ([\vv_2]_E)^1 \Big) + \Big( ([\vv_1]_E)^1 ([\vv_2]_E)^2 - ([\vv_1]_E)^2 ([\vv_2]_E)^1 \Big)$).
+
+The second problem is that the ``right hand rule'' is never explicitly formalized. One common ``explanation'' for the right hand rule goes as follows: ``you can use a `left hand rule' if you want to, but then you'll have to account for a minus sign''. This is a true statement, but it only relates the ``right hand rule'' with the ``left hand rule''- it does not explain the fundamental reason why a right hand rule or left hand rule would emerge in the first place. The ``right hand rule'' is really a consequence of conventions about orientation.
+
+\begin{comment}
+\begin{lemma}
+\label{ch::lin_alg::thm::dot_prod_cancelable}
+    (The algebraic dot product on $\R^n$ is positive definite, and therefore cancelable).
+    
+    The algebraic dot product on $\R^n$ is \textit{positive definite}; that is, it satisfies the property ${(\vv \cdot \vv = 0 \iff \vv = \mathbf{0})}$.
+    
+    As a consequence, we have the fact that, when $\vv \in \R^n$ is nonzero and $\vv_1, \vv_2 \in \R^n$, then ${((\vv_1 \cdot \vv = \vv_2 \cdot \vv) \implies \vv_1 = \vv_2)}$.
+\end{lemma}
+
+\begin{proof}
+   We first show that the dot product on $\R^n$ satisfies the property $(\vv \cdot \vv = 0 \iff \vv = \mathbf{0})$. The reverse implication follows immediately. For the forward implication, let $\vv \in \R^n$, and suppose $\vv \cdot \vv = 0$; we must show $\vv = \mathbf{0}$. We have $\vv \cdot \vv = \sum_{i = 1}^n ([\vv]_\sE)_i^2$. Each term in the sum is a nonnegative number. Therefore, the sum is only zero if all terms in the sum are zero, so $([\vv]_\sE)_i = 0$ for each $i$, which means $\vv = \mathbf{0}$.
+   
+   Now we show that when $\vv \in \R^n$ is nonzero and $\vv_1, \vv_2 \in \R^n$, then $((\vv_1 \cdot \vv = \vv_2 \cdot \vv) \implies \vv_1 = \vv_2)$. If $\vv_1 \cdot \vv = \vv_2 \cdot \vv$, then $(\vv_1 - \vv_2) \cdot \vv = \mathbf{0}$ by the bilinearity of $\cdot$. Since $\vv \neq \mathbf{0}$, then we must have $\vv_1 - \vv_2 = \mathbf{0}$ due to the positive definiteness of $\cdot$. That is, $\vv_1 = \vv_2$.
+\end{proof}
+\end{comment}
+
+\begin{deriv}
+    (Cross product). 
+    
+    In Section \ref{ch::lin_alg::section::dot_product}, we presented the dot product by starting with an intuitive geometric definition of the dot product and building onto that definition. If we were to define the cross product in the same manner, we would start with this geometric definition:
+    
+    \vspace{.25cm}
+    
+    \begin{addmargin}[3em]{2em}
+        The cross product of $\vv_1, \vv_2 \in \R^3$ is the vector $(\vv_1 \times \vv_2) \in \R^3$ such that
+
+        \begin{itemize}
+            \item $||\vv_1 \times \vv_2||$ is the area of the parallelogram spanned by $\vv_1$ and $\vv_2$
+            \item $\widehat{\vv_1 \times \vv_2}$ is the vector perpendicular to $\vv_1$ and $\vv_2$ such that $\{\vv_1, \vv_2, \vv_1 \times \vv_2\}$ is positively oriented (this condition is equivalent to the ``right hand rule'')
+        \end{itemize}
+    \end{addmargin}
+    
+    Starting with the above definition is better than most non-explanations of the cross product, but is still problematic, as doing so begs the question, ``Why is it natural for some vector to satisfy these two conditions?''. A better way to introduce the cross product is to stumble across a vector that satisfies these two conditions, and then define that vector to be $\vv_1 \times \vv_2$. This is what we will do.
+
+    Consider the linear function $\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R$ defined by $\ff_{\vv_1,\vv_2}(\vv) = \det(\vv_1, \vv_2, \vv)$. Since ${\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R}$, then $\ff_{\vv_1,\vv_2}$ must be represented by a $1 \times 3$ matrix: $\ff_{\vv_1, \vv_2}(\vv) = \cc^\top \vv$ for some $\cc \in \R^3$. We define the \textit{cross product of $\vv_1$ and $\vv_2$} to be this $\cc$. That is, we define the cross product of $\vv_1, \vv_2 \in \R^3$ to be the unique vector $(\vv_1 \times \vv_2) \in \R^3$ such that
+    
+    \begin{align*}
+        (\vv_1 \times \vv_2) \cdot \vv = \det(\vv_1, \vv_2, \vv) \text{ for all $\vv \in \R^3$}.
+    \end{align*}
+\end{deriv}
+
+We now prove that $\vv_1 \times \vv_2$ satisfies the previously mentioned geometric properties.
+
+\begin{theorem}
+    (Magnitude, direction of cross product).
+    
+    The cross product $\vv_1 \times \vv_2$ of  $\vv_1, \vv_2 \in \R^3$ is such that:
+    
+    \begin{itemize}
+        \item $||\vv_1 \times \vv_2||$ is the area of the parallelogram spanned by $\vv_1$ and $\vv_2$
+        \item $\widehat{\vv_1 \times \vv_2}$ is the vector perpendicular to $\vv_1$ and $\vv_2$ such that $\{\vv_1, \vv_2, \vv_1 \times \vv_2\}$ is positively oriented
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    \hspace{0mm} \\
+    \begin{itemize}
+        \item We have $(\vv_1 \times \vv_2) \cdot \vv = ||\proj(\vv \rightarrow \vv_1 \times \vv_2)|| \spc ||\vv_1 \times \vv_2||$. By the definition of the cross product, we have $||\proj(\vv \rightarrow \vv_1 \times \vv_2)|| \spc ||\vv_1 \times \vv_2|| = \det(\vv_1, \vv_2, \vv)$, so $||\vv_1 \times \vv_2|| = \frac{\det(\vv_1, \vv_2, \vv)}{||\proj(\vv \rightarrow \vv_1 \times \vv_2)||}$. This is equal to the volume of the parallelapiped spanned by $\vv_1, \vv_2$ and $\vv$ divided by the height of the same parallelapiped, which is the same as the area of the base of the parallelapiped, i.e., the area of the parallelogram spanned by $\vv_1$ and $\vv_2$.
+        \item Consider $\vv_i$, $i \in \{1, 2\}$. We have $(\vv_1 \times \vv_2) \cdot \vv_i = \det(\vv_1, \vv_2, \vv_i)$. Since $\vv_i \in \{\vv_1, \vv_2\}$, then two vectors in the determinant are the same. This implies the determinant is zero.
+    \end{itemize}
+\end{proof}
+
+\subsection*{The below is in-progress}
+
+\begin{defn}
+    (Signed counterclockwise angle).
+    
+    $\theta_{\hat{\nn}}(\vv_1, \vv_2)$ for full formal notation, where $\hat{\nn}$ is one of the two vectors perpendicular to $\vv_1$, $\vv_2$; $\theta(\vv_1, \vv_2)$ for more colloquial
+    
+    we have $\theta_{\hat{\nn}}(\vv_1, \vv_2) = 2\pi - \theta_{-\hat{\nn}}(\vv_1, \vv_2)$
+\end{defn}
+
+\begin{theorem}
+    (Geometric formula for magnitude of the cross product).
+    
+    The magnitude of the cross product $\vv_1 \times \vv_2$ of $\vv_1, \vv_2 \in \R^3$ is
+    
+    \begin{align*}
+        ||\vv_1 \times \vv_2 || = ||\vv_1|| \spc ||\vv_2|| \spc |\sin(\theta(\vv_1, \vv_2))|,
+    \end{align*}
+    
+    where $\theta$ is the signed counterclockwise angle from $\vv_1$ to $\vv_2$.
+\end{theorem}
+
+\begin{proof}
+   Basic trigonometry shows this result. The absolute value around $\sin(\theta(\vv_1, \vv_2))$ ensures the RHS is always nonnegative.
+\end{proof}
+
+\begin{deriv}
+    (Right hand rule).
+        
+    Let $\vv_1, \vv_2 \in \R^3$, and consider the ordered basis $\{\vv_1, \vv_2, \hat{\nn}\}$, where $\hat{\nn}$ is either one of the two vectors perpendicular to $\vv_1$ and $\vv_2$. (So $\hat{\nn}$ is either $\widehat{\vv_1 \times \vv_2}$ or $-\widehat{\vv_1 \times \vv_2}$).
+    
+    Since $\{\vv_1, \vv_2, \vv_1 \times \vv_2\}$ is positively oriented, $\widehat{\vv_1 \times \vv_2} = \hat{\nn}$ iff $\{\vv_1, \vv_2, \hat{\nn}\}$ is positively oriented. And $\{\vv_1, \vv_2, \hat{\nn}\}$ is positively oriented iff $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (0, \pi)$.
+    
+    So $\widehat{\vv_1 \times \vv_2} = \hat{\nn}$ iff $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (0, \pi)$. By similar reasoning, $\widehat{\vv_1 \times \vv_2} = -\hat{\nn}$ iff $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (\pi, 2\pi)$.
+    
+    In all:
+    
+    \begin{itemize}
+        \item $\widehat{\vv_1 \times \vv_2} = \hat{\nn}$ iff $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (0, \pi)$
+        \item $\widehat{\vv_1 \times \vv_2} = -\hat{\nn}$ iff $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (\pi, 2\pi)$
+    \end{itemize}
+    
+    Think of $\hat{\nn}$ as designating which side of the plane spanned by $\vv_1$ and $\vv_2$ is the ``top'' side. Then the above two bullet points tell us that the cross product $\vv_1 \times \vv_2$ points ``up'' (i.e. to the top side) when $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (0, \pi)$ and points ``down'' (i.e. to the bottom side) when $\theta_{\hat{\nn}}(\vv_1, \vv_2) \in (0, 2\pi)$.
+    
+    %The key idea of the right hand rule: \textit{the ``user'' can decide which of the two possible options $\hat{\nn}$ is.} That is, pick a side of the plane from which you want to view $\vv_1$ and $\vv_2$. (Since your line-of-sight vector is $-\hat{\nn}$, picking a side of the plane corresponds to choosing $\hat{\nn}$). Then make use of the above two bullet-points.
+        
+    %Remark: if one switches which side of the plane is designated as ``top'', then they have really just set $\hat{\nn}_{\text{after}} = - \hat{\nn}_{\text{before}}$. The right hand rule will still work because negating $\hat{\nn}$ corresponds to negating the counterclockwise signed angle; the new counterclockwise signed angle is $\theta_{\text{after}}(\vv_1, \vv_2) = 2 \pi - \theta_{\text{before}}(\vv_1, \vv_2)$.
+\end{deriv}
+
+\begin{theorem}
+    (Cyclic pattern with the cross product).
+    
+     $\ee_{\sigma(1)} \times \ee_{\sigma(2)} = \sgn(\sigma) \ee_{\sigma(3)}$
+     
+     so $\see_1 \times \see_2 = \see_3$, $\see_2 \times \see_3 = \see_1$, $\see_3 \times \see_1 = \see_2$
+\end{theorem}
+
+\begin{deriv}
+    (Cross product is Hodge dual of wedge product).
+    
+    $\Lambda^2(V) \cong V$ iff $\dim(\Lambda^2(V)) = \dim(V)$ iff $\binom{\dim(V)}{2} = \dim(V)$ iff $\dim(V) = 3$. In all, $\Lambda^2(V) \cong V$ iff $\dim(V) = 3$. This shows in particular that $\Lambda^2(\R^3)$ and $\R^3$ are isomorphic.
+    
+    One isomorphism $\perp:\Lambda^2(\R^3) \rightarrow \R^3$ is defined by $\perp(\see_{\sigma(1)} \wedge \see_{\sigma(2)}) = \sgn(\sigma) \see_{\sigma(3)}$. We call $\perp$ the \textit{Hodge dual}.
+    
+    
+    \begin{align*}
+        \perp(\vv_1 \wedge \vv_2)
+        = \perp\Big( \sum_{i = 1}^n \Big( ([\vv_1]_\sE)_i \see_i \Big) \wedge \sum_{i = 1}^n \Big( ([\vv_2]_\sE)_i \see_i \Big) \Big)
+        = ...
+        = \vv_1 \times \vv_2
+    \end{align*}
+\end{deriv}
+
+The previous theorem motivates us to ask if $\perp(\vv_1 \wedge ... \wedge \vv_{n - 1})$ satisfies a condition that generalizes the defining property of the cross product. The following theorem provides the answer: ``yes!''.
+
+\begin{theorem}
+    (Hodge dual generalizes cross product).
+
+    Let $\vv_1, ..., \vv_{n - 1} \in \R^n$. Then $\perp(\vv_1 \wedge ... \wedge \vv_{n - 1}) \in \R^n$ is the unique vector satisfying
+    
+     \begin{align*}
+         \perp(\vv_1 \wedge ... \wedge \vv_{n - 1}) \cdot \vv = \det(\vv_1, ..., \vv_{n - 1}, \vv) \text{ for all $\vv \in \R^n$}.
+     \end{align*}
+\end{theorem}
+
+\begin{proof}
+        Note that \textit{if} the condition is satisfied, then uniqueness easily follows, since the function $\vv \mapsto \det(\vv_1, ..., \vv_{n - 1}, \vv)$, being a linear function, has a unique matrix.
+        
+        We now show that the condition is satisfied. $(\vv_1 \wedge ... \wedge \vv_{n - 1}) \mapsto \perp(\vv_1 \wedge ... \wedge \vv_{n - 1}) \cdot \vv$ and $(\vv_1 \wedge ... \wedge \vv_{n - 1}) \mapsto \det(\vv_1, ..., \vv_{n - 1}, \vv)$ are both multilinear alternating functions, so they must be scalar multiples of each other\footnote{In Section \ref{ch::exterior_pwrs::determinant}, we proved that the determinant $\det:(K^n)^{\times n} \rightarrow K$ is the unique multilinear alternating function satisfying $\det(\see_1, ..., \see_n) = 1$. An arbitrary multilinear alternating function $f:(K^n)^{\times n} \rightarrow K$ is such that $\frac{1}{c}f$ satisfies $(\frac{1}{c}f)(\see_1, ..., \see_n) = 1$, so such an $f$ is $f = c \det$.}. Thus, to show the condition, it suffices to show that the two maps agree on a particular input. We show $\perp(\see_1, ..., \see_{n - 1}) \cdot \vv = \det(\see_1, ..., \see_{n - 1}, \vv)$ for all $\vv \in \R^n$. This condition is logically equivalent to the condition ``$\see_n \cdot \vv = \det(\see_1, ..., \see_{n - 1}, \vv)$ for all $\vv \in \R^n$'', which is in turn logically equivalent to ``$\see_n \cdot \vv = \det(\see_1, ..., \see_{n - 1}, \vv)$ for all $\vv \in \sE$, where $\sE$ is the standard basis for $\R^n$''.  When $\vv = \see_i \in \sE$, we have $\see_n \cdot \see_i = \delta^i{}_n = \det(\see_1, ..., \see_{n - 1}, \see_i)$, so this last condition (and thus all of them) are true.
+\end{proof}
+
+\begin{remark}
+    (Interpretation of $k$-wedges as oriented volumes).
+\end{remark}
+
+We can actually define the Hodge dual in a more general context.
+
+\begin{defn}
+    (Hodge dual).
+    
+    Let $V$ be a finite-dimensional vector space with a metric tensor $g$. We define the \textit{Hodge dual (induced by $g$)} to be the function $\perp:\Lambda^k(V) \rightarrow \Lambda^{n - k}(V)$ defined by
+    
+    \begin{align*}
+        \perp(\huu_{i_1} \wedge ... \wedge \huu_{i_k}) &:= \sgn(\sigma) \spc \huu_{i_{k + 1}} \wedge ... \wedge \huu_{i_{k + (n - k)}}, \\ &\text{ where } \{i_{k + 1}, ..., i_{k + (n - k)} \} = \{1, ..., n\} - \{i_1, ..., i_k\} \text{ and } \sigma = (i_1, ..., i_n).
+    \end{align*}
+    
+    [Extending with multilinearity and alternatingness], we see that
+    
+    \begin{align*}
+        \perp(\vv_{i_1} \wedge ... \wedge \vv_{i_k}) &= \sgn(\sigma) \det\Big((g(\vv_{i_k}, \vv_{j_\ell}))\Big) \spc \vv_{i_{k + 1}} \wedge ... \wedge \vv_{i_n}, \\ &\text{ where } \{i_{k + 1}, ..., i_n\} = \{1, ..., n\} - \{i_1, ..., i_k\} \text{ and } \sigma = (i_1, ..., i_n).
+    \end{align*}
+    
+    In the above, $\det \Big( (\langle \vv_{i_k}, \vv_{j_\ell} \rangle) \Big)$ denotes the determinant of the matrix with $k\ell$ entry $\langle \vv_{i_k}, \vv_{j_\ell} \rangle$, and is called the \textit{Gram determinant}. Interestingly enough, the function $\widetilde{g}$ that sends $(\vv_{i_1} \wedge ... \vv_{i_k}, \ww_{i_1} \wedge ... \ww_{i_k})$ to the Gram determinant is a metric tensor on $\Lambda^k(V)$. We can use this new metric tensor to restate the above as
+    
+    \begin{align*}
+        \perp \vv = \perp(\vv_{i_1} \wedge ... \wedge \vv_{i_k}) &= \sgn(\sigma) \widetilde{g}(\vv, \vv) \spc \vv_{i_{k + 1}} \wedge ... \wedge \vv_{i_n}, \\ &\text{ where } \{i_{k + 1}, ..., i_n\} = \{1, ..., n\} - \{i_1, ..., i_k\} \text{ and } \sigma = (i_1, ..., i_n).
+    \end{align*}
+    
+    Most authors use $*$ to denote the Hodge dual, and the Hodge dual is often known as the ``Hodge star''. We've chosen not to use this notation so as to avoid confusion with the $*$ that appears when notating dual vector spaces.
+\end{defn}
+
+\begin{remark}
+    The above definition of the Hodge dual depends on a basis, so we do not yet know that the Hodge dual is well-defined.
+\end{remark}
+
+\begin{theorem}
+    (Double Hodge dual).
+    
+    Let $V$ be a finite-dimensional vector space with metric tensor $g$. The Hodge dual $\perp:\Lambda^k(V) \rightarrow \Lambda^{n - k}(V)$ satisfies $\perp \perp \vv = (-1)^{k(n - k)} \vv$.
+\end{theorem}
+
+\begin{proof}
+    It suffices to prove the above when $\vv$ is an elementary wedge, $\vv = \vv_{i_1} \wedge ... \wedge \vv_{i_k}$. Using Definition ..., we have $\perp \vv = \sgn(\sigma) g(\vv, \vv) \vv_{i_{k + 1}} \wedge ... \wedge \vv_{i_n}$, where $\sigma = (i_1, ..., i_n)$. Applying $\perp$ again, we have $\perp \perp \vv = \sgn(\tau) \sgn(\sigma) \vv_{i_1} \wedge ... \wedge \vv_{i_k} = \sgn(\tau) \sgn(\sigma) \vv$, where $\tau = (i_{k + 1}, ..., i_n, i_1, ..., i_k)$. The key is to notice that $\sgn(\tau) = (-1)^{k(n - k + 1)} \sgn(\sigma)$, since, to obtain $\sigma$ from $\tau$, we need to move each of the $k$ indices $i_1, ..., i_k$ past the $n - k$ many indices $i_{k + 1}, ..., i_n$. Thus, we have $\perp \perp \vv = (-1)^{k(n - k + 1)} \sgn(\sigma)^2 \hvv = (-1)^{k(n - k + 1)} \hvv$.
+\end{proof}
+
+\begin{theorem}
+    Let $V$ be an $n$-dimensional vector space with metric tensor $g$. For all $k \leq n$ is a metric tensor $\widetilde{g}$ on $\Lambda^k(V)$ defined on elementary wedges by     $\widetilde{g}(\vv_1 \wedge ... \wedge \vv_k, \ww_1 \wedge ... \wedge \ww_k) = \det(g(\vv_i, \ww_i))$.
+\end{theorem}
+
+\begin{theorem}
+    Let $V$ be an $n$-dimensional vector space with metric tensor $g$. If $k \leq n$, then for all $\omega, \eta \in \Lambda^k(V)$ we have
+
+    \begin{align*}
+        \omega \wedge (\perp \eta) = \widetilde{g}(\omega, \eta) \omega_{\text{vol}},
+    \end{align*}
+    
+    where $\omega_{\text{vol}}$ is the volume form on $V$ and $\widetilde{g}$ is the metric tensor on $\Lambda^k(V)$ from the previous definition.
+    
+    Therefore, the Hodge dual is basis independent and thus well-defined.
+\end{theorem}
+
+
+
+
+
+
+

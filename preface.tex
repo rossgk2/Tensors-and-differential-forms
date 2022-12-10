@@ -1,0 +1,48 @@
+\chapter*{About this book}
+
+The goal of this book is to present generalizations of ``vector calculus'' concepts such as $\div, \grad, \curl$, the derivative of a vector valued function of a vector variable, and vector calculus integral theorems.
+
+\section*{Tentative prerequisites and reading advice for a student}
+
+This book is primarily written for a reader who has experience with the following:
+
+\begin{itemize}
+    \item the content of typical three-course calculus sequence: single-variable differential calculus, single-variable integral calculus, and multivariable calculus (but \textit{not} differential equations),
+    \item introductory linear algebra
+    \item introductory logic and proof writing
+\end{itemize}
+
+A dedicated reader who has only taken the three-course calculus sequence mentioned above can still understand everything in this book with a bit of extra effort. Such a reader should take advantage of Chapter \ref{ch::lin_alg}, the review chapter on linear algebra. My advice is to use Chapter \ref{ch::lin_alg} as a guide for learning the core theory and to consult an introductory linear algebra textbook, such as any edition of Otto Bretscher's linear algebra book (look it up online) for concrete examples. Two linear algebra textbooks written for a more advanced level are Halmos's \textit{Finite Dimensional Vector Spaces} and Curtis's ``introductory'' linear algebra book. Be warned: I have found no linear algebra book that satisfactorily explains the matrix with respect to bases of a linear function, matrix-vector products, or matrix-matrix products; even theoretical treatments miss the mark by focusing on the fact that linear functions correspond to matrices (rather than focusing on why this correspondence happens). For these concepts, consult Chapter \ref{ch::lin_alg}; and be wary when reading about them in other books. 
+    
+There are two review-style chapters of this book: one on linear algebra and one on calculus. (The chapter on topology could be also be considered to be a review chapter, but, as was stated above, I assume the reader has no knowledge of topology). For reasons expanded upon below, the content in the linear algebra review chapter is almost constantly applied throughout this book, as the new ideas of tensors and differential forms are really reorganizations of mathematical structure, and are therefore mostly algebraic. \textit{You should read this chapter even if you have taken introductory linear algebra before!}
+
+\section*{On the prominence of algebraic structure}
+
+Tensors are result of investigating, generalizing, and reorganizing various abstract algebraic ideas about linear functions. So it is not too surprising that algebraic strategies (like constantly being on the look-out for linear isomorphisms) dominate the theory of tensors.
+
+On the other hand, one might be surprised that similar algebraic lines of thought dominate the study of differential forms. After all, differential forms are supposed to be about calculus- which is about measuring change and accumulating change and smooth surfaces- not algebra, right?
+
+Well, differential forms generalize and reorganize ideas about the structure of calculus. Since differential forms are primarily about reorganization and structure, the content the reader does not yet know is algebraic. However, there is a better reason for the prominence of algebra in the study of differential forms: calculus is really about \textit{local} linear algebra on the ``tangent space'' (think tangent plane) of an arbitrary point on the  surface of interest. Due to this, we will in fact see that a differential form evaluated at a point is actually a special type of tensor.
+
+%\section*{Reading advice for reviewers}
+
+% I recognize that there are multiple sections of this book where skimming will be necessary. Here I outline what I think should be skimmed, and what I think shouldn't.
+
+% \begin{itemize}
+%     \item Chapter \ref{ch::lin_alg} is the review chapter on linear algebra. Obviously, you all know linear algebra, but I would appreciate it if some attention was paid to this chapter, because I spent a lot of work in coming up with original ways to state results from linear algebra in ways I believe are more intuitive than the classical methods. More details on where I have been ``original'' with regards to linear algebra are at the beginning of the linear algebra chapter.
+%     \item Chapter \ref{ch::motivated_intro}, ``A motivated introduction to tensors'', is relatively short. I hope you enjoy it. I'm especially proud of Section \ref{ch::motivated_intro::sec::motivated_intro}, ``A motivated introduction to $\binom{p}{q}$ tensors''.
+%     \item I anticipate that Chapter \ref{ch::bilinear_forms_metric_tensors}, ``Bilinear forms, metric tensors, and coordinates of tensors'', will contain the most skim-worthy material. More advice is given in that chapter's heading.
+%     \item Chapter \ref{ch::exterior_pwrs}, ``Exterior powers, the determinant, and orientation'', has some substantial material. Some of it took a long time to write, but likely won't take too long to read, though, so I'm hopeful.
+%     \item Chapter \ref{ch::calc}, the review chapter on calculus, can be skimmed.
+%     \item Chapter \ref{ch::topology}, the chapter on topology, attempts some originality in motivation, so I would appreciate it if the first section or so were read, but once the motivation ends and the statement of standard topological results begins, you can safely stop reading.
+%     \item Chapter \ref{ch::manifolds}, ``Manifolds'', presents a lot of cool generalizations of multivariable calculus, but if it's becoming a slog, go ahead and skim.
+%     \item Chapters 8 is where the goal (stated above) is achieved.
+% \end{itemize}
+
+% I also want to give advance notice of my unconventional approach of striving to treat tensors and differential forms as elements or pointwise elements of tensor product spaces whenever possible. There are times when it is necessary for a differential form to act on tangent vectors, and this is done, but this view of differential forms as ``pointwise antisymmetric multilinear elements'' is emphasized.
+
+%\section*{Other}
+
+%Theme of algebra: “if it it’s helpful to think of something in such and such way or is helpful to use such and such mnemonic, formalize it! This will generate new insights”
+
+%This book uses this maxim as a guiding principle. (e.g. how we approach matrices, doing things in terms of abstract tensors, exterior derivative in analogy to div)

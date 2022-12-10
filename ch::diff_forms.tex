@@ -1,0 +1,1125 @@
+\chapter{Differential forms on manifolds}
+\label{ch::diff_forms}
+
+At long last, we have reached the chapter where we define \textit{differential forms} and how to integrate them over manifolds. In this chapter, we also define an operation on differential forms called the \textit{exterior derivative}, which generalizes the differential of the previous chapter. We will see that the $\div, \grad$ and $\curl$ of vector calculus can be expressed in terms of the exterior derivative and the \textit{Hodge-dual} operator. The \textit{generalized Stokes' theorem}, an elegant generalization of the fundamental theorem of calculus, is the key result of this chapter, and equates the integral of an exterior derivative over a manifold to the integral of the ``exterior antiderivative'' over the manifold's boundary.
+
+\section{Differential forms}
+
+\begin{defn}
+    \smallcite{book::SM}{360} (Differential $k$-form).
+    
+    Let $M$ be a smooth $n$-manifold WWBOC. We define $\Lambda^k(T^*(M)) := \bigsqcup_{\pp \in M} \Lambda^k(T_\pp^*(M))$, so that $\Lambda^k(T^*(M))$ is the the subset of $T^0_k(T(M))$ of antisymmetric tensors. The vector space $\Lambda^k(T^*(M))$ can be shown to be $\binom{n}{k}$ dimensional, just as is the case for $\Lambda^k(V)$ when $V$ is an $n$-dimensional vector space.
+    
+    A \textit{differential $k$-form on $M$} is a continuous function $M \rightarrow \Lambda^k(T^*(M))$. So, you might say that a differential $k$-form is a ``antisymmetric $(0, k)$ tensor field'' (remember, all tensor fields are continuous maps). The vector space of differential $k$-forms on $M$ is denoted $\Omega^k(M)$.
+\end{defn}
+
+\begin{theorem}
+\label{ch::diff_forms::theorem::diff_form_in_chart}
+    \smallcite{book::SM}{360} (Differential $k$-form expressed relative to a coordinate chart).
+    
+    Let $M$ be a smooth $n$-manifold. Given any smooth chart $(U, \xx)$ on $M$, where $x^i$ is the $i$th component function of $\xx$, it follows by definition that a differential $k$-form $\omega$ on $U$ can be expressed as
+
+    \begin{align*}
+        \omega = \sum_{1 \leq i_1 < ... < i_k \leq n} f_{i_1...i_k} dx^{i_1} \wedge ... \wedge dx^{i_k},
+    \end{align*}
+    
+    where each $f_{i_1...i_k}:U \rightarrow \R$.
+\end{theorem}
+
+\begin{theorem}
+     \smallcite{book::SM}{360} (Smoothness of a differential form).
+    
+    When thought of as a tensor field, a differential $k$-form is smooth iff its component functions are smooth.
+\end{theorem}
+
+\begin{remark}
+    A differential 0-form on $M$ is a continuous function $M \rightarrow \R$.
+\end{remark}
+
+\subsection*{Differential forms treated as functions}
+
+We will occasionally need to think of differential $k$-forms as objects that, when evaluated at $\pp \in M$, can act on $k$ vectors in $T_\pp(M)$.
+
+\begin{deriv}
+\label{ch::diff_forms::deriv::diff_forms_actual_fns}
+    (Differential forms treated as functions).
+    
+    Let $M$ be a smooth manifold WWBOC. Since we are able to think of elements of $\Lambda^k(V^*)$ as functions by identifying them with elements of $\tLambda^k(V^*)$, we can think of the evaluation at a point $\pp \in M$ of a differential $k$-forms on $M$, which is an element of $\Lambda^k(T^*(M)) = \bigsqcup_{\pp \in M} \Lambda^k(T_\pp^*(M))$, as a function by identifying it with an element of $\tLambda^k(T_\pp^*(M))$, where we define ${\tLambda^k(T_\pp^*(M)) := \bigsqcup_{\pp \in M} \tLambda^k(T_\pp^*(M))}$. To formally establish this, we define ${\tOmega^k(M) := \{ \text{continuous functions: $M \rightarrow \tLambda^k(T^*(M))$} \}}$ to be the set of differential $k$-forms that, when evaluated at a point, are functions- namely, multilinear alternating functions accepting $k$ vectors from $T_\pp(M)$.
+\end{deriv}
+
+\newpage
+
+\section{Integration of differential forms on manifolds}
+
+In this section, we vaguely follow Chapter 16 of \cite{book::SM} (but take some cues from \cite{book::Hubbard}, and fewer from \cite{book::DiffTop}), and show how to integrate differential forms over manifolds. We will see that differential forms are the ``natural'' objects to integrate over manifolds because the pullback of a differential form interplays perfectly with the change of variables theorem from multivariable calculus.
+
+%There is not always a integrate \textit{functions} on manifold in a coordinate-independent way. For example, if $B$ is the unit ball in $\R^n$ and $f \equiv 1$, then $\int_B f dV = \text{vol}(B)$; using the change of coordinates $\xx \mapsto c \xx$, we see the integral changes to $c \text{vol}(B)$. (Or $c^n \text{vol}(B)$)?
+
+%Differential forms will be the objects whose integrals on manifolds are coordinate independent.
+
+On a more technical note, we will consider only compactly supported differential forms so that the integrals we consider are analogous to ``proper'' (as opposed to ``improper'') integrals of functions $f:\R^n \rightarrow \R$. 
+
+%\smallcite{book::SM}{422} We can define a coordinate independent integral of a smooth function $\FF:M \rightarrow \R$ a Riemannian manifold $(M, g)$: define $\int_M f := \int_M f \omega_g$, where $\omega_g$ is the Riemannian volume form induced by $g$. Riemannian volume form is denoted $ds$, $dA$, or $dV$. (But the $d$ next to $s$, $A$, or $V$ does not indicate that $\omega_g$ can be interpreted as an exterior derivative!)
+
+To begin, we define the pullback of a differential $k$-form by a diffeomorphism and show that it plays nicely with the change of variables theorem.
+
+\subsection*{Pullback by a diffeomorphism and change of variables}
+
+\begin{defn}
+\label{ch::diff_forms::defn::pullback_of_diff_form_by_diffeomorphism}
+    \smallcite{book::DiffTop}{163-165}(Pullback of a differential $k$-form by a diffeomorphism).
+    
+    Let $M$ and $N$ be $n$-smooth manifolds, let $(U, \xx)$ and $(V, \yy)$ be smooth charts on $M$ and $N$, respectively, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a smooth function. Consider a differential $k$-form $\omega \in \Omega^k(V)$, $k \leq n$, on $V \subseteq N$.
+    
+    In Theorem \ref{ch::exterior_pwrs::defn::pullback_on_exterior_pwr}, we showed how to pull back an element of $\Lambda^k(W^*)$ to obtain an element of $\Lambda^k(V^*)$, where $V$ and $W$ are vector spaces. Since the evaluation of $\omega$ at a point $\qq \in V \subseteq N$ yields an element of $\Lambda^k T_\qq^*(N)$, we can pull back differential $k$-forms on $N$ to differential $k$-forms on $M$ by using the pullback map on exterior powers.
+    
+    We define the \textit{pullback $\Omega^k \FF^*:\Omega^k(V) \rightarrow \Omega^k(U)$ of the differential $k$-form $\omega$ on $V$} to be
+    
+    \begin{align*}
+        \boxed
+        {
+            \Big( (\Omega^k \FF^*)(\omega) \Big)_\pp :=
+            \begin{cases}
+                \Big( \Lambda^k (d\FF_\pp)^* \Big)(\omega_{\FF(\pp)}) & \text{$\omega$ is a differential $k$-form on $V$, $k \geq 1$} \\
+                (f \circ \FF)(\pp) & \text{$\omega = f$ is a differential $0$-form on $V$ (i.e. $\omega$ is a function $V \rightarrow \R$)}
+            \end{cases}
+        }
+    \end{align*}
+
+    Here's a brief explanation of the notation. The map $(d\FF_\pp)^*:T_{\FF(\pp)}^*(V) \rightarrow T_{\pp}^*(U)$ is the dual of the differential ${d\FF_\pp:T_\pp(U) \rightarrow T_{\FF(\pp)}(V)}$, which is a linear map, and $\Lambda^k (d\FF_\pp)^*$ is the pullback from the $k$th exterior power $\Lambda^k(T_{\FF(\pp)}^*(V))$ to the $k$th exterior power $\Lambda^k(T_{\pp}^*(U))$. (For the exact meaning of $\Lambda^k (d\FF_\pp)^*$, recall Definition \ref{ch::exterior_pwrs::defn::pullback_on_exterior_pwr}).
+\end{defn}
+
+\begin{theorem}
+    (Basic properties of pullbacks of differential forms).
+    
+    Let $M$ and $N$ be smooth $n$-manifolds, let $U \subseteq M$ be open, and consider a smooth function $\FF:U \subseteq M \rightarrow N$.
+    
+    \begin{enumerate}
+        \item If $\omega$ is a differential $1$-form on $N$, then $\Omega^k \FF^*(\omega)_\pp = (d\FF_\pp)^*(\omega)$, where $(d\FF_\pp)^*$ is the dual of the linear map $d\FF_\pp$.
+    
+        \item If $\omega$ and $\eta$ are differential $k$-forms, $k \leq n$, on $N$, then
+        
+        \begin{align*}
+            \Omega^k \FF^* (\omega \wedge \eta) = \Omega^k \FF^*(\omega) \wedge \Omega^k \FF^*(\eta).
+        \end{align*}
+        
+        %\item 
+        
+        %\begin{align*}
+        %    (\Omega^k \FF)^* = \Omega^k \FF^*,
+        %\end{align*}
+        
+        %where $\Omega^k \FF$ is defined ``pointwise'' in the way you'd expect, $(\Omega^k \FF)^*|_\pp := ((\Omega^k \FF)_\pp)^*$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    All items follow straightforwardly from the definition of $\Omega^k \FF^*$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::diff_forms::theorem::differential_commutes_with_diffeomorphism_pullback}
+    (The differential commutes with the pullback of a diffeomorphism).
+    
+    Let $M$ and $N$ be smooth manifolds WWBOC, let $U \subseteq M$ be open, and consider a smooth function $\FF:U \subseteq M \rightarrow N$. Additionally, let $\pp \in U \subseteq M$, and let $d_\pp$ denote the map $f \overset{d_\pp}{\mapsto} df_\pp$. Then for any smooth function ${f:\R^n \rightarrow U \subseteq M}$, we have
+        
+    \begin{align*}
+        \Omega ^k \FF^* \circ d_\pp = d_\pp \circ \Omega ^k \FF^* \iff \Omega ^k \FF^*(d_\pp f) = d_\pp ( \Omega ^k \FF^*(f) ).
+    \end{align*}
+        
+    Here, the differential $d$ can be interpreted in both of the ways we have mentioned earlier. (That is, $d$ can be considered to be the differential which results from identifying $T_{f(\pp)}(\R) \cong \R$ or the differential in which this identification is not performed, and $T_{f(\pp)}(\R)$ is ``left alone'' (recall Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} and Definition \ref{ch::manifolds::defn::differential_smooth_function_abstract}, respectively).
+\end{theorem}
+
+\begin{proof}
+        For this proof, we will assume that $d$ is the differential in which $T_{f(\pp)}(\R) \cong \R$ is ``left alone'', so that $df_\pp$ acts on a smooth function $u_\pp \in T_\pp(M)$ by $df_\pp(u_\pp) = u_\pp(f)$ (recall Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R}). (After we have proven the theorem for this interpretation of $d$, the theorem holds for when $d$ is obtained by identifying $T_{f(\pp)}(\R) \cong \R$ precisely because we have an isomorphism $T_{f(\pp)}(\R) \cong \R$).
+        
+        Let $v_\pp \in T_\pp(M)$. We will show $\Omega^k \FF^*(df_\pp)(v_\pp) = d(\Omega^k \FF^*(f))_\pp$.
+        
+        By property (1) of the previous theorem, $\Omega^k \FF^*(df_\pp)(v_\pp) = (d \FF_\pp)^*(df_\pp)(v_\pp)$. Then $(d \FF_\pp)^*(df_\pp)(v_\pp) = (df_\pp \circ d\FF_\pp)(v_\pp) = df_\pp(d\FF_\pp(v_\pp))$. Since $df_\pp(u_\pp) = u_\pp(f)$, we use $u_\pp = d\FF_\pp(v_\pp)$ to obtain  $df_\pp(d\FF_\pp(v_\pp)) = (d\FF_\pp(v_\pp))(f)$. By the definition of the differential $d\FF_\pp$ (recall Definition \ref{ch::manifolds::defn::differential_smooth_function_abstract}), $(d\FF_\pp(v_\pp))(f) = v_\pp(f \circ \FF)$. Since $f$ is a $0$-form, $f \circ \FF = \Omega^k \FF^*(f)$ by definition of $\Omega^k \FF^*$. So $v_\pp(f \circ \FF) = v_\pp(\Omega^k \FF^*(f))$. Recall that because $d$ is the differential in which $T_{f(\pp)}(\R)$ is ``left alone'' (see the remarks at the beginning of this proof), we have $v_\pp(g) = dg_\pp(v_\pp)$. We set $g = \Omega^k \FF^*(f)$ to obtain $v_\pp(\Omega^k \FF^*(f)) = d(\Omega^k \FF^*(f))_\pp(v_\pp)$.
+\end{proof}
+
+%\begin{remark}
+%    (Caution with the previous lemma)!
+    
+%    Consider the context of the previous lemma, and let $(V, \yy)$ be a smooth chart on $N$, where $V \subseteq \FF(U)$. (Recall $\FF:U \subseteq M \rightarrow N$). The above lemma shows that $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*(y^i))$. Be careful not to conclude that the lemma says ``$\Omega^k \FF^*(dy^i) = (d \Omega^k \FF^*)(y^i)$''.
+%\end{remark}
+
+\begin{lemma}
+\label{ch::diff_forms::lemma::technical_pullback_yi}
+    (Technical lemma: $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$).
+    
+    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. Recall from Definition \ref{ch::manifolds::defn::coord_representation_of_fn_on_manifold} that the coordinate representation of $\FF$ relative to the chart $(V, \yy)$ is $\tFF_{(V, \yy)} = \yy \circ \FF$, so $y^i \circ \FF$ is $y^i \circ \FF = \tF^i$, the $i$th coordinate function of $\tFF_{(V, \yy)} = (\tF_{(V, \yy)}^1, ..., \tF_{(V, \yy)}^n)^\top$. But $y^i \circ \FF = \Omega^k \FF^*(y^i)$, so
+    
+    \begin{align*}
+        \tF_{(V, \yy)}^i = \Omega^k \FF^*(y^i).
+    \end{align*}
+    
+    Since the differential commutes with the pullback of a diffeomorphism, we have $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*)(y^i)$. By the previous lemma, $\Omega^k \FF^*(y^i) = \tF_{(V, \yy)}^i$. Therefore
+    
+    \begin{align*}
+        \Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i.
+    \end{align*}
+\end{lemma}
+
+\begin{theorem}
+\label{ch::diff_forms::thm::pullback_top_degree_diff_Form}
+    \smallcite{book::SM}{361} (Pullback of a top degree differential form).
+    
+    %\textbf{lemma 14.16, proposition 14.20 helpful}
+    
+    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism, and consider a differential $n$-form $\omega \in \Omega^n(V)$ on $V \subseteq N$. (We say that $\omega$ is \textit{top degree} differential form on $N$, since its degree (the ``degree'' of a differential $k$-form is $k$) is the same as the dimension of $N$). If $f \spc dy^1 \wedge ... \wedge dy^n$ is a differential $n$-form on $V$, the pullback of $f \spc dy^1 \wedge ... \wedge dy^n$ is
+
+    \begin{align*}
+        \boxed
+        {
+            \Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n) = (f \circ \FF)\det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) dx^1 \wedge ... \wedge dx^n
+        }
+    \end{align*}
+    
+    Here $\tFF_{(V, \yy)} = \yy \circ \FF$ is the coordinate representation of $\FF$ taken relative to the chart $(V, \yy)$, and $\tF^i_{(V, \yy)}$ is the $ith$ component function of $\tFF_{(V, \yy)}$.
+\end{theorem}
+
+\begin{proof}
+     By Theorem \ref{ch::diff_forms::theorem::diff_form_in_chart}, we can write $\omega$ in the chart $(V, \yy)$ as
+    
+    \begin{align*}
+        \omega = f \spc dy^1 \wedge ... \wedge dy^n,
+    \end{align*}
+    
+    where $f$ is a continuous function $N \rightarrow \R$, and where $y^i$ is the $i$th coordinate function of $\yy$.
+    
+    %Since the pullback on the top exterior power (here, the top exterior power in question is $\Lambda^n T_{\FF(\pp)}(V)$) is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}), we have
+    
+    %\begin{align*}
+    %    \Big(\Omega^k \FF^*(\omega) \Big)_\pp &= 
+    %    \Big(\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n ) \Big)_\pp \\
+    %    &= \det(\Omega^k \FF^*) \spc \Big( \Omega^k \FF^*(f) \Big)_\pp \spc 
+    %    \Big( \Omega^k \FF^*(dy^1) \Big)_\pp \wedge ... \wedge \Big( \Omega^k \FF^*(dy^n) \Big)_\pp.
+    %\end{align*}
+    
+   First, we simply rewrite the above after applying the fact $\Omega^k \FF^*(f) = f \circ \FF$:
+
+    \begin{align*}
+        \Big(\Omega^k \FF^*(\omega) \Big)_\pp = \spc (f \circ \FF)(\pp) \spc 
+        \Big( \Omega^k \FF^*(dy^1) \Big)_\pp \wedge ... \wedge \Big( \Omega^k \FF^*(dy^n) \Big)_\pp.
+    \end{align*}
+ 
+    Since $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$ (see the previous lemma), we have
+    
+    \begin{align*}
+        \Big(\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n ) \Big)_\pp = (f \circ \FF)(\pp) \spc 
+        d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp.
+    \end{align*}
+    
+    %Since $\Omega^k \FF^*:T_{\FF(\pp)}^*(V) \rightarrow T_\pp^*(U)$, the determinant on the right hand side is 
+    
+    %\begin{align*}
+    %    \det(\Omega^k \FF^*) = \det([\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}_{i = 1}^n}) = \det([\tF_{(V, \yy)}^i]_{\{dx^j\}_{i = 1}^n}) = \det\Big( \frac{\pd \tF_{(V, \yy)}^i}{\pd x^j}\Big),
+    %\end{align*}
+    
+    %which is the determinant of the Jacobian matrix of $\tFF_{(V, \yy)}$. (In the above, $[\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}}$ denotes the matrix of $\Omega^k \FF^*$ relative to $\{dy^i\}_{i = 1}^n$ and $\{dx^i\}_{i = 1}^n$. The last equality above uses the second equation from the boxed equations of Theorem \ref{ch::manifolds::thm::coords_tangent_vectors_cotangent_vectors}). 
+    
+    Applying Theorem \ref{ch::exterior_pwrs::thm::action_dual_k_wedge_on_vectors}, we have
+    
+    \begin{align*}
+        d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) dx^1 \wedge ... \wedge dx^n.
+    \end{align*}
+    
+    Plug this expression for $d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp$ into the previous equation to obtain the theorem.
+\end{proof}
+
+\begin{remark}
+\label{ch::diff_forms::rmk::pullback_star_notation}
+    (Star notation for the pullback of a top degree differential form).
+    
+    In Remark \ref{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}, we introduced the practice of using $\FF^*$ to denote a pullback. From now on, we denote the pullback $\Omega^k \FF^*:T_{\FF(\pp)}(V \subseteq N) \rightarrow T_\pp(U \subseteq M)$ by $\FF^*:T_{\FF(\pp)}(V \subseteq N) \rightarrow T_\pp(U \subseteq M)$.
+\end{remark}
+
+\subsection*{Integrating differential forms}
+
+We now use the theorem of the previous section to start constructing the notion of integration of a differential form over manifolds. We need the following two technical definitions before doing so, however.
+
+\begin{defn}
+    \smallcite{book::SM}{653} (Domain of integration in $\R^n$).
+    
+    A \textit{domain of integration in $\R^n$} is a bounded subset of $\R^n$ whose boundary has an $n$-dimensional measure of zero.
+\end{defn}
+
+\begin{defn}
+    \smallcite{book::SM}{43} (Support of a differential form on a manifold).
+        
+    Let $M$ be a (not necessarily smooth) manifold and let $\omega$ be a differential form on $M$. The \textit{support} of $\omega$ is defined to be the closure of the set of points where $\omega$ is nonzero, $\supp(\omega) := \cl(M - \omega^{-1}(\mathbf{0}))$. Iff $\supp(\omega) \subseteq A$, then we say \textit{$\omega$ is supported in $A$}. We say $\omega$ is \textit{compactly supported} iff $\supp(\omega)$ is compact.
+\end{defn}
+
+Now, we use the formula for the pullback of a diffeomorphism derived at the end of the previous section to restate the change of variables theorem.
+
+\begin{deriv}
+\label{ch::diff_forms::deriv::change_of_vars_in_light_of_pullback}
+
+   \smallcite{book::DiffTop}{166} \smallcite{book::SM}{403} (Change of variables theorem in light of the pullback, part 1).
+  
+    The change of variables theorem says that if $(D, \xx)$ and $(E, \yy)$ are charts on $\R^n$ or $\H^n$, where $D$ and $E$ are open domains of integration, and if $\FF:\cl(D) \rightarrow \cl(E)$ is a smooth map that restricts to a diffeomorphism from $D$ to $E$, then, for every continuous function $f:\cl(E) \rightarrow \R$, we have
+    
+    \begin{align*}
+        \int_E f = \int_D (f \circ \FF) \Big| \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big|.
+    \end{align*}
+
+    Notice that, when $\Big| \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big)$, i.e., when $\det(d\FF) > 0$, it is \textit{almost} true that the pullback of the integrand on the left hand side is equal to the integrand on the right hand side, since $f dy^1 \wedge ... \wedge dy^n$ pulls back to $\det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| \spc dx^1 \wedge ... \wedge dx^n$. That is, the pullback of the differential form corresponding to the integrand of the left hand side is equal to the differential form corresponding to the integrand of the right hand side (where the ``correspondence'' spoken of is obtained by concatenating $dy^1 \wedge ... \wedge dy^n$ or $dx^1 \wedge ... \wedge dx^n$ onto the integrand). This observation motivates the next definition.
+\end{deriv}
+
+\begin{defn}
+\label{ch::diff_forms::defn::integral_over_domain_of_integration_Rn_Hn}
+    \smallcite{book::SM}{402} (Integral of a top degree differential form on a domain of integration in $\R^n$ or $\H^n$).
+    
+    Let $D$ be a domain of integration in $\R^n$ or $\H^n$. Due our discovery in the previous derivation, we define the \textit{integral of a compactly supported differential $n$-form $f \spc dx^1 \wedge ... \wedge dx^n$ over $D$}, to be
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_D f \spc dx^1 \wedge ... \wedge dx^n := \int_D f
+        }
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+    (The meaning of $dx_1 ... dx_n$).
+    
+    We should note that our recent definition of the integral of a differential form gives meaning to the $dx_1 ... dx_n$ that is used as a placeholder in an integral. If we use the convention of writing the placeholder $dx_1 ... dx_n$ after the integrand, so that
+    
+    \begin{align*}
+        \int_D f = \int_D f \spc dx_1 ... dx_n,
+    \end{align*}
+    
+    then the definition of the integral of a differential $n$-form on an open domain of integration becomes
+    
+    \begin{align*}
+        \int_D f \spc dx_1 \wedge ... \wedge dx_n := \int_D f \spc dx^1 ... dx^n.
+    \end{align*}
+
+    In some sense, the placeholder $dx_1 ... dx_n$ is ``secretly'' $dx^1 \wedge ... \wedge dx^n$. So, while the definition technically defines the left hand side in terms of the right hand side, you might think of it as giving algebraic meaning to the old placeholder notation of the right hand side.
+\end{remark}
+
+\begin{remark}
+    One could discover the definition of differential forms and the wedge product by starting with the change of variables theorem and trying to formalize the notion of ``pulling back'' by treating the notation $dy^1 ... dy^n$ as the formal symbol $dy^1 \wedge ... \wedge dy^n$. When approached this way, the involvement of the determinant implies the seeming-multilinearity and seeming-antisymmetry of the wedge product.
+\end{remark}
+
+\begin{theorem}
+    \smallcite{book::SM}{403} (Change of variables theorem in light of the pullback, part 2).
+    
+    Consider the hypotheses of the previous derivation, Derivation \ref{ch::diff_forms::deriv::change_of_vars_in_light_of_pullback}. \textit{In the case that $\FF$ is orientation-preserving or orientation-reversing}, the change of variables theorem can be restated as
+    
+    \begin{align*}
+        \int_E f \spc dy^1 \wedge ... \wedge dy^n
+        =
+        \begin{cases}
+            \int_D \FF^*(f \spc dy^1 \wedge ... \wedge dy^n) & \text{$\FF$ is orientation-preserving} \\
+            -\int_D \FF^*(f \spc dy^1 \wedge ... \wedge dy^n) & \text{$\FF$ is orientation-reversing}
+        \end{cases}.
+    \end{align*}
+    
+    To reemphasize what we discovered in the previous derivation, we again state the pullback of $f \spc dy^1 \wedge ... \wedge dy^n$:
+    
+    \begin{align*}
+        \FF^*(f \spc dy^1 \wedge ... \wedge dy^n) = \det(d\FF) (f \circ \FF) dx^1 \wedge ... \wedge dx^n.
+    \end{align*}
+    
+    (It is possible for $\FF$ to be neither orientation-preserving nor orientation-reversing. In this case the integral of the pullback over $V$ is likely unrelated to the integral of $\FF$ over $U$).
+\end{theorem}
+
+This definition us to concisely state the change of variables theorem by involving the integrals and pullbacks of differential forms.
+
+\begin{theorem}
+    \smallcite{book::SM}{404} (Change of variables theorem for top degree differential forms on open domains of integration).
+    
+    Let $D$ and $E$ be open domains of integration in $\R^n$ or $\H^n$, and let $\omega$ be a compactly supported differential $n$-form on $\cl(E)$. Given the above definition, the restatement of the change of variables theorem presented at the end of the previous derivation is further restated as
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_E \omega
+            =
+            \begin{cases}
+                \int_D \FF^*(\omega) & \text{$\FF$ is orientation-preserving} \\
+                -\int_D \FF^*(\omega) & \text{$\FF$ is orientation-reversing}
+            \end{cases}
+        }
+    \end{align*}
+    
+    This most recent boxed equation is not merely a restatement of the change of variables theorem, but a generalization. Previously, we only had a change of variables theorem for real-valued functions defined on open domains of integration in $\R^n$ or $\H^n$; now, we have a change of variables theorem for differential forms defined on open domains of integration in $\R^n$ or $\H^n$.
+\end{theorem}
+
+At this point, we know how to integrate differential forms over open domains of integration in $\R^n$ or $\H^n$. As a stepping stone to defining integration on manifolds, we now define the notion of integrating differential forms over open subsets of $\R^n$ or $\H^n$.
+
+\begin{defn}
+    \label{ch::diff_forms::defn::integral_over_open_subset}
+    
+    \smallcite{book::SM}{404} (Integral of a top degree differential form over an open subset of $\R^n$ or $\H^n$).
+    
+    Let $U$ be an open subset of $\R^n$ or $\H^n$. We define the \textit{integral of a differential $n$-form $\omega$ that is compactly supported on $U$} to be
+    
+    \begin{align*}
+        \int_U \omega := \int_D \omega,
+    \end{align*}
+    
+    where $D$ is any domain of integration in $\R^n$ or $\H^n$ containing $\supp(\omega)$. This definition does not depend on the choice of $D$; see \cite[p. 403]{book::SM} for the details. The right hand side is interpreted with the definition of the previous derivation. 
+\end{defn}
+
+We now state a slight generalization of the change of variables theorem that relies on the previous definition.
+
+\begin{theorem}
+    \smallcite{book::SM}{404} (Change of variables theorem for top degree differential forms on open subsets of $\R^n$ or $\H^n$).
+    
+    Let $U$ and $V$ be open subsets of $\R^n$ or $\H^n$. If $\FF:U \rightarrow V$ is a diffeomorphism and $\omega = f \spc dx^1 \wedge ... \wedge dx^n$ is a compactly supported differential $n$-form on $V$, then
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_V \omega
+            =
+            \begin{cases}
+                \int_U \FF^*(\omega) & \text{$\FF$ is orientation-preserving} \\
+                -\int_U \FF^*(\omega) & \text{$\FF$ is orientation-reversing}
+            \end{cases}
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The proof is a matter of using technical properties of diffeomorphisms. See \cite[p. 404]{book::SM}.
+\end{proof}
+
+As promised, we are now ready to define integration on smooth manifolds.
+
+\begin{defn}
+\label{ch::diff_forms::defn::integral_over_single_chart}
+    \smallcite{book::SM}{404} (Integral of a top degree differential form that is compactly supported in a single chart over a smooth manifold).
+    
+    Let $M$ be an oriented smooth $n$-manifold with or without boundary, let $(U, \xx)$ be a smooth oriented chart on $M$, and let $\omega$ be a differential $n$-form on $M$ with compact support in $U$. We define the \textit{integral of $\omega$ over $M$} to be
+    
+    \begin{align*}
+        \int_M \omega := 
+        \begin{cases}
+            \int_{\xx(U)} (\xx^{-1})^*(\omega) & \text{$(U, \xx)$ is positively oriented} \\
+            -\int_{\xx(U)} (\xx^{-1})^*(\omega) & \text{$(U, \xx)$ is negatively oriented}
+        \end{cases}.
+    \end{align*}
+    
+    (Recall from Definition \ref{ch::manifolds::defn::orientation_smooth_chart} that a smooth chart is positively oriented iff ... and ...).
+    
+    Here, have used the pullback $(\xx^{-1})^*$ to produce a differential $n$-form $(\xx^{-1})^*(\omega)$ that is compactly supported on the open subset $\xx(U)$ of $\R^n$ or $\H^n$. The previous definition allows us to evaluate the integral of such a differential $n$-form, which the right hand side.
+    
+    Note, this definition does not depend on the smooth chart $(U, \xx)$ for which $\supp(\omega) \subseteq U$; see \cite[p. 404]{book::SM} for the proof of this.
+\end{defn}
+
+The previous theorem has sound algebraic intuition, but we have not yet seen any geometric intuition. To find geometric insight, we consider following special case.
+
+\subsection*{Integrating differential forms that are treated as functions}
+
+\begin{deriv}
+\label{ch::diff_forms::deriv::pullback_of_diff_form_actual_fn_by_diffeomorphism}
+    (Pullback of a differential $k$-form, interpreted as a pointwise function, \\ by a diffeomorphism).
+    
+    The pullback of a ``regular'' differential form defined in Definition \ref{ch::diff_forms::defn::pullback_of_diff_form_by_diffeomorphism} induces a pullback on the differential forms that, when evaluated a point, are treated as functions. We construct this induced pullback now.
+    
+    Let $M$ and $N$ be $n$-smooth manifolds, let $(U, \xx)$ and $(V, \yy)$ be smooth charts on $M$ and $N$, respectively, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a smooth function. Consider a differential $k$-form $\tomega \in \tOmega^k(V)$, $k \leq n$, on $V \subseteq N$. Note that $\tomega_\pp$ is an alternating multilinear function for all $\pp \in M$.
+    
+    Referring back to Definition \ref{ch::diff_forms::defn::pullback_of_diff_form_by_diffeomorphism}, we see the induced pullback $\tOmega^k \FF^*$ is defined by:
+    
+    \begin{align*}
+        \Big( (\tOmega^k \FF^*)(\tomega) \Big)_\pp :=
+        \begin{cases}
+            \Big( \tLambda^k (d\FF_\pp)^* \Big)(\tomega_{\FF(\pp)}) & \text{$\tomega$ is a differential $k$-form on $V$, $k \geq 1$} \\
+            (f \circ \FF)(\pp) & \text{$f$ is a differential $0$-form on $V$ (i.e. $f$ is a function $V \rightarrow \R$)}
+        \end{cases}
+    \end{align*}
+    
+    Since $\TT \in \Lambda^k(W^*) \overset{\tLambda^k \ff^*}{\longmapsto} \TT \circ \ff = \ff^*(\TT) \in \Lambda^k(V^*)$ (see the equation in Theorem \ref{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns} right above the boxed equation), the above becomes
+    
+    \begin{align*}
+        \begin{cases}
+            (d\FF_\pp)^*(\tomega_{\FF(\pp)}) = \tomega_{\FF(\pp)} \circ d\FF_\pp & \text{$\tomega$ is a differential $k$-form on $V$, $k \geq 1$} \\
+            (f \circ \FF)(\pp) & \text{$f$ is a differential $0$-form on $V$ (i.e. $f$ is a function $V \rightarrow \R$)}
+        \end{cases}.
+    \end{align*}
+    
+    (In the first case, $(d\FF_\pp)^*$ denotes the dual of the linear map $d\FF_\pp$). Therefore, $\Omega^k \FF^*(\tomega)$ acts on $k$ vectors $v_1|_\pp, ..., v_n|_\pp \in T_\pp(M)$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            \Omega^k \FF^*(\tomega)(v_1|_\pp, ..., v_n|_\pp)) = \tomega_{\FF(\pp)}(d\FF_\pp(v_1|_\pp) ..., d\FF_\pp(v_n|_\pp) \quad \text{$\tomega$ is a differential $k$-form on $V$, $k \geq 1$}
+        }
+    \end{align*}
+    
+    When $f$ is a $0$-form, we still have $\Omega^k \FF^*(f) = f \circ \FF$.
+    
+    (Note, instead of using the intermediary step of the equation before the above boxed equation, we could have directly applied the boxed equation of Theorem \ref{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns} to the case $k \geq 1$).
+\end{deriv}
+
+The next theorem describes a way to interpret the integral of a ``regular'' differential form $\omega \in \Omega^k(M)$ over $U \subseteq M$ as an integral of a corresponding differential form $\tomega \in \tOmega^k(M)$ evaluated on a basis of $T_\pp(M)$.
+
+\begin{theorem}
+\label{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart}
+    \smallcite{book::Hubbard}{515} (Integral of a top degree differential form that is compactly supported in a single chart over a smooth manifold).
+    
+    Let $M$ be an oriented smooth $n$-manifold with or without boundary, let $(V, \yy)$ be a smooth oriented chart on $M$, let $\omega = f \spc dy^1 \wedge ... \wedge dy^n \in \Omega^k(M)$ be a ``regular'' differential $n$-form on $M$ with compact support in $V$, and let $\tomega = f \spc dy^1 \twedge ... \twedge dy^n \in \tOmega^k(M)$ be the corresponding differential form that is pointwise a multilinear alternating function. Define a chart $(U, \xx)$ on $\xx(U)$ by $U = \yy(V)$ and $\xx = \yy^{-1}$, and let $\tx_{(V, \yy)}^i$ denotes the $i$th coordinate function of $\xx$ relative to the chart $(V, \yy)$. Then
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_U \omega = \pm \int_U \tomega \Big( \frac{\pd \xx}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd \xx}{\pd \tx_{(V, \yy)}^n} \Big)
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    By Definition \ref{ch::diff_forms::defn::integral_over_single_chart}, the integral of $\omega$ over $M$ is
+
+    \begin{align*}
+        \int_M \omega = \int_M f \spc dy^1 \wedge ... \wedge dy^n = \pm \int_{\yy(V)} (\yy^{-1})^*(f \spc dy^1 \wedge ... \wedge dy^n) = \pm \int_U \xx^*(f \spc dy^1 \wedge ... \wedge dy^n),
+    \end{align*}
+    
+    where the $\pm$ sign depends on the orientation of the chart $(V, \yy)$. We are again using $(\yy^{-1})^* = \xx^*$ to denote the pullback $\Omega^k (\yy^{-1})^* = \Omega^k \xx^*$.
+    
+    Since $\xx^*(dy^i) = \xx_{(V, \yy)}^i$ (recall Lemma \ref{ch::diff_forms::lemma::technical_pullback_yi}), the above becomes
+    
+    \begin{align*}
+        \pm \int_U \xx^*(f \spc dy^1 \wedge ... \wedge dy^n) = \pm \int_U (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n.
+    \end{align*}
+    
+    Here, $\tx_{(V, \yy)}^i$ denotes the $i$th coordinate function of $\xx$ relative to the chart $(V, \yy)$. (Sidenote: $\xx$ relative to $(V, \yy)$ is $\xx_{(V, \yy)} = \yy \circ \xx = \xx^{-1} \circ \xx = \II_U$).
+    
+    Definition \ref{ch::diff_forms::defn::integral_over_domain_of_integration_Rn_Hn} says that the integral of a differential form over a subset of $\R^n$ or $\H^n$ is computed by ``erasing'' the $d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n$. Thus, we have
+    
+    \begin{align*}
+        \pm \int_U (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n = \pm \int_V f \circ \xx.
+    \end{align*}
+
+    We now consider the differential form $\xx^*(\tomega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n \in \tOmega^k(U)$ that corresponds to the ``regular'' differential form\footnote{``Regular'' here means ``is not treated as a function when evaluated at a point''.} $\xx^*(\omega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n \in \Omega^k(U)$. Applying Lemma \ref{ch::exterior_pwrs::lemma::action_dual_wedge_dual_basis} at each point in $U$, we have
+    
+    \begin{align*}
+        d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd}{\pd \tx_{(V, \yy)}^n}\Big) = 1.
+    \end{align*}
+    
+    (Here, $\frac{\pd}{\pd \tx_{(V, \yy)}^i}$ denotes the map $\pp \mapsto \frac{\pd}{\pd \tx_{(V, \yy)}^i}\Big|_\pp$). Thus
+    
+    %the coordinate coframe (recall Definition \ref{ch::manifolds::defn::coordinate_frames_coframes}) induced by $\tx_{(V, \yy)} = \yy \circ \xx$ in the chart $(U, \xx)$). Thus
+    
+    \begin{align*}
+        \pm \int_U f \circ \xx = \pm \int_U \underbrace{(f \circ \xx) d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n}_{\xx^*(\tomega)} \Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd}{\pd \tx_{(V, \yy)}^n}\Big) = \pm \int_U \xx^*(\tomega)\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd}{\pd \tx_{(V, \yy)}^n}\Big).
+    \end{align*}
+    
+    We have translated our integral into one that is expressed in terms of a differential form acting on tangent vectors. Now, we apply the pullback from the previous theorem that acts on such differential forms to see
+    
+    \begin{align*}
+        \pm \int_U \xx^*(\tomega)\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd}{\pd \tx_{(V, \yy)}^n}\Big) =
+        \pm \int_U \tomega \Big( d\xx\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1} \Big), ..., d\xx\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1} \Big) \Big) = \pm \int_U \tomega \Big( \frac{\pd \xx}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd \xx}{\pd \tx_{(V, \yy)}^n} \Big).
+    \end{align*}
+    
+     ($d\xx$ is shorthand for the map $d\xx \mapsto d\xx_\pp$). %??? [...]
+\end{proof}
+
+\begin{theorem}
+\label{ch::diff_forms::thm::integral_over_smooth_chart_linear_wrt_domain}
+    (Integral of a differential top degree differential form over a smooth chart is ``linear'' with respect to the region of integration).
+    
+    Let $M$ be a smooth $n$-manifold, let $(U, \xx)$ be a smooth oriented chart on $M$, and consider a smooth differential $n$-form $\omega$ that is compactly supported in $\bigcup_{i = 1}^k U_i$, where each $U_i \subseteq U$, and where $U_i \cap U_j$ has measure zero\footnote{Informally, a subset of $\R^n$ has \textit{measure zero} iff its volume is zero.} for all $i \neq j$. Then
+    
+    \begin{align*}
+        \int_U \omega = \sum_{i = 1}^k \int_{U_i} \omega
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The proof of this theorem adapts the proof of Proposition 16.8 in \cite{book::SM} (which was intended for a slightly different purpose in that book). By definition,
+    
+    \begin{align*}
+        \int_U \omega = \pm \int_{\xx(U)} (\xx^{-1})^*(\omega),
+    \end{align*}
+    
+    where the $\pm$ sign depends on the orientation of $(U, \xx)$. Since $\supp(\omega) \subseteq \bigcup_{i = 1}^k U_i$, then
+    
+    Since $\supp(\omega) \subseteq \bigcup_{i = 1}^k U_i$, then $\supp((\xx^{-1})^*) \subseteq \bigcup_{i = 1}^k \xx(U_i)$. Additionally, since $\xx$ is a smooth map, then $U_i \cap U_j$ having measure zero for all $i \neq j$ implies\footnote{\textit{Sard's theorem} is what is used to formally prove this implication.} that $\xx(U_i) \cap \xx(U_j)$ has measure zero for all $i \neq j$. Thus, using the standard calculus theorem pertaining to ``breaking up integrals'' (Theorem \ref{ch::calc::thm::integral_linear_wrt_region}), we see $\xx(U_i), ..., \xx(U_k)$ satisfy the conditions that are required to ``break up'' an integral. Applying this same theorem, we have
+    
+    \begin{align*}
+        \pm \int_{\xx(U)} (\xx^{-1})^*(\omega) 
+        = \sum_{i = 1}^k \pm \int_{\xx(U_i)} (\xx^{-1})^*(\omega)
+        = \sum_{i = 1}^k \int_{U_i} \omega,
+    \end{align*}
+    
+    as claimed.
+\end{proof}
+
+The previous theorem is generalized by the following definition, which finalizes the definition of integration of differential forms.
+
+\begin{defn}
+\label{ch::diff_forms::defn::integral_over_manifold}
+    \smallcite{book::SM}{408} (Integral of a top degree differential form on a smooth manifold).
+    
+    Let $M$ be an oriented smooth $n$-manifold WWBOC and let $\omega$ be a compactly supported $n$-form on $M$. Since $\supp(\omega)$ is compact, there is a finite collection $\{(U_i, \xx_i)\}_{i = 1}^k$ of charts on $M$ for which $\{U_i\}_{i = 1}^k$ is an open cover of $\supp(\omega)$, where the pairwise intersections have measure zero.
+    
+    We define \textit{the integral of $\omega$ over $M$ to be}
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_M \omega := \sum_{i = 1}^k \int_{U_i} \omega
+        }
+    \end{align*}
+    
+    Note that each integral in the sum on the right hand side is interpreted with the previous definition.
+    
+    It is necessary to show that this definition doesn't depend on the choice of open cover. See \cite{Lee} for this detail.
+\end{defn}
+
+\begin{theorem}
+    (Integral of a differential form on a smooth manifold is linear).
+    
+    Let $M$ be an oriented smooth $n$-manifold WWBOC, and let $(U, \xx)$ be a smooth chart on $M$. Then for all constant functions $c_1, c_2:U \subseteq M \rightarrow \R$ and all compactly supported differential $k$-forms $\omega, \eta$ on $M$, we have
+    
+    \begin{align*}
+        \int_M c_1 \omega + c_2 \eta = c_1 \int_M \omega + c_2 \int_M \eta.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    It suffices to prove that this theorem holds when $\omega$ and $\eta$ are supported in the same single smooth chart $(U, \xx)$. After applying Definition \ref{ch::diff_forms::defn::integral_over_single_chart}- pull back $\omega$ and $\eta$ and integrate each over $\xx(U) \subseteq \R^n$- we see the theorem holds in this special case due to the linearity of the integral of a function $\R^n \rightarrow \R$.
+\end{proof}
+
+\newpage
+
+\section{The exterior derivative}
+
+To define a notion of differentiating differential forms, we will interpret differential forms to be objects that, when evaluated a point of a manifold, are multilinear alternating functions accepting tangent vectors as input.
+
+\begin{defn}
+\label{ch::diff_forms::defn::exterior_derivative}
+    \smallcite{book::Hubbard}{545} (The exterior derivative). 
+    
+    If $V$ is a compact region in $\R^3$ with volume $|V|$, then the divergence $\div$ of a smooth vector field $\VV:V \subseteq \R^3 \rightarrow \R^3$ is defined as flux per ``infinitesimal'' volume:
+    
+    \begin{align*}
+        \div(\VV) :=  \lim_{|V| \rightarrow 0} \frac{1}{|V|} \int_{\pd V} \VV \cdot \hat{\nn} dS.
+    \end{align*}
+    
+    Similarly, if $C$ is a simple closed curve in $\R^3$, $A(C)$ is the oriented area enclosed by $C$, and $\hat{\nn}$ is the positively oriented unit vector that is normal to $A(C)$, then $\curl(\VV)$ is defined as work per ``infinitesimal'' surface area:
+    
+    \begin{align*}
+        \curl(\VV) \cdot \hat{\nn} := \lim_{A(C) \rightarrow 0} \frac{1}{A(C)} \int_C \VV \cdot d\rr = \lim_{A(C) \rightarrow 0} \frac{1}{A(C)} \int_C \VV \cdot \frac{d\rr}{dt} dt.
+    \end{align*}
+    
+    We present a notion of derivative on differential forms that is defined analagously to divergence and curl.
+    
+    Let $M$ be a smooth $n$-manifold, let $(U, \xx)$ be a smooth chart on $M$, and let $\omega$ be a smooth differential $k$-form (thought of as an element of $\tOmega^{k + 1}(M)$) with compact support in $U$. Let $P_\pp(\vv_1, ..., \vv_{k + 1})$ denote the subset of $T_\pp(U)$ spanned by $\vv_1|_\pp, ..., \vv_{k + 1}|_\pp \in T_\pp(U)$. We say $P_\pp(\vv_1, ..., \vv_{k + 1})$ is a \textit{$(k + 1)$-parallelapiped}.
+    
+    We define the \textit{exterior derivative} $d\omega$ of $\omega$ to be the differential $(k + 1)$-form defined at $\pp \in M$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            d\omega_\pp(\vv_1, ..., \vv_{k + 1}) := \lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \int_{\pd P_\pp(h v_1|_\pp, ..., h v_{k + 1}|_\pp)} \omega.
+        }
+    \end{align*}
+    
+    In words, the exterior derivative $d \omega$ is evaluated at $\pp$ on $k + 1$ tangent vectors $\vv_1|_\pp, ..., \vv_{k + 1}|_\pp \in T_\pp(M)$ by considering the ``infinitesimally small'' $(k + 1)$-parallelapiped in $T_\pp(M)$ spanned by these vectors, and then integrating $\omega$ over the faces of the $(k + 1)$-parallelpiped, each of which is an ``infinitesimally small'' $k$-parallelapiped.
+    
+    As is noted in \cite[p. 545]{book::Hubbard}, it is not immediately obvious why the limit in the definition of the exterior derivative exists. Since the integral in the limit can be broken up into a sum of integrals over the faces of the $(k + 1)$-paralellapiped, and as the $i$th edge of the $(k + 1)$-parallelapiped is $h\vv_i|_\pp$, it seems that each integral in the sum is dominated by $h^{(k + 1) - 1} = h^k$. (The faces of the paralellapiped are $(k + 1) - 1 = k$ dimensional). The apparent problem comes when we move $\frac{1}{h^{k + 1}}$ inside the limit, so that each integral is now dominated by $\frac{h^k}{h^{k + 1}} = \frac{1}{h}$. This seems problematic because $\lim_{h \rightarrow 0} \frac{1}{h}$ does not exist. We will see in the proof below that the limit \textit{does} exist.
+\end{defn}
+
+\begin{theorem}
+    \label{ch::diff_forms::thm::computing_exterior_deriv}
+    \smallcite{book::Hubbard}{652 - 655} (Computing the exterior derivative).
+    
+    Let $M$ be a smooth $n$-dimensional manifold with or without boundary or corners, and let $(U, \xx)$ be a smooth chart on $M$, where $x^i$ is the $i$th component function of $\xx$. 
+    
+    For any smooth function $f:U \rightarrow \R$,
+    
+    \begin{enumerate}
+        \item The exterior derivative (denoted $df$) is equal to the differential (also denoted $df$), where the differential of $f$ is the differential after identifying $T_{f(\pp)}(\R) \cong \R$ described by Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R}).
+        \item $d(f \spc dx^{i_1} \twedge ... \twedge dx^{i_k}) = df \twedge dx^{i_1} \twedge ... \twedge dx^{i_k}$.
+    \end{enumerate}
+    
+    Notice that (1) implies that the exterior derivative of any constant differential form is the zero differential form $0$.
+\end{theorem}
+
+\begin{proof}
+    \newcommand{\Vfi}{V_{\text{f}i}^h}
+    \newcommand{\Vbi}{V_{\text{b}i}^h}
+    \newcommand{\Ufi}{U_{\text{f}i}^h}
+    \newcommand{\Ubi}{U_{\text{b}i}^h}
+    \newcommand{\yfi}{\yy_{\text{f}i}}
+    \newcommand{\ybi}{\yy_{\text{b}i}}
+    \newcommand{\xfi}{\xx_{\text{f}i}}
+    \newcommand{\xbi}{\xx_{\text{b}i}}
+
+    \mbox{} \\
+    \begin{enumerate}
+        \item $df(P_\pp(\vv)) = \lim_{h \rightarrow 0} \frac{1}{h}\Big( f(\xx + h\vv) - f(\xx) \Big)$. Recalling Theorem \ref{ch::calc::thm::directional_deriv_as_limit}, we see that this expression is exactly the directional derivative of $f$ at $\pp$ in the direction of $\vv$.
+            
+        \item The $(k + 1)$-parallelapiped $P_\pp(h v_1|_\pp, ..., h v_{k + 1}|_\pp)$ has $2(k + 1)$ faces. For each $h > 0$, we construct charts $\{(\Vfi, \yfi)\}_{i = 1}^{k + 1}$ that parameterize the $k + 1$ faces on the ``front'' of this $(k + 1)$-parallelapiped and charts $\{(\Vbi, \ybi)\}_{i = 1}^{k + 1}$ that parameterize the remaining $k + 1$ faces on its ``back''. 
+        
+        Specifically, let $\vv_i|_\pp \in \R^n_\pp$ be the image of $v_i|_\pp$ under the isomorphism $T_\pp(P_\pp(h v_1|_\pp, ..., h v_{k + 1}|_\pp)) \cong \R^n_\pp$ that sends $\frac{\pd}{\pd y^i} \mapsto \see_i$.We define, for $\qq \in [0, h]^k \subseteq \R^k$,
+        
+        \begin{align*}
+            \yfi^{-1}(\qq) &:= q^1 \vv_1|_\pp + ... + q^{i - 1} \vv_{i - 1}|_\pp + \cancel{q^i \vv_i|_\pp} + q^{i + 1} \vv_{i + 1}|_\pp + ... + q^{k + 1} \vv_{k + 1}|_\pp \\
+            \ybi^{-1}(\qq) &:= q^1 \vv_1|_\pp + ... + q^{i - 1} \vv_{i - 1}|_\pp + h \vv_i|_\pp + q^{i + 1} \vv_{i + 1}|_\pp + ... + q^{k + 1} \vv_{k + 1}|_\pp.
+        \end{align*}
+        
+        Following the conventions of Theorem \ref{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart}, we define $\Ufi = \yy(\Vfi)$, $\xfi = \yy^{-1}$ and $\Ubi = \yy(\Vbi)$, $\xbi = \yy^{-1}$ so that $\{(\Ufi, \xfi)\}_{i = 1}^{k + 1}$ and $\{(\Ubi, \xbi)\}_{i = 1}^{k + 1}$ are charts in $\R^n$ or $\H^n$. Note that $\xbi = \ybi^{-1} = \yfi^{-1} + h\vv_i = \xfi + h\vv^i$. Additionally, since we required $\qq \in [0, h]^k \subseteq \R^k$, then $\Ufi \sqcup \Ubi$ is a cube of side length $h$ in $\R^k$.
+        
+        We need to compute
+        
+        \begin{align*}
+            \lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \int_{\pd P_\pp(h v_1|_\pp, ..., hv_{k + 1}|_\pp)} f \spc dy^{i_1} \twedge ... \twedge dy^{i_k}.
+        \end{align*}
+        
+        We use Theorem \ref{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart} to treat the integral as the integral of a differential form evaluated on tangent vectors. Also using Theorem \ref{ch::diff_forms::thm::integral_over_smooth_chart_linear_wrt_domain} to break up the domain of integration and Theorem \ref{ch::manifolds::thm::oriented_bdy_parallelapiped} to account for the orientation of the boundary $\pd P_\pp(h v_1|_\pp, ..., hv_{k + 1}|_\pp)$, the integral inside the limit becomes
+        
+        \begin{align*}
+            \int_{\pd P_\pp(\vv_1, ..., \vv_{k + 1})} f \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}
+            &= -\underbrace{\sum_{i = 1}^{k + 1} (-1)^{i - 1} \int_{\Ufi} (f \circ \xfi) \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}\Big( \frac{\pd \xfi}{\pd q^1}, ..., \cancel{\frac{\pd \xfi}{\pd q^i}},..., \frac{\pd \xfi}{\pd q^{k + 1}} \Big)}_{\text{sum of integrals over front faces}} \\
+            &+ \underbrace{\sum_{i = 1}^{k + 1} (-1)^{i - 1} \int_{\Ubi} (f \circ \xbi) \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}\Big( \frac{\pd \xbi}{\pd q^1}, ..., \cancel{\frac{\pd \xbi}{\pd q^i}} ,..., \frac{\pd \xbi}{\pd q^{k + 1}} \Big)}_{\text{sum of integrals over back faces}}.
+        \end{align*}
+        
+        For $j \neq i$, we have $\frac{\pd \xfi}{\pd q^j} = \frac{\pd \xbi}{\pd q^j} = \vv_j|_\pp$. Since the argument of $d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}$ in each integrand is the same, the above is
+        
+        \begin{align*}
+            \sum_{i = 1}^{k + 1} (-1)^{i - 1} \int_{\Ufi \sqcup \Ubi} (f \circ \xbi - f \circ \xfi) \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp).
+        \end{align*}
+       
+        Recall from the hypotheses of the theorem that $f$ is assumed to be a continuous function $U \rightarrow \R$, where $(\xx, U)$ is a smooth chart on $M$. (Don't confuse $\xx:U \rightarrow \R^n$ with $\xfi:\Ufi \subseteq \R^n \rightarrow U$ and $\xbi:\Ubi \subseteq \R^n \rightarrow U$!). We now write $f:U \rightarrow \R$ as a Taylor polynomial centered at $\pp_0 \in U$ with remainder:
+        
+        \begin{align*}
+            T_f(\pp) = T^0_f(\pp) + T^1_f(\pp) + R_f(\pp) = f(\pp_0) + df_{\pp_0}(\pp) + R_f(\pp),
+        \end{align*}
+        
+        where $|R_f(\pp)| \leq C_1||\xx(\pp)||^2$ for some $C_1 > 0$.
+        
+        Plugging this Taylor expansion into the term $f \circ \xfi - f \circ \xbi$ from the above integrand, we see 
+        
+        \begin{align*}
+            T_f \circ \xbi - T_f \circ \xfi &= (T^0_f - T^1_f + R_f) \circ \xbi - (T^0_f - T^1_f + R_f) \circ \xfi \\
+            &= (T^0_f \circ \xbi - T^0_f \circ \xfi) + (T^1_f \circ \xbi - T^1_f \circ \xfi) + (R_f \circ \xbi - R_f \circ \xfi).
+        \end{align*}
+        
+        Since $T^0_f$ is a constant function, the first term is zero: $T^0_f \circ \xfi - T^0_f \circ \xbi = 0$. We now plug this term into the integrand to complete the proof. The integral from the above sum of integrals (where the sum of integrals is inside the limit) becomes
+        
+        \begin{align*}
+            &\int_{\Ufi \sqcup \Ubi} (T^1_f \circ \xbi - T^1_f \circ \xfi) d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp) \\
+            &+ \int_{\Ufi \sqcup \Ubi} (R_f \circ \xbi - R_f \circ \xfi) d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp).
+        \end{align*}
+        
+        Observe that $|R_f(\pp)| \leq C_1||\max_{\xx(\pp)} \xx(\pp)||^2 = C_1h^2$, which implies $||R_f \circ \xfi - R_f \circ \xbi||^2 \leq C_2h^2$ for some $C_2 > 0$. Since the $\vv_i|_\pp$'s in $d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp)$ are constant with respect to the limit, which takes $h \rightarrow 0$, then $|d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp)|$ is bounded above with respect to $h$. Thus, the integrals containing the terms $R_f \circ \xbi - R_f \circ \xfi$ disappear in the limit. This means that the limit becomes
+        
+        \begin{align*}
+            &\lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \int_{\pd P_\pp(h v_1|_\pp, ..., hv_{k + 1}|_\pp)} f \spc dy^{i_1} \twedge ... \twedge dy^{i_k} \\
+            &= \lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \sum_{i = 1}^{k + 1} (-1)^{i - 1} 
+            \int_{\Ufi \sqcup \Ubi} (T^1_f \circ \xbi - T^1_f \circ \xfi) d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp)
+        \end{align*}
+        
+        Observe that the term $T^1_f \circ \xbi - T^1_f \circ \xfi$ in the integrand is $T^1_f \circ \xbi - T^1_f \circ \xfi = h df_{\pp_0}(\vv_i)$:
+        
+        \begin{align*}
+            (T^1_f \circ \xbi - T^1_f \circ \xfi)(\pp) &= df_{\pp_0}(\xbi(\pp)) - df_{\pp_0}(\xfi(\pp))
+            = df_{\pp_0}(\xbi(\pp)) - df_{\pp_0}(\xfi(\pp)) \\
+            &= df_{\pp_0}(\xfi(\pp) + h\vv_i) - d_{\pp_0}(\xfi(\pp)) = h df_{\pp_0}(\vv_i).
+        \end{align*}
+        
+        Thus, the limit is
+        
+         \begin{align*}
+            \lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \sum_{i = 1}^{k + 1} (-1)^{i - 1}  \int_{\Ufi \sqcup \Ubi} h df_{\pp_0}(\vv_i) \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp).
+        \end{align*}
+        
+        (Here, $df_{\pp_0}(\vv_i) \in \Ufi \sqcup \Ubi$ denotes the constant map $\qq \in \mapsto df_{\pp_0}(\vv_i)$). Since the integral is taken over points in $\Ufi \sqcup \Ubi$, then $h df_{\pp_0}(\vv_i)$ is constant with respect to the integral, and the above is
+        
+        \begin{align*}
+            \lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \sum_{i = 1}^{k + 1} (-1)^{i - 1} h df_{\pp_0}(\vv_i) \int_{\Ufi \sqcup \Ubi} d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp).
+        \end{align*}
+        
+        $\Ufi \sqcup \Ubi$ is a cube in $\R^k$ with side length $h$, so the limit at last disappears, since $\frac{1}{h^{k + 1}}$ is canceled by the $h$ and $h^k$ inside the sum:
+
+        \begin{align*}
+            &\lim_{h \rightarrow 0} \frac{1}{h^{k + 1}} \sum_{i = 1}^{k + 1} (-1)^{i - 1} h df_{\pp_0}(\vv_i) h^k \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp) \\
+            &= \sum_{i = 1}^{k + 1} (-1)^{i - 1} df_{\pp_0}(\vv_i) \spc d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \cancel{\vv_i|_\pp}, ..., \vv_{k + 1}|_\pp) \\
+            &= \alt(df \totimes (d\tx^{i_1} \totimes ... \totimes d\tx^{i_k}))(\vv_1|_\pp, ..., \vv_{k + 1}|_\pp) \\
+            &= df \twedge d\tx^{i_1} \twedge ... \twedge d\tx^{i_k}(\vv_1|_\pp, ..., \vv_{k + 1}|_\pp).
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    \label{ch::exterior_pwrs::thm::exterior_derivative_commutes_with_pullback}
+    \smallcite{book::SM}{366} (The exterior derivative commutes with the pullback of a smooth function $M \rightarrow N$).
+    
+    Let $M$ and $N$ be smooth manifolds WWBOC, let $U \subseteq M$ be open, and consider a smooth function $\FF:U \subseteq M \rightarrow N$. Additionally, let $\pp \in U \subseteq M$, and let $d_\pp$ denote the map $f \overset{d_\pp}{\mapsto} df_\pp$. Then for any smooth differential $k$-form $\omega \in \tOmega^k(N)$ on $N$, we have
+    
+    \begin{align*}
+        \FF^* \circ d_\pp = d_\pp \circ \FF^* \iff \FF^*(d_\pp \omega) = d_\pp ( \FF^*(\omega) ).
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The proof of this relies on extrapolating the result of Theorem \ref{ch::diff_forms::theorem::differential_commutes_with_diffeomorphism_pullback}.
+\end{proof}
+
+\begin{theorem}
+    \smallcite {book::SM}{364} ($d \circ d = \mathbf{0}$).
+    
+    Let $M$ be a smooth manifold WWBOC, and let $(U, \xx)$ be a smooth chart on $M$. For any smooth differential form $\omega$ on $U$, performing the exterior derivative twice on $\omega$ produces the zero differential form. That is, $d \circ d$ is the zero map, $d \circ d = \mathbf{0}$.
+\end{theorem}
+
+\begin{proof}
+    According to \cite{StackExchangePullbackImpliesdd0}, this property follows from the fact that the exterior derivative commutes with the pullback of a diffeomorphism. Here is the rough idea.
+    
+    A differential form $\omega$ on $\R^n$ is said to be \textit{invariant} with respect to a diffeomorphism $\FF$ iff $\FF^*(\omega) = \omega$. A differential form $\omega$ on $\R^n$ that is invariant with respect to all translation diffeomorphisms is said to be \textit{translation-invariant}. Using the fact that the exterior derivative commutes with the pullback of a diffeomorphism, we can show that the exterior derivative of a translation-invariant differential form must also be translation-invariant.
+    
+    Consider the diffeomorphism $\FF_x:\R^n \rightarrow \R^n$, where $x \in \R$, defined by $\FF_x(\qq) = x\qq$. Supposedly, it is easy to check that each $x$ acts on translation-invariant differential $k$-forms with multiplication by $x^k$. Using this fact, we show that all translation-invariant differential forms $\omega$ satisfy $d \omega = 0$. Since any differential form on $\R^n$ can be written as a linear combination of translation-invariant differential forms on $\R^n$, it follows that $d^2 \omega = 0$ for any differential form $\omega$ on $\R^n$. This result is quickly extended to differential forms on arbitrary smooth manifolds.
+    
+    We now prove the claim that all translation-invariant differential forms $\omega$ satisfy $d \omega = 0$. Suppose that $\omega$ is a translation invariant differential form that is acted on by $x$ in the manner described above. Then $x^k \omega = \FF_x^*(\omega)$. Taking the exterior derivative, we have $d(x^k \omega) = d(\FF_x^*(\omega))$. We take out the constant on the left hand side and use the fact that the exterior derivative commutes with the pullback of a diffeomorphism on the right hand side to get $x^k d\omega = \FF_x^*(d\omega)$. Then, since $d\omega$ is a differential $(k + 1)$-form, $\FF_x^*(d\omega) = x^{k + 1} d\omega$. In all, we have $x^k d\omega = x^{k + 1} d \omega$, so $d\omega = xd\omega$. Somehow, this implies that $d \omega = 0$. Thus, we have shown that all translation invariant differential forms $\omega$ satisfy $d \omega = 0$. 
+\end{proof}
+
+\newpage
+
+\begin{theorem}
+    \smallcite{book::Hubbard}{652 - 655} (Linearity of the exterior derivative).
+    
+    Let $M$ be a smooth manifold WWBOC, and let $(U, \xx)$ be a smooth chart on $M$.
+    
+    \begin{itemize}
+        \item $d(f_1 \omega + f_2 \eta) = f_1 d \omega + f_2 d \eta$ for all $\omega, \eta \in \tOmega^k(U)$
+        \item $d(c \omega) = cd\omega$ for all $\omega \in \tOmega^k(U)$ when $c:U \rightarrow \R$ is a constant function.
+    \end{itemize}
+\end{theorem}
+
+\begin{proof}
+    By part (1) of Theorem \ref{ch::diff_forms::thm::computing_exterior_deriv}, the exterior derivative on $0$-forms is the differential, which is linear. So the exterior derivative is linear on $0$-forms. Extend this result using part (2) of Theorem \ref{ch::diff_forms::thm::computing_exterior_deriv}, which is $d(f \spc dx^{i_1} \twedge ... \twedge dx^{i_k}) = df \twedge dx^{i_1} \twedge ... \twedge dx^{i_k}$.
+\end{proof}
+
+\begin{remark}
+    \smallcite{book::SM}{364} (Exterior derivative on $\Omega^k(M)$).
+    
+    Let $(U, \xx)$ be a smooth chart on $M$. The exterior derivative we have presented operates on differential forms from $\tOmega^k(M)$. There is a corresponding induced exterior derivative operation $d$ on $\Omega^k(M)$ (``regular'' differential forms) satisfying
+    
+    \begin{enumerate}
+        \item $d(f \spc dx^{i_1} \wedge ... \wedge dx^{i_k}) = df \wedge dx^{i_1} \wedge ... \wedge dx^{i_k}$ for all smooth functions $f:U \rightarrow \R$.
+        \item The induced exterior derivative commutes with the pullback of a smooth function $M \rightarrow N$.
+        \item $d$ is linear.
+        \item $d$ satisfies a ``product rule'': $d(\omega \wedge \eta) = d\omega \wedge \eta + (-1)^k \omega \wedge d \eta$, for all $\omega \in \Omega^k(U)$ and $\eta \in \Omega^\ell(U)$.
+    \end{enumerate}
+    
+    It is shown in \cite[p. 364]{book::SM} that these axioms indeed determine a unique operation.
+\end{remark}
+
+\subsection*{The exterior derivative and vector calculus}
+
+We now present how the exterior derivative, when coupled with the \textit{Hodge-dual} operator (soon to be introduced), generalizes $\div$, $\grad$, and $\curl$ from multivariable calculus.
+
+\begin{defn}
+\label{ch::diff_forms::thm::hodge_dual}
+    (Hodge-dual).
+    
+    %http://www.math.umd.edu/~harryt/papers/star.pdf
+    
+    Let $V$ be an $n$-dimensional vector space. The \textit{Hodge-dual} is the linear map $\Lambda^k(V) \rightarrow \Lambda^k(V)$ that, for any ordered basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, satisfies
+    
+    \begin{align*}
+        (\ee_{i_1} \wedge ... \wedge \ee_{i_k}) \wedge *(\ee_{i_1} \wedge ... \wedge \ee_{i_k}) = \ee_1 \wedge ... \wedge \ee_n,
+    \end{align*}
+    
+    for any strictly increasing index sequence $i_1 < ... <  i_k$.
+    
+    That is, for any permutation $\sigma \in S_n$,
+    
+    \begin{align*}
+        *(\ee_{\sigma(1)} \wedge ... \wedge \ee_{\sigma(k)}) = \sgn(\sigma) (\ee_{\sigma(k + 1)} \wedge ... \wedge \ee_{\sigma(n)}).
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+\label{ch::diff_forms::thm::div_grad_curl_exterior_derivative}
+    (Div, grad, and curl via the exterior derivative).
+
+    Consider $\R^3$ as a smooth manifold, and let $\sharp$ and $\flat$ be the musical isomorphisms induced by the choice of basis $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ for $T_\pp(\R^3)$. This means that
+    
+    \begin{align*}
+        \frac{\pd}{\pd x^i}\Big|_\pp \in T_\pp(M) &\overset{\flat}{\mapsto} dx^i|_\pp \in T_\pp^*(M) \\
+        dx^i|_\pp \in T_\pp^*(M) &\overset{\sharp}{\mapsto} \frac{\pd}{\pd x^i}\Big|_\pp \in T_\pp(M).
+    \end{align*}
+
+    (It may be helpful to recall Theorems \ref{ch::manifolds::thm::induced_bases_in_a_chart} and \ref{ch::manifolds::thm::coords_tangent_vectors_cotangent_vectors}).
+    
+    Additionally, let $\FF$ be the isomorphism $T_\pp(\R^3) \cong \R^3$ sending $\frac{\pd}{\pd x^i}\Big|_\pp \mapsto \see_i \in \R^3$. Then, if $f:\R^3 \rightarrow \R$ is a smooth function and $\VV:\R^3 \rightarrow \R^3$ is a smooth vector field, we can express $\div, \grad$, and $\curl$ as:
+
+    \begin{empheq}[box = \fbox]{align*}
+        \nabla f &= \FF((df)^\sharp) \\
+        \curl(\VV) &= \FF((*d(\VV^\flat))^\sharp) \\
+        \div(\VV) &= *d*(\VV^\flat)
+    \end{empheq}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \begin{itemize}
+        \item From Theorem \ref{ch::manifolds::thm::differential_smooth_function_coords}, we have $df_\pp = \sum_{i = 1}^3 \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp$, so $(df)^\sharp = \sum_{i = 1}^3 \frac{\pd f}{\pd x^i}\Big|_\pp \frac{\pd}{\pd x^i}\Big|_\pp$. Then $\FF((df)^\sharp) = \sum_{i = 1}^3 \frac{\pd f}{\pd x^i}\Big|_\pp \see_i = (\nabla_\xx f)|_\pp$.
+        \item Here's an outline of what happens in the computation. $\VV^\flat$ is a differential $1$-form corresponding to the vector field $\VV$, so $d(\VV^\flat)$ is a differential $2$-form. The $2$-wedges in the linear combination for $d(\VV^\flat)$ get sent to the ``$1$-wedges'' $dx^1|_\pp, dx^2|_\pp, dx^3|_\pp$ (which are really ``no wedges'') by $*$. Then each $dx^i|_\pp$ is sent to $\frac{\pd}{\pd x^i}\Big|_\pp$ by $\sharp$. Lastly, each $\frac{\pd}{\pd x^i}\Big|_\pp$ is sent to $\see_i$ by $\FF$. We are left with a vector field in $\R^3$ that is the curl of the vector field $\VV$.
+        \item For a smooth vector field $\VV:\R^2 \rightarrow \R^2$, we have $\div(\VV) = \curl(\RR_{\frac{\pi}{2}}(\VV))$, where $\RR_{\frac{\pi}{2}}$ is counterclockwise rotation by $\frac{\pi}{2}$. This is because if $\VV = (V_1, V_2)$, then $\RR_{\frac{\pi}{2}}(\VV) = (-V_2, V_1)$. Thus, we can apply the second line of the boxed equation to prove the theorem when $\VV$ is a $2$-dimensional vector field.
+    \end{itemize}    
+\end{proof}
+
+\begin{theorem}
+    \smallcite{book::SM}{368} (Vector calculus commutative diagram).
+    
+    The following commutative diagram summarizes how $\div$, $\grad$, and $\curl$ correspond to the exterior derivative action on differential $0$-, $1$-, $2$-, and $3$- forms on $\R^3$.
+    
+    % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAGEA9AHW6zABmOAJ4AKXgCVOAZgAEvAE5YA5gAscdBQogB3edwkBKEAF9S6TLnyEUAJnJVajFm144YADxzAaMAMY4EAqyAlgwDFBwsgSyJvpS0qbmIBjYeAREACwO1PTMrIggbp7evgFBIWERUTFxkjJJFmnWRABsOU75bFy8-EJi9XKKKuqa2nqSxmZNVhkoZLaOeS6FvADyALYwynScxOIGMlPJqbM2yPaLuc4FRdyb27sAjAcJxzPp59lXnSt3DztOLZXkdGilLJ82qQfstbustoDpCDpFNHDAoMp4ERQAJtBskABWaiBJDtEAMOgAI3CAAUIS1Cko1DgQNcuoUoGDcRB8YgyCASYhsr84dwAJJi1nkqm0+lzEBM9RcvFIYWConS6kMOnNeWKllsv6c6Ygbm8smCgDs1ApWp1ZzY+qlsLYxuSZqQ-MFTxtMu1cps5JgQmdN1c3GUCjobpxKsQPoFECQ9hF4b8TAUDGVPKQ0mJScQ1s1st1gYYwYNqcKACps7yU4K81W7lAsDRTBQTEA
+    \begin{tikzcd}
+    C^\infty(\R^3 \rightarrow \R) \arrow[dd, "\II"'] \arrow[rr, "\grad"] &  & \text{vector fields on } \R^3 \arrow[rr, "\curl"] &  & \text{vector fields on } \R^3 \arrow[rr, "\div"] &  & C^\infty(\R^3 \rightarrow \R) \arrow[dd, "*"] \\
+                                                                         &  &                                                   &  &                                                  &  &                                               \\
+    \Omega^0(\R^3) \arrow[rr, "d"']                                      &  & \Omega^1(\R^3) \arrow[rr, "d"']                   &  & \Omega^2(\R^3) \arrow[rr, "d"']                  &  & \Omega^3(\R^3)                               
+    \end{tikzcd}
+    
+    Note that the fact $d \circ d = \mathbf{0}$ implies $\curl \circ \grad = \mathbf{0}$ and $\div \circ \curl = \mathbf{0}$.
+\end{theorem}
+
+\newpage
+
+\section{The generalized Stokes' theorem}
+
+Having set up integration on manifolds and having defined the exterior derivative, we are almost ready to present the generalized Stokes' theorem. To prove the generalized Stokes' theorem, we will use a tool called a \textit{partition of unity}. A partition of unity is essentially the ``theoretically nice'' way to break up the support of a compactly supported differential form. Instead of breaking up the support into distinct ``chunks'', partitions of unity can be thought of as  ``smoothly fading the differential form in and out''.
+
+\begin{defn}
+    \smallcite{book::SM}{43} (Partitions of unity).
+    
+    If $\{U_\alpha\}$ is an open cover of $M$ and  $\{f_\alpha\}$ is a set of functions $M \rightarrow \R$, we say that $\{f_\alpha\}$ is a \textit{partition of unity of $M$ (subordinate to $\{U_\alpha\}$)} iff
+    
+    \begin{itemize}
+        \item $\supp(f_\alpha) \subseteq U_\alpha$ for all $\alpha$
+        \item $f_\alpha(\pp)$ is nonzero for only finitely many $\alpha$, for each $\pp \in M$
+        \item $(\sum_\alpha f_\alpha(\pp) = 1$ for all $\pp \in M)$ $\iff (\sum_\alpha f$ is the multiplicative identity of $\{\text{functions } M \rightarrow \R\})$.
+    \end{itemize}
+    
+    A \textit{smooth partition of unity} is a partition of unity in which each function $f_\alpha$ is smooth.
+    
+    Every open cover of a smooth manifold WWBOC admits a smooth partition of unity (\cite[p. 43]{book::SM}). Since every manifold has an open cover, this means that every smooth manifold WWBOC admits a smooth partition of unity.
+\end{defn}
+
+\begin{theorem}
+    \smallcite{book::SM}{43} (Existence of smooth partitions of unity).
+    
+    We take for granted the fact from \cite{book::SM} that any open cover of any smooth manifold WWBOC has a smooth partition of unity.
+\end{theorem}
+
+\begin{theorem}
+\label{ch::diff_forms::thm::integral_via_partition_of_unity}
+
+    (Integral of a differential $n$-form on a smooth $n$-manifold via partition of unity).
+    
+    Let $M$ be an oriented smooth $n$-manifold WWBOC and let $\omega$ be a compactly supported $n$-form on $M$. Since $\supp(\omega)$ is compact, there is a finite collection $\{(U_i, \xx_i)\}_{i = 1}^k$ of charts on $M$ for which $\{U_i\}_{i = 1}^k$ is an open cover of $\supp(\omega)$, with the pairwise intersections having measure zero. Additionally, let $\{f_i\}_{i = 1}^k$ be a smooth partition of unity subordinate to $\{U_i\}_{i = 1}^k$.
+    
+    Simply repeating the previous definition, we have,  
+
+    \begin{align*}
+        \int_M \omega = \sum_{i = 1}^k \int_{U_i} \omega.
+    \end{align*}
+    
+    Now, since each $f_i \omega$ is supported in $U_i$, we have
+    
+    \begin{align*}
+        \int_{U_i} \omega = \int_{U_i} f_i \omega = \int_M f_i \omega
+    \end{align*}
+
+    The last equality of the line above applies the definition of the integral over a manifold of a differential form that is compactly supported in a single chart (see Definition \ref{ch::diff_forms::defn::integral_over_single_chart}).
+    
+    Summing over $i$, we obtain
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_{U_i} \omega = \sum_{i = 1}^k \int_M f_i \omega.
+    \end{align*}
+    
+    Therefore the integral of a differential form over a manifold can be computed with use of the partition of unity:
+    
+    \begin{align*}
+        \boxed
+        {
+            \int_M \omega = \sum_{i = 1}^k \int_M f_i \omega
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{remark}
+    (Integration with partitions of unity).
+    
+    Integration of differential forms on manifolds is most often \textit{defined} in terms of partitions of unity. We prefer to view the partition of unity method as a consequence of the definition $\int_M \omega := \sum_{i = 1}^k \int_{U_i} \omega$ (see Definition \ref{ch::diff_forms::defn::integral_over_manifold}), as this definition is an intuitive starting point.
+\end{remark}
+
+\begin{theorem}
+    \smallcite{book::SM}{407} (Properties of integrals of differential forms).
+\end{theorem}
+
+%\begin{defn}
+%    (Integral of a $k$-form, $k \leq n$, over an $n$-manifold)
+    
+%    Use inclusion map
+%\end{defn}
+
+\begin{theorem}
+\label{ch::diff_forms::theorem::stokes_on_a_smooth_chart}
+
+    \smallcite{book::Hubbard}{561} (The generalized Stokes' theorem on a single smooth chart).
+    
+    Let $M$ be a smooth $n$-manifold and consider a smooth oriented chart $(U, \xx)$ on $M$. Let $\omega$ be a smooth differential $(k - 1)$-form that is compactly supported in $U$. Then
+    
+    \begin{align*}
+        \int_M d \omega = \int_{\pd M} \omega.
+    \end{align*}
+    
+    Intuitively, this theorem is true because
+    
+    \begin{align*}
+        \int_M d \omega \approx \sum_i d \omega(P_i) \approx \sum_i \int_{\pd P_i} \omega \approx \int_{\pd M} \omega.
+    \end{align*}
+    
+    The first approximation holds because integrals are limits of Riemann sums. The second approximation holds because the definition of the exterior derivative implies $d\omega(C) \approx \int_{\pd C} \omega$, where $C$ is one of the $k$-cubes in the previous Riemann sum (a $k$-cube is a $k$-parallelapiped, and differential forms evaluate $k$-parallelapipeds). The third approximation holds because each boundary $\pd P_i$ in the sum of integrals corresponds to exactly one oppositely oriented boundary $\pd P_i = - \pd P_j$ that occupies the same space: we have $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C} \omega = \sum_{C' \in D_N(\pd \cl(\H^k)} \int_{C'} \omega$, which is equal to $\int_{\pd \cl(\H^k)} \omega$ by Definition \ref{ch::diff_forms::defn::integral_over_manifold}.
+    
+\end{theorem}
+
+\begin{proof}
+    For simplicity, assume $M = \R^n$ or $\H^n$.
+    
+    Each ``approximation'' above translates loosely translates to a statement of the form $f(M, \omega, N_1) \approx g(M, \omega, N_2)$. A statement such as this further translates to the formal statement \\ $(\text{for all $M, \omega, N_1$ and for all $\epsilon > 0$, there exists an $N_2 \in \N$ for which } |f(M, \omega, N_1) - g(M, \omega, N_2)| < \epsilon)$. It suffices to prove each formal statement individually, because ``approximation'' treated this way is transitive when treated this way.
+    
+    ($\int_U d \omega \approx \sum_i d \omega(P_i)$). Let $\epsilon > 0$. Then, by the definition of the integral via Riemann sums, there exists an $N$ large enough such that the dyadic paving of $U$ of fineness $2^{-N}$ ensures $|\int_U d \omega - \sum_{C_i \in D_N(\cl(\H^k))} d \omega(P_i)| < \epsilon$.
+    
+    ($\sum_i d \omega(P_i) \approx \sum_i \int_{\pd P_i}$). Let $\epsilon > 0$ (forget about the previous $\epsilon$). Take the dyadic decomposition\footnote{Intuitively, the dyadic decomposition of a subset of $\R^k$ of $2^{-N}$ is a partition of that subset obtained by halving the subset $N$ times. See \cite[p. 356]{book::Hubbard}.} of $U$ of fineness $2^{-N}$, so that $U$ is a countable disjoint union of $k$-cubes with side length $2^{-N}$. Each $k$-cube is a $k$-parallelapiped of the form $C_i = P_\pp(h \see_1, ..., h \see_k)$ for some $\pp$, and where $h = 2^{-N}$. By the definition of the exterior derivative (Definition \ref{ch::diff_forms::defn::exterior_derivative}), there exist $K, \delta > 0$ such that when $|h| = 2^{-N} < \delta$, we have $|\int_{C_i} d \omega - \sum_i d \omega(C_i)| < Kh^{k + 1}$. By taking $N$ sufficiently large, $|h|$ becomes sufficiently small, and we get $|\int_{C_i} d \omega - \sum_i d \omega(C_i)| < Kh^{k + 1} < \epsilon$.
+    
+    ($\sum_i \int_{\pd P_i} \omega = \int_{\pd U} \omega$). We prove this last step with with direct equality rather than by using a converging approximation. Written out more formally, $\sum_i \int_{\pd P_i} \omega$ is $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C} \omega$. Applying Theorem \ref{ch::manifolds::thm::oriented_bdy_parallelapiped}, which gives the oriented boundary of a $k$-parallelapiped, all the internal boundaries in the sum $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C}$ cancel, since each boundary appears twice with opposite orientations.  Thus $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C} \omega = \sum_{C' \in D_N(\pd \cl(\H^k))} \int_{C'} \omega = \int_{\pd M} \omega$.
+\end{proof}
+
+\begin{remark}
+    The above theorem is the real ``heart'' of Stokes' theorem. The proof of the full-blown Stokes' theorem uses partitions of unity to extend the previous result to an entire manifold.
+\end{remark}
+
+\begin{theorem}
+    \smallcite{book::SM}{419} (The generalized Stokes' theorem).
+    
+    Let $M$ be an oriented smooth manifold with corners, and let $\omega$ be a compactly supported smooth differential $(n - 1)$-form on $M$. Then 
+    
+    \begin{align*}
+        \int_M d \omega = \int_{\pd M} \omega.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The proof of this theorem is adapted from \cite[p. 661 - 665]{book::Hubbard}.
+    
+    Using the theorem which expresses $\int_M \omega$ in terms of a partition of unity, and using the linearity of the exterior derivative, we have
+    
+    \begin{align*}
+        \int_M d \omega = \int_M \sum_{i = 1}^k f_i d \omega = \int_M \sum_{i = 1}^k d (\underbrace{f_i \omega}_{\omega_i}) = \int_M \sum_{i = 1}^k d \omega_i.
+    \end{align*}
+    
+    Here, we have\footnote{This notation reflects that, in some sense, using a partition of unity on a topological manifold is similar to choosing a basis for a vector space. If we \textit{really} wanted to emphasize this fact, we might have denoted $f_i \omega$ by $([\omega]_{\{f_i\}_{i = 1}^k})_i$.} defined $\omega_i := f_i \omega$.
+    
+    Using the linearity of the integral, we have
+    
+    \begin{align*}
+        \int_M \sum_{i = 1}^k d \omega_i = \sum_{i = 1}^k \int_M d \omega_i.
+    \end{align*}
+    
+    Recalling the definition of an integral of a differential form over a manifold the definition of the integral of a differential form over a manifold that is compactly supported in a single chart (Definitions \ref{ch::diff_forms::defn::integral_over_single_chart} and \ref{ch::diff_forms::defn::integral_over_manifold}, respectively) this becomes
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_M d \omega_i = \sum_{i = 1}^k \int_{\xx_i(U_i)} (\xx_i^{-1})^*(d \omega_i).
+    \end{align*}
+    
+    Because the differential commutes with the pullback of a differential (Theorem \ref{ch::exterior_pwrs::thm::exterior_derivative_commutes_with_pullback}), we have
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_{\xx_i(U_i)} (\xx_i^{-1})^*(d \omega_i) = \sum_{i = 1}^k \int_{\xx_i(U_i)} d \Big( (\xx_i^{-1})^*(\omega_i) \Big).
+    \end{align*}
+    
+    We apply the previous theorem- Stokes' theorem on a single smooth chart- to the integral inside the sum to obtain
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_{\xx_i(U_i)} d \Big( (\xx_i^{-1})^*(\omega_i) \Big) = \sum_{i = 1}^k \int_{\pd \xx_i(U_i)} (\xx_i^{-1})^*(\omega_i).
+    \end{align*}
+    
+    We use that $\pd \xx_i(U_i) = \xx_i(\pd U_i)$ and apply the definition of a differential form over a manifold that is compactly supported in a single chart, again, to get
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_{\pd \xx_i(U_i)} (\xx_i^{-1})^*(\omega_i) = \sum_{i = 1}^k \int_{\xx_i(\pd U_i)} (\xx_i^{-1})^*(\omega_i) = \sum_{i = 1}^k \int_{\pd U_i} \omega_i.
+    \end{align*}
+    
+    Finally, since $\{U_i\}_{i = 1}^k$ is a finite open cover for $\supp(\omega) \subseteq M$, where the pairwise intersections have measure zero, then $\{\pd U_i\}_{i = 1}^k$ is a finite open cover for $\pd \supp(\omega) \subseteq \pd M$, where the pairwise intersections have measure zero. Thus, this last expression is
+    
+    \begin{align*}
+        \sum_{i = 1}^k \int_{\pd U_i} \omega_i = \sum_{i = 1}^k \int_{\pd M} f_i \omega = \int_{\pd M} \omega.
+    \end{align*}
+    
+    The last equality follows by Theorem \ref{ch::diff_forms::thm::integral_via_partition_of_unity}.
+\end{proof}
+
+%\begin{remark}
+%    empty boundary?
+    
+%    pullback of inclusion?
+%\end{remark}
+
+\begin{remark}
+    (``$\pd$ is the adjoint of $d$'').
+    
+    If we define a ``bilinear function'' on differential forms $\omega$ and smooth manifolds $M$ by ``${\langle \omega, M \rangle := \int_M \omega}$'', then Stokes' theorem is stated as
+    
+    \begin{align*}
+        ``\langle d \omega, M \rangle = \langle \omega, \pd M \rangle \text{''}.
+    \end{align*}
+    
+    Recalling Definition \ref{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}, it \textit{appears} that the boundary operator $\pd$ is the ``adjoint'' of the exterior derivative $d$. (Quotation marks have been used excessively in this remark because the statements of this remark are only heuristic and not mathematically precise).
+    
+    %\url{https://math.stackexchange.com/questions/939599/is-the-product-rule-for-the-boundary-of-a-cartesian-product-of-closed-sets-an}
+    
+    %\url{https://mathoverflow.net/questions/46252/is-the-boundary-partial-s-analogous-to-a-derivative}
+\end{remark}
+
+%\section*{Examples}
+
+%11-27, 14-18, 16-9
+\begin{comment}
+    
+\section{Etc.}
+
+\subsection*{Geometric interpretation of linear functionals}
+
+Given a basis $E$ for a finite-dimensional vector space $V$, a dual vector $\phi \in V^*$ acts on a vector by $\phi(\vv) = [\phi]_E \cdot \vv$. This is reminiscent of the equation for a plane. 
+
+Recall, the plane that contains the point $\xx_0 \in V$ and has (not necessarily unit-length) normal $\nn$ is the set $\{ \xx \mid (\xx - \xx_0) \cdot \nn = 0 \}$, which is the same set as $\{ \xx \mid \xx \cdot \nn = \xx_0 \cdot \nn \}$. This means that if we consider the level planes $\{ \phi(\vv) = [\phi]_E \cdot \vv = k \mid c \in K \}$, then $[\phi]_E$ takes the role of $\xx$, $\vv$ takes the role of $\nn$, and $k$ takes the role of $\xx_0 \cdot \nn$ (for some $\xx_0$).
+
+Noticing this implies the following facts about $\{ \phi(\vv) = k \mid c \in K \}$.
+
+\begin{enumerate}
+    \item The level planes are parallel to each other, because their normal vectors are all scalar multiples of $\vv$.
+    \item $[\phi]_E$ is perpendicular to each level plane. (Consider that $[\phi]_E$ is perpendicular to the level plane corresponding to $k = 0$, since $[\phi]_E \cdot \vv = 0$. This level plane is parallel to every other level plane, so $[\phi]_E$ is perpendicular to every level plane.)
+\end{enumerate}
+
+Now, we construct a set of level planes analogous to a coordinate system. Consider the set of level planes for which $k = 0$, $k = 1$, and $k = 1 \cdot j$ for $j \in \Z$ (the homomorphism $j \mapsto j \cdot 1_F$ relates to ring characteristic!). Then to evaluate $h(\vv) = [\phi]_E \cdot \vv$, we count the number of these level planes that $[\phi]_E$ pierces. 
+
+This interpretation emphasizes thinking of dual vectors as corresponding to row-vectors, since row-vector times column-vector is the same as the dot product between the two corresponding column vectors.
+
+\subsection*{Piponi visualization of diff forms}
+
+1-forms are integrated along paths.
+
+To evaluate a linear functional on a vector, think of the linear functional as represented by a set of parallel $(n - 1)$-dimensional planes, each a unit distance apart, and count how many planes the vector goes through.
+
+To integrate a differential 1-form over a curve, think of the diff 1-form as represented by curving $(n - 1)$-dimensional ``leaves''. Take the directed count of how many leaves the curve passes through.
+
+A diff $k$-form on an $n$-manifold is represented by $(n - k)$-dimensional leaves. 
+
+A nonzero exterior product of a diff $k$ form with a diff $\ell$ form is a $k + \ell$ form because intersecting a collection of $(n - k)$-dimensional leaves with a collection of $(n - \ell)$-dimensional leaves gives a collection of $(n - (k + \ell))$-dimensional leaves.
+
+A differential $n$-form on an $n$-manifold is a ``top'' form whose leaves are points. Such a diff form is a volume density.
+
+To integrate $dx \wedge dy = \epsilon^1 \wedge \epsilon^2$ over an area, draw vertical grid lines (corresponding to $\epsilon^1$), draw horiztonal grid lines (coorresponding to $\epsilon^2$), 
+
+\end{comment}

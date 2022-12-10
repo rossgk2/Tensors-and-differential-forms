@@ -1,0 +1,88 @@
+\chapter*{Notation}
+
+Here is a list of most of the notation used in this book. Since the concepts that the notation has been designed around have not been introduced yet, do not worry about fully understanding this page on a first read-through. This page will be more helpful later.
+
+\small
+
+\vspace{.25cm}
+
+\textbf{Basic linear algebra}
+
+\begin{itemize}
+    \item $K$ is used to denote a field.
+    \item $c$, $d$, and $k$ are used to denote elements of $K$.
+    \item $K^{m \times n}$ is the set of $m \times n$ matrices with entries in $K$.
+    \item $n$ and $m$ are used to denote nonnegative integers or positive integers.
+    \item $\cc$ is used to denote an element of $K^n$, and $\dd$ is used to denote either another element of $K^n$ or an element of $K^m$.
+    \item $V$ and $W$ are used to denote vector spaces over a field $K$. When these spaces are finite-dimensional, we often set $\dim(V) = n$ and $\dim(W) = m$.
+    \item $\vv$ and $\ww$ are used to denote elements of vector spaces.
+    \item $E = \{\ee_i\}_{i = 1}^n$ is used to denote an arbitrary basis for $V$, and $F = \{\ff_i\}_{i = 1}^m$ is used to denote either another arbitrary basis for $V$ or to denote an arbitrary basis for $W$.
+    \item $U = \{\huu_i\}_{i = 1}^n$ is used to denote orthonormal basis for some vector space, and $\tU = \{\tuu_i\}_{i = 1}^n$ is used to denote another orthonormal basis for the same space.
+    \item $\sE = \{\see_i\}_{i = 1}^n$ is the standard basis of $K^n$ (that is, $\see_i$ is the tuple of entries from $K$ whose $j$th entry is $1$ when $j = i$ and $0$ otherwise), and $\sF = \{\sff_i\}_{i = 1}^m$ is the standard basis $K^m$ (defined similarly).
+    \item When applicable, $||\cdot||$ denotes the magnitude of a vector; for example, $||\vv||$ is the magnitude of $\vv$.
+    \item Hats $\spc \hat{} \spc$ are used to denote unit vectors (vectors with a magnitude of $1$); for example, $\hat{\vv}$ denotes a unit vector.
+    \item $[\vv]_E$ is used to denote the vector that contains the coordinates of $\vv \in V$ relative to the basis $E$.
+    \item $\ff$ is used to denote a linear function $V \rightarrow W$.
+    \item $[\ff(E)]_F$ denotes the $m \times n$ matrix of $\ff$ with relative to the bases $E$ and $F$ of the finite-dimensional vector spaces $V$ and $W$.
+    \item  $[\ff(\sE)]_\sF = \ff(\sE)$ denotes the $m \times n$ matrix of the linear function $\ff:K^n \rightarrow K^m$ relative to the standard bases $\sE$ and $\sF$ for $K^n$ and $K^m$.
+    \item $\cong$ is used to denote an isomorphism of vector spaces.
+\end{itemize}
+
+\textbf{Multilinear algebra}
+
+\begin{itemize}
+    \item $\phi$ is used to denote an arbitrary element of $V^*$, and $\psi$ is used to denote an arbitrary element of $W^*$.
+    \item $E^* = \{\epsilon_i\}_{i = 1}^n$ is an arbitrary basis for $V^*$, and $F^* = \{\delta_i\}_{i = 1}^m$ is an arbitrary basis for $W^*$.
+    \item $E^* = \{\phi^{\ee_i}\}_{i = 1}^n$ is the basis for $V^*$ induced by the basis $E = \{\ee_i\}_{i = 1}^n$ for $V$, and $F^* = \{\psi^{\ff_i}\}_{i = 1}^m$ is the basis for $W^*$ induced by the basis $F = \{\ff_i\}_{i = 1}^m$ for $W$.
+    \item $\Phi$ is used to denote an element of $V^{**}$, and $\Psi$ is used to denote an element of $W^{**}$.
+    \item $E^{**} = \{\Che_i\}_{i = 1}^n$ is an arbitrary basis of $V^{**}$, and $\{\Xi_i\}_{i = 1}^m$ is an arbitrary basis of $W^{**}$. (This notation is never actually used in this book, but you might use this as a suggestion in investigations of the material).
+    \item $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ is the vector space of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$. In particular, $\LLLL(V \rightarrow W)$ is the vector space of linear functions $V \rightarrow W$.
+    \item The set of $(p, q)$ tensors on $V$ is denoted $T_{p,q}(V)$, and $\mathbf{T}$ is used to denote an element of $T_{p,q}(V)$.
+    \item $B$ is used to denote a bilinear form on $V$ and $W$.
+    \item Given a bilinear form $B$ on $V$ and $W$, $\flat_1$ and $\flat_2$ are the natural linear maps $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ defined by $\flat_1(\vv)(\ww) = B(\vv, \ww)$ and $\flat_2(\ww)(\vv) = B(\vv, \ww)$. We define the notation $\vv^{\flat_1} := \flat_1(\vv)$ and $\ww^{\flat_2} := \flat_2(\ww)$. When $\flat_1$ and $\flat_2$ are isomorphisms, they are called \textit{musical isomorphisms}, and their inverses $\flat_1^{-1}$ and $\flat_2^{-1}$ are denoted by $\sharp_1 := \flat_1^{-1}$ and $\sharp_2 := \flat_2^{-1}$.
+    \item $g$ is used to denote a metric tensor on $V$ and $W$. (Our definition of metric tensor allows for $V \neq W$, and is also not such that there is a single metric tensor, as is sometimes the case in other conventions).
+    \item If $V$ and $W$ have bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, then $\gg$ is used to denote the matrix ${\gg = (g_{ij}) := (g(\ee_i, \ff_j))}$.
+    \item $\widetilde{g}$ is used to denote the metric tensor on $W^*$ and $V^*$ induced by $g$, and $\widetilde{\gg}$ are used to denote the matrix $\gg = (g^{ij}) := (\widetilde{g}(\psi^{\ff_i}, \phi^{\ee_j}))$.
+    \item The usual index conventions for \textit{covariance and contravariance} are introduced in Definition \ref{ch::motivated_intro::defn::covariance_contravariance}. They are only used in Section \ref{ch::bilinear_forms_metric_tensors::coords_of_pq_tensors}, and not anywhere else in the book.
+    \item The $k$th exterior power of $V$ is denoted $\Lambda^k(V)$.
+    \item Given a linear function $\ff:V \rightarrow W$, the induced pushforward from $T^k_0(V)$ to $T^k_0(W)$ is denoted by $\otimes^k_0 \ff$, and the induced pullback from $T^0_k(W)$ to $T^0_k(V)$ is denoted by $\otimes^0_k \ff^*$.
+    \item Given a linear function $\ff:V \rightarrow W$, the induced pushforward from $\Lambda^k(V)$ to $\Lambda^k(W)$ is denoted by $\Lambda^k \ff$, and the induced pullback from $\Lambda^k(W^*)$ to $\Lambda^k(V^*)$ is denoted by $\Lambda^k \ff^*$.
+    \item The standard notation for pushforwards and pullbacks is problematic in that it is ambiguous; see Remark \ref{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}.
+\end{itemize}
+
+\textbf{Multilinear algebra: distinguishing between algebraic objects and functions}
+
+$(p, q)$ tensors can be treated either as elements of a vector space that satisfy certain algebraic rules (this is ultimately due to Definition \ref{ch::motivated_intro::defn::tensor_product_space}) or as elements of $\LLLL((V^*)^{\times p} \times V^{\times q} \rightarrow K)$ (see Remark \ref{ch::motivated_intro::rmk::many_defs_tensor}). We favor the first interpretation whenever possible, but it is sometimes necessary to use the second interpretation. Notation used for the second interpretation makes use of an overset $\sim$ to distingish it from notation used for the first interpretation. 
+
+For example, some notation favoring the first interpretation is $\otimes$, $T_{p,q}(V)$, $\Lambda^k(V)$, $\wedge$, $\Omega^k(M)$, and some notation favoring the second interpretation is $\totimes$, $\tT_{p,q}(V)$, $\tLambda^k(V)$, $\twedge$, $\tOmega^k(M)$.
+
+\vspace{.25cm}
+
+\textbf{Other uses for an overset $\sim$}
+
+An overset $\sim$ is not always used for the above reason. Sometimes it is used in the same manner that a ``prime'' ' would be used in other texts, which is to denote an object that is ``similar'' or ``closely related'' to a previous one. For example, if an other text said ``Let $x, x' \in \R$'', we would say, ``Let $x, \widetilde{x} \in \R$''. 
+
+\vspace{.25cm}
+
+\textbf{Differential geometry}
+
+\begin{itemize}
+    \item $M$ and $N$ are used to denote manifolds, usually smooth manifolds.
+    \item $\xx$ and $\yy$ are used to denote smooth charts on smooth manifolds.
+    \item The acronym ``WWBOC'' is used as shorthand for ``with or without boundary or corners''.
+    \item The set of differential $k$-forms on a manifold is denoted $\Omega^k(M)$, and $\omega$ is typically used to denote an element of $\Omega^k(M)$.
+\end{itemize}
+
+\textbf{Misc}
+
+\begin{itemize}
+    \item As you may have noticed, vector quantities (including functions with a vector output) are bolded. Elements of vector spaces (except for ``trivial'' ones like $\R$, the field $K$, etc.) are considered to be vector quantities.
+    \item $\sim$ is used to denote ``rotational equivalence''.
+    \item $\delta^i_j$ is the Kronecker delta function defined by $\delta^i_j = 1$ when $i = j$ and $\delta^i_j = 0$ otherwise.
+    \item Strikethrough notation is used to denote the omission of some element in a list. For example, $x_1, ..., \cancel{x_i}, ..., x_n$ is used to denote $x_1, ..., x_{i - 1}, x_i, ..., x_n$.
+\end{itemize}
+
+\vspace{.25cm}
+
+\textbf{Notation in definitions.} The notation $:=$ is used to indicate a definition (this is different than $=$, which indicates an equality obtained through logical reasoning). In definitions, ``if and only if'' is abbreviated as ``iff''.
+

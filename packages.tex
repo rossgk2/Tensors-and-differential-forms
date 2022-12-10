@@ -1,0 +1,91 @@
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{float} %for fixing position of tables with [H]
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb} %for bold Greek letters
+\usepackage{amsfonts}
+\usepackage{tikz-cd}
+\usetikzlibrary{cd}
+\usepackage{indentfirst} %indent the first line of each paragraph
+\usepackage{comment} %enables the commenting-out of large blocks of text with \begin{comment} and \end{comment}
+\usepackage{forloop}
+\usepackage{hyperref} %clickable hyperlinks with \url{} 
+\usepackage{empheq} %for boxed multi-line equations
+\usepackage{aligned-overset} %so that using \overset{\text{helpful hint}}{=} doesn't mess up align environments
+\usepackage{cancel} %for striking-through symbols
+%https://trucastuces.wordpress.com/2012/10/10/boxed-equations-in-latex/
+\usepackage{ulem} %for strikethrough in the todo list
+\usepackage{scrextend} % so that \addmargin{} works
+
+\usepackage{kbordermatrix} %for labeling rows/columns of matrices (http://www.hss.caltech.edu/~kcb/TeX/kbordermatrix.sty)
+\renewcommand{\kbldelim}{(}% Left delimiter
+\renewcommand{\kbrdelim}{)}% Right delimiter
+
+%Bigger section, subsection, and subsubsection fonts
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\normalfont\LARGE\bfseries}}% from \Large
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\Large\bfseries}}% from \large
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\large\bfseries}}% from \normalsize
+\makeatother
+
+\usepackage{amsthm} %for defns, lemmas, theorems, proofs
+%https://tex.stackexchange.com/questions/12913/customizing-theorem-name
+%https://tex.stackexchange.com/questions/161180/common-numbering-for-theorems-and-definitions
+
+%Definitions
+\newtheoremstyle{defn_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{defn_}
+\newtheorem{defn}{Definition}
+\numberwithin{defn}{chapter}
+
+%Derivations
+\newtheoremstyle{deriv_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{deriv_}
+\newtheorem{deriv}[defn]{Derivation}
+
+%Theorems
+\newtheoremstyle{theorem_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{theorem_}
+\newtheorem{theorem}[defn]{Theorem}
+
+%Lemmas
+\newtheoremstyle{lemma_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{lemma_}
+\newtheorem{lemma}[defn]{Lemma}
+
+%Corollaries
+\newtheoremstyle{cor_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{cor_}
+\newtheorem{cor}[defn]{Corollary.}
+
+%Remarks
+\newtheoremstyle{remark_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{remark_}
+\newtheorem{remark}[defn]{Remark}
+
+%Examples
+\newtheoremstyle{example_}{}{}{}{}{\bfseries}{.}{.5em}{}
+\theoremstyle{example_}
+\newtheorem{example}[defn]{Example}
+
+\usepackage{geometry}
+\geometry
+{
+    a4paper,
+    total={170mm,257mm},
+    left=20mm,
+    top=20mm,
+}

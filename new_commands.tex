@@ -1,0 +1,171 @@
+%Command which enables \xx for bold lowercase "x" and \XX for bold uppercase "X"
+\let\aa\undefined
+\let\bb\undefined
+\let\ff\undefined
+\let\gg\undefined
+\let\ss\undefined
+
+\let\AA\undefined
+\let\EE\undefined
+\let\FF\undefined
+\let\II\undefined
+\let\SS\undefined
+
+\newcommand{\defbold}[1]
+{
+    \expandafter\providecommand\csname #1#1\endcsname{{\mathbf{#1}}}
+}
+
+\newcounter{ct}
+
+%lowercase letters
+\forLoop{1}{26}{ct}
+{
+    \edef\letter{\alph{ct}}
+    \expandafter\defbold\letter
+}
+
+%capital letters
+
+\forLoop{1}{26}{ct}
+{
+    \edef\letter{\Alph{ct}}
+    \expandafter\defbold\letter
+}
+
+%Notation for standard bases of K^n, K^m
+\newcommand{\see}{\hat{\mathfrak{e}}}
+\newcommand{\sff}{\hat{\mathfrak{f}}}
+\newcommand{\sE}{{\hat{\mathfrak{E}}}}
+\newcommand{\sF}{{\hat{\mathfrak{F}}}}
+\newcommand{\sG}{{\hat{\mathfrak{G}}}}
+
+%Notation for orthonormal bases
+\newcommand{\hU}{\widehat{U}}
+\newcommand{\huu}{\hat{\uu}}
+\newcommand{\hvv}{\hat{\vv}}
+\newcommand{\tU}{\widetilde{U}}
+\newcommand{\tuu}{\widetilde{\uu}}
+
+%Notation for set of vector fields
+\newcommand{\XXXX}{\mathfrak{X}}
+
+%Script uppercase letters
+\newcommand{\AAAA}{\mathcal{A}}
+\newcommand{\CCCC}{\mathcal{C}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\JJJJ}{\mathcal{J}}
+\newcommand{\EEEE}{\boldsymbol{\mathcal{E}}}
+\newcommand{\FFFF}{\boldsymbol{\mathcal{F}}}
+\newcommand{\GGGG}{\boldsymbol{\mathcal{G}}}
+\newcommand{\PPPP}{\mathcal{P}}
+\newcommand{\QQQQ}{\mathcal{Q}}
+\newcommand{\LLLL}{\mathcal{L}}
+\newcommand{\OOOO}{\mathcal{O}}
+
+%Bolded Greek letters
+\newcommand{\ppsi}{\boldsymbol{\psi}}
+\newcommand{\pphi}{\boldsymbol{\phi}}
+\newcommand{\ggamma}{\boldsymbol{\gamma}}
+\newcommand{\cchi}{\boldsymbol{\chi}}
+\newcommand{\ssigma}{\boldsymbol{\sigma}}
+\newcommand{\ppi}{\boldsymbol{\pi}}
+\newcommand{\ttau}{\boldsymbol{\tau}}
+
+%Bolded \ell
+\newcommand{\eell}{\boldsymbol{\ell}}
+
+%Uppercase bold epsilon and U
+\newcommand{\EEE}{\boldsymbol{\mathcal{E}}}
+\newcommand{\UUU}{\boldsymbol{\mathcal{U}}}
+
+%Double angle brackets
+\newcommand{\dlangle}{\langle \langle}
+\newcommand{\drangle}{\rangle \rangle}
+
+%Blackboard bold letters
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\let\C\undefined
+\newcommand{\C}{\mathbb{C}}
+\let\H\undefined
+\newcommand{\H}{\mathbb{H}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+
+%The cryllic letter Che, used for basis elements of E^{**}
+\newcommand{\Che}{\mbox{\usefont{T2A}{\rmdefault}{m}{n}\CYRCH}}
+%https://tex.stackexchange.com/questions/14633/what-packages-will-let-me-use-cyrillic-characters-in-math-mode
+
+%Notation for linear and abstract algebra
+\newcommand{\sgn}{\text{sgn}}
+\newcommand{\deltaij}{\begin{cases} 1 & i = j \\ 0 & i \neq j \end{cases}}
+\let\ker\undefined
+\newcommand{\ker}{\text{ker}}
+\newcommand{\coker}{\text{coker}}
+\newcommand{\im}{\text{im}}
+\newcommand{\adj}{\text{adj}}
+\newcommand{\tr}{\text{tr}}
+\newcommand{\spann}{\text{span}}
+\newcommand{\proj}{\text{proj}}
+\newcommand{\alt}{\text{alt}}
+\newcommand{\cj}{\overline}
+
+%Notation for manifolds
+\newcommand{\tFF}{\widetilde{\FF}}
+\newcommand{\tF}{\widetilde{F}}
+\newcommand{\tf}{\widetilde{f}}
+
+%Notation for "alternate versions" of \otimes, \wedge, etc.
+\newcommand{\totimes}{\widetilde{\otimes}}
+\newcommand{\twedge}{\widetilde{\wedge}}
+\newcommand{\talt}{\widetilde{\alt}}
+\newcommand{\tLambda}{\widetilde{\Lambda}}
+\newcommand{\tOmega}{\widetilde{\Omega}}
+\newcommand{\tomega}{\widetilde{\omega}}
+\newcommand{\tx}{\widetilde{\xx}}
+\newcommand{\tT}{\widetilde{T}}
+\newcommand{\tphi}{\widetilde{\phi}}
+\newcommand{\tpsi}{\widetilde{\psi}}
+\newcommand{\tv}{\widetilde{\vv}}
+
+%Commands for proofs
+\newcommand{\st}{\text{ s.t. }}
+\newcommand{\spc}{\text{ }}
+
+%Commands for calculus
+\newcommand{\pd}{\partial}
+\renewcommand{\div}{\text{div}}
+\newcommand{\grad}{\text{grad}}
+\newcommand{\curl}{\text{curl}}
+\newcommand{\td}{\widetilde{d}}
+
+%Commands for discrete differential geometry
+\newcommand{\hd}{\widehat{d}}
+\newcommand{\ddual}{\widehat{d}_{\text{dual}}}
+\newcommand{\dprimal}{\widehat{d}_{\text{primal}}}
+\newcommand{\homega}{\widehat{\omega}}
+\newcommand{\hDelta}{\widehat{\Delta}}
+\newcommand{\hnabla}{\widehat{\nabla}}
+\newcommand{\hst}{\widehat{*}}
+\newcommand{\hstpd}{\hst_{\text{p $\rightarrow$ d}}}
+\newcommand{\hstdp}{\hst_{\text{d $\rightarrow$ p}}}
+\newcommand{\hf}{\widehat{f}}
+\newcommand{\hwf}{\widehat{\widetilde{f}}}
+\newcommand{\wf}{\widetilde{f}}
+
+%Commands for topology
+\newcommand{\cl}{\text{cl}}
+\let\iint\undefined
+\newcommand{\iint}{\text{int}}
+\newcommand{\supp}{\text{supp}}
+\newcommand{\Rstd}{\R_{\text{std}}}
+
+%Commands for fem
+\newcommand{\hbest}{h_{\text{best}}}
+
+%For small citations
+\newcommand{\smallcite}[2]{\scriptsize \cite[p. #2]{#1} \normalsize}
+
+%For in-line code
+\def\code#1{\texttt{#1}}

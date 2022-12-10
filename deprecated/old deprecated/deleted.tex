@@ -1,0 +1,632 @@
+\begin{remark}
+\label{ch::lin_alg::rmk::change_of_basis_vectors_Kn}
+
+    (Change of basis for vectors when $V = K^n$). Consider the context of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}. Let $V = K^n$, and let $F = \sE = \{ \see_1, ..., \see_n \}$ be the standard basis of $K^n$. Then the boxed equations of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors} simplify to
+    
+    \begin{align*}
+        \cc &= \EE [\cc]_E \\
+        \FF &= \EE [\FF]_E.
+    \end{align*}
+\end{remark}
+
+\begin{proof}
+    These equations can be quickly proved from the definition of $[\cdot]_E$. First we prove the first equation:
+    
+    \begin{align*}
+        \cc = \sum_{i = 1}^n ([\cc]_E)_i \ee_i = \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} [\cc]_E = \EE [\cc]_E.
+    \end{align*}
+    
+    The second one follows as as a special case of the first, since the first equation implies in particular that $\ff_i = \EE [\ff_i]_E$:
+    
+    \begin{align*}
+        \begin{pmatrix} \ff_1 & \hdots & \ff_n \end{pmatrix} = \begin{pmatrix} \EE [\ff_1]_E & \hdots & \EE [\ff_n]_E \end{pmatrix} = \EE [\FF]_E.
+    \end{align*}
+    
+    The last equality follows from the definition of matrix-matrix product (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}).
+\end{proof}
+
+%%%
+
+
+
+    
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$, and let $W$ be a different finite-dimensional vector space. In Theorem \ref{ch::lin_alg::thm::f_EF}, we saw that the primitive matrix of $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ is $[\ff(E)]_F$. In order to convert the coordinates of a vector relative to $E$ into coordinates relative to $F$, we consider the case $V = W$. Recall from Derivation \ref{ch::lin_alg::deriv::matrix_wrt_bases} that $[\ff(E)]_F$ is characterized by the fact that
+    
+    \begin{align*}
+        [\ff(\vv)]_F = [\ff(E)]_F [\vv]_E.
+    \end{align*}
+    
+    This statement is equivalent to
+    
+    \begin{align*}
+        [\cdot]_F \circ \ff = \ff_{E,F} \circ [\cdot]_E.
+    \end{align*}
+    
+    In the special case when $\ff = \II_V$ is the identity on $V$, then the above becomes
+    
+    \begin{empheq}[box = \fbox]{align*}
+        [\cdot]_F &= (\II_V)_{E,F} \circ [\cdot]_E \\
+        [\vv]_F &= [\EE]_F [\vv]_E
+    \end{empheq}
+
+    The second line of the boxed equation is obtained by starting with the first line and using the fact that the primitive matrix of $(\II_V)_{E,F}$ relative to the standard basis $\sE$ of $K^n$ is $(\II_V)_{E,F}(\sE) = [\II_V(E)]_F = [\EE]_F$. (Recall Theorem \ref{ch::lin_alg::thm::f_EF}).
+    
+    %%
+    
+    \begin{theorem}
+\label{ch::lin_alg::thm::primitive_matrix_[]F}
+
+    (Primitive matrix of $[\cdot]_F$ relative to $E$, primitive matrix of $[\cdot]_F^{-1}$ relative to $\sE$).
+    
+    Let $V$ be a finite-dimensional vector space over a field $K$ with bases $E$ and $F$. As was shown in the previous theorem, the primitive matrix of $[\cdot]_F$ relative to $E$ is $[\EE]_F$.
+    
+    This means the primitive matrix of $[\cdot]_F^{-1}:K^n \rightarrow V$ relative to $\sE$ is $[\EE]_F^{-1} = [\FF]_E$. (The last equality follows from Theorem \ref{ch::lin_alg::thm::I_EF}).
+    
+    There is also a special case worth mentioning. As was alluded to in Remark \ref{ch::lin_alg::rmk::primitive_matrix_as_matrix_wrt_bases}, if $\sE$ denotes the standard basis of $K^n$, then $[\cdot]_\sE$ is the identity on $K^n$, $[\cdot]_\sE = \II_{K^n}$. The primitive matrix of $[\cdot]_\sE$ relative to $\sE$ is then the $n \times n$ identity matrix $\II$ (which has $ij$ entry $\delta_{ij}$).
+\end{theorem}
+
+%%%%%%%%%%%
+
+\item ``If $M$ is a smooth manifold with boundary, then $\pd M$ is an embedded hypersurface in $M$ (see Theorem 5.11), and Problem 8-4 showed that there is always a smooth outward-pointing vector field along $\pd M$. Because an outward-pointing vector field is nowhere tangent to $\pd M$; it determines an orientation on $\pd M$.''
+    
+A vector field $\NN$ nowhere tangent to $\pd M$ is useful because for any $\xx \in M$, we have $\NN(\xx) \notin T_\xx(\pd M)$, so we can define an orientation (an element of $\Lambda^n(\pd T_\xx(M))^*$) by taking the orientation $\omega$ for $M$, and ``removing'' one of the inputs by always plugging $\NN(\xx)$ into that input.
+    
+See this: \url{https://math.stackexchange.com/questions/377236/inducing-orientations-on-boundary-manifolds}
+    
+Prop 15.24. Let $M$ be an oriented smooth $n$-manifold with boundary, $n \geq 1$. Then $\pd M$ is orientable, and all outward-pointing vector fields along $\pd M$ determine the same orientation on $\pd M$.
+    
+\begin{itemize}
+    \item Theorem 5.11. If $M$ is a smooth $n$-manifold with boundary, then with the subspace topology, $\pd M$ is a topological $(n - 1)$-dimensional manifold without boundary, and is a smooth properly embedded submanifold of $M$. (Present proof from solutions manual). Proof relies on Prop. 5.5 and Thm 5.8.
+    \begin{itemize}
+    \item Def. Embedding
+    \item Prop. 5.2. Images of embeddings are embedded submanifolds.
+    \item Prop. 5.3. Suppose $M$ and $N$ are smooth manifolds. For each $\xx \in N$, the subset $M \times \{\xx\}$ (called a \textit{slice} of the product manifold) is an embedded submanifold of $M \times N$ diffeomorphic to $M$.
+    \item Prop. 5.5. Suppose $M$ is a smooth manifold with or without boundary and $S \subseteq M$ is an embedded submanifold. Then $S$ is properly embedded if and only if it is a closed subset of $M$.
+    \item Def. $k$-slice.
+    \item ``$k$-slice condition.'' $S \subseteq M$ satisfies the local $k$-slice condition iff $S \subseteq U$ for some open $U \subseteq M$ where $S \cap U$ is a $k$-slice.
+    \item Theorem 5.8. Let $M$ be a smooth $n$-manifold. If $S \subseteq M$ is an embedded $k$-dimensional submanifold, then $S$ satisfies the local $k$-slice condition. Conversely, if $S \subseteq M$ is a subset that satisfies the local $k$-slice condition, then with the subspace topology, $S$ is a topological manifold of dimension $k$, and it has a smooth structure making it into a $k$-dimensional embedded submanifold of $M$.
+\end{itemize}
+    \item Problem 8-4. (Look in solution manual). Let $M$ be a smooth manifold with boundary. There exists a global smooth vector field on $M$ whose restriction to $\pd M$ is everywhere inward-pointing, and one whose restriction to ∂M is everywhere outward-pointing.
+\end{itemize}
+
+\item Derivative of the inclusion map is inclusion map. 
+    
+Let $S \subseteq M$ be an immersed submanifold. Given a smooth covector field $XX$ on $M$, the pullback by the inclusion map $i:S \rightarrow M$ of  is a smooth covector field $i^* XX$ on $S$: $(i^* XX)_\xx(\vv) = XX_\xx(di_\xx(\vv)) = XX_\xx(\vv)$. Therefore $i^* XX$ is called the restriction of $XX$ onto $S$. It is not a true restriction- really, this ``restriction'' has one less local coordinate than does $XX$. (CTRL-F: ``Restricting Covector Fields to Submanifolds'')
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{defn}
+\label{defn::matrix_of_a_linear_function}
+
+    (Matrix with respect to one basis, matrix-vector products). 
+    
+    Consider the vector space $K^n$ over the field $K$. Let $\sE = \{\see_i\}_{i = 1}^n$ be the standard basis for $K^n$. (This means that $\see_i$ is a column vector with a $1$ in the $i$th entry and $0$'s in all other entries). Let $\ff:K^n \rightarrow K^m$ be a linear function.
+    
+    Consider $\vv \in K^n$, and recall that $[\vv]_\sE = \sum_{i = 1}^n ([\vv]_\sE)_i \see_i$ by definition of $[\cdot]_\sE$ (see Definition \ref{defn::coordinates_relative_to_basis}).
+    
+    Since $\ff$ is linear, $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\see_i)$. This motivates defining a \textit{matrix-vector product} between a \textit{matrix} $\AAA$, which is an ordered list of column vectors in $K^m$, and a column vector $\cc = 
+    \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix} \in K^n$, as follows:
+    
+    \begin{align*}
+        \boxed
+        {
+            \AAA \cc = 
+            \begin{pmatrix} 
+                \aa_1 & \hdots & \aa_n
+            \end{pmatrix}
+            \begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+            :=
+            \sum_{i = 1}^n c_i \aa_i
+        }
+    \end{align*}
+    
+    With this definition, then
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff(\vv) = \underbrace{\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}}_{m \times n} \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix}
+        }
+    \end{align*}
+    
+    The definition of the matrix-vector product $\AAA \cc$ above was contrived to make this statement true. In the \textit{convention} of ``matrix-vector product'' that we just defined, a column vector $\cc \in K^n$ must be accompanied by a matrix with $n$ columns. Note, the number of rows $m$ in the matrix does not depend on the length of the column vector $\cc \in K^n$.
+    
+    We see from the second boxed equation that we have a $m \times n$ matrix of scalars from $K$ corresponding to $\ff$. This matrix of scalars is called the \textit{matrix of $\ff$ relative to the basis $E$}. 
+    
+    Refer to the second boxed equation again to notice that if $\AAA$ denotes the matrix of $\ff$ relative to the basis $E$, then
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff(\vv) = \AAA [\vv]_E
+        }
+    \end{align*}
+\end{defn}
+
+\vspace{2cm}
+
+We now generalize the above ideas by working in arbitrary finite-dimensional vector spaces. The vectors of a finite dimensional vector space are \textit{not necessarily} tuples of scalars- they could be some other ``vectorish'' sort of object, such as a polynomial. 
+
+Specifically, we will ``identify'' vectors with tuples of scalars from the field $K$ (this coordinatization was inherent in the vector spaces $K^n$, $K^m$, $K^p$) and therefore impose coordinate systems on the arbitrary finite-dimensional vector spaces.
+
+\begin{defn}
+\label{defn::matrix_wrt_bases}
+
+    (Matrix relative to bases). Recall that for a linear function $K^n \rightarrow K^m$ is linear, we defined the matrix of that function relative to a basis $E$ of $K^n$ to be the matrix of scalars $\AAA$ for which $\ff([\vv]_E) = \AAA \vv$, where $\AAA \vv$ denotes matrix-vector multiplication (see Derivation \ref{deriv::matrix_of_a_linear_function}). Now we generalize the notion of ``matrix of a linear function'' so that it applies to the case in which $\ff:V \rightarrow W$ is a linear function between finite-dimensional vector spaces $V$ and $W$.
+    
+    To this end, suppose $V$ and $W$ are finite-dimensional vector spaces over a field $K$. We are about to see that if linear function $\ff$ is a mapping $V \rightarrow W$, then any time we speak of a matrix of $\ff$, we must specify \textit{two} bases of that matrix: one for $V$, and one for $W$. 
+    
+    So, let $E = \{\ee_i\}_{i = 1}^n$ be a basis for $V$ and let $F = \{\ff_i\}_{i = 1}^m$ be a basis for $W$.
+    
+    In analogy to the earlier definition of matrix with respect to \textit{one} basis (see Definition \ref{defn::matrix_matrix_product}), we define the \textit{matrix of $\ff$ relative to the bases $E$ and $F$} to be the matrix $\AAA$ for which
+    
+    \begin{align*}
+        [f(\vv)]_F = \AAA [\vv]_E.
+    \end{align*}
+    
+    Now, a matrix with respect to one basis (which is only defined when the corresponding linear function maps from $K^n \rightarrow K^m$) is a special 
+    
+    \begin{align*}
+        \boxed
+        {
+            \begin{pmatrix} 
+                [\ff(\ee_1)]_F & \hdots & [\ff(\ee_n)]_F
+            \end{pmatrix}
+        }
+    \end{align*}
+    
+    Note that
+    
+    \begin{align*}
+        (\FFFF \circ \ff)(\vv) = \AAA [\vv]_E
+    \end{align*}
+    
+    Thus, the matrix of $\ff$ relative to $E$ and $F$ is the same as the matrix of $\ff_{E,F} \circ \EEEE$ relative to $E$, where this second use of ``matrix'' refers to the earlier notion of a matrix relative to \textit{one} basis (see Derivation \ref{deriv::matrix_of_a_linear_function}).
+\end{defn}
+
+\vspace{2cm}
+
+\begin{theorem}
+\label{thm::change_of_basis_def_restated}
+
+    (Coordinatizing operation as matrix-vector product).
+    
+    We reexamine the definition of $[\cdot]_E$ (Definition \ref{defn::coordinates_relative_to_basis}) and notice that it can be expressed with the following matrix-vector product:
+    
+    \begin{align*}
+        \vv = \sum_{i = 1}^n ([\vv]_E)_i \ee_i = \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} [\vv]_E.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{empheq}[box = \fbox]{align*}
+        \vv &= \EE [\vv]_E \\
+        [\vv]_E &= \EE^{-1} \vv
+    \end{empheq}
+        
+    where
+    
+    \begin{align*}
+        [\vv]_E &= \EE^{-1} \vv
+    \end{align*}
+    
+    The second line in the boxed equation implies that $\EE^{-1}$ is the matrix of $[\cdot]_E = [\cdot]_E$ relative to $E$. (Don't make the mistake of thinking that $\EE$, without the inverse, is the matrix of $[\cdot]_E = [\cdot]_E$ relative to $E$!)
+\end{theorem}
+
+\begin{theorem}
+\label{thm::EF_matrix_coorresp_to_identity}
+    (Linear function corresponding to a matrix relative to bases). Consider a finite-dimensional vector space $V$ with bases $E$ and $F$. Then, by inspecting the definition of a matrix relative to bases (Definition \ref{deriv::matrix_of_a_linear_function}), we see that the identity function $\II:V \rightarrow V$ on $V$ has matrix $[\EE]_F$ relative to the bases $E$ and $F$. That is, $[\EE]_F$ is the matrix of $\II_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(V)}$, where $\II_{E,F} = [\cdot]_F \circ \II \circ [\cdot]_E^{-1} = [\cdot]_F \circ [\cdot]_E^{-1}$. This emphasizes the fact that using different bases to describe vectors in a vector space does not actually change the vectors.
+\end{theorem}
+
+\begin{theorem} 
+\label{thm::change_of_basis}
+    ($\star$ Relationship between different coordinates $\star$). How do the coordinates induced by two different bases relate? Note, we do not yet know the answer to this. It may be tempting to think of $\vv$ without brackets and a subscript (without $[\spc]_E$, for some basis $E$) as being expressed relative to some ``standard'' basis- but this is \textit{not} what happens when the only thing we have said is ``consider $\vv \in V$.'' 
+
+    We must derive the relation between different bases $E$ and $F$ for a finite-dimensional vector space $V$ using the fact that $\EE = \FF [\vv]_F$ for all $\vv \in V$ (see Theorem \ref{thm::change_of_basis_def_restated}). From this relation, it follows that $[\vv]_F = \FF^{-1} \EE [\vv]_E$. Now we apply the definition of matrix-matrix product (recall Definition \ref{defn::matrix_matrix_product}):
+            
+    \begin{align*}
+        [\vv]_F
+        &=
+        \begin{pmatrix}
+            \FF^{-1} \ee_1 & \hdots & \FF^{-1} \ee_n
+        \end{pmatrix}
+        [\vv]_E
+        \\
+        &=
+        \begin{pmatrix}
+            [\ee_1]_F & \hdots & [\ee_n]_F
+        \end{pmatrix}
+        [\vv]_E.
+    \end{align*}
+            
+    We define
+    
+    \begin{align*}
+        [\EE]_F := \begin{pmatrix} [\ee_1]_F & \hdots & [\ee_n]_F \end{pmatrix}
+    \end{align*}
+    
+    so that the above becomes
+    
+    \begin{align*}
+        \boxed
+        {
+            [\vv]_F = [\EE]_F [\vv]_E
+        }
+    \end{align*}
+    
+    This generalizes Theorem \ref{thm::change_of_basis_def_restated}.
+\end{theorem}
+
+\begin{theorem}
+\label{thm::change_of_basis_Kn}
+    ($\star$ Change of basis relation for $V = K^n$ $\star$). 
+    
+    The main change of basis result (Theorem \ref{thm::change_of_basis}) states $[\vv]_F = [\EE]_F [\vv]_E$. Thus, when $V = K^n$, we have in particular that $\sff_i = [\EE]_F \see_i$. It follows from the definition of matrix-matrix product (Theorem \ref{defn::matrix_matrix_product}) that
+
+    \begin{align*}
+        \begin{pmatrix} \sff_1 & \hdots & \sff_n \end{pmatrix} 
+        =
+        \begin{pmatrix} \see_1 & \hdots & \see_n \end{pmatrix} [\FF]_E    
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+\label{thm::change_of_basis_arb}
+    (Change of basis relation for arbitrary finite-dimensional $V$). 
+    
+    Let $V$ be an arbitrary finite dimensional vector space with bases $E$ and $F$. We can interpret the matrices of the previous theorem as matrices relative to the bases $E, F$ to obtain a more general statement:
+    
+    \begin{align*}
+        [\cdot]_F^{-1} &= [\cdot]_E^{-1} \circ (\II_{E,F} \circ [\cdot]_E) \\
+        &= [\cdot]_E^{-1} \circ \Big( ([\cdot]_F \circ \II \circ [\cdot]_E^{-1}) \circ [\cdot]_E \Big)
+        = [\cdot]_E^{-1} \circ [\cdot]_F.
+    \end{align*}
+    
+    Therefore for $\vv \in V$ we have
+    
+    \begin{align*}
+        [\cdot]_F^{-1} = [\cdot]_E^{-1} \circ [\cdot]_F.
+    \end{align*}
+    
+    This theorem is really only useful in that it provides a correct interpretation of the previous theorem for the general setting of an arbitrary finite-dimensional vector space. It is not applied in practice.
+\end{theorem}
+
+\begin{theorem}
+    (Change of basis for arbitrary finite-dimensional $V$ in terms of basis vectors). 
+    
+    When $V$ is a finite-dimensional vector space with bases $E$ and $F$, the relationship between different coordinates (Theorem \ref{thm::change_of_basis}) can be restated, after swapping $E$ and $F$, as $[\vv]_E = [\FF]_E [\vv]_F$. So in particular,
+    
+    \begin{align*}
+        [\ff_i]_E = [\FF]_E [\ff_i]_F = [\FF]_E \sff_i = \text{$i$th column of } [\FF]_E.
+    \end{align*}
+    
+    Here, $\sF = \{\sff_i\}_{i = 1}^n$ is the standard basis for $K^{\dim(V)}$.
+    
+    Therefore the basis vectors in $F$ are related to those in $E$ by
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff_i = \sum_{j = 1}^n ([\ff_i]_E)_j \ee_j = ([\EE]_F)_{ji} \ee_j.
+        }
+    \end{align*}
+    
+    The following mnemonic can be used to remember this theorem:
+    
+    \begin{align*}
+        \ff_i = \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} (\text{$i$th column of } [\FF]_E),
+    \end{align*}
+    
+    In analogy with Theorem \ref{thm::change_of_basis_Kn}, we interpret the right hand side as a linear combination of the $\ee_i$'s. 
+\end{theorem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{proof}
+   
+    As was the case in the definition of the integral of a differential $n$-form over an $n$-manifold (Definition [...]), let $\{(U_i, \xx_i)\}_{i = 1}^n$ be a finite atlas of $M$ such that $\{U_i\}_{i = 1}^n$ is a finite open cover of $\supp(\omega)$. We have
+   
+   \begin{align*}
+       \int_M \omega = \sum_{i = 1}^n \int_M f_i \omega = \int_M 
+   \end{align*}
+   
+   The first equality is due to the definition of the integral of a differential $n$-form over an $n$-manifold (Definition [...]). The second equality is due to the linearity of this integral.
+   
+   Then $\omega = \sum_i f_i \omega$. Since $\omega$ is compactly supported on $M$ and as $\supp(f_i \omega) \subseteq U_i$ is supported on $U_i$, then $f_i \omega$ is compactly supported on $U_i$. 
+   
+
+    \smallcite{book::SM}{654} If $D_1, ..., D_k$ are domains of integration whose pairwise intersections have measure zero and whose union is $D$, then for any continuous bounded function $f:D \rightarrow \R$, $\int_D f = \sum_{i = 1}^k \int_{D_i} f$.
+    
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{defn}
+    \smallcite{book::SM}{408} (Integral of a differential $n$-form on a smooth $n$-manifold).
+    
+    Let $M$ be an oriented smooth $n$-manifold with or without corners and let $\omega$ be a compactly supported $n$-form on $M$. 
+    
+    Additionally, suppose that we are given ``adequate'' parameterizations of the support of $\omega$. That is, suppose that  $D_1, ..., D_k$ are open domains of integration in $\R^n$ and that we are given finitely many orientation-preserving diffeomorphisms $\ff_1, ..., \ff_k$, where $\ff_i:\cl(D_i) \rightarrow M$, such that $\{\ff_i(D_i)\}_{i = 1}^k$ is a pairwise disjoint collection whose union contains $\supp(\omega)$. 
+    
+    We define \textit{the integral of $\omega$ over $M$ to be}
+    
+    \begin{align*}
+        \int_M \omega = \sum_{i = 1}^k \int_{\ff_i(D_i)} \ff_i^*(\omega).
+    \end{align*}
+\end{defn}
+
+\begin{proof}
+    Let $\{(U_i, \xx_i)\}_{i = 1}^k$ and $\{f_i\}_{i = 1 }^k$ be as specified in the theorem hypotheses.
+    
+    \textbf{what guarantees that $\xx_i(U_i)$ is a domain of integration? (and this definitely came up in previous proofs}
+    
+    Then, set $D_i = \xx_i(U_i)$ \textbf{ensure $D_i$ is a domain of integration (maybe can't guarantee?)}, and suppose that\footnote{Can't guarantee this, so this really is more of a motivational theorem} $\ff_1, ..., \ff_k$, where $\ff_i:\cl(D_i) \rightarrow M$, are orientation preserving diffeomorphisms such that $\{\ff_i(D_i)\}_{i = 1}^k$ is a pairwise disjoint collection whose union contains $\supp(\omega)$. Then by definition we have
+    
+    \begin{align*}
+        \int_M \omega = \sum_{i = 1}^k \int_{D_i} \ff_i^*(\omega).
+    \end{align*}
+    
+    We will find an equivalent expression for the argument in the sum, $\int_{D_i} \ff_i^*(\omega)$.
+    
+    Set $A_i = \ff_i^{-1}(U \cap \ff_i(D_i))$. Using that $A_i \supseteq D_i$ and that $(\xx_i \circ \ff_i)^* = \ff_i^* \circ \xx_i^*$, we have
+    
+    \begin{align*}
+        \int_{D_i} \ff_i^*(\omega) = \int_{A_i} \ff_i^*(\omega) = \int_{A_i} (\xx_i \circ \ff_i)^* (\xx_i^{-1})^* (\omega).
+    \end{align*}
+    
+    Now set $C_i = (\xx_i \circ \ff_i)(A_i)$. Since $\xx_i \circ \ff_i:A_i \rightarrow C_i$ is a diffeomorphism, then our recent restatement of the change of variables theorem with the pullback implies that the rightmost expression is
+    
+    \begin{align*}
+        \int_{A_i} (\xx_i \circ \ff_i)^* (\xx_i^{-1})^* (\omega) = \int_{C_i} (\xx_i^{-1})^* (\omega).
+    \end{align*}
+    
+    Applying Definition [...] and that $\xx_i^{-1}(C_i) = \ff(A_i)$, we obtain
+    
+    \begin{align*}
+        \int_{C_i} (\xx_i^{-1})^* (\omega) = \int_{\xx_i^{-1}(C_i)} \omega = \int_{\ff_i(A_i)} \omega.
+    \end{align*}
+
+    Since $\ff(A_i) \subseteq \ff_i(D_i)$, the above becomes
+    
+    \begin{align*}
+        \int_{\ff_i(A_i)} \omega = \int_{\ff_i(D_i)} \omega.
+    \end{align*}
+    
+    But then, using the partition of unity [...], we have
+    
+    \begin{align*}
+        \int_{\ff_i(D_i)} \omega = \int_{\ff_i(D_i)} (f_i \cdot \omega) = \int_M (f_i \cdot \omega).
+    \end{align*}
+    
+    From start to finish, we have shown
+    
+    \begin{align*}
+        \int_{D_i} \ff_i^*(\omega) = \int_M (f_i \cdot \omega).
+    \end{align*}
+    
+    Therefore 
+    
+    \begin{align*}
+        \int_M \omega = \sum_{i = 1}^k \int_{D_i} \ff_i^*(\omega) = \sum_{i = 1}^k \int_M (f_i \cdot \omega),
+    \end{align*}
+    
+    as desired.
+
+    %Now we claim that
+    
+    %\begin{align*}
+    %    \sum_{i = 1}^k \int_{C_i} (\xx_i^{-1})^* (\omega) = \int_{\xx_i(U)} (\xx_i^{-1})^* (\omega)
+    %\end{align*}
+    
+    %(The last equality in the above follows from Definition [...]). The claim will be true if the following two conditions hold: (1) each $\pd C_i$ has an $n$-dimensional measure zero and (2) the support of $(\xx^{-1})^*(\omega)$ is contained in $\cup_{i = 1}^k \cl(C_i)$. Both of these conditions are indeed satisfied because each $\cl(D_i)$ is compact\footnote{To directly paraphrase \cite[p. 409]{book::SM}, ``Because $\cl(D_i)$ is compact, it is straightforward to check that $\pd \ff_i(D_i) \subseteq \ff_i(\pd D_i)$, and therefore $\pd \ff_i(D_i)$ has measure zero in $M$, and $\pd C_i = \xx(\pd C_i)$  has measure zero in $\R^n$''.}.
+\end{proof}
+
+\begin{remark}
+    We can make the above definition slightly more general by requiring that $\ff_i:\cl(D_i) \rightarrow M$ be smooth maps whose restrictions $\ff_i|_{D_i}$ are orientation-preserving diffeomorphisms. (All diffeomorphisms are smooth maps, but not all smooth maps are diffeomorphisms).
+\end{remark}
+
+%%%%%%%%%%%%%%%
+
+\section{Submersions, immersions, embeddings}
+
+\begin{itemize}
+    \item Let $M$ and $N$ be smooth manifolds with or without boundary and let $\ff:M \rightarrow N$ be a smooth function. The \textit{rank of $\ff$ at $\pp \in M$} is the rank of the linear function $d\ff_\pp:T_\pp(M) \rightarrow T_{\ff(\pp)}(N)$. Iff $\ff$ has the same rank at every point, it is said to have \textit{constant} rank.
+    
+    $\ff$ is a \textit{smooth submersion} iff its differential is surjective everywhere (equivalently, $\text{rank}(\ff) = \dim(N)$), and is a \textit{smooth immersion} iff its differential is injective everywhere (equivalently, $\text{rank}(\ff) = \dim(M)$).
+    
+    An \textit{embedding} is an injective smooth immersion that is also a homeomorphism onto its image.
+    
+    \item (Proposition 5.2). (Images of embeddings as submanifolds). Suppose $M$ is a smooth manifold with or without boundary, $N$ is a smooth manifold, and $F:N \rightarrow M$ is a smooth embedding. Let $S = F(N)$. With the subspace topology, $S$ is a topological manifold, and it has a unique smooth structure making it into an embedded submanifold of $M$ with the property that $F$ is a diffeomorphism onto its image.
+\end{itemize}
+
+
+%%%%%%%%%%%%%%
+
+\begin{theorem}
+    (Integral of a compactly supported differential $n$-form on a submanifold of $\R^n$)
+    
+    Let $M$ be a smooth submanifold of $\R^n$, let $(M, \xx)$ be a smooth positively oriented global chart on $M$, and consider a smooth differential $n$-form $\omega = f \spc dx^1 \wedge ... dx^n$ that is compactly supported in $M$. By the previous definition,
+    
+    \begin{align*}
+        \int_U \omega &= \int_U f \spc dx^1 \wedge ... dx^n  = \int_{\xx(U)} (\xx^{-1})^*(f \spc dx^1 \wedge ... dx^n) \\
+        &= \int_{\xx(U)} (\xx^{-1})^*(f) \spc (\xx^{-1})^*(dx^1) \wedge ... \wedge (\xx^{-1})^*(dx^n).
+    \end{align*}
+    
+    Recall that $(\xx^{-1})^*$ is not the dual transformation\footnote{This would not even make sense, because a function must be linear in order for us to take its dual. In general, $\xx^{-1}$ is not even a map of vector spaces.} of $\xx^{-1}$, but the pullback by the differential $d \xx^{-1}$ (recall Remark \ref{ch::diff_forms::rmk::pullback_star_notation}). So the above is
+    
+    \begin{align*}
+        \int_U \omega = \int_{\xx(U)} (d \xx^{-1})^*(f) \spc \spc (d \xx^{-1})^*(dx^1) \circ  \wedge ... \wedge (d \xx^{-1})^*(dx^n).
+    \end{align*}
+    
+    Here, $(d\xx^{-1})^*$ denotes the map $\qq \mapsto (d\xx^{-1}_\qq)^*$, where $(d\xx^{-1}_\qq)^*$ \textit{is} the dual of the linear map $d\xx^{-1}_\qq:T_\qq(\R^n) \rightarrow T_{\xx^{-1}(\qq)}(M)$. Evaluating $(d\xx^{-1}_\qq)^*$ on a function is the same as precomposing by $d\xx^{-1}_\qq$, so we have
+    
+    \begin{align*}
+        \int_U \omega = \int_{\xx(U)} f \circ d \xx^{-1} \spc \spc (dx^1 \circ d \xx^{-1}) \wedge ... \wedge (dx^n \circ d \xx^{-1}).
+    \end{align*}
+    
+    \textbf{same (convention?) as before}, so $dy^i|_\qq = (d\xx^{-1}_\pp)^*(dx^i)|_\qq$, where $\xx^{-1}(\qq) = \pp$. Suppressing dependence on $\pp, \qq$, get $dy^i := dx^i \circ d\xx^{-1}$
+    
+    \begin{align*}
+        \int_U \omega = \int_{\xx(U)} f \circ d \xx^{-1} \spc dy^1 \wedge ... \wedge dy^n.
+    \end{align*}
+    
+    The right hand side is an integral over a subset of $\R^n$. We know that to compute such an integral, we ``erase the wedges''. Thus
+    
+    \begin{align*}
+        \int_U \omega = \int_{\xx(U)} f \circ d \xx^{-1},
+    \end{align*}
+    
+    where the right hand side is now a ``standard'' integral of a real valued function. 
+    
+    Thus far, the steps we have taken have just been applications of definitions. We will make use of a new observation now. Define the \textit{contraction $C$ of antisymmetric tensor fields} on elementary tensor fields by
+    
+    \begin{align*}
+        C \Big(dy^{i_1} \wedge ... \wedge dy^{i_k}, \frac{\pd}{\pd y^{j_1}} \wedge ... \wedge \frac{\pd}{\pd y^{j_k}} \Big)
+        =
+        dy^{j_1}\Big(\frac{\pd}{\pd y^{i_1}}\Big) ... dy^{j_k}\Big(\frac{\pd}{\pd y^{i_k}}\Big),
+    \end{align*}
+    
+    and extend the definition of $C$ with linearity and the antisymmetry of $\wedge$. (Recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::tensor_contraction} for the earlier notions of tensor contraction).
+    
+    Since $dy^i\Big(\frac{\pd}{\pd y^i}\Big) = 1$, our most recent ``standard'' integral is the same as
+    
+    \begin{align*}
+        \int_{\xx(U)} f \circ d \xx^{-1}
+        &= \int_{\xx(U)} 
+        C \Big(f \circ d \xx^{-1} \spc dy^1 \wedge ... \wedge dy^n, \frac{\pd}{\pd y^1} \wedge ... \wedge \frac{\pd}{\pd y^n} \Big) \\
+        &= \int_{\xx(U)} C(\omega, \frac{\pd}{\pd y^1} \wedge ... \wedge \frac{\pd}{\pd y^n})
+    \end{align*}
+    
+    is this something like the following?
+    
+    \begin{align*}
+        \int_{\xx(U)} C \Big( (\xx^{-1}^*)(\omega), (\xx^{-1}^*) \Big( \frac{\pd}{\pd x^1} \wedge ... \wedge \frac{\pd}{\pd x^n} \Big) \Big)
+    \end{align*}
+    
+    
+
+    
+\end{theorem}
+
+%%%%%%%%%
+
+\subsection*{Hodge duality}
+
+\begin{defn}
+    (Hodge dual).
+    
+    Let $V$ be an $n$-dimensional vector space. The \textit{Hodge dual (on $V$)} is the map $*:\Lambda^k(V) \rightarrow \Lambda^{n - k}(V)$, that is defined on elementary $k$-wedges, and extended with linearity and the antisymmetry of $\wedge$, by
+    
+    \begin{align*}
+        (\vv_{i_1} \wedge ... \vv_{i_k}) \wedge *(\vv_{i_1} \wedge ... \vv_{i_k}) = \vv_1 \wedge ... \wedge \vv_n.
+    \end{align*}
+
+    Equivalently,
+    
+    \begin{align*}
+        *(\vv_{i_1} \wedge ... \vv_{i_k}) = \sgn(\sigma) \vv_{j_1} \wedge ... \wedge \vv_{j_{n - k}},
+    \end{align*}
+    
+     where $\sigma = (i_1, ..., i_k, j_1, ..., j_{n - k})$, i.e., $i_\ell = \sigma(\ell)$ and $j_\ell = \sigma(\ell + k)$.
+\end{defn}
+
+\begin{theorem}
+    (Double Hodge dual).
+    
+    $**\omega = (-1)^{k(n - k)} \omega$.
+\end{theorem}
+
+\subsubsection{Optional Hodge theory}
+
+\begin{lemma}
+    A metric $g$ determines an inner product $\widetilde{g}$ on $T_\pp^*(M)$.
+    
+    \begin{align*}
+        \widetilde{g} (\omega, \eta) = g(\omega^\flat, \eta^\flat)
+    \end{align*}
+    
+    then identify $T_\pp^{**}(M) \cong T_\pp(M)$
+    
+    Theorem \ref{ch::bilinear_forms_metric_tensors::induced_bilinear_form_on_duals}
+    
+\end{lemma}
+
+\begin{lemma}
+    \smallcite{book::SM}{437 - 438}
+    
+    A metric $g$ determines an inner product, also denoted $g$, on $\Lambda^k(T_\pp^*(M))$ defined by 
+    
+    \begin{align*}
+        g(\omega^1 \wedge ... \wedge \omega^k, \eta^1 \wedge ... \wedge \eta^k) = \det \Big( \widetilde{g}(\omega^i, \eta^j) \Big),
+    \end{align*}
+    
+    where $\widetilde{g}$ is from the previous lemma.
+\end{lemma}
+
+\begin{theorem}
+    \begin{align*}
+        \omega \wedge *\eta = g(\omega, \eta) dV_g,
+    \end{align*}
+    
+    where $g$ from the previous theorem
+\end{theorem}
+
+\begin{defn}
+    (Hodge inner product).
+
+    \begin{align*}
+        \dlangle \omega, \eta \drangle := \int_M g(\omega, \eta) dV_g = \int_M \omega \wedge *\eta
+    \end{align*}
+\end{defn}
+    
+
+
+\begin{theorem}
+    \begin{align*}
+        \vv_1 \cdot \vv_2 &= *(\vv_1^\flat \wedge *(\vv_2^\flat)) \\
+        \vv_1 \times \vv_2 &= (*(\vv_1^\flat \wedge \vv_2^\flat))^\sharp
+    \end{align*}
+
+    \begin{align*}
+        \nabla f &= (df)^\sharp \\
+        \curl(\VV) &= (*d(\VV^\flat))^\sharp \\
+        \div(\VV) &= \curl(\RR_{\frac{\pi}{2}} \VV) = *d*(\VV^\flat)
+    \end{align*}
+\end{theorem}
+
+``In $\R^3$, div, grad curl are just $d$ applied to $0$, $1$, $2$ forms, resp.''
+
+$\alpha = \sum_i f_i dx^i \implies \alpha^\sharp = \sum_i f^i \frac{\pd}{\pd x^i}$
+
+Let $(U, \xx)$ be a smooth chart on $\R^3$. $\flat$ and $\sharp$ are the musical isomorphisms induced by the choice of basis $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$, i.e., induced by the inner product $\langle \cdot, \cdot \rangle$ on $T_\pp(M)$ specified in [...] [?] 
+
+\textbf{should remove $\natural$ and replace with $\flat$}
+
+\subsubsection{Old notes}
+
+\begin{itemize}
+    \item Volume form $\mu$
+        \begin{itemize}
+            \item Define volume form as $n$-form $\mu$ for which $\mu(\XX_1, ..., \XX_n) = \det(\XX_1, ..., \XX_n)$, where the $\det$ on the RHS is the function on $\XXXX(M)^{\times n} \times M$ sending $(\XX_1, ..., \XX_n, \xx) \mapsto \det(\XX_1(\xx), ..., \XX_n(\xx))$. Use ``8.15. Proposition'' of Sjmaar.
+            \item Sjmaar p. 108 examples about how $\mu$ relates to $ds$, $dA$, $dV$
+            \item Use Lee Prop. 15.29 and 15.31 give formulas about volume forms
+        \end{itemize}
+
+    \item Hodge duality.
+        \begin{itemize}
+            \item Let $V$ be a finite-dimensional vector space and consider an ordered basis $\{\ee_1, ..., \ee_n\}$ for $V$.
+            
+            Let $\sigma_W \in S_k$ and $\sigma_{W^\perp} \in S_{n - k}$. Set $W$ to be the oriented subspace of $V$ spanned by the ordered basis $\{\ee_{\sigma(1)}, ..., \ee_{\sigma(k)}\}$, and give $W^\perp \subseteq V$ the orientation specified by $\{\ee_{\sigma(k + 1)}, ..., \ee_{\sigma(n)}\}$.
+            
+            Equivalently, the orientations chosen on $W$ and $W^\perp$ can be represented as elements of $\Lambda^k(W) \subseteq \Lambda^k(V)$ and $\Lambda^{n - k}(W^\perp) \subseteq \Lambda^{n - k}(V)$, respectively. The orientation on $W$ is specified by $\ee_{\sigma(1)} \wedge ... \wedge \ee_{\sigma(k)}$ and the orientation of $W^\perp$ is specified by $\ee_{\sigma(k + 1)} \wedge ... \wedge \ee_{\sigma(n)}$.
+            
+            The \textit{Hodge dual}, or \textit{Hodge star}, is the map $*:\Lambda^k(W) \rightarrow \Lambda^{n - k}(W^\perp)$ which acts on the orientation chosen for a subspace $W \subseteq V$ to the orientation chosen for $W^\perp$.
+            
+            It is enough to say that $*$ ``acts'' on $\ee_{\sigma(1)} \wedge ... \wedge \ee_{\sigma(k)}$ as the action on this element of $\Lambda^k(W)$ is implied: $*$ is a map of one-dimensional vector spaces, so we know
+            
+            \begin{align*}
+                *(\ee_{\sigma(1)} \wedge ... \wedge \ee_{\sigma(k)}) = 
+            \end{align*}
+        \end{itemize}
+\end{itemize}

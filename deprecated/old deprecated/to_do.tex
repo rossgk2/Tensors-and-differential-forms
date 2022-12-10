@@ -1,0 +1,121 @@
+\chapter*{To do}
+
+\section*{Checklist for turn in}
+
+\textbf{use ``assume the hypotheses of the previous theorem''}
+
+ToC
+\begin{itemize}
+    \item included unnumbered subsections
+\end{itemize}
+
+Bibliography
+\begin{itemize}
+    \item credit Mark where necessary
+    \item mention I independently filled out the details of lot of things after reading brief Wikipedia expositions
+    \item add a note for how each source was used
+\end{itemize}
+
+Defns
+\begin{itemize}
+    \item Make sure ``if'' is not used in any definition, and that ``iff'' is always used.
+    \item Use ``... is said to be ...'' for commonly used defns, and use ``we say ... is ...'' for defn particular to this book
+\end{itemize}
+
+Lin alg
+
+\begin{itemize}
+    \item make sure to say ``extend with linearity'' when extending with seeming-multilinearity
+    \item mention $\sgn(\sigma)$ well defined
+    \item \sout{make sure that this has bene done: replace ``matrix relative to $E$ and $E$'' with ``matrix relative to $E$''}
+    \item check that there's enough stars in lin alg. add stars to other review sections?
+    \item \sout{fix lin alg injective iff surjective. only works when dimensions the same. look at relevant thms about linear isos, main dim thm, and fix}
+    \item remove finite-dimensionality from motivated intro and other sections when unnecessary
+    \item make sure ``bilinear'' said instead of ``multilinear'' when applicable
+    \item new style: write overall hypotheses for each section. add redundant hypotheses for each theorem in small text. don't worry about this till ends
+    \item use ``has as a basis'' instead of ``and let $E$ be a basis for $V$''?
+    \item say ``over the same field'' when no field is explicitly mentioned, when necessary
+    \item add matrix addition, etc.
+    \item Do I emphasize the equivalence between primitive matrix and the characterizing property of $[\ff(E)]_F$ enough? Maybe a remark on these two ways to interpret things would be good.
+    \item Add direct sums and $\dim(W_1 + W_2)$ theorem to lin alg. Look in Halmos for good proof on direct sum condition.
+\end{itemize}
+
+Proofs
+
+\begin{itemize}
+    \item add $\underset{\text{lemma}}{=}$ to proofs
+    \item use ; in thm/defn parentheticals instead of ``and''
+    \item no theorem text should be on the same line as any theorem parenthetical title
+    \item read through and make one-to-one and onto vs. injective and surjective consistent
+    \item make sure injectivity and surjectivity checked for all isos.
+\end{itemize}
+
+$\binom{p}{q}$ tensors
+
+\begin{itemize}
+    \item direct sums vs. unions
+    \item go through and circle things that don't need finite-dimensionality. then decide how to handle finite-dimensionality: is it best to say $V$ is finite-dimensional in def or not?
+    \item make sure things of the form $\cup_{p, q \in \N} T^p_q(V)$ are used instead of $T^p_q(V)$
+    \item \sout{use $\epsilon^i$ for arb basis, use $\phi^{\ee_i}$ for induced dual basis}
+    \item check that induced dual bases not assumed where unnecessary in bilinear forms section
+    \item When defining maps on elementary tensors, is the elementary tensor of the form $\vv_1 \otimes ... \otimes \vv_p \otimes \phi^1 \otimes ... \otimes \phi^q$?
+\end{itemize}
+
+Exterior powers
+
+\begin{itemize}
+    \item make sure don't say $\omega \wedge \eta = - \eta \wedge \eta$. this is only true for elementary forms
+    \item Fix ``we won't define alternating tensor algebra'' vs. actually doing so
+    \item Replace alternating tensors with antisymmetric tensors, and add a remark
+\end{itemize}
+
+Misc.
+
+\begin{itemize}
+    \item decide on itemize vs. enumerate
+    \item every $\mapsto$ should have a function over it
+    \item add more subsections, and explanatory text in-between theorems in these subsections
+    \item add text in-between proofs regardless!
+    \item make sure sum parenthetical conventions are consistent
+    \item Are all instances of lists such as $x_1 ... x_r ... x_n$ replaced with  $x_1 ... \cancel{x_r} ... x_n$?
+    \item make sure $\{1, ..., n\} - i$ is replaced with $\{1, ..., n\} - \{i\}$ in sum subscripts 
+    \item standardize the way I type ``pull back'', ``pullback'', ``pull-back''
+    \item emphasize ``for all'' as encompassing entire proof, like brackets in programming.
+    \item replace $\widetilde{\hat{\uu}}_i$ with $\widetilde{\hat{\uu}_i}$
+\end{itemize}
+
+Calc
+\begin{itemize}
+    \item decide $\nabla_\xx$ vs. $\nabla$; generalization of Leibniz vs. Newton
+    \item double check evaluation conventions such as $\xx = \xx_0$ and $t = t_0$; use $\xx = \pp$ instead of $\xx = \xx_0$
+    \item add technical hypotheses to calc chapter
+    \item proof FTC via Hubbard
+\end{itemize}
+
+Notation
+\begin{itemize}
+    \item revamp notation page
+    \item Might delete $\sF$ from notation. Also make note about Russian letter, and how I don't actually ever talk about elements of $W^{**}$
+    \item Define set of permutations $S_n$ somewhere
+\end{itemize}
+
+Manifolds and diff forms
+\begin{itemize}
+    \item \textbf{what guarantees that $\xx_i(U_i)$ is a domain of integration? (and this definitely came up in previous proofs}
+    \item make sure diff forms use $\sum f_{i_1 ... i_k} dx^{i_1} \wedge ... \wedge dx^{i_k}$, and not $f_i$, when necessary
+    \item hypotheses to check
+    \begin{itemize}
+        \item WWBOC
+        \item oriented
+        \item smooth differential forms
+        \item oriented charts
+    \end{itemize}
+    \item ``$T_\pp(\R) \cong \R$'' and ``$T_{\FF(\pp)}(\R)$'' should be ``$T_{f(\pp)}(\R) \cong \R$''
+    \item don't mention dimension of manifold when unnecessary
+    \item replace $d\xx_\qq^{-1}$ with $d\xx^{-1}|_\qq$
+    \item \sout{replace lower case $\ff$ with capital $\FF$}
+    \item finish up Lee citations
+    \item use the word ``tangent vector'' more
+    \item when using $\pm \int_{\xx(U)} (\xx^{-1})^*(\omega)$, do we handle the negative case when necessary? it might be that accidentally I only mention the positive case sometimes
+    \item replace ``pairwise nonoverlapping'' with ``boundaries have measure zero and are pairwise disjoint'', or something like that- look at parameterziation thm in Lee to find out what to say
+\end{itemize}

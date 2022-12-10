@@ -1,0 +1,422 @@
+\chapter{Review of calculus}
+\label{ch::calc}
+
+This chapter presents a review of calculus, particularly multivariable calculus.
+
+\vspace{.5cm}
+
+\textbf{Notation for covariance and contravariance is not used in this chapter.} The use of both upper and lower indices to distinguish between ``covariant'' and ``contravariant'' will not be used in the following chapter of multivariable calculus review, even though these concepts have already been introduced. Only lower indices will be used.
+
+\section{Notational conventions in single-variable calculus}
+
+This section formalizes common notational conventions used in single-variable calculus. These conventions ripple up to multivariable calculus, so they are worth reviewing.
+
+First, we must establish some unambigiuous notation.
+
+\begin{defn}
+    (The derivative).
+    
+    \begin{align*}
+        f'(t) := \lim_{\Delta t \rightarrow 0} \frac{f(t + \Delta t) - f(t)}{\Delta t}.
+    \end{align*}
+\end{defn}
+
+We use the above ``prime'' notation as a starting point for explaining the various ways of notating derivatives.
+
+\begin{defn}
+\label{ch::calc::defn::common_deriv_notation}
+
+    (Common notation for derivatives).
+    
+    Suppose $U \subseteq \R$ is an open set and $f:U \subseteq \R \rightarrow \R$ is a differentiable function. We define the \textit{Leibniz} and \textit{operator} notations for differentiation.
+    
+    \begin{center}
+        \begin{align*}
+            \intertext{Leibniz notation} \hspace{2cm}
+            \frac{df}{dt} &:= f' \\
+            \frac{df}{dt}\Big|_{t_0} &= f'(t_0) \\
+            \intertext{Operator notation} \hspace{2cm}
+            \frac{d}{dt}f &:= f' \\
+            \frac{d}{dt} f(t) &:= \Big( \frac{d}{ds} f\Big)\Big|_{s = t} = f'(t) \\
+            \frac{df(t)}{dt} &:= \frac{d}{dt}f(t)
+        \end{align*}
+    \end{center}
+\end{defn}
+
+\begin{remark}
+    ($\frac{df}{dt}$ vs. $\frac{df(t)}{dt}$).
+    
+    It is important not to confuse $\frac{df}{dt}$, which is a function, with $\frac{df(t)}{dt}$, which is the result of evaluating $\frac{df}{dt}$ at $t$.
+    
+    A more pedantic distinction is that if $t \neq a \neq b \neq c \neq ... \neq z$, then $\frac{df}{dt} = \frac{df}{da} = \frac{df}{db} = \frac{df}{dc} = ... = \frac{df}{dz}$, as the letter in the ``denominator'' is just a ``piece of notation''. Contrastingly, if $t \neq a \neq b \neq c \neq ... \neq z$, it is not necessarily true that $\frac{df(t)}{dt} = \frac{df(a)}{da} = \frac{df(b)}{db} = \frac{df(c)}{dc} = ... = \frac{df(z)}{dz}$. This is because the letter in the ``denominator'' of $\frac{df(t)}{dt}$ is used as input; $\frac{df(t)}{dt}$ is the result of taking the derivative of $f$ and plugging in $t$.
+\end{remark}
+
+\begin{defn}
+\label{ch::calc::defn::deriv_wrt_fn}
+
+    (Derivative with respect to a function).
+    
+    This definition formalizes a convention that is often used but rarely explained.
+    
+    Suppose $f:U \subseteq \R^n \rightarrow \R$ and $x:V \subseteq \R \rightarrow \R$ satisfy the differentiability conditions of the chain rule, so that $f \circ x$ is differentiable. We define $\frac{df}{dx}:U \rightarrow \R$ to be the function defined by
+    
+    \begin{align*}
+        \frac{df}{dx}\Big|_s := \frac{df}{dt}\Big|_{t = x(s)} = f'(x(s)).
+    \end{align*}
+    
+    That is, $\frac{df}{dx} := f' \circ x$.
+    
+    With this notation, the chain rule is
+
+    \begin{align*}
+        \frac{d(f \circ x)}{dt} = 
+        \frac{df}{dx} \frac{dx}{dt}.
+    \end{align*}
+
+    This is more elegant than the following statement of the chain rule employing a substitution, which is often presented in standard calculus textbooks:
+
+    \begin{align*}
+        \frac{d(f \circ x)}{dt}\Big|_t = \frac{df(u)}{du} \frac{du(t)}{dt}, \text{ where } u = x(t).
+    \end{align*}
+    
+    This above statement is bad for two reasons. Firstly, when applying the above statement to a composite function such as $f(t) = \sin^2(t)$ (here, $f(x) = x^2$ and $x(t) = \sin(t)$), one is not allowed to plug $x(t)$ in for $u$ until a closed form has been found for $\frac{df(u)}{du}$. If one were to plug in $x(t)$ for $u$ before such a closed form were found, then they would obtain an expression involving $\frac{df(x(t))}{dx(t)}$, which has no meaning. (Yes, $\frac{df(x(t))}{dx(t)}$ is reminiscent of the notion of ``derivative with respect to a function'', defined above, but no calculus textbook I have seen actually defines this notion\footnote{And, anyways, $\frac{df(x(t))}{dx(t)}$ looks more like a ``derivative with with respect to a function that has been evaluated at an input''. I suppose one could define ``derivative with with respect to a function that has been evaluated at an input'' to mean ``derivative with with respect to a function, where the final result is evaluated at that input''. The point stands, this substitution business is ugly!}!). Secondly, since one obtains an expression involving $\frac{df(x(t))}{dx(t)}$ when trying to reason about functions in the abstract, this statement of the chain rule will not work for all scenarios.
+\end{defn}
+
+\begin{remark}
+    (Letters in the denominator).
+    
+    The definition $\frac{df}{dt} := f'$ from Definition \ref{ch::calc::defn::common_deriv_notation} technically implies that $\frac{df}{da} = \frac{df}{db} = \frac{df}{dc} = ... = \frac{df}{dz} = f'$; it does not matter which letter is used in the ``denominator''.
+    
+    On the other hand, when the letter in the ``denominator'' represents a function $\R \rightarrow \R$, the letter used \textit{does} matter.
+    
+    In calculus, we often intentionally conflate real numbers with real-valued functions so that we can start with theorems of the form ``if $f:U \subseteq \R \rightarrow \R$ is a differentiable function and $x \in \R$, and ..., then ...'' and then think of the real number $x$ as a real-valued function, apply the notion of derivative with respect to a function, and leverage the chain rule to obtain theorems of the form ``if $f: U \subseteq \R \rightarrow \R$ and $x:V \subseteq \R \rightarrow \R$ are differentiable functions, and ..., then ...''. Since there is always the potential for real numbers to become real-valued functions, it's best to think of the letters in the ``denominator'' as mattering in all cases. 
+    
+    Of course, the choice of letter in the ``denominator'' inherently matters for partial derivatives.
+\end{remark}
+
+\begin{comment}
+\begin{defn}
+    (Antiderivative). 
+    
+    Let $f:I \rightarrow \R$ be a function defined on an interval $I$. An \textit{antiderivative of $f$ (on $I$)} is a function $F:I \rightarrow \R$ whose derivative is $f$, i.e., $F' = f$.
+    
+    We denote a particular antiderivative of $f$ by $\int f$. If $f$ has an antiderivative $\int f$, then all other antiderivatives of $f$ are of the form $\int f + c$, where $c \in \R$ is a constant.
+    
+    Note, we have not shown yet that any function actually has an antiderivative. A corollary of the first part of the fundamental theorem of calculus is that every continuous function has an antiderivative.
+\end{defn}
+
+\begin{defn}
+    (Difference notation). If $f:A \rightarrow \R \rightarrow \R$ is function defined on any nonempty set $A \subseteq \R$, then we define, for $a, b \in A$, the notation $f|^b_a := f(b) - f(a)$.
+\end{defn}
+\end{comment}
+
+\begin{comment}
+\begin{theorem}
+    (Fundamental theorem of calculus).
+    
+    \begin{enumerate}
+        \item If $f:[a, b] \rightarrow \R$ is continuous, then the ``accumulation function'' $\int_a^x f$ is differentiable on $[a, b]$ and
+        
+        \begin{align*}
+            \frac{d}{dx}\int_a^x f = f.
+        \end{align*}
+        
+        \item If $f:[a, b] \rightarrow \R$ is continuous, then
+        
+        \begin{align*}
+            \int_a^b f = \Big( \int f \Big)\Big|^b_a.
+        \end{align*}
+
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    See \url{http://www2.clarku.edu/~djoyce/ma121/FTCproof.pdf}.
+\end{proof}
+
+\begin{remark}
+    (Intuition for the fundamental theorem of calculus).
+    
+    The first part of the theorem says that the rate of the accumulation $f$ is $f$ itself.
+    
+    The second part of the fundamental theorem of calculus follows from the first part. It states that accumulating $f$ over the region $[a, b]$ is ``the same'' as finding the difference in the antiderivative between $b$ and $a$. More geometrically, if we define $F = \int f$, then it relates the definite integral of $F'$ over the region $[a, b]$ to how $F$ behaves on the boundary $\{\{a\}, \{b\}\}$. Stokes' theorem (Theorem [...]) generalizes this result.
+    
+    (The second part of the fundamental theorem as stated above also holds if $f$ is assumed to be Riemann-integrable. The focus of this book is geometry, not analysis, so we are not concerned with this).
+\end{remark}
+
+\begin{theorem}
+    All continuous functions $[a, b] \rightarrow \R$ have antiderivatives.
+    
+    This is a corollary of the first part of the fundamental theorem of calculus: an antiderivative of a continuous function $f$ is its accumulation function.
+\end{theorem}
+\end{comment}
+
+\newpage
+
+\section{Multivariable calculus}
+
+\begin{lemma}
+    (Multivariable chain rule for differentiable functions $\R^n \rightarrow \R$).
+    
+    Let $\xx:\R \rightarrow \R^n$ and $f:\R^n \rightarrow \R$ be sufficiently differentiable, and set $\xx(t_0) = \pp$. It can be proved that %http://www.math.harvard.edu/~knill/teaching/summer2011/handouts/33-chainrule.pdf
+
+    \begin{align*}
+        \frac{d (f \circ \xx)}{dt}\Big|_{t_0} = \frac{\pd f(\xx)}{\pd x_1}\Big|_\pp \frac{dx_1}{dt}\Big|_{t_0} + ... + \frac{\pd f(\xx)}{\pd x_n}\Big|_\pp \frac{dx_n}{dt}\Big|_{t_0}.
+    \end{align*}
+    
+    In other words, 
+    
+    \begin{align*}
+        \frac{d (f \circ \xx)}{dt}\Big|_\pp =
+        (\underset{\xx}{\nabla} f)|_\pp \cdot \frac{d\xx(t)}{dt}\Big|_{t_0},
+    \end{align*}
+    
+    where we have defined the \textit{gradient of $f$ with respect to the function $\xx$} to be
+    
+    \begin{align*}
+        \boxed
+        {
+            \nabla_\xx f := 
+            \begin{pmatrix} \frac{\pd f}{\pd x_1} \\ \vdots \\ \frac{\pd f}{\pd x_n} \end{pmatrix}
+        }
+    \end{align*}
+    
+    Note that since $\xx(\pp) = (x_1(\pp), ..., x_n(\pp))^\top$, each $x_i$ is a function. Thus, the derivative $\frac{\pd}{\pd x_i}$ is a derivative with respect to a function, in the sense of Definition \ref{ch::calc::defn::deriv_wrt_fn}. This is why we say the gradient $\nabla_\xx f$ is ``with respect to $\xx$''.
+    
+    We can interpret the dot product to act on vector-valued functions (the dot product of vector-valued functions is equal to the dot product of the evaluated vector-valued functions at each point) so that the above is expressed as
+    
+    \begin{align*}
+        \boxed
+        {
+            \frac{d (f \circ \xx)}{dt} =
+            (\underset{\xx}{\nabla} f) \cdot \frac{d\xx(t)}{dt}
+        }
+    \end{align*}
+\end{lemma}
+
+
+\begin{defn}
+    
+    (Directional derivative of a differentiable function $\R^n \rightarrow \R$).
+    
+    Consider $f:\R^n \rightarrow \R$. Let $\xx:\R \rightarrow \R^n$ be the curve with $\xx(t_0) = \pp$ and $\frac{d\xx}{dt}\Big|_{t_0} = \vv$. Let $\xx$ and $f$ be sufficiently differentiable. We define the \textit{directional derivative $\frac{\pd f}{\pd \vv}$ of $f$ in the direction of $\vv$} to be
+
+    \begin{align*}
+        \frac{\pd f}{\pd \vv} \Big|_\pp 
+        := \frac{d (f \circ \xx)}{dt}\Big|_\pp
+        = (\underset{\xx}{\nabla} f)|_\pp \cdot \frac{d\xx(t)}{dt}\Big|_{t_0}
+        = (\nabla_\xx f)|_\pp \cdot \vv.
+    \end{align*}
+    
+    Therefore the directional derivative is expressed as
+    
+    \begin{empheq}[box = \fbox]{align*}
+        &\frac{\pd f}{\pd \vv} \Big|_\pp = (\nabla_\xx f)|_\pp \cdot \vv \\
+        &\frac{\pd f}{\pd \vv} = \nabla f \cdot \vv
+    \end{empheq}
+    
+    In the second line, we interpret $\nabla$ as the function sending $\xx \mapsto \nabla_\xx$.
+    
+    Most authors denote $\frac{\pd f}{\pd \vv}\Big|_\pp$ as $D_\pp f(\vv)$ or as $Df[\vv](\pp)$.
+\end{defn}
+
+\begin{remark}
+\label{ch::calc::rmk::infinitesimal_velocity_vs_displacement}
+    \smallcite{book::SM}{282, 283} (Infinitesimal displacement versus infinitesimal time).
+    
+    We typically think of the directional derivative $\frac{\pd f}{\pd \vv}$ as being the ``infinitesimal change'' in $f$ resulting from traveling an ``infinitesimal displacement'' in the direction of $\vv$, even though the directional derivative is defined with the notion of ``infinitesimal time'' (the time derivative). So, in some sense, the infinitesimal displacement interpretation is  indirect, since infinitesimal time is lurking behind the scenes.
+    
+    Actually, there is there is a way to ``directly'' justify the infinitesimal displacement notion! The statement of the multivariable Taylor theorem does all the work for us: if $f:\R^n \rightarrow \R$ is a smooth function, then $(\Delta_\vv f)|_\pp = f(\pp + \vv) - f(\pp)$ is well approximated as $\Delta_\vv f \approx \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp ([\vv]_\sE)_i = (\nabla_\xx f) \cdot \vv = (D_\pp f)(\vv)$ when $||\vv||$ is small.
+\end{remark}
+
+\begin{theorem}
+\label{ch::calc::thm::directional_deriv_as_limit}
+    (Directional derivative as a limit).
+    
+    It is sometimes useful to express the directional derivative as a limit. 
+    
+    To do so, first consider the curve $\xx$ from the definition of the directional derivative. Since $\xx(t_0) = \pp$ and $\frac{d \xx}{dt}\Big|_{t_0} = \vv$, then $\xx(t) = \pp + \vv t$. Thus
+    
+    \begin{align*}
+        \frac{\pd f}{\pd \vv}\Big|_\pp 
+        &= \frac{d (f \circ \xx)(t)}{dt}\Big|_{t_0}
+        = \frac{d f(\pp + \vv t)}{dt}\Big|_{t_0}
+        = \lim_{h \rightarrow 0} \Big( \frac{f(\pp + \vv(t + h)) - f(\pp + vt)}{h} \Big) \Big|_{t_0} \\
+        &= \lim_{h \rightarrow 0} \Big( \Big( \frac{f(\pp + \vv(t + h)) - f(\pp + vt)}{h} \Big) \Big|_{t_0} \Big)
+        = \lim_{h \rightarrow 0} \frac{f(\pp + h\vv) - f(\vv)}{h}.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        \frac{\pd f}{\pd \vv}\Big|_\pp = \lim_{h \rightarrow 0} \frac{f(\pp + h\vv) - f(\vv)}{h}.
+    \end{align*}
+    
+    Many authors define the directional derivative using this formula.
+\end{theorem}
+
+\begin{theorem}
+    (Gradient is direction of greatest increase).
+    
+    Let $f:\R^3 \rightarrow \R$ be a sufficiently differentiable function. Then, at each $\pp \in R^3$, the gradient $(\nabla_\xx f)|_\pp$ is the direction of greatest increase in $f$ at $\pp$. When $||\vv|| = 1$, then $||(\nabla_\xx f)|_\pp||$ is the magnitude of this greatest increase.
+\end{theorem}
+
+\begin{proof}
+    The previous theorem shows that $\frac{\pd f}{\pd \vv}\Big|_\pp = (\nabla_\xx f)|_\pp \cdot \vv$. We know \\ ${(\nabla_\xx f)|_\pp \cdot \vv = ||(\nabla_\xx f)|_\pp|| \spc ||\proj(\vv \rightarrow (\nabla_\xx f)|_\pp)||}$. The dot product is maximized when the projection of $\vv$ onto $(\nabla_\xx f)|_\pp$ is $\vv$ itself. Thus, when the directional derivative is maximized, $\vv = (\nabla_\xx f)|_\pp$.
+    
+    The magnitude of this maximal directional derivative is ${(\nabla_\xx f)|_\pp \cdot \vv = ||(\nabla_\xx f)|_\pp|| \spc ||\proj(\vv \rightarrow (\nabla_\xx f)|_\pp)||}$. When $||\vv|| = 1$, this reduces to $||(\nabla_\xx f)|_\pp||$.
+\end{proof}
+
+\begin{remark}
+    (Directional derivative simplifies to partial derivative).
+    
+    We have $\frac{\pd}{\pd \see_i} = \frac{\pd}{\pd x_i}$.
+\end{remark}
+
+\begin{lemma}
+    (Multivariable chain rule for differentiable functions $\R^n \rightarrow \R^m$).
+    
+    Let $\ff:\R^n \rightarrow \R^m$, $\xx:\R \rightarrow \R^n$ be sufficiently differentiable, and set $\pp = \xx(t_0)$.
+    
+    \begin{align*}
+        \frac{d (\ff \circ \xx)(t)}{dt}\Big|_\pp
+        =
+        \begin{pmatrix}
+            \frac{d}{dt} f_1(\xx(t))
+            \\
+            \vdots
+            \\
+            \frac{d}{dt} f_m(\xx(t))
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            (\nabla_\xx f_1)|_\pp \cdot \frac{d\xx}{dt}\Big|_{t_0}
+            \\
+            \vdots
+            \\
+            (\nabla_\xx f_m)|_\pp \cdot \frac{d\xx}{dt}\Big|_{t_0}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \underset{\xx}{\nabla} (f_1)
+            \\
+            \vdots
+            \\
+            \underset{\xx}{\nabla} (f_m)
+        \end{pmatrix}
+        \Bigg|_\pp
+        \frac{d \xx}{d t}\Big|_{t_0}.
+    \end{align*}
+    
+    In terms of functions, we have
+    
+    \begin{align*}
+        \frac{d (\ff \circ \xx)(t)}{dt}
+        =
+        \begin{pmatrix}
+            \underset{\xx}{\nabla} (f_1)
+            \\
+            \vdots
+            \\
+            \underset{\xx}{\nabla} (f_m)
+        \end{pmatrix}
+        \frac{d \xx}{d t}
+    \end{align*}
+    
+    Recall from Derivation \ref{ch::lin_alg::deriv::primitive_matrix} and Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_vector_product} that a matrix-vector product can be expressed as either a linear combination of column vectors or as a vector of dot products. We have already seen the second expression; here is the first:
+    
+    \begin{align*}
+        \begin{pmatrix}
+            \underset{\xx}{\nabla} (f_1)
+            \\
+            \vdots
+            \\
+            \underset{\xx}{\nabla} (f_m)
+        \end{pmatrix}
+        \frac{d \xx}{d t}
+        =
+        \begin{pmatrix}
+            \underset{\xx}{\nabla} (f_1) \cdot \frac{d \xx}{d t}
+            \\
+            \vdots
+            \\
+            \underset{\xx}{\nabla} (f_m) \cdot \frac{d \xx}{d t}
+        \end{pmatrix}
+        =
+        \sum_{i = 1}^{n} \frac{\pd \ff(\xx)}{\pd x_i} \frac{d x_i(t)}{d t}.
+    \end{align*}
+\end{lemma}
+
+\begin{defn}
+\label{ch::calc::defn::jacobian}
+    (The Jacobian).
+    
+    Let $\ff(\xx) = \begin{pmatrix} f_1(\xx) \\ \vdots \\ f_n(\xx) \end{pmatrix}$.
+    
+    Drawing upon the idea of the derivative of a function with respect to a function (see Definition \ref{ch::calc::defn::deriv_wrt_fn}), we define the \textit{Jacobian matrix} $\frac{\pd \ff}{\pd \xx}$ to be
+    
+    \begin{align*}
+        \boxed
+        {
+            \frac{\pd \ff}{\pd \xx}
+            :=
+            \begin{pmatrix}
+                \underset{\xx}{\nabla} (f_1)
+                \\
+                \vdots
+                \\
+                \underset{\xx}{\nabla} (f_m)
+            \end{pmatrix}
+        }
+    \end{align*}
+    
+    Alternative notation for this matrix is $\Big( \frac{\pd f_i}{\pd x_j} \Big)$.
+    
+    Using the Jacobian, the multivariable chain rule for differentiable functions $\R^n \rightarrow \R^m$ is now succintly stated as
+    
+    \begin{align*}
+        \boxed
+        {
+            \frac{d (\ff \circ \xx)}{dt} = \frac{\pd\ff}{\pd\xx} \frac{d\xx}{dt}
+        }
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+    (Directional derivative of a differentiable function $\R^n \rightarrow \R^m$).
+    
+    The directional derivative of a differentiable function $\ff:U \subseteq \R^n \rightarrow \R^m$ is defined analogously to that of a differentiable function $\ff:U \subseteq \R^n \rightarrow \R$. Indeed, in the special case of $m = 1$, the two definitions are equivalent.
+    
+    As was done previously, let $\xx:\R \rightarrow \R^n$ be the curve with $\xx(t_0) = \pp$ and $\frac{d\xx}{dt}\Big|_{t_0} = \vv$. We define the \textit{directional derivative $\frac{\pd f}{\pd \vv}$ of $f$ in the direction of $\vv$} to be
+    
+    \begin{align*}
+        \frac{\pd \ff}{\pd \vv}\Big|_\pp :=  \frac{d (\ff \circ \xx)}{dt}\Big|_\pp = \frac{\pd \ff}{\pd \xx}\Big|_\pp \frac{d\xx}{dt}\Big|_{t_0}
+    \end{align*}
+    
+    So this most general definition of directional derivative is expressed as
+    
+    \begin{empheq}[box = \fbox]{align*}
+        &\frac{\pd \ff}{\pd \vv}\Big|_\pp = \frac{\pd\ff}{\pd\xx}\Big|_\pp \frac{d\xx}{dt}\Big|_{t_0} \\
+        &\frac{\pd \ff}{\pd \vv} = \frac{\pd\ff}{\pd\xx} \frac{d\xx}{dt}
+    \end{empheq}
+\end{defn}
+
+\begin{remark}
+\label{ch::calc::rmk::directional_deriv_linear_wrt_v} 
+    (Linearity with respect to the $\vv$ in the denominator).
+    
+    The directional derivative $\frac{\pd \ff}{\pd \vv}$ is linear with respect to $\vv$.
+\end{remark}
+
+\subsection*{A technical theorem}
+
+\begin{theorem}
+\label{ch::calc::thm::integral_linear_wrt_region}
+    (The integral is ``linear'' with respect to the region of integration).
+    
+    If $D = \cup_{i = 1}^k D_i$, where $D_1, ..., D_k$ are domains of integration such that $D_i \cap C_j$ has measure zero\footnote{Informally, a subset of $\R^n$ has \textit{measure zero} iff its volume is zero.} for all $i \neq j$, then
+    
+    \begin{align*}
+        \int_D f = \sum_{i = 1}^k \int_{D_i} f.
+    \end{align*}
+\end{theorem}

@@ -1,0 +1,31 @@
+\subsubsection{Vector bundles}
+
+\begin{itemize}
+    \item (Proposition A.23). Let $X_1, ..., X_n$ be topological spaces, and consider the product topology $X_1 \times ... \times X_n$. The \textit{projection onto the $i$th factor} is the map $\ppi_i:X_1 \times ... \times X_n \rightarrow X_i$ defined by $\ppi(\pp_1, ..., \pp_n) = \pp_i$.
+    \item Let $B$ be a topological space (thought of as the \textit{base space}). A \textit{vector bundle of rank $k$ over $B$} is a tuple $(E, \ssigma)$, where...
+    
+    \begin{itemize}
+        \item $E$ is a topological space (thought of as the \textit{entire space}, or \textit{total space}).
+        \item $\ssigma:B \rightarrow \text{powerset}(E)$ is a map whose left-inverse restricted onto singletons, $\ppi = (\ssigma^{-1})|_{\cup_{\pp \in E} \{\pp\}}$ is a surjective continuous map satisfying...
+        \begin{itemize}
+            \item For each $\pp \in B$, the set $\ssigma(\pp)$ (called the \textit{fiber over $\pp$}) is a $k$-dimensional vector space.
+            \item For each $\pp \in B$, there is a neighborhood $U \subseteq B$ with $\pp \in U$ (called a \textit{local trivialization}) for which there is a homeomorphism $\FF:U \times \R^k \rightarrow \ssigma(U)$ satisfying two more conditions: for all $\qq \in U$,
+            \begin{itemize}
+                \item $(\ppi \circ \FF)(\qq, \vv) = \qq$ for all $\vv \in \R^k$
+                \item $\vv \mapsto \FF(\qq, \vv)$ is a linear isomorphism $\R^k \cong \ssigma(\qq)$
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+    
+    A vector bundle can be pictured as a hairbrush. The base space $B$ is thought of as the surface of the hairbrush's handle, and the entire space $E$ is thought of as the disjoint union of $B$ with the protruding bristles of the brush (so the bristles are $E - B$). In this analogy, $\ssigma(\pp)$ is the set of points on a bristle above a particular point $\pp \in B$ on the handle; it is therefore called the \textit{fiber over $\pp$}.
+    
+    The map $\ppi$ is called the \textit{projection}.
+
+    A \textit{cross section}, or simply \textit{section}, of $E$, is some continuous restriction $\ssigma|_A$ of $\ssigma$ onto a subset $A \subseteq B$, where $A$ is chosen so that $\ssigma|_A$ is one-to-one. 
+    
+    The common convention is to state the definition of a vector bundle in terms of the surjective continuous restriction onto singletons $\ppi$.
+    
+    \item Let $E$ be a vector bundle over $B$. If $B$ and $E$ are smooth manifolds with or without boundary, $\ppi$ is a smooth map, and the local trivializations can be chosen to be diffeomorphisms, then $E$ is called a \textit{smooth vector bundle}. A \textit{smooth (cross) section} of a smooth vector bundle $E$ is a smooth section of $E$.
+    
+    \item Pedagogically, it's fine to say ``smooth map from some subset of $B$ to $E$'' to mean ``smooth section of $E$''. So, since the tensor bundle is a vector bundle over $M$, a smooth tensor field is a smooth map from some subset $T^p_q(T(M))$ to $M$.
+\end{itemize}
