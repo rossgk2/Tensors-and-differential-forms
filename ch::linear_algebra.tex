@@ -1205,21 +1205,6 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
      Left as exercise.
 \end{proof}
 
-\begin{comment} % Unnecessary for proof of next theorem since we can just use main dimension theorem
-    \begin{lemma}
-    \label{ch::lin_alg::lemma::linear_isos_provide_bases}
-       (Linear isomorphisms provide bases).
-        
-       Let $V$ and $W$ be finite-dimensional vector spaces, and suppose $\ff:V \rightarrow W$ is a linear isomorphism. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then $\ff(E) = \{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis for $W$. 
-        
-       As a corollary, we see that finite-dimensional vector spaces that are isomorphic to each other must have the same dimension.
-    \end{lemma}
-    
-    \begin{proof}
-      Since $\ff$ is onto, then for all $\ww \in W$ there exists a $\vv \in V$ for which $\ff(\vv) = \ww$. Let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. Then for all $\ww \in W$ we have $\ww = \ff(\sum_{i = 1}^n ([\vv]_E)_i \ee_i) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. Thus, the $\ff(\ee_i)$ span $W$. Since $E$ is a basis and $\ff$ has a trivial kernel (it is one-to-one), then the $\ff(\ee_i)$ are linearly independent because one-to-one linear functions preserve the linear independence of vectors (see the previous lemma). Thus, $\{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis for $W$.
-    \end{proof}
-\end{comment}
-
 \begin{theorem}
     \label{ch::lin_alg::thm::linear_fn_1-1_iff_onto}
     
@@ -2021,30 +2006,8 @@ Not all linear algebra resources use the above notion of matrices relative to ba
 \begin{proof}
    The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is the standard matrix $\ff_{E,E}(\sE)$ of $\ff_{E,E} = [\cdot]_E \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,E}(\sE) = [\cdot]_E(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. To complete the proof, we will determine the standard matrices $[\cdot]_E(\sE)$ and $[\cdot]_E^{-1}(\sE)$.
    
-   Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and\footnote{In Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} we used the facts from the sentence this footnote appears in to conclude $[\cdot]_E^{-1}(\sE) = E$ rather than $[\cdot]_E^{-1}(\sE) = \EE$. We are able to use the latter matrix notation $\EE$ now because we are in the special situation where $E$ is a basis of $K^n$, so the list $E$ of vectors is a list of \textit{column} vectors, i.e. a matrix.} thus $[\cdot]_E^{-1}(\sE) = \EE$. Also, since $[\cdot]_E$ is the inverse of $[\cdot]_E^{-1}$, we have $[\cdot]_E(\sE) = ([\cdot]_E^{-1}(\sE))^{-1} = \EE^{-1}$. Using the two facts $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$, we conclude that $([\cdot]_E \circ \ff \circ [\cdot]_E^{-1})(\sE) = [\cdot]_E(\sE) \spc  \ff(\sE) \spc [\cdot]_E^{-1}(\sE) = \EE^{-1} \ff(\sE) \EE$.
+   Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and\footnote{In Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} we used the facts from the sentence this footnote appears in to conclude $[\cdot]_E^{-1}(\sE) = E$ rather than $[\cdot]_E^{-1}(\sE) = \EE$. We are able to use the latter matrix notation $\EE$ now because we are in the special situation where $E$ is a basis of $K^n$, so the list $E$ of vectors is a list of \textit{column} vectors, i.e. a matrix.} thus $[\cdot]_E^{-1}(\sE) = \EE$, where $\EE$ is the matrix with $i$th column $\ee_i$. Also, since $[\cdot]_E$ is the inverse of $[\cdot]_E^{-1}$, we have $[\cdot]_E(\sE) = ([\cdot]_E^{-1}(\sE))^{-1} = \EE^{-1}$. Using the two facts $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$, we conclude that $([\cdot]_E \circ \ff \circ [\cdot]_E^{-1})(\sE) = [\cdot]_E(\sE) \spc  \ff(\sE) \spc [\cdot]_E^{-1}(\sE) = \EE^{-1} \ff(\sE) \EE$.
 \end{proof}
-
-\begin{comment} % Unnecessary; doesn't add much
-    \begin{theorem}
-    \label{ch::lin_alg::thm::action_linear_fn_arbitrary_vector_via_matrix_relative_to_bases}
-    
-        (Action of linear function on arbitrary vector via matrix relative to bases).
-    
-        Let $V$ and $W$ be finite-dimensional vector spaces over a field with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. If $\ff:V \rightarrow W$ is a linear function, then 
-    
-        \begin{align*}
-            \ff(\vv) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\vv]_E)_j \ff_i.
-        \end{align*}
-        
-        As a corollary, we have $\ff(\ee_i) = \sum_{j = 1}^n ([\ff(E)]_F)_{ji} \ff_i$.
-    \end{theorem}
-    
-    \begin{proof}
-      To prove the main statement, start with $\ff(\vv) = \sum_{i = 1}^n ([\ff(\vv)]_F)_i \ff_i$. Since $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$, then $([\ff(\vv)]_F)_i = ([[\ff(E)]_F [\vv]_E]_\sE)_i = (\text{$i$th row of $[\ff(E)]_F$}) \cdot [\vv]_E = \sum_{j = 1}^n ([\ff(E)]_F)_{ij} ([\vv]_E)_j$. Thus $\ff(\vv) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\vv]_E)_j \ff_i$.
-       
-      For the corollary, use the main statement to obtain the following: $\ff(\ee_k) = \sum_{ij} ([\ff(E)]_F)_{ij} ([\ee_k]_E)_j \ff_i = \sum_{ij} ([\ff(E)]_F)_{ij} \delta_{kj} \ff_i = \sum_{i = 1}^n ([\ff(E)]_F)_{ik} \ff_i$. Rename $i$ to $j$ and $k$ to $i$ to obtain the result.
-    \end{proof}
-\end{comment}
 
 \subsection*{Change of basis}
 
@@ -2054,41 +2017,6 @@ We will now discover how when we have a finite-dimensional vector space with bas
     \label{ch::lin_alg::thm::change_of_basis_for_vectors}
     
     (Change of basis).
-
-    % Old motivation from investigating a special case; feel that general way is elegant enough that investigating special case just adds verbosity
-    
-    % To start, consider the special case $V = K^n$. Then we can let $\EE$ and $\FF$ be the matrices with $i$th columns $\ee_i$ and $\ff_i$, respectively. For $\vv \in K^n$, we have $\FF [\vv]_F = \vv = \EE [\vv]_E$, so $[\vv]_F = \FF^{-1} \EE [\vv]_E$.
-    
-    % Now, we investigate the matrix $\FF^{-1} \EE$ of the previous expression.
-    
-    % By the definition of matrix-matrix multiplication (Definition \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}), we have
-    
-    % \begin{align*}
-    %     \FF^{-1} \EE = \FF^{-1} \begin{pmatrix} \ee_1 & \hdots & \ee_n \end{pmatrix} = \begin{pmatrix} \FF^{-1} \ee_1 & \hdots & \FF^{-1} \ee_n \end{pmatrix}
-    %     = \begin{pmatrix} [\ee_1]_F & \hdots & [\ee_n]_F \end{pmatrix}
-    %     = [\cdot]_F(E) := [\EE]_F,
-    % \end{align*}
-    
-    % where we have defined the notation $[\EE]_F := [\cdot]_F(E)$.
-    
-    % Therefore
-    
-    % \begin{align*}
-    %      [\vv]_F = [\EE]_F [\vv]_E.
-    % \end{align*}
-    
-    % We now generalize this result to one that holds when $V$ is an arbitrary finite-dimensional vector space.
-    
-    % The matrix $[\EE]_F$ was the centerpiece of the above argument. To generalize, we notice that the matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[\cdot]_F(E) = [\EE]_F$.
-    
-    % The characterizing property of matrices relative to bases then implies that for any $\vv \in V$, we have
-    
-    % \begin{align*}
-    %     \boxed
-    %     {
-    %         [\vv]_F = [\EE]_F [\vv]_E
-    %     }
-    % \end{align*}
     
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. 
     
@@ -2101,9 +2029,7 @@ We will now discover how when we have a finite-dimensional vector space with bas
         }
     \end{align*}
     
-    where $\EE$ is the list whose $i$th entry is $\ee_i$.
-    
-    \textbf{make consistent the convention where we say $\EE$ is the matrix whose $i$th entry is $\ee_i$, or the list whose $i$th entry is $\ee_i$, or where we don't say anything at all}
+    where $\EE$ is the list of vectors whose $i$th entry is $\ee_i$, so that $[\EE]_F$ is the matrix whose $i$th column is $[\ee_i]_F$.
     
     It is a good sanity check that the identity on $V$ is involved in changing bases, since representing a vector with different bases does not change the vector itself.
 \end{theorem}
@@ -2139,34 +2065,6 @@ We will now discover how when we have a finite-dimensional vector space with bas
     
     In the last equality, we have used that $[\ff_i]_E$ is the $i$th column of $[\FF]_E$.
 \end{theorem}
-
-\begin{comment} %Unnecessary/impractical
-    \begin{theorem}
-        (Change of basis for linear functions). 
-        
-        Let $V$ and $W$ be finite-dimensional vector spaces. Let $E, G$ be bases of $V$, let $F, H$ be bases of $W$, and consider a linear function $\ff:V \rightarrow W$. Then $\ff_{E,F}$ and $\ff_{G,H}$ are related by
-        
-        \begin{align*}
-            \ff_{G,H} = [\cdot]_H \circ [\cdot]_{F^{-1}} \circ \ff_{E,F} \circ [\cdot]_E \circ [\cdot]_{G^{-1}}.
-        \end{align*}
-        
-        This is because $\ff_{E,F}$ was defined as $\ff_{E,F} := [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. (See Theorem \ref{ch::lin_alg::thm::f_EF}). But $[\cdot]_H \circ [\cdot]_{F^{-1}} = (\II_W)_{F,H}$ and $[\cdot]_E \circ [\cdot]_{G^{-1}} = (\II_V)_{G,F}$, so
-        
-        \begin{align*}
-            \ff_{G,H} = (\II_W)_{F, H} \circ \ff_{E,F} \circ (\II_V)_{G,F}.
-        \end{align*}
-        
-        We now translate the above equation into a statement about primitive matrices. Since the primitive matrix of a composition of functions is the product of matrices taken relative to the appropriate bases (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}), we have
-    
-        \begin{align*}
-            [\ff(G)]_H = [\II_W(F)]_H [\ff(E)]_F [\II_V(G)]_F = [\FF]_H [\ff(E)]_F [\GG]_F = [\FF]_H [\ff(E)]_F [\FF]_G^{-1}.
-        \end{align*}
-        
-        The last equality follows from the previous theorem.
-        
-    \end{theorem}
-\end{comment}
-
 
 \begin{remark}
     (On the order of proving change of basis theorems). 
@@ -2439,7 +2337,7 @@ The set of equations obtained by equating the components of the vectors on eithe
     
     (In the last line of the above, $\ff - c\II$ is the linear function defined by $(\ff - c\II)(\vv) = \ff(\vv) - c\II(\vv)$.)
     
-    In all, we see that $\vv \in V$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
+    In all, we see that $\vv$ is an eigenvector of $\ff$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
     
     An argument analogous to the one above shows that $c$ is a nonzero eigenvalue of $\ff$ iff ${\exists \vv \neq \mathbf{0} 
     \spc \vv \in \ker(\ff - c \II)}$, i.e., iff $\ker(\ff - c\II) \neq \{\mathbf{0}\}$. Since $\ker(\ff - c\II) \neq \{\mathbf{0}\}$ iff $\det(\ff - c\II) = 0$ (see the previous theorem), we have in all that $c$ is a nonzero eigenvalue of $\ff$ iff $\det(\ff - c \II) = 0$.
