@@ -41,23 +41,29 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     (By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other).
 \end{defn}
 
-The above definitions of \textit{vector} and \textit{point}, while intuitive, are insufficient in the following sense: neither definition can be defined non-circularly in terms of the other definition.
-
 \begin{remark}
     (Circularity in intuitive definitions of point and directed line segment).
     
+    The above definitions of \textit{vector} and \textit{point}, while intuitive, are insufficient in the following sense: neither definition can be defined non-circularly in terms of the other definition.
+    
     \begin{itemize}
-        \item Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} $\vv_2 - \vv_1$ is the difference of the vectors $\vv_2 - \pp$ and $\vv_1 - \pp$, where $\pp$ is any point. This definition is circular because it involves \textit{vector}.
+        \item (Attempted definition of \textit{vector} in terms of \textit{point}). 
         
-        \item Suppose that we use the above definition of \textit{vector} and attempt to use it to give a definition of \textit{point} that is equivalent to the above definition of \textit{point}. The attempted definition is: a \textit{point} $\pp$ is a sum of the form $(\qq + \vv_1) + \vv_2) + ...) + \vv_n$, where $\qq$ is any point, each $\vv_i$ is a vector, and where the sum of a point and a vector is point obtained by starting on the point and ``traveling'' according to the vector. This definition is circular because it involves \textit{point}.
+        Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} is a difference of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points. Any sensible definition of ``difference of points'', however, is ``difference of the corresponding\footnote{At this point it is unclear if a correspondence between vectors and points even exists. If we assume there is such a correspondence, though, we see the argument is circular.} vectors''; thus, this definition is clearly circular because it involves \textit{vector}.
+        
+        \item (Attempted definition of \textit{point} in terms of \textit{vector}). 
+        
+        Suppose that we use the above definition of \textit{vector} and attempt to use it to give a definition of \textit{point} that is equivalent to the above definition of \textit{point}. The attempted definition is: a \textit{point} is a sum of the form $(\qq + \vv_1) + \vv_2) + ...) + \vv_n$, where $\qq$ is any point, each $\vv_i$ is a vector, and where the sum of a point and a vector is the point obtained by starting on the point and ``traveling'' according to the vector. This definition is circular because it involves \textit{point}.
     \end{itemize}
     
-    Fortunately, we can escape this circular logic by defining each of \textit{point} and \textit{vector} in terms of a more primitive mathematical object. Unfortunately, the above detailed logical circularities will always persist on the intuitive level.
+    In addition to the logical circularities, also notice that these attempted definitions suggest that points and vectors are inextricably intertwined: the first attempted definition requires a correspondence between vectors and points, and the second attempted definition requires a notion of adding a point with a vector.
 \end{remark}
 
-To perform this ``escape'', we will use elements of $\R^n$ as the primitive mathematical objects that underlie the notion of \textit{point}.
+We can provide a sensible way to realize this intertwinedness and escape the above demonstrated circular logic by defining each of \textit{point} and \textit{vector} in terms of a more primitive mathematical object. The above detailed intertwinedness and logical circularities will always persist on the intuitive level, though. Whether this is fortunate or unfortunate is a matter of opinion!
 
 \subsection*{$\R^n$}
+
+We will use elements of $\R^n$ as the primitive mathematical objects that underlie the notion of \textit{point} and \textit{vector}.
 
 \begin{defn}
     ($\R^n$).
