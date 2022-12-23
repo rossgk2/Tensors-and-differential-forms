@@ -28,33 +28,32 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
 \section{Vectors}
 
 \begin{defn}
+    (Intuitive definition of point).
+    
+    Intuitively, a \textit{point} is a location in space.
+\end{defn}
+
+\begin{defn}
     (Intuitive definition of vector).
     
-    Intuitively, a \textit{vector} is a locationless directed line segment. By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other.
+    Intuitively, a \textit{vector} is a locationless directed line segment. 
     
-    This intuitive definition is formally problematic because the definitions of \textit{directed line segment} and \textit{point} depend on each other; they are circular definitions.
-
-    \begin{itemize}
-        \item A \textit{directed line segment} can be specified by listing a start and end \textit{point}.
-        \item A \textit{point} is arrived at by following a path constructed of \textit{directed line segments}.
-    \end{itemize}
-    
-    not only that...
-    
-    \begin{itemize}
-        \item defining \textit{locationless directed line segment} requires thinking of a difference of points as being a locationless directed line segment
-        \item defining \textit{point} requires thinking of a sum of directed line segments 
-    \end{itemize}
-    
-    begin with element of $\R^n$ is locationless directed line segment
-    
-    
-    a point is an element of $\R^n$
-    a locationless directed line segment requires a notion of increment
-    
-    
-    Fortunately, we can escape this circular logic if we can give a definition of \textit{directed line segment} or of \textit{point} that depends on a more primitive mathematical object, as, if this is the case, then the definitions no longer both depend on each other.
+    (By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other).
 \end{defn}
+
+The above definitions of \textit{vector} and \textit{point}, while intuitive, are insufficient in the following sense: neither definition can be defined non-circularly in terms of the other definition.
+
+\begin{remark}
+    (Circularity in intuitive definitions of point and directed line segment).
+    
+    \begin{itemize}
+        \item Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} $\vv_2 - \vv_1$ is the difference of the vectors $\vv_2 - \pp$ and $\vv_1 - \pp$, where $\pp$ is any point. This definition is circular because it involves \textit{vector}.
+        
+        \item Suppose that we use the above definition of \textit{vector} and attempt to use it to give a definition of \textit{point} that is equivalent to the above definition of \textit{point}. The attempted definition is: a \textit{point} $\pp$ is a sum of the form $(\qq + \vv_1) + \vv_2) + ...) + \vv_n$, where $\qq$ is any point, each $\vv_i$ is a vector, and where the sum of a point and a vector is point obtained by starting on the point and ``traveling'' according to the vector. This definition is circular because it involves \textit{point}.
+    \end{itemize}
+    
+    Fortunately, we can escape this circular logic by defining each of \textit{point} and \textit{vector} in terms of a more primitive mathematical object. Unfortunately, the above detailed logical circularities will always persist on the intuitive level.
+\end{remark}
 
 To perform this ``escape'', we will use elements of $\R^n$ as the primitive mathematical objects that underlie the notion of \textit{point}.
 
