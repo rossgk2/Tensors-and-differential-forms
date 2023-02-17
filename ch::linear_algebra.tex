@@ -41,6 +41,10 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     (By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other).
 \end{defn}
 
+At this point, what we would like to do is give a (1) formal definition of \textit{point}, (2) define a notion of ``subtracting'' one point from another, and (3) define a \textit{vector} to be the result of ``subtracting'' one point from another. This ``subtraction of points'' notion facilitates the ``locationless'' notion in the following way. If we define a vector to be an expression of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points, then any vector $\vv = \pp_2 - \pp_1$ is equal\footnote{Here we assume that for any point $\pp$ the notion of subtraction is such that $\pp - \pp = \pp + (-\pp) = \mathbf{0}$.} to $(\pp + \pp_2) - (\pp + \pp_1)$ for any point $\pp$; thus, we can move the start and end points $\pp_1$ and $\pp_2$ of a vector $\vv = \pp_2 - \pp_1$ around, and $\vv$ doesn't change as long as $\pp_1$ and $\pp_2$ are each moved in the same way.
+
+Unfortunately, this strategy doesn't work because \textit{vector} cannot be defined non-circularly in terms of \textit{point}. What's more is that \textit{point} cannot be defined non-circularly in terms of vector! The below remark discusses this.
+
 \begin{remark}
     (Circularity in intuitive definitions of point and directed line segment).
     
@@ -49,7 +53,7 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     \begin{itemize}
         \item (Attempted definition of \textit{vector} in terms of \textit{point}). 
         
-        Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} is a difference of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points. Any sensible definition of ``difference of points'', however, is ``difference of the corresponding\footnote{At this point it is unclear if a correspondence between vectors and points even exists. If we assume there is such a correspondence, though, we see the argument is circular.} vectors''; thus, this definition is clearly circular because it involves \textit{vector}.
+        Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} is a difference of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points. Any intuitively interpretable definition of ``difference of points'', however, is ``difference of the corresponding\footnote{At this point it is unclear if a correspondence between vectors and points even exists. If we assume there is such a correspondence, though, we see the argument is circular.} vectors''; thus, this definition is clearly circular because it involves \textit{vector}.
         
         \item (Attempted definition of \textit{point} in terms of \textit{vector}). 
         
@@ -59,7 +63,9 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     In addition to the logical circularities, also notice that these attempted definitions suggest that points and vectors are inextricably intertwined: the first attempted definition requires a correspondence between vectors and points, and the second attempted definition requires a notion of adding a point with a vector.
 \end{remark}
 
-We can provide a sensible way to realize this intertwinedness and escape circular logic by defining each of \textit{point} and \textit{vector} in terms of a more primitive mathematical object. The above detailed intertwinedness and logical circularities will always persist on the intuitive level, though. Whether this is fortunate or unfortunate is a matter of opinion!
+The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
+
+\newpage
 
 \subsection*{$\R^n$}
 
@@ -81,8 +87,6 @@ We will use elements of $\R^n$ as the primitive mathematical objects that underl
     \end{align*}
 \end{defn}
 
-\newpage
-
 \begin{defn}
     (Column notation for elements of $\R^n$).
     
@@ -102,7 +106,7 @@ Now that we have defined $\R^n$ and introduced notation to represent elements of
     
     We define \textit{addition} $+:\R^n \times \R^n \rightarrow \R^n$ and \textit{scalar multiplication} $\cdot:\R \times \R^n \rightarrow \R^n$ operations as follows.
     
-    As a preliminary, wen note for $\xx_1, \xx_2 \in \R^n$ we use the notation $\xx_1 + \xx_2 := +(\xx_1, \xx_2)$, and that for $c \in \R, \xx \in \R^n$ we use the notation $c \xx := \cdot(c, \xx)$.
+    As a preliminary, wen note for $\xx_1, \xx_2 \in \R^n$ we use the notation $\xx_1 + \xx_2 := +(\xx_1, \xx_2)$, and that for $c \in \R$ and $\xx \in \R^n$ we use the notation $c \xx := \cdot(c, \xx)$.
     
     We define
     
@@ -147,6 +151,8 @@ Now that we have defined $\R^n$ and introduced notation to represent elements of
 
 The above addition operation $+$ and scalar multiplication operation $\cdot$ are algebraically sensible because they obey properties one would expect of an ``addition operation'' and a ``multiplication operation''. The following theorem shows this.
 
+\newpage
+
 \begin{theorem}
 \label{ch::lin_alg::thm::prop_operations_Rn}
     (Properties of $+$ and $\cdot$ in $\R^n$).
@@ -190,13 +196,13 @@ The above addition operation $+$ and scalar multiplication operation $\cdot$ are
 \begin{proof}
     \mbox{} \\
     \begin{enumerate}
-        \item The claims about the additive identity and additive inverses follow from the fact that $0$ is the additive identity in $\R$ and that the additive inverse of $x \in \R$ is denoted $-x$. The associativity and commutativity of $+$ follow from the associativity and commutativity of addition of real numbers.
+        \item The claims about the additive identity and additive inverses follow from the fact that $0$ is the additive identity in $\R$ and that the additive inverse of $x \in \R$ is denoted by $-x$. The associativity and commutativity of $+$ follow from the associativity and commutativity of addition of real numbers.
         \item The normalization property of $\cdot$ follows from the fact that $1$ is the multiplicative identity in $\R$. The left-associativity of $\cdot$ follows from the associativity of real numbers.
         \item Both compatibility properties follow from the facts that we have $c (x_1 + x_2) = c x_1 + x_2$ for all $c, x_1, x_2 \in \R$ and $(c_1 + c_2) x = c_1 x + c_2 x$ for all $c_1, c_2, x \in \R$. In other words, they follow from the fact that $\cdot$ distributes over $+$ in $\R$ and from the fact that $\cdot$ is commutative in $\R$.
     \end{enumerate} 
 \end{proof}
 
-\subsection*{Vectors in $\R^n$}
+\subsection*{Points and vectors in $\R^n$}
 
 Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
 
@@ -213,7 +219,7 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
 \begin{remark}
     (Intertwinedness of points and vectors).
     
-    The above definition easily implements the intertwinedness of points and vectors; since every point in $\R^n$ can also be interpreted as a vector in $\R^n$, the identity function associates points with vectors.
+    The above definition easily implements the intertwinedness of points and vectors; since every point in $\R^n$ can also be interpreted as a vector in $\R^n$, the correspondence between points and vectors is given by the identity function.
 \end{remark}
 
 \begin{remark}
@@ -221,33 +227,37 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
     
     [TO DO]
     
-    $+$
+    (Geometric intuition about $+$).
     \begin{itemize}
         \item (Point plus vector). Let $\pp \in \R^n$ be a point and $\vv \in \R^n$ be a vector. We interpret $\pp + \vv$ to be the point that is obtained by placing the start of $\vv$ on $\pp$ and then ``traveling'' according to $\vv$.
         \item (Vector plus vector). Let $\vv_1, \vv_2 \in \R^n$ be vectors. We interpret $\vv_1 + \vv_2$ to be the result of starting at the start point of $\vv_1$ (which of course can be any point), then traveling according to the vector $\vv_1$ to reach the end point of $\vv_1$, then applying ``locationlessness'' to place the start point of $\vv_2$ on the end point of $\vv_1$, and then traveling to the end point of $\vv_2$. That is, the directed line segment that reaches from the ``overall'' beginning to the ``overall'' end is $\vv_1 + \vv_2$.
         \begin{itemize}
             \item If we use locationlessness of to make the end point of $\vv_1$ coincide with the start point of $\vv_2$ before we start the above process, then $\vv_1 + \vv_2$ is represented by the directed line segment that connects the start point of $\vv_1$ to the end point of $\vv_2$. This interpretation is often called the ``tail-to-tip method'', since one computes $\vv_1 + \vv_2$ by forming the vector by drawing a straight line from the “tail” of $\vv_1$ to the “tip” of $\vv_2$.
         \end{itemize}
-        \item ($\mathbf{0}$ as a point). When $\mathbf{0}$ is considered to be a point, we interpret it to be the origin, i.e., the ``central reference point''.
+        \item ($\mathbf{0}$ as a point). When $\mathbf{0}$ is considered to be a point, we interpret it to be the ``central reference point'' of the coordinate system, i.e., the origin.
         \item ($\mathbf{0}$ as a vector). When $\mathbf{0}$ is interpreted to be a vector, we interpret it to be the locationless directed line segment that has a length of zero.
         \item (Additive inverses as points). When $\pp \in \R^n$ is a point, there is no satisfactory interpretation of $-\pp$.
         \item (Additive inverses as vectors). When $\vv \in \R^n$ is a vector, the fact $\vv + (-\vv) = \mathbf{0}$ forces us to interpret $-\vv$ to be the unique vector that [returns one to the start point of $\vv$ if its start is made to coeinide with the end of $\vv$].
     \end{itemize}
 
-    $\cdot$
+    (Geometric intuition about $\cdot$).
     \begin{itemize}
         \item (Scalar times point). Let $c \in \R$. When $\pp \in \R^n$ is a point, there is no satisfactory interpretation of $c \pp$.
         \item (Scalar times vector). Let $c > 0$. When $\vv \in \R^n$ is a vector, we interpret $c \vv$ to be the vector that is obtained by stretching $\vv$ by a factor of $c$ (when $c > 1$) or that is obtained by shrinking $\vv$ by a factor of $c$ (when $c \in (0, 1)$). [add stuff about $d \in \R^n$ where we allow $d < 0$?]
     \end{itemize}
 \end{remark}
 
+\begin{defn}
+    (``Vector'' means ``vector'' or ``point'' depending on context).
+    
+    In practice, we say ``vector in $\R^n$'' to mean ``element of $\R^n$'', and determine whether $\vv \in \R^n$ is interpreted to be a point or a locationless directed line segment from context.
+\end{defn}
+
 \newpage
 
 \subsection*{Vector-containing sets}
 
 [motivation: recap how geometric interpretations of points and vectors in $\R^n$ is underpinned by algebraic characterization]
-
-At this point, we use the idea that a set like $\R^n$ can be spanned by another set to define an abstract notion of ``vector-containing set''. 
 
 \begin{defn}
     (Vector-containing set over $\R$).
@@ -1209,7 +1219,7 @@ The following derivation shows us how to coordinatize a linear function $K^n \ri
         \end{pmatrix} \Bigg).
     \end{align*}
     
-    The above equation can be written more compactly as
+    The above equalities can be written more compactly as
     
     \begin{align*}
         \ff(\vv) = \ff\Big( \sum_{i = 1}^n ([\vv]_\sE)_i \see_i \Big) = \sum_{i = 1}^n \ff(([\vv]_\sE)_i \see_i) = \sum_{i = 1}^n ([\vv]_\sE)_i \ff(\see_i).

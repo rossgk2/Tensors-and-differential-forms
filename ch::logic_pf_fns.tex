@@ -1,15 +1,19 @@
 \chapter{Review of logic, proofs, and functions}
 \label{ch::logic_pf_fns}
 
-\section{Propositions and predicates}
+\subsection*{Notation for definitions}
+
+In this book, we use $:=$ whenever an equality is enforced to be true by definition (e.g. ``define a function $f$ by $f(x) := x^2$''), and use $=$ whenever an equality follows from further reasoning (e.g. since $f(x) := x^2$ we have $f(x) = (x^2)^2 = x^4$).
+
+\section{Propositional logic}
 
 A \textit{proposition} is a statement that is either true or false; an example is ``the sky is blue right now''.
 
-We can denote propositions  with letters, and say things such as ``let $P$ be a proposition''. When a proposition $P$ is true, we write $P \cong T$. The $\cong$ symbol denotes \textit{logical equality}, and the $T$ denotes ``truth''. Similarly, we write $P \cong F$ when $P$ is false.
+We can denote propositions  with letters, and say things such as ``let $P$ be a proposition''. When a proposition $P$ is true, we write $P = T$. The $=$ symbol is used here to denote \textit{logical equality}, and the $T$ denotes ``truth''. Similarly, we write $P = F$ when $P$ is false.
 
 \subsection*{Logical operators}
 
-More complicated propositions can be constructed from simpler propositions. Examples of some more complicated propositions are $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) \cong F$ and \\ $\Big((5 > -3) \text{ or } (2 > 100)\Big) \cong T$.
+More complicated propositions can be constructed from simpler propositions. Examples of some more complicated propositions are $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) = F$ and \\ $\Big((5 > -3) \text{ or } (2 > 100)\Big) = T$.
 
 There are three fundamental operations on propositions that are used to build more complicated propositions from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
 
@@ -45,57 +49,75 @@ The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P
 
 So, $P \textit{ and } Q$ evaluates to true only when both $P$ and $Q$ are true, $P \textit{ or } Q$ evaluates to true whenever either of $P$ or $Q$ is true, and $\textit{not } P$ evaluates to the ``opposite'' of $P$. Note that \textit{or} is not the same as \textit{exclusive or}, also called \textit{xor}, which evaluates to true whenever exactly one of $P, Q$ is true.
 
-By looking at the above truth tables, you can surmise that, for propositions $P$ and $Q$, we have the following two logical identities, called \textit{DeMorgan's laws}:
+By making use of the above truth tables, you can check that, for propositions $P$ and $Q$, we have the following two logical identities, called \textit{DeMorgan's laws}:
 
 \begin{align*}
-    &\text{not }(P \text{ and } Q) \cong (\text{not } P) \text{ or } (\text{not } Q) \\
-    &\text{not }(P \text{ or } Q) \cong (\text{not } P) \text{ and } (\text{not } Q).
+    &\text{not }(P \text{ and } Q) = (\text{not } P) \text{ or } (\text{not } Q) \\
+    &\text{not }(P \text{ or } Q) = (\text{not } P) \text{ and } (\text{not } Q).
 \end{align*}
 
 Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{not}: $\wedge$ denotes \textit{and}, $\vee$ denotes \textit{or}, and either $\sim$ or $\neg$ denotes \textit{not}. We will not use these symbols.
 
 \newpage
 
-\section{Quantificational logic}
+\section{Predicate logic}
 
-A \textit{predicate} is a proposition in which one of the entities is variable. (We have not formally defined functions yet). For example, $P(x) = (x > 3)$ is a predicate which is true for some values of $x$ but false for others. We will sometimes informally refer to predicates as \textit{properties}.
+A \textit{predicate} is a proposition in which zero or more of the entities are variables. For example, $P(x) := (x > 3)$ is a predicate which is true for some values of $x$ but false for others. We will sometimes informally refer to predicates as \textit{properties}.
 
-\subsection*{Quantifiers}
+Note that a proposition is a predicate in which exactly zero of the entities are variables.
 
-The \textit{universal quantifier} is the symbol $\forall$; we read ``$\forall x$'' as ``for all $x$''. The \textit{existential quantifier} is the symbol $\exists$ and is read as ``there exists''; we read ``$\exists x$'' as ``there exists $x$ such that''. The quantifiers $\forall$ and $\exists$ are used in the following way to create predicates from predicates:
+\subsection*{Quantificational logic}
+
+The \textit{universal quantifier} is the symbol $\forall$; we read ``$\forall x$'' as ``for all $x$''. The \textit{existential quantifier} is the symbol $\exists$; we read ``$\exists x$'' as ``there exists $x$ such that''. The quantifiers $\forall$ and $\exists$ are used in the following way to create propositions from single-input predicates:
 
 \begin{align*}
-    \forall x \spc P(x) &\qquad \text{is the predicate which states ``for all $x$, $P(x) \cong T$''} \\
-    \exists x \spc \spc Q(x) &\qquad \text{is the predicate which states ``there exists an $x$ such that $Q(x) \cong T$''}.
+    \forall x \spc P(x) &\qquad \text{is the proposition which states ``for all $x$, $P(x) = T$''} \\
+    \exists x \spc \spc Q(x) &\qquad \text{is the proposition which states ``there exists an $x$ such that $Q(x) = T$''}.
 \end{align*}
 
-The predicate $\forall x \spc P(x)$ statement is true exactly when $P(x)$ is is true for all $x$, and the predicate $\exists x \spc Q(x)$ is true exactly when $Q(x)$ is true for one or more $x$. In this sense, $\forall$ is similar to \textit{and} and $\exists$ is similar to \textit{or}. Here's an example: the predicate $(\forall x \spc x > 3)$ is false, while the predicate $(\exists x \spc x > 3)$ is true\footnote{Technically, these statements aren't really sensible since we haven't specified that the $x$'s involved are numbers.}.
+The proposition $\forall x \spc P(x)$ is true exactly when $P(x)$ is true for all $x$, and the proposition $\exists x \spc Q(x)$ is true exactly when $Q(x)$ is true for one or more $x$. In this sense, $\forall$ is similar to \textit{and} and $\exists$ is similar to \textit{or}. Here's an example: the proposition $(\forall x \spc x > 3)$ is false, while the proposition $(\exists x \spc x > 3)$ is true\footnote{Technically, these propositions aren't really sensible since we haven't specified that the $x$'s involved can only be numbers and not other entities.}.
 
 \subsubsection{Nested quantifers}
 
-Suppose we have a predicate that has two inputs, $P(x, y)$. In the last section, applying a quantifier-variable pair to a predicate produced a predicate. Now, since our predicate valued-function has two inputs, applying any of the four quantifier-variable pairs ($\forall x$, $\forall y$, $\exists x$, $\exists y$) to $P(x, y)$ produces a predicate. For example, we can define a predicate $Q(y) \cong \forall x \spc P(x, y)$.
-
-We can repeat this process to obtain a predicate involving \textit{nested quantifiers}. Continuing the example above, we could consider $\forall y \spc Q(y)$, which is the same as $\forall y ( \forall x \spc P(x, y) )$.
-
-Given a predicate $P$ of two inputs, the four possible ways to ``nest'' quantifiers are as follows:
+In the last section, we saw that applying a quantifier-variable pair (such as $\forall x$) to a single-input predicate produced a proposition. We now consider what happens when we apply a quantifier-variable pair to a two-input predicate $P(x, y)$. The four possible ways to apply a quantifier-variable pair to $P(x, y)$ are
 
 \begin{align*}
-    &\forall x \spc \forall y \spc P(x, y) \\
-    &\forall x \spc \exists y \spc P(x, y) \\
-    &\exists x \spc \forall y \spc P(x, y) \\
-    &\exists x \spc \exists y \spc P(x, y).
+    \forall x \spc P(x, y) \\
+    \exists x \spc P(x, y) \\
+    \forall y \spc P(x, y) \\
+    \exists y \spc P(x, y).
 \end{align*}
 
-Always remember that the innermost pair of quantifier with proposition is a predicate.
+We see that each of the above is itself a single-input predicate. That is, we can define single-input predicates $Q_1(y), Q_2(y), Q_3(x), Q_4(x)$ as follows:
+
+\begin{align*}
+    Q_1(y) := \forall x \spc P(x, y) \\
+    Q_2(y) := \exists x \spc P(x, y) \\
+    Q_3(x) := \forall y \spc P(x, y) \\
+    Q_4(x) := \exists y \spc P(x, y).
+\end{align*}
+
+Since we can apply quantifier-variable pairs to the single-input predicates $Q_1(y), Q_2(y), Q_3(y), Q_4(y)$, we obtain the following propositions:
+
+\begin{align*}
+    &\forall x \spc (\forall y \spc P(x, y)) \\
+    &\forall x \spc (\exists y \spc P(x, y)) \\
+    &\exists x \spc (\forall y \spc P(x, y)) \\
+    &\exists x \spc (\exists y \spc P(x, y)).
+\end{align*}
+
+These propositions involve so-called \textit{nested quantifiers}. In practice, we omit the inner parentheses and use syntax such as $\forall x \spc \exists y \spc P(x, y)$ rather than syntax such as $\forall x \spc (\exists y \spc P(x, y))$.
+
+\subsubsection*{Quantificational identities}
 
 It's useful to know that when two quantifier-variable pairs are nested and the quantifiers are the same, we have the following commutative property:
 
 \begin{align*}
-    &\forall x \spc \forall y \spc P(x, y) \cong \forall y \spc \forall x \spc P(x, y) \\
-    &\exists x \spc \exists y \spc Q(x, y) \cong \exists y \spc \exists x \spc Q(x, y).
+    &\forall x \spc \forall y \spc P(x, y) = \forall y \spc \forall x \spc P(x, y) \\
+    &\exists x \spc \exists y \spc Q(x, y) = \exists y \spc \exists x \spc Q(x, y).
 \end{align*}
 
-There is a shorthand notation for situations in which we have two nested quantifiers of the same type:
+There is also a shorthand notation for situations in which we have two nested quantifiers of the same type:
 
 \begin{align*}
     &\forall x, y \spc P(x, y) := \forall x \spc \forall y \spc P(x, y) \\
@@ -104,16 +126,22 @@ There is a shorthand notation for situations in which we have two nested quantif
 
 \subsubsection{Negating quantifiers}
 
-The \textit{not} operator applies to predicates constructed with quantifiers as follows:
+The \textit{not} operator applies to single-input predicates constructed with quantifiers as follows:
 
 \begin{align*}
-    \text{not}\Big( \forall x \spc P(x) \Big) &\cong \exists x \spc \text{not } P(x) \\
-    \text{not}\Big( \exists x \spc P(x) \Big) &\cong \forall x \spc \text{not } P(x).
+    \text{not}\Big( \forall x \spc P(x) \Big) &= \exists x \spc \text{not } P(x) \\
+    \text{not}\Big( \exists x \spc P(x) \Big) &= \forall x \spc \text{not } P(x).
 \end{align*}
 
 Intuitively, a property doesn't hold true for all objects exactly when that property doesn't hold for one or more of the objects, and a property isn't true for one or more of the objects exactly when it isn't true for all objects.
 
-Nested quantifiers can be negated with this rule, as well. To negate a nested quantifier, just treat the inner quantifier-predicate pair as a predicate so that the above rules apply. For example, $(\text{not }(\forall x \spc \exists y \spc P(x, y))) \cong (\exists x \spc \forall y \spc \text{not } P(x, y))$.
+Nested quantifiers can be negated with this rule, as well. To negate a nested quantifier, just treat the inner quantifier-predicate pair as a single-input predicate. For example,
+
+\begin{align*}
+    \text{not }(\forall x \spc \exists y \spc P(x, y)) = \exists x \spc \text{not } (\exists y \spc P(x, y)) = \exists x \spc \forall y \spc \text{not } P(x, y).
+\end{align*}
+
+This algorithm works for any number of nested quantifiers (i.e. we could use it to compute \\ $\text{not }(\forall x \spc \exists y \spc \exists z \spc \forall w \spc P(x, y, z, w))$) because if we have $n$ quantifiers, then the predicate involving the innermost $n - 1$ quantifiers is always a single-input predicate.
 
 \subsubsection{Essentially, all of math is expressed using quantifiers and logical operators}
 
@@ -140,13 +168,41 @@ A \textit{set} is an unordered list of unique objects. Examples of sets include 
 
 Formally, the fact that the order of objects in a set doesn't matter is established by defining sets $S$ and $T$ to be equivalent exactly when $S$ contains all of $T$'s elements and $T$ contains all of $S$'s elements.
 
-\subsection*{Constructing sets}
+\subsection*{Set construction and membership}
 
-$\{ x \mid P(x) \}$ denotes the set of objects $x$ which satisfy the property $P(x)$. The ``$\mid$'' symbol can be read as ``such that''; we read ``$\{ x \mid P(x) \}$'' out loud as ``$x$ such that $P$ of $x$''. Sometimes, authors use the notation $\{x : P(x) \}$ instead of $\{ x \mid P(x) \}$.
+\subsubsection*{Set construction}
+
+The notation
+
+\begin{align*}
+    \{ x \mid P(x) \}
+\end{align*}
+
+denotes the set of objects $x$ which satisfy the property $P(x)$. The ``$\mid$'' symbol can be read as ``such that''; we read ``$\{ x \mid P(x) \}$'' out loud as ``$x$ such that $P$ of $x$''. 
+
+Sometimes, authors prefer a colon $:$ over a vertical bar $|$ and use the notation 
+
+\begin{align*}
+    \{ x : P(x) \}
+\end{align*}
+
+instead of the above.
+
+\subsubsection*{Set membership}
 
 When an object $x$ is contained in a set $S$, we write $x \in S$. The symbol $\in$ is called the \textit{set membership symbol}. ``$x \in S$'' is read out loud as ``$x$ in $S$''.
 
-We define $\{ x \in S \mid P(x)\}$ to denote the set $\{ x \mid x \in S \text{ and } P(x)\}$. You would read ``$\{ x \in S \mid P(x)\}$'' out loud as ``$x$ in $S$ such that $P(x)$''.
+\subsubsection*{Shorthand for set construction}
+
+We define the following shorthand:
+
+\begin{align*}
+    \{ x \in S \mid P(x)\} := \{ x \mid x \in S \text{ and } P(x)\}.
+\end{align*}
+
+You would read ``$\{ x \in S \mid P(x)\}$'' out loud as ``$x$ in $S$ such that $P(x)$''.
+
+\newpage
 
 \subsection*{Implications}
 
@@ -172,7 +228,7 @@ The argument before the $\implies$ symbol is referred to as the \textit{hypothes
     \end{tabular}
 \end{table}
 
-Beware: just because $\implies$ is read as ``implies'' does \textit{not} mean that it functions in the way that you might expect. A better name for $\implies$ would be ``primitive implies'', since $\implies$ is defined \textit{for the purpose of being used inside a ``for all'' statement}. ``For all'' statements that involve $\implies$ in the following way are what correspond to the English language meaning of ``implies'':
+Beware: just because $\implies$ is read as ``implies'' does \textit{not} mean that it functions in the way that you might expect. A better name for $\implies$ would be ``primitive implies'', since $\implies$ is defined \textit{for the purpose of being used after a ``for all'' quantifier}. ``For all'' quantifications that involve $\implies$ in the following way are what correspond to the English language meaning of ``implies'':
 
 \begin{align*}
     \forall x \spc x \in S \implies P(x).
@@ -180,11 +236,11 @@ Beware: just because $\implies$ is read as ``implies'' does \textit{not} mean th
 
 We might express the above in English as ``$x$ being in $S$ implies $P(x)$''. The key difference between this informal sentence in English and the statement in mathematical notation is that the English sentence lacks a ``for all'' quantification. So, if the English sentence were truly correct, it would be ``For all $x$, $x$ being in $S$ implies $P(x)$''. In the mathematical notation, the ``$\forall x$'' technically indicates an inspection of \textit{all} entities (such as ``grass'', the function $f$ defined by $f(x) = 3x^2$, $-1$, etc.). We restrict our attention to the set $S$ by using $\implies$, so that it is only possible for the predicate $(x \in S \implies P(x))$ to be false when $x \in S$.
 
-The following thought experiment helps further illustrate the idea behind $\implies$. Suppose that you suspect that all squares are rectangles (you are right). To test your belief, you set out to test every single geometric shape, one by one. (Looking at every single geometric shape corresponds to the ``$\forall x$'' part of the above line. You have no control over the fact that, in full formality, you are always considering \textit{all} objects $x$). You set $P(x) \cong (\text{$x$ is a square})$ and $Q(x) \cong (\text{$x$ is a rectangle})$. First, you inspect a square, and determine that it is indeed a rectangle. (This corresponds to the first row of the truth table; $P(x)$ is true and $Q(x)$ is true for this particular $x$, so your theory holds, at least so far). Next, you look at a circle. You're not interested in circles- you're interested in squares! Knowing whether or not the circle is a rectangle is irrelevant. (This corresponds to the last two rows of the truth table; for any $x$, whenever $P(x)$ is false, then $P(x) \implies Q(x)$ is true). After an infinite amount of time, you have tested all squares and determined that they are all rectangles, so your theory stands; that is, the predicate that is the ``for all'' statement evaluates to true. If there \textit{had} been a single square that wasn't a rectangle (there wasn't), then the predicate inside the ``for all'' would have evaluated as false for that square. (This corresponds to the second row of the truth table). This would make the entire ``for all'' statement false.
+The following thought experiment helps further illustrate the idea behind $\implies$. Suppose that you suspect that all squares are rectangles (you are right). To test your belief, you set out to test every single geometric shape, one by one. (Looking at every single geometric shape corresponds to the ``$\forall x$'' part of the above line. You have no control over the fact that, in full formality, you are always considering \textit{all} objects $x$). You set $P(x) := (\text{$x$ is a square})$ and $Q(x) := (\text{$x$ is a rectangle})$. First, you inspect a square, and determine that it is indeed a rectangle. (This corresponds to the first row of the truth table; $P(x)$ is true and $Q(x)$ is true for this particular $x$, so your theory holds, at least so far). Next, you look at a circle. You're not interested in circles- you're interested in squares! Knowing whether or not the circle is a rectangle is irrelevant. (This corresponds to the last two rows of the truth table; for any $x$, whenever $P(x)$ is false, then $P(x) \implies Q(x)$ is true). After an infinite amount of time, you have tested all squares and determined that they are all rectangles, so your theory stands; that is, the predicate that is the ``for all'' statement evaluates to true. If there \textit{had} been a single square that wasn't a rectangle (there wasn't), then the predicate inside the ``for all'' would have evaluated as false for that square. (This corresponds to the second row of the truth table). This would make the entire ``for all'' statement false.
 
 \subsubsection{``Necessary'' and ``sufficient''}
 
-Let $P$ and $Q$ be propositions, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Because of the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
+Let $P$ and $Q$ be predicates, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Because of the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
 
 \subsubsection{Quantifiers with set membership}
 
@@ -200,15 +256,15 @@ The first line was motivated in the section before the previous section. The sec
 The negations of the above newly defined expressions are what you expect:
 
 \begin{align*}
-    &\text{not}\Big( \forall x \in S \spc P(x) \Big) \cong \exists x \in S \spc \text{not } P(x) \\
-    &\text{not}\Big( \exists x \in S \spc P(x) \Big) \cong \forall x \in S \spc \text{not } P(x).
+    &\text{not}\Big( \forall x \in S \spc P(x) \Big) = \exists x \in S \spc \text{not } P(x) \\
+    &\text{not}\Big( \exists x \in S \spc P(x) \Big) = \forall x \in S \spc \text{not } P(x).
 \end{align*}
 
 This is because a slightly more general versions of the above facts hold. (To obtain the above from the below, substitute $P(x) = (x \in S)$ and $Q(x) = P(x)$ into the below).
 
 \begin{align*}
-    &\text{not}\Big( \forall x \spc P(x) \text{ and } Q(x) \Big) \cong \exists x \spc P(x) \text{ and } (\text{not } Q(x)) \\
-    &\text{not}\Big( \exists x \spc P(x) \text{ and } Q(x) \Big) \cong \forall x \spc P(x) \text{ and } (\text{not } Q(x)).
+    &\text{not}\Big( \forall x \spc P(x) \text{ and } Q(x) \Big) = \exists x \spc P(x) \text{ and } (\text{not } Q(x)) \\
+    &\text{not}\Big( \exists x \spc P(x) \text{ and } Q(x) \Big) = \forall x \spc P(x) \text{ and } (\text{not } Q(x)).
 \end{align*}
 
 %These more general facts are useful when objects with a particular property are being considered. For example, consider all triangles in the plane. Given a right triangle $T$, let $a_T, b_T$, and $c_T$ be the lengths of the sides of $T$, with $c_T$ being the length of the hypotenuse. The Pythagorean theorem states\footnote{Because the ``for all statement'' considers all triangles $T$, not just the right triangles, the definition of $c_T$ does not make sense for non-right triangles, since non-right triangles don't have a hypotenuse. We could improve the definition of $c_T$ so it applies to all right triangles and is still the length of the hypotenuse when $T$ is a right triangle. However, it is actually fine for $c_T$ to be undefined for non-right triangles $T$, because an \textit{and} statement evaluates to false whenever either argument (such as ``$T$ is a right triangle'') is false. So, in the general case, allowing for this so-called \textit{short-circuit} interpretation of \textit{and} allows us to use predicates $Q(x)$ that are only defined when $P(x)$ is true.} $(\forall T \spc \text{$T$ is a right triangle} \text{ and } a_T^2 + b_T^2 = c_T^2)$. (Note: this ``for all'' statement does \textit{not} state that all triangles are right triangles satisfying the Pythagorean theorem! It states that all right triangles satisfy $a_T^2 + b_T^2 = c_T^2$). The negation of the Pythagorean theorem, using the above, is then $(\exists T \spc \text{$T$ is a right triangle} \text{ and } a_T^2 + b_T^2 \neq c_T^2)$. Since the Pythagorean theorem is true, this means that it is \textit{not} the case that there is a right triangle $T$ for which $a_T^2 + b_T^2 \neq c_T^2$. 
@@ -217,20 +273,20 @@ Here's a proof of the first line of the more general statement; the proof of the
 
 \begin{align*}
     \text{not}\Big( \forall x \spc P(x) \text{ and } Q(x) \Big)
-    \cong
+    =
     \exists x \spc \text{not}\Big( \spc P(x) \text{ and } Q(x) \Big)
-    \cong
+    =
     \exists x \spc (\text{not } P(x)) \text{ or } (\text{not } Q(x))
-    \cong
+    =
     \exists x \spc P(x) \text{ and } (\text{not } Q(x)).
 \end{align*}
 
-The last above logical equality follows because, for propositions $P$ and $Q$, we have $(P \text{ or } Q) \cong (P \text{ and } (\text{not } Q))$. This can be checked by truth table; it can also be understood intuitively: ``if $P$ or $Q$ happens, and $Q$ doesn't happen, then $P$ must happen''.
+The last above logical equality follows because, for propositions $P$ and $Q$, we have $(P \text{ or } Q) = (P \text{ and } (\text{not } Q))$. This can be checked by truth table; it can also be understood intuitively: ``if $P$ or $Q$ happens, and $Q$ doesn't happen, then $P$ must happen''.
 
 \subsubsection{Common shorthand}
 
 \begin{itemize}
-    \item When people write something of the form ``$\forall x \spc P(x) \implies Q(x)$'', they mean \\ ``$\Big(\forall x \spc P(x) \implies Q(x)\Big) \cong T$''. 
+    \item When people write something of the form ``$\forall x \spc P(x) \implies Q(x)$'', they mean \\ ``$\Big(\forall x \spc P(x) \implies Q(x)\Big) = T$''. 
     \item When people write something of the form ``$P(x) \implies Q(x)$'', they really should have written ``$\forall x \spc P(x) \implies Q(x)$''. An extremly common example of this shorthand is ``$x \in S \implies P(x)$''.
     \begin{itemize}
         \item This shorthand has a verbal equivalent: ``If $P(x)$, then $Q(x)$''. The verbal equivalent is not considered bad notation, however.
@@ -240,14 +296,14 @@ The last above logical equality follows because, for propositions $P$ and $Q$, w
 
 \subsubsection{Converses}
 
-Given predicates $P$ and $Q$, consider the implication $P \implies Q$. The \textit{converse} to this implication is the implication $Q \implies P$. Please note that $(P \implies Q) \cong (Q \implies P)$ is a false statement! On the level of the English language, this means that $\Big( \forall x \spc P(x) \implies Q(x) \Big) \cong \Big( \forall x \spc Q(x) \implies P(x) \Big)$ is a false statement. For example, ``whenever it rains, there are clouds'', but it is not true that ``whenever there are clouds, it rains''!
+Given predicates $P$ and $Q$, consider the implication $P \implies Q$. The \textit{converse} to this implication is the implication $Q \implies P$. Please note that $(P \implies Q) = (Q \implies P)$ is a false statement! On the level of the English language, this means that $\Big( \forall x \spc P(x) \implies Q(x) \Big) = \Big( \forall x \spc Q(x) \implies P(x) \Big)$ is a false statement. For example, ``whenever it rains, there are clouds'', but it is not true that ``whenever there are clouds, it rains''!
 
 \subsection*{``If and only if''}
 
 We define one more operator on predicates, the \textit{bidirectional implication} operator, denoted $\iff$. Given predicates $P$ and $Q$, we define
 
 \begin{align*}
-    P \iff Q :\cong \Big( (P \implies Q) \text{ and } (Q \implies P) \Big).
+    P \iff Q := \Big( (P \implies Q) \text{ and } (Q \implies P) \Big).
 \end{align*}
 
 Here's the truth table for $\iff$.
@@ -264,30 +320,30 @@ Here's the truth table for $\iff$.
     \end{tabular}
 \end{table}
 
-The operator $\iff$ is spoken aloud as ``if and only if'', and is abbreviated in writing as ``iff''. In the context of the bidirectional implication $P \iff Q$, the implication $P \implies Q$ is referred to as the \textit{forward implication} and its converse $Q \implies P$ is referred to as the \textit{reverse implication}. Note that $\iff$ is symmetric in the sense that $(P \iff Q) \cong (Q \iff P)$.
+The operator $\iff$ is spoken aloud as ``if and only if'', and is abbreviated in writing as ``iff''. In the context of the bidirectional implication $P \iff Q$, the implication $P \implies Q$ is referred to as the \textit{forward implication} and its converse $Q \implies P$ is referred to as the \textit{reverse implication}. Note that $\iff$ is symmetric in the sense that $(P \iff Q) = (Q \iff P)$.
 
 The English language interpretation of $\iff$ is similar to to the English language interpretation of $\implies$: the mathematical version of what someone really means when they say ``$P(x)$ if and only if $Q(x)$'' is $\forall x \spc P(x) \iff Q(x)$. Again, we see the difference between full mathematical formalism and language is that language often omits the ``for all''.
 
 Many theorems in math state that a certain ``if and only if'' predicate is true. More specifically, such theorems usually state that some property of an object manifests if and only if another property of that object also manifests. So, when you see a theorem about an \textit{equivalent condition} or an \textit{equivalent definition}, there is an ``if and only if'' statement at play. All definitions in math are also automatically ``if and only if'' statements. There is, however, the common misleading convention of writing definitions using the word ``if'' (for example: ``We say $x$ has property $P(x)$ \textit{if} $Q(x)$''; the ``if'' should really be an ``iff'').
 
-A neat fact is that $\cong$ and $\iff$ are the same operator. One way to verify this is by checking that the truth tables of $\cong$ and $\iff$ are the same.
+A neat fact is that $=$ and $\iff$ are the same operator. One way to verify this is by checking that the truth tables of $=$ and $\iff$ are the same.
 
 \subsection*{The contrapositive and proof by contradiction}
 
 For predicates $P$ and $Q$, the following logical identity is true:
 
 \begin{align*}
-    (P \implies Q) \cong ((\text{not } Q) \implies (\text{not } P)).
+    (P \implies Q) = ((\text{not } Q) \implies (\text{not } P)).
 \end{align*}
 
 The right-hand side is called the \textit{contrapositive} of the left-hand side.
 
-You could verify this identity by using truth tables. Here is a nicer proof that uses the facts $(P \text{ or } Q) \cong (Q \text{ or } P)$ and $Q \cong \text{not}(\text{not } Q)$.
+You could verify this identity by using truth tables. Here is a nicer proof that uses the facts $(P \text{ or } Q) = (Q \text{ or } P)$ and $Q = \text{not}(\text{not } Q)$.
 
 \begin{align*}
-    (P \implies Q) &\cong ((\text{not } P) \text{ or } Q ) 
-    \cong (\text{not}(\text{not } Q) \text{ or } (\text{not } P))
-    \cong ((\text{not } Q) \implies (\text{not } P)).
+    (P \implies Q) &= ((\text{not } P) \text{ or } Q ) 
+    = (\text{not}(\text{not } Q) \text{ or } (\text{not } P))
+    = ((\text{not } Q) \implies (\text{not } P)).
 \end{align*}
 
 \subsubsection{Proof by contradiction}
@@ -425,7 +481,7 @@ Latin meanings of injective and surjective.
 \begin{defn}
     (Uniqueness).
     
-    $\exists !x \spc P(x) :\cong (\exists x_0 \spc P(x_0)) \text{ and } (\forall x \spc P(x) \implies x = x_0)$.
+    $\exists !x \spc P(x) := (\exists x_0 \spc P(x_0)) \text{ and } (\forall x \spc P(x) \implies x = x_0)$.
 \end{defn}
 
 \begin{remark}
