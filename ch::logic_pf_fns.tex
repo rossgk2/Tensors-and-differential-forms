@@ -62,6 +62,8 @@ Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{
 
 \section{Predicate logic}
 
+\textbf{TO-DO: use notation $P$ and $P$ for propositions and $P$ and $P(x_1, .., x_n)$ for predicates; analogous to $f$ and $\text{const}$ for constant functions and $f$ and $f(x_1, ..., x_n)$ for functions eval'd on inputs}
+
 A \textit{predicate} is a proposition in which zero or more of the entities are variables. For example, $P(x) := (x > 3)$ is a predicate which is true for some values of $x$ but false for others. We will sometimes informally refer to predicates as \textit{properties}.
 
 Note that a proposition is a predicate in which exactly zero of the entities are variables.
@@ -206,9 +208,9 @@ You would read ``$\{ x \in S \mid P(x)\}$'' out loud as ``$x$ in $S$ such that $
 
 \subsection*{Implications}
 
-We now define the \textit{implication} operator $\implies$, which is an operation that accepts two predicates as input and produces a predicate as output. (Recall, a predicate is a statement that is either true or false and that makes use of variables to represent concepts). Many authors introduce $\implies$ immediately after \textit{or}, \textit{and}, and \textit{or}; we introduce it now because it is best understood in the context of ``for all'' statements that involve sets.
+We now define the \textit{implication} operator $\implies$, which is an operation that accepts two predicates as input and produces a predicate as output. Many authors introduce $\implies$ immediately after \textit{or}, \textit{and}, and \textit{or}; we introduce it now because it is best understood in the context of ``for all'' statements that involve sets.
 
-This operator is read out loud as ``implies'', and is defined as follows:
+This operator is read out loud as ``implies'', and is defined on predicates $P$ and $Q$ as follows:
 
 \begin{align*}
     P \implies Q := (\text{not } P) \text{ or } Q.
@@ -242,16 +244,40 @@ The following thought experiment helps further illustrate the idea behind $\impl
 
 Let $P$ and $Q$ be predicates, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Because of the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
 
+\newpage
+
+\subsubsection*{Negation of an implication}
+
+We have the following negation rule for implication:
+
+\begin{align*}
+    \text{not}(P \implies Q) = \Big(\text{not}(\text{not } P) \text{ or } Q)\Big) = \Big(P \text{ and } (\text{not } Q)\Big).
+\end{align*}
+
+This implies the following more intuitive fact:
+
+\begin{align*}
+    \text{not}\Big(\forall x \spc P(x) \implies Q(x) \Big) = \Big(\exists x \spc P(x) \text{ and } (\text{not } Q(x))\Big).
+\end{align*}
+
+The wordy explanation is that if it is not the case that $P(x)$ implies $Q(x)$ for all $x$, then there must be some $x$ satisfying $P(x)$ that does not also satisfy $Q(x)$.
+
+Some ``thematic inverses'' to the above facts are the following:
+
+\begin{align*}
+    \text{not}(P \text{ and } Q) = \Big((\text{not } P) \text{ or } (\text{not } Q)\Big) = \Big(P \implies (\text{not } Q)\Big) = \Big(Q \implies (\text{not } P)\Big).
+\end{align*}
+
 \subsubsection{Quantifiers with set membership}
 
 We define
 
 \begin{align*}
     &\forall x \in S \spc P(x) := \forall x \spc x \in S \implies P(x) \\
-    &\exists x \in S \spc P(x) := \exists x \in S \text{ and } P(x).
+    &\exists x \in S \spc P(x) := \exists x \spc x \in S \text{ and } P(x).
 \end{align*}
 
-The first line was motivated in the section before the previous section. The second line is probably easier to understand than the first, since it doesn't involve $\implies$.
+The first line was motivated by previous the example involving rectangles and squares. The second line is probably easier to understand than the first, since it doesn't involve $\implies$.
 
 The negations of the above newly defined expressions are what you expect:
 
@@ -260,28 +286,7 @@ The negations of the above newly defined expressions are what you expect:
     &\text{not}\Big( \exists x \in S \spc P(x) \Big) = \forall x \in S \spc \text{not } P(x).
 \end{align*}
 
-This is because a slightly more general versions of the above facts hold. (To obtain the above from the below, substitute $P(x) = (x \in S)$ and $Q(x) = P(x)$ into the below).
-
-\begin{align*}
-    &\text{not}\Big( \forall x \spc P(x) \text{ and } Q(x) \Big) = \exists x \spc P(x) \text{ and } (\text{not } Q(x)) \\
-    &\text{not}\Big( \exists x \spc P(x) \text{ and } Q(x) \Big) = \forall x \spc P(x) \text{ and } (\text{not } Q(x)).
-\end{align*}
-
-%These more general facts are useful when objects with a particular property are being considered. For example, consider all triangles in the plane. Given a right triangle $T$, let $a_T, b_T$, and $c_T$ be the lengths of the sides of $T$, with $c_T$ being the length of the hypotenuse. The Pythagorean theorem states\footnote{Because the ``for all statement'' considers all triangles $T$, not just the right triangles, the definition of $c_T$ does not make sense for non-right triangles, since non-right triangles don't have a hypotenuse. We could improve the definition of $c_T$ so it applies to all right triangles and is still the length of the hypotenuse when $T$ is a right triangle. However, it is actually fine for $c_T$ to be undefined for non-right triangles $T$, because an \textit{and} statement evaluates to false whenever either argument (such as ``$T$ is a right triangle'') is false. So, in the general case, allowing for this so-called \textit{short-circuit} interpretation of \textit{and} allows us to use predicates $Q(x)$ that are only defined when $P(x)$ is true.} $(\forall T \spc \text{$T$ is a right triangle} \text{ and } a_T^2 + b_T^2 = c_T^2)$. (Note: this ``for all'' statement does \textit{not} state that all triangles are right triangles satisfying the Pythagorean theorem! It states that all right triangles satisfy $a_T^2 + b_T^2 = c_T^2$). The negation of the Pythagorean theorem, using the above, is then $(\exists T \spc \text{$T$ is a right triangle} \text{ and } a_T^2 + b_T^2 \neq c_T^2)$. Since the Pythagorean theorem is true, this means that it is \textit{not} the case that there is a right triangle $T$ for which $a_T^2 + b_T^2 \neq c_T^2$. 
-
-Here's a proof of the first line of the more general statement; the proof of the second line is similar.
-
-\begin{align*}
-    \text{not}\Big( \forall x \spc P(x) \text{ and } Q(x) \Big)
-    =
-    \exists x \spc \text{not}\Big( \spc P(x) \text{ and } Q(x) \Big)
-    =
-    \exists x \spc (\text{not } P(x)) \text{ or } (\text{not } Q(x))
-    =
-    \exists x \spc P(x) \text{ and } (\text{not } Q(x)).
-\end{align*}
-
-The last above logical equality follows because, for propositions $P$ and $Q$, we have $(P \text{ or } Q) = (P \text{ and } (\text{not } Q))$. This can be checked by truth table; it can also be understood intuitively: ``if $P$ or $Q$ happens, and $Q$ doesn't happen, then $P$ must happen''.
+Use the facts $\text{not}(P \implies Q) = (P \text{ and } (\text{not } Q))$ and $\text{not}(P \text{ and } Q) = (P \implies (\text{not } Q))$ from the ``Negation of an implication'' section to prove these.
 
 \subsubsection{Common shorthand}
 
