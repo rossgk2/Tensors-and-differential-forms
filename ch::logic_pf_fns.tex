@@ -1,4 +1,4 @@
-\chapter{Review of logic, proofs, and functions}
+\chapter{Logic, proofs, and functions}
 \label{ch::logic_pf_fns}
 
 \subsection*{Notation for definitions}
@@ -9,13 +9,11 @@ In this book, we use $:=$ whenever an equality is enforced to be true by definit
 
 A \textit{proposition} is a statement that is either true or false; an example is ``the sky is blue right now''.
 
-We can denote propositions  with letters, and say things such as ``let $P$ be a proposition''. When a proposition $P$ is true, we write $P = T$. The $=$ symbol is used here to denote \textit{logical equality}, and the $T$ denotes ``truth''. Similarly, we write $P = F$ when $P$ is false.
+We can denote propositions with letters, and say things such as ``let $P$ be a proposition''. When a proposition $P$ is true, we write $P = T$. The $=$ symbol is used here to denote \textit{logical equality}, and the $T$ denotes ``truth''. Similarly, we write $P = F$ when $P$ is false.
 
 \subsection*{Logical operators}
 
-More complicated propositions can be constructed from simpler propositions. Examples of some more complicated propositions are $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) = F$ and \\ $\Big((5 > -3) \text{ or } (2 > 100)\Big) = T$.
-
-There are three fundamental operations on propositions that are used to build more complicated propositions from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
+More complicated predicates can be constructed from simpler predicates. There are three fundamental operations on predicates that are used to build more complicated predicates from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
 
 The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P$ and $Q$ as is expressed in the following ``truth tables''.
 
@@ -49,6 +47,10 @@ The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P
 
 So, $P \textit{ and } Q$ evaluates to true only when both $P$ and $Q$ are true, $P \textit{ or } Q$ evaluates to true whenever either of $P$ or $Q$ is true, and $\textit{not } P$ evaluates to the ``opposite'' of $P$. Note that \textit{or} is not the same as \textit{exclusive or}, also called \textit{xor}, which evaluates to true whenever exactly one of $P, Q$ is true.
 
+Here are some examples: we have $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) = F$ and $\Big((5 > -3) \text{ or } (2 > 100)\Big) = T$.
+
+\subsection*{DeMorgan's laws}
+
 By making use of the above truth tables, you can check that, for propositions $P$ and $Q$, we have the following two logical identities, called \textit{DeMorgan's laws}:
 
 \begin{align*}
@@ -56,28 +58,26 @@ By making use of the above truth tables, you can check that, for propositions $P
     &\text{not }(P \text{ or } Q) = (\text{not } P) \text{ and } (\text{not } Q).
 \end{align*}
 
-Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{not}: $\wedge$ denotes \textit{and}, $\vee$ denotes \textit{or}, and either $\sim$ or $\neg$ denotes \textit{not}. We will not use these symbols.
-
-\newpage
+Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{not}: $\wedge$ denotes \textit{and}, $\vee$ denotes \textit{or}, and either $\neg$ or $\sim$ denotes \textit{not}. We will not use these symbols.
 
 \section{Predicate logic}
 
-\textbf{TO-DO: use notation $P$ and $P$ for propositions and $P$ and $P(x_1, .., x_n)$ for predicates; analogous to $f$ and $\text{const}$ for constant functions and $f$ and $f(x_1, ..., x_n)$ for functions eval'd on inputs}
+A \textit{predicate} is a statement involving one or more ``variables'' such that the statement is a proposition when the variables take on concrete values. An example of a predicate with a single variable is ``the sky is blue at time $x$''.
 
-A \textit{predicate} is a proposition in which zero or more of the entities are variables. For example, $P(x) := (x > 3)$ is a predicate which is true for some values of $x$ but false for others. We will sometimes informally refer to predicates as \textit{properties}.
+Just as we could with propositions, we can denote propositions with letters. For example, we can define a predicate $Q$ by $Q(x) = (\text{the sky is blue at time $x$})$. When we substitute in concrete meaning for the entities in a predicate, we obtain a proposition; for example, $Q(\text{8 o'clock})$ is the proposition ``the sky is blue at 8 o'clock''.
 
-Note that a proposition is a predicate in which exactly zero of the entities are variables.
+\subsubsection*{Quantifiers}
 
-\subsection*{Quantificational logic}
-
-The \textit{universal quantifier} is the symbol $\forall$; we read ``$\forall x$'' as ``for all $x$''. The \textit{existential quantifier} is the symbol $\exists$; we read ``$\exists x$'' as ``there exists $x$ such that''. The quantifiers $\forall$ and $\exists$ are used in the following way to create propositions from single-input predicates:
+In predicate logic, the symbols $\forall$ (read as ``for all'') and $\exists$ (read as ``there exists'') are used to produce propositions from single-input predicates. The symbol $\forall$ is known as the \textit{universal quantifier}, and the symbol $\exists$ is known as the \textit{existential quantifier}.
 
 \begin{align*}
     \forall x \spc P(x) &\qquad \text{is the proposition which states ``for all $x$, $P(x) = T$''} \\
     \exists x \spc \spc Q(x) &\qquad \text{is the proposition which states ``there exists an $x$ such that $Q(x) = T$''}.
 \end{align*}
 
-The proposition $\forall x \spc P(x)$ is true exactly when $P(x)$ is true for all $x$, and the proposition $\exists x \spc Q(x)$ is true exactly when $Q(x)$ is true for one or more $x$. In this sense, $\forall$ is similar to \textit{and} and $\exists$ is similar to \textit{or}. Here's an example: the proposition $(\forall x \spc x > 3)$ is false, while the proposition $(\exists x \spc x > 3)$ is true\footnote{Technically, these propositions aren't really sensible since we haven't specified that the $x$'s involved can only be numbers and not other entities.}.
+We see that $\forall x \spc P(x)$ is true exactly when $P(x)$ is true for all $x$, and that $\exists x \spc Q(x)$ is true exactly when $Q(x)$ is true for one or more $x$. In this sense, $\forall$ is similar to \textit{and} and $\exists$ is similar to \textit{or}.
+
+Here's an example: the proposition $(\forall x \spc x > 3)$ is false, while the proposition $(\exists x \spc x > 3)$ is true\footnote{Technically, these propositions aren't really sensible since we haven't specified that the $x$'s involved can only be numbers and not other entities.}.
 
 \subsubsection{Nested quantifers}
 
@@ -180,7 +180,7 @@ The notation
     \{ x \mid P(x) \}
 \end{align*}
 
-denotes the set of objects $x$ which satisfy the property $P(x)$. The ``$\mid$'' symbol can be read as ``such that''; we read ``$\{ x \mid P(x) \}$'' out loud as ``$x$ such that $P$ of $x$''. 
+denotes the set of objects $x$ which satisfy the predicate $P(x)$. The ``$\mid$'' symbol can be read as ``such that''; we read ``$\{ x \mid P(x) \}$'' out loud as ``$x$ such that $P$ of $x$''. 
 
 Sometimes, authors prefer a colon $:$ over a vertical bar $|$ and use the notation 
 
@@ -333,7 +333,7 @@ Many theorems in math state that a certain ``if and only if'' predicate is true.
 
 A neat fact is that $=$ and $\iff$ are the same operator. One way to verify this is by checking that the truth tables of $=$ and $\iff$ are the same.
 
-\subsection*{The contrapositive and proof by contradiction}
+\subsection*{The contrapositive}
 
 For predicates $P$ and $Q$, the following logical identity is true:
 
@@ -343,7 +343,7 @@ For predicates $P$ and $Q$, the following logical identity is true:
 
 The right-hand side is called the \textit{contrapositive} of the left-hand side.
 
-You could verify this identity by using truth tables. Here is a nicer proof that uses the facts $(P \text{ or } Q) = (Q \text{ or } P)$ and $Q = \text{not}(\text{not } Q)$.
+You could verify this identity by using truth tables. Here is a nicer proof that uses the facts $(P \text{ or } Q) = (Q \text{ or } P)$ and $Q = \text{not}(\text{not } Q)$:
 
 \begin{align*}
     (P \implies Q) &= ((\text{not } P) \text{ or } Q ) 
@@ -351,13 +351,51 @@ You could verify this identity by using truth tables. Here is a nicer proof that
     = ((\text{not } Q) \implies (\text{not } P)).
 \end{align*}
 
-\subsubsection{Proof by contradiction}
+The contrapositive is practically important because it is sometimes easier to prove the contrapositive of a proposition than it is to prove the proposition itself.
 
-Suppose we want to prove $P \implies Q$. One way to do so is to use \textit{proof by contradiction}. Proof by contraction proceeds as follows. Assume $P$ is true, and suppose that $Q$ is false. Then if, as a direct result of supposing $Q$ to be false, we reach a logical impossibility, such as $1 = 0$, we know $Q$ must be true.
+\newpage
 
-Formally, proof by contradiction is an application of the contrapositive. The first step in a proof by contradiction of writing ``assume $P$ is true'' serves no formal mathematical purpose, and is really just a reminder of the statement that will be contradicted. The next step, which is the first step that formally matters, is to assume $(\text{not } Q)$; this corresponds to the hypothesis of the contrapositive. Lastly, the contradiction (such as $1 = 0$) achieved at the end of the proof is actually always logically equivalent to $(\text{not } P)$ when the full context is considered. Proof by contradiction is just a more verbose way of proving the contrapositive, $((\text{not } Q) \implies (\text{not } P))$.
+\subsection*{Proof by contradiction}
 
-For some proofs, using the contrapositive in its raw logical form is most clear; for others, using the verbal format of proof by contradiction is more clear.
+Another way of proving $P \implies Q$ that is similar in spirit to a proof by contrapositive is \textit{proof by contradiction}. In a proof by contradiction, one assumes $(\text{not}(P \implies Q))$ and then derives from this assumption that some additional proposition $R$ and its negation $\text{not}(R)$ are \textit{both} true. Since for any proposition $R$ we have $(R \text{ and } (\text{not } R)) = F$, it intuitively follows that the original assumption $(\text{not}(P \implies Q))$ must have been false; that is, we must have $P \implies Q$.
+
+In summary, a proof of $P \implies Q$ by contradiction is a proof of
+
+\begin{align*}
+    \text{not}(P \implies Q) \implies (R \text{ and } (\text{not } R)),
+\end{align*}
+
+where $R$ is some proposition.
+
+Since we have $(\text{not}(P \implies Q)) = (P \text{ and } (\text{not } Q))$, we see that a proof of $P \implies Q$ by contradiction is equivalently a proof of
+
+\begin{align*}
+    (P \text{ and } (\text{not } Q)) \implies (R \text{ and } (\text{not } R)).
+\end{align*}
+
+This is the form of proof by contradiction that is used in practice. Authors typically begin a proof of $P \implies Q$ by contradiction by saying ``Assume $P$. For the sake of obtaining a contradiction, also assume $\text{not } Q$.'' A contradiction $(R \text{ and } (\text{not } R))$ is then derived, and the author writes the following to finish the proof: ``This contradicts the assumption $\text{not } Q$. Therefore $Q$ must be true.'' 
+
+\subsubsection*{Contradiction and contrapositive}
+
+When the contradiction $(R \text{ and } (\text{not } R))$ derived in a proof by contradiction is $(P \text{ and } (\text{not } P))$, the overall proof by contradiction is
+
+\begin{align*}
+    (P \text{ and } (\text{not } Q)) \implies (P \text{ and } (\text{not } P)).
+\end{align*}
+
+The above implies the following:
+
+\begin{align*}
+    (P \text{ and } (\text{not } Q)) \implies (\text{not } P).
+\end{align*}
+
+If we are additionally in a context where we know $P$ to be true, then the above further simplifies to:
+
+\begin{align*}
+    (\text{not } Q) \implies (\text{not } P),
+\end{align*}
+
+which is the contrapositive. Thus, we see that when $P$ is known to be true and the contradiction obtained is $(P \text{ and } (\text{not } P))$, the proof by contradiction can be rewritten to be a proof by contrapositive. This situation occurs very often in practice.
 
 \newpage
 
