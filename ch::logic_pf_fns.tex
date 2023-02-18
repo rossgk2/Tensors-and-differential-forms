@@ -13,7 +13,7 @@ We can denote propositions with letters, and say things such as ``let $P$ be a p
 
 \subsection*{Logical operators}
 
-More complicated predicates can be constructed from simpler predicates. There are three fundamental operations on predicates that are used to build more complicated predicates from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
+More complicated propositions can be constructed from simpler propositions. There are three fundamental operations on propositions that are used to build more complicated propositions from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
 
 The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P$ and $Q$ as is expressed in the following ``truth tables''.
 
@@ -47,24 +47,26 @@ The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P
 
 So, $P \textit{ and } Q$ evaluates to true only when both $P$ and $Q$ are true, $P \textit{ or } Q$ evaluates to true whenever either of $P$ or $Q$ is true, and $\textit{not } P$ evaluates to the ``opposite'' of $P$. Note that \textit{or} is not the same as \textit{exclusive or}, also called \textit{xor}, which evaluates to true whenever exactly one of $P, Q$ is true.
 
-Here are some examples: we have $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) = F$ and $\Big((5 > -3) \text{ or } (2 > 100)\Big) = T$.
+Here are some examples: we have $\Big((3 > 4)$ and $(\text{every rectangle is a square}) \Big) = F$ and \\ $\Big((5 > -3) \text{ or } (2 > 100)\Big) = T$.
 
-\subsection*{DeMorgan's laws}
+\subsubsection*{DeMorgan's laws}
 
-By making use of the above truth tables, you can check that, for propositions $P$ and $Q$, we have the following two logical identities, called \textit{DeMorgan's laws}:
+You can check by using truth tables for propositions $P$ and $Q$, we have the following two logical identities, called \textit{DeMorgan's laws}:
 
 \begin{align*}
-    &\text{not }(P \text{ and } Q) = (\text{not } P) \text{ or } (\text{not } Q) \\
-    &\text{not }(P \text{ or } Q) = (\text{not } P) \text{ and } (\text{not } Q).
+    &\text{not}(P \text{ and } Q) = (\text{not } P) \text{ or } (\text{not } Q) \\
+    &\text{not}(P \text{ or } Q) = (\text{not } P) \text{ and } (\text{not } Q).
 \end{align*}
 
 Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{not}: $\wedge$ denotes \textit{and}, $\vee$ denotes \textit{or}, and either $\neg$ or $\sim$ denotes \textit{not}. We will not use these symbols.
+
+\newpage
 
 \section{Predicate logic}
 
 A \textit{predicate} is a statement involving one or more ``variables'' such that the statement is a proposition when the variables take on concrete values. An example of a predicate with a single variable is ``the sky is blue at time $x$''.
 
-Just as we could with propositions, we can denote propositions with letters. For example, we can define a predicate $Q$ by $Q(x) = (\text{the sky is blue at time $x$})$. When we substitute in concrete meaning for the entities in a predicate, we obtain a proposition; for example, $Q(\text{8 o'clock})$ is the proposition ``the sky is blue at 8 o'clock''.
+Just as we could with propositions, we can denote predicates with letters. For example, we can define a predicate $Q$ by $Q(x) = (\text{the sky is blue at time $x$})$. When we substitute in concrete meaning for the entities in a predicate, we obtain a proposition; for example, $Q(\text{8 o'clock})$ is the proposition ``the sky is blue at 8 o'clock''.
 
 \subsubsection*{Quantifiers}
 
@@ -126,7 +128,8 @@ There is also a shorthand notation for situations in which we have two nested qu
     &\exists x, y \spc P(x, y) := \exists x \spc \exists y \spc P(x, y).
 \end{align*}
 
-\subsubsection{Negating quantifiers}
+
+\subsubsection*{Negating quantifications}
 
 The \textit{not} operator applies to single-input predicates constructed with quantifiers as follows:
 
@@ -145,13 +148,13 @@ Nested quantifiers can be negated with this rule, as well. To negate a nested qu
 
 This algorithm works for any number of nested quantifiers (i.e. we could use it to compute \\ $\text{not }(\forall x \spc \exists y \spc \exists z \spc \forall w \spc P(x, y, z, w))$) because if we have $n$ quantifiers, then the predicate involving the innermost $n - 1$ quantifiers is always a single-input predicate.
 
-\subsubsection{Essentially, all of math is expressed using quantifiers and logical operators}
+\subsubsection{Essentially, all of math is expressed using predicate logic}
 
 We roughly define a \textit{first-order mathematical theory} to consist of
 
 \begin{itemize}
     \item a list of \textit{axioms}, or assumptions thought of as inherently true, that are expressible by using the quantifiers $\forall$ and $\exists$ on variables (such as $x$) in conjunction with predicates and logical operators
-    \item the collection of all predicates (``facts'') which are logically equivalent to the axioms.
+    \item the collection of all propositions (``facts'') which are logically equivalent to the axioms.
 \end{itemize}
 
 The \textit{Zermelo–Fraenkel set theory} with the \textit{axiom of choice} (abbreviated ZFC, where the ``C'' is for ``choice'') is a commonly used first-order mathematical theory. The axioms of ZFC are relatively complicated, and will not be stated here. The important point is that the axioms of ZFC are stated in accordance to the two bullet points above; they are stated completely in terms of quantifiers, predicates, and logical operators derived from \textit{and}, \textit{or}, and \textit{not}.
@@ -206,11 +209,11 @@ You would read ``$\{ x \in S \mid P(x)\}$'' out loud as ``$x$ in $S$ such that $
 
 \newpage
 
-\subsection*{Implications}
+\subsection*{Implications with sets}
 
-We now define the \textit{implication} operator $\implies$, which is an operation that accepts two predicates as input and produces a predicate as output. Many authors introduce $\implies$ immediately after \textit{or}, \textit{and}, and \textit{or}; we introduce it now because it is best understood in the context of ``for all'' statements that involve sets.
+We now define the \textit{implication} operator $\implies$, which is an operation that accepts two propositions as input and produces a proposition as output. Many authors introduce $\implies$ immediately after \textit{or}, \textit{and}, and \textit{or}; we introduce it now because it is best understood in the context of ``for all'' statements that involve sets.
 
-This operator is read out loud as ``implies'', and is defined on predicates $P$ and $Q$ as follows:
+This operator is read out loud as ``implies'', and is defined on propositions $P$ and $Q$ as follows:
 
 \begin{align*}
     P \implies Q := (\text{not } P) \text{ or } Q.
@@ -240,11 +243,16 @@ We might express the above in English as ``$x$ being in $S$ implies $P(x)$''. Th
 
 The following thought experiment helps further illustrate the idea behind $\implies$. Suppose that you suspect that all squares are rectangles (you are right). To test your belief, you set out to test every single geometric shape, one by one. (Looking at every single geometric shape corresponds to the ``$\forall x$'' part of the above line. You have no control over the fact that, in full formality, you are always considering \textit{all} objects $x$). You set $P(x) := (\text{$x$ is a square})$ and $Q(x) := (\text{$x$ is a rectangle})$. First, you inspect a square, and determine that it is indeed a rectangle. (This corresponds to the first row of the truth table; $P(x)$ is true and $Q(x)$ is true for this particular $x$, so your theory holds, at least so far). Next, you look at a circle. You're not interested in circles- you're interested in squares! Knowing whether or not the circle is a rectangle is irrelevant. (This corresponds to the last two rows of the truth table; for any $x$, whenever $P(x)$ is false, then $P(x) \implies Q(x)$ is true). After an infinite amount of time, you have tested all squares and determined that they are all rectangles, so your theory stands; that is, the predicate that is the ``for all'' statement evaluates to true. If there \textit{had} been a single square that wasn't a rectangle (there wasn't), then the predicate inside the ``for all'' would have evaluated as false for that square. (This corresponds to the second row of the truth table). This would make the entire ``for all'' statement false.
 
-\subsubsection{``Necessary'' and ``sufficient''}
+\subsubsection*{Quantifiers with set membership}
 
-Let $P$ and $Q$ be predicates, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Because of the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
+We define
 
-\newpage
+\begin{align*}
+    &\forall x \in S \spc P(x) := \forall x \spc x \in S \implies P(x) \\
+    &\exists x \in S \spc P(x) := \exists x \spc x \in S \text{ and } P(x).
+\end{align*}
+
+The first line was motivated by previous the example involving rectangles and squares. The second line is probably easier to understand than the first, since it doesn't involve $\implies$.
 
 \subsubsection*{Negation of an implication}
 
@@ -268,18 +276,9 @@ Some ``thematic inverses'' to the above facts are the following:
     \text{not}(P \text{ and } Q) = \Big((\text{not } P) \text{ or } (\text{not } Q)\Big) = \Big(P \implies (\text{not } Q)\Big) = \Big(Q \implies (\text{not } P)\Big).
 \end{align*}
 
-\subsubsection{Quantifiers with set membership}
+\subsubsection*{Negating quantifications-with-set-membership}
 
-We define
-
-\begin{align*}
-    &\forall x \in S \spc P(x) := \forall x \spc x \in S \implies P(x) \\
-    &\exists x \in S \spc P(x) := \exists x \spc x \in S \text{ and } P(x).
-\end{align*}
-
-The first line was motivated by previous the example involving rectangles and squares. The second line is probably easier to understand than the first, since it doesn't involve $\implies$.
-
-The negations of the above newly defined expressions are what you expect:
+The negations of the quantifications-with-set-membership are what you expect:
 
 \begin{align*}
     &\text{not}\Big( \forall x \in S \spc P(x) \Big) = \exists x \in S \spc \text{not } P(x) \\
@@ -288,54 +287,17 @@ The negations of the above newly defined expressions are what you expect:
 
 Use the facts $\text{not}(P \implies Q) = (P \text{ and } (\text{not } Q))$ and $\text{not}(P \text{ and } Q) = (P \implies (\text{not } Q))$ from the ``Negation of an implication'' section to prove these.
 
-\subsubsection{Common shorthand}
+\newpage
 
-\begin{itemize}
-    \item When people write something of the form ``$\forall x \spc P(x) \implies Q(x)$'', they mean \\ ``$\Big(\forall x \spc P(x) \implies Q(x)\Big) = T$''. 
-    \item When people write something of the form ``$P(x) \implies Q(x)$'', they really should have written ``$\forall x \spc P(x) \implies Q(x)$''. An extremly common example of this shorthand is ``$x \in S \implies P(x)$''.
-    \begin{itemize}
-        \item This shorthand has a verbal equivalent: ``If $P(x)$, then $Q(x)$''. The verbal equivalent is not considered bad notation, however.
-    \end{itemize}
-    \item Combining both shorthand styles is extremely common in proof writing. You will often see a proof that contains a sentence of the form ``$P(x) \implies Q(x) \implies R(x)$''.
-\end{itemize}
+\subsection*{More about implications}
 
-\subsubsection{Converses}
+\subsubsection*{Converses}
 
-Given predicates $P$ and $Q$, consider the implication $P \implies Q$. The \textit{converse} to this implication is the implication $Q \implies P$. Please note that $(P \implies Q) = (Q \implies P)$ is a false statement! On the level of the English language, this means that $\Big( \forall x \spc P(x) \implies Q(x) \Big) = \Big( \forall x \spc Q(x) \implies P(x) \Big)$ is a false statement. For example, ``whenever it rains, there are clouds'', but it is not true that ``whenever there are clouds, it rains''!
+Given propositions $P$ and $Q$, consider the implication $P \implies Q$. The \textit{converse} to this implication is the implication $Q \implies P$. Please note that $(P \implies Q) = (Q \implies P)$ is not true for all $P, Q$! For example, it is true that ``whenever it rains, there are clouds'', but it is not true that ``whenever there are clouds, it rains''!
 
-\subsection*{``If and only if''}
+\subsubsection*{The contrapositive}
 
-We define one more operator on predicates, the \textit{bidirectional implication} operator, denoted $\iff$. Given predicates $P$ and $Q$, we define
-
-\begin{align*}
-    P \iff Q := \Big( (P \implies Q) \text{ and } (Q \implies P) \Big).
-\end{align*}
-
-Here's the truth table for $\iff$.
-
-\begin{table}[H]
-    \centering
-    \begin{tabular}{|l|l|l|}
-    \hline
-    $P$ & $Q$ & $P \iff Q$ \\ \hline
-    $T$ & $T$ & $T$        \\ \hline
-    $T$ & $F$ & $F$        \\ \hline
-    $F$ & $T$ & $F$        \\ \hline
-    $F$ & $F$ & $T$        \\ \hline
-    \end{tabular}
-\end{table}
-
-The operator $\iff$ is spoken aloud as ``if and only if'', and is abbreviated in writing as ``iff''. In the context of the bidirectional implication $P \iff Q$, the implication $P \implies Q$ is referred to as the \textit{forward implication} and its converse $Q \implies P$ is referred to as the \textit{reverse implication}. Note that $\iff$ is symmetric in the sense that $(P \iff Q) = (Q \iff P)$.
-
-The English language interpretation of $\iff$ is similar to to the English language interpretation of $\implies$: the mathematical version of what someone really means when they say ``$P(x)$ if and only if $Q(x)$'' is $\forall x \spc P(x) \iff Q(x)$. Again, we see the difference between full mathematical formalism and language is that language often omits the ``for all''.
-
-Many theorems in math state that a certain ``if and only if'' predicate is true. More specifically, such theorems usually state that some property of an object manifests if and only if another property of that object also manifests. So, when you see a theorem about an \textit{equivalent condition} or an \textit{equivalent definition}, there is an ``if and only if'' statement at play. All definitions in math are also automatically ``if and only if'' statements. There is, however, the common misleading convention of writing definitions using the word ``if'' (for example: ``We say $x$ has property $P(x)$ \textit{if} $Q(x)$''; the ``if'' should really be an ``iff'').
-
-A neat fact is that $=$ and $\iff$ are the same operator. One way to verify this is by checking that the truth tables of $=$ and $\iff$ are the same.
-
-\subsection*{The contrapositive}
-
-For predicates $P$ and $Q$, the following logical identity is true:
+For propositions $P$ and $Q$, the following logical identity is true:
 
 \begin{align*}
     (P \implies Q) = ((\text{not } Q) \implies (\text{not } P)).
@@ -343,7 +305,7 @@ For predicates $P$ and $Q$, the following logical identity is true:
 
 The right-hand side is called the \textit{contrapositive} of the left-hand side.
 
-You could verify this identity by using truth tables. Here is a nicer proof that uses the facts $(P \text{ or } Q) = (Q \text{ or } P)$ and $Q = \text{not}(\text{not } Q)$:
+You could verify this identity by using truth tables. Here is a nicer proof that uses\footnote{We will soon learn more about the assumption $\text{not}(\text{not}(Q)) = Q$.} the facts $(P \text{ or } Q) = (Q \text{ or } P)$ and $Q = \text{not}(\text{not } Q)$:
 
 \begin{align*}
     (P \implies Q) &= ((\text{not } P) \text{ or } Q ) 
@@ -351,11 +313,9 @@ You could verify this identity by using truth tables. Here is a nicer proof that
     = ((\text{not } Q) \implies (\text{not } P)).
 \end{align*}
 
-The contrapositive is practically important because it is sometimes easier to prove the contrapositive of a proposition than it is to prove the proposition itself.
+The contrapositive is practically important because it is sometimes easier to prove the contrapositive of an implication than it is to prove the implication itself.
 
-\newpage
-
-\subsection*{Proof by contradiction}
+\subsubsection*{Proof by contradiction}
 
 Another way of proving $P \implies Q$ that is similar in spirit to a proof by contrapositive is \textit{proof by contradiction}. In a proof by contradiction, one assumes $(\text{not}(P \implies Q))$ and then derives from this assumption that some additional proposition $R$ and its negation $\text{not}(R)$ are \textit{both} true. Since for any proposition $R$ we have $(R \text{ and } (\text{not } R)) = F$, it intuitively follows that the original assumption $(\text{not}(P \implies Q))$ must have been false; that is, we must have $P \implies Q$.
 
@@ -375,7 +335,9 @@ Since we have $(\text{not}(P \implies Q)) = (P \text{ and } (\text{not } Q))$, w
 
 This is the form of proof by contradiction that is used in practice. Authors typically begin a proof of $P \implies Q$ by contradiction by saying ``Assume $P$. For the sake of obtaining a contradiction, also assume $\text{not } Q$.'' A contradiction $(R \text{ and } (\text{not } R))$ is then derived, and the author writes the following to finish the proof: ``This contradicts the assumption $\text{not } Q$. Therefore $Q$ must be true.'' 
 
-\subsubsection*{Contradiction and contrapositive}
+\subsubsection*{Contradiction vs. contrapositive}
+
+We now investigate the difference between proof by contradiction and proof by contrapositive. 
 
 When the contradiction $(R \text{ and } (\text{not } R))$ derived in a proof by contradiction is $(P \text{ and } (\text{not } P))$, the overall proof by contradiction is
 
@@ -396,6 +358,42 @@ If we are additionally in a context where we know $P$ to be true, then the above
 \end{align*}
 
 which is the contrapositive. Thus, we see that when $P$ is known to be true and the contradiction obtained is $(P \text{ and } (\text{not } P))$, the proof by contradiction can be rewritten to be a proof by contrapositive. This situation occurs very often in practice.
+
+\subsubsection*{``If and only if''}
+
+We define one more operator on propositions, the \textit{bidirectional implication} operator, denoted $\iff$. Given propositions $P$ and $Q$, we define
+
+\begin{align*}
+    P \iff Q := \Big( (P \implies Q) \text{ and } (Q \implies P) \Big).
+\end{align*}
+
+That is, $P \iff Q$ is true exactly when the implication $P \iff Q$ and its converse are both true. Here's the truth table for $\iff$.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|}
+    \hline
+    $P$ & $Q$ & $P \iff Q$ \\ \hline
+    $T$ & $T$ & $T$        \\ \hline
+    $T$ & $F$ & $F$        \\ \hline
+    $F$ & $T$ & $F$        \\ \hline
+    $F$ & $F$ & $T$        \\ \hline
+    \end{tabular}
+\end{table}
+
+The operator $\iff$ is spoken aloud as ``if and only if'', and is abbreviated in writing as ``iff''. In the context of the bidirectional implication $P \iff Q$, the implication $P \implies Q$ is referred to as the \textit{forward implication} and its converse $Q \implies P$ is referred to as the \textit{reverse implication}. Note that $\iff$ is symmetric in the sense that $(P \iff Q) = (Q \iff P)$.
+
+The English language interpretation of $\iff$ is similar to to the English language interpretation of $\implies$: the mathematical version of what someone really means when they say ``$P(x)$ if and only if $Q(x)$'' is $\forall x \spc P(x) \iff Q(x)$. Again, we see the difference between full mathematical formalism and language is that language often omits the ``for all''.
+
+Many theorems in math state that a certain ``if and only if'' proposition is true. More specifically, such theorems usually state that some property of an object manifests if and only if another property of that object also manifests. So, when you see a theorem about an \textit{equivalent condition} or an \textit{equivalent definition}, there is an ``if and only if'' statement at play. All definitions in math are also automatically ``if and only if'' statements. There is, however, the common misleading convention of writing definitions using the word ``if'' (for example: ``We say $x$ has property $P(x)$ \textit{if} $Q(x)$''; the ``if'' should really be an ``iff'').
+
+A neat fact is that $=$ and $\iff$ are the same operator. One way to verify this is by checking that the truth tables of $=$ and $\iff$ are the same.
+
+\subsubsection*{``Necessary'' and ``sufficient''}
+
+Let $P$ and $Q$ be predicates, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Similarly, due to the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
+
+Notice that when $\forall x \spc P(x) \iff Q(x)$ iff $P$ and $Q$ are both necessary and sufficient conditions for each other (i.e. $P$ is a necessary and sufficient for $Q$ and $Q$ is a necessary and sufficent condition for $P$).
 
 \newpage
 
