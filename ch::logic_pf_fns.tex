@@ -7,13 +7,13 @@ In this book, we use $:=$ whenever an equality is enforced to be true by definit
 
 \section{Propositional logic}
 
-A \textit{proposition} is a statement that is either true or false; an example is ``the sky is blue right now''.
+A \textit{proposition} is a statement that is either true or false; an example is ``giraffes have ears''.
 
 We can denote propositions with letters, and say things such as ``let $P$ be a proposition''. When a proposition $P$ is true, we write $P = T$. The $=$ symbol is used here to denote \textit{logical equality}, and the $T$ denotes ``truth''. Similarly, we write $P = F$ when $P$ is false.
 
 \subsection*{Logical operators}
 
-More complicated propositions can be constructed from simpler propositions. There are three fundamental operations on propositions that are used to build more complicated propositions from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
+There are three fundamental operations on propositions that are used to build more complicated propositions from simpler ones: there are the two-argument (binary) operators \textit{and} and \textit{or} and the one-argument (unary) operator \textit{not}.
 
 The operators \textit{and}, \textit{or}, and \textit{not} act on propositions $P$ and $Q$ as is expressed in the following ``truth tables''.
 
@@ -64,9 +64,9 @@ Sometimes, symbols are used to represent \textit{and}, \textit{or}, and \textit{
 
 \section{Predicate logic}
 
-A \textit{predicate} is a statement involving one or more ``variables'' such that the statement is a proposition when the variables take on concrete values. An example of a predicate with a single variable is ``the sky is blue at time $x$''.
+A \textit{predicate} is a statement involving one or more ``variables'' such that the statement is a proposition when the variables take on concrete values. An example of a predicate with a single variable is ``giraffes have $x$ many ears''.
 
-Just as we could with propositions, we can denote predicates with letters. For example, we can define a predicate $Q$ by $Q(x) = (\text{the sky is blue at time $x$})$. When we substitute in concrete meaning for the entities in a predicate, we obtain a proposition; for example, $Q(\text{8 o'clock})$ is the proposition ``the sky is blue at 8 o'clock''.
+Just as we could with propositions, we can denote predicates with letters. For example, we can define a predicate $Q$ by $Q(x) = (\text{the sky is blue at time $x$})$. When we substitute in concrete meaning for the entities in a predicate, we obtain a proposition; for example, $Q(8)$ is the proposition ``giraffes have 8 ears''.
 
 \subsubsection*{Quantifiers}
 
@@ -403,89 +403,138 @@ Notice that when $\forall x \spc P(x) \iff Q(x)$ iff $P$ and $Q$ are both necess
 
 Let $S$ and $T$ be sets. We define $S$ and $T$ to be \textit{equal} iff $\forall x \spc x \in S \iff x \in T$.
 
-We say $T$ is a \textit{subset} of $S$ iff $\forall x \in S \spc x \in T$. When $T$ is a subset of $S$, we write $T \subseteq S$. 
+We say $T$ is a \textit{subset} of $S$ and write $T \subseteq S$ iff $\forall x \in S \spc x \in T$. We say $T$ is a \textit{proper subset} of $S$ iff $T$ is a subset of $S$ and $T \neq S$.
 
-\textbf{note similarity to $\leq$ notation}
+For all sets $S$, the empty set $\emptyset$ is a subset of $S$ because the proposition $(\forall x \in \emptyset \spc x \in S)$ is\footnote{$(\forall x \in \emptyset \spc x \in S) = (\forall x \spc x \in \emptyset \implies x \in S) = (\forall x \spc F \implies x \in S) = \forall x \spc T = T$.} ``true by false hypothesis''. The more intuitive fact that $S \subseteq S$ for all sets $S$ is also true.
 
-Note that, for all sets $S$, the empty set is a subset of $S$, $\emptyset \subseteq S$, and $S$ is a subset of itself, $S \subseteq S$. 
-
-When $T \subseteq S$ and $T \neq S$, we write $T \subsetneq S$. (Some authors write $T \subset S$ for this condition, but this is confusing because other authors write $T \subset S$ to mean $T \subseteq S$. Avoid the notation $T \subset S$).
+Notice, the similarity of the subset notation $\subseteq$ for sets to the ``less than or equal to'' $\leq$ notation for numbers is a helpful reminder of the fact that for any set $S$ we have $S \subseteq S$. A little less intuitive is that we write $T \subsetneq S$ iff $T$ is a proper subset of $S$; we don't use $T \subset S$ to indicate ``proper subset''. It's true that the $\subset$ notation would be more analogous to the $<$ notation for numbers, but, unfortunately, some authors write $T \subset S$ to mean $T \subseteq S$.
 
 \subsection*{There is no universal set in ZFC}
 
-It seems natural that there would be a set which contains every other set, but not itself; it seems natural that there would be a so-called ``universal set''. However, this is not possible in ZFC. Why? Suppose there did exist such a ``universal set'' $U$. Since $U$ contains all sets, $U$ must contain itself: $U \in U$. But, by definition, $U$ was assumed to not contain itself: $U \notin U$. This is a contradiction\footnote{This paradox can be seen as motivation for the definition of a \textit{class}. Essentially, classes are set-like objects that are not allowed to contain themselves. There \textit{does} exist a class that contains all sets, but not itself}. Thus, there does not exist a ``set of all sets''.
+It seems natural that there would exist a set which contains every set. However, this is not possible in ZFC. Why? Suppose there did exist such a ``universal set'' $U$. Then we can consider the subset $V$ of $U$ which contains all non-self-containing sets, $V := \{ S \in U \mid S \notin S \}$. Now notice that we have $(V \in V \iff V \notin V)$. This is clearly a contradiction. Thus, there is no ``set of all sets'' in ZFC.
 
 \subsection*{Common sets}
 
-We define notation for many common infinite sets.
+We now define notation for many common infinite sets.
 
 \begin{align*}
     \N &:= \text{``the natural numbers''} = \{0, 1, 2, 3, ...\} \\
     \Z &:= \text{``the integers''} = \{..., -3, -2, -1, 0, 1, 2, 3, ... \} \\
-    \Q &:= \text{``the rational numbers''} = \Big\{ \frac{n}{m} \mid n, m \in \Z \Big\} \\
+    \Q &:= \text{``the rational numbers''} = \Big\{ \frac{n}{m} \spc \Big| \spc n, m \in \Z \Big\} \\
     \R &:= \text{``the real numbers''} = \{ \text{all limits of sequences of rational numbers} \} \\
     \C &:= \text{``the complex numbers''} = \{ a + b \sqrt{-1} \mid a, b \in \R \}
 \end{align*}
 
-We have $\N \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \Q$.
+We have $\N \subsetneq \Z \subsetneq \Q \subsetneq \R \subsetneq \C$.
 
 \subsection*{Indexing sets}
 
-Let $S$ be a set. An \textit{indexing set} of $S$ is a set $I$ that is thought of as ``labeling'' the elements $S$. Any set can be technically be used as an indexing set, though we tend to use sets of numbers as indexing sets. The set of elements in $S$ indexed by $I$ is written as
+Let $S$ be a set. An \textit{indexing set} of $S$ is a set $I$ that is thought of as ``labeling'' the elements $S$. Any set can be used as an indexing set\footnote{A technical point is that a set $I$ can only index \textit{all} elements of a set $S$ iff there exists an onto function $I \rightarrow S$. If there does not exist such a function, $I$ can only index a proper subset of $S$. We will learn about onto functions later.}, though we tend to use sets of numbers as indexing sets. The set of elements in $S$ indexed by $I$ is written as
 
 \begin{align*}
-    \{ x_\alpha \in S \mid \alpha \in I \}.
+    \{ x_i \in S \mid i \in I \}.
 \end{align*}
 
-We use a Greek letter such as ``$\alpha$'' when the size of the indexing set is unspecified; an indexing set can be either finite or infinite. When the indexing set is finite, we use a normal Roman letter such as ``$i$''.
+\newpage
 
 \subsection*{Union and intersection}
 
-We now define ways to build sets from a collection\footnote{The word ``collection'' is often used to mean ``set of sets''.} of sets. Let $I$ be an indexing set, and consider the collection $C = \{S_\alpha \mid \alpha \in I \}$.
+We now define ways to build sets from a collection\footnote{The word ``collection'' is often used to mean ``set of sets''.} of sets. Let $C$ be a set which contains sets as elements.
 
-The \textit{union} of the sets in $C$ is defined to be the result of ``adding'' all the sets in $C$ together:
+The \textit{intersection} of the sets in $C$ is defined to be the result of considering only the elements that are common to every single set in $C$. The \textit{union} of the sets in $C$ is defined to be the result of collecting all the elements of all of the sets in $C$. 
 
 \begin{align*}
-    \bigcup_{\alpha \in I} S_\alpha := \{ x \mid \exists \alpha \in I \spc x \in S_\alpha \}.
+    \bigcap_{S \in C} S &:= \{ x \mid \forall S \in C \spc x \in S \} \quad \text{(intersection)} \\
+    \bigcup_{S \in C} S &:= \{ x \mid \exists S \in C \spc x \in S \} \quad \text{(union)}.
 \end{align*}
 
-The \textit{intersection} of the sets in $C$ is defined to be the result of considering only the elements that are common to every single set in $C$:
+When the collection $C$ is finite and contains $n \in \N$ sets, we often index $C$ by the set $\{1, ..., n\}$, so that $C = \{S_i \mid i \in \{1, ..., n\}\}$, and denote the intersections and unions, respectively, by the following three notations:
 
 \begin{align*}
-    \bigcap_{\alpha \in I} S_\alpha := \{ x \mid \forall \alpha \in I \spc x \in S_\alpha \}.
+    \bigcap_{i \in \{1, ..., n\}} S_i &= \bigcap_{i = 1}^n S_i = S_1 \cap ... \cap S_n \\
+    \bigcup_{i \in \{1, ..., n\}} S_i &= \bigcup_{i = 1}^n S_i = S_1 \cap ... \cap S_n.
+\end{align*}
+
+When $C$ contains just two sets, $C = \{S, T\}$, we write $S \cap T$ rather than $\bigcap_{S \in C} S$ and $S \cup T$ rather than $\bigcup_{S \in C}$. Applying the above definitions\footnote{To formally prove the first line of the claimed result, show that $ \{ x \mid \forall S \in C \spc x \in S \}$ and $\{x \mid x \in S \text{ and } x \in T\}$ are subsets of each other. The second line is proved similarly.}, we see that
+
+\begin{align*}
+    S \cap T &= \{x \mid x \in S \text{ and } x \in T\} \\
+    S \cup T &= \{x \mid x \in S \text{ or } x \in T\}.
+\end{align*}
+
+Here are some examples: we have $\{a, b, c\} \cap \{b, c, d\} = \{b, c\}, \{a, b\} \cap \{c, d\} = \emptyset$, and $\{a, b, c\} \cup \{b, c, d\} = \{a, b, c, d\}, \emptyset \cap \{a, b\} = \{a, b\}$.
+
+When considered as operations on two sets, we see that $\cap$ and $\cup$ are associative:
+
+\begin{align*}
+    \forall S \spc \forall T \spc \forall R \spc (S \cap T) \cap R &= S \cap (T \cap R) \\
+    \forall S \spc \forall T \spc \forall R \spc (S \cup T) \cup R &= S \cup (T \cup R).
+\end{align*}
+
+So, we can ``drop the parentheses'' and define
+
+\begin{align*}
+    S \cap T \cap R &:= (S \cap T) \cap R = S \cap (T \cap R) \\
+    S \cup T \cup R &:= (S \cup T) \cup R = S \cup (T \cup R).
 \end{align*}
 
 \subsection*{Set difference and set complement}
 
 \subsubsection*{Set difference}
 
-The union of two sets, introduced above, is analogous to addition of numbers. The following \textit{set difference} operation is analogous to the subtraction of one number from another:
+The union of two sets, introduced above, is in some sense analogous to addition of numbers. The following \textit{set difference} operation is analogous to the subtraction of one number from another:
 
 \begin{align*}
     S - T := \{ x \mid x \in S \text{ and } x \notin T \}.
 \end{align*}
 
+Most authors denote the set difference $S - T$ with the notation $S \setminus T$.
+
 \subsubsection*{Set complement}
 
 Sometimes, it is convenient to consider some set $U$ to be the ``largest possible set''. For example, it is common to set $U$ to be the unit interval, $U = [0, 1]$, when proving theorems from calculus. In this sort of situation, the \textit{set complement (in $U$)} of some other set $S$ is denoted $S^C$ and is defined to be $S^C := U - S$.
 
-\subsection*{Ordered pairs}
+\subsection*{Cartesian products}
 
-Roughly speaking, ordered pairs are objects notated in the form ``$(x, y)$'' (an ordered pair consists of two objects, such as $x$ and $y$, that are separated by a comma and are enclosed in parentheses) that are subject to the characterizing property $(x_1, y_1) = (x_2, y_2)$ iff $x_1 = y_1$ and $x_2 = y_2$. 
+\subsubsection*{Ordered pairs}
 
-Formally, we can \textit{construct} the apparatus of ordered pairs by the definition
+Roughly speaking, ordered pairs are objects notated in the form ``$(x, y)$'' (an ordered pair consists of two objects, such as $x$ and $y$, that are separated by a comma and are enclosed in parentheses) that are subject to the characterizing property
 
 \begin{align*}
-    (x, y) := \{x, \{y\}\}.
+    \forall x_1 \spc \forall x_2 \spc \forall y_1 \spc \forall y_2 \spc (x_1, y_1) = (x_2, y_2) \iff (x_1 = y_1 \text{ and } x_2 = y_2).
 \end{align*}
 
-The ordered pairs of this definition satisfy the characterizing property of ordered pairs mentioned above.
+One definition that gives us the above characterizing property is $(x, y) := \{x, \{y\}\}$. There are other definitions that work, too. What's most important is that the proposition ``there exists a mathematical object with the above characterizing property'' is true.
 
-\subsection*{Cartesian product}
+\subsubsection*{Cartesian products}
 
-\subsubsection*{$n$th Cartesian product}
+The \textit{Cartesian product} of sets $S$ and $T$ is the set $S \times T$ of all ordered pairs whose elements are from $S$ and $T$:
 
-$((S \times S) \times S) \times ...) \times S$ vs. ``$S \times ... \times S$''
+\begin{align*}
+    S \times T := \{(s, t) \mid s \in S \text{ and } t \in T\}.
+\end{align*}
+
+The Cartesian product $\times$ is unfortunately not associative: for sets $S, T$, and $R$, we have
+
+\begin{align*}
+    (S \times T) \times R &= \{ ((s, t), r) \mid s \in S \text{ and } t \in T \text{ and } r \in R\} \\ &\neq \{(s, (t, r)) \mid s \in S \text{ and } t \in T \text{ and } r \in R\} = S \times (T \times R).
+\end{align*}
+
+To circumvent this issue, we define $\times$ to act on $n$ sets $S_1, ..., S_n$ as follows: 
+
+\begin{align*}
+    \bigtimes_{i \in \{1, ..., n\}} S_i = \bigtimes_{i = 1}^n S_i = S_1 \times ... \times S_n := \{(s_1, ..., s_n) \mid \forall i \in \{1, ..., n\} \spc s_i \in S_i\}.
+\end{align*}
+
+\subsubsection*{$n$th Cartesian products}
+
+Sometimes it's useful to take the Cartesian product of a set with itself multiple times. For this situation, we define, for a set $S$ and $n \in \N$,
+
+\begin{align*}
+    S^n := \bigtimes_{i = 1}^n S.
+\end{align*}
+
+One important example is that the identity $\R^2 = \R \times \R$ can be interpreted to state that the plane ($\R^2$) can be thought of as the Cartesian product of the ``$x$-axis'' (the first $\R$) with the ``$y$-axis'' (the second $\R$).
 
 \newpage
 
