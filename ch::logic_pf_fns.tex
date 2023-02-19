@@ -83,7 +83,7 @@ Here's an example: the proposition $(\forall x \spc x > 3)$ is false, while the 
 
 \subsubsection{Nested quantifers}
 
-In the last section, we saw that applying a quantifier-variable pair (such as $\forall x$) to a single-input predicate produced a proposition. We now consider what happens when we apply a quantifier-variable pair to a two-input predicate $P(x, y)$. The four possible ways to apply a quantifier-variable pair to $P(x, y)$ are
+In the last section, we saw that applying a quantifier-variable pair (such as $\forall x$) to a single-input predicate produced a proposition. We now consider what happens when we apply a quantifier-variable pair to a two-input predicate $P(x, y)$. There are four possible quantifier-variable pairs we can apply to $P(x, y)$:
 
 \begin{align*}
     \forall x \spc P(x, y) \\
@@ -92,7 +92,9 @@ In the last section, we saw that applying a quantifier-variable pair (such as $\
     \exists y \spc P(x, y).
 \end{align*}
 
-We see that each of the above is itself a single-input predicate. That is, we can define single-input predicates $Q_1(y), Q_2(y), Q_3(x), Q_4(x)$ as follows:
+Now we claim that while $P(x, y)$ depends on both $x$ and $y$, the expression $\forall x \spc P(x, y)$ depends only on $y$. The idea is that since the $\forall x$ specifies an iteration over all $x$, the only variable in $\forall x \spc P(x, y)$ that is not being modified by a quantifier is $y$. (This intuition is similar to the principle that a sum such as $\sum_i a_{ij}$ depends on $j$ but not $i$, since $i$ is being ``summed over'' but $j$ is not). Thus, we can define a single-input predicate $Q_1$ by $Q_1(y) := \forall x \spc P(x, y)$.
+
+Similar statements can be made for the other lines, so we can define single-input predicates $Q_1, Q_2, Q_3, Q_4$ as follows:
 
 \begin{align*}
     Q_1(y) := \forall x \spc P(x, y) \\
@@ -153,7 +155,7 @@ This algorithm works for any number of nested quantifiers (i.e. we could use it 
 We roughly define a \textit{first-order mathematical theory} to consist of
 
 \begin{itemize}
-    \item a list of \textit{axioms}, or assumptions thought of as inherently true, that are expressible by using the quantifiers $\forall$ and $\exists$ on variables (such as $x$) in conjunction with predicates and logical operators
+    \item a list of \textit{axioms}, or assumptions thought of as inherently true, that are expressible by using the quantifiers $\forall$ and $\exists$, predicates, and logical operators derived from \textit{and}, \textit{or}, and \textit{not}
     \item the collection of all propositions (``facts'') which are logically equivalent to the axioms.
 \end{itemize}
 
@@ -161,7 +163,7 @@ The \textit{Zermelo–Fraenkel set theory} with the \textit{axiom of choice} (ab
 
 This may sound a bit esoteric. You may ask, ``just how much can we say with ZFC?'' The answer is: ``a lot''. Essentially all of math (calculus, real analysis, probability, statistics, linear algebra, differential equations, abstract algebra, number theory, topology, differential geometry, etc.) can be expressed in terms of ZFC. Since physics, engineering, and the other sciences are built on top of math, then the math that got humans to the moon can be derived from ZFC.
 
-How can ZFC (and similar theories) do all of this? The answer is by building up abstraction. While mathematical constructions may always reduce down to quantificational logic, we do not in practice explicitly deal in quantificational logic all the time. Instead, sophisticated ideas are expressed by defining mathematical objects using previously defined notions, thinking about these objects in intuitive terms while still keeping the rigorous definition in mind, and proving facts (theorems) about these objects. The two ideas that most fields of math are built upon are the those of \textit{sets}, which are essentially lists, and \textit{functions}, which haven't been formally introduced yet. When you have these two concepts, you can build pretty much any theory.
+How can ZFC (and similar theories) do all of this? The answer is by building up abstraction. While mathematical constructions may always reduce down to quantificational logic, we do not in practice explicitly deal in quantificational logic all the time. Instead, sophisticated ideas are expressed by defining mathematical objects in terms of previously defined notions, then thinking about these objects in intuitive terms while still keeping the rigorous definitions in mind, and then proving facts (theorems) about these objects. The two ideas that most fields of math are built upon are the those of \textit{sets}, which are essentially lists, and \textit{functions}, which haven't been formally introduced yet. When you have these two concepts, you can build pretty much any theory.
 
 \newpage
 
@@ -441,41 +443,41 @@ Let $S$ be a set. An \textit{indexing set} of $S$ is a set $I$ that is thought o
 
 We now define ways to build sets from a collection\footnote{The word ``collection'' is often used to mean ``set of sets''.} of sets. Let $C$ be a set which contains sets as elements.
 
-The \textit{intersection} of the sets in $C$ is defined to be the result of considering only the elements that are common to every single set in $C$. The \textit{union} of the sets in $C$ is defined to be the result of collecting all the elements of all of the sets in $C$. 
+The \textit{union} of the sets in $C$ is defined to be the result of collecting all the elements of all of the sets in $C$. The \textit{intersection} of the sets in $C$ is defined to be the result of considering only the elements that are common to every single set in $C$.
 
 \begin{align*}
-    \bigcap_{S \in C} S &:= \{ x \mid \forall S \in C \spc x \in S \} \quad \text{(intersection)} \\
-    \bigcup_{S \in C} S &:= \{ x \mid \exists S \in C \spc x \in S \} \quad \text{(union)}.
+    \bigcup_{S \in C} S &:= \{ x \mid \exists S \in C \spc x \in S \} \quad \text{(union)} \\
+    \bigcap_{S \in C} S &:= \{ x \mid \forall S \in C \spc x \in S \} \quad \text{(intersection)}.
 \end{align*}
 
-When the collection $C$ is finite and contains $n \in \N$ sets, we often index $C$ by the set $\{1, ..., n\}$, so that $C = \{S_i \mid i \in \{1, ..., n\}\}$, and denote the intersections and unions, respectively, by the following three notations:
+When the collection $C$ is finite and contains $n \in \N$ sets, we often index $C$ by the set $\{1, ..., n\}$, so that $C = \{S_i \mid i \in \{1, ..., n\}\}$, and denote the unions and intersections, respectively, by the following three notations:
 
 \begin{align*}
-    \bigcap_{i \in \{1, ..., n\}} S_i &= \bigcap_{i = 1}^n S_i = S_1 \cap ... \cap S_n \\
-    \bigcup_{i \in \{1, ..., n\}} S_i &= \bigcup_{i = 1}^n S_i = S_1 \cap ... \cap S_n.
+    \bigcup_{i \in \{1, ..., n\}} S_i &= \bigcup_{i = 1}^n S_i = S_1 \cup ... \cup S_n \\
+    \bigcap_{i \in \{1, ..., n\}} S_i &= \bigcap_{i = 1}^n S_i = S_1 \cap ... \cap S_n.
 \end{align*}
 
-When $C$ contains just two sets, $C = \{S, T\}$, we write $S \cap T$ rather than $\bigcap_{S \in C} S$ and $S \cup T$ rather than $\bigcup_{S \in C}$. Applying the above definitions\footnote{To formally prove the first line of the claimed result, show that $ \{ x \mid \forall S \in C \spc x \in S \}$ and $\{x \mid x \in S \text{ and } x \in T\}$ are subsets of each other. The second line is proved similarly.}, we see that
+When $C$ contains just two sets, $C = \{S, T\}$, we write $S \cup T$ rather than $\bigcup_{S \in C} S$ and $S \cap T$ rather than $\bigcap_{S \in C}$. Applying the above definitions\footnote{To formally prove the first line of the claimed result, show that $ \{ x \mid \forall S \in C \spc x \in S \}$ and $\{x \mid x \in S \text{ and } x \in T\}$ are subsets of each other. The second line is proved similarly.}, we see that
 
 \begin{align*}
-    S \cap T &= \{x \mid x \in S \text{ and } x \in T\} \\
-    S \cup T &= \{x \mid x \in S \text{ or } x \in T\}.
+    S \cup T &= \{x \mid x \in S \text{ or } x \in T\} \\
+    S \cap T &= \{x \mid x \in S \text{ and } x \in T\}.
 \end{align*}
 
-Here are some examples: we have $\{a, b, c\} \cap \{b, c, d\} = \{b, c\}, \{a, b\} \cap \{c, d\} = \emptyset$, and $\{a, b, c\} \cup \{b, c, d\} = \{a, b, c, d\}, \emptyset \cap \{a, b\} = \{a, b\}$.
+Here are some examples: we have $\{a, b, c\} \cup \{b, c, d\} = \{a, b, c, d\}, \emptyset \cap \{a, b\} = \{a, b\}$ and $\{a, b, c\} \cap \{b, c, d\} = \{b, c\}, \{a, b\} \cap \{c, d\} = \emptyset$.
 
-When considered as operations on two sets, we see that $\cap$ and $\cup$ are associative:
+When considered as operations on two sets, we see that $\cup$ and $\cap$ are associative:
 
 \begin{align*}
-    \forall S \spc \forall T \spc \forall R \spc (S \cap T) \cap R &= S \cap (T \cap R) \\
-    \forall S \spc \forall T \spc \forall R \spc (S \cup T) \cup R &= S \cup (T \cup R).
+    \forall S \spc \forall T \spc \forall R \spc (S \cup T) \cup R &= S \cup (T \cup R) \\
+    \forall S \spc \forall T \spc \forall R \spc (S \cap T) \cap R &= S \cap (T \cap R).
 \end{align*}
 
-So, we can ``drop the parentheses'' and define
+So, we can ``drop the parentheses'' and define for sets $S, T$, and $R$:
 
 \begin{align*}
-    S \cap T \cap R &:= (S \cap T) \cap R = S \cap (T \cap R) \\
-    S \cup T \cup R &:= (S \cup T) \cup R = S \cup (T \cup R).
+    S \cup T \cup R &:= (S \cup T) \cup R = S \cup (T \cup R) \\
+    S \cap T \cap R &:= (S \cap T) \cap R = S \cap (T \cap R).
 \end{align*}
 
 \subsection*{Set difference and set complement}
@@ -498,13 +500,23 @@ Sometimes, it is convenient to consider some set $U$ to be the ``largest possibl
 
 \subsubsection*{Ordered pairs}
 
-Roughly speaking, ordered pairs are objects notated in the form ``$(x, y)$'' (an ordered pair consists of two objects, such as $x$ and $y$, that are separated by a comma and are enclosed in parentheses) that are subject to the characterizing property
+\textit{Ordered pairs} are objects notated in the form ``$(x, y)$'' (an ordered pair consists of two objects, such as $x$ and $y$, that are separated by a comma and are enclosed in parentheses) that are subject to the characterizing property
 
 \begin{align*}
     \forall x_1 \spc \forall x_2 \spc \forall y_1 \spc \forall y_2 \spc (x_1, y_1) = (x_2, y_2) \iff (x_1 = y_1 \text{ and } x_2 = y_2).
 \end{align*}
 
-One definition that gives us the above characterizing property is $(x, y) := \{x, \{y\}\}$. There are other definitions that work, too. What's most important is that the proposition ``there exists a mathematical object with the above characterizing property'' is true.
+One definition that gives us the above characterizing property is $(x, y) := \{x, \{y\}\}$. There are other definitions that work, too. The choice of which particular definition we use for $(x, y)$ isn't really important, and is really just an ``implementation detail''. What's most important is that the proposition ``there exists a mathematical object with the above characterizing property'' is true.
+
+\subsubsection*{Tuples}
+
+Similar to the concept of ordered pair is the concept of ``$n$-tuples''. An \textit{$n$-tuple}, $n \in \N$, is a ordered list of $n$ entities, notated in the form ``$(x_1, ..., x_n)$'', such that the following characterizing property holds for all indexed sets $\{x_i \mid i \in \{1, ..., n\}\}$ and $\{y_i \mid i \in \{1, ..., n\}\}$:
+
+\begin{align*}
+     \spc (x_1, ..., x_n) = (y_1, ..., y_n) \iff (\forall i \in \{1, ..., n\} \spc x_i = y_i).
+\end{align*}
+
+To prove that there do indeed exist mathematical objects with such a characterizing property, we rely on the concept of an ordered pair. We define the $n$-tuple $(x_1, ..., x_n)$ to be the ordered pair $((x_1, ..., x_{n - 1}), x_n)$, where when $n = 2$ the $n$-tuple $(x_1, x_n)$ is defined to be the ordered pair $(x_1, x_2)$ and when $n = 1$ the $n$-tuple $(x_1)$ is defined to be the element $x_1$. Of course, we could have also used the definition $(x_1, ..., x_n) := (x_1, (x_2, ..., x_n))$; but as before, this is only an ``implementation detail'', and what's really important is that the proposition ``there exists a mathematical object with the above characterizing property'' is true.
 
 \subsubsection*{Cartesian products}
 
@@ -520,11 +532,13 @@ The Cartesian product $\times$ is unfortunately not associative: for sets $S, T$
     (S \times T) \times R &= \{ ((s, t), r) \mid s \in S \text{ and } t \in T \text{ and } r \in R\} \\ &\neq \{(s, (t, r)) \mid s \in S \text{ and } t \in T \text{ and } r \in R\} = S \times (T \times R).
 \end{align*}
 
-To circumvent this issue, we define $\times$ to act on $n$ sets $S_1, ..., S_n$ as follows: 
+To circumvent this issue, we define $\times$ to act on $n$ sets $S_1, ..., S_n$ as follows:
 
 \begin{align*}
     \bigtimes_{i \in \{1, ..., n\}} S_i = \bigtimes_{i = 1}^n S_i = S_1 \times ... \times S_n := \{(s_1, ..., s_n) \mid \forall i \in \{1, ..., n\} \spc s_i \in S_i\}.
 \end{align*}
+
+Note that here, $(s_1, ..., s_n)$ is an $n$-tuple.
 
 \subsubsection*{$n$th Cartesian products}
 
