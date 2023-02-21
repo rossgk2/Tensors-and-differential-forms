@@ -238,23 +238,29 @@ The argument before the $\implies$ symbol is referred to as the \textit{hypothes
 Beware: just because $\implies$ is read as ``implies'' does \textit{not} mean that it functions in the way that you might expect. A better name for $\implies$ would be ``primitive implies'', since $\implies$ is defined \textit{for the purpose of being used after a ``for all'' quantifier}. ``For all'' quantifications that involve $\implies$ in the following way are what correspond to the English language meaning of ``implies'':
 
 \begin{align*}
-    \forall x \spc x \in S \implies P(x).
+    \forall x \spc P(x) \implies Q(x).
 \end{align*}
 
-We might express the above in English as ``$x$ being in $S$ implies $P(x)$''. The key difference between this informal sentence in English and the statement in mathematical notation is that the English sentence lacks a ``for all'' quantification. So, if the English sentence were truly correct, it would be ``For all $x$, $x$ being in $S$ implies $P(x)$''. In the mathematical notation, the ``$\forall x$'' technically indicates an inspection of \textit{all} entities (such as ``grass'', the function $f$ defined by $f(x) = 3x^2$, $-1$, etc.). We restrict our attention to the set $S$ by using $\implies$, so that it is only possible for the predicate $(x \in S \implies P(x))$ to be false when $x \in S$.
+We might express the above in English as ``$P$ implies $Q$''. The key difference between this informal sentence in English and the statement in mathematical notation is that the English sentence lacks a ``for all'' quantification. So, if the English sentence were truly correct, it would be ``For all $x$, $P(x)$ implies $Q(x)$''. In the mathematical notation, the ``$\forall x$'' technically indicates an inspection of \textit{all} entities (such as ``grass'', the function $f$ defined by $f(x) = 3x^2$, $-1$, etc.). We restrict our attention to the set of entities for which $P$ is satisfied by using $\implies$; it is only possible for the predicate $(P(x) \implies Q(x))$ to be false when $P(x)$ is true.
 
 The following thought experiment helps further illustrate the idea behind $\implies$. Suppose that you suspect that all squares are rectangles (you are right). To test your belief, you set out to test every single geometric shape, one by one. (Looking at every single geometric shape corresponds to the ``$\forall x$'' part of the above line. You have no control over the fact that, in full formality, you are always considering \textit{all} objects $x$). You set $P(x) := (\text{$x$ is a square})$ and $Q(x) := (\text{$x$ is a rectangle})$. First, you inspect a square, and determine that it is indeed a rectangle. (This corresponds to the first row of the truth table; $P(x)$ is true and $Q(x)$ is true for this particular $x$, so your theory holds, at least so far). Next, you look at a circle. You're not interested in circles- you're interested in squares! Knowing whether or not the circle is a rectangle is irrelevant. (This corresponds to the last two rows of the truth table; for any $x$, whenever $P(x)$ is false, then $P(x) \implies Q(x)$ is true). After an infinite amount of time, you have tested all squares and determined that they are all rectangles, so your theory stands; that is, the predicate that is the ``for all'' statement evaluates to true. If there \textit{had} been a single square that wasn't a rectangle (there wasn't), then the predicate inside the ``for all'' would have evaluated as false for that square. (This corresponds to the second row of the truth table). This would make the entire ``for all'' statement false.
 
-\subsubsection*{Quantifiers with set membership}
+\subsubsection*{Bounded quantifiers}
 
-We define
+Motivated by the above, we define
 
 \begin{align*}
-    &\forall x \in S \spc P(x) := \forall x \spc x \in S \implies P(x) \\
-    &\exists x \in S \spc P(x) := \exists x \spc x \in S \text{ and } P(x).
+    &\forall x \in S \spc Q(x) := \forall x \spc x \in S \implies Q(x) \\
+    &\exists x \in S \spc Q(x) := \exists x \spc x \in S \text{ and } Q(x).
 \end{align*}
 
-The first line was motivated by previous the example involving rectangles and squares. The second line is probably easier to understand than the first, since it doesn't involve $\implies$.
+This new syntax provides an easy way to use quantifiers that effectively only consider objects that satisfy the predicate $(x \in S)$. For example, the above claim that all squares are rectangles would be written as 
+
+\begin{align*}
+    \forall x \in (\text{set of all squares}) \spc \text{$x$ is a rectangle}.
+\end{align*}
+
+The notations $\forall x \in S$ and $\exists x \in S$ are \textit{bounded quantifiers} because they effectively restrict, i.e. bound, the scope of quantification. 
 
 \subsubsection*{Negation of an implication}
 
@@ -278,16 +284,16 @@ Some ``thematic inverses'' to the above facts are the following:
     \text{not}(P \text{ and } Q) = \Big((\text{not } P) \text{ or } (\text{not } Q)\Big) = \Big(P \implies (\text{not } Q)\Big) = \Big(Q \implies (\text{not } P)\Big).
 \end{align*}
 
-\subsubsection*{Negating quantifications-with-set-membership}
+\subsubsection*{Negating bounded quantifiers}
 
-The negations of the quantifications-with-set-membership are what you expect:
+The negations of bounded quantifications are what you expect:
 
 \begin{align*}
     &\text{not}\Big( \forall x \in S \spc P(x) \Big) = \exists x \in S \spc \text{not } P(x) \\
     &\text{not}\Big( \exists x \in S \spc P(x) \Big) = \forall x \in S \spc \text{not } P(x).
 \end{align*}
 
-Use the facts $\text{not}(P \implies Q) = (P \text{ and } (\text{not } Q))$ and $\text{not}(P \text{ and } Q) = (P \implies (\text{not } Q))$ from the ``Negation of an implication'' section to prove these.
+Use the facts $\text{not}(P \implies Q) = (P \text{ and } (\text{not } Q))$ and $\text{not}(P \text{ and } Q) = (P \implies (\text{not } Q))$ from the ``Negation of an implication'' section to prove this.
 
 \newpage
 
