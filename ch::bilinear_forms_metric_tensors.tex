@@ -1,4 +1,5 @@
 \chapter{Bilinear forms, metric tensors, and coordinates of tensors}
+
 \label{ch::bilinear_forms_metric_tensors}
 
 The goal of this chapter is to present results regarding the coordinates of $(p, q)$ tensors relative to bases. This is accomplished in the second part of this chapter. The first subsection of the second part, ``Coordinates with a metric tensor'', is the most important part of this entire chapter. Particularly important is Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector},
@@ -6,7 +7,7 @@ which describes how vectors and dual vectors can act on each other to produce ea
 
 We build up to these ideas about coordinates by investigating \textit{bilinear forms} in the first part of the chapter. A special type of bilinear form with which the reader may be familiar is an \textit{inner product}; we will define and investigate various facts about these. If you wish to be economical about reading the first part of this chapter, you can skip the middle two sections (``Inner products'' and ``Symmetric and orthogonal linear functions''); those sections are included for completeness.
 
-\section{Bilinear forms and metric tensors}
+\section{Bilinear forms}
 
 \begin{defn}
     (Linear $k$-form, bilinear form).
@@ -48,10 +49,6 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
     We have contrived nondegenerate bilinear forms to be those for which $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ are natural linear isomorphisms. Note that when $\flat_1$ and $\flat_2$ are isomorphisms, they are indeed natural because they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}). When they are isomorphisms, $\flat_1$ and $\flat_2$ are called the \textit{musical isomorphisms induced by $B$}. We denote the inverses of $\flat_1$ and $\flat_2$ by $\sharp_1$ and $\sharp_2$, respectively: $\sharp_1 = \flat_1^{-1}:W^* \rightarrow V$ and $\sharp_2 = \flat_2^{-1}:V^* \rightarrow W$.
 \end{defn}
 
-\begin{proof}
-    We have $B(\vv, \ww) = \vv^{\flat_1}(\ww)$. Since the $1 \times m$ matrix $\vv^{\flat_1}(F)$ of $\vv^{\flat_1}:W \rightarrow K$ relative to $F$ is $\vv^{\flat_1}(F) = [\vv^{\flat_1}]_{F^*}^\top$ (recall Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}), we apply the characterizing property of [...] matrices (see Derivation [...]) and get $B(\vv, \ww) = \vv^{\flat_1}(\ww) = \vv^{\flat_1}(F) [\ww]_F = [\vv^{\flat_1}]_{F^*}^\top [\ww]_F$. So $B(\vv, \ww) = [\vv^{\flat_1}]_{F^*}^\top [\ww]_F$. We know $[\vv^{\flat_1}]_{F^*} = \BB [\vv]_E$ from the fourth equation of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::vectors_dual_vectors_metric_tensor}, so $g(\vv, \ww) = (\BB [\vv]_E)^\top [\ww]_F = [\vv]_E^\top \gg [\ww]_F$, which is the first equation of the first line.
-\end{proof}
-
 \begin{theorem}
 \label{ch::bilinear_forms_metric_tensors::induced_bilinear_form_on_duals}
     (Induced bilinear form on the duals).
@@ -60,19 +57,20 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 \end{theorem}
 
 \begin{lemma}
-     Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, let $B$ be a nondegenerate bilinear form on $V$ and $W$, and let $\widetilde{B}$ be the induced nondegenerate bilinear form on $W^*$ and $V^*$. Then 
+     Let $V$ and $W$ be finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_m}\}$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$. Let $B$ be a nondegenerate bilinear form on $V$ and $W$, and let $\widetilde{B}$ be the induced bilinear form on $W^*$ and $V^*$. Then 
 
     \begin{align*}
-        B(\vv, \ww) &= [\vv]_E^\top \BB [\ww]_F = [\ww]_F^\top \BB^\top [\vv]_E
+        B(\vv, \ww) &= [\vv]_E^\top \BB [\ww]_F = [\ww]_F^\top \BB^\top [\vv]_E, \text{ where $\BB := B(\ee_i, \ee_j)$}
         \\
-        \widetilde{B}(\psi, \phi) &= [\psi]_{F^*}^\top \widetilde{\BB} [\phi]_{E^*} = [\phi]_{E^*}^\top \widetilde{\BB}^\top [\psi]_{F^*}
+        \widetilde{B}(\psi, \phi) &= [\psi]_{F^*}^\top \widetilde{\BB} [\phi]_{E^*} = [\phi]_{E^*}^\top \widetilde{\BB}^\top [\psi]_{F^*}, \text{ where $\widetilde{\BB} := \widetilde{B}(\psi^{\ff_i}, \phi^{\ee_j})$}.
     \end{align*}
     
     for all $\vv \in V$, $\ww \in W$, $\phi \in V^*$, and $\psi \in W^*$.
 \end{lemma}
 
 \begin{proof}
-    
+    %We first show the first equation of the first line. We have $B(\vv, \ww) = \vv^{\flat_1}(\ww)$, and the $1 \times m$ matrix $\vv^{\flat_1}(F)$ of $\vv^{\flat_1}:W \rightarrow K$ relative to $F$ is $\vv^{\flat_1}(F) = [\vv^{\flat_1}]_{F^*}^\top$ (recall Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}), so applying the characterizing property of [...] matrices (see Derivation [...]) gives $B(\vv, \ww) = \vv^{\flat_1}(\ww) = \vv^{\flat_1}(F) [\ww]_F = [\vv^{\flat_1}]_{F^*}^\top [\ww]_F$. We know $[\vv^{\flat_1}]_{F^*} = \BB [\vv]_E$ from the fourth equation of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::vectors_dual_vectors_metric_tensor}, and so obtain $B(\vv, \ww) = (\BB [\vv]_E)^\top [\ww]_F = [\vv]_E^\top \BB [\ww]_F$, as desired.
+  
     To show the first equation of the first line, we follow a derivation similar in spirit to that of a matrix relative to bases of a linear function between vector spaces. That is, we first consider the special case in which the vector spaces are $K^n$ and $K^m$, where $K$ is the field, and then use change of basis maps to generalize. So: consider the special case $V = K^n$ and $W = K^m$, where $\sE = \{\see_1, ..., \see_n\}$ and $\sF = \{\sff_1, ..., \sff_m\}$ are the standard bases for $K^n$ and $K^m$. We have $B(\vv, \ww) = \sum_{ij} ([\vv]_\sE)^i ([\ww]_\sE)^j B_{ij} = \sum_{ij} ([\vv]_\sE)^i B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i \sum_j B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i ([\BB \ww]_\sF)^i = \vv \cdot (\BB \ww) = \vv^\top \BB \ww = [\vv]_\sE^\top \BB [\ww]_\sF^\top$, so the special case is proven. For the case when $V$ and $W$ are $n$- and $m$- dimensional vector spaces with bases $E$ and $F$, consider the bilinear form $C$ on $K^n$ and $K^m$ defined by $C(\vv, \ww) := B([\vv]_E, [\ww]_F)$. By the special case, we have $B(\vv, \ww) = [\vv]_E^\top \CC [\ww]_F$, where $\CC = (C(\ee_i, \ff_j))$. We have $\CC = (C(\ee_i, \ff_j)) = (B([\ee_i]_E, [\ff_i]_F)) = (B(\see_i, \sff_i)) = \BB$, so $B(\vv, \ww) = [\vv]_E^\top \BB [\ww]_F$, as claimed.
     
     The first equation of the second line is obtained by applying the first line to the induced nondegenerate bilinear form $\widetilde{B}$ on $W^*$ and $V^*$, and the second equation on each line follows by transposing the first equation on each line.
@@ -104,7 +102,7 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
     \label{ch::bilinear_forms_metric_tensors::thm::B_Btilde_kind_of_inverses}
     ($\flat_1$ and $\widetilde{\flat}_1$ are ``kind of'' inverses).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$ with bases $E$ and $F$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n}\}$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$, and let $E^{**}$ and $F^{**}$ be the bases for $V^{**}$ and $W^{**}$ induced by $E^*$ and $F^*$. Lastly, let $B$ be a nondegenerate bilinear form on $V$ and $W$ with induced musical isosmorphisms $\flat_1, \flat_2$, and let $\widetilde{B}$ be the induced nondegenerate bilinear form on $W^*$ and $V^*$ with induced musical isomorphisms $\widetilde{\flat}_1, \widetilde{\flat}_2$.
+    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_m}\}$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$, and let $E^{**}$ and $F^{**}$ be the bases for $V^{**}$ and $W^{**}$ induced by $E^*$ and $F^*$. Lastly, let $B$ be a nondegenerate bilinear form on $V$ and $W$ with induced musical isosmorphisms $\flat_1, \flat_2$, and let $\widetilde{B}$ be the induced nondegenerate bilinear form on $W^*$ and $V^*$ with induced musical isomorphisms $\widetilde{\flat}_1, \widetilde{\flat}_2$.
     
     The musical isomorphisms $\flat_1$ and $\widetilde{\flat}_1$ are ``kind of'' inverses in the following sense:
      
@@ -118,22 +116,53 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 \begin{proof}
     \hspace{0mm} \\
     \begin{enumerate}
-        \item We have: $\widetilde{\flat}_1 \circ \flat_1 = (\vv \mapsto \Phi_\vv) \iff  \Phi_\vv = (\vv^{\flat_1})^{\widetilde{\flat}_1} \iff
-        (\Phi_\vv(\phi) (\vv^{\flat_1})^{\widetilde{\flat}_1}(\phi) \text{ for all $\phi \in V^*$}) \\ \iff
-        (\phi(\vv) = \widetilde{g}(\vv^{\flat_1}, \phi) = g(\vv, \phi^{\sharp_2}) \text{ for all $\phi \in V^*$})$ \\ $\iff (\phi(\ee_i) = g(\ee_i, \phi^{\sharp_2}) \text{ for all $\phi \in V^*$}) \iff (([\phi]_{E^*})_i = g(\ee_i, \phi^{\sharp_2}) \text{ for all $\phi \in V^*$})$.
+        \item We have: $\widetilde{\flat}_1 \circ \flat_1 = (\vv \mapsto \Phi_\vv) \iff  (\vv^{\flat_1})^{\widetilde{\flat}_1} = \Phi_\vv \text{ for all $\vv \in V$} \iff
+        ((\vv^{\flat_1})^{\widetilde{\flat}_1}(\phi) = \Phi_\vv(\phi) \text{ for all $\vv \in V, \phi \in V^*$}) \\ \iff
+        (\widetilde{B}(\vv^{\flat_1}, \phi) = B(\vv, \phi^{\sharp_2}) = \phi(\vv) \text{ for all $\vv \in V, \phi \in V^*$})$ \\
+        $\iff (B(\ee_i, (\phi^{\ee_j})^{\sharp_2}) = \phi^{\ee_j}(\ee_i) \text{ for all $i, j$}) \iff (B(\ee_i, (\phi^{\ee_j})^{\sharp_2}) = \delta^i{}_j \text{for all $i, j$})$. If we show $(\phi^{\ee_j})^{\sharp_2} = \ff_j$, we are done... \textbf{but we don't always have $B(\ee_i, \ff_j) = \delta^i{}_j$}
         
         \item The matrix of a composition of a linear function is equal to the matrix-matrix product of the matrices (with respect to the appropriate bases) of the functions in the composition, so we have $[\widetilde{\flat}_1 \circ \flat_1]_{E^{**}} = [\widetilde{\flat}_1(F^*)]_{E^{**}} [\flat_1(E)]_{F^*}$. Since $\widetilde{\flat}_1 \circ \flat_1 = (\vv \mapsto \Phi_\vv)$, we can prove the desired fact- that the matrices on the right side of this last equation are inverses- by showing that the matrix of $(\vv \mapsto \Phi_\vv) = \FF$ relative to $E$ and $E^{**}$ is $\II$. To do so, define $\FF(\vv) = \Phi_\vv$, so that the matrix of $(\vv \mapsto \Phi_\vv) = \FF$ relative to $E$ and $E^{**}$ is $[\FF(E)]_{E^{**}}$. The $ij$ entry of this matrix is $([\FF(\ee_j)]_{E^{**}})^i = ([\Phi_{\ee_j}]_{E^{**}})^i = \Phi_{\ee_j}(\phi^{\ee_i})$, where $\phi^{\ee_i}$ denotes the $i$th basis vector in $E^*$. Since $\Phi_{\ee_j}(\phi^{\ee_i}) = \phi^{\ee_i}(\ee_j) = \delta^i{}_j$, the matrix itself is $\II$.
         \item Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos} tells us that $[\flat_1(E)]_{F^*} = \BB^\top$ and $[\widetilde{\flat}_1(F^*)]_{E^{**}} = (\widetilde{\BB})^\top$. Using these results with (2), we obtain $(\widetilde{\BB})^\top \BB^\top = \II$. Take the transpose of both sides to obtain $\widetilde{\BB} \BB = \II$, as desired. \textbf{before using transpose have to define symmetric linear function}
     \end{enumerate}
 \end{proof}
- 
+
+\subsection*{Metric tensors}
+
+\begin{defn}
+    (Metric tensor).
+    
+    Let $V$ be a finite-dimensional vector space. A nondegenerate bilinear form on $V$ that is also \textit{symmetric}, in the sense that $g(\vv_1, \vv_2) = g(\vv_2, \vv_1)$ for all $\vv_1, \vv_2 \in V$, is called a \textit{metric tensor on $V$}.
+\end{defn}
+
+\begin{remark}
+    (Inner products are metric tensors).
+    
+    Let $V$ be a vector space over a field $K$. Recall from Definition     \label{ch::lin_alg::defn::inner_product} that an \textit{inner product} on $V$ is a symmetric bilinear function $\langle \cdot, \cdot \rangle: V \times V \rightarrow K$ that is symmetric and is weakly nondegenerate, in the sense that $\langle \vv, \vv \rangle = 0 \iff \vv = \mathbf{0}$ for all $\vv \in V$.
+
+    In other words, an inner product on $V$ is a weakly nondegenerate bilinear form on $V$.
+\end{remark}
+
+\begin{remark}
+    (Weak nondegeneracy $\implies$ nondegenerate, but the converse does not hold).
+    
+    As the name ``weakly nondegenerate'' suggests, the title of this remark is true- it's easy to check so.
+\end{remark}
+
+\begin{defn}
+    (The notation $\flat$ and $\sharp$).
+    
+    When $V$ is a finite-dimensional vector space and there is a metric tensor $g$ on $V$, then the musical isomorphisms ${\flat_1:V \rightarrow V^*}$ and ${\flat_2:V \rightarrow V^*}$ induced by $g$ are the same because $g$ is symmetric. In this scenario, we define $\flat := \flat_1 = \flat_2$ and $\sharp := \sharp_1 = \flat_1^{-1} = \sharp_2 = \flat_2^{-1}$.
+\end{defn}
+
+\subsubsection*{Self-duality}
+
 \begin{theorem}
-     (Self-dual $\iff$ orthonormal).
+     (Self-dual $\iff B(\ee_i, \ee_j) = \delta^i{}_j$).
      
      Let $V$ be a finite-dimensional vector space with a nondegenerate bilinear form $B$ and a basis $E = \{\ee_1, ..., \ee_n\}$. Let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. The musical isomorphism $\flat$ induced by $B$ sends basis vectors to induced dual basis vectors, $\ee_i \mapsto \phi^{\ee_i}$, iff $B(\ee_i, 
      \ee_j) = \delta^i_j$ for all $i, j$. 
      
-     In the special case when $B$ is an \textit{inner product}, this means that $\flat$ sends basis vectors to induced dual basis vectors iff $E$ is \textit{orthonormal} with respect to $B$. (We have not defined what an ``inner product'' is or what ``orthonormal'' means yet, but the previous sentence should be immediately clear after we do touch on these concepts).
+     In the special case when $B$ is an inner product, $B = \langle \cdot, \cdot \rangle$, this means that $\flat$ sends basis vectors to induced dual basis vectors iff $E$ is orthonormal with respect to the inner product.
 \end{theorem}
 
 \begin{proof}
@@ -146,226 +175,6 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 
     The above theorem shows that the ``unnatural'' isomorphism $V \rightarrow V^*$ sending $\ee_i \mapsto \phi^{\ee_i}$ that was discussed earlier in Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*} actually becomes natural exactly whenever we have a bilinear form $B$ on $V$ and $B(\ee_i, \ee_j) = \delta^i_j$.
 \end{remark}
-
-\subsection*{Inner products}
-
-\begin{defn}
-    (Metric tensor).
-    
-    Let $V$ be a finite-dimensional vector space. A nondegenerate bilinear form on $V$ that is also \textit{symmetric}, in the sense that $g(\vv_1, \vv_2) = g(\vv_2, \vv_1)$ for all $\vv_1, \vv_2 \in V$, is called a \textit{metric tensor on $V$}.
-\end{defn}
-
-\begin{defn}
-    (The notation $\flat$ and $\sharp$).
-    
-    When $V$ is a finite-dimensional vector space and there is a metric tensor $g$ on $V$, then the musical isomorphisms ${\flat_1:V \rightarrow V^*}$ and ${\flat_2:V \rightarrow V^*}$ induced by $g$ are the same because $g$ is symmetric. In this scenario, we define $\flat := \flat_1 = \flat_2$ and $\sharp := \sharp_1 = \flat_1^{-1} = \sharp_2 = \flat_2^{-1}$.
-\end{defn}
-
-\begin{defn}
-    (Inner product).
-    
-    A metric tensor $g$ on $V$ is an \textit{inner product} on $V$ iff it is also \textit{positive-definite}, that is, iff it is a metric tensor that satisfies $g(\vv, \vv) \geq 0$ for all $\vv \in V$, with $g(\vv, \vv) = \mathbf{0}$ iff $\vv = \mathbf{0}$.
-    
-    Iff $g$ is an inner product, we denote it by $\langle \cdot, \cdot \rangle$ and use the notation $\langle \vv_1, \vv_2 \rangle := g(\vv_1, \vv_2)$, for $\vv_1, \vv_2 \in V$.
-\end{defn}
-
-\begin{defn}
-    (Inner product space).
-    
-    Let $V$ be a vector space over $K$. Iff there is an inner product $\langle \cdot, \cdot \rangle$ on $V$, then $V$ is called a \textit{vector space with inner product}, or an \textit{inner product space}.
-\end{defn}
-
-\begin{remark}
-    (Positive-definite $\implies$ nondegenerate, but the converse does not hold).
-    
-    The first part of the title of this remark is straightforwardly checked by looking at the definition of nondegenerate bilinear form. Therefore, all inner products are metric tensors, but not all metric tensors are inner products.
-\end{remark}
-
-\begin{example}
-    The dot product on $\R^n$ is an inner product on $\R^n$. (Proof left as exercise). 
-    
-    The dot product on $K^n$, defined analogously to the dot product on $\R^n$, is in general \textit{not} an inner product because it is not positive-definite. For example, we have $\begin{pmatrix} 3 \\ 3 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 3 \end{pmatrix} = 0$ when these vectors are elements of $\Z/9\Z$. (In $\Z/9\Z$, we have $3 \cdot 3 = 9 = 0$).
-\end{example}
-
-\subsubsection*{Length and orthogonality with respect to an inner product}
-
-\begin{defn}
-    (Length of a vector with respect to an inner product). 
-    
-    Let $V$ be an inner product space. In analogy to the fact that the length of a vector in $\R^n$ can be expressed using the dot product on $\R^n$ (see Theorem \ref{ch::lin_alg::thm::length_in_Rn}), we define the \textit{length of a vector $\vv \in V$ with respect to the inner product on $V$} to be $||\vv|| := \sqrt{\langle \vv, \vv \rangle}$.
-\end{defn}
-
-\begin{defn}
-    (Angle between vectors with respect to an inner product). 
-    
-    Let $V$ be an inner product space. In analogy to the the fact that the angle between vectors $\vv_1, \vv_2 \in \R^n$ is $\arccos(\hat{\vv}_1 \cdot \hat{\vv}_2)$, we define the \textit{angle $\theta$ between vectors $\vv_1, \vv_2 \in V$ with respect to the inner product on $V$} to be $\theta := \arccos(\langle \hat{\vv}_1, \hat{\vv}_2 \rangle)$. Note that $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||} = \frac{\vv_i}{\sqrt{\langle \vv_i, \vv_i \rangle}}$.
-\end{defn}
-
-\begin{remark}
-    (Geometric inner product).
-    
-    Let $V$ be an inner product space. Then $\langle \vv_1, \vv_2 \rangle = ||\vv_1||\spc||\vv_2|| \cos(\theta)$, where $\theta$ is the angle between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$. (This fact is the generalization of the geometric dot product on $\R^n$, which was discussed in Theorem \ref{ch::lin_alg::thm::dot_prod_and_angle}).
-\end{remark}
-
-\begin{theorem}
-\label{ch::bilinear_forms_metric_tensors::thm::Cauchy_Schwarz}
-     (Cauchy-Schwarz inequality for vector spaces over $\R$).
-     
-     Let $V$ be a vector space over $\R$ with inner product. Then the \textit{Cauchy-Schwarz inequality} holds: $\langle \vv_1, \vv_2 \rangle \leq ||\vv_1|| \spc ||\vv_2||$ for all $\vv_1, \vv_2 \in V$. 
-     
-     Note, the Cauchy-Schwarz inequality is equivalent to the statement that the angle $\theta$ in $V$ between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$ satisfies $\theta \in [0, 2 \pi)$.
-\end{theorem}
-
-\begin{proof}
-    Define $f:\R \rightarrow [0, \infty) \subseteq \R$ by $f(k) = \langle k \vv_1 + \vv_2, k \vv_1 + \vv_2 \rangle = k^2 \langle \vv_1, \vv_1 \rangle + 2 k \langle \vv_1, \vv_2 \rangle + \langle \vv_2, \vv_2 \rangle$. Set $a := \langle \vv_1, \vv_1 \rangle$, $b := 2 \langle \vv_1, \vv_2 \rangle$, and $c := \langle \vv_2, \vv_2 \rangle$, so that $f(k) = ak^2 + bk + c$.
-    
-    Since $\langle \cdot, \cdot \rangle$ is positive-definite, then $f$ is nonnegative, and therefore must have either one or zero real roots. According to the quadratic formula, one real root occurs when $b^2 - 4ac = 0$, and zero real roots occur when $b^2 - 4ac < 0$. So, we must have $b^2 - 4ac \leq 0$. 
-    
-    Using our expressions for $a, b$, and $c$, we see that $(4 \langle \vv_1, \vv_2 \rangle)^2 - 4(\langle \vv_1, \vv_2 \rangle)(\langle \vv_2, \vv_2 \rangle) \leq 0$. Thus \\ ${\langle \vv_1, \vv_2 \rangle^2 \leq \langle \vv_1, \vv_1 \rangle \langle \vv_2, \vv_2 \rangle = ||\vv_1||^2 ||\vv_2||^2}$. Take the square root of each side to obtain the result.  
-\end{proof}
-
-\begin{defn}
-    (Orthogonality of vectors with respect to an inner product). 
-    
-    Let $V$ be an inner product space. We say vectors $\vv_1, \vv_2 \in V$ are \textit{orthogonal with respect to the inner product on $V$} iff the angle between $\vv_1$ and $\vv_2$ is $\frac{\pi}{2}$. That is, $\vv_1, \vv_2 \in V$ are orthogonal iff $\langle \vv_1, \vv_2 \rangle = 0$.
-\end{defn}
-
-\begin{defn}
-    (Orthonormal basis with respect to an inner product).
-    
-     Let $V$ be a finite-dimensional vector space with inner product $\langle \cdot, \cdot \rangle$. We say a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$ is \textit{orthonormal (with respect to $\langle \cdot, \cdot \rangle$)} iff
-     
-     \begin{itemize}
-         \item $||\ee_i|| = 1$ for all $i$
-         \item $\ee_i$ and $\ee_j$ are orthogonal to each other when $i \neq j$
-     \end{itemize}
-     
-     That is, $E$ is an orthonormal basis iff $\langle \ee_i, \ee_j \rangle = \delta^i{}_j$ for all $i, j$.
-\end{defn}
-
-\begin{theorem}
-\label{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}
-    (Gram-Schmidt algorithm).
-    
-    Let $V$ be a finite-dimensional inner product space. Given any basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, we can use the following \textit{Gram-Schmidt algorithm} to convert $E$ into an orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$.
-    
-    First, we ``orthogonalize'' the basis $E$ into a basis $F = \{\ff_1, ..., \ff_n\}$. Set $\ff_1 := \ee_1$, and, for $i \geq 2$, set
-    
-    \begin{align*}
-        \ff_i := \ee_i - \proj(\ff_i \rightarrow \spann(\ee_1, ..., \cancel{\ee_i}, ..., \ee_n)) = \ee_i - \sum_{j \neq i} \proj(\ff_i \rightarrow \ee_j) = \ee_i - \sum_{j \neq i} \frac{\langle \ff_i, \ee_j \rangle}{\langle \ee_j, \ee_j \rangle}, \quad i \geq 2.
-    \end{align*}
-    
-    (In the last equality in the line above, we've used an analogue of Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product} to express vector projections in terms of inner products). 
-    To obtain the orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$, we just normalize the orthogonal basis $F$, and set $\huu_i := \frac{\ff_i}{||\ff_i||}$.
-\end{theorem}
-
-\subsection*{Symmetric and orthogonal linear functions}
-
-This subsection is presented only for completeness, so reading the entirety of this subsection is not necessary. The only results that are necessary to know are the conditions (3) and (4) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::orthogonal_linear_fn} satisfied by an orthogonal linear function.
-
-\begin{deriv}
-\label{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}
-    (The adjoint of a linear function with respect to a nondegenerate bilinear form).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces, let $B$ be a nondegenerate bilinear form on $V$ and $W$, and consider the musical isomorphisms $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ induced by $B$.
-    
-    There is an induced linear map $\ff^\dag:V \rightarrow W$, called the \textit{adjoint of $\ff$ (with respect to $B$)}, that is obtained by using the musical isomorphisms on the domain and codomain of the dual transformation $\ff^*:W^* \rightarrow V^*$. We define $\ff^\dag$ to be the unique map for which the following diagram commutes:
-    
-    \begin{center}
-       % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRRkAjFVqMWbAOoA9AFTdeIDNjwEiI0mOr1mrRBwVK+awZvLi9Uw9O7iYUAObwioAGYAnCAFskZEBwIJC0QBjoAIxgGAAV+dSEQTywnAAscEF1JAxAAHVz3cIyeD28-RFCgpAAmanCo2PjzQ2S0jKz9Nnz3d2MSkC9ff2oqxABmOsjouLMNQwYYd3aJTsN8pycTAbKkCcDgxGquCi4gA
-        \begin{tikzcd}
-        V \arrow[d, "\flat_1"'] \arrow[r, "\ff^\dag"] & W \arrow[d, "\flat_2"] \\
-        W^* \arrow[r, "\ff^*"']                & V^*        
-        \end{tikzcd}
-    \end{center}
-    
-    Thus, $\ff^\dag = \flat_2^{-1} \circ \ff^* \circ \flat_1$, or, equivalently, $\flat_2 \circ \ff^\dag = \ff^* \circ \flat_1$.
-    
-    Since $\flat_2 \circ \ff^\dag = \ff^* \circ \flat_1$, then $\ff^\dag(\vv_0)^{\flat_2} = \ff^*(\vv_0^{\flat_1})$. Using the definition of $\ff^*$ (recall Definition \ref{ch::motivated_intro::defn::dual_transf}), we have $\ff^\dag(\vv_0)^{\flat_2} = \vv_0^{\flat_1} \circ \ff$. This is the same\footnote{Here we've used $B(\cdot, \vv_2)$ to denote the function $\vv_1 \mapsto B(\vv_1, \vv_2)$.} as $B(\cdot, \ff^\dag(\vv_0)) = B(\vv_0, \cdot) \circ \ff$. After evaluating both sides of this most recent equation on $\vv_1 \in V$ and relabeling $\vv_0$ as $\vv_2$, we have:
-    
-    \begin{align*}
-        B(\vv_1, \ff^\dag(\vv_2)) = B(\vv_2, \ff(\vv_1)) \text{ for all $\vv_1, \vv_2 \in V$}.
-    \end{align*}
-\end{deriv}
-
-Replacing the bilinear form of the above derivation with an inner product, we see that when we have an inner product instead of an arbitrary nondegenerate bilinear form, then $\ff^\dag$ is uniquely characterized by the condition that $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$ for all $\vv_1, \vv_2 \in V$. We will use this condition as a means to characterize special classes of linear functions. Specifically, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which $\ff^\dag = \ff^{-1}$. Before investigating such linear functions, we quickly present a definition.
-
-\begin{defn}
-    (Transpose of a matrix).
-    
-    The \textit{transpose} of an $m \times n$ matrix $(a^i{}_j)$ is the $n \times m$ matrix $(a^j{}_i)$. The tranpose of a matrix $\AA$ is denoted $\AA^\top$.
-\end{defn}
-
-Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which $\ff^\dag = \ff^{-1}$.
-
-\begin{defn} 
-\label{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn}
-    (Symmetric linear function).
-
-    Let $V$ be a vector space, consider a linear function $\ff:V \rightarrow V$. We define $\ff$ to be \textit{symmetric} iff the following equivalent conditions hold:
-    
-    \begin{enumerate}
-        \item $\ff = \ff^\dag$.
-        \item $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
-        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then the matrix of $\ff$ relative to $\hU$ is equal to its transpose: $[\ff(\hU)]_{\hU}^\top = [\ff(\hU)]_{\hU}$. (Matrices that are equal to their own transpose are called \textit{symmetric}).
-    \end{enumerate}
-\end{defn}
-        
-\begin{proof}
-    \mbox{} We need to show that the conditions are indeed equivalent.
-    \\ \indent ($1 \iff 2$).
-    \\ \indent ($\implies$). Use $\ff = \ff^\dag$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$. 
-    \\ \indent ($\impliedby$). We have $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$ and $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$. Therefore $\langle \vv_1, \ff(\vv_2) \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$. Due to the cancelability of inner products (this follows from the positive-definiteness of inner products), we have $\ff(\vv_2) = \ff^\dag(\vv_2)$ for all $\vv_2 \in V$. So $\ff = \ff^\dag$. 
-
-    ($2 \iff $ 3). 
-    \\ \indent ($\implies$). If (2) is true, then the $j$th column of $[\ff(\hU)]_{\hU}$ is $[\ff(\huu_j)]_{\hU}$, so the $^i_j$ entry of $[\ff(\hU)]_{\hU}$ is $\langle \ff(\huu_j), \huu_i \rangle$. Similarly, the $^i_j$ entry of the matrix of $\ff^\dag$ relative to $\hU$ is $\langle 
-    \ff^\dag(\huu_j), \huu_i \rangle$. Due to the condition on $\langle \cdot, \cdot \rangle$ induced by the identification $V \cong V^*$, we have $\langle \ff^\dag(\huu_j), \huu_i \rangle = \langle \huu_j, \ff(\huu_i) \rangle = \langle \ff^\dag(\huu_i), \huu_j \rangle$. But this is the $^j_i$ entry of $[\ff(\hU)]_{\hU}$, i.e., the $^i_j$ entry of $[\ff(\hU)]_{\hU}^{\top}$. Thus $[\ff(\hU)]_{\hU} = [\ff(\hU)]_{\hU}^{\top}$.
-    \\ \indent ($\impliedby$). Let $\hU = \{\huu_1, ..., \huu_n\}$ be an orthonormal basis for $V$, and let the matrix $\AA$ of $\ff$ relative to $\hU$ satisfy $a_{ij} = a^j_i$. Since $a^i{}_j = \langle \ff(\huu_i), \huu_j \rangle$, then $\langle \ff(\huu_i), \huu_j \rangle = \langle \huu_i, \ff(\huu_j) \rangle$. Extend with multilinearity to obtain the conclusion.
-\end{proof}
-
-\begin{defn}
-\label{ch::bilinear_forms_metric_tensors::defn::orthogonal_linear_fn}
-    (Orthogonal linear function). 
-    
-    Let $V$ be a vector space over $K$ (where\footnote{This is a very technical condition, and not much attention should be paid to it. We require this so that $2 \neq 0$, which allows us to divide by $2$.} we have $K \neq \Z/2\Z$), consider a linear function $\ff:V \rightarrow V$. We define $\ff$ to be \textit{orthogonal} iff the following equivalent conditions hold:
-    
-    \begin{enumerate}
-        \item $\ff^\dag = \ff^{-1}$.
-        \item $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^{-1}(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
-        \item $\ff$ preserves inner product: $\langle \vv_1, \vv_2 \rangle = \langle \ff(\vv_1), \ff(\vv_2) \rangle$.
-        \item $\ff$ preserves length.
-        \item $\ff$ preserves length and angle.
-        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then the matrix $[\ff(\hU)]_{\hU}$ of $\ff$ relative to $\hU$ has orthonormal columns.
-        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then $[\ff(\hU)]_{\hU}^{-1} = [\ff(\hU)]_{\hU}^{\top}$.
-    \end{enumerate}
-\end{defn}
-        
-\begin{proof}
-    We need to show that the conditions are indeed equivalent. To do so, we prove $(3) \iff (4) \iff (5)$ and then $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
-    
-    \vspace{.2cm}
-    
-    Here is the proof that $(3) \iff (4) \iff (5)$:
-    \\ \indent $(3 \implies 4)$. Length is a function of inner product, $||\vv|| = \sqrt{\langle \vv, \vv \rangle}$. Therefore, if inner product is preserved, then length is preserved.
-    \\ \indent $(4 \iff 5)$. The reverse direction is obvious; we need to show the forward direction. The angle $\theta$ between $\vv_1$ and $\vv_2$ is $\theta = \cos^{-1}\Big(\frac{\vv_1 \cdot \vv_2}{||\vv_1||||\vv_2||}\Big)$. Since $\theta$ is a function of preserved quantities (dot product and length), it too is a preserved quantity.
-    \\ \indent $(5 \implies 3)$. Replace the dot product $\cdot$ on $\R^n$ with the inner product $\langle \cdot, \cdot \rangle$ on $V$ in the equation stated in the proof of Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product} to show that $\langle \vv_1, \vv_2 \rangle = \frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2))$. That is, the inner product $\langle \vv_1, \vv_2 \rangle$ is a function of $||\vv_1||$ and $||\vv_2||$. Applying the previous formula, the inner product $\langle \ff(\vv_1), \ff(\vv_2) \rangle$ is a function of $||\ff(\vv_1)||$ and $||\ff(\vv_2)||$: ${\langle \ff(\vv_1), \ff(\vv_2) \rangle = \frac{1}{2}(||\ff(\vv_1) + \ff(\vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))}$. Since $\ff$ is linear, this becomes $\frac{1}{2}(||\ff(\vv_1 + \vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))$. If length is preserved, then this is the same as $\frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2) = \langle \vv_1, \vv_2 \rangle$.
-
-    \vspace{.2cm}
-
-    Now we show $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
-    \mbox{} \\
-        ($1 \iff 2$).
-        \\ \indent ($\implies$). Use $\ff^\dag = \ff^{-1}$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$.
-        \\ \indent($\impliedby$). $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \ff(\vv_1), \vv_2 \rangle$ by hypothesis, and $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$ by condition on $\langle \cdot, \cdot \rangle$ imposed by identifying $V \cong V^*$ for $\ff^\dag$. Thus $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$.
-        \\ ($2 \implies 3$). Substitute $\vv_3 = \ff^{-1}(\vv_2)$, so that we have $\langle \ff(\vv_1), \ff(\vv_3) \rangle = \langle \vv_1, \vv_3 \rangle$ for all $\vv_1, \vv_3 \in V$.
-        \\ ($3 \iff 6$). 
-        \\ \indent $(\implies$). We have in particular that $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \langle \huu_i, {\uu}_j \rangle$. Since $\hU$ is orthonormal, $\langle \huu_i, \huu_j \rangle = \delta^i{}_j$. Therefore $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$, so the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal.
-        \\ \indent $(\impliedby)$. Since the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal, we have $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Extend with multilinearity to obtain the conclusion.
-        \\ ($6 \iff 7$).
-        \\ \indent $(\implies$). The $^i_j$ entry of $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top$ is $(\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th column of $[\ff(\hU)]_{\hU}$})\top = (\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th row of $[\ff(\hU)]_{\hU}$}) = \langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top = \II$. A similar argument shows $[\ff(\hU)]_{\hU}^\top [\ff(\hU)]_{\hU} = \II$.
-        \\ \indent $(\impliedby)$. Reversing the logic of the forward direction, we know $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore (3) is satisfied. Then we use $(3) \implies (6)$.
-        \\ ($5 \implies 1$). Use the fact that $[\ff(\hU)]_{\hU}^\top$ is the matrix of the adjoint $\ff^\dag:V \rightarrow V$.
-\end{proof}
 
 \newpage
 
@@ -399,13 +208,13 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
 \end{theorem}
 
 \begin{proof}
-    First, we prove the first equation in the first line, $([\vv]_E)^i = \phi^{\ee_i}(\vv)$:
+    To prove the first equation in the first line, $([\vv]_E)^i = \phi^{\ee_i}(\vv)$, we decompose $\vv$ in the basis $E$:
     
     \begin{align*}
         \phi^{\ee_i}(\vv) = \phi^{\ee_i}\Big( \sum_{j = 1}^n ([\vv]_E)^j \ee_i \Big) = \sum_{j = 1}^n \Big( ([\vv]_E)^j \phi^{\ee_i}(\ee_j) \Big) = \sum_{j = 1}^n ([\vv]_E)^j \delta^i{}_j = ([\vv]_E)^i.
     \end{align*}
     
-    Now we prove the second line. By definition of $[\cdot]_{E^*}$, any $\phi \in V^*$ is of the form $\phi = \sum_{j = 1}^n ([\phi]_{E^*})_j \phi^{\ee_j}$, so we can compute $\phi(\ee_i)$ as
+    To prove the second line, we decompose $\phi$ in the basis $E^*$:
     
     \begin{align*}
         \phi(\ee_i) = \Big( \sum_{j = 1}^n ([\phi]_{E^*})_j \phi^{\ee_j} \Big)(\ee_i) = \sum_{j = 1}^n \Big( ([\phi]_{E^*})_j \phi^{\ee_j}(\ee_i)\Big) = \sum_{j = 1}^n ([\phi]_{E^*})_j \delta^j{}_i = ([\phi]_{E^*})_i.
@@ -472,11 +281,11 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
 \end{theorem}
 
 \begin{proof}
-    We will prove (1) that $[\psi]_{F^*} = \BB [\psi^{\sharp_1}]_E$ for all $\psi \in W^*$ and (2) that $[\vv]_E = \BB^{-1} [\vv^{\flat_1}]_{F^*}$ for all $\vv \in V$. The equation involving $\phi \in V^*$ and $\BB$ is obtained by applying (1) to the nondegenerate bilinear form $C$ on $W$ and $V$ defined by $C(\ww, \vv) := B(\vv, \ww)$, and the equation involving $\ww \in W$ and $\BB^{-1}$ is similarly obtained by applying (2) to the nondegenerate bilinear form $\widetilde{C}$ on $V^*$ and $W^*$ defined by $\widetilde{C}(\phi, \psi) := \widetilde{B}(\psi, \phi)$.
+    We will prove (1) that $[\psi]_{F^*} = \BB^\top [\psi^{\sharp_1}]_E$ for all $\psi \in W^*$ and (2) that $[\vv]_E = \BB^{-\top} [\vv^{\flat_1}]_{F^*}$ for all $\vv \in V$. The top right equation is obtained by applying (1) to the nondegenerate bilinear form $C$ on $W$ and $V$ defined by $C(\ww, \vv) := B(\vv, \ww)$, and the bottom left equation is similarly obtained by applying (2) to the nondegenerate bilinear form $\widetilde{C}$ on $V^*$ and $W^*$ defined by $\widetilde{C}(\phi, \psi) := \widetilde{B}(\psi, \phi)$.
 
-    First, we prove that $[\psi]_{F^*} = \BB [\psi^{\sharp_1}]_E$ for all $\psi \in W^*$. Recall from Definition [...] that the matrix $[\flat_1(E)]_{F^*}$ of $\flat_1:V \rightarrow W^*$ relative to $E$ and $F^*$ satisfies the characterizing property $[\flat_1(\vv)]_{F^*} = [\flat_1(E)]_{F^*} [\vv]_E$ for all $\vv \in V$. That is, $[\vv^{\flat_1}]_{F^*} = [\flat_1(E)]_{F^*} [\vv]_E$ for all $\vv \in V$. We know from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos} that $[\flat_1(E)]_{F^*} = \BB^\top$, so we have $[\vv^{\flat_1}]_{F^*} = \BB^\top [\vv]_E$. Since $\flat_1$ is an isomorphism, we can replace $\vv^{\flat_1} \in W^*$ with an arbitrary $\psi \in W^*$ to obtain $([\psi]_{F^*} = \BB^\top [\psi^{\sharp_1}]_E \text{ for all } \psi \in W^*)$, as desired.
+    First, we prove (1). Recall from Definition [...] that the matrix $[\flat_1(E)]_{F^*}$ of $\flat_1:V \rightarrow W^*$ relative to $E$ and $F^*$ satisfies the characterizing property $[\flat_1(\vv)]_{F^*} = [\flat_1(E)]_{F^*} [\vv]_E$ for all $\vv \in V$. That is, $[\vv^{\flat_1}]_{F^*} = [\flat_1(E)]_{F^*} [\vv]_E$ for all $\vv \in V$. We know from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos} that $[\flat_1(E)]_{F^*} = \BB^\top$, so we have $[\vv^{\flat_1}]_{F^*} = \BB^\top [\vv]_E$. Since $\flat_1$ is an isomorphism, we can replace $\vv^{\flat_1} \in W^*$ with an arbitrary $\psi \in W^*$ to obtain $([\psi]_{F^*} = \BB^\top [\psi^{\sharp_1}]_E \text{ for all } \psi \in W^*)$, as desired.
     
-    Now we prove $[\vv]_E = \BB^{-\top} [\vv^{\flat_1}]_{F^*}$ for all $\vv \in V$. Applying (1) to the induced nondegenerate bilinear form $\widetilde{B}:W^* \times V^* \rightarrow K$, we obtain an analogous statement to (1) in which $\psi \in W^*$ is replaced with $\Phi \in V^{**}$, $F^*$ is replaced with $E^{**}$, $E$ is replaced with $F^*$, $\sharp_1:W^* \rightarrow V$ is replaced with $\widetilde{\sharp}_1:V^{**} \rightarrow W^*$, and $\BB$ is replaced with $\widetilde{\BB}$: we have $[\Phi]_{E^{**}} &= \widetilde{\BB}^\top [\Phi^{\sharp_1}]_{F^*}$ for all $\Phi \in V^{**}$. Substitute $\Phi_\vv$ in for $\Phi$ and use the fact $([\Phi_\vv]_{E^{**}})^i = ([\vv]_E)^i$ from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector} to obtain the statement ``$[\vv]_E = \widetilde{\BB}^\top [\Phi_\vv^{\sharp_1}]_{F^*}$ for all $\vv \in V$''. Notice that if we show that $\Phi_\vv^{\widetilde{\sharp}_1} = \vv^{\flat_1}$ for all $\vv \in V$, then this equation involves only $\vv$ and not $\Phi_\vv$, and becomes $[\vv]_E = \widetilde{\BB}^\top [\vv^{\flat_1}]_{F^*}$. This condition does hold: we have $(\Phi_\vv^{\widetilde{\sharp}_1} = \vv^{\flat_1} \text{ for all } \vv \in V) \iff (\Phi_\vv = (\vv^{\flat_1})^{\widetilde{\flat}_1} \text{ for all } \vv \in V) \iff ((\vv \mapsto \Phi_\vv) = \widetilde{\flat}_1 \circ \flat_1)$, where this last condition is just the first item of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::B_Btilde_kind_of_inverses}. So we know $[\vv]_E = \widetilde{\BB}^\top [\vv^{\flat_1}]_{F^*}$ for all $\vv \in V$. Use the fact that $\widetilde{\BB} = \BB^{-1}$ from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::B_Btilde_kind_of_inverses} to obtain $([\vv]_E = (\BB^{-1})^\top [\vv^{\flat_1}]_{F^*} = (\BB^{-\top}) [\vv^{\flat_1}]_{F^*} \text{ for all $\vv \in V$}$, as desired.
+    Now we prove (2). Applying (1) to the induced nondegenerate bilinear form $\widetilde{B}:W^* \times V^* \rightarrow K$, we obtain an analogous statement to (1) in which $\psi \in W^*$ is replaced with $\Phi \in V^{**}$, $F^*$ is replaced with $E^{**}$, $E$ is replaced with $F^*$, $\sharp_1:W^* \rightarrow V$ is replaced with $\widetilde{\sharp}_1:V^{**} \rightarrow W^*$, and $\BB$ is replaced with $\widetilde{\BB}$: we have $[\Phi]_{E^{**}} = \widetilde{\BB}^\top [\Phi^{\sharp_1}]_{F^*}$ for all $\Phi \in V^{**}$. Substitute $\Phi_\vv$ in for $\Phi$ and use the fact $([\Phi_\vv]_{E^{**}})^i = ([\vv]_E)^i$ from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector} to obtain the statement ``$[\vv]_E = \widetilde{\BB}^\top [\Phi_\vv^{\sharp_1}]_{F^*}$ for all $\vv \in V$''. Notice that if we show that $\Phi_\vv^{\widetilde{\sharp}_1} = \vv^{\flat_1}$ for all $\vv \in V$, then this equation involves only $\vv$ and not $\Phi_\vv$, and becomes $[\vv]_E = \widetilde{\BB}^\top [\vv^{\flat_1}]_{F^*}$. This condition does hold: we have $(\Phi_\vv^{\widetilde{\sharp}_1} = \vv^{\flat_1} \text{ for all } \vv \in V) \iff (\Phi_\vv = (\vv^{\flat_1})^{\widetilde{\flat}_1} \text{ for all } \vv \in V) \iff ((\vv \mapsto \Phi_\vv) = \widetilde{\flat}_1 \circ \flat_1)$, where this last condition is just the first item of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::B_Btilde_kind_of_inverses}. So we know $[\vv]_E = \widetilde{\BB}^\top [\vv^{\flat_1}]_{F^*}$ for all $\vv \in V$. Use the fact that $\widetilde{\BB} = \BB^{-1}$ from Theorem \ref{ch::bilinear_forms_metric_tensors::thm::B_Btilde_kind_of_inverses} to obtain $([\vv]_E = (\BB^{-1})^\top [\vv^{\flat_1}]_{F^*} = (\BB^{-\top}) [\vv^{\flat_1}]_{F^*} \text{ for all $\vv \in V$}$, as desired.
 \end{proof}
 
 \begin{remark}

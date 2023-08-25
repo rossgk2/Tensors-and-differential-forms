@@ -41,7 +41,9 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     (By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other).
 \end{defn}
 
-At this point, what we would like to do is give a (1) formal definition of \textit{point}, (2) define a notion of ``subtracting'' one point from another, and (3) define a \textit{vector} to be the result of ``subtracting'' one point from another. This ``subtraction of points'' notion facilitates the ``locationless'' notion in the following way. If we define a vector to be an expression of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points, then any vector $\vv = \pp_2 - \pp_1$ is equal\footnote{Here we assume that for any point $\pp$ the notion of subtraction is such that $\pp - \pp = \pp + (-\pp) = \mathbf{0}$.} to $(\pp + \pp_2) - (\pp + \pp_1)$ for any point $\pp$; thus, we can move the start and end points $\pp_1$ and $\pp_2$ of a vector $\vv = \pp_2 - \pp_1$ around, and $\vv$ doesn't change as long as $\pp_1$ and $\pp_2$ are each moved in the same way.
+At this point, what we would like to do is give a (1) formal definition of \textit{point}, (2) define notions of adding points together and subtracting one point from another, and (3) define a \textit{vector} to be the result of ``subtracting'' one point from another. 
+
+The ``subtraction of points'' notion is more important than the ``addition of points'' notion, and facilitates the ``locationless'' notion in the following way. If we define a vector to be an expression of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points, then any vector $\vv = \pp_2 - \pp_1$ is equal\footnote{Here we assume that for any point $\pp$ the notion of subtraction is such that $\pp - \pp = \pp + (-\pp) = \mathbf{0}$.} to $(\pp + \pp_2) - (\pp + \pp_1)$ for any point $\pp$; thus, we can move the start and end points $\pp_1$ and $\pp_2$ of a vector $\vv = \pp_2 - \pp_1$ around, and $\vv$ doesn't change as long as $\pp_1$ and $\pp_2$ are each moved in the same way.
 
 Unfortunately, this strategy doesn't work because \textit{vector} cannot be defined non-circularly in terms of \textit{point}. What's more is that \textit{point} cannot be defined non-circularly in terms of vector! The below remark discusses this.
 
@@ -57,13 +59,13 @@ Unfortunately, this strategy doesn't work because \textit{vector} cannot be defi
         
         \item (Attempted definition of \textit{point} in terms of \textit{vector}). 
         
-        Suppose that we use the above definition of \textit{vector} and attempt to use it to give a definition of \textit{point} that is equivalent to the above definition of \textit{point}. The attempted definition is: a \textit{point} is a sum of the form $(\qq + \vv_1) + \vv_2) + ...) + \vv_n$, where $\qq$ is any point, each $\vv_i$ is a vector, and where the sum of a point and a vector is the point obtained by starting on the point and ``traveling'' according to the vector. This definition is circular because it involves \textit{point}.
+        Suppose that we use the above definition of \textit{vector} and attempt to use it to give a definition of \textit{point} that is equivalent to the above definition of \textit{point}. The attempted definition is: a \textit{point} is a sum of the form $(((\qq + \vv_1) + \vv_2) + ...) + \vv_n$, where $\qq$ is any point, each $\vv_i$ is a vector, and where the sum of a point and a vector is the point obtained by starting on the point and ``traveling'' according to the vector. This definition is circular because it involves \textit{point}.
     \end{itemize}
     
     In addition to the logical circularities, also notice that these attempted definitions suggest that points and vectors are inextricably intertwined: the first attempted definition requires a correspondence between vectors and points, and the second attempted definition requires a notion of adding a point with a vector.
 \end{remark}
 
-The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
+The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. (We will use the same primitive mathematical object for both \textit{point} and \textit{vector}). Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
 
 \newpage
 
@@ -106,7 +108,7 @@ Now that we have defined $\R^n$ and introduced notation to represent elements of
     
     We define \textit{addition} $+:\R^n \times \R^n \rightarrow \R^n$ and \textit{scalar multiplication} $\cdot:\R \times \R^n \rightarrow \R^n$ operations as follows.
     
-    As a preliminary, wen note for $\xx_1, \xx_2 \in \R^n$ we use the notation $\xx_1 + \xx_2 := +(\xx_1, \xx_2)$, and that for $c \in \R$ and $\xx \in \R^n$ we use the notation $c \xx := \cdot(c, \xx)$.
+    As a preliminary, we note that for $\xx_1, \xx_2 \in \R^n$ we use the notation $\xx_1 + \xx_2 := +(\xx_1, \xx_2)$, and that for $c \in \R$ and $\xx \in \R^n$ we use the notation $c \xx := \cdot(c, \xx)$.
     
     We define
     
@@ -222,11 +224,11 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
     The above definition easily implements the intertwinedness of points and vectors; since every point in $\R^n$ can also be interpreted as a vector in $\R^n$, the correspondence between points and vectors is given by the identity function.
 \end{remark}
 
+[TO-DO: introduce the following remark]
+
 \begin{remark}
     (Geometric intuition about points and vectors).
-    
-    [TO DO]
-    
+        
     (Geometric intuition about $+$).
     \begin{itemize}
         \item (Point plus vector). Let $\pp \in \R^n$ be a point and $\vv \in \R^n$ be a vector. We interpret $\pp + \vv$ to be the point that is obtained by placing the start of $\vv$ on $\pp$ and then ``traveling'' according to $\vv$.
@@ -982,7 +984,7 @@ The following theorem gives further geometric intuition for how linear functions
     Let $V$ and $W$ be finite-dimensional vector spaces. A linear function $\ff:V \rightarrow W$ preserves the linear independence of vectors iff it is one-to-one. That is, 
     
     \begin{align*}
-       (\vv_1, ..., \vv_k \text{ are linearly independent}) &\implies (\ff(\vv_1), ..., \ff(\vv_n) \text{ are linearly independent})\\
+       (\vv_1, ..., \vv_k \text{ are linearly independent}) &\implies (\ff(\vv_1), ..., \ff(\vv_k) \text{ are linearly independent})\\
         \text{if} \text{ } &\text{and only if} \\
         \ff \text{ } &\text{is one-to-one}
     \end{align*}
@@ -990,11 +992,11 @@ The following theorem gives further geometric intuition for how linear functions
 
 \begin{proof}
     \mbox{} \\
-    \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a trivial kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(v_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_n)$ are linearly independent, as claimed.
+    \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a trivial kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(\vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent, as claimed.
     
-    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_n)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a trivial kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
+    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a trivial kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
     
-    Since $V$ is finite-dimensional, there is a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$. Expressing $\vv$ relative to $E$, we have $\ff(\vv) = \ff\Big(\sum_{i = 1}^n ([\vv]_E)_i \ee_i\Big) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. The hypothesis implies that $\ff(\ee_1), ..., \ff(\ee_n)$ are linearly independent, so $([\vv]_E)_i = 0$ for all $i$ is the only solution to $\sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. Thus $([\vv]_E)_i = 0$ for all $i$, i.e., $\vv = \mathbf{0}$.
+    Since $V$ is finite-dimensional, there is a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$. Expressing $\vv$ relative to $E$, we have $\ff(\vv) = \ff\Big(\sum_{i = 1}^k ([\vv]_E)_i \ee_i\Big) = \sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. The hypothesis implies that $\ff(\ee_1), ..., \ff(\ee_n)$ are linearly independent, so $([\vv]_E)_i = 0$ for all $i$ is the only solution to $\sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. Thus $([\vv]_E)_i = 0$ for all $i$, i.e., $\vv = \mathbf{0}$.
 \end{proof}
 
 \begin{theorem}
@@ -1060,7 +1062,7 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \begin{proof}
     We use the contrapositive to show that, assuming the hypotheses, $\ff$ is not one-to-one iff it is not onto.
     
-    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this is equivalent to $\dim(V) > \dim(\ff(V))$. We assumed $\dim(V) = \dim(W)$, so this is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y$ and $Z$ are finite-dimensional vector spaces, then $\dim(Y) < \dim(Z)$ iff $Y \subsetneq Z$. So, $\dim(W) > \dim(\ff(V))$ is equivalent to equivalent to $W \supsetneq \ff(V)$, i.e., to $\ff$ not being onto.
+    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this condition is equivalent to $\dim(V) > \dim(\ff(V))$. Since we assumed $\dim(V) = \dim(W)$, this most recent condition is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y_1$ and $Y_2$ are subspaces of the same finite-dimensional vector space, then $\dim(Y_1) > \dim(Y_2)$ iff $Y_1 \supsetneq Y_2$. Using $Y_1 = W$ and $Y_2 = \ff(V)$, we can conclude that $W \supsetneq \ff(V)$. So, $\ff$ is not onto.
 \end{proof}
 
 \begin{theorem}
@@ -1165,7 +1167,7 @@ In the previous section, we saw that when we have a finite-dimensional vector sp
         \ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}.
     \end{empheq}
     
-    Concretely, the commutative diagram tells us that we can think of $\ff_{E,F}$ as accepting an input that is expressed relative to the basis $E$ for $V$ and producing an output that is expressed relative to the basis $F$ for $W$.
+    Concretely, the commutative diagram tells us that we can think of $\ff_{E,F}$ as accepting an input from $K^{\dim(V)}$ that is expressed relative to the basis $E$ for $V$ and producing an output in $K^{\dim(W)}$ that is expressed relative to the basis $F$ for $W$.
 \end{defn}
 
 As we continue our investigations into the coordinatization of a linear function $\ff:V \rightarrow W$, we can restrict ourselves to the case where $V = K^n$ and $W = K^m$, where $K$ is the field and $n$ and $m$ are positive integers. This is because any linear function $\ff$ \textit{not} of this form can immediately be identified\footnote{The map $\ff \mapsto \ff_{E,F}$ is a linear isomorphism.} with the linear function $\ff_{E,F}$ that \textit{is} of this form: just send $\ff \mapsto \ff_{E,F}$!
@@ -1194,14 +1196,14 @@ The following derivation shows us how to coordinatize a linear function $K^n \ri
         =
         \ff \Bigg( 
         \begin{pmatrix} 
-                ([\vv]_\sE)_1 \\ 0 \\ \vdots \\ 0 
+                ([\vv]_\sE)_1 \\ \vdots \\ 0 
         \end{pmatrix} \Bigg)
         +
         ...
         +
         \ff \Bigg(
         \begin{pmatrix} 
-                0 \\ 0 \\ \vdots \\ ([\vv]_\sE)_n 
+                0 \\ \vdots \\ ([\vv]_\sE)_n 
         \end{pmatrix} \Bigg) \\
         &=
         ([\vv]_\sE)_1
@@ -2594,6 +2596,118 @@ Most proofs of the above theorem use the law of cosines. I personally do not fin
 \begin{proof}
    $||\vv_1 - \vv_2||^2 = (\vv_1 - \vv_2) \cdot (\vv_1 - \vv_2) = \vv_1 \cdot \vv_1 - 2 \vv_1 \cdot \vv_2 + \vv_2 \cdot \vv_2 = ||\vv_1||^2 + ||\vv_2||^2 - 2 ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$.
 \end{proof}
+
+\newpage
+
+\section*{Inner product spaces}
+
+This section generalizes the notion of the dot product, which is only applicable to the vector space $K^n$ for $K$ a field, to general vector spaces.
+
+\begin{defn}
+    \label{ch::lin_alg::defn::inner_product}
+    (Inner product).
+    
+    Let $V$ be a vector space over a field $K$. An \textit{inner product} on $V$ is a function $\langle \cdot, \cdot \rangle:V \times V \rightarrow K$ with the following properties:
+
+    \begin{enumerate}
+        \item (Bilinearity). The functions $\vv \mapsto \langle \vv, \ww \rangle$ and $\ww \mapsto \langle \vv, \ww \rangle$ are linear for all $\vv, \ww \in V$. In other words $\langle \cdot, \cdot \rangle$ is ``linear in each argument''.
+        \item (Symmetry). $\langle \vv, \ww \rangle = \langle \ww, \vv \rangle$ for all $\vv, \ww \in V$.
+        \item (Weak non-degeneracy). $\langle \vv, \vv \rangle = 0$ iff $\vv = \mathbf{0}$.
+    \end{enumerate}
+\end{defn}
+
+\begin{remark}
+    (Inner product conventions).
+
+    Some authors define inner products to satisfy the ``positive-definitness'' criterion rather than the weak nondegeneracy criterion. A function $V \times V \rightarrow K$ is \textit{positive-definite} iff $\langle \vv, \vv \rangle \geq 0$ for all $\vv \in V$, with $\langle \vv, \vv \rangle = 0$ occurring only when $\vv = \mathbf{0}$. A \textit{negative-definite} inner product is defined similarly and involves the condition $\langle \vv, \vv \rangle \leq 0$ for all $\vv \in V$.
+\end{remark}
+
+\begin{defn}
+    (Inner product space).
+    
+    Let $V$ be a vector space over $K$. Iff there is an inner product $\langle \cdot, \cdot \rangle$ on $V$, then $V$ is called a \textit{vector space with inner product}, or an \textit{inner product space}.
+\end{defn}
+
+\begin{example}
+    \mbox{} \\ \indent
+    The dot product on $\R^n$ is an inner product on $\R^n$. (Proof left as exercise). 
+    
+    The dot product on $K^n$, defined analogously to the dot product on $\R^n$, is in general \textit{not} an inner product because it is not positive-definite. For example, we have $\begin{pmatrix} 3 \\ 3 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 3 \end{pmatrix} = 0$ when these vectors are elements of $\Z/9\Z$. (In $\Z/9\Z$, we have $3 \cdot 3 = 9 = 0$).
+\end{example}
+
+\subsubsection*{Length and orthogonality with respect to an inner product}
+
+\begin{defn}
+    (Length of a vector with respect to an inner product). 
+    
+    Let $V$ be an inner product space. In analogy to the fact that the length of a vector in $\R^n$ can be expressed using the dot product on $\R^n$ (see Theorem \ref{ch::lin_alg::thm::length_in_Rn}), we define the \textit{length of a vector $\vv \in V$ with respect to the inner product on $V$} to be $||\vv|| := \sqrt{\langle \vv, \vv \rangle}$.
+\end{defn}
+
+\begin{defn}
+    (Angle between vectors with respect to an inner product). 
+    
+    Let $V$ be an inner product space. In analogy to the the fact that the angle between vectors $\vv_1, \vv_2 \in \R^n$ is $\arccos(\hat{\vv}_1 \cdot \hat{\vv}_2)$, we define the \textit{angle $\theta$ between vectors $\vv_1, \vv_2 \in V$ with respect to the inner product on $V$} to be $\theta := \arccos(\langle \hat{\vv}_1, \hat{\vv}_2 \rangle)$. Note that $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||} = \frac{\vv_i}{\sqrt{\langle \vv_i, \vv_i \rangle}}$.
+\end{defn}
+
+\begin{remark}
+    (Geometric inner product).
+    
+    Let $V$ be an inner product space. Then $\langle \vv_1, \vv_2 \rangle = ||\vv_1||\spc||\vv_2|| \cos(\theta)$, where $\theta$ is the angle between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$. (This fact is the generalization of the geometric dot product on $\R^n$, which was discussed in Theorem \ref{ch::lin_alg::thm::dot_prod_and_angle}).
+\end{remark}
+
+\begin{theorem}
+\label{ch::bilinear_forms_metric_tensors::thm::Cauchy_Schwarz}
+     (Cauchy-Schwarz inequality for vector spaces over $\R$).
+     
+     Let $V$ be a vector space over $\R$ with inner product. Then the \textit{Cauchy-Schwarz inequality} holds: $\langle \vv_1, \vv_2 \rangle \leq ||\vv_1|| \spc ||\vv_2||$ for all $\vv_1, \vv_2 \in V$. 
+     
+     Note, the Cauchy-Schwarz inequality is equivalent to the statement that the angle $\theta$ in $V$ between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$ satisfies $\theta \in [0, 2 \pi)$.
+\end{theorem}
+
+\begin{proof}
+    Define $f:\R \rightarrow [0, \infty) \subseteq \R$ by $f(k) = \langle k \vv_1 + \vv_2, k \vv_1 + \vv_2 \rangle = k^2 \langle \vv_1, \vv_1 \rangle + 2 k \langle \vv_1, \vv_2 \rangle + \langle \vv_2, \vv_2 \rangle$. Set $a := \langle \vv_1, \vv_1 \rangle$, $b := 2 \langle \vv_1, \vv_2 \rangle$, and $c := \langle \vv_2, \vv_2 \rangle$, so that $f(k) = ak^2 + bk + c$.
+    
+    Since $\langle \cdot, \cdot \rangle$ is positive-definite, then $f$ is nonnegative, and therefore must have either one or zero real roots. According to the quadratic formula, one real root occurs when $b^2 - 4ac = 0$, and zero real roots occur when $b^2 - 4ac < 0$. So, we must have $b^2 - 4ac \leq 0$. 
+    
+    Using our expressions for $a, b$, and $c$, we see that $(4 \langle \vv_1, \vv_2 \rangle)^2 - 4(\langle \vv_1, \vv_2 \rangle)(\langle \vv_2, \vv_2 \rangle) \leq 0$. Thus \\ ${\langle \vv_1, \vv_2 \rangle^2 \leq \langle \vv_1, \vv_1 \rangle \langle \vv_2, \vv_2 \rangle = ||\vv_1||^2 ||\vv_2||^2}$. Take the square root of each side to obtain the result.  
+\end{proof}
+
+\begin{defn}
+    (Orthogonality of vectors with respect to an inner product). 
+    
+    Let $V$ be an inner product space. We say vectors $\vv_1, \vv_2 \in V$ are \textit{orthogonal with respect to the inner product on $V$} iff the angle between $\vv_1$ and $\vv_2$ is $\frac{\pi}{2}$. That is, $\vv_1, \vv_2 \in V$ are orthogonal iff $\langle \vv_1, \vv_2 \rangle = 0$.
+\end{defn}
+
+\newpage
+
+\begin{defn}
+    (Orthonormal basis with respect to an inner product).
+    
+     Let $V$ be a finite-dimensional vector space with inner product $\langle \cdot, \cdot \rangle$. We say a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$ is \textit{orthonormal (with respect to $\langle \cdot, \cdot \rangle$)} iff
+     
+     \begin{itemize}
+         \item $||\ee_i|| = 1$ for all $i$
+         \item $\ee_i$ and $\ee_j$ are orthogonal to each other when $i \neq j$
+     \end{itemize}
+     
+     That is, $E$ is an orthonormal basis iff $\langle \ee_i, \ee_j \rangle = \delta^i{}_j$ for all $i, j$.
+\end{defn}
+
+\begin{theorem}
+\label{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}
+    (Gram-Schmidt algorithm).
+    
+    Let $V$ be a finite-dimensional inner product space. Given any basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, we can use the following \textit{Gram-Schmidt algorithm} to convert $E$ into an orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$.
+    
+    First, we ``orthogonalize'' the basis $E$ into a basis $F = \{\ff_1, ..., \ff_n\}$. Set $\ff_1 := \ee_1$, and, for $i \geq 2$, set
+    
+    \begin{align*}
+        \ff_i := \ee_i - \proj(\ff_i \rightarrow \spann(\ee_1, ..., \cancel{\ee_i}, ..., \ee_n)) = \ee_i - \sum_{j \neq i} \proj(\ff_i \rightarrow \ee_j) = \ee_i - \sum_{j \neq i} \frac{\langle \ff_i, \ee_j \rangle}{\langle \ee_j, \ee_j \rangle}, \quad i \geq 2.
+    \end{align*}
+    
+    (In the last equality in the line above, we've used an analogue of Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product} to express vector projections in terms of inner products). 
+    To obtain the orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$, we just normalize the orthogonal basis $F$, and set $\huu_i := \frac{\ff_i}{||\ff_i||}$.
+\end{theorem}
 
 \begin{remark}
     The above theorem reveals that the algebraic dot product (on $\R^2$) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.

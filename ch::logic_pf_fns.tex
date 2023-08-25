@@ -560,14 +560,30 @@ One important example is that the identity $\R^2 = \R \times \R$ can be interpre
 
 \section{Relations}
 
-inverse relations
+\begin{defn}
+    (Relation).
 
-inverse functions <=> bijection
+    Let $S$ be a set. A \textit{relation (on $S$)} is simply a subset of $S \times S$. Given a relation $R$ on $S$, we write $xRy$ to mean $(x, y) \in R$, and say ``$x$ is related to $y$'' iff $xRy$.
+\end{defn}
+
+\begin{defn}
+    (Inverse relation).
+
+    Given a relation $R$ on a set $S$, the \textit{inverse relation} to $R$ is the relation on $S$ denoted by $R^{-1}$ and defined by $R^{-1} := \{(y, x) \in S \times S \mid (x, y) \in R\}$. That is, $yR^{-1}x$ iff $xRy$.
+\end{defn}
 
 \subsection*{Equivalence relations}
 
 \begin{defn}
     (Equivalence relation).
+
+    An \textit{equivalence relation} on a set $S$ is a relation on $S$ that satisfies the following properties:
+
+    \begin{itemize}
+        \item (Reflexivity). $\forall x \in S \spc xRx$.
+        \item (Symmetry). $\forall x \in S \spc \forall y \in S \spc xRy \implies yRx$.
+        \item (Transitivity). $\forall x \in S \spc \forall y \in S \spc \forall z \in S \spc xRy \text{ and } yRz \implies xRz$.
+    \end{itemize}
 \end{defn}
 
 \begin{defn}
@@ -606,6 +622,10 @@ Latin meanings of injective and surjective.
     (One-to-one, injection).
 \end{defn}
 
+\begin{theorem}
+    (A function's inverse relation is a function iff the function is one-to-one).
+\end{theorem}
+
 \begin{defn}
     (Onto, surjection).
 \end{defn}
@@ -613,6 +633,10 @@ Latin meanings of injective and surjective.
 \begin{defn}
     (Bijection).
 \end{defn}
+
+\begin{theorem}
+    (A function is a bijection iff it is invertible).
+\end{theorem}
 
 left-inverse, right-inverse, relation to -jectivities
 

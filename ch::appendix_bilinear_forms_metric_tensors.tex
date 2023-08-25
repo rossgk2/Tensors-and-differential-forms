@@ -1,0 +1,109 @@
+\chapter{Appendix to chapter \ref{ch::bilinear_forms_metric_tensors}}
+
+\section*{Symmetric and orthogonal linear functions}
+
+The only results from this appendix that are necessary to know are the conditions (3) and (4) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::orthogonal_linear_fn} satisfied by an orthogonal linear function.
+
+\begin{deriv}
+\label{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}
+    (The adjoint of a linear function with respect to a nondegenerate bilinear form).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces, let $B$ be a nondegenerate bilinear form on $V$ and $W$, and consider the musical isomorphisms $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ induced by $B$.
+    
+    There is an induced linear map $\ff^\dag:V \rightarrow W$, called the \textit{adjoint of $\ff$ (with respect to $B$)}, that is obtained by using the musical isomorphisms on the domain and codomain of the dual transformation $\ff^*:W^* \rightarrow V^*$. We define $\ff^\dag$ to be the unique map for which the following diagram commutes:
+    
+    \begin{center}
+       % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRADUQBfU9TXfIRRkAjFVqMWbAOoA9AFTdeIDNjwEiI0mOr1mrRBwVK+awZvLi9Uw9O7iYUAObwioAGYAnCAFskZEBwIJC0QBjoAIxgGAAV+dSEQTywnAAscEF1JAxAAHVz3cIyeD28-RFCgpAAmanCo2PjzQ2S0jKz9Nnz3d2MSkC9ff2oqxABmOsjouLMNQwYYd3aJTsN8pycTAbKkCcDgxGquCi4gA
+        \begin{tikzcd}
+        V \arrow[d, "\flat_1"'] \arrow[r, "\ff^\dag"] & W \arrow[d, "\flat_2"] \\
+        W^* \arrow[r, "\ff^*"']                & V^*        
+        \end{tikzcd}
+    \end{center}
+    
+    Thus, $\ff^\dag = \flat_2^{-1} \circ \ff^* \circ \flat_1$, or, equivalently, $\flat_2 \circ \ff^\dag = \ff^* \circ \flat_1$.
+    
+    Since $\flat_2 \circ \ff^\dag = \ff^* \circ \flat_1$, then $\ff^\dag(\vv_0)^{\flat_2} = \ff^*(\vv_0^{\flat_1})$. Using the definition of $\ff^*$ (recall Definition \ref{ch::motivated_intro::defn::dual_transf}), we have $\ff^\dag(\vv_0)^{\flat_2} = \vv_0^{\flat_1} \circ \ff$. This is the same\footnote{Here we've used $B(\cdot, \vv_2)$ to denote the function $\vv_1 \mapsto B(\vv_1, \vv_2)$.} as $B(\cdot, \ff^\dag(\vv_0)) = B(\vv_0, \cdot) \circ \ff$. After evaluating both sides of this most recent equation on $\vv_1 \in V$ and relabeling $\vv_0$ as $\vv_2$, we have:
+    
+    \begin{align*}
+        B(\vv_1, \ff^\dag(\vv_2)) = B(\vv_2, \ff(\vv_1)) \text{ for all $\vv_1, \vv_2 \in V$}.
+    \end{align*}
+\end{deriv}
+
+Replacing the bilinear form of the above derivation with an inner product, we see that when we have an inner product instead of an arbitrary nondegenerate bilinear form, then $\ff^\dag$ is uniquely characterized by the condition that $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$ for all $\vv_1, \vv_2 \in V$. We will use this condition as a means to characterize special classes of linear functions. Specifically, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which $\ff^\dag = \ff^{-1}$. Before investigating such linear functions, we quickly present a definition.
+
+\begin{defn}
+    (Transpose of a matrix).
+    
+    The \textit{transpose} of an $m \times n$ matrix $(a^i{}_j)$ is the $n \times m$ matrix $(a^j{}_i)$. The tranpose of a matrix $\AA$ is denoted $\AA^\top$.
+\end{defn}
+
+Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which $\ff^\dag = \ff^{-1}$.
+
+\begin{defn} 
+\label{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn}
+    (Symmetric linear function).
+
+    Let $V$ be a vector space, consider a linear function $\ff:V \rightarrow V$. We define $\ff$ to be \textit{symmetric} iff the following equivalent conditions hold:
+    
+    \begin{enumerate}
+        \item $\ff = \ff^\dag$.
+        \item $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
+        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then the matrix of $\ff$ relative to $\hU$ is equal to its transpose: $[\ff(\hU)]_{\hU}^\top = [\ff(\hU)]_{\hU}$. (Matrices that are equal to their own transpose are called \textit{symmetric}).
+    \end{enumerate}
+\end{defn}
+        
+\begin{proof}
+    \mbox{} We need to show that the conditions are indeed equivalent.
+    \\ \indent ($1 \iff 2$).
+    \\ \indent ($\implies$). Use $\ff = \ff^\dag$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$. 
+    \\ \indent ($\impliedby$). We have $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$ and $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$. Therefore $\langle \vv_1, \ff(\vv_2) \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$. Due to the cancelability of inner products (this follows from the positive-definiteness of inner products), we have $\ff(\vv_2) = \ff^\dag(\vv_2)$ for all $\vv_2 \in V$. So $\ff = \ff^\dag$. 
+
+    ($2 \iff $ 3). 
+    \\ \indent ($\implies$). If (2) is true, then the $j$th column of $[\ff(\hU)]_{\hU}$ is $[\ff(\huu_j)]_{\hU}$, so the $^i_j$ entry of $[\ff(\hU)]_{\hU}$ is $\langle \ff(\huu_j), \huu_i \rangle$. Similarly, the $^i_j$ entry of the matrix of $\ff^\dag$ relative to $\hU$ is $\langle 
+    \ff^\dag(\huu_j), \huu_i \rangle$. Due to the condition on $\langle \cdot, \cdot \rangle$ induced by the identification $V \cong V^*$, we have $\langle \ff^\dag(\huu_j), \huu_i \rangle = \langle \huu_j, \ff(\huu_i) \rangle = \langle \ff^\dag(\huu_i), \huu_j \rangle$. But this is the $^j_i$ entry of $[\ff(\hU)]_{\hU}$, i.e., the $^i_j$ entry of $[\ff(\hU)]_{\hU}^{\top}$. Thus $[\ff(\hU)]_{\hU} = [\ff(\hU)]_{\hU}^{\top}$.
+    \\ \indent ($\impliedby$). Let $\hU = \{\huu_1, ..., \huu_n\}$ be an orthonormal basis for $V$, and let the matrix $\AA$ of $\ff$ relative to $\hU$ satisfy $a_{ij} = a^j_i$. Since $a^i{}_j = \langle \ff(\huu_i), \huu_j \rangle$, then $\langle \ff(\huu_i), \huu_j \rangle = \langle \huu_i, \ff(\huu_j) \rangle$. Extend with multilinearity to obtain the conclusion.
+\end{proof}
+
+\begin{defn}
+\label{ch::bilinear_forms_metric_tensors::defn::orthogonal_linear_fn}
+    (Orthogonal linear function). 
+    
+    Let $V$ be a vector space over $K$ (where\footnote{This is a very technical condition, and not much attention should be paid to it. We require this so that $2 \neq 0$, which allows us to divide by $2$.} we have $K \neq \Z/2\Z$), consider a linear function $\ff:V \rightarrow V$. We define $\ff$ to be \textit{orthogonal} iff the following equivalent conditions hold:
+    
+    \begin{enumerate}
+        \item $\ff^\dag = \ff^{-1}$.
+        \item $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^{-1}(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
+        \item $\ff$ preserves inner product: $\langle \vv_1, \vv_2 \rangle = \langle \ff(\vv_1), \ff(\vv_2) \rangle$.
+        \item $\ff$ preserves length.
+        \item $\ff$ preserves length and angle.
+        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then the matrix $[\ff(\hU)]_{\hU}$ of $\ff$ relative to $\hU$ has orthonormal columns.
+        \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then $[\ff(\hU)]_{\hU}^{-1} = [\ff(\hU)]_{\hU}^{\top}$.
+    \end{enumerate}
+\end{defn}
+        
+\begin{proof}
+    We need to show that the conditions are indeed equivalent. To do so, we prove $(3) \iff (4) \iff (5)$ and then $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
+    
+    \vspace{.2cm}
+    
+    Here is the proof that $(3) \iff (4) \iff (5)$:
+    \\ \indent $(3 \implies 4)$. Length is a function of inner product, $||\vv|| = \sqrt{\langle \vv, \vv \rangle}$. Therefore, if inner product is preserved, then length is preserved.
+    \\ \indent $(4 \iff 5)$. The reverse direction is obvious; we need to show the forward direction. The angle $\theta$ between $\vv_1$ and $\vv_2$ is $\theta = \cos^{-1}\Big(\frac{\vv_1 \cdot \vv_2}{||\vv_1||||\vv_2||}\Big)$. Since $\theta$ is a function of preserved quantities (dot product and length), it too is a preserved quantity.
+    \\ \indent $(5 \implies 3)$. Replace the dot product $\cdot$ on $\R^n$ with the inner product $\langle \cdot, \cdot \rangle$ on $V$ in the equation stated in the proof of Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product} to show that $\langle \vv_1, \vv_2 \rangle = \frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2))$. That is, the inner product $\langle \vv_1, \vv_2 \rangle$ is a function of $||\vv_1||$ and $||\vv_2||$. Applying the previous formula, the inner product $\langle \ff(\vv_1), \ff(\vv_2) \rangle$ is a function of $||\ff(\vv_1)||$ and $||\ff(\vv_2)||$: ${\langle \ff(\vv_1), \ff(\vv_2) \rangle = \frac{1}{2}(||\ff(\vv_1) + \ff(\vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))}$. Since $\ff$ is linear, this becomes $\frac{1}{2}(||\ff(\vv_1 + \vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))$. If length is preserved, then this is the same as $\frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2) = \langle \vv_1, \vv_2 \rangle$.
+
+    \vspace{.2cm}
+
+    Now we show $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
+    \mbox{} \\
+        ($1 \iff 2$).
+        \\ \indent ($\implies$). Use $\ff^\dag = \ff^{-1}$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$.
+        \\ \indent($\impliedby$). $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \ff(\vv_1), \vv_2 \rangle$ by hypothesis, and $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$ by condition on $\langle \cdot, \cdot \rangle$ imposed by identifying $V \cong V^*$ for $\ff^\dag$. Thus $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$.
+        \\ ($2 \implies 3$). Substitute $\vv_3 = \ff^{-1}(\vv_2)$, so that we have $\langle \ff(\vv_1), \ff(\vv_3) \rangle = \langle \vv_1, \vv_3 \rangle$ for all $\vv_1, \vv_3 \in V$.
+        \\ ($3 \iff 6$). 
+        \\ \indent $(\implies$). We have in particular that $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \langle \huu_i, {\uu}_j \rangle$. Since $\hU$ is orthonormal, $\langle \huu_i, \huu_j \rangle = \delta^i{}_j$. Therefore $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$, so the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal.
+        \\ \indent $(\impliedby)$. Since the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal, we have $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Extend with multilinearity to obtain the conclusion.
+        \\ ($6 \iff 7$).
+        \\ \indent $(\implies$). The $^i_j$ entry of $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top$ is $(\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th column of $[\ff(\hU)]_{\hU}$})\top = (\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th row of $[\ff(\hU)]_{\hU}$}) = \langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top = \II$. A similar argument shows $[\ff(\hU)]_{\hU}^\top [\ff(\hU)]_{\hU} = \II$.
+        \\ \indent $(\impliedby)$. Reversing the logic of the forward direction, we know $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore (3) is satisfied. Then we use $(3) \implies (6)$.
+        \\ ($5 \implies 1$). Use the fact that $[\ff(\hU)]_{\hU}^\top$ is the matrix of the adjoint $\ff^\dag:V \rightarrow V$.
+\end{proof}

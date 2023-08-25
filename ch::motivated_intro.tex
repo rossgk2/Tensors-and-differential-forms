@@ -41,7 +41,7 @@ Elements of a vector space can be considered to be ``linear elements'' because t
 
 \begin{defn}
 \label{ch::motivated_intro::defn::tensor_product_space}
-    (Tensor product space).
+    \smallcite{book::SM}{307} (Tensor product space).
     
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. The \textit{tensor product space} $V_1 \otimes ... \otimes V_k$ is defined to be the vector space over $K$ whose elements are from the set $V_1 \times ... \times V_k$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $V_1 \otimes ... \otimes V_k$ as $\vv_1 \otimes ... \otimes \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
     
@@ -267,7 +267,7 @@ for some $b_{ij} \in K$.
 
 We now convert this discussion of matrices into a discussion about the linear functions they represent. We started with the matrix $(a_{ij})$ of a linear function $\ff$ relative to bases. But what linear functions do the matrices in the above weighted sum represent? 
 
-Consider one of the matrices in the weighted sum, $\gg_i \hh_j^\top$. Initially, we may be tempted to directly investigate the linear function represented by $\gg_i \hh_j^\top$. This will work, but we can be even more specific; $\gg_i \hh_j^\top$ is a matrix-matrix product, so it corresponds to a composition of linear functions (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive} and possibly Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}). Asking ``to what linear functions do $\gg_i$ and $\hh_j^\top$ correspond?'' will prove fruitful.
+Consider one of the matrices in the weighted sum, $\gg_i \hh_j^\top$. Since $\gg_i \hh_j^\top$ is a matrix-matrix product, the linear function represented by $\gg_i \hh_j^\top$ function must be composition of the linear function represented by $\gg_i$ with the linear function represented by $\hh_j^\top$ (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive} and possibly Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}).
 
 Linear functions are composed from right to left, so we will first consider $\hh_j^\top$. The linear function $K^n \rightarrow K$ represented by the $1 \times n$ matrix $\hh_j^\top$ is the function $\phi_{\hh_j}$ defined by $\phi_{\hh_j}(\cc) = \hh_j^\top \cc$. Note that the image of $\phi_{\hh_j}$ is the field $K$, which is a 1-dimensional vector space. So $\phi_{\hh_j}$ is a rank-1 linear map (see Definition \ref{ch::lin_alg::defn::rank}).
 

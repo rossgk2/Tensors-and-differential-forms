@@ -268,7 +268,7 @@ With the previous notion formalized, we now discover, strangely enough, that geo
     \label{ch::manifolds::thm::geometric_tangent_vectors_iso_directional_derivative_functions}
     (Geometric tangent vectors are naturally isomorphic to ``directional derivative functions'').
     
-     Let $\frac{\pd}{\pd \vv}\Big|_\pp$ denote the function $f \mapsto \frac{\pd}{\pd \vv}\Big|_\pp (f)$. The map $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is a natural linear isomorphism $\R^n_\pp \cong T_\pp(\R^n)$.
+     Let $\frac{\pd}{\pd \vv}\Big|_\pp$ denote the function $f \mapsto \frac{\pd}{\pd \vv}\Big|_\pp (f)$. The map $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is a natural linear isomorphism $\R^n_\pp \rightarrow T_\pp(\R^n)$.
 \end{theorem}
 
 \begin{proof}
@@ -278,16 +278,16 @@ With the previous notion formalized, we now discover, strangely enough, that geo
     
     Let $E = \{\ee^1, ..., \ee^n\}$ be a basis for $\R^n$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be its dual basis for $(\R^n)^*$. Note that since $\phi^{\ee_i}:\R^n \rightarrow \R$ is defined by $\phi^{\ee_i}(\pp) = [\pp]_E^i$, each $\phi^{\ee_i}$ is a $C^\infty$ function on $\R^n$.
     
-    At $\pp \in \R^n$, the $i$th coordinate of the zero map is $\frac{\pd}{\pd \vv}\Big|_\pp (\phi^{\ee_i})$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}). All coordinates of the zero function relative to any basis must be zero, so, using the linearity of the directional derivative with respect to $\vv_\pp$ (again, see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}), we have
+    At $\pp \in \R^n$, the $i$th coordinate of the zero map is $\frac{\pd}{\pd \vv}\Big|_\pp (\phi^{\see_i})$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}). All coordinates of the zero function relative to any basis must be zero, so, using the linearity of the directional derivative with respect to $\vv_\pp$ (again, see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}), we have
     
     \begin{align*}
         0 
-        = \frac{\pd}{\pd \vv}\Big|_\pp (\phi^{\ee_i}) 
-        = \frac{\pd}{\pd (\sum_j [\vv]_E^j \ee^j)}\Big|_\pp (\phi^{\ee_i}) 
-        = \sum_j [\vv]_E^j \Big( \frac{\pd}{\pd \ee^j}\Big|_\pp \Big) (\phi^{\ee_i}).
+        = \frac{\pd}{\pd \vv}\Big|_\pp (\phi^{\see_i}) 
+        = \frac{\pd}{\pd (\sum_j [\vv]_E^j \see^j)}\Big|_\pp (\phi^{\see_i}) 
+        = \sum_j [\vv]_E^j \Big( \frac{\pd}{\pd \see^j}\Big|_\pp \Big) (\phi^{\see_i}).
     \end{align*}
     
-    Since $\frac{\pd}{\pd \ee^j}\Big|_\pp = \frac{\pd}{\pd x^i}\Big|_\pp$, the above becomes
+    Since $\frac{\pd}{\pd \see^j}\Big|_\pp = \frac{\pd}{\pd x^i}\Big|_\pp$, the above becomes
     
     \begin{align*}
         0 = \sum_j [\vv]_E^j \delta^i{}_j = [\vv]_E^i.
@@ -461,7 +461,7 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
         v_\pp(fg) = v_\pp(f)g(\pp) + f(\pp)v_\pp(g) \text{ for all $f, g \in C^\infty(M \rightarrow \R)$}.
     \end{align*}
     
-    The set of derivations at $\pp \in M$ is called the \textit{tangent space to $M$ at $\pp$}, and is denoted $T_\pp(M)$. An element of $T_\pp(M)$ is called a \textit{tangent vector to $M$ (at $\pp$)}.
+    The vector space over $\R$ of derivations at $\pp \in M$ is called the \textit{tangent space to $M$ at $\pp$}, and is denoted $T_\pp(M)$. An element of $T_\pp(M)$ is called a \textit{tangent vector to $M$ (at $\pp$)}.
 \end{defn}
 
 \begin{theorem}
@@ -491,30 +491,54 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
     
     In the above, $f_{(U, \xx)}$ denotes the coordinate representation of $f$ relative to the chart $(U, \xx)$. The $\frac{\pd}{\pd x^i}\Big|_\pp$ to the left of $:=$ are what we are defining in our abuse of notation, and the $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd}{\pd \see^i}\Big|_{\xx(\pp)}$ on the right hand side are directional derivatives taking in smooth functions on $\R^n$ as their arguments. 
     
-    We will see that the $\frac{\pd}{\pd x^i}\Big|_\pp$ are derivations at $\pp \in M$. Once we have seen this, since we know $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)}$ are derivations at $\xx(\pp) \in R^n$ (recall Theorem \ref{ch::manifolds::thm::basis_of_TpRn}, it follows that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
+    We will see that the $\frac{\pd}{\pd x^i}\Big|_\pp$ are derivations at $\pp \in M$. Once we have seen this, since we know $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)}$ are derivations at $\xx(\pp) \in \R^n$ (recall Theorem \ref{ch::manifolds::thm::basis_of_TpRn}), we show that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
 \end{defn}
 
 \begin{proof}
     \newcommand{\pdxiLHS}{\underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}}}
 
-    We need to show that the $\pdxiLHS:C^\infty(M \rightarrow \R) \rightarrow \R$ from the left side of the condition of the definition are derivations at $\pp \in M$. In this proof, we put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left hand side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are directional derivatives.
+    We need to show (1) that the $\frac{\pd}{\pd x^i}\Big|_\pp$ of the left side of the above definition are derivations at $\pp \in M$ and (2) that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
+
+    \begin{enumerate}
+        \item We will put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left hand side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are directional derivatives.
     
-    We need to show that $\pdxiLHS$ are linear and follow the product rule. Linearity follows easily from the linearity of the directional derivative with respect to its argument from $C^\infty(\R^n \rightarrow \R)$. We show the product rule holds:
+        We need to show that $\pdxiLHS$ are linear and follow the product rule. Linearity follows easily from the linearity of the directional derivative with respect to its argument from $C^\infty(\R^n \rightarrow \R)$. We show the product rule holds:
+        
+        \begin{align*}
+           \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} (fg)
+            &= \frac{\pd (fg \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)} 
+            = \frac{\pd (fg)}{\pd x^i}\Big|_{\xx^{-1}(\xx(\pp))} \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}
+            = \frac{\pd (fg)}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}
+            \\
+            &= \Big( \frac{\pd f}{\pd x^i}\Big|_\pp g(\xx(\pp)) + f(\xx(\pp)) \frac{\pd g}{\pd x^i}\Big|_\pp \Big) \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)} \\
+            &= \frac{\pd f}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)} g(\xx(\pp))
+            + f(\xx(\pp)) \frac{\pd g}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}  \\
+            &= \frac{\pd (f \circ \xx)}{\pd x^i}\Big|_\pp g(\xx(\pp)) + f(\xx(\pp)) \frac{\pd (g \circ \xx)}{\pd x^i}\Big|_\pp  \\
+            &= \Big( \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} \Big) (f) \spc g(\xx(\pp)) + f(\xx(\pp)) \spc \Big( \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} \Big) (g).
+        \end{align*}
+        
+        In the above, we used the chain and product rules and then reversed the product and chain rules.
+
+        \item Now we show $\Big\{ \pdxiLHS \Big\}_{i = 1}^n \subseteq T_\pp(M)$ is a basis of $T_\pp(M)$. Linear independence of this set follows from linear independence of $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n \subseteq T_\pp(\R^n)$. To show the set spans $T_\pp(M)$, consider $v_\pp \in T_\pp(M)$. Recall that $T_\pp(M)$ is a subset of functions $C^\infty(M \rightarrow \R) \rightarrow \R$, so $v_\pp$ is such a function; $v_\pp:C^\infty(M \rightarrow \R) \rightarrow \R$. The homeomorphism $\xx:M \rightarrow \R^n$ induces a $\widetilde{v}_{\xx(\pp)}:C^\infty(\R^n \rightarrow \R) \rightarrow \R$ defined by $\widetilde{v}_{\xx(\pp)}(\widetilde{f}) = v_\pp(\widetilde{f} \circ \xx)$. It's straightforward to check that $\widetilde{v}_{\xx(\pp)}$ is a derivation at $\xx(\pp) \in \R^n$, so $\widetilde{v}_{\xx(\pp)} \in T_\pp(\R^n)$. Since $\Big\{ \frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} \Big\}_{i = 1}^n$ spans $T_{\xx(\pp)}(\R^n)$, we have $\widetilde{v}_{\xx(\pp)} = \sum_{i = 1}^n c^i \frac{\pd}{\pd x^i}\Big|_{\xx(\pp)}$ for some $c^i \in \R$. Evaluating both sides of this equation on $\widetilde{f} \in C^\infty(\R^n \rightarrow \R)$ and recalling the definition of $\widetilde{v}_{\xx(\pp)}$, we have
+
+        \begin{align*}
+            \widetilde{v}_{\xx(\pp)}(\widetilde{f}) = v_\pp(\widetilde{f} \circ \xx) = \sum_{i = 1}^n c^i \frac{\pd \widetilde{f}}{\pd x^i}\Big|_{\xx(\pp)}.
+        \end{align*}
     
-    \begin{align*}
-       \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} (fg)
-        &= \frac{\pd (fg \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)} 
-        = \frac{\pd (fg)}{\pd x^i}\Big|_{\xx^{-1}(\xx(\pp))} \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}
-        = \frac{\pd (fg)}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}
-        \\
-        &= \Big( \frac{\pd f}{\pd x^i}\Big|_\pp g(\xx(\pp)) + f(\xx(\pp)) \frac{\pd g}{\pd x^i}\Big|_\pp \Big) \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)} \\
-        &= \frac{\pd f}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)} g(\xx(\pp))
-        + f(\xx(\pp)) \frac{\pd g}{\pd x^i}\Big|_\pp \frac{\pd \xx^{-1}}{\pd x^i}\Big|_{\xx(\pp)}  \\
-        &= \frac{\pd (f \circ \xx)}{\pd x^i}\Big|_\pp g(\xx(\pp)) + f(\xx(\pp)) \frac{\pd (g \circ \xx)}{\pd x^i}\Big|_\pp  \\
-        &= \Big( \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} \Big) (f) \spc g(\xx(\pp)) + f(\xx(\pp)) \spc \Big( \underbrace{\frac{\pd}{\pd x^i}\Big|_\pp}_{\text{LHS}} \Big) (g).
-    \end{align*}
+        Substitute $f := \widetilde{f} \circ \xx^{-1}:M \rightarrow \R^n$ to obtain
     
-    Here, we used the chain and product rules and then reversed the product and chain rules.
+        \begin{align*}
+            v_\pp(f) = \sum_{i = 1}^n c^i \frac{\pd (f \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)} = \sum_{i = 1}^n c^i \underbrace{\frac{\pd f}{\pd x^i}\Big|_\pp}_{\text{LHS}}.
+        \end{align*}
+    
+        Thus
+    
+        \begin{align*}
+            v_\pp = \sum_{i = 1}^n c^i \pdxiLHS,
+        \end{align*}
+        
+        so $\Big\{ \pdxiLHS \Big\}_{i = 1}^n$ spans $T_\pp(M)$.
+    \end{enumerate} 
 \end{proof}
 
 \newpage
@@ -526,19 +550,14 @@ Now that we have defined tangent vectors to a manifold, we can define a generali
 \begin{defn}
 \label{ch::manifolds::defn::differential_smooth_function_Rn_Rm}
     (Differential of a smooth function $\R^n \rightarrow \R^m$).
-
-    Consider a smooth function $\FF:\R^n \rightarrow \R^m$. We define the \textit{differential $d\FF_\pp:T_\pp(\R^n) \rightarrow T_{\FF(\pp)}(\R^m)$ of $\FF$ at $\pp$} to be the function $T_\pp(\R^n) \rightarrow T_{\FF(\pp)}(\R^m)$ that is induced by the total derivative $\R^n \rightarrow \R^m$ and the isomorphisms $\R^n \cong T_\pp(\R^n), \R^m \cong T_\pp(\R^m)$.
     
-    Since the matrix of the total derivative relative to the standard bases of $\R^n$ and $\R^m$ is the Jacobian matrix\footnote{$F^i$ denotes the $i$th component function of $\FF$).}
+    Consider a smooth function $\FF:\R^n \rightarrow \R^m$. We define the \textit{differential $d\FF_\pp:T_\pp(\R^n) \rightarrow T_{\FF(\pp)}(\R^m)$ of $\FF$ at $\pp$} to be the function $T_\pp(\R^n) \rightarrow T_{\FF(\pp)}(\R^m)$ whose matrix relative to the bases $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ and $\Big\{ \frac{\pd}{\pd y^i}\Big|_{\FF(\pp)} \Big\}_{i = 1}^n$ for $T_\pp(\R^n)$ and $T_{\FF(\pp)}(\R^m)$ is the Jacobian matrix\footnote{$F^i$ denotes the $i$th component function of $\FF$).}
     
     \begin{align*}
-        \frac{\pd \FF}{\pd \xx}\Big|_\pp = \Big( \frac{\pd F^i}{\pd x^j}\Big|_\pp \Big),
+        \frac{\pd \FF}{\pd \xx}\Big|_\pp = \Big( \frac{\pd F^i}{\pd x^j}\Big|_\pp \Big).
     \end{align*}
     
-    the matrix of $d\FF_\pp$ relative to the bases 
-    $\{ \frac{\pd}{\pd x^i} \Big|_\pp \}$ for $T_\pp(\R^n)$ and $\{ \frac{\pd}{\pd y^i} \Big|_{\FF(\pp)} \}$ for $T_{\FF(\pp)}(\R^m)$ must be the same matrix.
-    
-    To determine a general formula for $d\FF_\pp$, we will consider how $d\FF_\pp$ acts on a basis tangent vector $\frac{\pd}{\pd x^i}\Big|_\pp$ and extend whatever result we get with the linearity of $d\FF_\pp$. Recalling from Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors} that if $\ff:V \rightarrow W$ is a linear function between finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, then we have $\ff(\ee_i) = \sum_{j = 1}^n ([\ff(E)]_F)_{ji} \ff_j$, we see
+    To determine a coordinate-free\footnote{By ``coordinate-free'', we mean ``independent of a choice of bases for $T_\pp(\R^n)$ and $T_\pp(\R^m)$''.} formula for $d\FF_\pp$, we will consider how $d\FF_\pp$ acts on a basis tangent vector $\frac{\pd}{\pd x^i}\Big|_\pp$ and extend whatever result we get with the linearity of $d\FF_\pp$. Recalling from Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors} that if $\ff:V \rightarrow W$ is a linear function between finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, then we have $\ff(\ee_i) = \sum_{j = 1}^n ([\ff(E)]_F)_{ji} \ff_j$, we see
     
     \begin{align*}
         d\FF_\pp \Big( \frac{\pd}{\pd x^i}\Big|_\pp \Big) 
@@ -586,7 +605,7 @@ Now that we have defined tangent vectors to a manifold, we can define a generali
         d\FF_\pp \Big( \frac{\pd}{\pd x^i}\Big|_\pp \Big)(f) = \frac{\pd}{\pd x^i}\Big|_\pp (f \circ \FF).
     \end{align*}
     
-    Since $d\FF_\pp$ is linear and $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \}$ is a basis for $T_\pp(\R^n)$, the above condition extends to any $v_\pp \in T_\pp(\R^n)$:
+    Since $d\FF_\pp$ is linear and $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$ is a basis for $T_\pp(\R^n)$, the above condition extends to any $v_\pp \in T_\pp(\R^n)$:
     
     \begin{align*}
         d\FF_\pp (v_\pp )(f) = v_\pp (f \circ \FF).
@@ -642,7 +661,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     \begin{center}
         % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUB9AHW7TQAUAWQCUIAL6l0mXPkIoATOSq1GLNl2AAzAb34jxu7gCUxk6djwEiShSvrNWiEL2MSVMKAHN4RUFoAnCABbJDIQHAgkAEZqBjoAIxgGAAUZK3kQBhgtHBBqB3VnGh4+NAACXmC6NDhI8qgtUv4BEr00MykQQJCY6kikJVVHNgB3Su5q2vreOCZgzmAscoBecujxAD0wctGBAA9NrBEJuBgYTiwJLp7QxHCBxCH4pNT0uTYArC8ACzyCtROFzcUZYWB4BiwYCNZpocTucRAA
         \begin{tikzcd}
-        T_\pp(M) \arrow[rr, "v_\pp \mapsto df_\pp(v_\pp)"] \arrow[rrdd, "\td f_\pp"'] &  & T_{f(\pp)}(\R) \arrow[dd, "w \mapsto \sum_{i = 1}^n w(x^i) \see_i"] \\
+        T_\pp(M) \arrow[rr, "v_\pp \mapsto df_\pp(v_\pp)"] \arrow[rrdd, "\td f_\pp"'] &  & T_{f(\pp)}(\R) \arrow[dd, "w \mapsto \sum_{i = 1}^1 w(x^i) \see_i"] \\
                                                                                                &  &                                                                     \\
                                                                                                &  & \R                                                                 
         \end{tikzcd}
@@ -689,15 +708,13 @@ This characterization of the differential is coordinate-free, and therefore prov
 \end{theorem}
 
 \begin{proof}
-    Notice that since $(\vv \mapsto df_\pp(\vv)) = df_\pp$ is an element of $T_\pp(M)^*$. (We will explore this fact more later, in Section \ref{ch::manifolds::tangent_cotangent_with_coords}).
-    
-    Because $df_\pp \in T_\pp(M)^*$, we can decompose $df_\pp$ by using the dual basis $\{\lambda^i|_\pp\}_{i = 1}^n$ for $T_\pp(M)^*$ induced by the basis $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ for $T_\pp(M)$. (The notation $\{\lambda^i|_\pp\}_{i = 1}^n$ is temporary; by the end of this proof, we will have a more meaningful notation for this dual basis). Thus, we can write
+    Notice that $(\vv \mapsto df_\pp(\vv)) = df_\pp$ is an element of $T_\pp(M)^*$. (We will explore this fact more later, in Section \ref{ch::manifolds::tangent_cotangent_with_coords}). Since $T_\pp(M)$ is an $n$-dimensional vector space, then $T_\pp(M)^*$ is also $n$-dimensional, and we can express $df_\pp$ as
     
     \begin{align*}
-        df_\pp = \sum_{i = 1}^n C_i(\pp) \lambda^i|_\pp
+        df_\pp = \sum_{i = 1}^n C_i(\pp), \lambda^i|_\pp
     \end{align*}
     
-    for some smooth functions $C_i:U \rightarrow \R$. 
+    where each $C_i:U \rightarrow \R$ is a smooth function and $\lambda^i \in T_\pp(M)^*$.
     
     To determine the $C_i$, recall that Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector} stated that if $V$ is a finite-dimensional vector space, $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, and $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ is the basis for $V^*$ induced by $E$, then for any $\phi \in V^*$, we have $([\phi]_{E^*})_i = \phi(\ee_i)$. Applying this theorem and using $df_\pp(v_\pp) = v_\pp(f)$, we have
     
@@ -711,11 +728,13 @@ This characterization of the differential is coordinate-free, and therefore prov
         df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp \lambda^i_\pp.
     \end{align*}
     
-    It remains to determine the $\lambda^i|_\pp$. We claim that $\lambda^i|_\pp = dx^i|_\pp$, where $x^i$ is the $i$th coordinate function of $\xx$, and where $d$ of a smooth function $M \rightarrow \R$ obtained by identifying $T_{f(\pp)}(\R) \cong \R$ (so $d$ is same differential that we've been using in this proof; it is the differential $\td$ of the previous theorem). To prove the claim, we notice that since $\frac{\pd x^i}{\pd x^j} = \delta^i{}_j$ we have
+    It remains to determine the $\lambda^i|_\pp$. To do so, consider the above and substitute the coordinate function $x^i:U \rightarrow \R$ in for $f$. We have
     
     \begin{align*}
-        dx^i|_\pp = \sum_{j = 1}^n \delta^i{}_j \lambda|_\pp^j = \sum_{j = 1}^n \delta^i{}_j \lambda|_\pp^j = \lambda|_\pp^i.
+        dx^i|_\pp = \sum_{j = 1}^n \frac{\pd x^i}{\pd x^j}\Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd}{\pd \see^j}(x^i \circ \xx^{-1}) \Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp \lambda^j|_\pp,
     \end{align*}
+
+    where $\widetilde{x}^i:\R^n \rightarrow \R$ is the $i$th coordinate function on $\R^n$. Since $\frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp = \delta^i{}_j$, the sum simplifies to $\lambda^i|_\pp$, and we get $dx^i|_\pp = \lambda^i|_\pp$.
 \end{proof}
 
 \begin{remark}
@@ -737,9 +756,9 @@ This characterization of the differential is coordinate-free, and therefore prov
     
     \begin{align*}
         \td f_\pp(\vv_\pp) 
-        = \sum_{i = 1}^n \frac{\pd f}{\pd x^i} \td x^i(\vv)
+        = \sum_{i = 1}^n \frac{\pd f}{\pd x^i} \td x^i(\vv_\pp)
         = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp [\vv_\pp]_\sE^i 
-        = (\nabla_\xx f)|_\pp \cdot \vv = \frac{\pd f}{\pd \vv}\Big|_\pp,
+        = (\nabla_\xx f)|_\pp \cdot \vv_\pp = \frac{\pd f}{\pd \vv}\Big|_\pp,
     \end{align*}
     
     where $\frac{\pd f}{\pd \vv}\Big|_\pp$ is the directional derivative of $f$ at $\pp$ in the direction of $\vv$. 
@@ -774,10 +793,11 @@ This characterization of the differential is coordinate-free, and therefore prov
 \end{theorem}
 
 \begin{proof}
-\mbox{} \\
+    Recall from the proof of Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} that when using the notation $\frac{\pd}{\pd x^j}\Big|_\pp := \frac{\pd}{\pd \see^j}\Big|_\pp \circ \xx^{-1}$, we have $\frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$.
+    
     \begin{enumerate}
-        \item We have $\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)(x^j) = \delta^i{}_j$.
-        \item This was proved as part of showing $ df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp$ in Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R}.
+        \item We have $\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)(x^j) = \frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$.
+        \item We know $df_\pp(v_\pp) = v_\pp(f)$ from Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} so $dx^i|_\pp\Big(\frac{\pd}{\pd x^j}\Big|_\pp\Big) = \frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$. 
     \end{enumerate}
 \end{proof}
 
@@ -823,15 +843,9 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{remark}
 
 \begin{remark}
-    (Interpretations of $x^i$).
+    (Uses of the notation $x^i$).
     
-    Let $M$ be a smooth $n$-manifold, and consider a smooth chart $(U, \xx)$ about $\pp \in M$.
-    
-    When considering the basis $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$ for $T_\pp(M)$, the $x^i$ in the ``denominator'' is \textit{not} a coordinate function of the smooth chart $\xx$ that is involved in the definition $\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)(f) = \frac{\pd (f \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)}$. (Recall Definition \ref{ch::manifolds::defn::basis_of_TpM}). In this context, the $x^i$ in the ``denominator'' on the left hand side is simply notation that evokes the mental imagery of the meaning of the $x^i$ on the right hand side of that definition (on the right hand side, the $x^i$ in the ``denominator'' is used in the notation $\frac{\pd}{\pd x^i}\Big|_\pp := \frac{\pd}{\pd \see^i}\Big|_\pp$ for directional derivatives which act on smooth functions defined on $\R^n$).
-    
-    However, we have also seen that it is useful to use $x^i$ to denote a coordinate function of $\xx$ when we are interested in the coordinates of $v_\pp \in T_\pp(M)$ relative to $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \}$, since $x^i(v_\pp)$ is the $i$th coordinate of $v_\pp$ relative to $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \}$.
-    
-    A general rule is that when $x^i$ appears in a ``numerator'' or ``by itself'', then $x^i$ is a coordinate function that is the argument of a directional derivative, and, when $x^i$ appears in a ``denominator'', it is because that ``denominator'' is part of the basis vector $\frac{\pd}{\pd x^i}\Big|_\pp$ of $T_\pp(M)$. (In the special case of $M = \R^n$, then $\frac{\pd}{\pd x^i}\Big|_\pp$ is a directional derivative that acts on smooth functions defined on $\R^n$. In this special case, the ``mental imagery'' mentioned above has been realized, because the chart $\xx$ is the identity). 
+    Let $M$ be a smooth $n$-manifold, and consider a smooth chart $(U, \xx)$ about $\pp \in M$. You have likely noticed that there the collection of symbols ``$x^i$'' appears in the notation in various ways. A summary of all the ways $x^i$ is used is as follows. When $x^i$ appears in a ``numerator'' (e.g. $\frac{\pd x^i}{\pd x_j}$) or ``by itself'' (e.g. $x^i$), then $x^i$ is the $i$th coordinate function of $\xx$. When $x^i$ appears in a ``denominator'', it is because that ``denominator'' is part of the basis vector $\frac{\pd}{\pd x^i}\Big|_\pp$ of $T_\pp(M)$.
 \end{remark}
 
 \begin{theorem}
@@ -847,16 +861,28 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
     
     \begin{align*}
         [\FF]_E
-        = \begin{pmatrix} \Big[\frac{\pd}{\pd y^1}\Big|_\pp\Big]_F & \hdots & \Big[\frac{\pd}{\pd y^n}\Big|_\pp\Big]_E \end{pmatrix}
-        = \begin{pmatrix}
+        = \begin{pmatrix} \Big[\frac{\pd}{\pd y^1}\Big|_\pp\Big]_E & \hdots & \Big[\frac{\pd}{\pd y^n}\Big|_\pp\Big]_E \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \begin{pmatrix}
+                \frac{\pd}{\pd y^1}(x^1) \\ \vdots \\ \frac{\pd}{\pd y^1}(x^n)
+            \end{pmatrix}
+            &
+            \hdots
+            &
+            \begin{pmatrix}
+                \frac{\pd}{\pd y^n}(x^1) \\ \vdots \\ \frac{\pd}{\pd y^n}(x^n)
+            \end{pmatrix}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
             \frac{\pd x^1}{\pd y^1}\Big|_\pp & \hdots & \frac{\pd x^1}{\pd y^n}\Big|_\pp \\
             \vdots & & \vdots \\
             \frac{\pd x^n}{\pd y^1}\Big|_\pp & \hdots & \frac{\pd x^n}{\pd y^n}\Big|_\pp
-        \end{pmatrix}
-        = \frac{\pd \xx}{\pd \yy},
+        \end{pmatrix}.
     \end{align*}
     
-    where $\frac{\pd x^i}{\pd y^j}\Big|_\pp = \Big( \frac{\pd}{\pd y^j}\Big|_\pp \Big) (x^i)$, and where $x^i$ is the $i$th coordinate function of $\xx$. The matrix $\frac{\pd \xx}{\pd \yy}$ is the Jacobian matrix described in Definition \ref{ch::calc::defn::jacobian}.
+    Don't forget that $\frac{\pd x^i}{\pd y^j}\Big|_\pp = \frac{\pd (x^i \circ \xx^{-1})}{\pd y^j}\Big|_\pp$, where $x^i$ is the $i$th coordinate function of $\xx$.
     
     Applying the fact $\ff_i = \sum_{j = 1}^n ([\FF]_E)_{ji} \ee_j$ from above, we have
     
