@@ -849,7 +849,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{remark}
 
 \begin{theorem}
-    (Change of coordinates for tangent vectors in terms of basis vectors of $T_\pp(M)$).
+    \smallcite{book::SM}{64} (Change of coordinates for tangent vectors in terms of basis vectors of $T_\pp(M)$).
 
     Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors} stated that if $V$ is a finite-dimensional vector space with bases $E$ and $F$, then
 
@@ -865,13 +865,13 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
         =
         \begin{pmatrix}
             \begin{pmatrix}
-                \frac{\pd}{\pd y^1}(x^1) \\ \vdots \\ \frac{\pd}{\pd y^1}(x^n)
+                \frac{\pd}{\pd y^1}\Big|_\pp(x^1) \\ \vdots \\ \frac{\pd}{\pd y^1}\Big|_\pp(x^n)
             \end{pmatrix}
             &
             \hdots
             &
             \begin{pmatrix}
-                \frac{\pd}{\pd y^n}(x^1) \\ \vdots \\ \frac{\pd}{\pd y^n}(x^n)
+                \frac{\pd}{\pd y^n}\Big|_\pp(x^1) \\ \vdots \\ \frac{\pd}{\pd y^n}\Big|_\pp(x^n)
             \end{pmatrix}
         \end{pmatrix}
         =
@@ -882,20 +882,19 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
         \end{pmatrix}.
     \end{align*}
     
-    Don't forget that $\frac{\pd x^i}{\pd y^j}\Big|_\pp = \frac{\pd (x^i \circ \xx^{-1})}{\pd y^j}\Big|_\pp$, where $x^i$ is the $i$th coordinate function of $\xx$.
+    Don't forget that $\frac{\pd x^i}{\pd y^j}\Big|_\pp = \frac{\pd (x^i \circ \yy^{-1})}{\pd y^j}\Big|_\pp$, where $y^i$ is the $i$th coordinate function of $\yy$.
     
     Applying the fact $\ff_i = \sum_{j = 1}^n ([\FF]_E)_{ji} \ee_j$ from above, we have
     
     \begin{align*}
-        \boxed
-        {
-            \frac{\pd}{\pd y^i}\Big|_\pp
-            =
-            \sum_{j = 1}^n \frac{\pd x^j}{\pd y^i}\Big|_\pp \frac{\pd}{\pd x^j}\Big|_\pp
-        }
+        \frac{\pd}{\pd y^i}\Big|_\pp
+        =
+        \sum_{j = 1}^n \frac{\pd x^j}{\pd y^i}\Big|_\pp \frac{\pd}{\pd x^j}\Big|_\pp
     \end{align*}
     
-    This change of basis equation strongly resembles the chain rule, and indeed simplifies to the chain rule when $M = \R^n$. When $M \neq \R^n$, be sure to interpret the $x^i$'s and $y^i$'s as described in the previous remark.
+    (If you are careful to remember that $\frac{\pd}{\pd y^i}\Big|_\pp = \frac{\pd (\cdot \circ \yy^{-1})}{\pd y^i}$, then you can prove the above just by using the chain rule). 
+
+    [... obtain result for general $v_\pp \in T_\pp(M)$ ...]
 \end{theorem}
 
 \section{Vector fields and covector fields}
