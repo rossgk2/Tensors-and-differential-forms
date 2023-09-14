@@ -71,7 +71,9 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     
     Let $M$ and $N$ be $n$-smooth manifolds, let $(U, \xx)$ and $(V, \yy)$ be smooth charts on $M$ and $N$, respectively, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a smooth function. Consider a differential $k$-form $\omega \in \Omega^k(V)$, $k \leq n$, on $V \subseteq N$.
     
-    In Theorem \ref{ch::exterior_pwrs::defn::pullback_on_exterior_pwr}, we showed how to pull back an element of $\Lambda^k(W^*)$ to obtain an element of $\Lambda^k(V^*)$, where $V$ and $W$ are vector spaces. Since the evaluation of $\omega$ at a point $\qq \in V \subseteq N$ yields an element of $\Lambda^k T_\qq^*(N)$, we can pull back differential $k$-forms on $N$ to differential $k$-forms on $M$ by using the pullback map on exterior powers.
+    In Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0}, we showed how when $V$ and $W$ are finite-dimensional vector spaces and $\ff:V \rightarrow W$ is a linear function, it is possible to use the dual $\ff:W^* \rightarrow V^*$ to``pull back'' an element of $\Lambda^k(W^*)$ and obtain an element of $\Lambda^k(V^*)$. 
+    
+    $T_\pp(U)$ and $T_{\FF(\pp)}(V)$ are finite-dimensional vector spaces and ${d\FF_\pp:T_\pp(U) \rightarrow T_{\FF(\pp)}(V)}$ is a linear function, so it is possible to ``pull back'' an element of $\Lambda^k(T_{\FF(\pp)}(V))$ to obtain an element of $\Lambda^k(T_\pp(U))$.
     
     We define the \textit{pullback $\Omega^k \FF^*:\Omega^k(V) \rightarrow \Omega^k(U)$ of the differential $k$-form $\omega$ on $V$} to be
     
@@ -83,10 +85,14 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
                 \Big( \Lambda^k (d\FF_\pp)^* \Big)(\omega_{\FF(\pp)}) & \text{$\omega$ is a differential $k$-form on $V$, $k \geq 1$} \\
                 (f \circ \FF)(\pp) & \text{$\omega = f$ is a differential $0$-form on $V$ (i.e. $\omega$ is a function $V \rightarrow \R$)}
             \end{cases}
-        }
+        },
     \end{align*}
 
-    Here's a brief explanation of the notation. The map $(d\FF_\pp)^*:T_{\FF(\pp)}^*(V) \rightarrow T_{\pp}^*(U)$ is the dual of the differential ${d\FF_\pp:T_\pp(U) \rightarrow T_{\FF(\pp)}(V)}$, which is a linear map, and $\Lambda^k (d\FF_\pp)^*$ is the pullback from the $k$th exterior power $\Lambda^k(T_{\FF(\pp)}^*(V))$ to the $k$th exterior power $\Lambda^k(T_{\pp}^*(U))$. (For the exact meaning of $\Lambda^k (d\FF_\pp)^*$, recall Definition \ref{ch::exterior_pwrs::defn::pullback_on_exterior_pwr}).
+    where we recall that for a linear function $\ff:T_\pp(U) \rightarrow T_{\FF(\pp)}(V)$, the dual $\ff^*:T_{\FF(\pp)}^*(V) \rightarrow T_\pp^*(U)$ is characterized by $\ff^*(w_\qq) = w_\qq \circ \ff$, and the pullback map $\Lambda^k \ff^*:T^*_{\FF(\pp)}(V) \rightarrow T^*_\pp(U)$ induced by the dual is characterized by
+
+    \begin{align*}
+        \Big(\Lambda^k \ff^* \Big)(dy^1|_\qq \wedge ... \wedge dy^n|_\qq) = \ff^*(dy^1|_\qq) \wedge ... \wedge \ff^*(dy^n|_\qq).
+    \end{align*}
 \end{defn}
 
 \begin{theorem}
@@ -95,13 +101,11 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     Let $M$ and $N$ be smooth $n$-manifolds, let $U \subseteq M$ be open, and consider a smooth function $\FF:U \subseteq M \rightarrow N$.
     
     \begin{enumerate}
-        \item If $\omega$ is a differential $1$-form on $N$, then $\Omega^k \FF^*(\omega)_\pp = (d\FF_\pp)^*(\omega)$, where $(d\FF_\pp)^*$ is the dual of the linear map $d\FF_\pp$.
+        \item If $\omega$ is a differential $1$-form on $N$, then $\omega_\pp \in T_\pp(V)$ for every $\pp \in N$, and we have $(\Omega^k \FF^*)(\omega)_\pp = (d\FF_\pp)^*(\omega)$, where $(d\FF_\pp)^*$ is the dual of the linear map $d\FF_\pp$.
+
+        \item If $f:V \rightarrow \R$ and $\omega$ is a differential form on $N$, then ${(\Omega^k \FF^*)(f \omega) = (\Omega^k \FF^*)(f) \spc (\Omega^k \FF^*)(\omega)}$.
     
-        \item If $\omega$ and $\eta$ are differential $k$-forms, $k \leq n$, on $N$, then
-        
-        \begin{align*}
-            \Omega^k \FF^* (\omega \wedge \eta) = \Omega^k \FF^*(\omega) \wedge \Omega^k \FF^*(\eta).
-        \end{align*}
+        \item If $\omega$ and $\eta$ on $N$ then $\Omega^k \FF^* (\omega \wedge \eta) = \Omega^k \FF^*(\omega) \wedge \Omega^k \FF^*(\eta)$.
         
         %\item 
         
@@ -146,7 +150,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
 
 \begin{lemma}
 \label{ch::diff_forms::lemma::technical_pullback_yi}
-    (Technical lemma: $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$).
+    (Technical lemma: $\Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i$).
     
     Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. Recall from Definition \ref{ch::manifolds::defn::coord_representation_of_fn_on_manifold} that the coordinate representation of $\FF$ relative to the chart $(V, \yy)$ is $\tFF_{(V, \yy)} = \yy \circ \FF$, so $y^i \circ \FF$ is $y^i \circ \FF = \tF^i$, the $i$th coordinate function of $\tFF_{(V, \yy)} = (\tF_{(V, \yy)}^1, ..., \tF_{(V, \yy)}^n)^\top$. But $y^i \circ \FF = \Omega^k \FF^*(y^i)$, so
     
@@ -154,10 +158,10 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
         \tF_{(V, \yy)}^i = \Omega^k \FF^*(y^i).
     \end{align*}
     
-    Since the differential commutes with the pullback of a diffeomorphism, we have $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*)(y^i)$. By the previous lemma, $\Omega^k \FF^*(y^i) = \tF_{(V, \yy)}^i$. Therefore
+    Since the differential commutes with the pullback of a diffeomorphism, we have $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*)(y^i)$. Applying the above, we see
     
     \begin{align*}
-        \Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i.
+        \Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i.
     \end{align*}
 \end{lemma}
 
@@ -197,14 +201,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     %    \Big( \Omega^k \FF^*(dy^1) \Big)_\pp \wedge ... \wedge \Big( \Omega^k \FF^*(dy^n) \Big)_\pp.
     %\end{align*}
     
-   First, we simply rewrite the above after applying the fact $\Omega^k \FF^*(f) = f \circ \FF$:
-
-    \begin{align*}
-        \Big(\Omega^k \FF^*(\omega) \Big)_\pp = \spc (f \circ \FF)(\pp) \spc 
-        \Big( \Omega^k \FF^*(dy^1) \Big)_\pp \wedge ... \wedge \Big( \Omega^k \FF^*(dy^n) \Big)_\pp.
-    \end{align*}
- 
-    Since $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$ (see the previous lemma), we have
+   Take $\Omega^k \FF^*$ of both sides of the above and apply the facts ${(\Omega^k \FF^*)(f \omega) = (\Omega^k \FF^*)(f) \spc (\Omega^k \FF^*)(\omega)}$, \\ $\Omega^k \FF^*(f) = f \circ \FF$, and $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$ to obtain
     
     \begin{align*}
         \Big(\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n ) \Big)_\pp = (f \circ \FF)(\pp) \spc 
@@ -219,7 +216,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     
     %which is the determinant of the Jacobian matrix of $\tFF_{(V, \yy)}$. (In the above, $[\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}}$ denotes the matrix of $\Omega^k \FF^*$ relative to $\{dy^i\}_{i = 1}^n$ and $\{dx^i\}_{i = 1}^n$. The last equality above uses the second equation from the boxed equations of Theorem \ref{ch::manifolds::thm::coords_tangent_vectors_cotangent_vectors}). 
     
-    Applying Theorem \ref{ch::exterior_pwrs::thm::action_dual_k_wedge_on_vectors}, we have
+    Apply Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det} to see
     
     \begin{align*}
         d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) dx^1 \wedge ... \wedge dx^n.
