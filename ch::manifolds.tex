@@ -268,11 +268,11 @@ With the previous notion formalized, we now discover, strangely enough, that geo
     \label{ch::manifolds::thm::geometric_tangent_vectors_iso_directional_derivative_functions}
     (Geometric tangent vectors are naturally isomorphic to ``directional derivative functions'').
     
-     Let $\frac{\pd}{\pd \vv}\Big|_\pp$ denote the function $f \mapsto \frac{\pd}{\pd \vv}\Big|_\pp (f)$. The map $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is a natural linear isomorphism $\R^n_\pp \rightarrow T_\pp(\R^n)$.
+     For $\vv \in \R^n$ and $f \in C^\infty(\R^n \rightarrow \R)$, let $\frac{\pd}{\pd \vv}\Big|_\pp$ denote the function $f \mapsto \frac{\pd}{\pd \vv}\Big|_\pp (f)$. The map $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is a natural linear isomorphism $\R^n_\pp \rightarrow T_\pp(\R^n)$.
 \end{theorem}
 
 \begin{proof}
-    First, recall from calculus that $\frac{\pd}{\pd \vv}\Big|_\pp$ is linear with respect to $\vv$ (see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}). From this it follows that $\Big\{ \frac{\pd}{\pd \see_1}\Big|_\pp, ..., \frac{\pd}{\pd \see_n}\Big|_\pp \Big\}$ is a basis for the space of directional derivative functions at $\pp$. Thus, the space of directional derivative functions at $\pp$ is $n$-dimensional. Since $\R^n_\pp$ and the space of directional derivative functions at $\pp$ have the same dimension, we can show that $\vv \mapsto \frac{\pd}{\pd \vv}$ is an isomorphism by proving that it has a trivial kernel\footnote{We adapt the argument from \cite[p. 53]{book::SM} (which is intended for a slightly different purpose in that book).}.
+    First, recall from calculus that $\frac{\pd}{\pd \vv}\Big|_\pp$ is linear with respect to $\vv$ (see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}). From this it follows that $\Big\{ \frac{\pd}{\pd \see_1}\Big|_\pp, ..., \frac{\pd}{\pd \see_n}\Big|_\pp \Big\}$ is a basis for $\Big\{ \frac{\pd}{\pd \vv}\Big|_\pp \mid \vv \in \R^n \Big\}$, the space of directional derivative functions at $\pp$. Thus, the vector space of directional derivative functions at $\pp$ is $n$-dimensional. Since $\R^n_\pp$ and the space of directional derivative functions at $\pp$ have the same dimension, we can show that $\vv \mapsto \frac{\pd}{\pd \vv}$ is an isomorphism by proving that it has a trivial kernel\footnote{We adapt the argument from \cite[p. 53]{book::SM} (which is intended for a slightly different purpose in that book).}.
     
     So, assume $\vv_\pp$ is sent to the zero function. We need to show $\vv_\pp = \mathbf{0}_\pp$. 
     
@@ -486,12 +486,16 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
     Let $M$ be a smooth $n$-manifold WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $\pp \in M$. In an abuse of notation, we define $\frac{\pd}{\pd x^i}\Big|_\pp$, $i \in \{1, ..., n\}$, to be the derivations at $\pp \in U \subseteq M$ for which
     
     \begin{align*}
-        \frac{\pd}{\pd x^i}\Big|_\pp(f) := \frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} f_{(U, \xx)} = \frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} (f \circ \xx^{-1}).
+        \frac{\pd}{\pd x^i}\Big|_\pp(f) := \frac{\pd f_{(U, \xx)}}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd (f \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)}.
     \end{align*}
     
     In the above, $f_{(U, \xx)}$ denotes the coordinate representation of $f$ relative to the chart $(U, \xx)$. The $\frac{\pd}{\pd x^i}\Big|_\pp$ to the left of $:=$ are what we are defining in our abuse of notation, and the $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd}{\pd \see^i}\Big|_{\xx(\pp)}$ on the right hand side are directional derivatives taking in smooth functions on $\R^n$ as their arguments. 
-    
-    We will see that the $\frac{\pd}{\pd x^i}\Big|_\pp$ are derivations at $\pp \in M$. Once we have seen this, since we know $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)}$ are derivations at $\xx(\pp) \in \R^n$ (recall Theorem \ref{ch::manifolds::thm::basis_of_TpRn}), we show that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
+
+    We also define the notation
+
+    \begin{align*}
+        \frac{\pd f}{\pd x^i} := \frac{\pd}{\pd x^i}\Big|_\pp(f) = \frac{\pd (f \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)}.
+    \end{align*}
 \end{defn}
 
 \begin{proof}
@@ -500,7 +504,7 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
     We need to show (1) that the $\frac{\pd}{\pd x^i}\Big|_\pp$ of the left side of the above definition are derivations at $\pp \in M$ and (2) that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
 
     \begin{enumerate}
-        \item We will put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left hand side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are directional derivatives.
+        \item We will put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left hand side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are partial derivatives.
     
         We need to show that $\pdxiLHS$ are linear and follow the product rule. Linearity follows easily from the linearity of the directional derivative with respect to its argument from $C^\infty(\R^n \rightarrow \R)$. We show the product rule holds:
         
@@ -637,7 +641,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     \begin{itemize}
         \item (Chain rule). $d(\GG \circ \FF)_\pp = d\GG_{\FF(\pp)} \circ d\FF_\pp:T_\pp(M) \rightarrow T_{(\GG \circ \FF)(\pp)}(P)$.
         \item (Differential of the identity). $d(\II_M)_\pp = \II_M$, where $\II_M:T_\pp(M) \rightarrow T_\pp(M)$ is the identity on $M$.
-        \item If $\FF$ is a diffeomorphism, then $d\FF_\pp:T_\pp(M) \rightarrow T_{\FF(\pp)}(N)$ is a linear isomorphism, and $(d\FF_\pp)^{-1} = d(\FF^{-1})_{\FF(\pp)}$.
+        \item (Inverse differential). If $\FF$ is a diffeomorphism, then $d\FF_\pp:T_\pp(M) \rightarrow T_{\FF(\pp)}(N)$ is a linear isomorphism, and $(d\FF_\pp)^{-1} = d(\FF^{-1})_{\FF(\pp)}$.
     \end{itemize}
 \end{theorem}
 
