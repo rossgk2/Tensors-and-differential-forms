@@ -1,6 +1,4 @@
-A textbook on the application of differential forms to computer graphics.
-
-## Table of contents
+# Table of contents
 
 Review sections:
 
@@ -22,13 +20,6 @@ Part III: Differential forms
 
 8. Manifolds
 9. Differential forms on manifolds
-
-Part IV: Computational applications of differential forms
-
-10. Discrete differential geometry and computer graphics
-10.1. Discrete differential geometry
-10.2. Smoothing with the Laplacian
-10.3. Surface parameterization
 
 ## Chapter 1: review of logic, proofs, and functions
 
