@@ -489,7 +489,7 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
         \frac{\pd}{\pd x^i}\Big|_\pp(f) := \frac{\pd f_{(U, \xx)}}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd (f \circ \xx^{-1})}{\pd x^i}\Big|_{\xx(\pp)}.
     \end{align*}
     
-    In the above, $f_{(U, \xx)}$ denotes the coordinate representation of $f$ relative to the chart $(U, \xx)$. The $\frac{\pd}{\pd x^i}\Big|_\pp$ to the left of $:=$ are what we are defining in our abuse of notation, and the $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd}{\pd \see^i}\Big|_{\xx(\pp)}$ on the right hand side are directional derivatives taking in smooth functions on $\R^n$ as their arguments. 
+    In the above, $f_{(U, \xx)}$ denotes the coordinate representation of $f$ relative to the chart $(U, \xx)$. The $\frac{\pd}{\pd x^i}\Big|_\pp$ to the left of $:=$ are what we are defining in our abuse of notation, and the $\frac{\pd}{\pd x^i}\Big|_{\xx(\pp)} = \frac{\pd}{\pd \see^i}\Big|_{\xx(\pp)}$ on the right side are directional derivatives taking in smooth functions on $\R^n$ as their arguments. 
 
     We also define the notation
 
@@ -504,7 +504,7 @@ Having come up with a coordinate-independent notion of ``tangent vector to $\pp 
     We need to show (1) that the $\frac{\pd}{\pd x^i}\Big|_\pp$ of the left side of the above definition are derivations at $\pp \in M$ and (2) that $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ is a basis of $T_\pp(M)$.
 
     \begin{enumerate}
-        \item We will put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left hand side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are partial derivatives.
+        \item We will put an ``LHS'' under $\frac{\pd}{\pd x^i}\Big|_\pp$ when we mean $\frac{\pd}{\pd x^i}\Big|_\pp$ to be from the left side of the condition in the above definition. All other occurrences of $\frac{\pd}{\pd x^i}\Big|_\pp$ in this proof are partial derivatives.
     
         We need to show that $\pdxiLHS$ are linear and follow the product rule. Linearity follows easily from the linearity of the directional derivative with respect to its argument from $C^\infty(\R^n \rightarrow \R)$. We show the product rule holds:
         
@@ -665,7 +665,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     \begin{center}
         % https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRABUB9AHW7TQAUAWQCUIAL6l0mXPkIoATOSq1GLNl2AAzAb34jxu7gCUxk6djwEiShSvrNWiEL2MSVMKAHN4RUFoAnCABbJDIQHAgkAEZqBjoAIxgGAAUZK3kQBhgtHBBqB3VnGh4+NAACXmC6NDhI8qgtUv4BEr00MykQQJCY6kikJVVHNgB3Su5q2vreOCZgzmAscoBecujxAD0wctGBAA9NrBEJuBgYTiwJLp7QxHCBxCH4pNT0uTYArC8ACzyCtROFzcUZYWB4BiwYCNZpocTucRAA
         \begin{tikzcd}
-        T_\pp(M) \arrow[rr, "v_\pp \mapsto df_\pp(v_\pp)"] \arrow[rrdd, "\td f_\pp"'] &  & T_{f(\pp)}(\R) \arrow[dd, "w \mapsto \sum_{i = 1}^1 w(x^i) \see_i"] \\
+        T_\pp(M) \arrow[rr, "v_\pp \mapsto df_\pp(v_\pp)"] \arrow[rrdd, "\td f_\pp"'] &  & T_{f(\pp)}(\R) \arrow[dd, "\Big( w = \sum_{i = 1}^1 w(x^i) \see_i \Big) \mapsto w(x^1)"] \\
                                                                                                &  &                                                                     \\
                                                                                                &  & \R                                                                 
         \end{tikzcd}
@@ -677,12 +677,11 @@ This characterization of the differential is coordinate-free, and therefore prov
     
     \begin{align*}
         \td f_\pp(v_\pp)
-        = \sum_{i = 1}^1 df_\pp (v_\pp)(x^i) \see_i 
-        = df_\pp (v_\pp)(x^1) \see_1
-        = v_\pp(x^1 \circ f) \see_1.
+        = df_\pp (v_\pp)(x^1)
+        = v_\pp(x^1 \circ f).
     \end{align*}
     
-    Since $\R^1$ is one-dimensional, then $\R^1 \cong \R$. As we switch from $\R^1$ to $\R$, the coordinate function $x^1:\R^1 \rightarrow \R^1$ becomes the identity on $\R$ and $\see_1$ becomes the scalar $1 \in \R$. These final identifications\footnote{To be very formal, we could write the above as $\widetilde{\widetilde{d}} f_\pp(v_\pp)$ to indicate that $\widetilde{\widetilde{d}}$ is the differential obtained from $\td$ by identifying $\R^1 \cong \R$, but this identification is so trivial that we do not do this.} give
+    Since $\R^1$ is one-dimensional, then $\R^1 \cong \R$. As we switch from $\R^1$ to $\R$, the coordinate function $x^1:\R^1 \rightarrow \R^1$ becomes the identity on $\R$. This final identification \footnote{To be very formal, we could write the above as $\widetilde{\widetilde{d}} f_\pp(v_\pp)$ to indicate that $\widetilde{\widetilde{d}}$ is the differential obtained from $\td$ by identifying $\R^1 \cong \R$, but this identification is so trivial that we do not do this.} gives
     
     \begin{align*}
         \td f_\pp(v_\pp) = v_\pp(f).
@@ -708,14 +707,14 @@ This characterization of the differential is coordinate-free, and therefore prov
         df_\pp &= \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp
     \end{empheq}
     
-    Note, the $d$ on the right hand side is the differential of the $i$th coordinate function $x^i$ of $\xx$ after identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem).
+    Note, the $d$ on the right side is the differential of the $i$th coordinate function $x^i$ of $\xx$ after identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem).
 \end{theorem}
 
 \begin{proof}
     Notice that $(\vv \mapsto df_\pp(\vv)) = df_\pp$ is an element of $T_\pp(M)^*$. (We will explore this fact more later, in Section \ref{ch::manifolds::tangent_cotangent_with_coords}). Since $T_\pp(M)$ is an $n$-dimensional vector space, then $T_\pp(M)^*$ is also $n$-dimensional, and we can express $df_\pp$ as
     
     \begin{align*}
-        df_\pp = \sum_{i = 1}^n C_i(\pp), \lambda^i|_\pp
+        df_\pp = \sum_{i = 1}^n C_i(\pp) \lambda^i|_\pp
     \end{align*}
     
     where each $C_i:U \rightarrow \R$ is a smooth function and $\lambda^i \in T_\pp(M)^*$.

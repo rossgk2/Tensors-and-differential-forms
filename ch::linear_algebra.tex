@@ -41,21 +41,15 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
     (By ``locationless'', we mean that two directed line segments are considered equal iff one of them can be moved- without changing the distance between its start and end point- so that it coincides with the other).
 \end{defn}
 
-At this point, what we would like to do is give a (1) formal definition of \textit{point}, (2) define notions of adding points together and subtracting one point from another, and (3) define a \textit{vector} to be the result of ``subtracting'' one point from another. 
-
-The ``subtraction of points'' notion is more important than the ``addition of points'' notion, and facilitates the ``locationless'' notion in the following way. If we define a vector to be an expression of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points, then any vector $\vv = \pp_2 - \pp_1$ is equal\footnote{Here we assume that for any point $\pp$ the notion of subtraction is such that $\pp - \pp = \pp + (-\pp) = \mathbf{0}$.} to $(\pp + \pp_2) - (\pp + \pp_1)$ for any point $\pp$; thus, we can move the start and end points $\pp_1$ and $\pp_2$ of a vector $\vv = \pp_2 - \pp_1$ around, and $\vv$ doesn't change as long as $\pp_1$ and $\pp_2$ are each moved in the same way.
-
-Unfortunately, this strategy doesn't work because \textit{vector} cannot be defined non-circularly in terms of \textit{point}. What's more is that \textit{point} cannot be defined non-circularly in terms of vector! The below remark discusses this.
+It is tempting to try to define either \textit{point} in terms of \textit{vector} or \textit{vector} in terms of \textit{point}, but this is actually impossible.
 
 \begin{remark}
     (Circularity in intuitive definitions of point and directed line segment).
-    
-    The above definitions of \textit{vector} and \textit{point}, while intuitive, are insufficient in the following sense: neither definition can be defined non-circularly in terms of the other definition.
-    
+        
     \begin{itemize}
         \item (Attempted definition of \textit{vector} in terms of \textit{point}). 
         
-        Suppose that we use the above definition of \textit{point} and attempt to use it to give a definition of \textit{vector} that is equivalent to the above definition of \textit{vector}. The attempted definition is: a \textit{vector} is a difference of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points. Any intuitively interpretable definition of ``difference of points'', however, is ``difference of the corresponding\footnote{At this point it is unclear if a correspondence between vectors and points even exists. If we assume there is such a correspondence, though, we see the argument is circular.} vectors''; thus, this definition is clearly circular because it involves \textit{vector}.
+        Suppose that we try to define \textit{vector} in terms of \textit{point} as follows: a \textit{vector} is a difference of the form $\pp_2 - \pp_1$, where $\pp_1$ and $\pp_2$ are points. This definition doesn't work because any intuitively interpretable definition of ``difference of points'' is ``difference of the corresponding\footnote{At this point it is unclear if a correspondence between vectors and points even exists. If we assume there is such a correspondence, though, we see the argument is circular.} vectors''; which is clearly a circular definition because it involves \textit{vector}.
         
         \item (Attempted definition of \textit{point} in terms of \textit{vector}). 
         
@@ -224,7 +218,7 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
     The above definition easily implements the intertwinedness of points and vectors; since every point in $\R^n$ can also be interpreted as a vector in $\R^n$, the correspondence between points and vectors is given by the identity function.
 \end{remark}
 
-[TO-DO: introduce the following remark]
+Even though there is always some circularity on an intuitive level between the concepts of \textit{point} and \textit{vector}; the setting of $\R^n$ grounds the following geometric intuitions.
 
 \begin{remark}
     (Geometric intuition about points and vectors).
@@ -239,13 +233,13 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
         \item ($\mathbf{0}$ as a point). When $\mathbf{0}$ is considered to be a point, we interpret it to be the ``central reference point'' of the coordinate system, i.e., the origin.
         \item ($\mathbf{0}$ as a vector). When $\mathbf{0}$ is interpreted to be a vector, we interpret it to be the locationless directed line segment that has a length of zero.
         \item (Additive inverses as points). When $\pp \in \R^n$ is a point, there is no satisfactory interpretation of $-\pp$.
-        \item (Additive inverses as vectors). When $\vv \in \R^n$ is a vector, the fact $\vv + (-\vv) = \mathbf{0}$ forces us to interpret $-\vv$ to be the unique vector that [returns one to the start point of $\vv$ if its start is made to coeinide with the end of $\vv$].
+        \item (Additive inverses as vectors). When $\vv \in \R^n$ is a vector, the fact $\vv + (-\vv) = \mathbf{0}$ forces us to interpret $-\vv$ to be the unique vector whose end is the start of $\vv$ if its start is made to coeinide with the end of $\vv$.
     \end{itemize}
 
     (Geometric intuition about $\cdot$).
     \begin{itemize}
         \item (Scalar times point). Let $c \in \R$. When $\pp \in \R^n$ is a point, there is no satisfactory interpretation of $c \pp$.
-        \item (Scalar times vector). Let $c > 0$. When $\vv \in \R^n$ is a vector, we interpret $c \vv$ to be the vector that is obtained by stretching $\vv$ by a factor of $c$ (when $c > 1$) or that is obtained by shrinking $\vv$ by a factor of $c$ (when $c \in (0, 1)$). [add stuff about $d \in \R^n$ where we allow $d < 0$?]
+        \item (Scalar times vector). Let $c > 0$. When $\vv \in \R^n$ is a vector, we interpret $c \vv$ to be the vector that is obtained by stretching $\vv$ by a factor of $c$ (when $c > 1$) or that is obtained by shrinking $\vv$ by a factor of $c$ (when $c \in (0, 1)$). When $d < 0$, we interpret $d\vv$ to be $-(|d|\vv)$; that is, we interpret $d\vv$ to be the additive inverse of $|d|\vv$.
     \end{itemize}
 \end{remark}
 
@@ -471,9 +465,9 @@ Without further ado, we define ``vector-containing set over a field''.
 \begin{remark}
     (``Linear spaces'').
 
-    European mathematicians sometimes refer to vector spaces as \textit{linear spaces}, and to vectors as \textit{linear elements}.
-
-    This terminology makes sense when we realize the following fact: every subset of $\R^n$ that is a vector space is a $k$-dimensional plane for some $k \leq n$. It seems reasonable to call a plane a ``linear space''. Of course, not every vector space is a subset of $\R^n$. Nevertheless, the European terminology is a good reminder that vector spaces are, in some sense, planes.
+    One helpful contextualizing fact is the following: every subset of $\R^n$ that is a vector space is a $k$-dimensional plane for some $k \leq n$. Since it seems reasonable to call a plane a ``linear space'', European mathematicians sometimes refer to vector spaces as \textit{linear spaces}, and to vectors as \textit{linear elements}.
+    
+    Of course, not every vector space is a subset of $\R^n$. Nevertheless, the European terminology is a good reminder that vector spaces are, in some sense, planes.
 \end{remark}
 
 \begin{remark}
@@ -607,6 +601,10 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
     A subset of vector space is called \textit{linearly dependent} if it is not linearly independent.
 \end{defn}
 
+\begin{remark}
+    ($\emptyset$ is linearly independent). The empty set $\emptyset$ is linearly independent by false hypothesis.
+\end{remark}
+
 \begin{theorem}
     Any subset of a vector space that contains $\mathbf{0}$ is linearly dependent.
 \end{theorem}
@@ -639,14 +637,14 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
     \end{align*}
 \end{theorem}
 
-\begin{proof}
-    \textbf{TO-DO: account for $S = \emptyset$}
-     
+\begin{proof}   
+   \textbf{rethink this. $\sum_{c \in C, \vv \in S} c \vv$ isn't the same as $\sum_{i = 1}^n c_i \vv_i$ because it allows for sums such as $c_1 \vv_1 + c_2 \vv_1 + c_3 \vv_1 + ...$. so, a sum of the second form is necessarily of the first form, but the converse isn't true.}
+   
    We show the more general statement $(\text{$S$ is linearly dependent}) \iff (\exists C \neq \{0\} \spc \sum_{c \in C, \vv \in S} c \vv = \mathbf{0})$.
    
    ($\implies$). Assume $S$ is linearly dependent. Then $S$ is not linearly independent, so there is some $\vv \in S$ for which $\vv \in \spann(S - \{\vv\})$. This makes $\vv$ a linear combination of vectors from $S - \{\vv\}$, $\vv = \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww$, where $C \subseteq K$. Subtracting $\vv$ from both sides of the previous equation, we have $-\vv + \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww = \mathbf{0}$. That is, we have $\sum_{d \in D, \ww \in S} d \ww = \mathbf{0}$, where $D \subseteq K$ is such that the coefficients on elements of $S - \{\vv\}$ are from $C$ and where the coefficient on $\vv$ is $-1$. Since $-1 \in D$, we have shown, as desired, that there is a subset $D \neq \{0\}$ of $K$ such that $\sum_{c \in D, \ww \in S} d \ww = \mathbf{0}$.
    
-   ($\impliedby$). Assume there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which $\sum_{c \in C, \vv \in S} c \vv = \mathbf{0}$. Since $C \neq \{0\}$, then some $d \in C$ is nonzero, and we can therefore divide by $d$. Supposing that $d$ is the coefficient of $\uu \in S$, we subtract the part of the sum not involving $d \uu$ from both sides of the previous equation and then divide by $d$ to obtain $\uu = -\frac{1}{d}\sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} c \vv = \sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} - \frac{c \vv}{d}$. Thus $\uu \in \spann(S - \{\uu\})$; $\uu$ violates the linear independence condition, so $S$ is linearly dependent.
+   ($\impliedby$). Assume there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which $\sum_{c \in C, \vv \in S} c \vv = \mathbf{0}$. Since $C \neq \{0\}$, then $S \neq \{0\}$, and some $d \in C$ is nonzero. Suppose that $d$ is the coefficient of $\uu \in S$. We can subtract the part of the sum not involving $d \uu$ from both sides of the previous equation, and then, since $d \neq 0$,  divide by $d$ to obtain $\uu = -\frac{1}{d}\sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} c \vv = \sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} - \frac{c \vv}{d}$. Thus $\uu \in \spann(S - \{\uu\})$; $\uu$ violates the linear independence condition, so $S$ is linearly dependent.
 \end{proof}
 
 \begin{lemma}

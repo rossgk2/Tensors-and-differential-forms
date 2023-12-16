@@ -208,7 +208,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
         d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp.
     \end{align*}
     
-    %Since $\Omega^k \FF^*:T_{\FF(\pp)}^*(V) \rightarrow T_\pp^*(U)$, the determinant on the right hand side is 
+    %Since $\Omega^k \FF^*:T_{\FF(\pp)}^*(V) \rightarrow T_\pp^*(U)$, the determinant on the right side is 
     
     %\begin{align*}
     %    \det(\Omega^k \FF^*) = \det([\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}_{i = 1}^n}) = \det([\tF_{(V, \yy)}^i]_{\{dx^j\}_{i = 1}^n}) = \det\Big( \frac{\pd \tF_{(V, \yy)}^i}{\pd x^j}\Big),
@@ -261,7 +261,7 @@ Now, we use the formula for the pullback of a diffeomorphism derived at the end 
         \int_E f = \int_D (f \circ \FF) \Big| \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big|.
     \end{align*}
 
-    Notice that, when $\Big| \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big)$, i.e., when $\det(d\FF) > 0$, it is \textit{almost} true that the pullback of the integrand on the left hand side is equal to the integrand on the right hand side, since $f dy^1 \wedge ... \wedge dy^n$ pulls back to $\det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| \spc dx^1 \wedge ... \wedge dx^n$. That is, the pullback of the differential form corresponding to the integrand of the left hand side is equal to the differential form corresponding to the integrand of the right hand side (where the ``correspondence'' spoken of is obtained by concatenating $dy^1 \wedge ... \wedge dy^n$ or $dx^1 \wedge ... \wedge dx^n$ onto the integrand). This observation motivates the next definition.
+    Notice that, when $\Big| \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big)$, i.e., when $\det(d\FF) > 0$, it is \textit{almost} true that the pullback of the integrand on the left side is equal to the integrand on the right side, since $f dy^1 \wedge ... \wedge dy^n$ pulls back to $\det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) \Big| \spc dx^1 \wedge ... \wedge dx^n$. That is, the pullback of the differential form corresponding to the integrand of the left side is equal to the differential form corresponding to the integrand of the right side (where the ``correspondence'' spoken of is obtained by concatenating $dy^1 \wedge ... \wedge dy^n$ or $dx^1 \wedge ... \wedge dx^n$ onto the integrand). This observation motivates the next definition.
 \end{deriv}
 
 \begin{defn}
@@ -293,7 +293,7 @@ Now, we use the formula for the pullback of a diffeomorphism derived at the end 
         \int_D f \spc dx_1 \wedge ... \wedge dx_n := \int_D f \spc dx^1 ... dx^n.
     \end{align*}
 
-    In some sense, the placeholder $dx_1 ... dx_n$ is ``secretly'' $dx^1 \wedge ... \wedge dx^n$. So, while the definition technically defines the left hand side in terms of the right hand side, you might think of it as giving algebraic meaning to the old placeholder notation of the right hand side.
+    In some sense, the placeholder $dx_1 ... dx_n$ is ``secretly'' $dx^1 \wedge ... \wedge dx^n$. So, while the definition technically defines the left side in terms of the right side, you might think of it as giving algebraic meaning to the old placeholder notation of the right side.
 \end{remark}
 
 \begin{remark}
@@ -358,7 +358,7 @@ At this point, we know how to integrate differential forms over open domains of 
         \int_U \omega := \int_D \omega,
     \end{align*}
     
-    where $D$ is any domain of integration in $\R^n$ or $\H^n$ containing $\supp(\omega)$. This definition does not depend on the choice of $D$; see \cite[p. 403]{book::SM} for the details. The right hand side is interpreted with the definition of the previous derivation. 
+    where $D$ is any domain of integration in $\R^n$ or $\H^n$ containing $\supp(\omega)$. This definition does not depend on the choice of $D$; see \cite[p. 403]{book::SM} for the details. The right side is interpreted with the definition of the previous derivation. 
 \end{defn}
 
 We now state a slight generalization of the change of variables theorem that relies on the previous definition.
@@ -403,7 +403,7 @@ As promised, we are now ready to define integration on smooth manifolds.
     
     (Recall from Definition \ref{ch::manifolds::defn::orientation_smooth_chart} that a smooth chart is positively oriented iff ... and ...).
     
-    Here, have used the pullback $(\xx^{-1})^*$ to produce a differential $n$-form $(\xx^{-1})^*(\omega)$ that is compactly supported on the open subset $\xx(U)$ of $\R^n$ or $\H^n$. The previous definition allows us to evaluate the integral of such a differential $n$-form, which the right hand side.
+    Here, have used the pullback $(\xx^{-1})^*$ to produce a differential $n$-form $(\xx^{-1})^*(\omega)$ that is compactly supported on the open subset $\xx(U)$ of $\R^n$ or $\H^n$. The previous definition allows us to evaluate the integral of such a differential $n$-form, which the right side.
     
     Note, this definition does not depend on the smooth chart $(U, \xx)$ for which $\supp(\omega) \subseteq U$; see \cite[p. 404]{book::SM} for the proof of this.
 \end{defn}
@@ -564,7 +564,7 @@ The previous theorem is generalized by the following definition, which finalizes
         }
     \end{align*}
     
-    Note that each integral in the sum on the right hand side is interpreted with the previous definition.
+    Note that each integral in the sum on the right side is interpreted with the previous definition.
     
     It is necessary to show that this definition doesn't depend on the choice of open cover. See \cite{Lee} for this detail.
 \end{defn}
@@ -773,7 +773,7 @@ To define a notion of differentiating differential forms, we will interpret diff
     
     Consider the diffeomorphism $\FF_x:\R^n \rightarrow \R^n$, where $x \in \R$, defined by $\FF_x(\qq) = x\qq$. Supposedly, it is easy to check that each $x$ acts on translation-invariant differential $k$-forms with multiplication by $x^k$. Using this fact, we show that all translation-invariant differential forms $\omega$ satisfy $d \omega = 0$. Since any differential form on $\R^n$ can be written as a linear combination of translation-invariant differential forms on $\R^n$, it follows that $d^2 \omega = 0$ for any differential form $\omega$ on $\R^n$. This result is quickly extended to differential forms on arbitrary smooth manifolds.
     
-    We now prove the claim that all translation-invariant differential forms $\omega$ satisfy $d \omega = 0$. Suppose that $\omega$ is a translation invariant differential form that is acted on by $x$ in the manner described above. Then $x^k \omega = \FF_x^*(\omega)$. Taking the exterior derivative, we have $d(x^k \omega) = d(\FF_x^*(\omega))$. We take out the constant on the left hand side and use the fact that the exterior derivative commutes with the pullback of a diffeomorphism on the right hand side to get $x^k d\omega = \FF_x^*(d\omega)$. Then, since $d\omega$ is a differential $(k + 1)$-form, $\FF_x^*(d\omega) = x^{k + 1} d\omega$. In all, we have $x^k d\omega = x^{k + 1} d \omega$, so $d\omega = xd\omega$. Somehow, this implies that $d \omega = 0$. Thus, we have shown that all translation invariant differential forms $\omega$ satisfy $d \omega = 0$. 
+    We now prove the claim that all translation-invariant differential forms $\omega$ satisfy $d \omega = 0$. Suppose that $\omega$ is a translation invariant differential form that is acted on by $x$ in the manner described above. Then $x^k \omega = \FF_x^*(\omega)$. Taking the exterior derivative, we have $d(x^k \omega) = d(\FF_x^*(\omega))$. We take out the constant on the left side and use the fact that the exterior derivative commutes with the pullback of a diffeomorphism on the right side to get $x^k d\omega = \FF_x^*(d\omega)$. Then, since $d\omega$ is a differential $(k + 1)$-form, $\FF_x^*(d\omega) = x^{k + 1} d\omega$. In all, we have $x^k d\omega = x^{k + 1} d \omega$, so $d\omega = xd\omega$. Somehow, this implies that $d \omega = 0$. Thus, we have shown that all translation invariant differential forms $\omega$ satisfy $d \omega = 0$. 
 \end{proof}
 
 \newpage

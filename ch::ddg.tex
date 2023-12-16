@@ -166,7 +166,7 @@ where $M$ is a smooth $2$-manifold embedded in $\R^3$, $\FF:M \rightarrow \R^3$ 
     \Delta \FF = \Delta \begin{pmatrix} F_1 \\ F_2 \\ F_3 \end{pmatrix} := \begin{pmatrix} \Delta F_1 \\ \Delta F_2 \\ \Delta F_3 \end{pmatrix}.
 \end{align*}
 
-Here, the $\Delta$ on the right hand side of this definition is the Laplacian operator on scalar-valued functions, $\Delta = \div \circ \grad$.
+Here, the $\Delta$ on the right side of this definition is the Laplacian operator on scalar-valued functions, $\Delta = \div \circ \grad$.
 
 It can be shown that $\Delta \FF = 2H\hat{\nn}$, where $H$ is the mean curvature\footnote{There are various ways to measure the curvature of a surface at a point. The mean curvature is one of these ways.} and $\hat{\nn}$ is the unit normal (see \cite[p. 114]{book::DDG}). Thus $\FF$ satisfies the above PDE iff, one can stay on the surface by going in the direction of the normal at a point, with strength proportional to the mean curvature at that point. More briefly, solving the above PDE is a formal way to ``smooth out'' the surface $M$ parameterized by $\FF$.
 
@@ -241,7 +241,7 @@ To discretize the Laplacian operator $\Delta$, we determine the Laplacian of a f
 \end{lemma}
 
 \begin{proof}
-    In general, $d(f\omega) = df \wedge d\omega + fd\omega$. So $d(g * df) = dg \wedge *df + gd*df$. Integrate over $M$ and apply Stokes' theorem to the left hand side to obtain
+    In general, $d(f\omega) = df \wedge d\omega + fd\omega$. So $d(g * df) = dg \wedge *df + gd*df$. Integrate over $M$ and apply Stokes' theorem to the left side to obtain
     
     \begin{align*}
         \int_{\pd M} g * df = \int_M dg \wedge *df + \int_M g d*df.
@@ -387,7 +387,7 @@ So it remains to compute $\langle \hnabla \phi_{\pp_j}, \hnabla \phi_{\pp_i} \ra
         1 &= (\hnabla_\xx \phi)|_{\xx_2} \cdot (\xx_2 - \xx_1).
     \end{align*}
     
-    The dot product on the right hand side can be re-expressed as
+    The dot product on the right side can be re-expressed as
     
     \begin{align*}
         1 &= ||(\hnabla_\xx \phi)|_{\xx_2}|| \spc ||\xx_2 - \xx_1|| \cos \Big( \frac{\pi}{2} - \alpha \Big),
@@ -628,7 +628,7 @@ We now use discrete differential geometry to produce a nearly identitical discre
     %    (\ddual \spc \hst \spc \dprimal \spc \hf)_C = \int_C d(*df).
     %\end{align*}
     
-    %The $*df$ in the integrand on the right hand side, $d(*df)$, can be thought of as the result of taking the hats and subscripts off of the symbols in ``$\hst \spc \dprimal \hf$''. This corresponds to going from discrete differential geometry to ``regular'' differential geometry. 
+    %The $*df$ in the integrand on the right side, $d(*df)$, can be thought of as the result of taking the hats and subscripts off of the symbols in ``$\hst \spc \dprimal \hf$''. This corresponds to going from discrete differential geometry to ``regular'' differential geometry. 
     
     %Using Stokes' theorem for discrete differential forms (recall Theorem \ref{ch::ddg::thm::discrete_stokes}), the integral becomes
     
@@ -774,7 +774,7 @@ We can now present our final restatement of the angle-preservation condition.
         dz(J(v_\pp)) = idz(v_\pp) \text{ for all $v_\pp \in T_\pp(M)$}.
     \end{align*}
     
-    The left hand side can be written as a contraction: $dz(J(v_\pp)) = C(dz, J(v_\pp))$. Using the previous definition of the complex Hodge-dual, we have $C(dz, J(v_\pp)) = C(*dz, v_\pp)$. Then, converting back to evaluation by the differential, we have $C(*dz, v_\pp) = *dz(v_\pp)$. Thus, the above is
+    The left side can be written as a contraction: $dz(J(v_\pp)) = C(dz, J(v_\pp))$. Using the previous definition of the complex Hodge-dual, we have $C(dz, J(v_\pp)) = C(*dz, v_\pp)$. Then, converting back to evaluation by the differential, we have $C(*dz, v_\pp) = *dz(v_\pp)$. Thus, the above is
     
     so the above becomes
     
