@@ -139,7 +139,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
         
         Let $v_\pp \in T_\pp(M)$. We will show $\Omega^k \FF^*(df_\pp)(v_\pp) = d(\Omega^k \FF^*(f))_\pp$.
         
-        By property (1) of the previous theorem, $\Omega^k \FF^*(df_\pp)(v_\pp) = (d \FF_\pp)^*(df_\pp)(v_\pp)$. Then $(d \FF_\pp)^*(df_\pp)(v_\pp) = (df_\pp \circ d\FF_\pp)(v_\pp) = df_\pp(d\FF_\pp(v_\pp))$. Since $df_\pp(u_\pp) = u_\pp(f)$, we use $u_\pp = d\FF_\pp(v_\pp)$ to obtain  $df_\pp(d\FF_\pp(v_\pp)) = (d\FF_\pp(v_\pp))(f)$. By the definition of the differential $d\FF_\pp$ (recall Definition \ref{ch::manifolds::defn::differential_smooth_function_abstract}), $(d\FF_\pp(v_\pp))(f) = v_\pp(f \circ \FF)$. Since $f$ is a $0$-form, $f \circ \FF = \Omega^k \FF^*(f)$ by definition of $\Omega^k \FF^*$. So $v_\pp(f \circ \FF) = v_\pp(\Omega^k \FF^*(f))$. Recall that because $d$ is the differential in which $T_{f(\pp)}(\R)$ is ``left alone'' (see the remarks at the beginning of this proof), we have $v_\pp(g) = dg_\pp(v_\pp)$. We set $g = \Omega^k \FF^*(f)$ to obtain $v_\pp(\Omega^k \FF^*(f)) = d(\Omega^k \FF^*(f))_\pp(v_\pp)$.
+        By property (1) of the previous theorem, $\Omega^k \FF^*(df_\pp)(v_\pp) = (d \FF_\pp)^*(df_\pp)(v_\pp)$. Then $(d \FF_\pp)^*(df_\pp)(v_\pp) = {(df_\pp \circ d\FF_\pp)(v_\pp) = df_\pp(d\FF_\pp(v_\pp))}$. Since $df_\pp(u_\pp) = u_\pp(f)$, we use $u_\pp = d\FF_\pp(v_\pp)$ to obtain  $df_\pp(d\FF_\pp(v_\pp)) = d\FF_\pp(v_\pp)(f)$. By the definition of the differential $d\FF_\pp$ (recall Definition \ref{ch::manifolds::defn::differential_smooth_function_abstract}), $d\FF_\pp(v_\pp)(f) = v_\pp(f \circ \FF)$. Since $f$ is a $0$-form, $f \circ \FF = \Omega^k \FF^*(f)$ by definition of $\Omega^k \FF^*$. So $v_\pp(f \circ \FF) = v_\pp(\Omega^k \FF^*(f))$. Lastly, since $v_\pp(g) = dg_\pp(v_\pp)$, we use $g = \Omega^k \FF^*(f)$ to obtain $v_\pp(\Omega^k \FF^*(f)) = d(\Omega^k \FF^*(f))_\pp(v_\pp)$.
 \end{proof}
 
 %\begin{remark}
@@ -152,18 +152,12 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
 \label{ch::diff_forms::lemma::technical_pullback_yi}
     (Technical lemma: $\Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i$).
     
-    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. Recall from Definition \ref{ch::manifolds::defn::coord_representation_of_fn_on_manifold} that the coordinate representation of $\FF$ relative to the chart $(V, \yy)$ is $\tFF_{(V, \yy)} = \yy \circ \FF$, so $y^i \circ \FF$ is $y^i \circ \FF = \tF^i$, the $i$th coordinate function of $\tFF_{(V, \yy)} = (\tF_{(V, \yy)}^1, ..., \tF_{(V, \yy)}^n)^\top$. But $y^i \circ \FF = \Omega^k \FF^*(y^i)$, so
-    
-    \begin{align*}
-        \tF_{(V, \yy)}^i = \Omega^k \FF^*(y^i).
-    \end{align*}
-    
-    Since the differential commutes with the pullback of a diffeomorphism, we have $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*)(y^i)$. Applying the above, we see
-    
-    \begin{align*}
-        \Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i.
-    \end{align*}
+    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, let $(V, \yy)$ be a smooth chart on $N$, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. Then $\Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i$.
 \end{lemma}
+
+\begin{proof}
+    From the definition of $\Omega^k \FF^*$ we have have $\Omega^k \FF^*(y^i) = y^i \circ \FF$. Recall from Definition \ref{ch::manifolds::defn::coord_representation_of_fn_on_manifold} that $y^i \circ \FF$ is the $i$th coordinate function of the coordinate representation of $\FF$ in the chart $(V, \yy)$: we have $y^i \circ \FF = \tFF_{(V, \yy)}^i$. Thus $\Omega^k \FF^*(y^i) = \tF_{(V, \yy)}^i$; taking the differential of both sides, we have  $d\Omega^k \FF^*(y^i) = d\tF_{(V, \yy)}^i$. Apply the fact that the differential commutes with the pullback $\Omega^k \FF^*$ to the left side to obtain the result. 
+\end{proof}
 
 \begin{theorem}
 \label{ch::diff_forms::thm::pullback_top_degree_diff_Form}

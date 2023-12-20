@@ -124,12 +124,12 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 
     (This proof requires some abstract algebra. Understanding this proof is not really necessary to understand exterior powers, so you can take this theorem as an axiom if you want).
 
-    Assume $\alt(\TT) = \mathbf{0}$. Let $T = \vv_{i_1} \otimes ... \otimes \vv_{i_{k}}$ and $\SS = \vv_{j_1} \otimes ... \otimes \vv_{j_k}$. We must show $\alt(\TT \otimes \SS) = \mathbf{0}$. 
+    Assume $\alt(\TT) = \mathbf{0}$. Let $\TT = \vv_{i_1} \otimes ... \otimes \vv_{i_{k}}$ and $\SS = \vv_{j_1} \otimes ... \otimes \vv_{j_k}$. We must show $\alt(\TT \otimes \SS) = \mathbf{0}$. 
     
-    To do so, let $H$ be the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_k$, and consider the right cosets $\{H \sigma \mid \sigma \in S_{2k}\}$ of $H$ in $S_{2k}$. Since these right cosets partition $S_{2k}$, then
+    To do so, let $H$ be the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_k$, and consider the cosets ${\{H \sigma \mid \sigma \in S_{2k}\}}$ of $H$ in $S_{2k}$. Since these cosets partition $S_{2k}$, then
     
     \begin{align*}
-        \alt(\TT \otimes \SS) &= \sum_{\pit \sigma \in \{\text{right cosets}\}} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} = \sum_{\sigma \in S_{2k}} \sum_{\pit \in H} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} \\
+        \alt(\TT \otimes \SS) &= \sum_{\pit \sigma \in \{\text{cosets}\}} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} = \sum_{\sigma \in S_{2k}} \sum_{\pit \in H} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} \\
         &= \sum_{\sigma \in S_{2k}} \Big(\sum_{\pit \in H} \text{sgn}({\pit}) (\TT \otimes \SS)^{\pit} \Big)^{\sigma}.
     \end{align*}
     
@@ -166,7 +166,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
     First, we have by definition of $\wedge$ that 
     
     \begin{align*}
-        (\TT \wedge \SS) \wedge \RR = \alt((\TT \wedge \SS) \otimes \RR)
+        (\TT \wedge \SS) \wedge \RR = \alt((\TT \wedge \SS) \otimes \RR).
     \end{align*}
     
     Subtracting $\alt(\TT \otimes \SS \otimes \RR)$ from both sides and using linearity of $\alt$, we get that
@@ -175,7 +175,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
         (\TT \wedge \SS) \wedge \RR - \alt(\TT \otimes \SS \otimes \RR) = \alt((\TT \wedge \SS - \TT \otimes \SS) \otimes \RR) = (\TT \wedge \SS - \TT \otimes \SS) \wedge \RR.
     \end{align*}
     
-    If we show $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$, then our claim is true. The previous lemma says that if $\alt(\TT \wedge \SS - \TT \otimes \SS) = \mathbf{0}$, then  $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$. And this is true, since $\alt(\TT \wedge \SS - \TT \otimes \SS) = \alt(\TT \wedge \SS) - \alt(\TT \otimes \SS) = \TT \wedge \SS - \TT \wedge \SS = \mathbf{0}$, by linearity of $\alt$ and with use of the fact that $\TT \wedge \SS$ is antisymmetric.
+    If we show $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$, then our claim is true. By the previous lemma, it suffices to show that $\alt(\TT \wedge \SS - \TT \otimes \SS) = \mathbf{0}$, since if this is true then $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$. And this the case: $\alt(\TT \wedge \SS - \TT \otimes \SS) = \alt(\TT \wedge \SS) - \alt(\TT \otimes \SS) = \TT \wedge \SS - \TT \wedge \SS = \mathbf{0}$, by linearity of $\alt$ and with use of the fact that $\TT \wedge \SS$ is antisymmetric.
 \end{proof}
 
 \subsection*{Wedge product spaces and exterior powers}
@@ -221,7 +221,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \wedge ... \wedge V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
     
     \begin{align*}
-        \{ \ee_{1i_1} \otimes ... \otimes \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
+        \{ \ee_{1i_1} \wedge ... \wedge \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
     \end{align*}
 \end{theorem}
 
@@ -250,7 +250,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 \begin{proof}
    To show that this set spans $\Lambda^k(V)$, use the seeming-multilinearity of $\wedge$ as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
    
-   For linear independence, note that if the sequence $i_1, ..., i_k$ were not strictly increasing, then we would have a $\mathbf{0}$ in the claimed basis, which would make our claimed basis a linearly dependent set. Since there is no $\mathbf{0}$ in the claimed basis, we can follow the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
+   For linear independence, note that if the sequence $i_1, ..., i_k$ were not strictly increasing, then we would have a $\mathbf{0}$ in the proposed basis, which would make our proposed basis a linearly dependent set. Since there is no $\mathbf{0}$ in the proposed basis, we can follow the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
 \end{proof}
 
 %\begin{remark}
@@ -338,10 +338,10 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 \label{ch::exterior_pwrs::defn::pushforward_on_Tk0}
     (Pushforwards and pullbacks).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual $\ff^*:W^* \rightarrow V^*$. We define the following \textit{pushforward} and \textit{pullback} maps on $T^k_0(V) = V^{\otimes k}$ and $T_{0,k}(W) = (W^*)^{\otimes k}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
+    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual $\ff^*:W^* \rightarrow V^*$. We define the following \textit{pushforward} and \textit{pullback} maps on $T_{k,0}(V) = V^{\otimes k}$ and $T_{0,k}(W) = (W^*)^{\otimes k}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
     
     \begin{align*}
-        \vv_1 \otimes ... \otimes \vv_k \in T^k_0(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T^k_0(W) \quad \text{(``pushforward on $T^k_0(V)$'')} \\
+        \vv_1 \otimes ... \otimes \vv_k \in T_{k,0}(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T_{k,0}(W) \quad \text{(``pushforward on $T_{k,0}(V)$'')} \\
         \psi_1 \otimes ... \otimes \psi_k \in T_{0,k}(W) &\overset{\otimes_{0, k} \ff^*}{\longmapsto} \ff^*(\psi_1) \otimes ... \otimes \ff^*(\psi_k) \in T_{0,k}(V) \quad \text{(``pullback on $T_{0,k}(W)$'')}.
     \end{align*}
     
@@ -357,7 +357,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 \label{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}
     (Star notation for pushforward and pullback).
     
-    The above notation of using $\otimes_{0, k} \ff:V \rightarrow W$ and $\Lambda^k \ff$ for the pushforwards and using ${\otimes_{k, 0} \ff^*:W^* \rightarrow V^*}$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$. Somewhat less commonly, pushforwards are denoted by ${\ff_*:T^k_0(V) \rightarrow T^k_0(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$.
+    The above notation of using $\otimes_{0, k} \ff:V \rightarrow W$ and $\Lambda^k \ff$ for the pushforwards and using ${\otimes_{k, 0} \ff^*:W^* \rightarrow V^*}$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$. Somewhat less commonly, pushforwards are denoted by ${\ff_*:T_{k,0}(V) \rightarrow T_{k,0}(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$.
     
     Once the above definitions of pushforward and pullback are understood, this ``star notation'' can be useful. But it can be difficult to understand what the various pushforwards and pullbacks are if this notation is used from the start, due to the potential for confusing the dual $\ff^*:W^* \rightarrow V^*$ with either of the pullbacks ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}, {\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
     
@@ -1031,7 +1031,7 @@ To achieve our goals, we first formalize some notation about the alternative int
     
     The natural isomorphism $V_1^* \otimes ... \otimes V_k^* \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ is defined on the elementary tensor $\phi^1 \otimes ... \otimes \phi^k \in V_1^* \otimes ... \otimes V_k^*$, and extended with the seeming-multilinearity of $\otimes$ and the corresponding actual multilinearity of the newly-defined $\totimes$. The isomorphism sends
     
-    %It is most illuminating to construct the isomorphism $V_1 \otimes ... \otimes V_k  \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ by defining an isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$. Once we have this isomorphism involving $k$, then we automatically have the full isomorphism involving $p, q$, since the identification $V \cong V^{**}$ provides a way to turn the isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$ into an isomorphism $T^k_0(V) \cong \LLLL(V^{\times k} \rightarrow K)$; we can ``piece together'' the two isomorphisms involving $k$ to obtain the full isomorphism involving $p, q$. We construct the isomorphism this way to emphasize the action of elements of $V^*$ on elements of $V^*$ and the action of elements of $V \cong V^{**}$ on elements of $V^*$.
+    %It is most illuminating to construct the isomorphism $V_1 \otimes ... \otimes V_k  \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$ by defining an isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$. Once we have this isomorphism involving $k$, then we automatically have the full isomorphism involving $p, q$, since the identification $V \cong V^{**}$ provides a way to turn the isomorphism $T_{0,k}(V) \cong \LLLL((V^*)^{\times k} \rightarrow K)$ into an isomorphism $T_{k,0}(V) \cong \LLLL(V^{\times k} \rightarrow K)$; we can ``piece together'' the two isomorphisms involving $k$ to obtain the full isomorphism involving $p, q$. We construct the isomorphism this way to emphasize the action of elements of $V^*$ on elements of $V^*$ and the action of elements of $V \cong V^{**}$ on elements of $V^*$.
     
     \begin{align*}
         \phi^1 \otimes ... \otimes \phi^k \mapsto \phi^1 \totimes ... \totimes \phi^k,
@@ -1236,24 +1236,24 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \subsubsection{Pushforward and pullback on vector spaces of functions}
 
 \begin{deriv}
-    (Pushforward on $\tT^k_0(V)$)
+    (Pushforward on $\tT_{k,0}(V)$)
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0} defined the pushforward $\otimes_{k, 0} \ff: T^k_0(V) \rightarrow T^k_0(W)$ by
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0} defined the pushforward $\otimes_{k, 0} \ff: T_{k,0}(V) \rightarrow T_{k,0}(W)$ by
     
     \begin{align*}
-        \vv_1 \otimes ... \otimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k).
+        \vv_1 \otimes ... \otimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k).
     \end{align*}
     
-    The natural isomorphisms $T^k_0(V) \cong \tT^k_0(V)$ and $T^k_0(W) \cong \tT^k_0(W)$ induce a pushforward map $\totimes^k_0 \ff:\tT^k_0(V) \rightarrow \tT^k_0(W)$ defined by
+    The natural isomorphisms $T_{k,0}(V) \cong \tT_{k,0}(V)$ and $T_{k,0}(W) \cong \tT_{k,0}(W)$ induce a pushforward map $\totimes_{k,0} \ff:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)$ defined by
     
     \begin{align*}
-        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff(\vv_1) \totimes ... \totimes \ff(\vv_k).
+        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \totimes ... \totimes \ff(\vv_k).
     \end{align*}
     
     Notice that by definition of $\totimes$, we have $ \ff(\vv_1) \totimes ... \totimes \ff(\vv_k) = (\ff^{\totimes k})(\vv_1, ..., \vv_i)$. Therefore
     
     \begin{align*}
-        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes^k_0 \ff}{\longmapsto} \ff^{\totimes k}(\vv_1, ..., \vv_k).
+        \vv_1 \totimes ... \totimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff^{\totimes k}(\vv_1, ..., \vv_k).
     \end{align*}
 \end{deriv}
 
@@ -1267,29 +1267,29 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \psi^1 \totimes ... \totimes \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k).
     \end{align*}
     
-    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes^0_k \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
+    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
     
     \begin{align*}
-        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes^0_k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
+        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes{0,k} \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
     \end{align*}
     
     It can be checked using the definition of $\totimes$ that $(\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff) = (\psi^1 \totimes ... \totimes \psi^k) \circ \ff$. Therefore
     
     \begin{align*}
-        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes^0_k \ff^*}{\longmapsto}
+        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes_{0,k} \ff^*}{\longmapsto}
         (\psi^1 \totimes ... \totimes \psi^k) \circ \ff.
     \end{align*}
     
     The above is a statement on the elementary tensor $\psi^1 \totimes ... \totimes \psi^k$. Extending this statement using the multilinearity of $\totimes$, we have
     
     \begin{align*}
-        \TT \in \tT_{0,k}(W) \overset{\totimes^0_k \ff^*}{\longmapsto} \TT \circ \ff \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
+        \TT \in \tT_{0,k}(W) \overset{\totimes_{0,k} \ff^*}{\longmapsto} \TT \circ \ff \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
     \end{align*}
     
     Since $\TT \circ \ff = \ff^*(\TT)$, this is equivalent to
     
     \begin{align*}
-        \TT \in \tT_{0,k}(W) \overset{\totimes^0_k \ff^*}{\longmapsto} \ff^*(\TT) \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
+        \TT \in \tT_{0,k}(W) \overset{\totimes_{0,k} \ff^*}{\longmapsto} \ff^*(\TT) \in \tT_{0,k}(V) \text{ for all $\TT \in \tT_{0,k}(W)$}.
     \end{align*}
     
     Since elements of $\tT_{0,k}(V)$ act on $k$ vectors from $V$, we now ask, how does $\otimes_{0, k} \ff^*$ act on $k$ vectors from $V$? Well,
@@ -1324,10 +1324,10 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \vv_k)).
     \end{align*}
     
-    Since the pushforward $\otimes_{k, 0}:T^k_0(V) \rightarrow T^k_0(W)$ induces the pushforward $\totimes^k_0:\tT^k_0(V) \rightarrow \tT^k_0(W)$, then we obtain a pushforward $\tLambda^k \ff:\tLambda^k(V) \rightarrow \tLambda^k(W)$ defined by
+    Since the pushforward $\otimes_{k, 0}:T_{k,0}(V) \rightarrow T_{k,0}(W)$ induces the pushforward $\totimes_{k,0}:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)$, then we obtain a pushforward $\tLambda^k \ff:\tLambda^k(V) \rightarrow \tLambda^k(W)$ defined by
     
     \begin{align*}
-        \vv_1 \twedge ... \twedge \vv_k = \talt(\vv_1 \totimes ... \totimes \vv_k) \overset{\tLambda^k \ff}{\longmapsto} \talt(\totimes^k_0 \ff(\vv_1 \totimes ... \totimes \vv_k)) = \ff^{\twedge k}(\vv_1, ..., \vv_k).
+        \vv_1 \twedge ... \twedge \vv_k = \talt(\vv_1 \totimes ... \totimes \vv_k) \overset{\tLambda^k \ff}{\longmapsto} \talt(\totimes_{k,0} \ff(\vv_1 \totimes ... \totimes \vv_k)) = \ff^{\twedge k}(\vv_1, ..., \vv_k).
     \end{align*}
     
     That is,
@@ -1353,11 +1353,11 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \alt(\psi^1 \otimes ... \otimes \psi^k) \overset{\Lambda^k \ff^*}{\longmapsto} \alt(\otimes_{0, k} \ff^*(\psi^1 \otimes ... \otimes \psi^k)).
     \end{align*}
     
-    Since the pullback $\otimes_{0, k} \ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)$ induces the pullback $\totimes^0_k \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)$, then we obtain a pullback $\tLambda^k \ff^*:\tLambda^k(W^*) \rightarrow \tLambda^k(V^*)$ defined by
+    Since the pullback $\otimes_{0, k} \ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)$ induces the pullback $\totimes_{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)$, then we obtain a pullback $\tLambda^k \ff^*:\tLambda^k(W^*) \rightarrow \tLambda^k(V^*)$ defined by
     
     \begin{align*}
         \psi^1 \twedge ... \twedge \psi^k = \talt(\psi^1 \totimes ... \totimes \psi^k) \overset{\tLambda^k \ff^*}{\longmapsto}
-        &\talt(\totimes^0_k \ff^*(\psi^1 \totimes ... \totimes \psi^k)) \\ 
+        &\talt(\totimes_{0,k} \ff^*(\psi^1 \totimes ... \totimes \psi^k)) \\ 
         &= \talt((\psi^1 \totimes ... \totimes \psi^k) \circ \ff) = \talt(\psi^1 \totimes ... \totimes \psi^k) \circ \ff
         = (\psi^1 \twedge ... \twedge \psi^k) \circ \ff.
     \end{align*}
@@ -1385,7 +1385,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         }
     \end{align*}
     
-    In appearance, it seems that $\tLambda^k \ff^*$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes^0_k \ff^*$, since $\totimes^0_k \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on alternating multilinear maps $\TT$, while $\totimes^0_k \ff^*$ acts on multilinear (not necessarily alternating) maps $\TT$.
+    In appearance, it seems that $\tLambda^k \ff^*$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes_{0,k} \ff^*$, since $\totimes_{0,k} \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on alternating multilinear maps $\TT$, while $\totimes_{0,k} \ff^*$ acts on multilinear (not necessarily alternating) maps $\TT$.
 \end{deriv}
 
 \newpage
