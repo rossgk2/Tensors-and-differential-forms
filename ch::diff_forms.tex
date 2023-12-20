@@ -11,6 +11,8 @@ At long last, we have reached the chapter where we define \textit{differential f
     Let $M$ be a smooth $n$-manifold WWBOC. We define $\Lambda^k(T^*(M)) := \bigsqcup_{\pp \in M} \Lambda^k(T_\pp^*(M))$, so that $\Lambda^k(T^*(M))$ is the the subset of $T^0_k(T(M))$ of antisymmetric tensors. The vector space $\Lambda^k(T^*(M))$ can be shown to be $\binom{n}{k}$ dimensional, just as is the case for $\Lambda^k(V)$ when $V$ is an $n$-dimensional vector space.
     
     A \textit{differential $k$-form on $M$} is a continuous function $M \rightarrow \Lambda^k(T^*(M))$. So, you might say that a differential $k$-form is a ``antisymmetric $(0, k)$ tensor field'' (remember, all tensor fields are continuous maps). The vector space of differential $k$-forms on $M$ is denoted $\Omega^k(M)$.
+
+    The \textit{degree} of a differential $k$-form is $k$.
 \end{defn}
 
 \begin{theorem}
@@ -148,13 +150,6 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
 %    Consider the context of the previous lemma, and let $(V, \yy)$ be a smooth chart on $N$, where $V \subseteq \FF(U)$. (Recall $\FF:U \subseteq M \rightarrow N$). The above lemma shows that $\Omega^k \FF^*(dy^i) = d(\Omega^k \FF^*(y^i))$. Be careful not to conclude that the lemma says ``$\Omega^k \FF^*(dy^i) = (d \Omega^k \FF^*)(y^i)$''.
 %\end{remark}
 
-\begin{lemma}
-\label{ch::diff_forms::lemma::technical_pullback_yi}
-    (Technical lemma: $\Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i$).
-    
-    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, let $(V, \yy)$ be a smooth chart on $N$, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. Then $\Omega^k \FF^*(dy^i) = d\tF_{(V, \yy)}^i$.
-\end{lemma}
-
 \begin{proof}
     From the definition of $\Omega^k \FF^*$ we have have $\Omega^k \FF^*(y^i) = y^i \circ \FF$. Recall from Definition \ref{ch::manifolds::defn::coord_representation_of_fn_on_manifold} that $y^i \circ \FF$ is the $i$th coordinate function of the coordinate representation of $\FF$ in the chart $(V, \yy)$: we have $y^i \circ \FF = \tFF_{(V, \yy)}^i$. Thus $\Omega^k \FF^*(y^i) = \tF_{(V, \yy)}^i$; taking the differential of both sides, we have  $d\Omega^k \FF^*(y^i) = d\tF_{(V, \yy)}^i$. Apply the fact that the differential commutes with the pullback $\Omega^k \FF^*$ to the left side to obtain the result. 
 \end{proof}
@@ -165,8 +160,8 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     
     %\textbf{lemma 14.16, proposition 14.20 helpful}
     
-    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism, and consider a differential $n$-form $\omega \in \Omega^n(V)$ on $V \subseteq N$. (We say that $\omega$ is \textit{top degree} differential form on $N$, since its degree (the ``degree'' of a differential $k$-form is $k$) is the same as the dimension of $N$). If $f \spc dy^1 \wedge ... \wedge dy^n$ is a differential $n$-form on $V$, the pullback of $f \spc dy^1 \wedge ... \wedge dy^n$ is
-
+    Let $M$ and $N$ be smooth $n$-manifolds WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $(V, \yy)$ be a smooth chart on $N$. Let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a diffeomorphism. If $f \spc dy^1 \wedge ... \wedge dy^n$ is a differential $n$-form on $V \subseteq N$ (we say it is a \textit{top degree} differential form on $N$ since its degree is the same as the dimension of $N$) then the pullback of this differential form is
+    
     \begin{align*}
         \boxed
         {
@@ -178,45 +173,29 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
 \end{theorem}
 
 \begin{proof}
-     By Theorem \ref{ch::diff_forms::theorem::diff_form_in_chart}, we can write $\omega$ in the chart $(V, \yy)$ as
+   Take the pullback $\Omega^k \FF^*$ of $f \spc dy^1 \wedge ... \wedge dy^n$ at $\pp \in U$ and apply the facts
+
+   \begin{itemize}
+       \item ${(\Omega^k \FF^*)(f \omega) = (\Omega^k \FF^*)(f) \spc (\Omega^k \FF^*)(\omega)}$
+       \item $\Omega^k \FF^*(f)_\pp = (f \circ \FF)(\pp)$
+       \item $\Omega^k \FF^*(dy^i)_\pp = \Lambda^1(d\FF_\pp)^*(dy^i_\pp) = (d\FF_\pp)^*(dy^i_\pp)$
+   \end{itemize}
+   
+   to see
     
-    \begin{align*}
-        \omega = f \spc dy^1 \wedge ... \wedge dy^n,
-    \end{align*}
-    
-    where $f$ is a continuous function $N \rightarrow \R$, and where $y^i$ is the $i$th coordinate function of $\yy$.
-    
-    %Since the pullback on the top exterior power (here, the top exterior power in question is $\Lambda^n T_{\FF(\pp)}(V)$) is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}), we have
-    
-    %\begin{align*}
-    %    \Big(\Omega^k \FF^*(\omega) \Big)_\pp &= 
-    %    \Big(\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n ) \Big)_\pp \\
-    %    &= \det(\Omega^k \FF^*) \spc \Big( \Omega^k \FF^*(f) \Big)_\pp \spc 
-    %    \Big( \Omega^k \FF^*(dy^1) \Big)_\pp \wedge ... \wedge \Big( \Omega^k \FF^*(dy^n) \Big)_\pp.
-    %\end{align*}
-    
-   Take $\Omega^k \FF^*$ of both sides of the above and apply the facts ${(\Omega^k \FF^*)(f \omega) = (\Omega^k \FF^*)(f) \spc (\Omega^k \FF^*)(\omega)}$, \\ $\Omega^k \FF^*(f) = f \circ \FF$, and $\Omega^k \FF^*(dy^i) = \tF_{(V, \yy)}^i$ to obtain
-    
-    \begin{align*}
+   \begin{align*}
         \Big(\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n ) \Big)_\pp = (f \circ \FF)(\pp) \spc 
-        d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp.
+        (d\FF_\pp)^*(dy^1_\pp) \wedge ... \wedge (d\FF_\pp)^*(dy^n_\pp).
     \end{align*}
     
-    %Since $\Omega^k \FF^*:T_{\FF(\pp)}^*(V) \rightarrow T_\pp^*(U)$, the determinant on the right side is 
-    
-    %\begin{align*}
-    %    \det(\Omega^k \FF^*) = \det([\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}_{i = 1}^n}) = \det([\tF_{(V, \yy)}^i]_{\{dx^j\}_{i = 1}^n}) = \det\Big( \frac{\pd \tF_{(V, \yy)}^i}{\pd x^j}\Big),
-    %\end{align*}
-    
-    %which is the determinant of the Jacobian matrix of $\tFF_{(V, \yy)}$. (In the above, $[\Omega^k \FF^*(\{dy^i\}_{i = 1}^n)]_{\{dx^i\}}$ denotes the matrix of $\Omega^k \FF^*$ relative to $\{dy^i\}_{i = 1}^n$ and $\{dx^i\}_{i = 1}^n$. The last equality above uses the second equation from the boxed equations of Theorem \ref{ch::manifolds::thm::coords_tangent_vectors_cotangent_vectors}). 
-    
-    Apply Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det} to see
+    Since the pushforward on the top exterior power is multiplication by the determinant (Theorem \ref{ch::exterior_pwrs::rmk::top_pullback_det}), the above is equal to
     
     \begin{align*}
-        d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp = \det\Big(\frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big) dx^1 \wedge ... \wedge dx^n.
+         (f \circ \FF)(\pp) \spc \det(d\FF_\pp^*) \spc dx^1 \wedge ... \wedge dx^n.
     \end{align*}
-    
-    Plug this expression for $d\tF_{(V, \yy)}^1|_\pp \wedge ... \wedge d\tF_{(V, \yy)}^n|_\pp$ into the previous equation to obtain the theorem.
+
+    Recall from Theorem \label{ch::exterior_pwrs::rmk::det_dual_invariant} that if $\ff:V \rightarrow V$ is a linear function on a finite-dimensional vector space $V$, then $\det(\ff) = \det(\ff^*)$. Thus $\det(d\FF_\pp^*) =  \det(d\FF_\pp)$. The matrix of $d\FF_\pp$ relative to the bases $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ and $\Big\{ \frac{\pd}{\pd y^i}\Big|_{\FF(\pp)} \Big\}_{i = 1}^n$ is the same as the Jacobian matrix of the coordinate representation $\widetilde{\FF}_{(V, \yy)}$ (recall Definition \ref{ch::manifolds::defn::differential_smooth_function_Rn_Rm}), and so the determinant $\det(d\FF_\pp)$ is equal to the determinant
+    $\det\Big( \frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big)$ of said Jacobian matrix. Thus $\det(d\FF_\pp^*) = \det\Big( \frac{\pd \tF_{(V, \yy)}^i}{\pd x^j} \Big)$, so the result is proven.
 \end{proof}
 
 \begin{remark}
