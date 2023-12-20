@@ -651,7 +651,6 @@ This characterization of the differential is coordinate-free, and therefore prov
 
 \begin{theorem}
 \label{ch::manifolds::thm::differential_smooth_map_M_R}
-
     \smallcite{book::SM}{281} (Differential of a smooth function $M \rightarrow \R$).
     
     What happens when we take the differential of a smooth function $f:M \rightarrow \R$? Well, by definition of the differential of a smooth function $M \rightarrow N$, we have
@@ -687,7 +686,7 @@ This characterization of the differential is coordinate-free, and therefore prov
         \td f_\pp(v_\pp) = v_\pp(f).
     \end{align*}
     
-    In practice, we write $df_\pp:T_\pp(M) \rightarrow \R$ to mean $\td f_\pp:T_\pp(M) \rightarrow \R$. (This includes ``$dx^i$''; whenever $x^i$ is a coordinate function, we write $dx^i$ to mean $\td x^i$, where $\td$ is the differential obtained by identifying $T_{f(\pp)}(\R) \cong \R$). So, the above characterizing condition of the differential of $f:M \rightarrow \R$ \textit{that is induced by the identification $T_{f(\pp)}(\R) \cong \R$} is restated as
+    In practice, we write $df_\pp:T_\pp(M) \rightarrow \R$ to mean $\td f_\pp:T_\pp(M) \rightarrow \R$. So, the above characterizing condition of the differential of $f:M \rightarrow \R$ \textit{that is induced by the identification $T_{f(\pp)}(\R) \cong \R$} is restated as
     
     \begin{align*}
         \boxed
@@ -699,12 +698,12 @@ This characterization of the differential is coordinate-free, and therefore prov
 
 \begin{theorem}
 \label{ch::manifolds::thm::differential_smooth_function_coords}
-    \smallcite{book::SM}{281} (Differential of a smooth function $M \rightarrow \R$ in coordinates).
+    \smallcite{book::SM}{281} (Differential of a smooth function $M \rightarrow \R$ in local coordinates).
 
-    Let $M$ be a smooth $n$-manifold WWBOC or corners, and let $(U, \xx)$ be a smooth chart on $M$, with $x^i$ being the $i$th coordinate function of $\xx$. Then the differential of a smooth function $f:M \rightarrow \R$ obtained by identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem) is given by
+    Let $M$ be a smooth $n$-manifold WWBOC or corners, and let $(U, \xx)$ be a smooth chart on $M$, with $x^i$ being the $i$th coordinate function of $\xx$. The differential of a smooth function $f:M \rightarrow \R$ obtained by identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem) is given by
     
     \begin{empheq}[box = \fbox]{align*}
-        df_\pp &= \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp
+        df_\pp &= \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i_\pp \text{ for all $\pp \in U$}
     \end{empheq}
     
     Note, the $d$ on the right side is the differential of the $i$th coordinate function $x^i$ of $\xx$ after identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem).
@@ -714,7 +713,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     Notice that $(\vv \mapsto df_\pp(\vv)) = df_\pp$ is an element of $T_\pp(M)^*$. (We will explore this fact more later, in Section \ref{ch::manifolds::tangent_cotangent_with_coords}). Since $T_\pp(M)$ is an $n$-dimensional vector space, then $T_\pp(M)^*$ is also $n$-dimensional, and we can express $df_\pp$ as
     
     \begin{align*}
-        df_\pp = \sum_{i = 1}^n C_i(\pp) \lambda^i|_\pp
+        df_\pp = \sum_{i = 1}^n C_i(\pp) \lambda^i_\pp
     \end{align*}
     
     where each $C_i:U \rightarrow \R$ is a smooth function and $\lambda^i \in T_\pp(M)^*$.
@@ -731,13 +730,13 @@ This characterization of the differential is coordinate-free, and therefore prov
         df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp \lambda^i_\pp.
     \end{align*}
     
-    It remains to determine the $\lambda^i|_\pp$. To do so, consider the above and substitute the coordinate function $x^i:U \rightarrow \R$ in for $f$. We have
+    It remains to determine the $\lambda^i_\pp$. To do so, consider the above and substitute the coordinate function $x^i:U \rightarrow \R$ in for $f$. We have
     
     \begin{align*}
-        dx^i|_\pp = \sum_{j = 1}^n \frac{\pd x^i}{\pd x^j}\Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd}{\pd \see^j}(x^i \circ \xx^{-1}) \Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp \lambda^j|_\pp,
+        dx^i_\pp = \sum_{j = 1}^n \frac{\pd x^i}{\pd x^j}\Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd}{\pd \see^j}(x^i \circ \xx^{-1}) \Big|_\pp \lambda|_\pp^j = \sum_{j = 1}^n \frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp \lambda^j|_\pp,
     \end{align*}
 
-    where $\widetilde{x}^i:\R^n \rightarrow \R$ is the $i$th coordinate function on $\R^n$. Since $\frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp = \delta^i{}_j$, the sum simplifies to $\lambda^i|_\pp$, and we get $dx^i|_\pp = \lambda^i|_\pp$.
+    where $\widetilde{x}^i:\R^n \rightarrow \R$ is the $i$th coordinate function on $\R^n$. Since $\frac{\pd \widetilde{x}^i}{\pd \see^j}\Big|_\pp = \delta^i{}_j$, the sum simplifies to $\lambda^i_\pp$, and we get $dx^i_\pp = \lambda^i_\pp$.
 \end{proof}
 
 \begin{remark}
@@ -746,16 +745,16 @@ This characterization of the differential is coordinate-free, and therefore prov
     When $M = \R^n$, we can use the first line in the boxed equation of the previous theorem to compute
     
     \begin{align*}
-        df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp.
+        df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i_\pp.
     \end{align*}
     
-    Since $M = \R^n$, then $df_\pp:T_\pp(\R^n) \rightarrow \R$. Notice that we have $T_{f(\pp)}(\R^n) \cong \R^n$ because $T_\pp(\R^n)$ and $\R^n_\pp$ are both $n$-dimensional, so we get from $df_\pp:T_\pp(\R^n) \rightarrow \R$ another induced function $\td f_\pp:\R^n_\pp \rightarrow \R$, where $\td$ is thought of as the ``induced differential''. Above, we see that our original $df_\pp$ is a linear combination of $dx^i|_\pp \in T_\pp(M)$. Thus, $\td f_\pp$ is a linear combination of $\td x^i|_\pp \in T_\pp(\R^n)$ with the same weights:
+    Since $M = \R^n$, then $df_\pp:T_\pp(\R^n) \rightarrow \R$. Notice that we have $T_{f(\pp)}(\R^n) \cong \R^n$ because $T_\pp(\R^n)$ and $\R^n_\pp$ are both $n$-dimensional, so we get from $df_\pp:T_\pp(\R^n) \rightarrow \R$ another induced function $\td f_\pp:\R^n_\pp \rightarrow \R$, where $\td$ is thought of as the ``induced differential''. Above, we see that our original $df_\pp$ is a linear combination of $dx^i_\pp \in T_\pp(M)$. Thus, $\td f_\pp$ is a linear combination of $\td x^i|_\pp \in T_\pp(\R^n)$ with the same weights:
     
     \begin{align*}
         \td f_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp \td x^i
     \end{align*}
     
-    In the proof of the previous theorem, we saw that $dx^i|_\pp$ is the $i$th coordinate function on $T_\pp(M)$. Since $T_\pp(\R^n) \cong \R^n_\pp$, and since $dx^i$, being an induced dual basis vector, is the $i$th coordinate function on $T_\pp(M)$, it follows that $\td x^i$ must be the $i$th coordinate function on $\R^n_\pp$. This implies that $\td f_\pp$ acts on $\vv_\pp \in \R^n_\pp$ by
+    In the proof of the previous theorem, we saw that $dx^i_\pp$ is the $i$th coordinate function on $T_\pp(M)$. Since $T_\pp(\R^n) \cong \R^n_\pp$, and since $dx^i$, being an induced dual basis vector, is the $i$th coordinate function on $T_\pp(M)$, it follows that $\td x^i$ must be the $i$th coordinate function on $\R^n_\pp$. This implies that $\td f_\pp$ acts on $\vv_\pp \in \R^n_\pp$ by
     
     \begin{align*}
         \td f_\pp(\vv_\pp) 
@@ -771,17 +770,34 @@ This characterization of the differential is coordinate-free, and therefore prov
 
 \newpage 
 
-\section{Tangent vectors and tangent covectors with coordinates}
+\section{Cotangent vectors}
 \label{ch::manifolds::tangent_cotangent_with_coords}
 
-\begin{defn}
-\label{ch::manifolds::defn::cotangent_space}
-    \smallcite{book::SM}{275} (Cotangent space to a manifold).
+\begin{remark}
+    (Intuition for differentials).
+
+    Let $M$ be an smooth $n$-manifold WWBOC, let $(U, \xx)$ be a smooth chart on $M$, and let $\pp \in U$. When we proved Theorem \ref{ch::manifolds::thm::differential_smooth_function_coords}, we quickly applied the fact that we can compute the $i$th coordinate of $v_\pp$ relative to the basis $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$ for $T_\pp(M)$ as 
+
+    \begin{align*}
+        [v_\pp]_{\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n}^i = dx^i_\pp(v_\pp).
+    \end{align*}
+
+    Let us think about this fact for a second. Recall that in calculus, the expression ``$dx^i$'' is thought of as an infinitesimal displacement in the $\see_i$ direction. On manifolds, we think of tangent vectors- elements of $T_\pp(M)$- as representing the infinitesimal displacements; a tangent vector at $\pp$ is thought of as an infinitesimal displacement originating at $\pp$. The differential $dx^i_\pp$ then formalizes the idea of an infinitesimal displacement in the direction of the $i$th basis tangent vector, since, according to the above, applying $dx^i_\pp$ to a tangent vector $v_\pp \in T_\pp(M)$ gives the component of that tangent vector in the direction of the $i$th basis tangent vector.
+\end{remark}
+
+\begin{deriv}
+    (Cotangent space).
+
+    What set do the differentials $dx^i_\pp$ reside in? Well, $dx^i_\pp:T_\pp(M) \rightarrow \R$, so $dx^i_\pp \in T_\pp(M)^*$.
     
-    Let $M$ be an smooth $n$-manifold WWBOC, and let $\pp \in M$. The \textit{cotangent space $T_\pp^*(M)$ to $M$ at $\pp$} is the dual vector space to the tangent space at $\pp$. That is, $T_\pp^*(M) := T_\pp(M)^*$.
-    
-    An element $\phi_\pp \in T_\pp^*(M)$ of the cotangent space at $\pp$ is called a \textit{tangent covector}, or a \textit{covector} for short.
-\end{defn}
+    Additionally, notice that since applying $dx^i_\pp$ to $v_\pp$ yields the $i$th coordinate of $v_\pp$ in the $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ basis, the set $\{dx^i_\pp\}_{i = 1}^n$ must be the dual basis for $T_\pp(M)^*$.
+
+    Indeed, the dual basis for $T_\pp(M)^*$ is the unique set of vectors satisfying the above condition involving $v_\pp$, so it follows that $\{dx^i_\pp\}_{i = 1}^n$ is the dual basis for $T_\pp(M)^*$.
+
+    The set $T_\pp(M)^*$ is called the \textit{cotangent space to $M$ at $\pp$}. We denote it by $T_\pp^*(M)$ for convenience.
+\end{deriv}
+
+\section{Coordinates of tangent and cotangent vectors}
 
 \begin{theorem}
 \label{ch::manifolds::thm::induced_bases_in_a_chart}
@@ -791,7 +807,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     
     \begin{enumerate}
         \item The dual basis for $T_\pp(M) = C^\infty(U \subseteq M \rightarrow \R)^*$ induced by $\{x^i\}_{i = 1}^n$ is $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$.
-        \item The dual basis for $T_\pp^*(M) = T_\pp(M)^* = C^\infty(U \subseteq M \rightarrow \R)^{**}$ induced by $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$ is $dx^i|_\pp$, where $x^i$ is the $i$th coordinate function of $\xx$, and where the $d$ here is \textit{not} obtained by identifying $T_\pp(\R^n) \cong \R$, but by ``leaving $T_\pp(\R^n)$ alone'' (recall Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} to see happens to $d$ when we identify $T_{f(\pp)}(\R) \cong \R$).
+        \item The dual basis for $T_\pp^*(M) = T_\pp(M)^* = C^\infty(U \subseteq M \rightarrow \R)^{**}$ induced by $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}$ is $dx^i_\pp$, where $x^i$ is the $i$th coordinate function of $\xx$, and where the $d$ here is \textit{not} obtained by identifying $T_\pp(\R^n) \cong \R$, but by ``leaving $T_\pp(\R^n)$ alone'' (recall Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} to see happens to $d$ when we identify $T_{f(\pp)}(\R) \cong \R$).
     \end{enumerate}
 \end{theorem}
 
@@ -800,7 +816,7 @@ This characterization of the differential is coordinate-free, and therefore prov
     
     \begin{enumerate}
         \item We have $\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)(x^j) = \frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$.
-        \item We know $df_\pp(v_\pp) = v_\pp(f)$ from Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} so $dx^i|_\pp\Big(\frac{\pd}{\pd x^j}\Big|_\pp\Big) = \frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$. 
+        \item We know $df_\pp(v_\pp) = v_\pp(f)$ from Theorem \ref{ch::manifolds::thm::differential_smooth_map_M_R} so $dx^i_\pp\Big(\frac{\pd}{\pd x^j}\Big|_\pp\Big) = \frac{\pd x^i}{\pd x^j}\Big|_\pp = \delta^i{}_j$. 
     \end{enumerate}
 \end{proof}
 
@@ -828,7 +844,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
     
     In the second equation of the first line, $\phi_{x^i}$ is the element of $C^\infty(U \subseteq M \rightarrow \R)^{**} = T_\pp^*(M)$ that is identified with the $i$th coordinate function $x^i \in C^\infty(U \subseteq M \rightarrow \R)$ of $\xx$. Recall Theorem \ref{ch::motivated_intro::thm::V_iso_double_dual} to see that $\phi_f:C^\infty(U \subseteq M \rightarrow \R)^* = T_\pp(M) \rightarrow \R$, where $f \in C^\infty(U \subseteq M \rightarrow \R)$, is defined by $\phi_f(v_\pp) = v_\pp(f)$.
     
-    The second equation of the first line is not of much practical use, but it helps formalize the precise way in which $x^i|_\pp$ and $dx^i|_\pp$ are ``the same'': $dx^i|_\pp = (\phi_{x^i})|_\pp$.
+    The second equation of the first line is not of much practical use, but it helps formalize the precise way in which $x^i|_\pp$ and $dx^i_\pp$ are ``the same'': $dx^i_\pp = (\phi_{x^i})|_\pp$.
 \end{theorem}
 
 \begin{remark}
@@ -836,19 +852,19 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
     
     Recall the convention of ``covariance and contravariance'' from Definition \ref{ch::motivated_intro::defn::covariance_contravariance}. The first half of this convention stipulates that the coordinates of a covector are to be indexed by lower subscripts, while covectors themselves are to be are indexed by upper subscripts. The second half states that the coordinates of a vector (which is ``contravariant'') are to be indexed by lower subscripts, while vectors themselves are to be indexed by lower subscripts.
     
-    We now call attention to the fact that our uses of upper and lower indices for a basis coordinate function $x^i$, a basis tangent vector $\frac{\pd}{\pd x^i}\Big|_\pp$, and a basis cotangent vector $dx^i|_\pp$ can be retroactively interpreted as obeying these conventions. 
+    We now call attention to the fact that our uses of upper and lower indices for a basis coordinate function $x^i$, a basis tangent vector $\frac{\pd}{\pd x^i}\Big|_\pp$, and a basis cotangent vector $dx^i_\pp$ can be retroactively interpreted as obeying these conventions. 
     
     We can argue that an upper index is used in $x^i$ because $x^i$ is a coordinate of a smooth chart $\xx:U \rightarrow \R^k$, which is ``close enough'' to a vector, since its output is $\R^k$. (This argument ignores the fact that the primary vectors of interest when studying manifolds are tangent vectors, not elements of $\R^k$).
     
     As for the notation $\frac{\pd}{\pd x^i}\Big|_\pp$, we would somehow like to be able to interpret $i$ as being a lower index, since $\frac{\pd}{\pd x^i}\Big|_\pp$ is a tangent vector, which is contravariant. Our justification will be that even though $i$ is typographically an upper index, $i$ appears in the denominator, so it is ``low''.
     
-    With $dx^i|_\pp$, all is well and good- an upper index is used on a tangent covector- so no retroactive argument is necessary. 
+    With $dx^i_\pp$, all is well and good- an upper index is used on a tangent covector- so no retroactive argument is necessary. 
 \end{remark}
 
 \begin{remark}
     (Uses of the notation $x^i$).
     
-    Let $M$ be a smooth $n$-manifold, and consider a smooth chart $(U, \xx)$ about $\pp \in M$. You have likely noticed that there the collection of symbols ``$x^i$'' appears in the notation in various ways. A summary of all the ways $x^i$ is used is as follows. When $x^i$ appears in a ``numerator'' (e.g. $\frac{\pd x^i}{\pd x_j}$) or ``by itself'' (e.g. $x^i$), then $x^i$ is the $i$th coordinate function of $\xx$. When $x^i$ appears in a ``denominator'', it is because that ``denominator'' is part of the basis vector $\frac{\pd}{\pd x^i}\Big|_\pp$ of $T_\pp(M)$.
+    Let $M$ be a smooth $n$-manifold, and consider a smooth chart $(U, \xx)$ about $\pp \in M$. You have likely noticed that the collection of symbols ``$x^i$'' appears in notation in various ways. A summary of all the ways $x^i$ is used is as follows. When $x^i$ appears in a ``numerator'' (e.g. $\frac{\pd x^i}{\pd x_j}$), as an argument of a differential (e.g. $dx^i$), or ``by itself'' (e.g. $x^i$), then $x^i$ is the $i$th coordinate function of $\xx$. When $x^i$ appears in a ``denominator'', it is because that ``denominator'' is part of the basis vector $\frac{\pd}{\pd x^i}\Big|_\pp$ of $T_\pp(M)$.
 \end{remark}
 
 \begin{theorem}
@@ -969,7 +985,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
     
     The smooth\footnote{The $i$th coordinate vector field is smooth because its component functions are constants.} vector field defined by $\pp \mapsto \frac{\pd}{\pd x^i}\Big|_\pp$ is denoted (in an abuse of notation) by $\frac{\pd}{\pd x^i}$ and is called the \textit{$i$th local coordinate vector field (on $(U, \xx)$)}. 
     
-    Recall that $\{ dx^i_\pp \}_{i = 1}^n$ is the dual basis of $T_\pp^*(M)$ induced by the basis $\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ for $T_\pp(M)$. The smooth\footnote{The $i$th coordiante covector field is smooth because its component functions are constants.} covector field defined by $\pp \mapsto dx^i|_\pp$ is denoted (in an abuse of notation) by $dx^i$ and is called the \textit{$i$th local coordinate covector field (on $(U, \xx)$)}.
+    Recall that $\{ dx^i_\pp \}_{i = 1}^n$ is the dual basis of $T_\pp^*(M)$ induced by the basis $\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n$ for $T_\pp(M)$. The smooth\footnote{The $i$th coordiante covector field is smooth because its component functions are constants.} covector field defined by $\pp \mapsto dx^i_\pp$ is denoted (in an abuse of notation) by $dx^i$ and is called the \textit{$i$th local coordinate covector field (on $(U, \xx)$)}.
 \end{defn}
 
 \begin{defn}
@@ -992,6 +1008,37 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
     
     As an example, $\frac{\pd}{\pd x^i}$ and $dx^i$ are dual to each other.
 \end{defn}
+
+\subsection*{Ratio of differentials}
+
+At this point we are able to formalize the idea of taking the ratio of differentials- one of the most fundamental intuitions of single-variable calculus.
+
+\begin{lemma}
+    (When $M$ is one-dimensional, the differential becomes the single-variable derivative).
+
+    When $M$ is a smooth one-dimensional manifold and $f:M \rightarrow \R$ is a smooth function, then for every $\pp \in M$ the cotangent space $T_\pp^*(M)$ is one-dimensional, so $df = \sum_{i = 1}^1 (\pd_i f)_\pp dx^i_\pp = f'(x(\pp)) dx_\pp$ can be identified with the scalar $f'(x(\pp)) \in \R$. In other words, the induced differential $\td$ under these identifications is $\td = D$, where $Df = f'$.
+\end{lemma}
+
+\begin{theorem}
+    (Ratio of differentials).
+
+    \newcommand{\tfPrime}{\tilde{f}\phantom{'}'}
+
+    Let $M$ be a one-dimensional manifold, let $(U, \xx)$ be a smooth chart on $M$, and suppose we have a smooth function $f:U \rightarrow \R$. Consider the coordinate representation $\tf_{(U, \xx)} = f \circ \xx^{-1}:\R \rightarrow \R$, denoted as $\tf := \tf_{(U, \xx)}$ for brevity. Using $d$ to denote $\td = D$, we have that $df_\pp = d\tf_{x(\pp)} dx_\pp$ for every $\pp \in U$. 
+    
+    Then, since $T_\pp^*(M)$ is one-dimensional for every $\pp \in M$, we can divide by $dx_\pp$:
+    
+    \begin{align*}
+        \frac{df_\pp}{dx_\pp} = \frac{d\tf_{x(\pp)} dx_\pp}{dx_\pp} = d\tf_{x(\pp)} = D\tf_{x(\pp)} = \tfPrime(x(\pp)) \text{ for all $\pp \in U$}.
+    \end{align*}
+    
+    Thus $\frac{df}{dx}\Big|_\pp = (\tfPrime \circ x)(\pp)$ for every $\pp \in U$. Using more suggestive notation for function composition, we have
+    
+    \begin{align*}
+        \frac{df}{dx} = \tfPrime(x) \text{ for all $\pp \in U$}.
+    \end{align*}
+\end{theorem}
+
 
 %\subsection*{Vector fields and covector fields in coordinates}
 
@@ -1023,7 +1070,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 %\begin{theorem}
 %    (Differential of a function $U \subseteq M \rightarrow \R$ after identifying $T_{\ff(\pp)}(\R) \cong \R$).
     
-%    Recall thm which says $df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i|_\pp$. This implies
+%    Recall thm which says $df_\pp = \sum_{i = 1}^n \frac{\pd f}{\pd x^i}\Big|_\pp dx^i_\pp$. This implies
     
 %    \begin{align*}
 %        \boxed
