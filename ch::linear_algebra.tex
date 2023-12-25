@@ -1172,7 +1172,7 @@ The following derivation shows us how to coordinatize a linear function $K^n \ri
 \label{ch::lin_alg::deriv::standard_matrix}
     (Standard matrix of a linear function $K^n \rightarrow K^m$). 
     
-    Let $K$ be a field, and consider a linear function $\ff:K^n \rightarrow K^m$. For any vector $\vv \in K^n$, we have 
+    Let $K$ be a field and consider a linear function $\ff:K^n \rightarrow K^m$. For any vector $\vv \in K^n$, we have 
     
     \begin{align*}
         \vv =
@@ -1249,9 +1249,9 @@ The following derivation shows us how to coordinatize a linear function $K^n \ri
 \begin{deriv}
     (Matrix-vector product).
     
-    The previous derivation showed that a linear function $\ff:K^n \rightarrow K^m$ is represented by its standard matrix, $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$. In this derivation, we formalize the notion of using $\ff$'s standard matrix to determine $\ff$ itself.
+    Let $K$ be a field and consider a linear function $\ff:K^n \rightarrow K^m$. The previous derivation showed that a linear function $\ff:K^n \rightarrow K^m$ is represented by its standard matrix, $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$. In this derivation, we formalize the notion of using $\ff$'s standard matrix to determine $\ff$ itself.
     
-    The previous derivation showed that there is a function $\pp$ that returns $\ff(\vv)$ when given the standard matrix of $\ff$ and a vector $\vv$; specifically
+    From the previous derivation, we know that there is a function $\pp$ that returns $\ff(\vv)$ when given the standard matrix of $\ff$ and a vector $\vv$; specifically
     
     \begin{align*}
         \pp\Big( \begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}, \vv \Big) := ([\vv]_E)_1 \ff(\see_1) + ... + ([\vv]_E)_n \ff(\see_n) = \ff(\vv).

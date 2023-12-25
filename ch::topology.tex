@@ -32,6 +32,7 @@ We begin our investigation of the basic concepts of topology- \textit{open sets}
 \end{defn}
 
 \begin{theorem}
+\label{ch::topology::thm::interior_point_char_R}
     (Interior point characterization of open sets in $\R$).
     
     A subset $A \subseteq \R$ is open iff each $x \in A$ is an interior point, i.e., iff $A = \iint(A)$. Equivalently, $A$ is open iff $A \subseteq \iint(A)$, since $A \supseteq \iint(A)$ is always true.
@@ -40,9 +41,9 @@ We begin our investigation of the basic concepts of topology- \textit{open sets}
 \begin{proof}
     We show that $(\text{$A$ is open}) \iff (\text{each $x \in A$ is an interior point})$.
     
-    ($\implies$). If $A$ is open, then every $x \in A$ is contained in an open set $U_x \subseteq A$, namely, $U_x = A$ for all $x$.
+    ($\implies$). If $A$ is open, then every $x \in A$ is contained in an open set $U_x \subseteq A$; namely, $U_x = A$ for all $x$.
     
-    ($\impliedby)$. If every $x \in A$ is contained in an open set $U_x \subseteq A$, then $A = \cup_{x \in A} U_x$. (We have $\cup_{x \in A} U_x \subseteq A$ since each $U_x \subseteq A$, and $A \subseteq \cup_{x \in A} U_x$ since each $x \in A$ is in $U_x$). We defined an open set in $\R$ to be an arbitrary union of open sets in $\R$, so $A$ is open. 
+    ($\impliedby)$. If every $x \in A$ is contained in an open set $U_x \subseteq A$, then $A = \cup_{x \in A} U_x$. (We have $\cup_{x \in A} U_x \subseteq A$ since each $U_x \subseteq A$, and $A \subseteq \cup_{x \in A} U_x$ since each $x \in A$ is in $U_x$). Since an arbitrary union of open sets in $\R$ is open, then $A$ must be open. 
 \end{proof}
 
 Next, see what the interior point characterization of open sets implies for complements of open sets.
@@ -69,7 +70,7 @@ Next, see what the interior point characterization of open sets implies for comp
     
     In line 7, the notation ``$(U^c)'$'' relies upon    the notion of a limit point of a subset of $\R$, in the following way. We say $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff  $\forall \text{open } U_x \spc \spc U_x \cap U^c - \{x\} \neq \emptyset$. That is, $x \in \R$ is a \textit{limit point of $A \subseteq \R$} iff every open set containing $x$ intersects $A$ at a point other than $x$. The set of limit points of $A$ is denoted $A'$.
     
-    The above shows that $U$ is open iff $(U^c)' \subseteq U^c$. In words, a set is open iff its complement contains all of its limit points. For this reason, we define a \textit{closed set in} $\R$ to be any set which is the complement of an open set, or, equivalently, any set which contains all of its limit points. We call the fact that $C$ is closed iff $C' \subseteq C$ the \textit{limit point characterization of closed sets}. We repeat these definitions below.
+    The above shows that $U$ is open iff $(U^c)' \subseteq U^c$. In words, a set is open iff its complement contains all of its limit points. For this reason, we define a \textit{closed set in} $\R$ to be any set which is the complement of an open set, or, equivalently, any set which contains all of its limit points. We call the fact that $C$ is closed iff $C' \subseteq C$ the \textit{limit point characterization of closed sets}. We repeat these definitions and facts below.
 \end{deriv}
 
 \begin{defn}
@@ -83,14 +84,8 @@ Next, see what the interior point characterization of open sets implies for comp
 \begin{defn}
     (Closed set in $\R$).
     
-    A subset $A \subseteq \R$ of $\R$ is said to be \textit{closed} iff $A$ is the complement of some open subset of $\R$. Equivalently, $A \subseteq \R$ is closed iff $A$ contains all of its limit points.
+    A subset $A \subseteq \R$ of $\R$ is said to be \textit{closed} iff $A$ is the complement of some open subset of $\R$.
 \end{defn}
-
-\begin{remark}
-     (Open vs. closed).
-     
-     Subsets of $\R$ can be open but not closed, closed but not open, both and closed, or neither open nor closed. (This will be true for general topological spaces as well).
-\end{remark}
 
 \begin{theorem}
     (Limit point characterization of closed sets in $\R$).
@@ -104,6 +99,12 @@ Next, see what the interior point characterization of open sets implies for comp
      We have seen that open sets in $\R$ are characterized by the ``interior point characterization of open sets'', while closed sets in $\R$ are characterized by the ``limit point characterization of closed sets''.
 \end{remark}
 
+\begin{remark}
+     (Open vs. closed).
+     
+     Subsets of $\R$ can be open but not closed, closed but not open, both and closed, or neither open nor closed. (This will be true for general topological spaces as well).
+\end{remark}
+
 %\begin{remark}
 %     \textbf{put this somewhere else}
      
@@ -114,7 +115,7 @@ Next, see what the interior point characterization of open sets implies for comp
 
 To discover the general apparatus of topology, we investigate unions and intersections of open and closed sets in $\R$. It quickly follows from the definition of an open set as an arbitrary union of open intervals that an arbitrary union of open sets in $\R$ is an open set in $\R$. DeMorgan's laws then imply that an arbitrary intersection of closed sets in $\R$ is a closed set in $\R$.
 
-What about intersections of open sets $\R$- or, equivalently, by DeMorgan's laws- unions of closed sets in $\R$? Well, any infinite union of closed sets in $\R$ is not necessarily closed: consider $\cup_{i = 1}^\infty \{\frac{1}{n}\} = \{\frac{1}{n} \mid n \in \N \}$, which does not contain its limit point of $0$. Perhaps at least finite unions of closed sets must be closed (i.e., perhaps a finite union of sets that contain their limit points itself contains all its limit points)? This is indeed the case.
+What about unions of closed sets in $\R$? Well, any infinite union of closed sets in $\R$ is not necessarily closed: consider $\cup_{i = 1}^\infty \{\frac{1}{n}\} = \{\frac{1}{n} \mid n \in \N \}$, which does not contain its limit point of $0$. Perhaps at least finite unions of closed sets must be closed (i.e., perhaps a finite union of sets that contain their limit points itself contains all its limit points)? This is indeed the case.
 
 The following definition of a topological space is motivated by these properties of unions and intersections of open and closed sets in $\R$. Before this definition, we need some more technical language.
 
@@ -127,7 +128,7 @@ The following definition of a topological space is motivated by these properties
     
     Let $X$ be any set. A set $\CCCC$ of subsets of $X$ is a \textit{cover} of $X$ iff $\cup_{C \in \CCCC} C = X$.
     
-    Let $\tau$ be any set. A set $\CCCC$ \textit{generates} $\tau$ iff each $U \in \tau$ is an arbitrary union of the elements of $\CCCC$; that is, iff each $U \in \tau$ is $U = \cup_{\alpha \in I} C_\alpha$, where $\{C_\alpha\}_{\alpha \in I} \subseteq \CCCC$.
+    Let $\tau$ be any set. A set $\CCCC$ \textit{generates} $\tau$ iff each $U \in \tau$ is an arbitrary union of the elements of $\CCCC$; that is, iff each $U \in \tau$ is $U = \cup_{\alpha \in I} C_\alpha$, where $\{C_\alpha\}_{\alpha \in I} \subseteq \CCCC$. (Here, $I$ denotes an indexing set).
 \end{defn}
 
 We can now define topological spaces.
@@ -135,18 +136,13 @@ We can now define topological spaces.
 \begin{defn}
     (Topological space).
     
-    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. We say that $(X, \tau)$ is a \textit{topological space}, and that $\tau$ is a \textit{topology} on $X$, iff...
+    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. Let us to refer to elements of $\tau$ as ``open sets''.
+    
+    We say that $(X, \tau)$ is a \textit{topological space}, and that $\tau$ is a \textit{topology} on $X$, iff...
 
     \begin{enumerate}
         \item There is a cover $\B$ of $X$ that generates $\tau$.
-        \begin{itemize}
-            \item Note: for the same reasons as earlier, when we had $X = \R$ and $\tau = \{\text{open sets} \subseteq \R\}$, (1) is equivalent to the general version of the interior point characterization of open sets, which is in turn equivalent to the general version of the limit point characterization of closed sets.
-            \begin{itemize}
-                \item Interior points and limit points will be defined analogously as to how they were before, and the ``general versions'' of the interior and limit point characterizations, which are obtained from the versions we've seen by substituting in a general topological space $X$ in for where we before wrote $\R$, are indeed true due to analogous arguments. 
-            \end{itemize}
-            \item (1) is also equivalent to: ``arbitrary unions of open sets are open'', which is equivalent to ``arbitrary intersections of closed sets are closed''.
-        \end{itemize}
-        \item Finite unions of closed sets are closed $\iff$ finite intersections of open sets are open.
+        \item Finite unions of closed sets are closed.
     \end{enumerate}
 
     We interpret the elements of $\tau$ as being open sets. Formally, we say that $U \subseteq X$ is an \textit{open set} iff $U \in \tau$.
@@ -155,23 +151,51 @@ We can now define topological spaces.
 \begin{remark}
      ($\R^n$ with the standard topology).
      
-     In the section ``Topology on $\R$'', we were really doing topology on $(\R, \text{std})$, where $\text{std}$ is the \textit{standard topology on $\R$}, $\text{std} := \{ \text{subsets of $\R$ that are arbitrary unions of open intervals in $\R$} \}$. In general, the \textit{standard topology on $\R^n$} is 
-     $\{ \text{subsets of $\R^n$ that are arbitrary unions of open intervals in $\R^n$} \}$.
+     In the section ``Topology on $\R$'', we were really doing topology on $(\R, \tau_{\text{std}})$, where $\tau_{\text{std}}$ is the \textit{standard topology on $\R$} generated by $\B_{\text{std}} = \{ \text{open intervals in $\R$} \}$.
 \end{remark}
 
-\begin{defn}
-    (Topological space).
+With the help of the following lemma, the above definition of a topology can be seen to be equivalent to the following most common characterization, which makes no mention of a generating cover.
+
+\begin{lemma}
+\label{ch::topology::lemma:logical_equiv_open_sets}
+    (Logical equivalences regarding open sets).
+
+    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. Let us refer to elements of $\tau$ as ``open sets'', and suppose $\B$ is a cover of $X$. The following statements are equivalent:
     
-    The above definition of a topology can quickly be seen to be equivalent to the following most common definition, which makes no mention of a generating cover. The most common definition requires $\tau$ to satisfy the following:
+    \begin{enumerate}
+        \item $\B$ generates $\tau$.
+        \item Arbitrary unions of open sets are open.
+        \item The interior point characterization of open sets holds: $U$ is an open set iff every $x \in U$ is contained in some open set that is a subset of $U$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \mbox{} \\
+    \begin{itemize}
+        \item ((1) $\iff$ (2)).
+        \begin{itemize}
+                \item ((1) $\implies$ (2)). Suppose there is a cover $\B$ of $X$ that generates $\tau$. Consider an arbitrary union $U = \cup_\alpha U_\alpha$ of open sets. Since $\B$ generates $\tau$, then each $U_\alpha$ is of the form $U_\alpha = \cup_{\alpha \beta} B_{\alpha \beta}$, where $\{ B_{\alpha \beta} \mid \beta \in I\} \subseteq \B$. (Here, $I$ denotes an indexing set). Thus $\cup_\alpha U_\alpha = \cup_\alpha (\cup_\beta B_{\alpha \beta}) = \cup_{\alpha, \beta} B_{\alpha \beta}$, so the union of open sets is in fact a union of sets from the cover $\B$. Since the cover generates $\tau$, any union of sets from the cover $\B$ must be elements of $\tau$, i.e., must be open. 
+                \item ((2) $\implies$ (1)). Suppose arbitrary unions of open sets are open. We can then take $\tau$ to be a cover that generates itself: every element of $\tau$ is obviously a union of elements of $\tau$.
+            \end{itemize}
+            \item ((2) $\iff$ (3)). This proof is essentially the same as the proof of Theorem \ref{ch::topology::thm::interior_point_char_R}.
+    \end{itemize}
+\end{proof}
+
+\begin{theorem}
+\label{ch::topology::thm::topological_space}
+    (Most common characterization of a topological space).
+    
+    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. Let us to refer to elements of $\tau$ as ``open sets''. $(X, \tau)$ is a topological space iff
 
     \begin{enumerate}
         \item[3.] Arbitrary unions of open sets are open.
-        \begin{itemize}
-            \item As noted in (1), we have that (1) and (3) are equivalent.
-        \end{itemize}
         \item[4.] Finite intersections of open sets are open.
     \end{enumerate}
-\end{defn}
+\end{theorem}
+
+\begin{proof}
+    (3) holds because of the previous lemma. (4) holds because we have the following equivalence due to DeMorgan's laws: ``finite unions of open sets are open $\iff$ finite intersections of closed sets are closed''.
+\end{proof}
 
 \begin{remark}
      ($\emptyset, X \in \tau$).
@@ -179,7 +203,9 @@ We can now define topological spaces.
      Most definitions of a topological space explicitly require that the empty set and $X$ are open subsets of $X$. This requirement is implied by the above definition. Obviously, $X \in \tau$, since $\tau$ generates $X$. It's less easy to see that $\emptyset$ is also generated by $\tau$, but this is true too, since the empty set is the empty union of any collection of open sets (an empty union is a union that employs the empty set as its indexing set).
 \end{remark}
 
-\subsection*{Bases}
+\newpage
+
+\subsection*{Topological bases}
 
 Our first definition of a topological space $(X, \tau)$ involved a cover $\B$ that generated $X$. There was also another condition- we required finite intersections of open sets to be open. We would like to impose additional requirements on $\B$ so that finite intersections of elements of $\B$ are guaranteed to also be in $\B$. If we find such requirements, then $\B$ will induce a topology on $X$, in the sense that the set $\tau$ whose elements are arbitrary unions of elements of $\B$ will be a topology on $X$. The following definition and theorem present this condition.
 
@@ -192,18 +218,18 @@ Our first definition of a topological space $(X, \tau)$ involved a cover $\B$ th
 \begin{theorem}
     (Finite intersections of open sets are open iff the cover ``refines with interior points'').
     
+    Let $(X, \tau)$ be a tuple, where $X$ is any set and $\tau$ is a set of subsets of $X$. Let us refer to elements of $\tau$ as ``open sets''.
+    
     If $\B$ is a cover that generates $\tau$, then finite intersections of open sets are open iff $\B$ refines with interior points.
 \end{theorem}
 
 \begin{proof}
     \mbox{} \\ \indent
-    ($\implies$). Assume that finite intersections of open sets are open. We must show that $\B$ refines with interior points.
-    
-    Basis elements are by definition open, so if $B_1, B_2 \in \B$, then $B_1 \cap B_2$ is a finite intersection of open sets, and is thus open. By the interior point characterization of open sets, $x \in B_1 \cap B_2$ implies there is some open set $U \ni x$ such that $U \subseteq B_1 \cap B_2$. Because $U$ is open, it is a union of basis elements, $U = \cup_{i \in \{3, 4, ... \}} B_i$. Since $x$ is in $U$, it must be in $B_j$, for some $j \in \{3, 4, ... \}$. Relabel $B_j$ to be $B_3$ to match the syntax of the theorem.
+    ($\implies$). Assume that finite intersections of open sets are open. We must show that $\B$ refines with interior points. Since elements of $\B$ are open, then if $B_1, B_2 \in \B$, the intersection $B_1 \cap B_2$ is a finite intersection of open sets, and is thus open. By the interior point characterization of open sets, $x \in B_1 \cap B_2$ implies there is some open set $U \ni x$ such that $U \subseteq B_1 \cap B_2$. Because $U$ is open, it is a union of basis elements, $U = \cup_{i \in \{3, 4, ... \}} B_i$. Since $x$ is in $U$, it must be in $B_j$ for some $j \in \{3, 4, ... \}$. Relabel $B_j$ to be $B_3$ to match the syntax of the theorem.
 
-    ($\impliedby$). Assume $\B$ is a basis; that is, assume that $\B$ is a cover that refines with interior points. We want to show that finite unions of closed sets are closed. By DeMorgan's laws, we can instead show that finite intersections of open sets are open. 
+    ($\impliedby$). Assume $\B$ is a cover that refines with interior points and let $V = \cap_{i = 1}^n U_i$ be a finite intersection of open sets. We want to show that $V$ is open. First, assume that $V$ is nonempty- if $V$ is empty then it's open, and we're done.
 
-    So, set $V = \cap_{i = 1}^n U_i$, where the $U_i$ are open. If any $U_i$ is empty, then their intersection is $\emptyset$, which is open, so assume no $U_i$ is empty. We show that $V$ is open by showing it satisfies the interior point characterization of open sets. Consider $x \in V$. Then $x \in U_i$ for all $i$. Each $U_i$ is a union of basis elements, so, for each $U_i$, we have $x \in B_i$ for some $B_i \in \B$. Thus $x \in \cap_{i = 1}^n B_i$. Using induction on the fact that $\B$ refines with interior points, there is a $B_x \in \B \spc x \in B_x \subseteq \cap_{i = 1}^n B_i$. We have $\cap_{i = 1}^n B_i = \cup_{x \in V} B_x$, so $\cap_{i = 1}^n B_i$ is open.
+    Because of Lemma \ref{ch::topology::lemma:logical_equiv_open_sets}, we can show that $V$ is open by showing that the interior point characterization of open sets holds. So, consider $x \in V$. Then $x \in U_i$ for all $i$. Each $U_i$ is a union of elements of $\B$, so, for each $U_i$, we have $x \in B_i$ for some $B_i \in \B$. Thus $x \in \cap_{i = 1}^n B_i$. Using induction on the fact that $\B$ refines with interior points, there is a $B_x \in \B$ such that $B_x \subseteq \cap_{i = 1}^n B_i$ and $x \in B_x$. Note that since $B_x \in \B$, then $B_x$ is open. Overall, we have shown ``$x \in V$ implies that $x \in B_x$, where $B_x$ is open'', so the interior point characterization of open sets holds.
 \end{proof}
 
 \begin{defn}
