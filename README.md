@@ -4,12 +4,13 @@ There are many books about tensors and/or differential forms, and probably all o
 
 * Extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$, is given.
 * Tensors are presented in a linear algebra context before moving to the manifold context. Trying to learn tensors all at once in the manifold context is too much, in my opinion. There is plenty that needs investigation in the simpler setting of vector spaces.
-* The definition of an abstract tensor product space, which emphasizes the algebraic properties of tensors and does away with misleading implementation details, is used as much as possible. Treating tensors this way demystifies the various pushforward and pullback maps.
-* The connection between the abstract tensor product space and the common definition of a tensor product space, in which $(f \otimes g)(\mathbf{v}\_1, \mathbf{v}\_2) = f(\mathbf{v}\_1) g(\mathbf{v}\_2)$, is given. The pushforward and pullback operations in this later space are deduced from the more understandable and natural pushforward and pullback 
+* Too many books use the definition of a tensor product space in which $(f \otimes g)(\mathbf{v}\_1, \mathbf{v}\_2) = f(\mathbf{v}\_1) g(\mathbf{v}\_2)$. This implementation detail of this definition is distracting. We use the definition of an abstract tensor product space, which emphasizes the algebraic properties of tensors.
+  * Using abstract tensors makes the definitions of the various pushforward and pullback maps seem obvious. (The equivalence between the abstract tensor product space and the more common definition, is given, and the pushforward and pullback operations in this later space are deduced from the more understandable and  pushforward and pullback.)
 * It is explained why $(p, q)$ tensors are defined to be what they are and it is explained why dual spaces and tensor product spaces are important. Unfortunately, I have found that no other book satisfactorily does this.
-* Change of basis theorems for tensors and tangent vectors are easily understable because they can leverage the notation and theore
-* The determinant is not immediately defined as the factor of multiplication on the top exterior power; this abstract characterization is proved as a theorem after 
+* Change of basis theorems for tensors and tangent vectors are easily understable because they can leverage the results of the earlier linear algebra chapter, which are stated using the intuitive notation $\[\mathbf{f}(E)\]_F$.
+* The determinant is not immediately defined as the factor of multiplication on the top exterior power; this abstract characterization is proved as a theorem after establishing the more elementary characterization of the determinant as the unique multilinear alternating function on $K^n$, where $K$ is a field.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
+  * The equivalence to the usual definition of differential form is explained.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
 
 # Table of contents
