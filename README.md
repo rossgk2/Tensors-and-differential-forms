@@ -10,7 +10,7 @@ There are many books about tensors and/or differential forms, and probably all o
 * Change of basis theorems for tensors and tangent vectors are easily understable because they can leverage the results of the earlier linear algebra chapter, which are stated using the intuitive notation $\[\mathbf{f}(E)\]_F$.
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the more elementary characterization of the determinant as the unique multilinear alternating function $K^n \rightarrow K$, where $K$ is a field.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
-  * The equivalence to the usual definition of differential form is explained.
+  * The equivalence to the usual definition of differential form is also explained.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
 
 # Table of contents
