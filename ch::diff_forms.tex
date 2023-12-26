@@ -458,7 +458,7 @@ The next theorem describes a way to interpret the integral of a ``regular'' diff
     
     where the $\pm$ sign depends on the orientation of the chart $(V, \yy)$. We are again using $(\yy^{-1})^* = \xx^*$ to denote the pullback $\Omega^k (\yy^{-1})^* = \Omega^k \xx^*$.
     
-    Since $\xx^*(dy^i) = \xx_{(V, \yy)}^i$ (recall Lemma \ref{ch::diff_forms::lemma::technical_pullback_yi}), the above becomes
+    Since $\xx^*(dy^i) = dy^i \circ \xx = \xx_{(V, \yy)}^i$, the above becomes
     
     \begin{align*}
         \pm \int_U \xx^*(f \spc dy^1 \wedge ... \wedge dy^n) = \pm \int_U (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n.
