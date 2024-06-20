@@ -59,7 +59,7 @@ It is tempting to try to define either \textit{point} in terms of \textit{vector
     In addition to the logical circularities, also notice that these attempted definitions suggest that points and vectors are inextricably intertwined: the first attempted definition requires a correspondence between vectors and points, and the second attempted definition requires a notion of adding a point with a vector.
 \end{remark}
 
-The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. (We will use the same primitive mathematical object for both \textit{point} and \textit{vector}). Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
+The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. (We will actually use the same primitive mathematical object for both \textit{point} and \textit{vector}). Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
 
 \newpage
 
@@ -155,13 +155,13 @@ The above addition operation $+$ and scalar multiplication operation $\cdot$ are
         \begin{enumerate}
             \item (Properties of $+$).
             \begin{enumerate}
-                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in \R^n$ such that for all $\xx \in \R^n$, $\mathbf{0} + \xx = \xx = \xx + \mathbf{0}$. Specifically, we have
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in \R^n$ such that for all $\xx \in \R^n$, $\mathbf{0} + \xx = \xx$. Specifically, we have
         
                 \begin{align*}
                     \mathbf{0} = \begin{pmatrix} 0 \\ \vdots \\ 0 \end{pmatrix}.
                 \end{align*}
                 
-                \item[1.2.] (Closure under additive inverses). For all $\xx \in \R^n$ there exists $-\xx \in \R^n$ such that $\xx + (-\xx) = \mathbf{0} = (-\xx) + \xx$. Specifically, we have
+                \item[1.2.] (Closure under additive inverses). For all $\xx \in \R^n$ there exists $-\xx \in \R^n$ such that $\xx + (-\xx) = \mathbf{0}$. Specifically, we have
         
                 \begin{align*}
                     -\begin{pmatrix}
@@ -173,18 +173,18 @@ The above addition operation $+$ and scalar multiplication operation $\cdot$ are
                     \end{pmatrix}.
                 \end{align*}
         
-                \item[1.3.] (Associativity of $+$). For all $\xx_1, \xx_2, \xx_3 \in \R^n$, $(\xx_1 + \xx_2) + \xx_3 = \xx_1 + (\xx_2 + \xx_3)$.
-                \item[1.4.] (Commutativity of $+$). For all $\xx_1, \xx_2 \in \R^n$, $\xx_1 + \xx_2 = \xx_2 + \xx_1$.
+                \item[1.3.] (Associativity of $+$). For all $\xx_1, \xx_2, \xx_3 \in \R^n$ we have $(\xx_1 + \xx_2) + \xx_3 = \xx_1 + (\xx_2 + \xx_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\xx_1, \xx_2 \in \R^n$ we have $\xx_1 + \xx_2 = \xx_2 + \xx_1$.
             \end{enumerate}
             \item (Properties of $\cdot$).
             \begin{enumerate}
-                \item[2.1.] (Normalization for $\cdot$). $1 \xx = \xx$ for all $\xx \in \R^n$.
-                \item[2.2.] (Left-associativity of $\cdot$). For all $\xx \in \R^n$ and $c_1, c_2 \in \R$, $c_2 (c_1 \xx) = c_2 c_1 \xx$.
+                \item[2.1.] (Normalization for $\cdot$). For all $\xx \in \R^n$ we have $1 \xx = \xx$.
+                \item[2.2.] (Left-associativity of $\cdot$). For all $\xx \in \R^n$ and $c_1, c_2 \in \R$ we have $c_2 (c_1 \xx) = c_2 c_1 \xx$.
             \end{enumerate}
             \item (Compatibility of $+$ and $\cdot$).
             \begin{enumerate}
-                \item[3.1.] For all $\xx_1, \xx_2 \in \R^n$ and $c \in \R$, $c(\xx_1 + \xx_2) = c \xx_1 + c \xx_2$.
-                \item[3.2.] For all $\xx \in \R^n$ and $c_1, c_2 \in \R$, $(c_1 + c_2)\xx = c_1 \xx + c_2 \xx$.
+                \item[3.1.] For all $\xx_1, \xx_2 \in \R^n$ and $c \in \R$ we have $c(\xx_1 + \xx_2) = c \xx_1 + c \xx_2$.
+                \item[3.2.] For all $\xx \in \R^n$ and $c_1, c_2 \in \R$ we have $(c_1 + c_2)\xx = c_1 \xx + c_2 \xx$.
             \end{enumerate}
         \end{enumerate}
 \end{theorem}
@@ -198,6 +198,8 @@ The above addition operation $+$ and scalar multiplication operation $\cdot$ are
     \end{enumerate} 
 \end{proof}
 
+\newpage
+
 \subsection*{Points and vectors in $\R^n$}
 
 Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
@@ -207,9 +209,9 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
     
     A \textit{point} in $\R^n$ is an element of $\R^n$. A \textit{vector} in $\R^n$ is also an element of $\R^n$.
     
-    When we have $\xx = (x_1, ..., x_n) \in \R^n$, we can interpret $\xx$ to be either a point or vector. 
+    When we have $\xx = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$, we can interpret $\xx$ to be either a point or vector. The numbers $x_1, ..., x_n \in \R$ are called the \textit{entries}, or \textit{components}, of $\xx$.
     
-    If we interpret $\xx$ to be a point, then we interpret each $x_i$ to be the point's displacement on the $x_i$ axis. If we interpret $\xx$ to be a vector, then we interpret each $x_i$ to be the displacement on the $x_i$ axis of the end of $\xx$ relative to the start of $\xx$, where- since vectors are locationless- we additionally allow the start of $\xx$ to be any point.
+    If we interpret $\xx$ to be a point, then each $x_i$ is the point's displacement on the $x_i$ axis. If we interpret $\xx$ to be a vector, then each $x_i$ is the displacement, on the $x_i$ axis, of the end of $\xx$ relative to the start of $\xx$, where- since vectors are locationless- we additionally allow the start of $\xx$ to be any point.
 \end{defn}
 
 \begin{remark}
@@ -221,6 +223,7 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
 Even though there is always some circularity on an intuitive level between the concepts of \textit{point} and \textit{vector}; the setting of $\R^n$ grounds the following geometric intuitions.
 
 \begin{remark}
+\label{ch::lin_alg::rmk::geometric_intuition_points_vectors}
     (Geometric intuition about points and vectors).
         
     (Geometric intuition about $+$).
@@ -253,47 +256,42 @@ Even though there is always some circularity on an intuitive level between the c
 
 \subsection*{Vector-containing sets}
 
-[motivation: recap how geometric interpretations of points and vectors in $\R^n$ is underpinned by algebraic characterization]
+At this point, we know that we can make the intuitive notions of ``vector'' and ``point'' precise by grounding them in the concrete setting of $\R^n$. This works, of course, but thinking about of vectors in $\R^n$ has a good deal of unnecessary ``implementation detail''. When thinking about a single vector in $\R^n$, one is secretly thinking about the several numbers that are the vector's components!
+
+Thankfully, the previous theorem (Theorem \ref{ch::lin_alg::thm::prop_operations_Rn}) provides an opportunity to escape dealing with components. The theorem states key properties of vectors in $\R^n$ (such as ``there exists $\mathbf{0} \in \R^n$ such that for all $\xx \in \R^n$ we have $\xx + \mathbf{0} = \xx$'', and ``for all $\xx_1, \xx_2 \in \R^n$ and $c \in \R$ we have $c(\xx_1 + \xx_2) = c\xx_1 + c\xx_2$'') in terms of the vectors themselves, and \textit{not} in terms of their components!
+
+The properties of this helpful theorem are in general the properties that we expect of vectors. Thus, we can leave behind the baggage of $\R^n$ by effectively defining vectors to be objects that have the properties of the theorem. We do this now.
 
 \begin{defn}
+\label{ch::lin_alg::defn::vector_containing_set_R}
     (Vector-containing set over $\R$).
     
-    Suppose that $S$ is a set for which there exist functions $+:S \times S \rightarrow S$ and $\cdot:\R \times S \rightarrow S$. We say that $S$ is a \textit{vector-containing set over $\R$} iff the operations $+$ and $\cdot$ satisfy the typical\footnote{When you try to remember these properties, there is no need to be incredibly specific. You don't need to list out ``existence of additive identity'', ``closure under additive inverses'', and so on \textit{every} time you remind yourself of what a vector-containing set over $\R$ is!} properties one would expect of ``vector addition'' and ``vector scaling''. That is, $S$ is a vector-containing set over $\R$ iff $+$ and $\cdot$ satisfy the properties listed in Theorem \ref{ch::lin_alg::thm::prop_operations_Rn}:
+    Suppose that $T$ is a set for which there exist functions $+:T \times T \rightarrow T$ and $\cdot:\R \times T \rightarrow T$. We say that a set $S \subseteq T$ is a \textit{vector-containing set over $\R$} iff the operations $+$ and $\cdot$ satisfy the typical\footnote{When you try to remember these properties, there is no need to be incredibly specific. You don't need to list out ``existence of additive identity'', ``closure under additive inverses'', and so on \textit{every} time you remind yourself of what a vector-containing set over $\R$ is!} properties one would expect of ``vector addition'' and ``vector scaling''. That is, $S$ is a vector-containing set over $\R$ iff $+$ and $\cdot$ satisfy the properties\footnote{You may be confused as to why $T$, rather than $S$, is involved in all of the above conditions when we are defining what it means for $S$ to be a vector-containing set. This is because we want $S$ to have \textit{most} of the properties that $T$ does, but not all of them. Specifically: even though the above conditions require $\mathbf{0} \in T$ and $(\forall \vv \spc \vv \in T \iff -\vv \in T)$, they do not require $\mathbf{0} \in S$ or $(\forall \vv \spc \vv \in S \iff -\vv \in S)$.} listed in Theorem \ref{ch::lin_alg::thm::prop_operations_Rn}:
     
     \begin{enumerate}
         \item (Properties of $+$).
         \begin{enumerate}
-                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
-                \item[1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0} = (-\vv) + \vv$.
-                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
-                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in T$ such that for all $\vv \in T$ we have $\vv + \mathbf{0} = \vv$.
+                \item[1.2.] (Closure under additive inverses). For all $\vv \in T$ there exists $-\vv \in T$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in T$ we have $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in T$ we have $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
             \end{enumerate}
         \item (Properties of $\cdot$).
         \begin{enumerate}
-            \item[2.2.] (Normalization for $\cdot$). $1 \vv = \vv$ for all $\vv \in S$.
-            \item[2.1.] (Left-associativity of $\cdot$). For all $\vv \in S$ and $c_1, c_2 \in \R$, $c_2 (c_1 \vv) = c_2 c_1 \vv$.
+            \item[2.2.] (Normalization for $\cdot$). For all $\vv \in T$ we have $1 \vv = \vv$.
+            \item[2.1.] (Left-associativity of $\cdot$). For all $\vv \in T$ and $c_1, c_2 \in \R$ we have $c_2 (c_1 \vv) = c_2 c_1 \vv$.
         \end{enumerate}
         \item (Properties of $+$ and $\cdot$).
         \begin{enumerate}
-            \item[3.1.] (Properties of $+$).
-            \begin{enumerate}
-                \item[3.1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
-                \item[3.1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0} = (-\vv) + \vv$.
-                \item[3.1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
-                \item[3.1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
-            \end{enumerate}
-            \item[3.2.] (Compatibility of $+$ and $\cdot$).
-            \begin{enumerate}
-                \item[3.2.1.] For all $\vv_1, \vv_2 \in S$ and $c \in \R$, $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
-                \item[3.2.2.] For all $\vv \in S$ and $c_1, c_2 \in \R$, $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
-            \end{enumerate}
+            \item[3.1.] For all $\vv_1, \vv_2 \in T$ and $c \in \R$ we have $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
+            \item[3.2.] For all $\vv \in T$ and $c_1, c_2 \in \R$ we have $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
         \end{enumerate}
-    \end{enumerate}
+    \end{enumerate} 
     
     When $S$ is a vector-containing set over $\R$, we refer to elements of $S$ as \textit{vectors}. As before, elements of $\R$ are sometimes called \textit{scalars}.
 \end{defn}
 
-This abstract characterization of a vector-containing set is useful because many sets that at first glance don't seem to contain vectors actually do, in a sense.
+As we discussed before, this abstract characterization of a vector-containing set is useful because it decouples our notion of ``vector'' from the setting of $\R^n$. It allows us to see that many types of objects- which we might have overlooked before- can be interpreted to be vectors.
 
 \begin{remark}
     (Examples of vector-containing sets over $\R$).
@@ -302,15 +300,17 @@ This abstract characterization of a vector-containing set is useful because many
     
     \begin{itemize}
         \item $\R^n$, for any positive integer $n$. (This one isn't intended to be surprising).
+        \item $\Big\{\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix}\Big\} \subseteq \R^2$
+        \item $\{\vv_1, ..., \vv_k\}$, where $\vv_1, ..., \vv_k \in S$ and $S$ is another vector-containing set
         \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
         \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
         \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect.
     \end{itemize}
 \end{remark}
 
-Now that we have defined what a ``vector-containing set over $\R$'' is, it is reasonable to introduce some more abstraction. In place of ``vector-containing sets over $\R$'', we will now consider ``vector-containing sets over $K$'', where $K$ is the set-with-structure that contains the scalars. In other words, in the same way that a vector is ``something that lives in a vector-containing set'', we will define a scalar to be ``something that lives in a `scalar space' ''.  Unfortunately, the terminology ``scalar space'' is nonstandard;  ``scalar spaces'' are actually called \textit{fields}.
+Now that we have defined what a ``vector-containing set over $\R$'' is, it is reasonable to introduce a little more abstraction. (Don't worry, though. This abstraction is much easier to grasp than the leap from ``vectors in $\R^n$'' to ``elements of a vector-containing set''). In place of ``vector-containing sets over $\R$'', we will now consider ``vector-containing sets over $K$'', where $K$ is the set-with-structure that contains the scalars.
 
-\newpage
+In other words, in the same way that a vector is ``something that lives in a vector-containing set'', we will define a scalar to be ``something that lives in a `scalar space' ''.  Unfortunately, the terminology ``scalar space'' is nonstandard;  ``scalar spaces'' are actually called \textit{fields}.
 
 \begin{defn}
     (Field). 
@@ -320,22 +320,22 @@ Now that we have defined what a ``vector-containing set over $\R$'' is, it is re
     \begin{enumerate}
         \item $K$ is a ``commutative group under addition''. This means that conditions 1.1 through 1.5 must hold.
         \begin{enumerate}
-            \item[1.1.] (Closure under $+$). For all $c_1, c_2 \in K$, $c_1 + c_2 \in K$.
-            \item[1.2.] (Existence of additive identity). There exists $0 \in K$ such that for all $c \in K$, $0 + c = c = c + 0$.
-            \item[1.3.] (Associativity of $+$). For all $c_1, c_2, c_3 \in K$, $(c_1 + c_2) + c_3 = c_1 + (c_2 + c_3)$.
-            \item[1.4.] (Closure under additive inverses). For all $c \in K$ there exists $-c \in K$ such that $(-c) + c = 0 = c + (-c)$.
-            \item[1.5.] (Commutativity of $+$). For all $c_1, c_2 \in K$, $c_1 + c_2 = c_2 + c_1$.
+            \item[1.1.] (Closure under $+$). For all $c_1, c_2 \in K$ we have $c_1 + c_2 \in K$.
+            \item[1.2.] (Existence of additive identity). There exists $0 \in K$ such that for all $c \in K$ we have $0 + c = c$.
+            \item[1.3.] (Associativity of $+$). For all $c_1, c_2, c_3 \in K$ we have $(c_1 + c_2) + c_3 = c_1 + (c_2 + c_3)$.
+            \item[1.4.] (Closure under additive inverses). For all $c \in K$ there exists $-c \in K$ such that $(-c) + c = 0$.
+            \item[1.5.] (Commutativity of $+$). For all $c_1, c_2 \in K$ we have $c_1 + c_2 = c_2 + c_1$.
         \end{enumerate}
         \item $K$ is a ``commutative group under multiplication''. This means that conditions 2.1 through 2.5 must hold.
         \begin{enumerate}
-            \item[2.1.] (Closure under $\cdot$). For all $c_1, c_2 \in K$, $c_1 \cdot c_2 \in K$.
-            \item[2.2.] (Existence of multiplicative identity). There exists $1 \in K$ such that for all $c \in K$, $1 \cdot c = c = c \cdot 1$.
-            \item[2.3.] (Associativity of $\cdot$). For all $c_1, c_2, c_3 \in K$, $(c_1 \cdot c_2) \cdot c_3 = c_1 \cdot (c_2 \cdot c_3)$.
-            \item[2.4.] (Closure under multiplicative inverses). For all $k \in K$ with $k \neq 0$, there exists $\frac{1}{c} \in K$ such that $\frac{1}{c} \cdot c = 1 = c \cdot \frac{1}{c}$.
-            \item[2.5.] (Commutativity of $\cdot$). For all $c_1, c_2 \in K$, $c_1 \cdot c_2 = c_2 \cdot c_1$.
+            \item[2.1.] (Closure under $\cdot$). For all $c_1, c_2 \in K$ we have $c_1 \cdot c_2 \in K$.
+            \item[2.2.] (Existence of multiplicative identity). There exists $1 \in K$ such that for all $c \in K$ we have $1 \cdot c = c$.
+            \item[2.3.] (Associativity of $\cdot$). For all $c_1, c_2, c_3 \in K$ we have $(c_1 \cdot c_2) \cdot c_3 = c_1 \cdot (c_2 \cdot c_3)$.
+            \item[2.4.] (Closure under multiplicative inverses). For all $k \in K$ with $k \neq 0$, there exists $\frac{1}{c} \in K$ such that $\frac{1}{c} \cdot c = 1$.
+            \item[2.5.] (Commutativity of $\cdot$). For all $c_1, c_2 \in K$ we have $c_1 \cdot c_2 = c_2 \cdot c_1$.
         \end{enumerate}
-        \item ($\cdot$ distributes over $+$). For all $c_1, c_2, c_3 \in K$, $(c_1 + c_2) \cdot c_3 = c_1 \cdot c_3 + c_2 \cdot c_3$.
-    \end{enumerate}
+        \item ($\cdot$ distributes over $+$). For all $c_1, c_2, c_3 \in K$ we have $(c_1 + c_2) \cdot c_3 = c_1 \cdot c_3 + c_2 \cdot c_3$.
+    \end{enumerate} 
 
     Colloquially, we often say ``let $K$ be a field'' instead of ``let $(K, +, \cdot)$ be a field''.
     
@@ -363,48 +363,40 @@ Without further ado, we define ``vector-containing set over a field''.
 \label{ch::lin_alg::defn::vector_space}
     (Vector-containing set over a field).
     
-    Suppose that $K$ is a field, that $S$ is a set, and that there exist functions $+:S \times S \rightarrow S$ and $\cdot:K \times S \rightarrow S$. We say that the tuple $(S, K, +, \cdot)$ is a \textit{vector-containing set}, or, more colloquially, that ``$S$ is a vector-containing set over $K$'', iff:
+    Suppose that $K$ is a field, that $T$ is a set, and that there exist functions $+:T \times T \rightarrow T$ and $\cdot:K \times T \rightarrow T$. If $S \subseteq T$ is a set, we say that the tuple $(S, K, +, \cdot)$ is a \textit{vector-containing set}, or, more colloquially, that ``$S$ is a vector-containing set over $K$'', iff:
     
     \begin{enumerate}
         \item (Properties of $+$).
         \begin{enumerate}
-                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
-                \item[1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0} = (-\vv) + \vv$.
-                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
-                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
+                \item[1.1.] (Existence of additive identity). There exists $\mathbf{0} \in T$ such that for all $\vv \in T$ we have $\vv + \mathbf{0} = \vv$.
+                \item[1.2.] (Closure under additive inverses). For all $\vv \in T$ there exists $-\vv \in T$ such that $\vv + (-\vv) = \mathbf{0}$.
+                \item[1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in T$ we have $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
+                \item[1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in T$ we have $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
             \end{enumerate}
         \item (Properties of $\cdot$).
         \begin{enumerate}
-            \item[2.1.] (Normalization for $\cdot$). $1 \vv = \vv$ for all $\vv \in S$.
-            \item[2.2.] (Left-associativity of $\cdot$). For all $\vv \in S$ and $c_1, c_2 \in K$, $c_2 (c_1 \vv) = c_2 c_1 \vv$.
+            \item[2.2.] (Normalization for $\cdot$). For all $\vv \in T$ we have $1 \vv = \vv$.
+            \item[2.1.] (Left-associativity of $\cdot$). For all $\vv \in T$ and $c_1, c_2 \in K$ we have $c_2 (c_1 \vv) = c_2 c_1 \vv$.
         \end{enumerate}
         \item (Properties of $+$ and $\cdot$).
         \begin{enumerate}
-            \item[3.1.] (Properties of $+$).
-            \begin{enumerate}
-                \item[3.1.1.] (Existence of additive identity). There exists $\mathbf{0} \in S$ such that for all $\vv \in S$, $\vv + \mathbf{0} = \vv$.
-                \item[3.1.2.] (Closure under additive inverses). For all $\vv \in S$ there exists $-\vv \in S$ such that $\vv + (-\vv) = \mathbf{0} = (-\vv) + \vv$.
-                \item[3.1.3.] (Associativity of $+$). For all $\vv_1, \vv_2, \vv_3 \in S$, $(\vv_1 + \vv_2) + \vv_3 = \vv_1 + (\vv_2 + \vv_3)$.
-                \item[3.1.4.] (Commutativity of $+$). For all $\vv_1, \vv_2 \in S$, $\vv_1 + \vv_2 = \vv_2 + \vv_1$.
-            \end{enumerate}
-            \item[3.2.] (Compatibility of $+$ and $\cdot$).
-            \begin{enumerate}
-                \item[3.2.1.] For all $\vv_1, \vv_2 \in S$ and $c \in K$, $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
-                \item[3.2.2.] For all $\vv \in S$ and $c_1, c_2 \in K$, $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
-            \end{enumerate}
+            \item[3.1.] For all $\vv_1, \vv_2 \in T$ and $c \in K$ we have $c(\vv_1 + \vv_2) = c \vv_1 + c \vv_2$.
+            \item[3.2.] For all $\vv \in T$ and $c_1, c_2 \in K$ we have $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$.
         \end{enumerate}
     \end{enumerate}
+
+    (If you are confused as to why $T$, rather than $S$, is involved in all of the above conditions, see the footnote above the conditions in Definition \ref{ch::lin_alg::defn::vector_containing_set_R}).
     
     Elements of vector-containing sets are called ``vectors''.
     
     In practice, we often don't explicitly mention a field, and say ``let $S$ be a vector-containing sets'' instead of ``let $S$ be a vector-containing set over a field $K$''.
 \end{defn}
 
-\newpage
-
 \subsection*{Vector spaces}
 
-[Motivation for thinking about linear combinations...]
+Now that our notion of vector-containing set is complete, we can make use of vector-containing sets. 
+
+Most often, we interpret vectors to be points. In the setting of the vector-containing set $\R^n$, it is easy to describe a point: you simply list the displacements $x_1, ..., x_n \in \R$ of the point from each of the mutually perpendicular coordinate axes (we discussed this in Remark \ref{ch::lin_alg::rmk::geometric_intuition_points_vectors}). We can't describe a vector from a general vector this way, though, because the vectors are not necessarily elements of $\R^n$! We can do something similar, though. Just as $\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ is a weighted sum of the vectors $\begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, ..., \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix} \in \R^n$, we can consider weighted sums of vectors from vector-containing sets. The following definition gives a name for vectors that are the result of such weighted sums.
 
 \begin{defn}
     (Linear combination).
@@ -416,15 +408,9 @@ Without further ado, we define ``vector-containing set over a field''.
     \end{align*}
     
     where $c_1, ..., c_k$ are some scalars in $K$. So, a linear combination of $\vv_1, ..., \vv_k$ is a ``weighted sum'' involving $\vv_1, ..., \vv_k$.
-    
-    How do we define ``linear combination'' when $S$ is an arbitrary set that could be empty or contain infinitely many vectors? It is easy to extend the idea of the above definition to this more general setting. For an arbitrary vector-containing set $S$ over a field $K$, we define a \textit{linear combination of the vectors in $S$} to be a sum of the form
-    
-    \begin{align*}
-        \sum_{c \in C, \vv \in S} c \vv,
-    \end{align*}
-    
-    where $C$ is some subset of $K$.
 \end{defn}
+
+[motivation for considering vector containing sets that are spanned]
 
 \begin{defn}
     (Span).
@@ -436,15 +422,7 @@ Without further ado, we define ``vector-containing set over a field''.
     \end{align*}
     
     For geometric intuition, notice that if $\vv_1, ..., \vv_k \in \R^n$, then $\spann(\{\vv_1, ..., \vv_k\})$ is the $k$-dimensional plane spanned by $\vv_1, ..., \vv_k$ that is embedded in $\R^n$. For example, if $\vv, \ww \in \R^3$, then ${\spann(\{\vv, \ww\}) = \{ c \vv + d \ww \mid c, d \in \R \}}$ is the $2$-dimensional plane spanned by $\vv$ and $\ww$ in $\R^3$.
-    
-    In the more general case when $S$ could be empty or infinite, we define the span of $S$ to be the set of all convergent linear combinations of the vectors in $S$:
-    
-    \begin{align*}
-        \spann(S) := \Big\{ \ww = \sum_{c \in C, \vv \in S} c \vv \mid C \subseteq K \text{ and $\ww$ converges} \Big\}.
-    \end{align*}
 \end{defn}
-
-[More motivation...]. Without further ado, we define ``vector space over a field''.
 
 \begin{defn}
 \label{ch::lin_alg::defn::vector_space}
@@ -463,18 +441,10 @@ Without further ado, we define ``vector-containing set over a field''.
 \end{defn}
 
 \begin{remark}
-    (``Linear spaces'').
-
-    One helpful contextualizing fact is the following: every subset of $\R^n$ that is a vector space is a $k$-dimensional plane for some $k \leq n$. Since it seems reasonable to call a plane a ``linear space'', European mathematicians sometimes refer to vector spaces as \textit{linear spaces}, and to vectors as \textit{linear elements}.
-    
-    Of course, not every vector space is a subset of $\R^n$. Nevertheless, the European terminology is a good reminder that vector spaces are, in some sense, planes.
-\end{remark}
-
-\begin{remark}
     Vector-containing sets and subsets of vector spaces are one and the same: vector-containing sets are subsets of vector spaces, and subsets of vector spaces are vector-containing sets. From this point on, we will favor ``subset of a vector space'' over ``vector-containing set'', because the terminology ``vector-containing set'' is nonstandard.
 \end{remark}
 
-All of the examples of vector-containing sets over $\R$ we gave before are actually vector spaces.
+Most of the examples of vector-containing sets over $\R$ we gave before are actually vector spaces.
 
 \begin{remark}
     (Examples of vector spaces).
@@ -493,16 +463,23 @@ All of the examples of vector-containing sets over $\R$ we gave before are actua
     Here are some examples of vector-containing sets that are \textit{not} vector spaces:
     
     \begin{itemize}
-        \item $\Big\{ \mathbf{0}, \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \end{pmatrix} \Big\} \subseteq \R^2$
-        \item $\{ z \geq ax + by \mid \text{$a, b$ not both zero} \} \subseteq \R^3$
-        \item $\{ x_n \geq c_1 x_1 + ... + c_{n - 1} x_{n - 1} \mid \text{$c_1, ..., c_{n - 1}$ not all zero}\} \subseteq \R^n$
+        \item $\Big\{ \begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix} \Big\} \subseteq \R^2$
+        \item $\{\vv_1, ..., \vv_k\}$, where $\vv_1, ..., \vv_k \in S$ and $S$ is a vector-containing set
+        \item $\{ z \in \R \mid z \geq ax + by \} \subseteq \R^3$, where $a, b \in \R$
+        \item $\{ x_n \in \R \mid x_n \geq c_1 x_1 + ... + c_k x_k \} \subseteq \R^n$, where $c_1, ..., c_k \in \R$, $k \leq n - 1$
     \end{itemize}
+\end{remark}
+
+\begin{remark}
+    ($\emptyset$ is not a vector space).
+    
+    The empty set $\emptyset$ is not a vector space over any field because it is not equal to the span of any set. (A set is either empty or not. The span of the empty set is $\{0\}$, and the span of a nonempty set is nonempty. Thus no set has span equal to the empty set).
 \end{remark}
 
 \begin{remark}
     (Why is the generality of ``vector space'' useful?)
     
-    In this book, we will often consider arbitrary vector space and use it as a ``base'' from which to construct more vector spaces, while secretly imagining the ``base'' vector space as being $\R^n$. Dealing in the abstraction of vector spaces makes it easier to see precisely how vector spaces produced from $\R^n$ are related to $\R^n$ by removing any doubt as to whether coordinates, which are easy to run into when one deals with $\R^n$ explicitly, are fundamentally at play.
+    In this book, we will often consider an arbitrary vector space and use it as a ``base'' from which to construct more vector spaces, while secretly imagining the ``base'' vector space as being $\R^n$. Dealing in the abstraction of vector spaces makes it easier to see precisely how vector spaces produced from $\R^n$ are related to $\R^n$ by removing any doubt as to whether coordinates, which are easy to run into when one deals with $\R^n$ explicitly, are fundamentally at play.
 \end{remark}
 
 Now that we have defined what a vector space is in full generality, we present an alternative characterization of vector spaces that is easier in practice to check than the above definition. 
@@ -540,25 +517,29 @@ When determining whether a set $V$ is a vector space or not, it is almost always
     \end{enumerate}
 \end{theorem}
 
-\subsubsection*{Miscellaneous facts about vector spaces}
+We know that if $V$ is a vector space, then $V$ is a vector-containing set, and thus that there is a set $T \supseteq V$ that contains zero and the additive inverse of every vector in $V$. We now see that the fact that vector spaces are spanned by vector-containing sets implies these important vectors are members of all vector spaces.
 
-\begin{theorem}
-    (``Obvious'' facts about the additive identity and additive inverses).
+\begin{deriv}
+    (Vector spaces have zero and additive inverses).
+
+    Let $V$ be a vector space. Then for any $\vv \in V$,
     
-    If $V$ is a vector space, we have $0 \vv = \mathbf{0}$ and $-\vv = (-1) \vv$ for all $\vv \in V$.
-\end{theorem}
+    \begin{enumerate}
+        \item The zero vector is $\mathbf{0} = 0\vv$.
+        \item The additive inverse of $\vv$ is $-\vv = (-1)\vv$.
+    \end{enumerate}
+
+    Because $V$ is closed under vector scaling, both of these vectors are in $V$.
+\end{deriv}
 
 \begin{proof}
-   Both facts follow from the fact that if $V$ is a vector space then $(c_1 + c_2)\vv = c_1 \vv + c_2 \vv$ for all $\vv \in V$ and $c_1, c_2 \in K$.
-   
-   For the first fact, we note that $0 \vv + 0 \vv = (0 + 0) \vv = 0 \vv$ and subtract $0 \vv$ from both sides to obtain $0 \vv = \mathbf{0}$. To prove the second fact, we must verify that $\vv + (-1) \vv = \mathbf{0}$. This is the case because $\vv + (-1) \vv = 1 \vv + (-1) \vv = (1 - 1) \vv = 0 \vv$; we have $0 \vv = \mathbf{0}$ via the first fact.
-\end{proof}
+    We've already explained that if the given formulas for the zero vector and additive inverses are true, then $V$ contains the zero vector and all additive inverses. We now show that the formulas are true.
 
-\begin{remark}
-    ($\emptyset$ is not a vector space).
-    
-    The empty set $\emptyset$ is not a vector space over any field because it contains no additive identity.
-\end{remark}
+    \begin{enumerate}
+        \item Let $\vv, \ww \in V$. We want to show that $0\vv + \ww = \ww$. We have $0\vv + \ww = 0\vv + \vv + (\ww - \vv) = (0 + 1)\vv + \ww - \vv = \vv + \ww - \vv = \ww$, as desired.
+        \item For all $\vv \in V$ we have $\vv + (-1)\vv = 1\vv + (-1)\vv = (1 - 1)\vv = 0\vv = \mathbf{0}$.
+    \end{enumerate}
+\end{proof}
 
 \subsection*{Vector subspaces}
 
@@ -592,13 +573,11 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
 \begin{defn}
     (Linear independence).
     
-    Let $V$ be a vector space. If $S = \{\vv_1, ..., \vv_k\}$ is a finite subset of $V$, then we say $S$ is \textit{linearly independent} iff for all $i$ we have $\vv_i \notin \spann(\{\vv_1, ..., \cancel{\vv_i}, ..., \vv_k\})$.
+    Let $V$ be a vector space. If $S = \{\vv_1, ..., \vv_k\}$ is a finite subset of $V$, then we say the vectors in $S$ are \textit{linearly independent} from each other iff for all $\vv \in S$ we have $\vv \notin \spann(S - \{\vv\})$.
     
-    Intuitively, $S$ is linearly independent if every vector inside it is required to produce $\spann(S)$. Indeed, we prove in Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets} that removing a vector from a linearly independent set produces a set whose span is a proper subset of what it was before.
+    Intuitively, the vectors in $S$ are linearly independent if every vector inside $S$ is required to produce $\spann(S)$. Indeed, we prove in Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets} that removing a vector from a linearly independent set produces a set whose span is a proper subset of what it was before.
     
-    To generalize the notion of linear independence to arbitrary subsets of $V$, we say that a subset $S \subseteq V$ is linearly independent iff for all $\vv \in S$ we have $\vv \notin \spann(S - \{\vv\})$.
-    
-    A subset of vector space is called \textit{linearly dependent} if it is not linearly independent.
+    Vectors are said to be \textit{linearly dependent} on each other iff they are not linearly independent from each other.
 \end{defn}
 
 \begin{remark}
@@ -610,41 +589,25 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
 \end{theorem}
 
 \begin{proof}
-    If a subset $S$ of a vector space contains $\mathbf{0}$, then the condition $(\forall \vv \spc \vv \notin \spann(S - \{\vv\}))$ is violated by $\vv = \mathbf{0}$, since $\mathbf{0}$ is in the span of every set.
-\end{proof}
-
-\begin{theorem}
-    A single-element subset $\{\vv\}$ of a vector space is linearly independent iff $\vv \neq \mathbf{0}$.
-\end{theorem}
-
-\begin{proof}
-   $\{\vv\}$ is linearly independent iff $\vv \notin \spann(\{\vv\} - \{\vv\}) = \spann(\emptyset) = \{\mathbf{0}\}$, i.e., iff $\vv \neq \mathbf{0}$.
+    If a subset $S$ of a vector space contains $\mathbf{0}$, then the condition $(\forall \vv \in S \spc \vv \notin \spann(S - \{\vv\}))$ is violated by $\vv = \mathbf{0}$, since $\mathbf{0}$ is in the span of every set.
 \end{proof}
 
 \begin{theorem}
     (Condition for linear independence).
     
-    Let $V$ be a vector space over a field $K$. The set $\{\vv_1, ..., \vv_k\}$ is linearly dependent iff there are scalars $c_1, ..., c_k \in K$ not all $0$ such that
+    Let $V$ be a vector space over a field $K$. A subset $\{\vv_1, ..., \vv_k\} \subseteq V$ is linearly dependent iff there are scalars $c_1, ..., c_k \in K$ not all $0$ such that
     
     \begin{align*}
         c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}.
     \end{align*}
-    
-    More generally, a subset $S \subseteq V$ is linearly dependent iff there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which
-    
-    \begin{align*}
-        \sum_{c \in C, \vv \in S} c \vv = \mathbf{0}.
-    \end{align*}
 \end{theorem}
 
-\begin{proof}   
-   \textbf{rethink this. $\sum_{c \in C, \vv \in S} c \vv$ isn't the same as $\sum_{i = 1}^n c_i \vv_i$ because it allows for sums such as $c_1 \vv_1 + c_2 \vv_1 + c_3 \vv_1 + ...$. so, a sum of the second form is necessarily of the first form, but the converse isn't true.}
+\begin{proof}
+    Set $S := \{\vv_1, ..., \vv_k\}$.
+    
+   ($\implies$). Assume $S$ is linearly dependent. Then $S$ is not linearly independent, so there is some $i$ for which ${\vv_i \in \spann(S - \{\vv_i\})} = \spann(\{\vv_1, ..., \cancel{\vv_i}, ..., \vv_k\})$. This makes $\vv_i$ a linear combination of $\vv_1, ..., \cancel{\vv_i}, ..., \vv_k$, ${\vv_i = c_1 \vv_1 + ... + \cancel{c_i \vv_i} + ... + c_k \vv_k}$, where $c_j \in K$ for $j \in [1, k]$. Subtracting $\vv_i$ from both sides of the previous equation, we have ${(c_1 \vv_1 + ... + c_{i - 1} \vv_{i - 1}) - \vv_i + (c_{i + 1} \vv_{i + 1} + ... + c_k \vv_k) = \mathbf{0}}$, i.e., we have ${d_1 \vv_1 + ... + d_k \vv_k = \mathbf{0}}$, where $d_1 = c_1, ..., d_{i - 1} = c_{i - 1}, d_i = -1, d_{i + 1} = c_{i + 1}, ..., d_k = c_k$. Thus, as desired, there are $d_1, ..., d_k \in K$ not all zero such that $d_1 \vv_1 + ... + d_k \vv_k = \mathbf{0}$.
    
-   We show the more general statement $(\text{$S$ is linearly dependent}) \iff (\exists C \neq \{0\} \spc \sum_{c \in C, \vv \in S} c \vv = \mathbf{0})$.
-   
-   ($\implies$). Assume $S$ is linearly dependent. Then $S$ is not linearly independent, so there is some $\vv \in S$ for which $\vv \in \spann(S - \{\vv\})$. This makes $\vv$ a linear combination of vectors from $S - \{\vv\}$, $\vv = \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww$, where $C \subseteq K$. Subtracting $\vv$ from both sides of the previous equation, we have $-\vv + \sum_{c \in C, \ww \in (S - \{\vv\})} c \ww = \mathbf{0}$. That is, we have $\sum_{d \in D, \ww \in S} d \ww = \mathbf{0}$, where $D \subseteq K$ is such that the coefficients on elements of $S - \{\vv\}$ are from $C$ and where the coefficient on $\vv$ is $-1$. Since $-1 \in D$, we have shown, as desired, that there is a subset $D \neq \{0\}$ of $K$ such that $\sum_{c \in D, \ww \in S} d \ww = \mathbf{0}$.
-   
-   ($\impliedby$). Assume there is a subset $C \subseteq K$ with $C \neq \{0\}$ for which $\sum_{c \in C, \vv \in S} c \vv = \mathbf{0}$. Since $C \neq \{0\}$, then $S \neq \{0\}$, and some $d \in C$ is nonzero. Suppose that $d$ is the coefficient of $\uu \in S$. We can subtract the part of the sum not involving $d \uu$ from both sides of the previous equation, and then, since $d \neq 0$,  divide by $d$ to obtain $\uu = -\frac{1}{d}\sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} c \vv = \sum_{c \in C - \{d\}, \vv \in S - \{\uu\}} - \frac{c \vv}{d}$. Thus $\uu \in \spann(S - \{\uu\})$; $\uu$ violates the linear independence condition, so $S$ is linearly dependent.
+   ($\impliedby$). Assume there are $c_1, ..., c_k \in K$ not all zero such that $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Then $c_i \vv_i = c_1 \vv_1 + ... + \cancel{c_i \vv_i} + ... + c_k \vv_k$. Since $c_i \neq 0$, we can divide by $c_i$ to obtain $\vv_i = -\frac{c_1}{c_i} \vv_1 - ... - \cancel{\frac{c_i}{c_i}\vv_i} - ... - \frac{c_k}{c_i}\vv_k$. Thus $\vv_i \in \spann(\{\vv_1, ..., \cancel{\vv_i}, ..., \vv_k\}) = \spann(S - \{\vv_i\})$; $\vv_i$ violates the linear independence condition, so $S$ is linearly dependent.
 \end{proof}
 
 \begin{lemma}
@@ -683,7 +646,7 @@ This subsection builds on the concept of linear independence to define the conce
     
     \begin{enumerate}
         \item $E$ spans $V$.
-        \item The number of vectors in $E$ is minimal. (I.e. if $F$ is another set of vectors spanning $V$, then $F$ contains at least as many vectors as $E$, $|F| \geq |E|$).
+        \item The number of vectors in $E$ is minimal: if $F$ is another set of vectors spanning $V$, then $|F| \geq |E|$.
     \end{enumerate}
 \end{defn}
 
@@ -708,21 +671,25 @@ The following lemma enables us to obtain a more useful characterization of bases
     For any $n$-dimensional vector space $V$ with $n \neq 0$, we have the following equivalent facts:
     
     \begin{enumerate}
-        \item A set of more than $n$ vectors is linearly dependent.
-        \item A set of less than $n$ vectors does not span $V$.
+        \item A set of more than $n$ vectors from $V$ is linearly dependent.
+        \item A set of less than $n$ vectors from $V$ does not span $V$.
     \end{enumerate}
 \end{lemma}
 
 \begin{proof}
     First we show the logical equivalence.
     
-    ($(1) \implies (2)$). Suppose for contradiction that a set $F$ of vectors with $|F| < n$ spans $V$. Remove vectors from $F$ until a linearly independent set $G$ is obtained. Since removing vectors from linearly dependent sets does not change their span, we know $G$ spans $V$. Thus, $G$ is a linearly independent spanning set with $|G| < n$. Since $n > |G|$, it follows from $(1)$ that any set of $n$ vectors is linearly dependent; contradiction.
+    ($(1) \implies (2)$). Suppose for contradiction that a set $S$ of vectors with $|S| < n$ spans $V$. Remove vectors from $S$ until a linearly independent set $T$ is obtained. Since removing vectors from linearly dependent sets does not change their span, we know $T$ spans $V$. Thus, $T$ is a linearly independent spanning set with $|T| < n$. Since $n > |T|$, it follows from $(1)$ that $T$ is linearly dependent; contradiction.
     
-    ($(2) \implies (1)$). Suppose for contradiction that a set $F$ of vectors with $|F| > n$ is linearly independent. Add vectors to $F$ until a spanning set $G$ of $V$ is obtained. Since adding vectors to linearly independent sets that are not in the span of those sets preserves linear independence, we know $G$ is linearly independent. Thus, $G$ is a linearly independent spanning set with $|G| > n$. Since $n < |G|$, it follows from $(2)$, that any set of $n$ vectors does not span $V$; contradiction.
+    ($(2) \implies (1)$). Suppose for contradiction that a set $S$ of vectors with $|S| > n$ is linearly independent. Add vectors to $S$ until a spanning set $T$ of $V$ is obtained. Since adding vectors to linearly independent sets that are not in the span of those sets preserves linear independence, we know $T$ is linearly independent. Thus, $T$ is a linearly independent spanning set with $|T| > n$. Since $n < |T|$, it follows from $(2)$ that $T$ does not span $V$; contradiction.
 
-    Now, we prove that $(1)$ is true.
-    
-    TO-DO. See p. 30 of \textit{Linear and Geometric Algebra} by Alan MacDonald.
+    % From p. 30 of Alan MacDonald's Geometric and Linear Algebra
+    Now, we prove that $(1)$ is true. We do so by proving the contrapositive, which is ``if $\vv_1, ..., \vv_k \in V$ are linearly independent then $k \leq n$''.  
+    So, suppose $S = \{\vv_1, ..., \vv_k\} \subseteq V$ is a linearly independent set.
+
+    Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and let $K$ be the base field. Since $\spann(E) = V$, then there are $c_1, ..., c_n \in K$ such that ${\vv_1 = c_1 \ee_1 + ... + c_n \ee_n}$. Since $S$ is linearly independent, then $\vv_1 \neq \mathbf{0}$, and some $c_i$ must be nonzero; without loss of generality assume $c_1 \neq 0$. Since we can divide by $c_1$, we can solve for $\ee_1$ in terms of $d_1, ..., d_n, \vv_1, ..., \vv_n$, and conclude $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. Now let $\vv \in V$. Again because $\spann(E) = V$, there are $d_1, ..., d_n \in K$ such that $\vv = d_1 \ee_1 + ... + d_n \ee_n$. Since $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$, we can write $\ee_1$ as a linear combination of $\vv_1, ..., \ee_2, ..., \ee_n$; doing this, we see $\vv$ is a linear combination of $\vv_1, \ee_2, ..., \ee_n$. Thus $\vv \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. Since $\vv$ is arbitrary, $V \subseteq \spann(\{\vv_1, \ee_1, ..., \ee_n\})$, which implies $V = \spann(\{\vv_1, \ee_1, ..., \ee_n\})$.
+
+    Repeating this process, we can conclude that $V = \spann(\{\vv_1, \vv_2, \ee_3, ..., \ee_n\})$, and ultimately that $V = \spann(\{\vv_1, ..., \vv_k\})$. At this point it is clear that $k \leq n$; if we had $k > n$, then we would have \\ ${\vv_j \in \spann(\{\vv_1, ..., \vv_k\}) \subseteq \spann(S - \{\vv_j\})}$, and so $S$ would be linearly dependent, which is a contradiction. 
 \end{proof}
 
 \begin{theorem}
@@ -746,7 +713,7 @@ The following lemma enables us to obtain a more useful characterization of bases
     
     \indent ($\impliedby$). Suppose that $E$ spans $V$ and that $E$ is linearly independent. We need to show that $|E|$ is a minimal spanning set of $V$, i.e., that a set of less than $|E|$ vectors does not span $V$. This is precisely what fact (2) of Lemma \ref{ch::lin_alg::lemma::dimension} tells us.
     
-    (Case $E = \emptyset$). Since there is only one $E$ satisfying $E = \emptyset$, the if-and-only-if we need to show simplifies to an \textit{and} statement: $(\text{$\emptyset$ is a minimal spanning set of $V$}) \text{ and } (\text{$\emptyset$ is linearly independent})$. The first statement here is clearly true: $\emptyset$ is a minimal spanning set because there aren't any sets that contain fewer than zero vectors. The second statement, which is equivalent to $(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$, is true by false hypothesis, since\footnote{$(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$ is equivalent to $(\forall \vv \spc \vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\}))$. Because $\vv \in \emptyset$ is false for every $\vv$, the overall implication $\vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\})$ is true for every $\vv$.} there is no $\vv$ for which ``$\vv \in \emptyset$'' is a true statement.
+    (Case $E = \emptyset$). Since there is only one $E$ satisfying $E = \emptyset$, the if-and-only-if we need to show simplifies to an \textit{and} statement: $(\text{$\emptyset$ is a minimal spanning set of $V$}) \text{ and } (\text{$\emptyset$ is linearly independent})$. The first statement here is clearly true: $\emptyset$ is a minimal spanning set because there aren't any sets that contain fewer than zero vectors. The second statement, which is equivalent to $(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$, is true by false hypothesis, since\footnote{$(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$ is equivalent to $(\forall \vv \spc \vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\}))$. Because $\vv \in \emptyset$ is false for every $\vv \in \emptyset$, the overall implication $\vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\})$ is true for every $\vv \in \emptyset$.} there is no $\vv$ for which ``$\vv \in \emptyset$'' is a true statement.
     
     
 \end{proof}
@@ -769,7 +736,7 @@ Because the minimality condition in the definition we gave for ``basis'' boils d
 \end{theorem}
 
 \begin{proof}
-    Let $V$ be a finite-dimensional vector space, and take a finite set $E = \{\ee_1, ..., \ee_n\}$ of vectors that span $V$. Remove vectors from $E$ one by one. At some point, we must obtain a linearly independent set\footnote{We can always just remove all vectors to obtain $\emptyset$, which is linearly independent}. That is, there must be some $i$ for which $E_i := E - \{\ee_1, ..., \ee_i\}$ is linearly independent and for which all $E_j$, $j < i$, are linearly dependent. In particular, $E_{i - 1}$ is a linearly dependent set that spans $V$. Applying the fact that removing a vector from a linearly dependent set does not change the span of that set, we can conclude that since $E_i$ is obtained by removing a vector from $E_{i - 1}$, we have $\spann(E_i) = \spann(E_{i - 1}) = V$. Thus, $E_i$ is a linearly independent set that spans $V$; it is a basis for $V$.
+    Let $V$ be a finite-dimensional vector space, and take a finite set $E = \{\ee_1, ..., \ee_n\}$ of vectors that span $V$. Remove vectors from $E$ one by one. At some point, we must obtain a linearly independent set\footnote{We can always just remove all vectors to obtain $\emptyset$, which is a linearly independent set.}. That is, there must be some $i$ for which $E_i := E - \{\ee_1, ..., \ee_i\}$ is linearly independent and for which all $E_j$, $j < i$, are linearly dependent. In particular, $E_{i - 1}$ is a linearly dependent set that spans $V$. Applying the fact that removing a vector from a linearly dependent set does not change the span of that set, we can conclude that since $E_i$ is obtained by removing a vector from $E_{i - 1}$, we have $\spann(E_i) = \spann(E_{i - 1}) = V$. Thus, $E_i$ is a linearly independent set that spans $V$; it is a basis for $V$.
 \end{proof}
 
 \begin{defn}
@@ -800,7 +767,7 @@ Because the minimality condition in the definition we gave for ``basis'' boils d
 
 \section{Linear functions}
 
-At the beginning of the previous section, it was said that the two fundamental ideas underlying linear algebra are those of ``objects that behave like vectors'' and of ``functions that preserve the decomposition of their input vectors''. We learned that ``objects that behave like vectors'' are elements of vector spaces. Now, we will investigate ``functions that preserve the decomposition of their input vectors'', which are more formally referred to as \textit{linear functions}.
+At the beginning of the chapter, it was said that the two fundamental ideas underlying linear algebra are those of ``objects that behave like vectors'' and of ``functions that preserve the decomposition of their input vectors''. We learned that ``objects that behave like vectors'' are elements of vector spaces. Now, we will investigate ``functions that preserve the decomposition of their input vectors'', which are more formally referred to as \textit{linear functions}.
 
 \begin{defn}
 \label{ch::lin_alg::defn::linear_function_intuitive}
@@ -1420,7 +1387,7 @@ Since we know that a composition of linear functions is another linear function 
         \end{pmatrix}.
     \end{align*}
     
-    Recalling that $\ff(\see_i)$ is the $i$th column of $\ff(\sE)$, the standard matrix of $\ff$, we see that
+    Recalling that $\ff(\see_i)$ is the $i$th column $(\ff(\sE))_i$ of $\ff(\sE)$, the standard matrix of $\ff$, we see that
     
     \begin{align*}
         (\gg \circ \ff)(\sE) = 
@@ -1713,12 +1680,18 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 \end{remark}
 
 \begin{defn}
-    (Invertibility of matrices).
+    (Inverse matrix).
     
-    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff the function $\vv \mapsto \AA \vv$ is invertible. If $\AA$ is invertible, then we use $\AA^{-1}$ to denote the standard matrix of the inverse of $\vv \mapsto \AA \vv$. We have $\AA^{-1} \AA = \II = \AA \AA^{-1}$ for all invertible matrices $\AA$.
+    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff the function $\vv \mapsto \AA \vv$ is invertible. Immediately, we can note that because only same-dimension vector spaces can be linearly isomorphic, we must have $n = m$. That is, $\AA$ must be a \textit{square matrix} for it to be invertible.
 
-    Since only same-dimension vector spaces can be linearly isomorphic, we must have $n = m$ for an $m \times n$ matrix $\AA$ to be invertible. That is, $\AA$ must be a \textit{square matrix} for it to be invertible.
+    If $\AA$ is invertible, then we use $\AA^{-1}$ to denote the standard matrix of the inverse of $\vv \mapsto \AA \vv$. In other words, if $\ff:K^n \rightarrow K^n$ is an invertible linear function, then $\ff(\sE)^{-1} := \ff^{-1}(\sE)$.
 \end{defn}
+
+\begin{theorem}
+    (Inverse matrix).
+
+    Let $\AA$ be an invertible $n \times n$ matrix with entries in a field $K$.    Because the composition of $\vv \mapsto \AA \vv$ with its inverse is the identity on $K^n$, then $\AA^{-1} \AA$ and $\AA \AA^{-1}$ are both the standard matrices of the identity on $K^n$, and so $\AA \AA^{-1} = \II = \AA \AA^{-1}$. 
+\end{theorem}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}
@@ -1782,8 +1755,7 @@ In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw t
     
     The standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ represents $\ff_{E,F}$, and $\ff_{E,F}$ represents $\ff$, so\footnote{Again, when we say that $\hh$ \textit{represents} $\gg$, we mean that the map sending $\gg \mapsto \hh$ is a bijection.} we conclude by transitivity that $\ff_{E,F}(\sE)$ represents $\ff$. For this reason, we define the \textit{matrix of $\ff$ relative to $E$ and $F$} to be the standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}$.
     
-    
-    Now, let's investigate $\ff_{E,F}(\sE)$ itself. We have $\ff_{E,F}(\sE) = ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\sE) = \Big[\ff\Big([\cdot]_E^{-1}(\sE)\Big)\Big]_F$. Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and thus $[\cdot]_E^{-1}(\sE) = E$. So: 
+    Now, let's investigate $\ff_{E,F}(\sE)$ itself. We have $\ff_{E,F}(\sE) = ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\sE) = \Big[\ff\Big([\cdot]_E^{-1}(\sE)\Big)\Big]_F$. Since $[\ee_i]_E = \see_i$, then $[\cdot]_E^{-1}(\see_i) = \ee_i$ and thus $[\cdot]_E^{-1}(\sE) = E$. This gives us 
     
     \begin{align*}
         \boxed
@@ -1922,17 +1894,30 @@ Reading this section is entirely unnecessary for the remaining content in this b
 
 Before we study systems of linear equations, we will discuss the equation of a plane.
 
+\begin{theorem}
+    
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
 \begin{deriv}
     (Equation of an $n$-dimensional plane).
-    
-    [In all, we have seen that an $n$-dimensional plane can be represented as a set of points $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ which satisfy an equation of the form
-    
+
+    A \textit{$k$-dimensional plane in $K^n$} is a subset of $K^n$ of the form
+
     \begin{align*}
-        a_1 x_1 + ... + a_n x_n = b.
+        \Bigg\{ \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n \Big| \spc x_{n + 1} = c_1 x_1 + ... + c_k x_k + d \Bigg\}, \text{ where $c_1, ..., c_k, d \in K$}.
     \end{align*}
-    ]
-    
-    An equation whose solution set is a plane is often called a \textit{equation for a plane}. Less commonly, such an equation is called a \textit{linear equation}\footnote{Although linear equations are related to linear functions (since the dot product is a bilinear function), the word ``linear`` in ``linear function'' has a different meaning than it does in ``linear equation''}. 
+
+    Notice, for example, that a familiar line- or $1$-dimensional plane in $\R^2$- is a set of the form
+
+    \begin{align*}
+        \Bigg\{ \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \in \R^2 \Big| \spc x_2 = c x_1 + d \Bigg\} \text{, where $c, d \in \R$}.
+    \end{align*}
+
+    The type of equation satisfied by a point in an $n$-dimensional plane (an equation of the form $x_{n + 1} = a_1 x_1 + ... + a_n x_n + b$) is called a \textit{linear equation}\footnote{Although linear equations are related to linear functions (since the dot product is a bilinear function), the word ``linear`` in ``linear function'' has a different meaning than it does in ``linear equation''}. 
 \end{deriv}
 
 \begin{defn}
@@ -1950,20 +1935,52 @@ Before we study systems of linear equations, we will discuss the equation of a p
     Just as was the case with linear equations, when one considers a system of linear equations, one is typically interested in the set of points  $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ that satisfy all equations in the system.
 \end{defn}
 
-\begin{deriv}
+\begin{lemma}
+    (Intersection of two $k$-dimensional planes).
+    
+    The intersection of two $k$-dimensional planes is either an $k$-dimensional plane, an $(k - 1)$-dimensional plane, or the empty set.
+\end{lemma}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{theorem}
     (Number of solutions to systems of linear equations). 
     
     no solutions, infinitely many solutions, or exactly one solution.
-\end{deriv}
+\end{theorem}
 
 \begin{proof}
-    three different proofs: (1) reasoning about $n$-dimensional planes and induction; (2) reasoning about $\ff(\xx) = \bb$ where $\ff:\R^n \rightarrow \R^m$ is the linear function representing the system and considering cases $n < m$, $n = m$, $n > m$; (3) reasoning about $\AA \xx = \bb$, RREFing, and considering analogous cases to ones in (2)
+    % There are three different proofs: 
+    % \begin{enumerate}
+    %     \item Reasoning about $n$-dimensional planes and induction \item Reasoning about $\ff(\xx) = \bb$ where $\ff:\R^n \rightarrow \R^m$ is the linear function representing the system and considering cases $n < m$, $n = m$, $n > m$
+    %     \item Reasoning about $\AA \xx = \bb$, RREFing, and considering analogous cases to ones in (2)
+    % \end{enumerate}
     
-    (1)
+    Consider a system of $m$ linear equations in $n$ unknowns. Let the planes given by the equations be $P_{11}, ...,  P_{1m}$.
     
-    the intersection of two $n$-dimensional planes is a plane whose dimension is either $n$ or $n - 1$.
+    (Case: $m$ is even). For each $i \in [1, \infty)$, set $P_{i + 1, 1} := P_{i, \sigma_i(1)} \cap P_{i, \sigma_i(2)}, P_{i + 1, 2} := P_{i, \sigma_i(3)} \cap P_{i, \sigma_i(4)}, ..., P_{i + 1, 2^{1 - (i + 1)} m} = P_{i \spc \sigma_i(2^{1 - i}m - 1)} \cap P_{i \spc \sigma_i(2^{1 - i}m)}$, where $\sigma_i:\{1, ..., n\}$ is defined as follows: if the planes $P_{i,1}, ..., P_{i,2^{1 - i}m}$ of the $i$th iteration can be reordered so that for some $j$ there is a plane ${P_{i + 1, j} = P_{i,\sigma_i(j)} \cap P_{i,\sigma_i(j + 1)}}$ of the $(i + 1)$st iteration that is the empty set, then $\sigma_i$ is that reordering; otherwise, $\sigma_i$ is the identity reordering that sends $j$ to $j$.
+
+    We now prove inductively that the planes of the $i$th iteration are either all $n - (i + 1)$ dimensional or are all the empty set.
+
+    (Base case).
+
+    (Inductive case).
+
+    \indent \indent (Case: one of the planes is the empty set). 
     
-    consider a system of linear equations. the solution set to the system is the intersection of the $m$ many $n$-dimensional planes $P_{11}, ..., P_{1m}$ represented by the $m$ equations in $n$ unknowns. Set $P_{21} := P_{11} \cap P_{12}, P_{22} := P_{13} \cap P_{14}$, etc., with $P_{2 \spc \text{floor}(m/2)}$ being $P_{1\spc m - 1} \cap P_{1m}$ when $m$ is even and $P_{1m}$ when $m$ is odd. We claim that it is possible to choose the $P_{1i}$ so that the $P_{2j}$ are whatever we want them to be. (Proof of claim: easy when $m$ is even. When $m$ is odd, use the case when $m$ is even and then simply choose $P_{1n}$ to be whatever we want).
+    \indent \indent (Case: none of the planes of the $i$th iteration is the empty set).
+
+    \indent \indent \indent (Case: one of the intersections of the $(i + 1)$st iteration is the empty set). Done
+
+    \indent \indent \indent (Case: none of the intersections of the $(i + 1)$st iteration is the empty set). By the inductive hypothesis, all of the planes are $n - (i - 1)$-dimensional. Apply the lemma
+    
+    (Case: $m$ is odd). 
+
+        
+    
+
 \end{proof}
 
 \begin{deriv}
