@@ -646,7 +646,7 @@ Now that we have defined tangent vectors to a manifold, we can define a generali
 This characterization of the differential is coordinate-free, and therefore provides an easy way to define the differential without mentioning any smooth charts. We do this in the next definition. 
 
 \begin{theorem}
-\label{ch::manifolds::defn::differential_smooth_function_abstract}
+\label{ch::manifolds::thm::differential_smooth_function_abstract}
     (Formula for the differential of a smooth function).
     
     Let $M$ and $N$ be smooth $n$- and $m$- dimensional manifolds, and let $\pp \in M$. The differential ${d\FF_\pp:T_\pp(M) \rightarrow T_{\FF(\pp)}(N)}$ satisfies
@@ -1129,7 +1129,7 @@ At this point we are able to formalize the idea of taking the ratio of different
 
 \section{Oriented manifolds and their oriented boundaries}
 
-In Section \ref{ch::exterior_pwrs::section::orientation}, we defined what it means to orient a finite-dimensional vector space. The key result we motivated was Definition \ref{ch::exterior_pwrs::defn::orientation_finite_dim_vector_space}, which said: if a basis $E$ of a finite-dimensional vector space $V$ is fixed, than another ordered basis $F$ of $V$ is said to be \textit{positively oriented (relative to $E$)} iff $\det([\FF]_E) > 0$ and \textit{negatively oriented (relative to $E$)} otherwise. Given this definition, we showed in Theorem \ref{ch::exterior_pwrs::defn::orientation_with_top_degree_wedges} that a choice of element of $\Lambda^{\dim(V)}(V)$, determines an orientation on $V$. We now extend the idea of orientation to manifolds.
+In Section \ref{ch::exterior_pwrs::section::orientation}, we defined what it means to orient a finite-dimensional vector space. The key result we motivated was Definition \ref{ch::exterior_pwrs::defn::orientation_finite_dim_vector_space}, which said: if a basis $E$ of a finite-dimensional vector space $V$ is fixed, than another ordered basis $F$ of $V$ is said to be \textit{positively oriented (relative to $E$)} iff $\det([\FF]_E) > 0$ and \textit{negatively oriented (relative to $E$)} otherwise. Given this definition, we showed in Theorem \ref{ch::exterior_pwrs::defn::orientation_with_top_degree_wedges} that choosing an element of $\Lambda^{\dim(V)}(V)$ determines an orientation on $V$. We now extend the idea of orientation to manifolds.
 
 \begin{defn}
     \smallcite{book::SM}{380} (Oriented manifolds).
@@ -1164,7 +1164,7 @@ To describe the inherited orientation on a boundary, we need to define what it m
 \begin{defn}
     \smallcite{book::SM}{118} (Inward- and outward- pointing tangent vectors).
     
-    Let $(U, \xx)$ be a smooth chart on $\pd M$ with $\pp \in U$. We classify tangent vectors in $T_\pp(M)$ as follows.
+    Let $M$ be a smooth $n$-dimensional manifold and let $(U, \xx)$ be a smooth chart on $\pd M$ with $\pp \in U$. We classify tangent vectors in $T_\pp(M)$ as follows.
     
     \begin{itemize}
         \item A tangent vector is \textit{inward-pointing (on $\pd M$)} iff it has a positive $x^n$ component.
@@ -1191,7 +1191,7 @@ Now we can describe the induced orientation on the boundary.
 \label{ch::manifolds::induced_orientation_form_on_bdy}
     \smallcite{book::SM}{385, 386} (Induced orientation form on the boundary).
 
-    Let $\omega_M$ be an orientation form on $M$. The previous lemma shows that there exists a vector field $\NN$ nowhere tangent to $\partial M$. Thus, there is an induced orientation form $\omega_{\pd M}$ on the boundary (due to interior multiplication)\footnote{We could have put $\NN_\pp$ in any of $\omega_M$'s $n$ argument slots, but we chose to use the first. This choice corresponds to the operation called \textit{interior multiplication}, which you can read about in \cite{book::SM}. See p. 358 and Corollary 14.21 on p. 362.} defined by $\omega_{\pd M}(v_1|_\pp, ..., v_{n - 1}|_\pp) = \omega_M(\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp)$. The orientation on $\pd M$ induced by $\omega_{\pd M}$ does not depend on the vector field $\NN$ that is nowhere tangent to $\partial M$. 
+    Let $\omega_M$ be an orientation form on $M$. The previous lemma shows that there exists a vector field $\NN$ nowhere tangent to $\partial M$. Thus, there is an induced orientation form $\omega_{\pd M}$ on the boundary (due to interior multiplication\footnote{We could have put $\NN_\pp$ in any of $\omega_M$'s $n$ argument slots, but we chose to use the first. This choice corresponds to the operation called \textit{interior multiplication}, which you can read about in \cite{book::SM}. See p. 358 and Corollary 14.21 on p. 362.}) defined by $\omega_{\pd M}(v_1|_\pp, ..., v_{n - 1}|_\pp) = \omega_M(\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp)$. The orientation on $\pd M$ induced by $\omega_{\pd M}$ does not depend on the vector field $\NN$ that is nowhere tangent to $\partial M$. 
 \end{theorem}
 
 \begin{proof}
@@ -1202,7 +1202,7 @@ Now we can describe the induced orientation on the boundary.
     
         \item Let $\NN$ and $\NN'$ be two vector fields that are both nowhere tangent to $\pd M$. We need to show that the ordered bases $E = \{\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp\}$ and $F = \{\NN'|_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp\}$ have the same orientation. To do so, we prove that the determinant of the change of basis matrix between the two ordered bases is positive.
             
-        $\NN$ and $\NN'$ are both outward-pointing, so the $n$th component of $\NN_\pp$ relative to $E$ and the $n$th component of $\NN'|_\pp$ relative to $F$ are both negative; denote these $n$th components by $(\NN_\pp)_n$ and $(\NN'|_\pp)_n$, respectively. Relative to the bases $E$, $F$, the change of basis matrix between $E$ and $F$ has a first column whose only nonzero entry is the $n$th entry, which is $n$th entry is $\frac{(\NN'|_\pp)_n}{(\NN_\pp)_n}$. For $i > 1$, the $i$th column of the change of basis matrix is $\see_i$. The change of basis matrix is therefore upper triangular, so its determinant is the product of the diagonal entries, i.e., the determinant is $\frac{(\NN'|_\pp)_n}{(\NN_\pp)_n} > 0$.
+        $\NN$ and $\NN'$ are both outward-pointing, so the $n$th component of $\NN_\pp$ relative to $E$ and the $n$th component of $\NN'|_\pp$ relative to $F$ are both negative; denote these $n$th components by $(\NN_\pp)_n$ and $(\NN'|_\pp)_n$, respectively. Relative to the bases $E$, $F$, the change of basis matrix between $E$ and $F$ has a first column whose only nonzero entry is the $n$th entry, which is $\frac{(\NN'|_\pp)_n}{(\NN_\pp)_n}$. For $i > 1$, the $i$th column of the change of basis matrix is $\see_i$. The change of basis matrix is therefore upper triangular, so its determinant is the product of the diagonal entries, i.e., the determinant is $\frac{(\NN'|_\pp)_n}{(\NN_\pp)_n} > 0$. \textbf{this doesn't make any sense; fix it}
     \end{enumerate}
 \end{proof}
 
@@ -1213,7 +1213,7 @@ As $k$-paralellapiped can be be given the structure of an oriented smooth subman
 \begin{defn}
     (Notation for $n$-parallelapipeds).
     
-    Let $M$ be a smooth $n$-manifold and let $(U, \xx)$ be a smooth chart on $M$. Given ${v_1|_\pp, ..., v_n|_\pp \in T_\pp(M)}$, we define $P_\pp(v_1, ..., v_n)$ to be the $n$-parallelapiped anchored at $\xx(\pp) \in \R^n_\pp$ that is spanned by \\ ${\xx(v_1|_\pp), ..., \xx(v_n|_\pp) \in \R^n_\pp}$. Additionally, if $v \in T_\pp(M)$ is identified with $\vv \in \R^n_\pp$ under the isomorphism ${\frac{\pd}{\pd x^i}\Big|_\pp \mapsto \see_i}$, we will use the slight abuse of notation $P_{\pp + v}(v_1, ..., v_n)$ to denote the $n$-parallelapiped anchored at $\xx(\pp) + \vv \in \R^n_\pp$ that is spanned by $\xx(v_1|_\pp), ..., \xx(v_n|_\pp) \in \R^n_\pp$.
+    Let $M$ be a smooth $n$-manifold and let $(U, \xx)$ be a smooth chart on $M$. Given ${v_1|_\pp, ..., v_n|_\pp \in T_\pp(M)}$, we define $P_\pp(v_1, ..., v_n)$ to be the $n$-parallelapiped anchored at $\xx(\pp) \in \R^n_\pp$ that is spanned by ${\xx(v_1|_\pp), ..., \xx(v_n|_\pp) \in \R^n_\pp}$.  \textbf{should $d\xx(v_i|_\pp)$ be used here instead of $\xx(v_1)|_\pp$?} Additionally, if $v \in T_\pp(M)$ is identified with $\vv \in \R^n_\pp$ under the isomorphism ${\frac{\pd}{\pd x^i}\Big|_\pp \mapsto \see_i}$, we will use the slight abuse of notation $P_{\pp + v}(v_1, ..., v_n)$ to denote the $n$-parallelapiped anchored at $\xx(\pp) + \vv \in \R^n_\pp$ that is spanned by $\xx(v_1|_\pp), ..., \xx(v_n|_\pp) \in \R^n_\pp$.
 \end{defn}
 
 \begin{theorem}
@@ -1226,7 +1226,7 @@ As $k$-paralellapiped can be be given the structure of an oriented smooth subman
     \begin{align*}
         \boxed
         {
-            \pd P_\pp(v_1, ..., v_n) = \sum_{i = 1}^k (-1)^{i - 1} \Big( P_{\pp + \vv_i|_\pp}(v_1, ..., \cancel{v_i}, ..., v_n) - P_{\pp}(v_1, ..., \cancel{v_i}, ..., v_n) \Big)
+            \pd P_\pp(v_1, ..., v_n) = \sum_{i = 1}^k (-1)^{i - 1} \Big( P_{\pp + v_i|_\pp}(v_1, ..., \cancel{v_i}, ..., v_n) - P_{\pp}(v_1, ..., \cancel{v_i}, ..., v_n) \Big)
         }
     \end{align*}
     
