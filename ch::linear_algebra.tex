@@ -1079,22 +1079,30 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \begin{proof}
     For linearity, we show that $[\vv_1 + \vv_2]_E = [\vv_1]_E + [\vv_2]_E$ and that $[c\vv]_E = c[\vv]_E$.
     
-    We have
+    Let $n := \dim(V)$. We have
         
     \begin{align*}
         [\vv_1 + \vv_2]_E
-        &= \Big[\Big(\sum_{i = 1}^n ([\vv_1]_E)_i \ee_i + \sum_{i = 1}^n ([\vv_2]_E)_i \ee_i\Big)\Big]_E \\
-        &= \Big[\Big(\sum_{i = 1}^n \Big(([\vv_1]_E)_i + ([\vv_2]_E)_i \Big) \ee_i \Big)\Big]_E
+        &= \Big[\sum_{i = 1}^n ([\vv_1]_E)_i \ee_i + \sum_{i = 1}^n ([\vv_2]_E)_i \ee_i\Big]_E \\
+        &= \Big[\sum_{i = 1}^n \Big(([\vv_1]_E)_i + ([\vv_2]_E)_i \Big) \ee_i \Big]_E
         = 
-        \begin{pmatrix} ([\vv_1]_E)_1 + ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_1]_E)_m + ([\vv_2]_E)_m \end{pmatrix}
+        \begin{pmatrix} ([\vv_1]_E)_1 + ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_1]_E)_m + ([\vv_2]_E)_n \end{pmatrix}
         =
-        \begin{pmatrix} ([\vv_1]_E)_1 \\ \vdots \\ ([\vv_1]_E)_m \end{pmatrix}
+        \begin{pmatrix} ([\vv_1]_E)_1 \\ \vdots \\ ([\vv_1]_E)_n \end{pmatrix}
         +
-        \begin{pmatrix} ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_2]_E)_m \end{pmatrix} \\
+        \begin{pmatrix} ([\vv_2]_E)_1 \\ \vdots \\ ([\vv_2]_E)_n \end{pmatrix} \\
         &= [\vv_1]_E + [\vv_2]_E.
     \end{align*}
         
-    Now we show $[c \vv]_E = c [\vv]_E$. Since $[\vv]_E = \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix}$, we have $\vv = \sum_{i = 1}^n ([\vv]_E)_i \ee_i$, and $c \vv = c \sum_{i = 1}^n ([\vv]_E)_i \ee_i = \sum_{i = 1}^n c ([\vv]_E)_i \ee_i$. By the definition of $[\cdot]_E$, we see $([c \vv]_E)_i = c ([\vv]_E)_i$, so $[c \vv]_E = c [\vv]_E$. Therefore $[\cdot]_E$ is linear. $[\cdot]_E$ is invertible because it sends basis vectors to basis vectors, and therefore preserves linear independence.
+    Now we show $[c \vv]_E = c [\vv]_E$. We have
+
+     \begin{align*}
+        [c\vv]_E = \Big[ c \Big( \sum_{i = 1 }^n ([\vv]_E)_i \ee_i \Big) \Big] = \Big[\sum_i c([\vv]_E)_i \ee_i\Big]_E = \begin{pmatrix} c([\vv]_E)_1 \\ \vdots \\ c([\vv]_E)_n \end{pmatrix}
+        = c \begin{pmatrix} ([\vv]_E)_1 \\ \vdots \\ ([\vv]_E)_n \end{pmatrix}
+        = c[\vv]_E.
+    \end{align*}
+    
+    $[\cdot]_E$ is invertible because it sends basis vectors to basis vectors, and therefore preserves linear independence.
 
     %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a trivial kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
 \end{proof}
@@ -1544,7 +1552,7 @@ This following topic of ``matrix transposes'' does not become significant until 
 \begin{defn}
     (Transpose of a matrix).
 
-    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$ is the matrix whose $ij$ entry is the $ji$ entry of $\AA$}: $\AA^\top := (a_{ji})$. 
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$ is the $n \times m$ matrix whose $ij$ entry is the $ji$ entry of $\AA$}: $\AA^\top := (a_{ji})$. 
     
     For any matrix $\AA$, the columns of $\AA^\top$ are the rows of $\AA$, and the rows of $\AA^\top$ are the columns of $\AA$.
 \end{defn}
@@ -1554,7 +1562,7 @@ Now we return to the relationship between linear functions and matrices.
 \begin{theorem}
     (Linear functions from matrices).
     
-    If $\AA$ is an $m \times n$ matrix with entries in a field $K$, then the function $\vv \mapsto \AA \vv$ is linear, and $\AA$ is the standard matrix of this function.
+    If $\AA$ is an $m \times n$ matrix with entries in a field $K$, then the function $\vv \mapsto \AA \vv$ is linear, and $\AA$ is the standard matrix of this function. We define $\ker(\AA) := \ker(\vv \mapsto \AA \vv)$ and $\im(\AA) := \im(\vv \mapsto \AA \vv)$.
 \end{theorem}
 
 \begin{proof}
@@ -1743,9 +1751,9 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 
 \subsection*{Matrices relative to bases}
 
-We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are finite-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^{\dim(V)} \rightarrow K^{\dim(W)}$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
+We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
 
-In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. The theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us      to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
 
 \begin{deriv}
 \label{ch::lin_alg::deriv::matrix_relative_to_bases}
@@ -1809,7 +1817,7 @@ Not all linear algebra resources use the above notion of matrices relative to ba
     Let $K$ be a field, let $E$ be a basis for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is
     
     \begin{align*}
-        \ff(E)_E = \EE^{-1} \ff(\sE) \EE,
+        [\ff(E)]_E = \EE^{-1} \ff(\sE) \EE,
     \end{align*}
     
     where $\EE$ is the matrix whose $i$th column is $\ee_i$.
@@ -1849,7 +1857,7 @@ We will now discover how when we have a finite-dimensional vector space with bas
 \begin{remark}
     (Alternate proof of change of basis).
     
-    Here is an alternate proof to the above. The matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[[\cdot]_F(E)]_\sE = [\cdot_F(E)] = [\EE]_F$. Using the characterizing property of matrices relative to bases, we have $[\vv]_F = [[\cdot]_F(E)]_\sE [\vv]_E = [\EE]_F [\vv]_E$.
+    Here is an alternate proof to the above. The matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[[\cdot]_F(E)]_\sE = [\cdot]_F(E) = [\EE]_F$. Using the characterizing property of matrices relative to bases, we have $[\vv]_F = [[\cdot]_F(E)]_\sE [\vv]_E = [\EE]_F [\vv]_E$.
 \end{remark}
 
 \begin{theorem}
@@ -1886,21 +1894,186 @@ We will now discover how when we have a finite-dimensional vector space with bas
 
 \newpage
 
+\section*{Outline}
+
+\begin{itemize}
+    \item solving linear equations
+    \item correspondence between linear matrix equations and systems of linear equations
+    \item augmented matrices
+    \item because adding equations, multiplying equations by a scalar, and swapping equations doesn't change the system, performing the analogous row operations on the corresponding matrix doesn't change the system to which the matrix corresponds
+    \item RREF
+    \item finding a basis for the kernel
+    \begin{itemize}
+        \item corollary: $\rref(\AA) = \II$ iff $\AA$ is invertible
+    \end{itemize}
+    \item finding a basis for the image
+    \begin{itemize}
+        \item The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
+        \begin{itemize}
+            \item Proof. Let $\AA = (\aa_1 ... \aa_n)$. 
+            
+            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$. [?]
+
+            (Case: $\rref(\AA)$ has pivot columns). We have $\rref(\AA) = (\see_1, ..., \see_k, \bb_{k + 1}, ..., \bb_n)$ for some integer $k > 0$. Since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA) = (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Lemma \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
+
+            [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
+        \end{itemize}
+    \end{itemize}
+    \item test for linear independence
+    \item row operations don't change the kernel and column operations don't change the image
+\end{itemize}
+
+misc.
+\begin{itemize}
+    \item rref is an invertible linear operation
+    \item the standard basis is indeed a basis. true because $(c_1, ..., c_n)$ is the zero vector only when all $c_i$'s are zero.
+\end{itemize}
+
 \section{Systems of linear equations with matrices}
 
 This section presents how systems of linear equations can be solved by using concepts from linear algebra.
 
 Reading this section is entirely unnecessary for the remaining content in this book. This treatment of systems of linear equations has only been provided to serve as a superior alternative to the traditional approach of teaching linear algebra (which is: start with systems of linear equations, define the matrix-vector product, and then haphazardly discover the other linear algebra material we have covered). The approach we take emphasizes that linear algebra should not be introduced as a field of study that is discovered by starting with systems of linear equations\footnote{Linear algebra \textit{did} historically grow out of the study of systems of linear equations. Just remember that the historical approach is not always the most enlightening one!}, and that systems of linear equations should be viewed as an application of linear algebra.
 
-Before we study systems of linear equations, we will discuss the equation of a plane.
+\begin{defn}
+    (Linear equation).
+
+    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a function, and let $\ww \in W$. When $\ff$ is linear, the equation $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$ is called a \textit{linear equation}.
+
+    The set of solutions to the equation, $\{\text{solns}\} := \{\vv \in V \mid \ff(\vv) = \ww\}$, is a vector space whenever it is nonempty.
+\end{defn}
+
+Linear equations are ``easy'' to solve whenever the linear function $\ff$ involved is invertible. When $\ff$ isn't invertible, we convert the problem of the linear equation into an equivalent problem and solve that instead.
+
+\begin{deriv}
+    (Linear matrix equations).
+    
+    Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$. Since $\ff:V \rightarrow W$ can be studied by choosing bases for $V$ and $W$ and investigating the induced linear function $K^n \rightarrow K^m$, we can study the linear equation
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in V$, where $\ff:V \rightarrow W$ is linear and $\ww \in W$},
+    \end{align*}
+    
+    by studying equations of the form 
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in K^n$, where $\ff:K^n \rightarrow K^m$ is linear and $\ww \in K^m$}.
+    \end{align*}
+
+    Since for $\ff:K^n \rightarrow K^m$ we have $\ff(\vv) = \ff(\sE) \vv$ for all $\vv \in K^n$, and since the columns of $\ff(\sE)$ vary over $K^m$ (recall Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}), we can study equations of the above form by studying equtions of the form
+
+    \begin{align*}
+        \AA \vv = \ww \text{ for all $\vv \in K^n$, where $\AA \in K^{m \times n}$ and $\ww \in K^m$}.
+    \end{align*}
+    
+    Equations of the above form are called \textit{(linear) matrix equations}\footnote{These equations are most commonly called \textit{matrix equations}}. 
+\end{deriv}
+
+\begin{deriv}
+    (Systems of linear equations).
+
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$, let $\ww \in K^m$, and consider the linear matrix equation
+
+    \begin{align*}
+        \AA \vv = \ww \text{ for all $\vv \in V$}.
+    \end{align*}
+
+    If $\vv$ has $i$th component $v_i$ and $\ww$ has $i$th component $w_i$, then this is the same as
+
+    \begin{align*}
+        \begin{pmatrix}
+            a_{11} & \hdots & a_{1n} \\
+            \vdots & & \vdots \\
+            a_{m1} & \hdots & a_{mn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            v_1 \\ \vdots \\ v_n
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            w_1 \\ \vdots \\ w_m
+        \end{pmatrix}
+        \text{ for all $v_1, ..., v_n \in K$}
+        \\
+        \begin{pmatrix}
+            v_1 a_{11} + ... + v_n a_{1n} \\
+            \vdots \\
+            v_1 a_{m1} + ... + v_n a_{mn}
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            w_1 \\ \vdots \\ w_m
+        \end{pmatrix}
+        \text{ for all $v_1, ..., v_n \in K$}
+        ,
+    \end{align*}
+
+    which is equivalent to the system of equations
+
+    \begin{align*}
+        \begin{cases}
+            v_1 a_{11} + ... + v_n a_{1n} = w_1 \\
+            \vdots \\
+            v_1 a_{m1} + ... + v_n a_{mn} = w_m
+        \end{cases}
+        \text{ for all $v_1, ..., v_n \in K$}.
+    \end{align*}
+\end{deriv}
+
+
+
+Obviously, the linear equation $\ff(\vv) = \ww$ is ``easy'' to solve when $\ff$ is invertible, as $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$ in that case. One might think that things become difficult when $\ff$ is not invertible. The following theorem says otherwise!
 
 \begin{theorem}
+    (Solutions to linear equations).
+
+    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in V$}.
+    \end{align*}
     
+    When the set of solutions $\{\text{solns}\}$ is nonempty, it can be described in terms of any particular solution:
+
+    \begin{align*}
+        \{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}.
+    \end{align*}
+
+    This theorem is very useful when in the case when $\ff$ is not invertible, as it says that we can obtain the entire solution set by finding a \textit{single} solution to the equation, finding the kernel of $\ff$, and then combining these two pieces of information in a simple way.
 \end{theorem}
 
 \begin{proof}
+    \mbox{} \\
 
+    Since the theorem assumes solutions to the linear equation exist, we know there is some $\vv \in \{\text{solns}\}$.
+    
+    \indent (Case: $\ff$ is invertible). In this case, $\ker(\ff) = \{\mathbf{0}\}$ and $\vv = \ff^{-1}(\ww)$, so $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{ \vv \} = \{\ff^{-1}(\ww)\}$. Since $\ff$ is invertible, the solution to the linear equation is unique, and $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$. Thus $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{\ff^{-1}(\ww)\} = \{\text{solns}\}$.
+
+    (Case: $\ff$ is not invertible). We need to show $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \subseteq \{\text{solns}\}$ and $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \supseteq \{\text{solns}\}$.
+
+    \indent \indent ($\subseteq$). Let $\uu$ be in the first set, so $\uu = \vv + \vv_0$ for some $\vv_0 \in \ker(\ff)$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$. Overall, we have $\ff(\uu) = \ww$, so $\uu$ is in the second set.
+
+    \indent \indent ($\supseteq$). Let $\uu$ be in the second set, so $\ff(\uu) = \ww$. We have $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ker(\ff)$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ker(\ff)$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ker(\ff)$, so $\uu$ is in the first set.
 \end{proof}
+
+\begin{theorem}
+    (Number of solutions to linear equations).
+
+    A linear equation has either zero, one, or infinitely many solutions.
+\end{theorem}
+
+\begin{proof}
+    Let $V$ and $W$ be finite-dimensional vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation $\ff(\vv) = \ww$.
+
+    (Case: there are no solutions).
+
+    (Case: there are solutions). 
+    
+    \indent \indent (Case: $\ff$ is invertible). We saw in the previous proof that the solution set is $\{\ff^{-1}(\ww)\}$ in this case. 
+
+    \indent \indent (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
+\end{proof}
+
 
 \begin{deriv}
     (Equation of an $n$-dimensional plane).
@@ -2223,6 +2396,7 @@ The set of equations obtained by equating the components of the vectors on eithe
 \newpage
 
 \section{The dot product}
+\label{ch::lin_alg::section::dot_product}
 
 Most explanations of the dot product engage in at least one of two pedagogically problematic approaches. 
 
@@ -2234,15 +2408,54 @@ The second problematic approach arises when an author \textit{does} decide to st
 
 The cross product also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_pwrs} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_pwrs} because understanding cross products requires understanding determinants).
 
-\subsection*{Magnitude and angle in $\R^n$}
+\subsection*{Magnitude in $\R^n$}
 \label{ch::lin_alg::subsection::mag_and_angle_Rn}
+
+\begin{defn}
+\label{ch::lin_alg::defn::length_in_R2}
+    (Length of a vector in $\R^2$).
+
+    Let $\vv \in \R^2$. If we interpret $([\vv]_\sE)_1$ and $([\vv]_\sE)_2$ as the lengths of the base and height, respectively, of a right triangle, then the length of the hypotenuse of this right triangle is $\sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
+
+    Since $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, it makes sense to think of the hypotenuse as being $\vv$, and thus, to define the \textit{length} (or \textit{magnitude}) $||\vv||$ of $\vv$ to be the length of the hypotenuse: $||\vv|| := \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
+\end{defn}
 
 \begin{defn}
 \label{ch::lin_alg::defn::length_in_Rn}
     (Length of a vector in $\R^n$). 
-    
-    Let $\sE$ be the standard basis for $\R^n$. In analogy to the Pythagorean theorem, we define the \textit{length} of a vector $\vv \in \R^n$ to be $||\vv|| := \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}$.
+
+    When $n > 2$ and we have a vector $\vv_n \in \R^n$, we consider $\vv_n$ in the form $\vv_n = \vv_{n - 1} + ([\vv]_\sE)_n \see_n$, where $\vv_{n - 1} \in \R^{n - 1}$, and define the \textit{length} (or \textit{magnitude}) $||\vv_n||$ of $\vv_n$ to be
+
+    \begin{align*}
+        ||\vv_n|| = \sqrt{||\vv_{n - 1}||^2 + ([\vv]_\sE)_n^2} \text{ when $n > 2$}.
+    \end{align*}
 \end{defn}
+
+\begin{theorem}
+    (Length of a vector in $\R^n$).
+
+    For all $\vv \in \R^n$ and all $n$, the length of $\vv$ is
+
+    \begin{align*}
+        ||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}\spc.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    We prove the theorem by induction.
+
+    (Base case). The definition of the length of a vector in $\R^2$ establishes the base case.
+
+    (Inductive case). Let $\vv_n \in \R^n$. Assume as the inductive hypothesis that the claim is true for $n$; we need to show the claim is true for $n + 1$.
+
+    By the definition the length of a vector in $\R^{n + 1}$ (Definition \ref{ch::lin_alg::thm::length_in_Rn}), for $\vv_{n + 1} \in \R^{n + 1}$ we have \\ ${||\vv_{n + 1}|| = \sqrt{||\vv_n||^2 + ([\vv]_\sE)_{n + 1}^2}}$. By the inductive hypothesis, $||\vv_n|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}^2$, so
+
+    \begin{align*}
+        ||\vv_{n + 1}|| = \sqrt{\sqrt{\sum_{i = 1}^n \Big(([\vv]_\sE)_i^2\Big)}^2 + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^n \Big([\vv]_\sE)_i^2\Big) + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^{n + 1} ([\vv]_\sE)_i^2}.
+    \end{align*}
+
+    This proves the claim for $n + 1$.
+\end{proof}
 
 \begin{defn}
     (Unit vector hat notation). 
@@ -2250,175 +2463,253 @@ The cross product also comes with two common pedagogical problems. The last sect
     For $\vv \in \R^n$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^n$.
 \end{defn}
 
-\begin{defn}
-    (Unsigned angle between vectors in $\R^n$).
-    
-    Let vectors $\vv_1, \vv_2 \in \R^n$ have the same length $r = ||\vv_1|| = ||\vv_2||$, and consider the $n$-sphere that of radius $r$ results when the initial points of $\vv_1, \vv_2$ coincide. (The initial points of $\vv_1, \vv_2$ are the center of the sphere). Let $s$ be the length of the shortest path on the $n$-sphere from $\vv_1$ to $\vv_2$. We define the \textit{unsigned angle $\theta$ between $\vv_1$ and $\vv_2$} to be the ratio $\theta := \frac{s}{r}$. When two vectors don't have the same length, we define the unsigned angle between them to be the unsigned angle between two vectors that point in the same directions but that have the same length.
-    
-    Note, we have used the descriptor ``unsigned'' because, since $s, r \geq 0$, we know $\theta \geq 0$.
-\end{defn}
+\subsection*{Angle in $\R^2$}
 
 \begin{defn}
-    (Perpendicular vectors in $\R^n$). We say that two vectors in $\R^n$ are \textit{perpendicular}, or \textit{orthogonal}, iff the unsigned angle between them is $\frac{\pi}{2}$.
-\end{defn}
+    (Nonnegative angle between vectors in $\R^2$).
+    
+    Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. Let $s(\vv, \ww)$ be the length of the shortest path on the circle from $\vv$ to $\ww$:
 
-Moreso than prematurely introducing the dot product, the purpose of the following theorem is to engage with the intuitive definition of angle as $\theta := \frac{s}{r}$, which is so often abandoned in higher mathematics.
+    \begin{align*}
+        s(\vv, \ww) = \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, &\text{ where $\xx(t) = r\begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}$,} \\ &\text{ $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_2 \geq t_1.
+    \end{align*}
+    
+    \textbf{find and replace ``unsigned''.}
+    \textbf{$t \in [0, 2\pi)$ should probably be $t \in [0, \pi]$}
+
+    We define the \textit{nonnegative\footnote{Notice that because the integrand for $s$ is nonnegative and $t_2 \geq t_1$, we have $s(\vv, \ww) \geq 0$. Since $s(\vv, \ww) \geq 0$ and $r \geq 0$, we have $\theta(\vv, \ww) \geq 0$.} angle $\theta(\vv, \ww)$ between $\vv$ and $\ww$} to be the ratio $\theta(\vv, \ww) := \frac{s(\vv, \ww)}{r}$. When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(r_0\hvv, r_0\hww)$, where $r_0 > 0$ is any positive real number.
+\end{defn}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::unsigned_angle_Rn}
-    (Unsigned angle formula in $\R^n$).
+    (Angle formula in $\R^2$).
     
-    The unsigned angle $\theta$ between vectors $\vv_1, \vv_2 \in \R^n$ with the same length $r = ||\vv_1|| = ||\vv_2||$ is
+    Let $\vv, \ww \in \R^2$. Then
     
     \begin{align*}
-        \theta = \text{arccos}\Big( \sum_{i = 1}^n [\hat{\vv}_1]_\sE)_i  ([\hat{\vv}_2]_\sE)_i \Big).
+        \theta(\vv, \ww) = \text{arccos}\Big( \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i \Big).
     \end{align*}
+
+    Note, since $\arccos:[-1, 1] \rightarrow [0, \pi]$, we have $\theta(\vv, \ww) \in [0, \pi]$.
 \end{theorem}
 
 \begin{proof}
-   We prove the theorem for the case $n = 2$. For the general case, one would make use of the following description of the $n$-sphere of radius $r$, which uses generalized spherical coordinates\footnote{See \url{https://en.wikipedia.org/wiki/N-sphere\#spherical\%20coordinates} for more.}:
+    We prove the theorem in the case when $||\vv|| = ||\ww|| = r$; the general case follows from this easily. We have
+    
+    \begin{align*}
+       \theta(\vv, \ww) = \frac{s}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d\xx(t)}{dt}\Big|\Big| dt, &\text{ where $\xx(t) = r\begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}$,} \\ &\text{ $\xx(t_1) = \vv$, $\xx(t_2) = \ww$, $t_2 \geq t_1$}.
+    \end{align*}
+
+    Since $||\frac{d\xx(t)}{dt}|| = r$, then $\theta(\vv, \ww) = t_2 - t_1$. Further, since $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$, we have ${r \cos(t_1) &= (r[\hvv]_\sE)_1}$ and ${r \cos(t_2) &= (r[\hww]_\sE)_1}$, giving us
    
    \begin{align*}
-       \xx \begin{pmatrix} t_1 \\ ... \\ t_{n - 1} \end{pmatrix}
-       =
-       r \sum_{i = 1}^n \Big( \sin(t_1) ... \sin(t_{i - 1}) \cos(t_i) \see_i \Big)
-       =
-       r
-       \begin{pmatrix}
-            \cos(t_1) \\
-            \sin(t_1) \cos(t_2) \\
-            \sin(t_1) \cos(t_2) \cos(t_3) \\
-            \vdots \\
-            \sin(t_1) ... \sin(t_{i - 1}) \cos(t_i) \\
-            \vdots \\
-            \sin(t_1) ... \sin(t_{n - 1}) \cos(t_n)
-       \end{pmatrix},
+       \theta(\vv, \ww) = t_2 - t_1 
+       = \text{arccos}\Big(([\hww]_\sE)_1\Big) - \text{arccos}\Big(([\hvv]_\sE)_1\Big).
    \end{align*}
    
-   where $t_1, ..., t_{n - 2} \in [0, \pi]$, $t_{n - 1} \in [0, 2\pi)$.
-   
-   Since we are considering the case $n = 2$, we have
-   
-   \begin{align*}
-       \xx(t) = r \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}.
+   The cosine angle addition identity $\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha) \sin(\beta)$ implies\footnote{Solve the first identity for $\gamma = \cos(\alpha)$ and $\delta = \cos(\beta)$ to obtain the second identity in terms of $\gamma$ and $\delta$.} the identity \\ ${\text{arccos}(\alpha) + \text{arccos}(\beta) = \text{arccos}(\alpha \beta - \sqrt{1 - \alpha^2}\sqrt{1 - \beta^2})}$. Using this identity, we have
+
+    \begin{align*}
+       \theta(\vv, \ww) &= \text{arccos}\Bigg(([\hvv]_\sE)_1 ([\hww]_\sE)_1 + \sqrt{1 -([\hvv]_\sE)_1^2} \sqrt{1 - ([\hww]_\sE)_1^2} \Bigg) \\
+       &= \text{arccos}\Bigg(([\hvv]_\sE)_1 ([\hww]_\sE)_1 + ([\hww]_\sE)_2 ([\hww]_\sE)_2 \Bigg).
    \end{align*}
-   
-   We compute $\theta$ as
-   
-   \begin{align*}
-       \theta = \frac{s}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d \xx(t)}{dt} \Big|\Big| dt = \frac{1}{r} \int_{t_1}^{t_2} r \spc dt = \int_{t_1}^{t_2} dt = t_2 - t_1.
-   \end{align*}
-   
-   Since $t_i$, $i \in \{1, 2\}$ are such that $\xx(t_i) = \vv_i$, we have $t_i = \text{arccos}(\frac{([\vv_i]_\sE)_1}{r})$. So
-   
-   \begin{align*}
-       \theta = t_2 - t_1 
-       = \text{arccos}\Big(\frac{([\vv_2]_\sE)_1}{r}\Big) - \text{arccos}\Big(\frac{[\vv_1]_\sE)_1}{r}\Big).
-   \end{align*}
-   
-   The cosine angle addition identity $\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha) \sin(\beta)$ implies\footnote{Solve the first identity for $\gamma = \cos(\alpha)$ and $\delta = \cos(\beta)$ to obtain the second identity in terms of $\gamma$ and $\delta$.} the identity $\text{arccos}(\alpha) + \text{arccos}(\beta) = \text{arccos}(\alpha \beta - \sqrt{1 - \alpha^2}\sqrt{1 - \beta^2})$. Using this identity with the fact that ${([\vv_i]_\sE)_1^2 + ([\vv_i]_\sE)_2^2 = 1}$, $i \in \{1, 2\}$, the above becomes
-   
-   \begin{align*}
-       \theta &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{1 - \Big(\frac{([\vv_1]_\sE)_1}{r}\Big)^2} \sqrt{1 - \Big(\frac{([\vv_2]_\sE)_1}{r}\Big)^2} \Bigg) \\
-       &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{\frac{r^2 - ([\vv_1]_\sE)_1^2}{r^2}} \sqrt{\frac{r^2 - ([\vv_2]_\sE)_1^2}{r^2}} \Bigg) \\
-       &= \text{arccos}\Bigg(\frac{([\vv_1]_\sE)_1) ([\vv_2]_\sE)_1)}{r^2} + \sqrt{\frac{([\vv_1]_\sE)_2^2}{r^2}} \sqrt{\frac{([\vv_2]_\sE)_2^2}{r^2}} \Bigg) \\
-       &= \text{arccos}\Big(\frac{([\vv_1]_\sE)_2) ([\vv_2]_\sE)_1) + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2}{r^2}\Big) \\
-       &= \text{arccos}\Big( \frac{([\vv_1]_\sE)_1}{r} \frac{([\vv_2]_\sE)_1}{r} + \frac{([\vv_1]_\sE)_2}{r} \frac{([\vv_2]_\sE)_2}{r} \Big) \\
-       &= \text{arccos}\Big(([\hat{\vv}_1]_\sE)_1  ([\hat{\vv}_2]_\sE)_1 + ([\hat{\vv}_2]_\sE)_1 ([\hat{\vv}_2]_\sE)_2\Big) \\
-       &= \text{arccos}\Big( \sum_{i = 1}^2 [\hat{\vv}_1]_\sE)_i ([\hat{\vv}_2]_\sE)_i \Big).
-   \end{align*}
-   
-   The second to last step follows because $r = ||\vv_1|| = ||\vv_2||$.
+\end{proof}
+
+\begin{defn}
+    (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\theta(\vv, \ww) = \frac{\pi}{2}$.
+\end{defn}
+
+\subsubsection{Rotation in $\R^2$}
+
+\begin{lemma}
+    (Rotation in $\R^2$).
+
+    Let $\theta \in [0, \pi]$. The counterclockwise rotation $\RR_t:\R^2 \rightarrow \R^2$ by $\theta$ is given by
+
+    \begin{align*}
+        \RR_\theta(\vv) =
+        \begin{pmatrix}
+            \cos(\theta) & - \sin(\theta) \\
+            \sin(\theta) & \cos(\theta)
+        \end{pmatrix}
+        \vv.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    To obtain the formula for the standard matrix of $\RR_t$, use trigonometry to show that $\RR(\see_1) = (\cos(\theta), \sin(\theta))^\top$ and $\RR(\see_2) = (-\sin(\theta), \cos(\theta))^\top$.
+\end{proof}
+
+\begin{lemma}
+    \begin{align*}
+        \RR_\phi\Big(
+        \begin{pmatrix}
+            \cos(\theta) \\
+            \sin(\theta)
+        \end{pmatrix}
+        \Big)
+        =
+        \begin{pmatrix}
+            \cos(\theta + \phi) \\
+            \sin(\theta + \phi)
+        \end{pmatrix}
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    Compute the left side as a matrix-vector product and then use the trigonometric angle-sum identities.
+\end{proof}
+
+\begin{lemma}
+    The previous lemma implies that $\RR_\theta$ is length-preserving. Because $\RR_\theta$ is length-preserving, we have $\widehat{\RR_\theta(\vv)} = \RR_\theta(\hvv)$.
+\end{lemma}
+
+\begin{proof}
+    We have $\widehat{\RR_\theta(\vv)} = \frac{\RR_\theta(\vv)}{||\RR_\theta(\vv)||} = \frac{\RR_\theta(\vv)}{||\vv||} = \RR_\theta\Big(\frac{\vv}{||\vv||}\Big) = \RR_\theta(\hvv)$.
+\end{proof}
+
+\begin{lemma}
+    For all $\vv \in \R^2$, 
+
+    \begin{align*}
+        \{ \ww \mid \theta(\hvv, \hww) = t\} = \{\RR_{-t}(\hvv), \RR_t(\hvv)\}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    First, we show $\theta(\hvv, \widehat{\RR_t(\vv)}) = \theta(\hvv, \RR_t(\hvv)) = t$ for all $t \in [0, \pi]$. We have $\hvv = (\cos(s), \sin(s))^\top$ for some $s \in [0, 2\pi)$, and have $\RR_t(\hvv) = (\cos(s + t), \sin(s + t))^\top$ by Lemma [...]. The proof of Theorem \ref{ch::lin_alg::thm::unsigned_angle_Rn} showed that in general, 
+
+    \begin{align*}
+        \theta(\huu_1, \huu_2) = t_2 - t_1, \text{ where $\xx(t) = \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}, \xx(t_1) = \huu_1, \xx(t_2) = \huu_2$}.
+    \end{align*}
+    
+    Using $\huu_1 = \hvv$, $\huu_2 = \RR_t(\hvv)$, $t_1 = s$, $t_2 = s + t$, we have $\theta(\hvv, \RR_t(\hvv)) = (s + t) - s = t$.
+
+    Now we show uniqueness. Suppose $\theta(\hvv, \hww) = t$; we need to show that $\hww = \RR_t(\hvv)$. It suffices to show that $\theta(\hvv, \cdot):\R^2 \rightarrow [0, \pi]$ is one-to-one. Well, 
+
+\end{proof}
+
+\begin{theorem}
+    (Orthogonal basis of $\R^2$).
+
+    Let $\vv \in \R^2$. If $\vv_\perp$ is perpendicular to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis of $\R^2$.
+\end{theorem}
+
+\begin{proof}
+    The previous lemma allows us to represent $\vv_\perp$
 \end{proof}
 
 \newpage
 
-\subsection*{The dot product}
-\label{ch::lin_alg::section::dot_product}
+\subsubsection*{The dot product in $\R^2$}
 
-Now that we have a notion of perpendicularity between vectors in $\R^n$, we can define the notion of vector projection, which is the main idea involved in the dot product.
+Now that we have a notion of perpendicularity between vectors in $\R^2$, we can define the notion of vector projection, which is the main idea involved in the dot product.
 
 \begin{defn}
 \label{ch::lin_alg::defn::vector_proj}
-    (Vector projection in $\R^n$).
+    (Vector projection in $\R^2$).
     
-    Consider vectors $\vv_1, \vv_2, (\vv_2)_\perp \in \R^n$, where $(\vv_2)_\perp$ is perpendicular to $\vv_2$.
+    Consider vectors $\vv, \ww, \ww_\perp \in \R^2$, where $\ww_\perp$ is perpendicular to $\ww$. Since $\{\hww, \hww_\perp\}$ is a basis of $\R^2$, there exist unique $v_{||}, v_\perp \in \R$ such that $\vv = v_{||} \hww + v_\perp \hww_\perp$.
     
-    The \textit{vector projection} of $\vv_1$ onto $\vv_2$ is the unique vector $\proj(\vv_1 \rightarrow \vv_2) := (v_1)_{||} \hat{\vv}_2$ such that ${\vv_1 = (v_1)_{||} \hat{\vv}_2 + (v_1)_\perp (\hat{\vv}_2)_\perp}$, where $(v_1)_{||}, (v_1)_\perp \in K$.
+    The \textit{vector projection} of $\vv$ is $\proj(\vv \rightarrow \ww) := v_{||} \hww$.
+
+    The \textit{signed magnitude of the vector projection} of $\vv$ onto $\ww$ is $\sproj(\vv \rightarrow \ww) := v_{||}$. 
 \end{defn}
 
 \begin{remark}
-    Note that, for $\vv_1, \vv_2 \in \R^n$, we have $\proj(\vv_1 \rightarrow \vv_2) = \proj(\vv_1 \rightarrow \hat{\vv}_2)$ because $\hat{\hat{\vv}}_2 = \hat{\vv}_2$.
+    Note that, for $\vv, \ww \in \R^2$, we have $\proj(\vv \rightarrow \ww) = \proj(\vv \rightarrow \hww)$ because $\hat{\hww} = \hat{\ww}$.
 \end{remark}
 
-\begin{defn}
-    (Dot product). 
+\begin{theorem}
+\label{ch::lin_alg::thm::vector_proj_Signed_magnitude}
+    (Vector projection and its signed magnitude in $\R^2$).
+
+    Let $\vv, \ww \in \R^2$. We have the following.
     
-    The \textit{dot product on $\R^n$} is the function $\cdot:\R^n \times \R^n \rightarrow \R$ defined by
+    \begin{enumerate}
+        \item $\proj(\vv \rightarrow \ww) = \sproj(\vv \rightarrow \ww) \hww$.
+        \item $\sproj(\vv \rightarrow \ww) = \pm ||\proj(\vv \rightarrow \ww)||$.
+    \end{enumerate}
+
+    This second fact is what should be emphasized when thinking about the signed magnitude of a vector projection.
+\end{theorem}
+
+\begin{proof}
+    (1) follows from the definition of $\proj(\vv \rightarrow \ww)$. (2) is obtained by taking the magnitude of each side of (1).
+\end{proof}
+
+\begin{defn}
+    (Dot product in $\R^2$).
+    
+    The \textit{dot product in $\R^2$} is the function $\cdot:\R^2 \times \R^2 \rightarrow \R$ defined by
     
     \begin{align*}
-        \vv_1 \cdot \vv_2 := || \proj(\vv_1 \rightarrow \vv_2) || \spc ||\vv_2||.
+        \vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww||.
     \end{align*}
     
-    Why do we care about the dot product? The primary reason is that ${\vv_1 \cdot \vv_2 = \proj(\vv_1 \rightarrow \vv_2)}$ when $||\vv_2|| = 1$, so investigating the dot product can tell us more about vector projections\footnote{We will indeed find that the dot product tells us something about projections in Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product}!}. Another reason is that in physics, the \textit{work} done by a force $\FF$ along a displacement $\Delta \xx$ is defined to be the product of the magnitude of the force that ``aligns'' with the displacement with the magnitude of the displacement\footnote{A negative sign occurs when the force opposes the displacement.}; i.e., work is defined to be $\FF \cdot \Delta \xx$.
+    Why do we care about the dot product? The primary reason is that when $||\ww|| = 1$, we have ${\vv \cdot \ww = \sproj(\vv \rightarrow \ww)}$, so investigating the dot product can tell us more about vector projections\footnote{We will indeed find that the dot product tells us something about projections in Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product}!}. Another reason is that in physics, the \textit{work} done by a force $\FF$ along a displacement $\Delta \xx$ is defined to be the product of the magnitude of the force that ``aligns'' with the displacement with the magnitude of the displacement\footnote{A negative sign occurs when the force opposes the displacement.}; i.e., work is defined to be $\FF \cdot \Delta \xx$.
 \end{defn}
 
 Before moving on to more important business, we quickly note the following fact relating the dot product and the length of a vector.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::length_in_Rn}
-    (Length in $\R^n$ in terms of dot product).
+    (Length in $\R^2$ in terms of dot product).
     
-    For any $\vv \in \R^n$, we have $||\vv|| = \sqrt{\vv \cdot \vv}$.
+    For any $\vv \in \R^2$, we have $||\vv|| = \sqrt{\vv \cdot \vv}$.
 \end{theorem}
 
 \begin{proof}
-   $\vv \cdot \vv = ||\proj(\vv \rightarrow \vv)|| \spc ||\vv|| = ||\vv||^2$, so $\sqrt{\vv \cdot \vv} = ||\vv||$.
+   $\vv \cdot \vv = \sproj(\vv \rightarrow \vv) \spc ||\vv|| = ||\vv||^2$, so $\sqrt{\vv \cdot \vv} = ||\vv||$.
 \end{proof}
 
 Now, we set out to show that the dot product is a bilinear function. We do so by appealing to the fact that the dot product involves vector projection. 
 
 \begin{lemma}
-    (Projection onto a vector is a linear function).
+    (Signed projection onto a vector in $\R^2$ is a linear function).
     
-    Let $\vv_1, \vv_2 \in \R^n$. The map $\vv_1 \mapsto \proj(\vv_1 \rightarrow \vv_2)$ is linear.
+    Let $\vv_1, \vv_2 \in \R^2$. The map $\vv_1 \mapsto \sproj(\vv_1 \rightarrow \vv_2)$ is linear.
 \end{lemma}
 
 \begin{proof}
-    Define $\ff:\R^n \rightarrow \R$ by $\ff(\vv_1) = \proj(\vv_1 \rightarrow \vv_2)$. We show $\ff(\vv_1 + \vv_2) = \ff(\vv_1) + \ff(\vv_2)$ and $\ff(c\vv_1) = c\ff(\vv_1)$.
+    Let $\vv_1, \vv_2, \ww \in \R^2$, and define $\ff:\R^2 \rightarrow \R$ by $\ff(\vv) = \proj(\vv \rightarrow \ww)$. We need to show that $\ff(\vv_1 + \vv_2) = \ff(\vv_1) + \ff(\vv_2)$ and that $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$. 
+    
+    We have
     
     \begin{align*}
-        \ff(\vv_1 + \vv_2) &= \ff\Big(\Big((v_1)_{||}\hat{\vv}_2 + (v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) + \Big((v_2)_{||}\hat{\vv}_2 + (v_2)_\perp (\hat{\vv}_2)_\perp \Big) \Big) \\
-        &= \ff \Big(\Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\vv}_2 + \Big((v_1)_\perp + (v_2)_\perp) \Big) (\hat{\vv}_2)_\perp \Big) \\
-        &= \proj\Big(\Big[ \Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\vv}_2 + \Big((v_1)_\perp + (v_2)_\perp \Big) (\hat{\vv}_2)_\perp \Big] \rightarrow \vv_2 \Big) \\
-        &= \Big((v_1)_{||} + (v_2)_{||}) \Big) \hat{\vv}_2 = (v_1)_{||} \hat{\vv}_2 + (v_2)_{||} \hat{\vv}_2
-        = \proj(\vv_1 \rightarrow \vv_2) + \proj(\vv_2 \rightarrow \vv_2) = \ff(\vv_1) + \ff(\vv_2).
+        \ff(\vv_1 + \vv_2) &= \ff\Big(\Big((v_1)_{||}\hat{\ww} + (v_1)_{\perp}\hat{\ww}_\perp \Big) + \Big((v_2)_{||}\hat{\ww} + (v_2)_\perp \hat{\ww}_\perp \Big) \Big), \text{ where $(v_i)_{||} = \sproj(\vv_i \rightarrow \ww)$ for $i \in \{1, 2\}$} \\
+        &= \ff \Big(\Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp) \Big) \hat{\ww}_\perp \Big) \\
+        &= \sproj\Big(\Big[ \Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp \Big) \hat{\ww}_\perp \Big] \rightarrow \ww \Big) \\
+        &= (v_1)_{||} + (v_2)_{||} 
+        = \sproj(\vv_1 \rightarrow \ww) + \sproj(\vv_2 \rightarrow \ww) = \ff(\vv_1) + \ff(\vv_2).
     \end{align*}
+
+    And we have
     
     \begin{align*}
-        \ff(c \vv_1) &= 
-        \ff \Big(c \Big((v_1)_{||}\hat{\vv}_2 + (v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) \Big) = 
-        \ff\Big(c(v_1)_{||}\hat{\vv}_2 + c(v_1)_{\perp}(\hat{\vv}_2)_\perp \Big)
-        = \proj\Big(\Big(c(v_1)_{||}\hat{\vv}_2 + c(v_1)_{\perp}(\hat{\vv}_2)_\perp \Big) \rightarrow \vv_2 \Big) \\
-        &= c (v_1)_{||} \hat{\vv}_2 = c \proj(\vv_1 \rightarrow \vv_2) = c \ff(\vv_1).
+        \ff(c \vv) &= 
+        \ff \Big(c \Big(v_{||}\hat{\ww} + v_{\perp}\hat{\ww}_\perp \Big) \Big), \text{ where $v_{||} = \sproj(\vv \rightarrow \ww)$} \\
+        &= \ff\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big)
+        = \sproj\Big(\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big) \rightarrow \ww \Big) \\
+        &= c v_{||} \hat{\ww} = c \sproj(\vv \rightarrow \ww) = c \ff(\vv).
     \end{align*}
 \end{proof}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::geom_dot_product_bilinear}
-    (The dot product is a bilinear function).
+    (The dot product in $\R^2$ is a bilinear function).
     
-    The dot product is a bilinear function. That is, $(\vv_1, \vv_2) \mapsto \vv_1 \cdot \vv_2$ is linear in the argument $\vv_1$ when $\vv_2$ is fixed, and is linear in the argument $\vv_2$ when $\vv_1$ is fixed.
+    The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
 \end{theorem}
 
 \begin{proof}
-    The dot product is symmetric, so it suffices to show that it is a linear function in either argument; it suffices to show that $\ff:\R^n \rightarrow \R$ defined by $\ff(\vv_1) = \vv_1 \cdot \vv_2$ is a linear function. Well, ${\ff(\vv_1) = ||\vv_2||\proj(\vv_1 \rightarrow \vv_2)}$, and we know that $\proj(\vv_1 \rightarrow \vv_2)$ is linear in $\vv_2$. Since $\ff$ is the result of scaling a linear function by $||\vv_2||$, it too is a linear function.
+    The dot product in $\R^2$ is symmetric, so it suffices to show that it is a linear function in either argument; it suffices to show that $\ff:\R^2 \rightarrow \R$ defined by $\ff(\vv) = \vv \cdot \ww$ is a linear function. Well, ${\ff(\vv) = ||\ww||\sproj(\vv \rightarrow \ww)}$, and we know that $\vv \mapsto \sproj(\vv \rightarrow \ww)$ is linear. Since $\ff$ is the result of scaling a linear function by $||\ww||$, it too is a linear function.
 \end{proof}
 
-Knowing that the dot product is bilinear allows us to derive an alternate ``algebraic'' (as opposed to ``geometric'') expression for the dot product of two vectors in $\R^n$. Before we derive this alternate expression, though, we will need to note the following basic fact.
+Knowing that the dot product is bilinear allows us to derive an alternate ``algebraic'' (as opposed to ``geometric'') expression for the dot product of two vectors in $\R^2$. Before we derive this alternate expression, though, we will need to note the following basic fact.
 
 \begin{lemma}
-    Let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis for $\R^n$. We have
+    Let $\sE = \{\see_1, \see_2 \}$ be the standard basis for $\R^2$. We have
     
     \begin{align*}
         \see_i \cdot \see_j = 
@@ -2426,33 +2717,35 @@ Knowing that the dot product is bilinear allows us to derive an alternate ``alge
             1 & i = j \\
             0 & i \neq j
         \end{cases}
-        = \delta_{ij}.
+        = \delta_{ij}
     \end{align*}
+
+    for all $i, j \in \{1, 2\}$.
 \end{lemma}
 
 \begin{proof}
-   The lemma is equivalent to the statement $||\proj(\see_i \rightarrow \see_j)|| = \delta_{ij}$, which is easily proved.
+   The lemma is equivalent to the statement $\sproj(\see_i \rightarrow \see_j) = \delta_{ij}$, which is easily proved.
 \end{proof}
 
 \begin{deriv}
-    (Algebraic dot product on $\R^n$). 
+    (Algebraic dot product in $\R^2$). 
     
     We can now derive an ``algebraic'' formula for the dot product, using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
     
-    We will make use of the following general fact about bilinear functions. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
+    We will make use of the following general fact about bilinear functions\footnote{If $V_1, V_2$, and $W$ are vector spaces over a field $K$, then $\ff:V_1 \times V_2 \rightarrow W$ is a \textit{bilinear} function iff $\vv \mapsto \ff(\vv, \ww)$ and $\ww \mapsto \ff(\vv, \ww)$ are both linear functions.}. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
     
     \begin{align*}
-        B(\vv_1, \vv_2) &= B\Big(\sum_{i = 1}^n ([\vv_1]_E)_i \ee_i, \sum_{i = 1}^n ([\vv_1]_E)_j \ee_j\Big) \\
-        &= \sum_{i = 1}^n ([\vv_1]_E)_i B\Big(\ee_i, \sum_{i = 1}^n ([\vv_1]_E)_j \ee_j\Big) \\
-        &= \sum_{i = 1}^n \sum_{j = 1}^n ([\vv_1]_E)_i ([\vv_2]_E)_i B(\ee_i, \ee_j).
+        B(\vv, \ww) &= B\Big(\sum_{i = 1}^n ([\vv]_E)_i \ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n ([\vv]_E)_i B\Big(\ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n \sum_{j = 1}^n ([\vv]_E)_i ([\ww]_E)_i B(\ee_i, \ee_j).
     \end{align*}
     
-    In the above, we've written $\vv_1$ and $\vv_2$ as sums of basis vectors and then used the linearity of $B$ in each argument.
+    In the above, we've written $\vv$ and $\ww$ as sums of basis vectors and then used the linearity of $B$ in each argument.
     
-   The dot product is a bilinear function $\cdot:\R^n \times \R^n \rightarrow \R$, so the above fact can be applied to the dot product. We know from the previous lemma that $B(\see_i, \see_j) = \delta_{ij}$, so we have
+    The dot product is a bilinear function $\cdot:\R^2 \times \R^2 \rightarrow \R$, so the above fact can be applied to the dot product. We know from the previous lemma that $B(\see_i, \see_j) = \delta_{ij}$, so we have
     
     \begin{align*}
-        \vv_1 \cdot \vv_2 = \sum_{i = 1}^n \sum_{j = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i \delta_{ij} = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i.
+        \vv \cdot \ww = \sum_{i = 1}^2 \sum_{j = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i \delta_{ij} = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i.
     \end{align*}
     
     Therefore
@@ -2460,67 +2753,61 @@ Knowing that the dot product is bilinear allows us to derive an alternate ``alge
     \begin{align*}
         \boxed
         {
-            \vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i
+            \vv \cdot \ww = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
         }
     \end{align*}
 \end{deriv}
 
-We could have proved the following theorem immediately after defining $\vv_1 \cdot \vv_2 := ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$. The usefulness of this next theorem, however, wouldn't have been apparent until knowing that $\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$.
+We could have proved the following theorem immediately after defining $\vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww||$. The usefulness of this next theorem, however, wouldn't have been apparent until knowing that $\vv \cdot \ww = \sum_{i = 1}^n ([\vv]_\sE)_i ([\ww]_\sE)_i$.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::vector_proj_dot_product}
-    (Vector projection in terms of dot product).
+    (Vector projection  in $\R^2$ in terms of dot product in $\R^2$).
     
-    If $\vv_1, \vv_2 \in \R^n$, then
+    If $\vv, \ww \in \R^2$, then
     
     \begin{align*}
         \boxed
         {
-            \proj(\vv_1 \rightarrow \vv_2) = \frac{\vv_1 \cdot \vv_2}{||\vv_2||} \hat{\vv}_2 = \frac{\vv_1 \cdot \vv_2}{\vv_2 \cdot \vv_2} \vv_2
+            \proj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||} \hat{\vv}_2 = \frac{\vv \cdot \ww}{\ww \cdot \ww} \ww
         }
     \end{align*}
     
-    If one didn't know the algebraic formula for the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic dot product allows for easy computation of the expressions $\vv_1 \cdot \vv_2$ and $\vv_2 \cdot \vv_2$ whenever we know the coordinates of $\vv_1$ and $\vv_2$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv_1$ and $\vv_2$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^n$.
+    If we didn't know the algebraic formula for the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic dot product allows for easy computation of the expressions $\vv \cdot \ww$ and $\ww \cdot \ww$ whenever we know the coordinates of $\vv$ and $\ww$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv$ and $\ww$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^2$.
 \end{theorem}
 
 \begin{proof}
-   Since $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, then $||\proj(\vv_1 \rightarrow \vv_2)|| = \frac{\vv_1 \cdot \vv_2}{||\vv_2||}$. We have $\proj(\vv_1 \rightarrow \vv_2) = ||\proj(\vv_1 \rightarrow \vv_2)|| \widehat{\proj(\vv_1 \rightarrow \vv_2)} = \frac{\vv_1 \cdot \vv_2}{||\vv_2||} \hat{\vv}_2$.
+   Since $\vv \cdot \ww = \sproj(\vv \rightarrow \ww) \spc ||\ww||$, then $\sproj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||}$, and, by the first fact of Theorem \ref{ch::lin_alg::thm::vector_proj_Signed_magnitude}, $\proj(\vv \rightarrow \ww) = \sproj(\vv \rightarrow \ww) \hww = \frac{\vv \cdot \ww}{||\ww||} \hww$.
 \end{proof}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::dot_prod_and_angle}
-    (Unsigned angle between vectors and dot product).
+    (Unsigned angle between vectors in $\R^2$ and dot product in $\R^2$).
     
     Before we discovered the algebraic dot product, Theorem \ref{ch::lin_alg::thm::unsigned_angle_Rn} showed 
     
     \begin{align*}
-        \theta = \text{arccos}\Big(\sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i\Big),
+        \theta = \text{arccos}\Big(\sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i\Big),
     \end{align*}
     
-    as a consequence of the definition $\theta := \frac{s}{r}$. Now that we know about the algebraic dot product, we can say that the signed angle $\theta$ between $\vv_1, \vv_2 \in \R^n$ is
+    as a consequence of the definition $\theta := \frac{s}{r}$. Now that we know about the algebraic dot product, we can say that the signed angle $\theta$ between $\vv, \ww \in \R^n$ is
     
     \begin{align*}
         \theta = \text{arccos}(\hat{\vv}_1 \cdot \hat{\vv}_2)
     \end{align*}
     
-    Notably, since  $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||}$, the above implies that
+    Notably, since $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||}$, the above implies that
     
     \begin{align*}
-        \vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta).
+        \vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta).
     \end{align*}
 \end{theorem}
 
-\begin{remark}
-    (Dot product as a function of unsigned angle in $\R^2$).
-    
-    One can easily show that $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ in $\R^2$ by using trigonometry. Trigonometry shows $||\proj(\vv_1 \rightarrow \vv_2)|| = ||\vv_1|| \cos(\theta)$, so we have $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2|| = ||\vv_1|| \cos(\theta) ||\vv_2|| = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$.
-\end{remark}
-
-Now that we have used the geometric definition of the dot product to derive an ``algebraic'' formula for the dot product, we will show that one can start with the ``algebraic'' formula as a definition and discover the geometric formula. We need the following definition and two lemmas before we can do this.
+Now that we have used the geometric definition of the dot product in $\R^2$ to derive an ``algebraic'' formula for the dot product in $\R^2$, we will show that one can start with the ``algebraic'' formula in $\R^2$ as a definition and discover the geometric formula in $\R^2$. We need the following definition and two lemmas before we can do this.
 
 \begin{defn}
 \label{ch::lin_alg::defn::orthogonal_linear_fn_Rn}
-    (Orthogonal linear function on $\R^n$).
+    (Orthogonal linear function on $\R^2$).
     
     We say that a linear function $\ff:\R^n \rightarrow \R^n$ is \textit{orthogonal} iff it preserves length, i.e., iff $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^n$.
     
@@ -2531,7 +2818,7 @@ Now that we have used the geometric definition of the dot product to derive an `
 \label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
     (Orthogonal linear functions on $\R^n$ preserve algebraic dot product).
     
-    Let $\ff:\R^n \rightarrow \R^n$ be an orthogonal linear function. Then $\ff$ preserves the algebraic dot product on $\R^n$: $\vv_1 \cdot \vv_2 = \ff(\vv_1) \cdot \ff(\vv_2)$.
+    Let $\ff:\R^n \rightarrow \R^n$ be an orthogonal linear function. Then $\ff$ preserves the algebraic dot product in $\R^n$: $\vv_1 \cdot \vv_2 = \ff(\vv_1) \cdot \ff(\vv_2)$.
 \end{lemma}
 
 \begin{proof}
@@ -2590,7 +2877,7 @@ Now that we have used the geometric definition of the dot product to derive an `
         = \proj(\vv_1 \rightarrow \vv_2),
     \end{align*}
     
-    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, which is the definition of the geometric dot product on $\R^n$.
+    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, which is the definition of the geometric dot product in $\R^n$.
 \end{proof}
 
 Most proofs of the above theorem use the law of cosines. I personally do not find the law of cosines intuitive, and believe it is best seen as a consequence of the equivalence between the geometric and algebraic dot product formulas. We prove the law of cosines in this way in the next theorem.
@@ -2641,9 +2928,9 @@ This section generalizes the notion of the dot product, which is only applicable
 
 \begin{example}
     \mbox{} \\ \indent
-    The dot product on $\R^n$ is an inner product on $\R^n$. (Proof left as exercise). 
+    The dot product in $\R^n$ is an inner product on $\R^n$. (Proof left as exercise). 
     
-    The dot product on $K^n$, defined analogously to the dot product on $\R^n$, is in general \textit{not} an inner product because it is not positive-definite. For example, we have $\begin{pmatrix} 3 \\ 3 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 3 \end{pmatrix} = 0$ when these vectors are elements of $\Z/9\Z$. (In $\Z/9\Z$, we have $3 \cdot 3 = 9 = 0$).
+    The dot product in $K^n$, defined analogously to the dot product in $\R^n$, is in general \textit{not} an inner product because it is not positive-definite. For example, we have $\begin{pmatrix} 3 \\ 3 \end{pmatrix} \cdot \begin{pmatrix} 3 \\ 3 \end{pmatrix} = 0$ when these vectors are elements of $\Z/9\Z$. (In $\Z/9\Z$, we have $3 \cdot 3 = 9 = 0$).
 \end{example}
 
 \subsubsection*{Length and orthogonality with respect to an inner product}
@@ -2651,7 +2938,7 @@ This section generalizes the notion of the dot product, which is only applicable
 \begin{defn}
     (Length of a vector with respect to an inner product). 
     
-    Let $V$ be an inner product space. In analogy to the fact that the length of a vector in $\R^n$ can be expressed using the dot product on $\R^n$ (see Theorem \ref{ch::lin_alg::thm::length_in_Rn}), we define the \textit{length of a vector $\vv \in V$ with respect to the inner product on $V$} to be $||\vv|| := \sqrt{\langle \vv, \vv \rangle}$.
+    Let $V$ be an inner product space. In analogy to the fact that the length of a vector in $\R^n$ can be expressed using the dot product in $\R^n$ (see Theorem \ref{ch::lin_alg::thm::length_in_Rn}), we define the \textit{length of a vector $\vv \in V$ with respect to the inner product on $V$} to be $||\vv|| := \sqrt{\langle \vv, \vv \rangle}$.
 \end{defn}
 
 \begin{defn}
@@ -2663,14 +2950,14 @@ This section generalizes the notion of the dot product, which is only applicable
 \begin{remark}
     (Geometric inner product).
     
-    Let $V$ be an inner product space. Then $\langle \vv_1, \vv_2 \rangle = ||\vv_1||\spc||\vv_2|| \cos(\theta)$, where $\theta$ is the angle between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$. (This fact is the generalization of the geometric dot product on $\R^n$, which was discussed in Theorem \ref{ch::lin_alg::thm::dot_prod_and_angle}).
+    Let $V$ be an inner product space. Then $\langle \vv_1, \vv_2 \rangle = ||\vv_1||\spc||\vv_2|| \cos(\theta)$, where $\theta$ is the angle between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$. (This fact is the generalization of the geometric dot product in $\R^n$, which was discussed in Theorem \ref{ch::lin_alg::thm::dot_prod_and_angle}).
 \end{remark}
 
 \begin{theorem}
 \label{ch::bilinear_forms_metric_tensors::thm::Cauchy_Schwarz}
      (Cauchy-Schwarz inequality for vector spaces over $\R$).
      
-     Let $V$ be a vector space over $\R$ with inner product. Then the \textit{Cauchy-Schwarz inequality} holds: $\langle \vv_1, \vv_2 \rangle \leq ||\vv_1|| \spc ||\vv_2||$ for all $\vv_1, \vv_2 \in V$. 
+     Let $V$ be a vector space over $\R$ with inner product. Then the \textit{Cauchy-Schwarz inequality} holds: \\ ${\langle \vv_1, \vv_2 \rangle \leq ||\vv_1|| \spc ||\vv_2|| \text{ for all $\vv_1, \vv_2 \in V}}$. 
      
      Note, the Cauchy-Schwarz inequality is equivalent to the statement that the angle $\theta$ in $V$ between $\vv_1$ and $\vv_2$ with respect to the inner product on $V$ satisfies $\theta \in [0, 2 \pi)$.
 \end{theorem}
@@ -2721,6 +3008,6 @@ This section generalizes the notion of the dot product, which is only applicable
 \end{theorem}
 
 \begin{remark}
-    The above theorem reveals that the algebraic dot product (on $\R^2$) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
+    The above theorem reveals that the algebraic dot product (in $\R^2) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
 \end{remark}
 
