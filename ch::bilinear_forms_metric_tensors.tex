@@ -29,35 +29,60 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 
 \begin{defn}
 \label{ch::bilinear_forms_metric_tensors::defn::nondegen_bilinear_form}
+    (The musical functions).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces. If $B$ is a bilinear form on $V$ and $W$, then there are linear functions $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ defined\footnote{$B(\vv, \cdot)$ denotes the function $\ww \mapsto B(\vv, \ww)$ and $B(\cdot, \ww)$ denotes the function $\vv \mapsto B(\vv, \ww)$.} by $\flat_1(\vv) := B(\vv, \cdot)$ and $\flat_2(\ww) := B(\cdot, \ww)$. We denote $\vv^{\flat_1} := \flat_1(\vv)$ and $\ww^{\flat_2} := \flat_2(\ww)$.
+\end{defn}
 
-    (Nondegenerate bilinear form, the natural musical isomorphisms).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces. If we have a bilinear form $B$ on $V$ and $W$, then there are natural linear maps $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ defined\footnote{$B(\vv, \cdot)$ denotes the function $\ww \mapsto B(\vv, \ww)$ and $B(\cdot, \ww)$ denotes the function $\vv \mapsto B(\vv, \ww)$.} by $\flat_1(\vv) := B(\vv, \cdot)$ and $\flat_2(\ww) := B(\cdot, \ww)$. We denote $\vv^{\flat_1} := \flat_1(\vv)$ and $\ww^{\flat_2} := \flat_2(\ww)$.
-    
-    What would it take for $\flat_1$ and $\flat_2$ to be linear isomorphisms? Well, if we knew that $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ were linear injections, then we would have $\dim(V) \leq \dim(W)$ and $\dim(W) \leq \dim(V)$, so we would have $\dim(V) = \dim(W)$, that is, $\dim(V) = \dim(W^*) = \dim(W) = \dim(V^*)$. Then, since $\flat_1$ and $\flat_2$ would be one-to-one linear functions between finite-dimensional vector spaces of the same dimension, ontoness would follow automatically, and $\flat_1$ and $\flat_2$ would be linear isomorphisms (see Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}).
+\begin{theorem}
+    (The musical isomorphisms).
 
-    \newpage
+    Let $V$ and $W$ be finite-dimensional vector spaces and let $B$ be a bilinear form on $V$ and $W$. The musical functions $\flat_1$ and $\flat_2$ are linear isomorphisms iff the following equivalent conditions hold:
 
-    Therefore, if $\flat_1$ and $\flat_2$ are one-to-one, then they are linear isomorphisms. When are $\flat_1$ and $\flat_2$ one-to-one? This is the case if and only if their kernels are $\{\mathbf{0}\}$. In other words, $\flat_1$ and $\flat_2$ are isomorphisms iff the bilinear form $B$ satisfies $(B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ for all } \ww \in W)$ and $B((\vv, \ww) = \mathbf{0} \iff \ww = \mathbf{0} \text{ for all } \vv \in V)$, that is, iff
+    \begin{enumerate}
+        \item $\flat_1$ and $\flat_2$ are one-to-one
+        \item $(B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ or } \ww = \mathbf{0}) \text{ for all } \vv \in V, \ww \in W$
+    \end{enumerate}
+
+    When they are isomorphisms, $\flat_1$ and $\flat_2$ are called the \textit{musical isomorphisms induced by $B$}. We denote the inverses of $\flat_1$ and $\flat_2$ by $\sharp_1$ and $\sharp_2$, respectively: $\sharp_1 = \flat_1^{-1}:W^* \rightarrow V$ and $\sharp_2 = \flat_2^{-1}:V^* \rightarrow W$.
+
+    Note that the musical isomorphisms are natural isomorphisms because they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \begin{enumerate}
+        \item ($\flat_1$ and $\flat_2 \implies \flat_1$ and $\flat_2$ are linear isomorphisms). Assume $\flat_1:V \rightarrow W^*$ and $\flat_2:W \rightarrow V^*$ are one-to-one. Then $\dim(V) \leq \dim(W^*) = \dim(W)$ and $\dim(W) \leq \dim(V^*) = \dim(V)$, so $\dim(V) = \dim(W)$. Since $\flat_1$ and $\flat_2$ one-to-one linear functions between finite-dimensional vectors paces of the same dimension, then $\flat_1$ and $\flat_2$ are linear isomorphisms (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}).
+
+        ($\flat_1$ and $\flat_2$ are linear isomorphisms $\implies \flat_1$ and $\flat_2$ are one-to-one). This is trivial.
+        
+        \item We have: $(\flat_1 \text{ is one-to-one}) \iff (\vv^{\flat_1} = \mathbf{0} \implies \vv = \mathbf{0}) \iff ((\vv^{\flat_1}(\ww) = \mathbf{0} \text{ for all $\ww$}) \implies (\vv = \mathbf{0}))$ \\ $\iff B(\vv, \ww) = \mathbf{0} \implies \vv = \mathbf{0}$. Similarly, $(\flat_2 \text{ is one-to-one}) \iff (B(\vv, \ww) = \mathbf{0} \implies \ww = \mathbf{0})$. The fact (2) is equivalent to these two results.
+    \end{enumerate}
+\end{proof}
+
+The second condition of the previous theorem describes bilinear forms that generate musical isomorphisms, motivating the following definition.
+
+\begin{defn}
+    (Nondegenerate bilinear form).
     
-    \begin{align*}
-        (B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ or } \ww = \mathbf{0}) \text{ for all } \vv \in V, \ww \in W.
-    \end{align*}
-    
-    A bilinear form $B$ that satisfies the above condition is called \textit{nondegenerate}. 
-    
-    We have contrived nondegenerate bilinear forms to be those for which $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ are natural linear isomorphisms. Note that when $\flat_1$ and $\flat_2$ are isomorphisms, they are indeed natural because they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}). When they are isomorphisms, $\flat_1$ and $\flat_2$ are called the \textit{musical isomorphisms induced by $B$}. We denote the inverses of $\flat_1$ and $\flat_2$ by $\sharp_1$ and $\sharp_2$, respectively: $\sharp_1 = \flat_1^{-1}:W^* \rightarrow V$ and $\sharp_2 = \flat_2^{-1}:V^* \rightarrow W$.
+    Let $V$ and $W$ be finite-dimensional vector spaces. A bilinear form $B$ on $V$ and $W$ is called \textit{nondegenerate} iff $(B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ or } \ww = \mathbf{0}) \text{ for all } \vv \in V, \ww \in W$.
+
+    We saw above that a bilinear form generates musical isomorphisms iff it is nondegenerate.
 \end{defn}
 
 \begin{theorem}
 \label{ch::bilinear_forms_metric_tensors::induced_bilinear_form_on_duals}
     (Induced bilinear form on the duals).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. If $B$ is a nondegenerate bilinear form on $V$ and $W$, then there is an induced nondegenerate bilinear form $\widetilde{B}:W^* \times V^* \rightarrow K$ on $W^*$ and $V^*$ defined by $\widetilde{B}(\psi, \phi) = B(\psi^{\sharp_1}, \phi^{\sharp_2})$. The bilinear form $\widetilde{B}$ induces natural isomorphisms $\widetilde{\flat}_1:V^* \rightarrow W^{**}$, $\widetilde{\flat}_2:W^* \rightarrow V^{**}$ defined by $\phi^{\widetilde{\flat}_1}(\psi) = \widetilde{B}(\psi, \phi)$ and $\psi^{\widetilde{\flat}_2}(\phi) = \widetilde{B}(\psi, \phi)$. (Checking that $\widetilde{B}$ is actually a nondegenerate bilinear form is left an exercise).
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. If $B$ is a nondegenerate bilinear form on $V$ and $W$, then there is an induced nondegenerate bilinear form $\widetilde{B}:W^* \times V^* \rightarrow K$ on $W^*$ and $V^*$ defined by $\widetilde{B}(\psi, \phi) = B(\psi^{\sharp_1}, \phi^{\sharp_2})$. The bilinear form $\widetilde{B}$ induces natural isomorphisms $\widetilde{\flat}_1:V^* \rightarrow W^{**}$ and $\widetilde{\flat}_2:W^* \rightarrow V^{**}$ defined by $\phi^{\widetilde{\flat}_1}(\psi) = \widetilde{B}(\psi, \phi)$ and $\psi^{\widetilde{\flat}_2}(\phi) = \widetilde{B}(\psi, \phi)$.
 \end{theorem}
 
+\begin{proof}
+    The proof that $\widetilde{B}$ is actually a nondegenerate bilinear form is left as an exercise.
+\end{proof}
+
 \begin{lemma}
-     Let $V$ and $W$ be finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_m}\}$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$. Let $B$ be a nondegenerate bilinear form on $V$ and $W$, and let $\widetilde{B}$ be the induced bilinear form on $W^*$ and $V^*$. Then 
+     Let $V$ and $W$ be finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_m}\}$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$. Let $B$ be a nondegenerate bilinear form on $V$ and $W$, and let $\widetilde{B}$ be the induced bilinear form on $W^*$ and $V^*$. Then 
 
     \begin{align*}
         B(\vv, \ww) &= [\vv]_E^\top \BB [\ww]_F = [\ww]_F^\top \BB^\top [\vv]_E, \text{ where $\BB := \Big(B(\ee_i, \ee_j)\Big)$}
@@ -71,7 +96,11 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 \begin{proof}
     %We first show the first equation of the first line. We have $B(\vv, \ww) = \vv^{\flat_1}(\ww)$, and the $1 \times m$ matrix $\vv^{\flat_1}(F)$ of $\vv^{\flat_1}:W \rightarrow K$ relative to $F$ is $\vv^{\flat_1}(F) = [\vv^{\flat_1}]_{F^*}^\top$ (recall Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}), so applying the characterizing property of [...] matrices (see Derivation [...]) gives $B(\vv, \ww) = \vv^{\flat_1}(\ww) = \vv^{\flat_1}(F) [\ww]_F = [\vv^{\flat_1}]_{F^*}^\top [\ww]_F$. We know $[\vv^{\flat_1}]_{F^*} = \BB [\vv]_E$ from the fourth equation of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::vectors_dual_vectors_metric_tensor}, and so obtain $B(\vv, \ww) = (\BB [\vv]_E)^\top [\ww]_F = [\vv]_E^\top \BB [\ww]_F$, as desired.
   
-    To show the first equation of the first line, we follow a derivation similar in spirit to that of a matrix relative to bases of a linear function between vector spaces. We first consider the special case in which the vector spaces are $V = K^n$ and $W = K^m$ and where the bases are the standard bases for $K^n$ and $K^n$, $E = \sE$ and $F = \sF$. We have $B(\vv, \ww) = \sum_{ij} ([\vv]_\sE)^i ([\ww]_\sE)^j B_{ij} = \sum_{ij} ([\vv]_\sE)^i B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i \sum_j B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i ([\BB \ww]_\sF)^i = \vv \cdot (\BB \ww) = \vv^\top \BB \ww = [\vv]_\sE^\top \BB [\ww]_\sF^\top$, so the special case is proven. For the case when $V$ and $W$ are $n$- and $m$- dimensional vector spaces with bases $E$ and $F$, consider the bilinear form $C$ on $K^n$ and $K^m$ defined by $C(\vv, \ww) := B([\vv]_E, [\ww]_F)$. By the special case, we have $B(\vv, \ww) = [\vv]_E^\top \CC [\ww]_F$, where $\CC = (C(\ee_i, \ff_j))$. We have $\CC = (C(\ee_i, \ff_j)) = (B([\ee_i]_E, [\ff_i]_F)) = (B(\see_i, \sff_i)) = \BB$, so $B(\vv, \ww) = [\vv]_E^\top \BB [\ww]_F$, as claimed.
+    To show the first equation of the first line, we follow a derivation similar in spirit to that of a matrix relative to bases of a linear function between vector spaces. 
+    
+    We first consider the special case in which the vector spaces are $V = K^n$ and $W = K^m$ and where the bases are the standard bases for $K^n$ and $K^n$, $E = \sE$ and $F = \sF$. In this special case, we have $B(\vv, \ww) = \sum_{ij} ([\vv]_\sE)^i ([\ww]_\sE)^j B_{ij} = \sum_i ([\vv]_\sE)^i \sum_j B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i ([\BB \ww]_\sF)^i = [\vv]_\sE \cdot [\BB \ww]_\sF = [\vv]_\sE^\top \BB [\ww]_\sF$, so the special case is proven. 
+    
+    For the case when $V$ and $W$ are $n$- and $m$- dimensional vector spaces with bases $E$ and $F$, consider the bilinear form $C$ on $K^n$ and $K^m$ defined by $C(\vv, \ww) := B([\vv]_E, [\ww]_F)$. By the special case, we have $B(\vv, \ww) = [\vv]_E^\top \CC [\ww]_F$, where $\CC = (C(\ee_i, \ff_j))$. We have $\CC = (C(\ee_i, \ff_j)) = (B([\ee_i]_E, [\ff_i]_F)) = (B(\see_i, \sff_i)) = \BB$, so $B(\vv, \ww) = [\vv]_E^\top \BB [\ww]_F$, as claimed.
     
     The first equation of the second line is obtained by applying the first line to the induced nondegenerate bilinear form $\widetilde{B}$ on $W^*$ and $V^*$, and the second equation on each line follows by transposing the first equation on each line.
 \end{proof}

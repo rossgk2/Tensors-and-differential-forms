@@ -175,121 +175,52 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 
 \newpage
 
-\section{A motivated introduction to $(p, q)$ tensors}
+\section{Introduction to $(p, q)$ tensors}
 \label{ch::motivated_intro::sec::motivated_intro}
 
 Now we will discover the theorem which generalizes the two key notions (thinking of linear functions as vectors and ``multilinear elements'') discussed at the beginning of the chapter. Since we now have familiarity with the first key idea, ``accidentally'' discovering and formalizing the second idea as we go is hopefully not too ambitious.
 
 The theorem we will discover is that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, where $V^*$ is the \textit{dual vector space} to $W$. We can see that the two key ideas (the first being thinking of linear functions as vectors and the second being ``multilinear elements'') are represented in this theorem with formal notation: the theorem includes a dual vector space $V^*$, which (we will see) indicates that thinking of linear functions as vectors is involved, and it also includes the tensor product $\otimes$, which indicates that multilinear structure is involved.
 
-To begin this discovery, let $V$ and $W$ be finite-dimensional vector spaces over a field $K$ with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, respectively, and consider a linear function $\ff:V \rightarrow W$. We will analyze $\ff$ by considering its matrix relative to $E$ and $F$. This matrix, as is the case with any matrix, is a weighted sum of matrices with a 1 in only one entry and 0's in all other entries. For example, a $3 \times 2$ matrix $(a_{ij})$ is expressed with a weighted sum of this style as
+We begin with the observation given in the following theorem.
 
-\begin{align*}
-    \begin{pmatrix}
-        a_{11} & a_{12} \\
-        a_{21} & a_{22} \\
-        a_{31} & a_{32}
-    \end{pmatrix}
-    =
-    a_{11}
-    \begin{pmatrix}
-        1 & 0 \\
-        0 & 0 \\
-        0 & 0
-    \end{pmatrix}
-    +
-    a_{12}
-    \begin{pmatrix}
-        0 & 1 \\
-        0 & 0 \\
-        0 & 0
-    \end{pmatrix}
-    +
-    a_{21}
-    \begin{pmatrix}
-        0 & 0 \\
-        1 & 0 \\
-        0 & 0
-    \end{pmatrix}
-    +
-    a_{22}
-    \begin{pmatrix}
-        0 & 0 \\
-        0 & 1 \\
-        0 & 0
-    \end{pmatrix}
-    +
-    a_{31}
-    \begin{pmatrix}
-        0 & 0 \\
-        0 & 0 \\
-        1 & 0
-    \end{pmatrix}
-    +
-    a_{32}
-    \begin{pmatrix}
-        0 & 0 \\
-        0 & 0 \\
-        0 & 1
-    \end{pmatrix}.
-\end{align*}
+\begin{theorem}
+    If $(a_{ij})$ is an $m \times n$ matrix with entries in a field $K$, then
 
-Let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n = K^{\dim(V)}$ and let $\sF = \{\sff_1, ..., \sff_m\}$ be the standard basis of $K^m = K^{\dim(W)}$. So, in the example, $\sE = \{\see_1, \see_2\}$ and $\sF = \{\sff_1, \sff_2, \sff_3\}$. The first ``big leap'' is to notice that the $m \times n$ matrix with $ij$ entry $1$ and all other entries 0 is $\sff_i \see_j^\top$, where $\sff_i \see_j^\top$ is the product of a $m \times 1$ matrix with a $1 \times n$ matrix (see Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}). This means that the above $3 \times 2$ matrix can be expressed as
+    \begin{align*}
+        (a_{ij}) = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} a_{ij} \sff_i \see_j^\top.
+    \end{align*}
+\end{theorem}
 
-\begin{align*}
-    \begin{pmatrix}
-        a_{11} & a_{12} \\
-        a_{21} & a_{22} \\
-        a_{31} & a_{32}
-    \end{pmatrix}
-    =
-    a_{11} \sff_1 \see_1^\top + a_{12} \sff_1 \see_2^\top 
-    + a_{21} \sff_2 \see_1^\top + a_{22} \sff_2 \see_2^\top +
-    a_{31} \sff_3 \see_1^\top + a_{32} \sff_3 \see_2^\top
-    = \sum_{\substack{i \in \{1, 2, 3\} \\ j \in \{1, 2\}}} a_{ij} \sff_i \see_j^\top.
-\end{align*}
+\begin{proof}
+    We have $(a_{ij}) = \sum_{ij} a_{ij} \delta_{ij}$. Since $\delta_{ij} = \sff_i \cdot \see_j = \sff_i \see_j^\top$, the result follows.
+\end{proof}
 
-Therefore, the matrix of $\ff$ relative to $E$ and $F$ is of the form
+This theorem can be generalized to hold so that the matrices involved are from arbtirary bases for $K^n$ and $K^m$ rather than the standard bases.
 
-\begin{align*}
-    \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} a_{ij} \sff_i \see_j^\top,
-\end{align*}
+\begin{theorem}
+    Let $K$ be a field and let $E$ and $F$ be bases of $K^n$ and $K^m$, respectively. If $(a_{ij})$ is an $m \times n$ matrix with entries in $K$, then there exist $b_{ij} \in K$ such that
 
-for some $a_{ij} \in K$.
+   \begin{align*}
+        (a_{ij}) = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \ff_i \ee_j^\top.
+    \end{align*}
+\end{theorem}
 
-What we have done is decompose the matrix of $\ff$ relative to $E$ and $F$ relative to the basis $\{ \see_i \sff_j^\top \}$ of $m \times n$ matrices. This choice of basis for the space of $m \times n$ matrices stems from our choice of the standard bases $\sE$ and $\sF$ for $K^n$ and $K^m$. Nothing is stopping us from using different bases, however. Suppose $G = \{\gg_1, ..., \gg_n\}$ is a basis for $K^n$ and $H = \{\hh_1, ..., \hh_m\}$ is a basis for $K^m$. Then $\{ \gg_i \hh_j^\top \}$ is also a basis of the vector space of $m \times n$ matrices, so the matrix of $\ff$ relative to $E$ and $F$ is of the form
+\begin{proof}
+    is there an invertible $\FF$ that sends $\sff_i \see_j^\top \mapsto \ff_i \ee_j^\top$?
+    
+    $[\vv]_F = [\EE]_F [\vv]_E$ and $[\vv]_E = \EE^{-1} \vv$, so $[\vv]_F = [\EE]_F \EE^{-1} \vv$
 
-\begin{align*}
-    \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \gg_i \hh_j^\top,
-\end{align*}
+    $\FF(\MM^\top) = [\EE]_F \EE^{-1} \EE{-1} \MM^\top$
+\end{proof}
 
-for some $b_{ij} \in K$.
+\begin{theorem}
+    Let $V$ and $W$ be finite-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then
 
-We now convert this discussion of matrices into a discussion about the linear functions they represent. We started with the matrix $(a_{ij})$ of a linear function $\ff$ relative to bases. But what linear functions do the matrices in the above weighted sum represent? 
-
-Consider one of the matrices in the weighted sum, $\gg_i \hh_j^\top$. Since $\gg_i \hh_j^\top$ is a matrix-matrix product, the linear function represented by $\gg_i \hh_j^\top$ function must be composition of the linear function represented by $\gg_i$ with the linear function represented by $\hh_j^\top$ (see Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_primitive} and possibly Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases}).
-
-Linear functions are composed from right to left, so we will first consider $\hh_j^\top$. The linear function $K^n \rightarrow K$ represented by the $1 \times n$ matrix $\hh_j^\top$ is the function $\phi_{\hh_j}$ defined by $\phi_{\hh_j}(\cc) = \hh_j^\top \cc$. Note that the image of $\phi_{\hh_j}$ is the field $K$, which is a 1-dimensional vector space. So $\phi_{\hh_j}$ is a rank-1 linear map (see Definition \ref{ch::lin_alg::defn::rank}).
-
-Now we consider the $m \times 1$ matrix $\gg_i$. In the matrix-matrix product, $\gg_i$ is written to the left of $\hh_j^\top$, so it must accept a scalar as input. The linear map $K \rightarrow K^m$ represented by $\gg_i$ is thus $\gg_i(c) = c \gg_i$, where we have used $\gg_i$ on the left side to denote a linear map and on the right side to denote a vector. Note, the image of the map $\gg_i:K \rightarrow K^m$ is $\spann(\gg_i)$, which is 1-dimensional; $\gg_i$ is also a rank-1 linear map.
-
-The matrix-matrix product $\gg_i \hh_j^\top$ then corresponds to the linear function $\gg_i \circ \phi_{\hh_j}:K^n \rightarrow K$, where $\gg_i$ again denotes the linear map $K \rightarrow K^m$ defined by $\gg_i(c) = c \gg_i$. Note that  $\gg_i \circ \phi_{\hh_j}$ is also a rank-1 linear map.
-
-Overall, we have shown that the matrix with respect to bases of a linear function $\ff:V \rightarrow W$ can be expressed as a linear combination of the (primitive (see Derivation \ref{ch::lin_alg::deriv::primitive_matrix})) matrices that represent the linear maps $\gg_i \circ \phi_{\hh_j}$. Therefore, the linear function $\ff_{E,F}:K^n \rightarrow K^m$ that is induced by the choice of bases $E$ and $F$ (see Theorem \ref{ch::lin_alg::thm::f_EF}) is a linear combination of the linear functions $\gg_i \circ \phi_{\hh_j}$:
-
-\begin{align*}
-    \ff_{E, F} = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} (\gg_i \circ \phi_{\hh_j}),
-\end{align*}
-
-where the $b_{ij}$ are the same as in the above sum. So, $\ff:V \rightarrow W$ is very similar:
-
-\begin{align*}
-    \ff = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} (\gg_i' \circ \phi_{\hh_j}'),
-\end{align*}
-
-where $\gg_i':K \rightarrow W$ and $\phi_{\hh_j}':V \rightarrow K$ are such that $(\gg_i')_{E,F} = \gg_i$ and $(\phi_{\hh_j}')_{E,F} = \phi_{\hh_j}$. Note that $\gg_i' \circ \phi_{\hh_j}':V \rightarrow W$.
-
-At the beginning of this discussion, we chose bases $E$ and $F$ for $V$ and $W$. At this point, we have seen enough motivation to justify getting rid of bases\footnote{We can get rid of bases to some extent by avoiding coordinates relative to bases. However, we can't truly escape the notion of bases because we need to speak of rank-1 linear functions; this implies a notion of dimension, and thus of bases.}. The following theorem is a basis-independent reinterpretation of the above statement.
+    \begin{align*}
+        \ff = \sum a_{ij} \sff_i
+    \end{align*}
+\end{theorem}
 
 \begin{theorem}
     Any linear function $V \rightarrow W$ is a linear combination of rank-1 linear functions $V \rightarrow W$.

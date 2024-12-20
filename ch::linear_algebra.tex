@@ -299,12 +299,12 @@ As we discussed before, this abstract characterization of a vector-containing se
     Here are some examples of vector-containing sets over $\R$:
     
     \begin{itemize}
-        \item $\R^n$, for any positive integer $n$. (This one isn't intended to be surprising).
-        \item $\Big\{\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix}\Big\} \subseteq \R^2$
-        \item $\{\vv_1, ..., \vv_k\}$, where $\vv_1, ..., \vv_k \in S$ and $S$ is another vector-containing set
-        \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
-        \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
-        \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect.
+        \item $\R^n$, for any positive integer $n$, where $+$ and $\cdot$ are as usual (this one isn't intended to be surprising)
+        \item $\Big\{\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix}\Big\} \subseteq \R^2$, where $+$ and $\cdot$ are the same as the functions $+$ and $\cdot$ on $\R^2$
+        \item $\{\vv_1, ..., \vv_k\} \subseteq S$, where $S$ is another vector-containing set, and $+$ and $\cdot$ are the same as the functions $+$ and $\cdot$ on $S$
+        \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number
+        \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number
+        \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect
     \end{itemize}
 \end{remark}
 
@@ -402,7 +402,7 @@ Most often, we interpret vectors to be points. In the setting of the vector-cont
     (Linear combination).
     
     Let $S = \{\vv_1, ..., \vv_k\}$ be a finite vector-containing set over a field $K$. We define a \textit{linear combination of the vectors in $S$}, or, more colloquially, a \textit{linear combination of $\vv_1, ..., \vv_k$}, to be a vector of the form
-    
+        
     \begin{align*}
         c_1 \vv_1 + ... + c_k \vv_k,
     \end{align*}
@@ -452,8 +452,8 @@ Most of the examples of vector-containing sets over $\R$ we gave before are actu
     Here are some examples of vector spaces:
     
     \begin{itemize}
-        \item $\R^n$, for any positive integer $n$. (This one isn't intended to be surprising).
-        \item $K^n$, for any positive integer $n$.
+        \item $\R^n$ 
+        \item $K^n$.
         \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
         \item The set of polynomials with rational coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
         \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
@@ -463,10 +463,10 @@ Most of the examples of vector-containing sets over $\R$ we gave before are actu
     Here are some examples of vector-containing sets that are \textit{not} vector spaces:
     
     \begin{itemize}
-        \item $\Big\{ \begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix} \Big\} \subseteq \R^2$
-        \item $\{\vv_1, ..., \vv_k\}$, where $\vv_1, ..., \vv_k \in S$ and $S$ is a vector-containing set
-        \item $\{ z \in \R \mid z \geq ax + by \} \subseteq \R^3$, where $a, b \in \R$
-        \item $\{ x_n \in \R \mid x_n \geq c_1 x_1 + ... + c_k x_k \} \subseteq \R^n$, where $c_1, ..., c_k \in \R$, $k \leq n - 1$
+        \item $\Big\{\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix}\Big\} \subseteq \R^2$.
+        \item $\{\vv_1, ..., \vv_k\} \subseteq S$.
+        \item $\{ z \in \R \mid z \geq ax + by \} \subseteq \R^3$, where $a, b \in \R$.
+        \item $\{ x_n \in \R \mid x_n \geq c_1 x_1 + ... + c_k x_k \} \subseteq \R^n$, where $c_1, ..., c_k \in \R$, $k \leq n - 1$.
     \end{itemize}
 \end{remark}
 
@@ -615,8 +615,12 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
     (Adding and removing vectors from linearly independent and dependent sets).
 
     \begin{enumerate}
-        \item Appending a vector not in the span of a linearly independent set to that linearly independent set produces another linearly independent set.
-        \item Any subset of a linearly independent set is also linearly independent.
+        \item Appending a vector to a linearly independent set produces...
+        \begin{enumerate}
+            \item[1.1.] another linearly independent set, if the vector isn't in the span of the original set.
+            \item[1.2.] a linearly dependent set, if the vector is in the span of the original set.
+        \end{enumerate}
+        \item Removing a vector from a linearly independent set produces another linearly independent set.
         \item Appending a vector to a linearly dependent set produces another linearly dependent set.
         \item Removing a vector from a linearly dependent set does not change the span of that set.
     \end{enumerate}
@@ -631,7 +635,7 @@ In this subsection, we introduce the concept of \textit{linear independence}, wh
 
 \subsection*{Basis and dimension}
 
-This subsection builds on the concept of linear independence to define the concepts of \textit{basis} and \textit{dimension}. A \textit{basis} for a vector space will be defined to be a spanning set of that vector space with as few vectors in it as possible; a basis is a ``minimal spanning set''. The \textit{dimension} of a \textit{finite-dimensional} vector space will be defined to be the number of vectors in any basis for it.
+In this subsection, we define the concepts of \textit{basis} and \textit{dimension}. A \textit{basis} for a vector space will be defined to be a spanning set of that vector space with as few vectors in it as possible; a basis is a ``minimal spanning set''. (We will come to see that this minimality is equivalent to linear independence). The \textit{dimension} of a \textit{finite-dimensional} vector space will be defined to be the number of vectors in any basis for it.
 
 \begin{defn}
     (Finite- and infinite- dimensionality).
@@ -646,7 +650,7 @@ This subsection builds on the concept of linear independence to define the conce
     
     \begin{enumerate}
         \item $E$ spans $V$.
-        \item The number of vectors in $E$ is minimal: if $F$ is another set of vectors spanning $V$, then $|F| \geq |E|$.
+        \item $E$ is minimal: if $F$ is another set of vectors spanning $V$, then $|F| \geq |E|$.
     \end{enumerate}
 \end{defn}
 
@@ -656,13 +660,41 @@ This subsection builds on the concept of linear independence to define the conce
     Let $V$ be a finite-dimensional vector space. The \textit{dimension} $\dim(V)$ of $V$ is the number of basis vectors in a basis for $V$.
 \end{defn}
 
+\begin{theorem}
+    Every finite-dimensional vector space has a basis.
+\end{theorem}
+
+\begin{proof}
+    Let $V$ be a finite-dimensional vector space. Let $C = \{S \mid \spann(S) = V \text{ and $S$ is finite} \}$. By the well-ordering principle, we can select $E$ to be the element of minimal size from $C$. This $E$ is a minimal spanning set for $V$ and thus a basis for $V$.
+\end{proof}
+
 \begin{remark}
-    ($0$-dimensional vector spaces). 
+\label{ch::lin_alg::rmk::zero_dim_vector_space}
+    (The $0$-dimensional vector space). 
     
-    The empty set $\emptyset$ is a basis for $\{\mathbf{0}\}$, and so $\{\mathbf{0}\}$ is a zero-dimensional vector space. Since $\emptyset$ is the only set with cardinality zero, it is the only basis with cardinality zero; thus, $\{\mathbf{0}\}$ is the only $0$-dimensional vector space.
+    The empty set $\emptyset$ spans $\{\mathbf{0}\}$ because [...]. It is also a minimal spanning set because there are no sets ``smaller'' than $\emptyset$. Therefore $\emptyset$ is a basis for $\{\mathbf{0}\}$, and so $\{\mathbf{0}\}$ is a zero-dimensional vector space. Since $\emptyset$ is the only set with cardinality zero, it is the only basis with cardinality zero; thus, $\{\mathbf{0}\}$ is the only $0$-dimensional vector space.
 \end{remark}
 
-The following lemma enables us to obtain a more useful characterization of bases.
+The following two lemmas enable us to obtain a more useful characterization of bases.
+
+\begin{lemma}
+\label{ch::lin_alg::lemma::n_lin_indep_vectors_span_n_dim_space}
+    ($n$ linearly independent vectors taken from the same $n$-dimensional vector space span that vector space).
+
+    Let $V$ be a finite-dimensional vector space. If a finite set $S \subseteq V$ of vectors is linearly independent and $|S| = \dim(V)$, then $S$ spans $V$.
+\end{lemma}
+
+\begin{proof}
+     % From p. 30 of Alan MacDonald's Geometric and Linear Algebra
+
+   Suppose $S = \{\vv_1, ..., \vv_n\}$ is linearly independent and that $n = \dim(V)$. We immediately see that $V = \{\mathbf{0}\}$ and that $\spann(S) = \spann(\emptyset) = \{\mathbf{0}\} = V$ if $n = \dim(V) = 0$, so assume $n > 0$.
+   
+   Let $K$ be the field over which $V$ is taken to be a vector space. Since $V$ is $n$-dimensional, we can take a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$. Since $\spann(E) = V$, then there are $c_1, ..., c_n \in K$ such that ${\vv_1 = c_1 \ee_1 + ... + c_n \ee_n}$. Since $S$ is linearly independent, then $\vv_1 \neq \mathbf{0}$, and some $c_i$ must be nonzero. Since we can divide by $c_i$, we can solve for $\ee_1$ in terms of $c_1, ..., c_n, \vv_1, \ee_2, ..., \ee_n$, and conclude $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. 
+   
+   Now let $\vv \in V$. Again because $\spann(E) = V$, there are $d_1, ..., d_n \in K$ such that $\vv = d_1 \ee_1 + ... + d_n \ee_n$. Since $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$, we can express $\ee_1$ as a linear combination of $\vv_1, \ee_2, ..., \ee_n$; doing this, we see $\vv$ is a linear combination of $\vv_1, \ee_2, ..., \ee_n$. Thus $\vv \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. Since $\vv$ is arbitrary, then ${V \subseteq \spann(\{\vv_1, \ee_1, ..., \ee_n\})}$, which implies $V = \spann(\{\vv_1, \ee_1, ..., \ee_n\})$.
+
+    Repeating this process inductively, we can conclude that $V = \spann(\{\vv_1, \vv_2, \ee_3, ..., \ee_n\})$, and ultimately that $V = \spann(\{\vv_1, ..., \vv_n\})$. 
+\end{proof}
 
 \begin{lemma}
 \label{ch::lin_alg::lemma::dimension}
@@ -679,17 +711,11 @@ The following lemma enables us to obtain a more useful characterization of bases
 \begin{proof}
     First we show the logical equivalence.
     
-    ($(1) \implies (2)$). Suppose for contradiction that a set $S$ of vectors with $|S| < n$ spans $V$. Remove vectors from $S$ until a linearly independent set $T$ is obtained. Since removing vectors from linearly dependent sets does not change their span, we know $T$ spans $V$. Thus, $T$ is a linearly independent spanning set with $|T| < n$. Since $n > |T|$, it follows from $(1)$ that $T$ is linearly dependent; contradiction.
+    ($(1) \implies (2)$). Suppose for contradiction that a set $S$ of vectors with $|S| < n$ spans $V$. Remove vectors from $S$ until a linearly independent set $T$ is obtained. By item 4 of Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}, removing vectors from linearly dependent sets does not change their span, so $T$ spans $V$. Thus, $T$ is a linearly independent spanning set with $|T| < n$. Since $n > |T|$, it follows from $(1)$ that $T$ is linearly dependent; contradiction.
     
-    ($(2) \implies (1)$). Suppose for contradiction that a set $S$ of vectors with $|S| > n$ is linearly independent. Add vectors to $S$ until a spanning set $T$ of $V$ is obtained. Since adding vectors to linearly independent sets that are not in the span of those sets preserves linear independence, we know $T$ is linearly independent. Thus, $T$ is a linearly independent spanning set with $|T| > n$. Since $n < |T|$, it follows from $(2)$ that $T$ does not span $V$; contradiction.
+    ($(2) \implies (1)$). Use a similar argument that invokes item 1.1 of Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}.
 
-    % From p. 30 of Alan MacDonald's Geometric and Linear Algebra
-    Now, we prove that $(1)$ is true. We do so by proving the contrapositive, which is ``if $\vv_1, ..., \vv_k \in V$ are linearly independent then $k \leq n$''.  
-    So, suppose $S = \{\vv_1, ..., \vv_k\} \subseteq V$ is a linearly independent set.
-
-    Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and let $K$ be the base field. Since $\spann(E) = V$, then there are $c_1, ..., c_n \in K$ such that ${\vv_1 = c_1 \ee_1 + ... + c_n \ee_n}$. Since $S$ is linearly independent, then $\vv_1 \neq \mathbf{0}$, and some $c_i$ must be nonzero; without loss of generality assume $c_1 \neq 0$. Since we can divide by $c_1$, we can solve for $\ee_1$ in terms of $d_1, ..., d_n, \vv_1, ..., \vv_n$, and conclude $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. Now let $\vv \in V$. Again because $\spann(E) = V$, there are $d_1, ..., d_n \in K$ such that $\vv = d_1 \ee_1 + ... + d_n \ee_n$. Since $\ee_1 \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$, we can write $\ee_1$ as a linear combination of $\vv_1, ..., \ee_2, ..., \ee_n$; doing this, we see $\vv$ is a linear combination of $\vv_1, \ee_2, ..., \ee_n$. Thus $\vv \in \spann(\{\vv_1, \ee_2, ..., \ee_n\})$. Since $\vv$ is arbitrary, $V \subseteq \spann(\{\vv_1, \ee_1, ..., \ee_n\})$, which implies $V = \spann(\{\vv_1, \ee_1, ..., \ee_n\})$.
-
-    Repeating this process, we can conclude that $V = \spann(\{\vv_1, \vv_2, \ee_3, ..., \ee_n\})$, and ultimately that $V = \spann(\{\vv_1, ..., \vv_k\})$. At this point it is clear that $k \leq n$; if we had $k > n$, then we would have \\ ${\vv_j \in \spann(\{\vv_1, ..., \vv_k\}) \subseteq \spann(S - \{\vv_j\})}$, and so $S$ would be linearly dependent, which is a contradiction. 
+    Now we show (1) is true. Consider a set $S = \{\vv_1, ..., \vv_n, \vv_{n + 1}, ..., \vv_k\} \subseteq V$ of more than $n$ vectors from $V$. By the previous lemma, we know $\{\vv_1, ..., \vv_n\}$ spans $V$. Thus for each $i \in \{n + 1, ..., k\}$, we have ${\vv_i \in \spann(\{\vv_1, ..., \vv_n\}) \subseteq \spann(S - \{\vv_i\})}$. Since there is a $\vv \in S$ such that $\vv \in \spann(S - \{\vv\})$, then $S$ is linearly dependent.   
 \end{proof}
 
 \begin{theorem}
@@ -709,11 +735,12 @@ The following lemma enables us to obtain a more useful characterization of bases
     
     (Case $E \neq \emptyset$).
     
-    \indent ($\implies$). Suppose that $E$ is a minimal spanning set of $V$. We need to show that $E$ is linearly independent, so suppose for contradiction that $E$ is linearly dependent. If $E$ is linearly dependent, we can remove a vector from $E$ without changing $\spann(E) = V$, so, $E$ is not minimal; contradiction.
+    \indent ($\implies$). Suppose that $E$ is a minimal spanning set of $V$. We need to show that $E$ is linearly independent, so suppose for contradiction that $E$ is linearly dependent. If $E$ is linearly dependent, then by item 4 from Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets} we can remove a vector from $E$ without changing $\spann(E) = V$, so, $E$ is not minimal; contradiction.
     
-    \indent ($\impliedby$). Suppose that $E$ spans $V$ and that $E$ is linearly independent. We need to show that $|E|$ is a minimal spanning set of $V$, i.e., that a set of less than $|E|$ vectors does not span $V$. This is precisely what fact (2) of Lemma \ref{ch::lin_alg::lemma::dimension} tells us.
+    \indent ($\impliedby$). Suppose that $E$ spans $V$ and that $E$ is linearly independent. Since $E$ spans $V$, item 2 from the previous lemma
+    implies $|E| \geq \dim(V)$; since $E$ is linearly independent, item 1 from previous lemma implies $|E| \leq \dim(V)$. Therefore $|E| = \dim(V)$. Now we can see the assertion ``if $F$ is a spanning set of $V$ then $|F| \geq |E|$'' is true. If $F$ is a spanning set of $V$, then item $2$ of the previous lemma implies $|F| \geq \dim(V) = |E|$.
     
-    (Case $E = \emptyset$). Since there is only one $E$ satisfying $E = \emptyset$, the if-and-only-if we need to show simplifies to an \textit{and} statement: $(\text{$\emptyset$ is a minimal spanning set of $V$}) \text{ and } (\text{$\emptyset$ is linearly independent})$. The first statement here is clearly true: $\emptyset$ is a minimal spanning set because there aren't any sets that contain fewer than zero vectors. The second statement, which is equivalent to $(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$, is true by false hypothesis, since\footnote{$(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$ is equivalent to $(\forall \vv \spc \vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\}))$. Because $\vv \in \emptyset$ is false for every $\vv \in \emptyset$, the overall implication $\vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\})$ is true for every $\vv \in \emptyset$.} there is no $\vv$ for which ``$\vv \in \emptyset$'' is a true statement.
+    (Case $E = \emptyset$). Since there is only one $E$ satisfying $E = \emptyset$, the if-and-only-if we need to show simplifies to an \textit{and} statement: $(\text{$\emptyset$ is a minimal spanning set of $V$}) \text{ and } (\text{$\emptyset$ is linearly independent})$. We discussed how the first statement is true in Remark \ref{ch::lin_alg::rmk::zero_dim_vector_space}. The second statement, which is equivalent to $(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$, is true by false hypothesis, since\footnote{$(\forall \vv \in \emptyset \spc \vv \notin \spann(\emptyset - \{\vv\}))$ is equivalent to $(\forall \vv \spc \vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\}))$. Because $\vv \in \emptyset$ is false for every $\vv \in \emptyset$, the overall implication $\vv \in \emptyset \implies \vv \notin \spann(\emptyset - \{\vv\})$ is true for every $\vv \in \emptyset$.} there is no $\vv$ for which ``$\vv \in \emptyset$'' is a true statement.
     
     
 \end{proof}
@@ -731,13 +758,11 @@ Because the minimality condition in the definition we gave for ``basis'' boils d
     \end{enumerate}
 \end{defn}
 
-\begin{theorem}
-    Every finite-dimensional vector space has a basis.
-\end{theorem}
+\begin{remark}
+    (No need for the well-ordering principle!).
 
-\begin{proof}
-    Let $V$ be a finite-dimensional vector space, and take a finite set $E = \{\ee_1, ..., \ee_n\}$ of vectors that span $V$. Remove vectors from $E$ one by one. At some point, we must obtain a linearly independent set\footnote{We can always just remove all vectors to obtain $\emptyset$, which is a linearly independent set.}. That is, there must be some $i$ for which $E_i := E - \{\ee_1, ..., \ee_i\}$ is linearly independent and for which all $E_j$, $j < i$, are linearly dependent. In particular, $E_{i - 1}$ is a linearly dependent set that spans $V$. Applying the fact that removing a vector from a linearly dependent set does not change the span of that set, we can conclude that since $E_i$ is obtained by removing a vector from $E_{i - 1}$, we have $\spann(E_i) = \spann(E_{i - 1}) = V$. Thus, $E_i$ is a linearly independent set that spans $V$; it is a basis for $V$.
-\end{proof}
+    With this new definition of ``basis'', it is now possible to prove that every finite-dimensional vector space has a basis without using the well-ordering principle, and thus without the axiom of choice\footnote{The axiom of choice is equivalent to the well-ordering principle.}. This is because linear independence is in some sense a ``local'' property (to test if a set $S$ is linearly independent, one only needs to know $S$), while the minimal spanning condition of before is a ``global'' property (to test if a set $S$ is a minimal spanning set, one needs to compare against all other spanning sets). Here's an outline of the proof: given a spanning set $S$ of a vector space, a linearly independent spanning set (a basis) can be obtained by removing vectors from $S$.
+\end{remark}
 
 \begin{defn}
     (Standard basis for $K^n$).
@@ -1051,7 +1076,6 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 
 \begin{defn}
 \label{ch::lin_alg::defn::coordinates_relative_to_basis}
-
     (Coordinates of a finite-dimensional vector relative to a basis).
     
     Let $V$ be a finite-dimensional vector space over a field $K$, and let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. Given a vector $\vv \in V$, we define $[\vv]_E$ to be the vector in $K^{\dim(V)}$ that stores the \textit{coordinates of $\vv$ relative to the basis $E$}. Formally, $[\vv]_E$ is the tuple of scalars 
@@ -1067,7 +1091,25 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
     \end{align*}
     
     We are guaranteed that such scalars exist because $E$, being a basis for $V$, spans $V$.
+
+    We often use the notation $[\cdot]_E$ to denote the function $V \rightarrow K^{\dim(V)}$ sending $\vv \mapsto [\vv]_E$.
 \end{defn}
+
+The above definition does not make it obvious that the function $[\cdot]_E$ is well-defined. We show this now.
+
+\begin{theorem}
+    ($[\cdot]_E$ is well-defined).
+
+    Let $V$ be a finite-dimensional vector space. The function $[\cdot]_E$ is well-defined for all bases $E$ of $V$.
+\end{theorem}
+
+\begin{proof}
+    Consider $\vv, \ww \in V$ that are equal, $\vv = \ww$. We need to show that $[\vv]_E = [\ww]_E$.
+    
+    Set $n := \dim(V)$. We have $\vv = \sum_{i = 1}^n ([\vv]_E)_i \ee_i$ and $\ww = \sum_{i = 1}^n ([\ww]_E)_i \ee_i$. Since $\vv = \ww$, we can subtract one equation from the other to obtain $\mathbf{0} = \sum_{i = 1}^n \Big(([\vv]_E)_i - ([\ww]_E)_i\Big) \ee_i$. Since $E$ is linearly independent, then we must have $([\vv]_E)_i - ([\ww]_E)_i = 0 \iff ([\vv]_E)_i = ([\ww]_E)_i$ for all $i$. Thus $[\vv]_E = [\ww]_E$.
+\end{proof}
+
+Of more practical importance than the above is the following fact.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::[]E_invertible}
@@ -1552,7 +1594,7 @@ This following topic of ``matrix transposes'' does not become significant until 
 \begin{defn}
     (Transpose of a matrix).
 
-    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$ is the $n \times m$ matrix whose $ij$ entry is the $ji$ entry of $\AA$}: $\AA^\top := (a_{ji})$. 
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$} is the $n \times m$ matrix whose $ij$ entry is the $ji$ entry of $\AA$: $\AA^\top := (a_{ji})$. 
     
     For any matrix $\AA$, the columns of $\AA^\top$ are the rows of $\AA$, and the rows of $\AA^\top$ are the columns of $\AA$.
 \end{defn}
@@ -1753,7 +1795,20 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 
 We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
 
-In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us      to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+
+\begin{lemma}
+    \label{ch::lin_alg::lemma::basis_inverse}
+    ($[\cdot]_E^{-1}(\sE) = E$).
+
+    Let $V$ be a vector space and let $E$ be a basis of $V$. We have $[\cdot]_E^{-1}(\sE) = E$. 
+\end{lemma}
+
+\begin{proof}
+    Since $[\ee_i]_E = \see_i$, then $[\cdot]_E^{-1}(\see_i) = \ee_i$, and so $[\cdot]_E^{-1}(\sE) = E$. 
+\end{proof}
+
+Notice that $E$ is not a matrix in the above lemma! It is a list of vectors that are not necessarily column vectors. We investigate the special case when $E$ is indeed a list of column vectors (i.e. a list of vectors from $K^n$) in Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}.
 
 \begin{deriv}
 \label{ch::lin_alg::deriv::matrix_relative_to_bases}
@@ -1763,7 +1818,7 @@ In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw t
     
     The standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ represents $\ff_{E,F}$, and $\ff_{E,F}$ represents $\ff$, so\footnote{Again, when we say that $\hh$ \textit{represents} $\gg$, we mean that the map sending $\gg \mapsto \hh$ is a bijection.} we conclude by transitivity that $\ff_{E,F}(\sE)$ represents $\ff$. For this reason, we define the \textit{matrix of $\ff$ relative to $E$ and $F$} to be the standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F}$.
     
-    Now, let's investigate $\ff_{E,F}(\sE)$ itself. We have $\ff_{E,F}(\sE) = ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\sE) = \Big[\ff\Big([\cdot]_E^{-1}(\sE)\Big)\Big]_F$. Since $[\ee_i]_E = \see_i$, then $[\cdot]_E^{-1}(\see_i) = \ee_i$ and thus $[\cdot]_E^{-1}(\sE) = E$. This gives us 
+    Now, let's investigate $\ff_{E,F}(\sE)$ itself. We have $\ff_{E,F}(\sE) = ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1})(\sE) = \Big[\ff\Big([\cdot]_E^{-1}(\sE)\Big)\Big]_F$. By the previous lemma, we have $[\cdot]_E^{-1}(\sE) = E$, so
     
     \begin{align*}
         \boxed
@@ -1809,34 +1864,14 @@ In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw t
     The standard matrix $\ff(\sE)$ of a linear function $\ff:K^n \rightarrow K^m$ is the matrix $\ff(\sE) = [\ff(\sE)]_\sE$ of $\ff:K^n \rightarrow K^m$ relative to the bases $\sE$ and $\sE$.
 \end{remark}
 
-Not all linear algebra resources use the above notion of matrices relative to bases and instead investigate matrices of the form $\EE^{-1} \AA \EE$. The following theorem explains that such matrices arise as a special case of matrices relative to bases.
-
-\begin{theorem}
-    (Matrices of linear functions $K^n \rightarrow K^n$ relative to $E$ and $E$).
-    
-    Let $K$ be a field, let $E$ be a basis for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is
-    
-    \begin{align*}
-        [\ff(E)]_E = \EE^{-1} \ff(\sE) \EE,
-    \end{align*}
-    
-    where $\EE$ is the matrix whose $i$th column is $\ee_i$.
-\end{theorem}
-
-\begin{proof}
-   The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is the standard matrix $\ff_{E,E}(\sE)$ of $\ff_{E,E} = [\cdot]_E \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,E}(\sE) = [\cdot]_E(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. To complete the proof, we will determine the standard matrices $[\cdot]_E(\sE)$ and $[\cdot]_E^{-1}(\sE)$.
-   
-   Since $[\ee_i]_E = \see_i$, we have $[\cdot]^{-1}_E(\see_i) = \ee_i$ and\footnote{In Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} we used the facts from the sentence this footnote appears in to conclude $[\cdot]_E^{-1}(\sE) = E$ rather than $[\cdot]_E^{-1}(\sE) = \EE$. We are able to use the latter matrix notation $\EE$ now because we are in the special situation where $E$ is a basis of $K^n$, so the list $E$ of vectors is a list of \textit{column} vectors, i.e. a matrix.} thus $[\cdot]_E^{-1}(\sE) = \EE$, where $\EE$ is the matrix with $i$th column $\ee_i$. Also, since $[\cdot]_E$ is the inverse of $[\cdot]_E^{-1}$, we have $[\cdot]_E(\sE) = ([\cdot]_E^{-1}(\sE))^{-1} = \EE^{-1}$. Using the two facts $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$, we conclude that $([\cdot]_E \circ \ff \circ [\cdot]_E^{-1})(\sE) = [\cdot]_E(\sE) \spc  \ff(\sE) \spc [\cdot]_E^{-1}(\sE) = \EE^{-1} \ff(\sE) \EE$.
-\end{proof}
-
-\subsection*{Change of basis}
+\subsection*{Vectors relative to bases}
 
 We will now discover how when we have a finite-dimensional vector space with bases $E$ and $F$ we can relate $[\vv]_E$ to $[\vv]_F$ for any vector $\vv$.
 
 \begin{theorem}
     \label{ch::lin_alg::thm::change_of_basis_for_vectors}
     
-    (Change of basis).
+    (Change of basis for vectors).
     
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. 
     
@@ -1855,10 +1890,27 @@ We will now discover how when we have a finite-dimensional vector space with bas
 \end{theorem}
 
 \begin{remark}
-    (Alternate proof of change of basis).
+    (Alternate proof of change of basis for vectors).
     
     Here is an alternate proof to the above. The matrix of $[\cdot]_F$ relative to $E$ and $\sE$ is $[[\cdot]_F(E)]_\sE = [\cdot]_F(E) = [\EE]_F$. Using the characterizing property of matrices relative to bases, we have $[\vv]_F = [[\cdot]_F(E)]_\sE [\vv]_E = [\EE]_F [\vv]_E$.
 \end{remark}
+
+The following is an important special case\footnote{Use the substitutions $E := \sE$ and $F := E$ in the change of basis theorem for vectors to obtain $[\vv]_E = [\sE]_E [\vv]_\sE = \EE^{-1} \vv$.} of the change of basis theorem for vectors.
+
+\begin{theorem}
+    (Change of basis from standard basis for vectors).
+    \label{ch::lin_alg::thm::basis_change_from_standard_vectors}
+
+    Let $K$ be a field, consider the vector space $K^n$, and let $E$ be a basis of $K^n$. By Lemma \ref{ch::lin_alg::lemma::basis_inverse}, the standard matrix $[\cdot]_E^{-1}(\sE)$ of $[\cdot]_E^{-1}$ is $[\cdot]_E^{-1}(\sE) = \EE$ and the standard matrix $[\cdot]_E(\sE)$ of $[\cdot]_E$ is $[\cdot]_E(\sE) = \EE^{-1}$. Thus,
+
+    \begin{align*}
+        \boxed
+        {
+            [\vv]_E = \EE^{-1} \vv \text{ for all $\vv \in K^n$}
+        }
+    \end{align*}
+    
+\end{theorem}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::I_EF}
@@ -1889,7 +1941,37 @@ We will now discover how when we have a finite-dimensional vector space with bas
 \begin{remark}
     (On the order of proving change of basis theorems). 
     
-    Most linear algebra texts first prove the previous theorem and use it to show a version of the first equation in the box of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}. This approach for proving Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors} was not used because it involves quite a bit more matrix algebra than the approach supplied in this text. However, it good to know that these theorems are equivalent.
+    Most linear algebra texts first prove the previous theorem and use it to show a version of the first equation in the box of Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}. This approach for proving Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors} was not used because it involves quite a bit of unmemorable matrix algebra. It's good to know that these theorems are equivalent, though.
+\end{remark}
+
+\newpage
+
+\subsection*{Similar matrices}
+
+Not all linear algebra resources use the above notion of matrices relative to bases and instead investigate matrices of the form $\EE^{-1} \AA \EE$. The following theorem explains that such matrices arise as a special case of matrices relative to bases.
+
+\begin{theorem}
+    (Matrices of linear functions $K^n \rightarrow K^n$ relative to $E$ and $E$).
+    
+    Let $K$ be a field, let $E$ be a basis for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is
+    
+    \begin{align*}
+        [\ff(E)]_E = \EE^{-1} \ff(\sE) \EE,
+    \end{align*}
+    
+    where $\EE$ is the matrix whose $i$th column is $\ee_i$.
+\end{theorem}
+
+\begin{proof}
+   The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is the standard matrix $\ff_{E,E}(\sE)$ of $\ff_{E,E} = [\cdot]_E \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,E}(\sE) = [\cdot]_E(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. We know that $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$ from Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}, so the most recent expression is equal to $\EE^{-1} \ff(\sE) \EE$, as claimed.
+\end{proof}
+
+\begin{remark}
+    (Similar matrices).
+
+    Most linear algebra texts do not define the matrix of a linear function $V \rightarrow W$ relative to bases $E$ and $F$, and only define ``the matrix of a linear function $\ff:V \rightarrow V$ relative to the basis $E$'' to be $\EE^{-1} \ff(\sE) \EE$.
+
+    In such texts, matrices $\AA$ and $\BB$ are called \textit{similar} iff there exists a matrix $\SS$ such that $\BB = \SS^{-1} \AA \SS$. This is an entirely reasonable definition. Unfortunately, though, many of these texts don't actually use that definition of similarity, and instead say: ``$\AA$ and $\BB$ are called \textit{similar} iff there exists a matrix $\SS$ such that $\BB = \SS \AA \SS^{-1}$''. Of course, since all matrices of the form $\SS^{-1} \AA \SS$ are also of the form $\SS \AA \SS^{-1}$, this later definition is equivalent to the former one. But it makes things more confusing, since the placement of the matrix inverse in the later definition is different than it is in the formula $[\ff(E)]_E = \EE^{-1} \ff(\sE) \EE$. This could lead one to think that ``$[\ff(E)]_E = \EE \ff(E) \EE^{-1}$'', which is not true!
 \end{remark}
 
 \newpage
@@ -2304,120 +2386,45 @@ The set of equations obtained by equating the components of the vectors on eithe
    row operations correspond to invertible linear functions. since columns are LI iff invertible and (only) linear functions preserve LI, RREF must be identity iff invertible.
 \end{proof}
 
-\section{Eigenvectors and eigenvalues}
-
-[This section not required for rest of book]
-
-\begin{defn}
-    (Eigenvectors and eigenvalues of a linear function).
-    
-    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is said to be an \textit{eigenvector (of $\ff$)} iff there is a scalar $c \in K$ such that $\ff(\vv) = c \vv$. Iff $\vv$ is indeed an eigenvector of $\ff$, then the $c \in K$ for which $\ff(\vv) = c \vv$ is said to be the \textit{eigenvalue (corresponding to $\vv$)}.
-    
-    In other words, the eigenvectors of a linear function are the vectors that get sent to scalar multiples of themselves by the function, and the eigenvalues corresponding to those eigenvectors are the scalars involved in said scalar multiples.
-\end{defn}
-
-\begin{remark}
-    (``Characteristic vectors'').
-    
-    The word ``eigen'' within ``eigenvector'' is German. Back when eigenvectors were first defined, English-speaking mathematicians called them ``characteristic vectors''. This terminology is not used today, but is helpful to keep it in mind, as we will see that, in some cases, a linear function is completely specified if its eigenvectors and corresponding eigenvalues are known.
-\end{remark}
-
-\begin{theorem}
-    Let $V$ be a vector space. A linear function $\ff:V \rightarrow V$ be a linear function is invertible the only eigenvalue with $0$ as its eigenvector is the zero vector $\mathbf{0}$.
-\end{theorem}
-
-\begin{proof}
-   Consider the contrapositive. Some nonzero eigenvector $\vv$ has $0$ as its eigenvalue iff $\ff$ has a nontrivial kernel, which is equivalent to $\ff$ not being invertible.
-\end{proof}
-
-\begin{remark}
-    (Eigenvectors, eigenvalues, and zero).
-    
-    According to the above definition, $\mathbf{0}$ is an eigenvector of every linear function, with its corresponding eigenvalue being $0$. 
-    
-    Some authors explicitly disallow $\mathbf{0}$ from being an eigenvector of any linear function (and thus disallow $0$ from being an eigenvalue of any linear function) in their definition of ``eigenvector'' so that the condition ``the only eigenvector with $0$ as an eigenvalue is $\mathbf{0}$'' is equivalent to the condition ``$0$ is not an eigenvalue''. The later is easier to say than the former.
-\end{remark}
-
-\begin{theorem}
-    (Intuition for an invertibility condition).
-    
-    [intuition on what a determinant is]
-    
-    $\ff$ is not invertible iff for any basis $E$ of $V$, the set $\ff(E)$ is linearly dependent
-
-    [$n$-dimensional volume spanned by a linearly dependent set is $0$]
-\end{theorem}
-
-\begin{deriv}
-    (Characterization of eigenvectors and eigenvalues).
-
-    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be linear function. In this derivation, we will discover a characterization of the eigenvectors and eigenvalues of $\ff$.
-    
-    Suppose $\vv \in V$ is an eigenvector of $\ff$. Then
-    
-    \begin{align*}
-        &\exists c \in K \st \ff(\vv) = c \vv \\
-        \iff &\exists c \in K \st \ff(\vv) - c \vv = \mathbf{0} \\
-        \iff &\exists c \in K \st \ff(\vv) - c\II(\vv) = \mathbf{0}, \text{ where $\II$ is the identity on $V$} \\
-        \iff &\exists c \in K \st (\ff - c\II)(\vv) = \mathbf{0} \\
-        \iff &\exists c \in K \st \vv \in \ker(\ff - c\II).
-    \end{align*}
-
-    [use $\II_V$?]
-    
-    (In the last line of the above, $\ff - c\II$ is the linear function defined by $(\ff - c\II)(\vv) = \ff(\vv) - c\II(\vv)$.)
-    
-    In all, we see that $\vv$ is an eigenvector of $\ff$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
-    
-    An argument analogous to the one above shows that $c$ is a nonzero eigenvalue of $\ff$ iff ${\exists \vv \neq \mathbf{0} 
-    \spc \vv \in \ker(\ff - c \II)}$, i.e., iff $\ker(\ff - c\II) \neq \{\mathbf{0}\}$. Since $\ker(\ff - c\II) \neq \{\mathbf{0}\}$ iff $\det(\ff - c\II) = 0$ (see the previous theorem), we have in all that $c$ is a nonzero eigenvalue of $\ff$ iff $\det(\ff - c \II) = 0$.
-    
-    So:
-    
-    \begin{align*}
-        \text{eigenvectors of $\ff$} &= \bigcup_{c \in K} \ker(\ff - c \II) \\
-        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
-    \end{align*}
-    
-    We can get even more specific with our characterization of the eigenvectors of $\ff$. Notice that, in the above union, we need not include kernels that are just $\{\mathbf{0}\}$, since every kernel contains $\mathbf{0}$. An equivalent union consists of nontrivial kernels, i.e., of kernels of noninvertible linear functions, i.e., of kernels of linear functions with determinant $0$. This gives us the following:
-    
-    \begin{align*}
-        \text{eigenvectors of $\ff$} &=
-        \bigcup_{\substack{c \in K \\ c \spc : \spc \det(\ff - c \II) = 0}} \ker(\ff - c \II) = 
-        \bigcup_{\substack{c \in K \\ c \spc : \spc \text{$c$ is a nonzero eigenvalue of $\ff$}}} \ker(\ff - c \II)
-        \\
-        \quad
-        \\
-        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
-    \end{align*}
-    
-\end{deriv}
-
 \newpage
 
-\section{The dot product}
+\section{Length and angle}
 \label{ch::lin_alg::section::dot_product}
 
-Most explanations of the dot product engage in at least one of two pedagogically problematic approaches. 
+In this section, we develop the notions of the \textit{length of a vector} and the \textit{angle between two vectors} for vectors from a finite-dimensional vector space over $\R$. 
 
-The most common of these approaches is: first, define the dot product as $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$; second, show that this initial definition implies $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ by using the law of cosines. This is the wrong way of doing things for two reasons: firstly, there is much more motivation (such as further investigation of vector projections or the physical concept of work) for defining $\vv_1 \cdot \vv_2 := ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$ and then proving $\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$, rather than starting with $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$. Secondly, the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is unintuitive (to me, at least).}. There is a much better way to prove that $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ implies $\vv_1 \cdot \vv_2 = ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$, which we present. 
+We approach this by first defining notions of length and angle in $\R^2$, generalizing these notions to $\R^n$, and then generalizing again to finite-dimensional vector spaces over $\R$.
 
-The second problematic approach arises when an author \textit{does} decide to start with the geometrically intuitive definition, $\vv_1 \cdot \vv_2 := ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$. Authors will prove that $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ follows as a result of the law of cosines. Again, using the law of cosines gives no intuition. Instead, $\vv_1 \cdot \vv_2 := \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i$ should be proved by showing and then using the bilinearity of the dot product. The law of cosines should never be used in proving the equivalence of the two dot product formulas. When the equivalence between these two formulas is shown correctly, the law of cosines can be shown as a consequence.
+It is easy to understand length in $\R^2$, and easy to generalize length in $\R^2$ to length in $\R^n$. All of the nuance in this section arises in the analysis of angle in $\R^2$. Once angle in $\R^2$ is understood, it too is easily generalized to $\R^n$.
 
 \vspace{.5cm}
 
-The cross product also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_pwrs} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_pwrs} because understanding cross products requires understanding determinants).
+We briefly outline the analysis of angle in $\R^2$.
 
-\subsection*{Magnitude in $\R^n$}
+Immediately after defining the angle between vectors in $\R^2$, we stumble across a fundamental concept that underlies both length and angle- the \textit{dot product} of vectors in $\R^2$. The dot product is a subtle concept that requires careful explanation. Unfortunately, all texts I have seen have some sort of major error in their presentation of this important concept.
+
+Most authors define the dot product using the ``algebraic characterization'' ${\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i}$, and then use the law of cosines to show that this definition implies the ``geometric characterization'', ${\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta)}$, where $\theta$ is the angle between $\vv$ and $\ww$. This approach is incorrect because using the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is less intuitive than geometry done via linear algebra (to me, at least).}, and because there is typically no motivation given for the algebraic characterization; it just ``pops out of nowhere''.
+
+Some authors try to provide more motivation for the dot product by starting with the geometric characterization, $\vv \cdot \ww := ||\vv|| \spc ||\ww|| \cos(\theta)$, as the definition, explaining that this characterization is a natural idea\footnote{The motivation goes like this. If a box is pushed with a force $\FF \in \R^2$ along a floor through a displacement $\xx$, then $||\FF|| \cos(\theta)$ is the amount of force exerted in the direction of the displacement $\xx$, and thus $||\xx||(||\FF|| \cos(\theta)) = ||\FF|| \spc ||\xx|| \cos(\theta)$ is the product of the amount of force aligned with the displacement with the magnitude of the displacement.}, and then showing that the algebraic characterization follows. This is an improvement over starting abruptly with the algebraic characterization, to be sure, but unfortunately, I have always seen that authors use the law of cosines to show the algebraic characterization follows from the geometric characterization. As mentioned before, the law of cosines gives no intuition.
+
+\textit{Both} of the typical approaches to $(\text{algebraic characterization}) \implies (\text{geometric characterization})$ and $(\text{geometric characterization}) \implies (\text{algebraic characterization})$ share a major failing not yet mentioned: they don't engage with a satisfactory definition of angle. Either angle is implicitly- because of the use of the law of cosines- taken to be as given in the cumbersome and imprecise definition from Euclidean geometry, or, when the algebraic characterization of the dot product is used as the definition, a rigorous but unmotivated definition\footnote{The rigorous but unmotivated definition is $\theta(\vv, \ww) := \arccos(\hvv \cdot \hww)$, where the notation $\hvv$ and $\hww$ is defined in Definition \ref{ch::lin_alg::defn::unit_vector_hat_notation}.} of angle is given, and the equivalence of this definition to the (cumbersome and imprecise) one relied upon by the law of cosines is not explained.
+
+All of this mess is alleviated in this section. We start by investigating a rigorous definition of angle between vectors in $\R^2$. Our investigations of angle cause us to stumble upon the algebraic characterization of the dot product. The geometric characterization immediately follows, though it follows logically- not quite intuitively. To provide the missing intuition, we present proofs of $(\text{geometric characterization}) \implies (\text{algebraic characterization})$ and $(\text{algebraic characterization}) \implies (\text{geometric characterization})$ that do not rely on the law of cosines. Lastly, we are able to use our knowledge of the dot product to provide a useful formula for computing vector projections, and, most satisfyingly, to prove the law of cosines.
+
+\vspace{.5cm}
+
+The \textit{cross product} also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_pwrs} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_pwrs} because understanding cross products requires understanding determinants).
+
+\newpage
+
+\subsection*{Length in $\R^n$}
 \label{ch::lin_alg::subsection::mag_and_angle_Rn}
 
 \begin{defn}
 \label{ch::lin_alg::defn::length_in_R2}
     (Length of a vector in $\R^2$).
 
-    Let $\vv \in \R^2$. If we interpret $([\vv]_\sE)_1$ and $([\vv]_\sE)_2$ as the lengths of the base and height, respectively, of a right triangle, then the length of the hypotenuse of this right triangle is $\sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
-
-    Since $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, it makes sense to think of the hypotenuse as being $\vv$, and thus, to define the \textit{length} (or \textit{magnitude}) $||\vv||$ of $\vv$ to be the length of the hypotenuse: $||\vv|| := \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
+    Let $\vv \in \R^2$. If we interpret $([\vv]_\sE)_1$ and $([\vv]_\sE)_2$ as the lengths of the base and height, respectively, of a right triangle, then the length of the hypotenuse of this right triangle is $\sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$. Since $\vv = ([\vv]_\sE)_1 \see_1 + ([\vv]_\sE)_2 \see_2$, it makes sense to think of the hypotenuse as being $\vv$, and thus, to define the \textit{length} (or \textit{magnitude}) $||\vv||$ of $\vv$ to be the length of the hypotenuse: $||\vv|| := \sqrt{([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2}$.
 \end{defn}
 
 \begin{defn}
@@ -2458,6 +2465,7 @@ The cross product also comes with two common pedagogical problems. The last sect
 \end{proof}
 
 \begin{defn}
+\label{ch::lin_alg::defn::unit_vector_hat_notation}
     (Unit vector hat notation). 
     
     For $\vv \in \R^n$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^n$.
@@ -2466,144 +2474,237 @@ The cross product also comes with two common pedagogical problems. The last sect
 \subsection*{Angle in $\R^2$}
 
 \begin{defn}
-    (Nonnegative angle between vectors in $\R^2$).
+\label{ch::lin_alg::defn::angle_in_R2}
+    (Angle between vectors in $\R^2$).
     
-    Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. Let $s(\vv, \ww)$ be the length of the shortest path on the circle from $\vv$ to $\ww$:
+    Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and consider the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. Let $s(\xx, \vv, \ww)$ be the length traversed on the path $\xx:\R \rightarrow \R^2$ from $\vv$ to $\ww$:
 
     \begin{align*}
-        s(\vv, \ww) = \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, &\text{ where $\xx(t) = r\begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}$,} \\ &\text{ $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_2 \geq t_1.
+        s(\xx, \vv, \ww) :=  \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, 
+        \text{where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
+    \end{align*}
+
+    Now let $\cc:\R \rightarrow \R^2$ be the traditional parameterization of the circle of radius $r$ with center $\mathbf{0}$, and $\widetilde{\cc}$ be the reverse parameterization:
+
+    \begin{align*}
+        \cc(t) := r
+        \begin{pmatrix}
+            \cos(t) \\
+            \sin(t)
+        \end{pmatrix}
+        \text{ and }
+        \widetilde{\cc}(t) := \cc(-t).
     \end{align*}
     
     \textbf{find and replace ``unsigned''.}
     \textbf{$t \in [0, 2\pi)$ should probably be $t \in [0, \pi]$}
 
-    We define the \textit{nonnegative\footnote{Notice that because the integrand for $s$ is nonnegative and $t_2 \geq t_1$, we have $s(\vv, \ww) \geq 0$. Since $s(\vv, \ww) \geq 0$ and $r \geq 0$, we have $\theta(\vv, \ww) \geq 0$.} angle $\theta(\vv, \ww)$ between $\vv$ and $\ww$} to be the ratio $\theta(\vv, \ww) := \frac{s(\vv, \ww)}{r}$. When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(r_0\hvv, r_0\hww)$, where $r_0 > 0$ is any positive real number.
-\end{defn}
-
-\begin{theorem}
-\label{ch::lin_alg::thm::unsigned_angle_Rn}
-    (Angle formula in $\R^2$).
-    
-    Let $\vv, \ww \in \R^2$. Then
+    We define the \textit{angle $\theta(\vv, \ww)$ between $\vv$ and $\ww$} to be the ratio of the shortest path between $\vv$ and $\ww$ on the circle to the radius of the circle:
     
     \begin{align*}
-        \theta(\vv, \ww) = \text{arccos}\Big( \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i \Big).
+        \theta(\vv, \ww) := \frac{\min(s(\cc, \vv, \ww), s(\widetilde{\cc}, \vv, \ww))}{r}.
     \end{align*}
+    
+    When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(r_0\hvv, r_0\hww)$, where $r_0 > 0$ is any positive real number.
+\end{defn}
 
-    Note, since $\arccos:[-1, 1] \rightarrow [0, \pi]$, we have $\theta(\vv, \ww) \in [0, \pi]$.
+\begin{remark}
+    (Well-definedness of angle between two vectors).
+
+    Since $\theta(\vv, \ww)$ depends on the radius $r$ of the circle whose center coincides with the initial points of $\vv$ and $\ww$, it isn't yet clear that $\theta:\R^2 \times \R^2 \rightarrow \R$ is well-defined.
+\end{remark}
+
+\begin{theorem}
+    (Properties of $\theta$).
+    
+    \begin{enumerate}
+        \item $\theta(\vv, \ww) \geq 0$ for all $\vv, \ww \in \R^2$.
+        \item $\theta(\vv, \ww) = \theta(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    We prove the theorem in the case when $||\vv|| = ||\ww|| = r$; the general case follows from this easily. We have
-    
-    \begin{align*}
-       \theta(\vv, \ww) = \frac{s}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d\xx(t)}{dt}\Big|\Big| dt, &\text{ where $\xx(t) = r\begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}$,} \\ &\text{ $\xx(t_1) = \vv$, $\xx(t_2) = \ww$, $t_2 \geq t_1$}.
-    \end{align*}
+    \mbox{} \\
+    \begin{enumerate}
+        \item We have $s(\xx, \vv, \ww) \geq 0$ for all $\xx \in \{\cc, \widetilde{\cc}\}$ because the integrand in $s(\xx, \vv, \ww)$ is nonnegative for all $\xx \in \{\cc, \widetilde{\cc}\}$ and $t_1 \leq t_2$.
 
-    Since $||\frac{d\xx(t)}{dt}|| = r$, then $\theta(\vv, \ww) = t_2 - t_1$. Further, since $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$, we have ${r \cos(t_1) &= (r[\hvv]_\sE)_1}$ and ${r \cos(t_2) &= (r[\hww]_\sE)_1}$, giving us
-   
-   \begin{align*}
-       \theta(\vv, \ww) = t_2 - t_1 
-       = \text{arccos}\Big(([\hww]_\sE)_1\Big) - \text{arccos}\Big(([\hvv]_\sE)_1\Big).
-   \end{align*}
-   
-   The cosine angle addition identity $\cos(\alpha + \beta) = \cos(\alpha) \cos(\beta) - \sin(\alpha) \sin(\beta)$ implies\footnote{Solve the first identity for $\gamma = \cos(\alpha)$ and $\delta = \cos(\beta)$ to obtain the second identity in terms of $\gamma$ and $\delta$.} the identity \\ ${\text{arccos}(\alpha) + \text{arccos}(\beta) = \text{arccos}(\alpha \beta - \sqrt{1 - \alpha^2}\sqrt{1 - \beta^2})}$. Using this identity, we have
-
-    \begin{align*}
-       \theta(\vv, \ww) &= \text{arccos}\Bigg(([\hvv]_\sE)_1 ([\hww]_\sE)_1 + \sqrt{1 -([\hvv]_\sE)_1^2} \sqrt{1 - ([\hww]_\sE)_1^2} \Bigg) \\
-       &= \text{arccos}\Bigg(([\hvv]_\sE)_1 ([\hww]_\sE)_1 + ([\hww]_\sE)_2 ([\hww]_\sE)_2 \Bigg).
-   \end{align*}
+        Since $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r}$ for some $\yy \in \{\cc, \widetilde{\cc}\}$, then because $s(\yy, \vv, \ww) \geq 0$ and $r > 0$, we have $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r} \geq 0$. 
+        \item We have $s(\xx, \vv, \ww) = s(\xx, \ww, \vv)$ for all $\vv, \ww \in \R^2$ and $\xx \in \{\cc, \widetilde{\cc}\}$ because the length of a path is equal to the length of the reverse path. 
+        
+        Since $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r}$ for some $\yy \in \{\cc, \widetilde{\cc}\}$, then $\theta(\yy, \vv, \ww) = \frac{s(\yy, \vv, \ww)}{r} = \frac{s(\yy, \ww, \vv)}{r} = \theta(\yy, \ww, \vv)}$ for all $\vv, \ww \in \R^2$.
+    \end{enumerate}
 \end{proof}
 
 \begin{defn}
     (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\theta(\vv, \ww) = \frac{\pi}{2}$.
 \end{defn}
 
-\subsubsection{Rotation in $\R^2$}
-
-\begin{lemma}
-    (Rotation in $\R^2$).
-
-    Let $\theta \in [0, \pi]$. The counterclockwise rotation $\RR_t:\R^2 \rightarrow \R^2$ by $\theta$ is given by
-
-    \begin{align*}
-        \RR_\theta(\vv) =
-        \begin{pmatrix}
-            \cos(\theta) & - \sin(\theta) \\
-            \sin(\theta) & \cos(\theta)
-        \end{pmatrix}
-        \vv.
-    \end{align*}
-\end{lemma}
-
-\begin{proof}
-    To obtain the formula for the standard matrix of $\RR_t$, use trigonometry to show that $\RR(\see_1) = (\cos(\theta), \sin(\theta))^\top$ and $\RR(\see_2) = (-\sin(\theta), \cos(\theta))^\top$.
-\end{proof}
-
-\begin{lemma}
-    \begin{align*}
-        \RR_\phi\Big(
-        \begin{pmatrix}
-            \cos(\theta) \\
-            \sin(\theta)
-        \end{pmatrix}
-        \Big)
-        =
-        \begin{pmatrix}
-            \cos(\theta + \phi) \\
-            \sin(\theta + \phi)
-        \end{pmatrix}
-    \end{align*}
-\end{lemma}
-
-\begin{proof}
-    Compute the left side as a matrix-vector product and then use the trigonometric angle-sum identities.
-\end{proof}
-
-\begin{lemma}
-    The previous lemma implies that $\RR_\theta$ is length-preserving. Because $\RR_\theta$ is length-preserving, we have $\widehat{\RR_\theta(\vv)} = \RR_\theta(\hvv)$.
-\end{lemma}
-
-\begin{proof}
-    We have $\widehat{\RR_\theta(\vv)} = \frac{\RR_\theta(\vv)}{||\RR_\theta(\vv)||} = \frac{\RR_\theta(\vv)}{||\vv||} = \RR_\theta\Big(\frac{\vv}{||\vv||}\Big) = \RR_\theta(\hvv)$.
-\end{proof}
-
-\begin{lemma}
-    For all $\vv \in \R^2$, 
-
-    \begin{align*}
-        \{ \ww \mid \theta(\hvv, \hww) = t\} = \{\RR_{-t}(\hvv), \RR_t(\hvv)\}.
-    \end{align*}
-\end{lemma}
-
-\begin{proof}
-    First, we show $\theta(\hvv, \widehat{\RR_t(\vv)}) = \theta(\hvv, \RR_t(\hvv)) = t$ for all $t \in [0, \pi]$. We have $\hvv = (\cos(s), \sin(s))^\top$ for some $s \in [0, 2\pi)$, and have $\RR_t(\hvv) = (\cos(s + t), \sin(s + t))^\top$ by Lemma [...]. The proof of Theorem \ref{ch::lin_alg::thm::unsigned_angle_Rn} showed that in general, 
-
-    \begin{align*}
-        \theta(\huu_1, \huu_2) = t_2 - t_1, \text{ where $\xx(t) = \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}, \xx(t_1) = \huu_1, \xx(t_2) = \huu_2$}.
-    \end{align*}
-    
-    Using $\huu_1 = \hvv$, $\huu_2 = \RR_t(\hvv)$, $t_1 = s$, $t_2 = s + t$, we have $\theta(\hvv, \RR_t(\hvv)) = (s + t) - s = t$.
-
-    Now we show uniqueness. Suppose $\theta(\hvv, \hww) = t$; we need to show that $\hww = \RR_t(\hvv)$. It suffices to show that $\theta(\hvv, \cdot):\R^2 \rightarrow [0, \pi]$ is one-to-one. Well, 
-
-\end{proof}
-
 \begin{theorem}
-    (Orthogonal basis of $\R^2$).
+\label{ch::lin_alg::thm::unsigned_angle_Rn}
+    (Angle formula in $\R^2$).
+        
+    \begin{align*}
+        \theta(\vv, \ww) = \text{arccos}\Big( \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i \Big) \text{ for all $\vv, \ww \in \R^2$}.
+    \end{align*}
 
-    Let $\vv \in \R^2$. If $\vv_\perp$ is perpendicular to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis of $\R^2$.
+    Note, since $\arccos:[-1, 1] \rightarrow [0, \pi]$, we have $\theta(\vv, \ww) \in [0, \pi]$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
-    The previous lemma allows us to represent $\vv_\perp$
+    We prove the theorem in the case when $||\vv|| = ||\ww|| = r$; the general case follows from this immediately. For some $\xx \in \{\cc, \widetilde{\cc}\}$, we have
+
+    \begin{align*}
+        \theta(\vv, \ww) = \frac{s(\xx, \vv, \ww)}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d\xx(t)}{dt} \Big|\Big| dt, \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
+    \end{align*}
+    
+    We have $||\frac{d\xx(t)}{dt}|| = r$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, so $\theta(\vv, \ww) = t_2 - t_1$. Since, $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, then
+
+    \begin{align*}
+        {r \cos(\pm t_1) = (r[\hvv]_\sE)_1} &\text{ and } {r \cos(\pm t_2) = (r[\hww]_\sE)_1},
+    \end{align*}
+
+    where the $\pm$ signs are both $+$ when $\xx = \cc$ and are both $-$ when $\xx = \widetilde{\cc}$. Thus
+   
+   \begin{align*}
+       \theta(\vv, \ww) = t_2 - t_1 &= \pm \text{arccos}\Big(([\hww]_\sE)_1\Big) \mp \text{arccos}\Big(([\hvv]_\sE)_1\Big),
+   \end{align*}
+
+   where the $+, -$ case occurs when $\xx = \cc$ and the $-, +$ case occurs when $\xx = \widetilde{\cc}$.
+   
+   The cosine angle difference identity $\cos(\alpha - \beta) = \cos(\alpha) \cos(\beta) + \sin(\alpha) \sin(\beta)$ implies\footnote{To obtain the second identity, write the first identity in terms of $\gamma, \delta$ by making the substitutions ${\gamma := \cos(\alpha) \iff \alpha = \arccos(\gamma)}$ and ${\delta = \cos(\beta) \iff \beta = \arccos(\delta)}$, and take $\arccos$ of both sides.} the identity \\ ${\text{arccos}(\gamma) - \text{arccos}(\delta) = \text{arccos}(\gamma \delta + \sqrt{1 - \gamma^2}\sqrt{1 - \delta^2})}$. In the $+, -$ case of the above, this identity gives
+   
+    \begin{align*}
+       \theta(\vv, \ww) &= \text{arccos}\Bigg(([\hww]_\sE)_1 ([\hvv]_\sE)_1 + \sqrt{1 -([\hww]_\sE)_1^2} \sqrt{1 - ([\hvv]_\sE)_1^2} \Bigg) \\
+       &= \text{arccos}\Bigg(([\hww]_\sE)_1 ([\hvv]_\sE)_1 + ([\hww]_\sE)_2 ([\hvv]_\sE)_2 \Bigg).
+   \end{align*}
+   
+   In the $-, +$ case, applying the identity yields an analogous (and ultimately equivalent) result.
 \end{proof}
+
+\begin{theorem}
+    (Angle between two vectors is well-defined).
+
+    The formula for $\theta(\vv, \ww)$ given by the previous theorem does not depend on the radius $r$ of the circle whose center coincides with the initial points of $\vv$ and $\ww$, so we now know that $\theta(\vv, \ww)$ is well-defined.
+\end{theorem}
+
+\begin{defn}
+    (The dot product of unit vectors).
+
+    Let $\vv, \ww \in \R^2$. The expression that appears inside $\arccos$ in the formula for $\theta(\vv, \ww)$,
+
+    \begin{align*}
+        \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i,
+    \end{align*}
+    
+    is denoted $\hvv \cdot \hww$ and is called the \textit{dot product of $\hvv$ and $\hww$}. 
+\end{defn}
+
+With this new definition, the formula for angle in $\R^2$ suddenly has a new, more compact form.
+
+\begin{theorem}
+    (Angle formula in $\R^2$).
+
+    \begin{align*}
+        \theta(\vv, \ww) = \arccos(\hvv \cdot \hww) \text{ for all $\vv, \ww \in \R^2$}.
+    \end{align*}
+\end{theorem}
+
+The formula from the previous definition can also be used to define a dot product of non-unit vectors.
+
+\begin{defn}
+    (The dot product in $\R^2$). 
+
+    The \textit{dot product $\vv \cdot \ww$ of $\vv, \ww \in \R^2$} is
+    
+    \begin{align*}
+        \vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i  ([\ww]_\sE)_i.
+    \end{align*}    
+\end{defn}
+
+\begin{theorem}
+    (Length in $\R^2$ in terms of dot product in $\R^2$).
+
+    \begin{align*}
+        ||\vv|| = \sqrt{\vv \cdot \vv} \text{ for all $\vv \in \R^2$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    We have $\vv \cdot \vv = ([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2$. Take the square root of of both sides to obtain the result.
+\end{proof}
+
+\begin{theorem}
+    (The dot product in $\R^2$ is bilinear).
+
+    The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
+\end{theorem}
+
+\begin{proof}
+    The dot product in $\R^2$ is symmetric, so it suffices to show that it is linear in either argument; it suffices to show that $\vv \mapsto \vv \cdot \ww$ is a linear function. That is, it suffices to show that for all $\vv_1, \vv_2, \ww \in \R^2$ we have $(\vv_1 + \vv_2) \cdot \ww = \vv_1 \cdot \ww + \vv_2 \cdot \ww$ and for all $\vv, \ww \in \R^2$ and $c \in \R$ we have $(c\vv) \cdot \ww = c(\vv \cdot \ww)$.
+    
+    Note that because $[\cdot]_\sE$ is linear we have $([\vv_1 + \vv_2]_\sE)_i = ([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i$ and $([c\vv]_\sE)_i = c([\vv]_\sE)_i$ for all $i$. Using this fact, we see
+
+    \begin{align*}
+        (\vv_1 + \vv_2) \cdot \ww
+        &= \sum_{i = 1}^2 ([\vv_1 + \vv_2]_\sE)_i ([\ww]_\sE)_i
+        = \sum_{i = 1}^2 \Big(([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i\Big) ([\ww]_\sE)_i \\
+        &= \sum_{i = 1}^2 \Big( ([\vv_1]_\sE)_i ([\ww]_\sE)_i + ([\vv_2]_\sE)_i ([\ww]_\sE)_i \Big)
+        = \sum_{i = 1}^2 ([\vv_1]_\sE)_i ([\ww]_\sE)_i + \sum_{i = 1}^2 ([\vv_2]_\sE)_i ([\ww]_\sE)_i \\
+        &= \vv_1 \cdot \ww + \vv_2 \cdot \ww
+    \end{align*}
+
+    and
+
+    \begin{align*}
+        (c\vv) \cdot \ww
+        = \sum_{i = 1}^2 ([c\vv]_\sE)_i ([\ww]_\sE)_i
+        = \sum_{i = 1}^2 c([\vv]_\sE)_i ([\ww]_\sE)_i
+        = c \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
+        = c(\vv \cdot \ww),
+    \end{align*}
+
+    as claimed.    
+\end{proof}
+
+With this expanded definition of the dot product, it's possible to express the dot product of $\vv$ and $\ww$ in terms of the angle between $\vv$ and $\ww$.
+
+\begin{theorem}
+    (Dot product in $\R^2$ in terms of angle in $\R^2$).
+
+    \begin{align*}
+        \vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww)) \text{ for all $\vv, \ww \in \R^2$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    From the previous theorem, we have $\theta(\vv, \ww) = \arccos\Big( \frac{\vv}{||\vv||} \cdot \frac{\ww}{||\ww||} \Big)$. Since the dot product is bilinear, we have $\frac{\vv}{||\vv||} \cdot \frac{\ww}{||\ww||} = \frac{1}{||\vv||}\Big(\vv \cdot \frac{\ww}{||\ww||}\Big) = \frac{1}{||\vv||\spc||\ww||}(\vv \cdot \ww) = \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||}$. Thus $\theta(\vv, \ww) = \arccos\Big(\frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||}\Big)$. Take $\cos$ of both sides and then multiply both sides by $||\vv|| \spc ||\ww||$ to obtain the result.
+\end{proof}
+
+\begin{remark}
+    (The dot product of perpendicular vectors in $\R^2$ is zero).
+
+    It follows immediately from the previous theorem that $\vv, \ww \in \R^2$ are perpendicular iff $\vv \cdot \ww = 0$.
+\end{remark}
+
+At this point, we've seen that the ``algebraic'' characterization of the dot product, $\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i$, and the ``geometric'' characterization of the dot product, $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww))$, are true (with the algebraic characterization being true by definition), but don't yet understand their connection. We now discover how each characterization follows from the other.
 
 \newpage
 
-\subsubsection*{The dot product in $\R^2$}
+\subsection*{Prerequisites for understanding the dot product}
 
-Now that we have a notion of perpendicularity between vectors in $\R^2$, we can define the notion of vector projection, which is the main idea involved in the dot product.
+\subsubsection*{Vector projection}
+
+\begin{lemma}
+    (Orthogonal basis of $\R^2$).
+
+    Let $\vv \in \R^2$. If $\vv_\perp$ is perpendicular to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis of $\R^2$.
+\end{lemma}
+
+\begin{proof}
+    Recall from Lemma \ref{ch::lin_alg::lemma::n_lin_indep_vectors_span_n_dim_space} that $n$ linearly independent vectors taken from the same $n$-dimensional vector space span that vector space. Since $\dim(\R^2) = 2$, it suffices to show that $\vv, \vv_\perp$ are linearly independent.
+
+    Suppose for contradiction that $\vv, \vv_\perp$ are linearly dependent. Then there exist $c, d \in \R$ not both zero such that $c\vv + d\vv_\perp = \mathbf{0}$. Assume without loss of generality that $c \neq 0$. Then we can divide by $c$, and we have $\vv = -\frac{d}{c}\vv_\perp$. Taking the dot product of each side with $\vv$, we obtain $\vv \cdot \vv = -\frac{d}{c}\vv_\perp \cdot \vv$. Since $\vv$ and $\vv_\perp$ are perpendicular, we have $\vv_\perp \cdot \vv = 0$ and thus $\vv \cdot \vv = 0$, so $\vv$ is perpendicular to itself. Since $\vv$ was arbitrary, this shows that every vector in $\R^2$ is perpendicular to itself. This is clearly not true; contradiction.
+\end{proof}
 
 \begin{defn}
 \label{ch::lin_alg::defn::vector_proj}
@@ -2638,32 +2739,141 @@ Now that we have a notion of perpendicularity between vectors in $\R^2$, we can 
     (1) follows from the definition of $\proj(\vv \rightarrow \ww)$. (2) is obtained by taking the magnitude of each side of (1).
 \end{proof}
 
-\begin{defn}
-    (Dot product in $\R^2$).
-    
-    The \textit{dot product in $\R^2$} is the function $\cdot:\R^2 \times \R^2 \rightarrow \R$ defined by
-    
-    \begin{align*}
-        \vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww||.
-    \end{align*}
-    
-    Why do we care about the dot product? The primary reason is that when $||\ww|| = 1$, we have ${\vv \cdot \ww = \sproj(\vv \rightarrow \ww)}$, so investigating the dot product can tell us more about vector projections\footnote{We will indeed find that the dot product tells us something about projections in Theorem \ref{ch::lin_alg::thm::vector_proj_dot_product}!}. Another reason is that in physics, the \textit{work} done by a force $\FF$ along a displacement $\Delta \xx$ is defined to be the product of the magnitude of the force that ``aligns'' with the displacement with the magnitude of the displacement\footnote{A negative sign occurs when the force opposes the displacement.}; i.e., work is defined to be $\FF \cdot \Delta \xx$.
-\end{defn}
-
-Before moving on to more important business, we quickly note the following fact relating the dot product and the length of a vector.
+\subsubsection*{Orthogonal linear functions}
 
 \begin{theorem}
-\label{ch::lin_alg::thm::length_in_Rn}
-    (Length in $\R^2$ in terms of dot product).
+\label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
+    (Preserved quantities and linear functions).
     
-    For any $\vv \in \R^2$, we have $||\vv|| = \sqrt{\vv \cdot \vv}$.
+    If $\ff:\R^2 \rightarrow \R^2$ is a linear function, then the following statements are equivalent:
+
+    \begin{enumerate}
+        \item ($\ff$ preserves length). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$.
+        \item ($\ff$ preserves dot product). $\vv \cdot \ww = \ff(\vv) \cdot \ff(\ww)$ for all $\vv, \ww \in \R^2$.
+        \item ($\ff$ preserves length and angle). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$ and $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-   $\vv \cdot \vv = \sproj(\vv \rightarrow \vv) \spc ||\vv|| = ||\vv||^2$, so $\sqrt{\vv \cdot \vv} = ||\vv||$.
+    \mbox{} \\
+    \begin{itemize}
+        \item ((1) $\implies$ (2)). Suppose $\ff$ preserves length. If we showed that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$ (on lengths), it would follow that $\ff$ preserves dot product. This is what we will do.
+
+        We need to show that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv + \ww||^2 = (\vv + \ww) \cdot (\vv + \ww) = \vv \cdot \vv + 2 \vv \cdot \ww + \ww \cdot \ww = ||\vv||^2 + 2 \vv \cdot \ww + ||\ww||^2$. Solve for $\vv \cdot \ww$ to see that $\vv \cdot \ww$ does indeed depend on $||\vv||$ and $||\ww||$:
+        
+       \begin{align*}
+            \vv \cdot \ww = \frac{1}{2}\Big(||\vv + \ww||^2 - (||\vv||^2 + ||\ww||^2) \Big).
+        \end{align*}
+        
+        ((1) $\impliedby$ (2)). If $\ff$ preserves dot product, then $||\ff(\vv)|| = \sqrt{\ff(\vv) \cdot \ff(\vv)} = \sqrt{\vv \cdot \vv} = ||\vv||$, so $\ff$ preserves length.
+        
+        \item \mbox{} \\
+        ((2) $\implies$ (3)). If $\ff$ preserves length, then, since angle is a function of quantities that are preserved by $\ff$ (dot product and length), $\theta(\vv, \ww) = \arccos\Big( \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||} \Big)$, it too is preserved by $\ff$. \\
+        
+        ((2) $\impliedby$ (3)). Suppose $\ff$ preserves angle: $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$. Then $\ff(\vv) \cdot \ff(\ww) = ||\ff(\vv)|| \spc ||\ff(\ww)|| \cos(\theta(\ff(\vv), \ff(\ww)))$
+    \end{itemize}
 \end{proof}
 
-Now, we set out to show that the dot product is a bilinear function. We do so by appealing to the fact that the dot product involves vector projection. 
+\begin{defn}
+\label{ch::lin_alg::defn::orthogonal_linear_fn_Rn}
+    (Orthogonal linear function).
+    
+    We say that a linear function $\ff:\R^n \rightarrow \R^n$ is \textit{orthogonal} iff it preserves dot product.
+\end{defn}
+
+\begin{remark}
+    (Orthogonal linear function).
+    
+    ``Orthogonal linear function'' is a somewhat misleading name. It's true that certain facts about orthogonal linear functions involve orthogonal \textit{vectors}, but orthogonal linear functions aren't ``perpendicular'' to other orthogonal linear functions in some sense.
+\end{remark}
+
+\subsubsection*{Rotation}
+
+\begin{defn}
+    (Rotation in $\R^2$).
+
+    We define the \textit{rotation $\RR_\theta$ by $\theta \in [0, 2\pi)$} to be the linear function $\RR_\theta:\R^2 \rightarrow \R^2$ that sends $\see_1$ to $(\cos(\theta), \sin(\theta))^\top$ and $\see_2$ to $(-\sin(\theta), \cos(\theta))$.
+\end{defn}
+
+Drawing a picture and using trigonometry confirms that this definition agrees with our intuition on rotation.
+
+\begin{theorem}
+    (Rotation in $\R^2$).
+
+    We have
+
+    \begin{align*}
+        \RR_\theta(\vv) =
+        \begin{pmatrix}
+            \cos(\theta) & -\sin(\theta) \\
+            \sin(\theta) & \cos(\theta)
+        \end{pmatrix}
+        \vv
+        \text{ for all $\vv \in \R^2$}.
+    \end{align*}
+\end{theorem}
+
+\begin{theorem}
+    (A rotation by $\phi$ changes angle by $\phi$). We have $\cos(\theta(\vv, \RR_\phi(\ww))) = \cos(\theta(\vv, \ww) + \phi)$ for all $\phi \in [0, 2\pi)$.
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(\theta) & -\sin(\theta) \\
+            \sin(\theta) & \cos(\theta)
+        \end{pmatrix}
+    \end{align*}
+\end{proof}
+
+\begin{proof}
+    Let $\cc$ and $\widetilde{\cc}$ be the parameterizations of the circle of radius $r$ with center $\mathbf{0}$ from Definition \ref{ch::lin_alg::defn::angle_in_R2}.
+    
+    We have
+
+    \begin{align*}
+        \theta(\vv, \RR_s(\ww)) =
+        \frac{\min(s(\cc, \vv, \RR_\phi(\ww)), s(\widetilde{\cc}, \vv, \RR_\phi(\ww)))}{r}
+        =
+        \begin{cases}
+            \theta(\vv, \ww) + \phi & \theta(\vv, \ww) + \phi \leq \pi \\
+            2\pi - (\theta(\vv, \ww) + \phi) & \theta(\vv, \ww) + \phi > \pi
+        \end{cases}.
+    \end{align*}
+
+    Take $\cos$ of both sides to obtain the result.
+\end{proof}
+
+\begin{theorem}
+    Rotations in $\R^2$ are orthogonal linear functions.
+\end{theorem}
+
+\begin{proof}
+    It suffices to show that rotations preserve length. So, for $\vv \in \R^2$, consider $||\vv||$ and $||\RR_\theta(\vv)||$. 
+    
+    We have $\RR_\phi(\vv) = \RR_\phi(||\vv|| \hvv) = ||\vv|| \RR_\phi(\hvv)$. Since ${\hvv = (\cos(\theta), \sin(\theta))^\top}$ for some $\theta \in [0, 2\pi)$, ...
+\end{proof}
+
+\begin{theorem}
+    $\RR_\theta(\hvv) = \widehat{\RR_\theta(\vv)}$
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{lemma}
+    \label{ch::lin_alg::lemma::rotated_projection}
+    (Rotated projection is projection of rotated vectors). 
+    
+    Let $\vv, \ww \in \R^2$. For any $\theta \in [0, 2\pi)$, we have $\RR_\theta(\proj(\vv \rightarrow \ww) = \proj(\RR_\theta(\vv) \rightarrow \RR_\theta(\ww))$.
+\end{lemma}
+
+\begin{proof}
+    We have $\vv = v_{||} \hvv + v_\perp \hvv_\perp$, so $\RR_\theta(\vv) = v_{||} \ff(\hvv) + v_\perp \RR_\theta \hvv_\perp$. The claim follows if we show (1) that $\RR_\theta(\hww) = \widehat{\RR_\theta(\hww)}$ and (2) that $\RR_\theta(\hww_\perp) = \widehat{\RR_\theta(\ww)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\ww$ to $\ww_\perp$, because rotations commute with each other, and because rotations are length-preserving.
+\end{proof}
+
+\subsection*{Geometric characterization $\implies$ algebraic characterization}
 
 \begin{lemma}
     (Signed projection onto a vector in $\R^2$ is a linear function).
@@ -2730,7 +2940,7 @@ Knowing that the dot product is bilinear allows us to derive an alternate ``alge
 \begin{deriv}
     (Algebraic dot product in $\R^2$). 
     
-    We can now derive an ``algebraic'' formula for the dot product, using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
+    We can now derive the algebraic characterization of the dot product by using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
     
     We will make use of the following general fact about bilinear functions\footnote{If $V_1, V_2$, and $W$ are vector spaces over a field $K$, then $\ff:V_1 \times V_2 \rightarrow W$ is a \textit{bilinear} function iff $\vv \mapsto \ff(\vv, \ww)$ and $\ww \mapsto \ff(\vv, \ww)$ are both linear functions.}. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
     
@@ -2758,148 +2968,139 @@ Knowing that the dot product is bilinear allows us to derive an alternate ``alge
     \end{align*}
 \end{deriv}
 
-We could have proved the following theorem immediately after defining $\vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww||$. The usefulness of this next theorem, however, wouldn't have been apparent until knowing that $\vv \cdot \ww = \sum_{i = 1}^n ([\vv]_\sE)_i ([\ww]_\sE)_i$.
+\subsection*{Algebraic characterization $\implies$ geometric characterization}
+
+\begin{deriv}
+    (Algebraic characterization $\implies$ geometric characterization).
+    
+    If
+
+    \begin{align*}
+        \vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
+    \end{align*}
+
+    then
+    
+    \begin{align*}
+        \vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww|| \text{ for all $\vv, \ww \in \R^2$}.
+    \end{align*}
+\end{deriv}
+
+\begin{proof}
+    Let $\vv, \ww \in \R^2$ and consider $\vv \cdot \ww$. We can\footnote{Use $\theta = \arccos(||\vv||)$.} choose $\theta \in [0, 2\pi)$ so that $\RR_\theta(\hvv) = \see_1$, i.e., so that $\RR_\theta(\vv) = ||\vv||\see_1$. With this choice of $\theta$, we have
+    
+    \begin{align*}
+        \vv \cdot \ww 
+        = \RR_\theta(\vv) \cdot \RR_\theta(\ww) 
+        = ||\vv|| \see_1 \cdot \RR_\theta(\ww)
+        = 
+        \begin{pmatrix} ||\vv|| \\ 0 \end{pmatrix}
+        \cdot 
+        \begin{pmatrix} ([\RR_\theta(\ww)]_\sE)_1 \\ ([\RR_\theta(\ww)]_\sE)_2 \end{pmatrix} 
+        = 
+        ||\vv|| ([\RR_\theta(\ww)]_\sE)_1.
+    \end{align*}
+    
+    We have
+    
+    \begin{align*}
+        ([\RR_\theta(\ww)]_\sE)_1
+        &= \proj(\RR_\theta(\ww) \rightarrow \see_1) 
+        = \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\hvv))
+        = \proj(\RR_\theta(\ww) \rightarrow \widehat{\RR_\theta(\vv)}) \\
+        &= \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\vv)) 
+        = \proj(\ww \rightarrow \vv),
+    \end{align*}
+    
+    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv \cdot \ww = ||\proj(\ww \rightarrow \vv)|| \spc ||\vv||$. Since the dot product is symmetric, we can swap $\vv$ and $\ww$; this gives the desired result.
+\end{proof}
+
+\subsection*{Length and angle in $\R^n$}
+
+The algebraic characterization of the dot product in $\R^2$ generalizes straightforwardly to $\R^n$.
+
+\begin{defn}
+    (Dot product in $\R^n$).
+
+    We define the \textit{dot product of $\vv, \ww \in \R^n$} to be
+
+    \begin{align*}
+        \vv \cdot \ww = \sum_{i = 1}^n ([\vv]_\sE)_i ([\ww]_\sE)_i.
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+    (Length in $\R^n$).
+
+    For all $\vv \in \R^n$ we have $||\vv|| = \sqrt{\vv \cdot \vv}$.
+\end{theorem}
+
+\begin{proof}
+    We have $\vv \cdot \vv = \sum_{i = 1}^n ([\vv]_\sE)_i^2$. Take the square root of both sides to obtain the result.
+\end{proof}
+
+In $\R^2$, we were able to derive that $\theta(\vv, \ww) = \arccos(\hvv \cdot \hww)$. This result inspires our definition of angle in $\R^n$.
+
+\begin{defn}
+    (Angle in $\R^n$). 
+    
+    We define the \textit{angle between $\vv, \ww \in \R^n$} to be
+
+    \begin{align*}
+        \theta(\vv, \ww) := \arccos(\hvv \cdot \hww).
+    \end{align*}
+\end{defn}
+
+\subsubsection*{Vector projection in terms of dot produt}
+
+In the case of $n = 2$, we could have proved the following theorem immediately after defining $\vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww||$ for $\vv, \ww \in \R^2$ in Definition [...]. The usefulness of this next theorem, however, wouldn't have been apparent until knowing that $\vv \cdot \ww = \sum_{i = 1}^n ([\vv]_\sE)_i ([\ww]_\sE)_i$.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::vector_proj_dot_product}
-    (Vector projection  in $\R^2$ in terms of dot product in $\R^2$).
+    (Vector projection in $\R^n$ terms of dot product in $\R^n$).
     
-    If $\vv, \ww \in \R^2$, then
+    If $\vv, \ww \in \R^n$, then
     
     \begin{align*}
         \boxed
         {
-            \proj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||} \hat{\vv}_2 = \frac{\vv \cdot \ww}{\ww \cdot \ww} \ww
+            \proj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||} \hww = \frac{\vv \cdot \ww}{\ww \cdot \ww} \ww
         }
     \end{align*}
     
-    If we didn't know the algebraic formula for the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic dot product allows for easy computation of the expressions $\vv \cdot \ww$ and $\ww \cdot \ww$ whenever we know the coordinates of $\vv$ and $\ww$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv$ and $\ww$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^2$.
+    In the case $n = 2$, if we didn't know the algebraic characterization of the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic characterization of the dot product allows for easy computation of the expressions $\vv \cdot \ww$ and $\ww \cdot \ww$ whenever we know the coordinates of $\vv$ and $\ww$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv$ and $\ww$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^2$.
 \end{theorem}
 
 \begin{proof}
    Since $\vv \cdot \ww = \sproj(\vv \rightarrow \ww) \spc ||\ww||$, then $\sproj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||}$, and, by the first fact of Theorem \ref{ch::lin_alg::thm::vector_proj_Signed_magnitude}, $\proj(\vv \rightarrow \ww) = \sproj(\vv \rightarrow \ww) \hww = \frac{\vv \cdot \ww}{||\ww||} \hww$.
 \end{proof}
 
-\begin{theorem}
-\label{ch::lin_alg::thm::dot_prod_and_angle}
-    (Unsigned angle between vectors in $\R^2$ and dot product in $\R^2$).
-    
-    Before we discovered the algebraic dot product, Theorem \ref{ch::lin_alg::thm::unsigned_angle_Rn} showed 
-    
-    \begin{align*}
-        \theta = \text{arccos}\Big(\sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i\Big),
-    \end{align*}
-    
-    as a consequence of the definition $\theta := \frac{s}{r}$. Now that we know about the algebraic dot product, we can say that the signed angle $\theta$ between $\vv, \ww \in \R^n$ is
-    
-    \begin{align*}
-        \theta = \text{arccos}(\hat{\vv}_1 \cdot \hat{\vv}_2)
-    \end{align*}
-    
-    Notably, since $\hat{\vv}_i = \frac{\vv_i}{||\vv_i||}$, the above implies that
-    
-    \begin{align*}
-        \vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta).
-    \end{align*}
-\end{theorem}
+\subsubsection*{The law of cosines}
 
-Now that we have used the geometric definition of the dot product in $\R^2$ to derive an ``algebraic'' formula for the dot product in $\R^2$, we will show that one can start with the ``algebraic'' formula in $\R^2$ as a definition and discover the geometric formula in $\R^2$. We need the following definition and two lemmas before we can do this.
-
-\begin{defn}
-\label{ch::lin_alg::defn::orthogonal_linear_fn_Rn}
-    (Orthogonal linear function on $\R^2$).
-    
-    We say that a linear function $\ff:\R^n \rightarrow \R^n$ is \textit{orthogonal} iff it preserves length, i.e., iff $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^n$.
-    
-    (``Orthogonal linear function'' is a somewhat misleading name. It's true that certain facts about orthogonal linear functions involve orthogonal \textit{vectors}, but orthogonal linear functions aren't ``perpendicular'' to other orthogonal linear functions in some sense).
-\end{defn}
-
-\begin{lemma}
-\label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
-    (Orthogonal linear functions on $\R^n$ preserve algebraic dot product).
-    
-    Let $\ff:\R^n \rightarrow \R^n$ be an orthogonal linear function. Then $\ff$ preserves the algebraic dot product in $\R^n$: $\vv_1 \cdot \vv_2 = \ff(\vv_1) \cdot \ff(\vv_2)$.
-\end{lemma}
-
-\begin{proof}
-    By definition, orthogonal linear functions on $\R^n$ preserve length. Thus, if we showed that  $\vv_1 \cdot \vv_2$ depends on $||\vv_1||$ and $||\vv_2||$ (on lengths), it would follow that the algebraic dot product is preserved by orthogonal linear functions. This is what we will do.
-
-    We need to show that $\vv_1 \cdot \vv_2$ depends on $||\vv_1||$ and $||\vv_2||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv_1 + \vv_2||^2 = (\vv_1 + \vv_2) \cdot (\vv_1 + \vv_2) = \vv_1 \cdot \vv_1 + 2 \vv_1 \cdot \vv_2 + \vv_2 \cdot \vv_2 = ||\vv_1||^2 + 2 \vv_1 \cdot \vv_2 + ||\vv_2||^2$. Solve for $\vv_1 \cdot \vv_2$ to see that $\vv_1 \cdot \vv_2$ does indeed depend on $||\vv_1||$ and $||\vv_2||$:
-    
-   \begin{align*}
-        \vv_1 \cdot \vv_2 = \frac{1}{2}\Big(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2) \Big).
-    \end{align*}
-\end{proof}
-
-\begin{lemma}
-    \label{ch::lin_alg::lemma::rotated_projection_length}
-        (Rotated projection is projection of rotated vectors). 
-        
-        Let $\vv_1, \vv_2 \in \R^n$. If $\ff$ is a rotation\footnote{See Definition \ref{ch::exterior_pwrs::defn::n-rotation} in Chapter \ref{ch::exterior_pwrs} to see what it means for a function to be an \textit{$n$-rotation}. All we need to know for the purposes of the dot product is that all $n$-rotations are length-preserving.}, then $||\ff(\proj(\vv_1 \rightarrow \vv_2)|| = ||\proj(\ff(\vv_1) \rightarrow \ff(\vv_2))||$.
-    \end{lemma}
-    
-    \begin{proof}
-        We have $\vv_1 = (v_1)_{||} \hat{\vv}_1 + (v_1)_\perp (\hat{\vv}_1)_\perp$, so $\ff(\vv_1) = (v_1)_{||} \ff(\hat{\vv}_2) + (v_1)_\perp \ff((\hat{\vv}_2)_\perp)$. The claim follows if we show (1) that $\ff(\hat{\vv}_2) = \widehat{\ff(\vv_2)}$ and (2) that $\ff((\hat{\vv}_2)_\perp) = \widehat{\ff(\vv_2)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\vv_2$ to $(\vv_2)_\perp$, because rotations commute with each other, and because rotations are length-preserving.
-    \end{proof}
-
-\begin{theorem}
-    (Algebraic dot product formula implies geometric dot product formula).
-    
-    We've used the bilinearity of the geometrically defined dot product to derive the algebraic dot product formula; we've showed that defining $\cdot:\R^n \rightarrow \R^n$ by ${\vv_1 \cdot \vv_2 := ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||}$ implies ${\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i}$.
-    
-    We now show that we can do things the other way around: we can derive the geometric dot product formula from the algebraic dot product formula. More specifically, we will show that defining $\cdot:\R^n \rightarrow \R^n$ by ${\vv_1 \cdot \vv_2 = \sum_{i = 1}^n ([\vv_1]_\sE)_i ([\vv_2]_\sE)_i}$ implies that ${\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||}$.
-\end{theorem}
-
-\begin{proof}
-    Consider $\vv_1, \vv_2 \in \R^n$, and let $\ff$ be the rotation satisfying $\ff(\hat{\vv}_2) = \see_1$, that is, $\ff(\vv_2) = ||\vv_2||\see_1$.
-    
-    Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product} says that orthogonal linear functions on $\R^n$ preserve the algebraic dot product, so
-    
-    \begin{align*}
-        \vv_1 \cdot \vv_2 
-        = \ff(\vv_1) \cdot \ff(\vv_2) 
-        = \ff(\vv_1) \cdot ||\vv_2|| \see_1 
-        = \begin{pmatrix} ([\ff(\vv_1)]_\sE)_1 \\ \vdots \\ ([\ff(\vv_1)]_\sE)_n \end{pmatrix}
-        \cdot 
-        \begin{pmatrix} ||\vv_2|| \\ 0 \\ \vdots \\ 0 \end{pmatrix} 
-        = 
-        ([\ff(\vv_1)]_\sE)_1 ||\vv_2||.
-    \end{align*}
-    
-    We have
-    
-    \begin{align*}
-        ([\ff(\vv_1)]_\sE)_1
-        &= \proj(\ff(\vv_1) \rightarrow \see_1) 
-        = \proj(\ff(\vv_1) \rightarrow \ff(\hat{\vv}_2))
-        = \proj(\ff(\vv_1) \rightarrow \widehat{\ff(\vv_2)}) \\
-        &= \proj(\ff(\vv_1) \rightarrow \ff(\vv_2)) 
-        = \proj(\vv_1 \rightarrow \vv_2),
-    \end{align*}
-    
-    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv_1 \cdot \vv_2 = ||\proj(\vv_1 \rightarrow \vv_2)|| \spc ||\vv_2||$, which is the definition of the geometric dot product in $\R^n$.
-\end{proof}
-
-Most proofs of the above theorem use the law of cosines. I personally do not find the law of cosines intuitive, and believe it is best seen as a consequence of the equivalence between the geometric and algebraic dot product formulas. We prove the law of cosines in this way in the next theorem.
+The next theorem presents the law of cosines as it is best understood, which is as a consequence of the equivalence between the geometric and algebraic dot product formulas.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::law_of_cosines}
     (Law of cosines in $\R^n$). 
     
-    Consider vectors $\vv_1, \vv_2 \in \R^n$. We can interpret $\vv_1, \vv_2$ and $\vv_1 - \vv_2$ as the oriented side lengths of a triangle; then, the angle $\theta$ between $\vv_2$ and $\vv_1$ is the angle opposite to the side $\vv_1 - \vv_2$.
+    We have
 
-    The ``law of cosines'' is the fact that $||\vv_1 - \vv_2||^2 = ||\vv_1||^2 + ||\vv_2||^2 - 2 ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$. Note that by using $\theta = 0$, we recover the Pythagorean theorem.
+    \begin{align*}
+        ||\vv - \ww||^2 = ||\vv||^2 + ||\ww||^2 - 2 ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww)).
+    \end{align*}
+    
+    Note that when $\theta(\vv, \ww) = 0$, we recover the Pythagorean theorem.
 \end{theorem}
 
 \begin{proof}
-   $||\vv_1 - \vv_2||^2 = (\vv_1 - \vv_2) \cdot (\vv_1 - \vv_2) = \vv_1 \cdot \vv_1 - 2 \vv_1 \cdot \vv_2 + \vv_2 \cdot \vv_2 = ||\vv_1||^2 + ||\vv_2||^2 - 2 ||\vv_1|| \spc ||\vv_2|| \cos(\theta)$.
+    We have $||\vv - \ww||^2 = (\vv - \ww) \cdot (\vv - \ww) = \vv \cdot \vv - 2 \vv \cdot \ww + \ww \cdot \ww = ||\vv||^2 + ||\ww||^2 - 2 ||\vv|| \spc ||\ww|| \cos(\theta)$.
 \end{proof}
 
 \newpage
 
-\section*{Inner product spaces}
+\subsection*{Inner product spaces}
 
-This section generalizes the notion of the dot product, which is only applicable to the vector space $K^n$ for $K$ a field, to general vector spaces.
+This section generalizes the notion of the dot product, which we only know to be applicable to $\R^n$, to general vector spaces.
 
 \begin{defn}
     \label{ch::lin_alg::defn::inner_product}
@@ -3011,3 +3212,91 @@ This section generalizes the notion of the dot product, which is only applicable
     The above theorem reveals that the algebraic dot product (in $\R^2) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
 \end{remark}
 
+\section{Eigenvectors and eigenvalues}
+
+[This section not required for rest of book]
+
+\begin{defn}
+    (Eigenvectors and eigenvalues of a linear function).
+    
+    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is said to be an \textit{eigenvector (of $\ff$)} iff there is a scalar $c \in K$ such that $\ff(\vv) = c \vv$. Iff $\vv$ is indeed an eigenvector of $\ff$, then the $c \in K$ for which $\ff(\vv) = c \vv$ is said to be the \textit{eigenvalue corresponding to $\vv$}.
+    
+    In other words, the eigenvectors of a linear function are the vectors that get sent to scalar multiples of themselves by the function, and the eigenvalues corresponding to those eigenvectors are the scalars involved in said scalar multiples.
+\end{defn}
+
+\begin{remark}
+    (``Characteristic vectors'').
+    
+    The word ``eigen'' within ``eigenvector'' is German. Back when eigenvectors were first defined, English-speaking mathematicians called them ``characteristic vectors''. This terminology is not used today, but is helpful to keep it in mind, as we will see that, in some cases, a linear function is completely specified if its eigenvectors and corresponding eigenvalues are known.
+\end{remark}
+
+\begin{theorem}
+    Let $V$ be a vector space. A linear function $\ff:V \rightarrow V$ is invertible iff $\mathbf{0}$ is the only eigenvector of $\ff$ whose eigenvalue is $0$.
+\end{theorem}
+
+\begin{proof}
+   Consider the contrapositive. Some nonzero eigenvector $\vv$ has $0$ as its eigenvalue iff $\ff$ has a nontrivial kernel, which is equivalent to $\ff$ not being invertible.
+\end{proof}
+
+\begin{remark}
+    (Eigenvectors, eigenvalues, and zero).
+    
+    According to the above definition, $\mathbf{0}$ is an eigenvector of every linear function, with its corresponding eigenvalue being $0$. 
+    
+    Some authors explicitly disallow $\mathbf{0}$ from being an eigenvector of any linear function (and thus disallow $0$ from being an eigenvalue of any linear function) in their definition of ``eigenvector'' so that the condition ``$\mathbf{0}$ is the only eigenvector of $\ff$ whose eigenvalue is $0$'' is equivalent to the condition ``$0$ is not an eigenvalue of $\ff$''. The later is easier to say than the former. This convention is a bit too contrived, though, so we will not use it.
+\end{remark}
+
+\begin{theorem}
+    (Intuition for an invertibility condition).
+    
+    [intuition on what a determinant is]
+    
+    $\ff$ is not invertible iff for any basis $E$ of $V$, the set $\ff(E)$ is linearly dependent
+
+    [$n$-dimensional volume spanned by a linearly dependent set is $0$]
+\end{theorem}
+
+\begin{deriv}
+    (Characterization of eigenvectors and eigenvalues).
+
+    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be linear function. In this derivation, we will discover a characterization of the eigenvectors and eigenvalues of $\ff$.
+    
+    Suppose $\vv \in V$ is an eigenvector of $\ff$. Then
+    
+    \begin{align*}
+        &\exists c \in K \st \ff(\vv) = c \vv \\
+        \iff &\exists c \in K \st \ff(\vv) - c \vv = \mathbf{0} \\
+        \iff &\exists c \in K \st \ff(\vv) - c\II(\vv) = \mathbf{0}, \text{ where $\II$ is the identity on $V$} \\
+        \iff &\exists c \in K \st (\ff - c\II)(\vv) = \mathbf{0} \\
+        \iff &\exists c \in K \st \vv \in \ker(\ff - c\II).
+    \end{align*}
+
+    [use $\II_V$?]
+    
+    (In the last line of the above, $\ff - c\II$ is the linear function defined by $(\ff - c\II)(\vv) = \ff(\vv) - c\II(\vv)$).
+    
+    In all, we see that $\vv$ is an eigenvector of $\ff$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
+    
+    An argument analogous to the one above shows that $c$ is a nonzero eigenvalue of $\ff$ iff ${\exists \vv \neq \mathbf{0} 
+    \spc \vv \in \ker(\ff - c \II)}$, i.e., iff $\ker(\ff - c\II) \neq \{\mathbf{0}\}$. Since $\ker(\ff - c\II) \neq \{\mathbf{0}\}$ iff $\det(\ff - c\II) = 0$ (see the previous theorem), we have in all that $c$ is a nonzero eigenvalue of $\ff$ iff $\det(\ff - c \II) = 0$.
+    
+    So:
+    
+    \begin{align*}
+        \text{eigenvectors of $\ff$} &= \bigcup_{c \in K} \ker(\ff - c \II) \\
+        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+    \end{align*}
+    
+    We can get even more specific with our characterization of the eigenvectors of $\ff$. Notice that, in the above union, we need not include kernels that are just $\{\mathbf{0}\}$, since every kernel contains $\mathbf{0}$. An equivalent union consists of nontrivial kernels, i.e., of kernels of noninvertible linear functions, i.e., of kernels of linear functions with determinant $0$. This gives us the following:
+    
+    \begin{align*}
+        \text{eigenvectors of $\ff$} &=
+        \bigcup_{\substack{c \in K \\ c \spc : \spc \det(\ff - c \II) = 0}} \ker(\ff - c \II) = 
+        \bigcup_{\substack{c \in K \\ c \spc : \spc \text{$c$ is a nonzero eigenvalue of $\ff$}}} \ker(\ff - c \II)
+        \\
+        \quad
+        \\
+        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+    \end{align*}
+    
+\end{deriv}
