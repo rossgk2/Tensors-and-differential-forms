@@ -207,20 +207,26 @@ This theorem can be generalized to hold so that the matrices involved are from a
 \end{theorem}
 
 \begin{proof}
-    is there an invertible $\FF$ that sends $\sff_i \see_j^\top \mapsto \ff_i \ee_j^\top$?
-    
-    $[\vv]_F = [\EE]_F [\vv]_E$ and $[\vv]_E = \EE^{-1} \vv$, so $[\vv]_F = [\EE]_F \EE^{-1} \vv$
+    If we can find an invertible linear function $\GG:K^{m \times n} \rightarrow K^{m \times n}$ with $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top$, then since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), we will know that $\{\ff_i \ee_j^\top\}$ is a basis for $K^{m \times n}$.
 
-    $\FF(\MM^\top) = [\EE]_F \EE^{-1} \EE{-1} \MM^\top$
+    Since for all $\vv \in K^m$ and $\ww \in K^m$ we have $\vv = \EE [\vv]_E$ and $\ww = \FF [\ww]_F$ (recall Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}), then our $\GG$ must satisfy $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top = \FF [\ff_i]_F (\EE [\ee_j]_E)^\top = \FF [\ff_i]_F [\ee_j]_E^\top \EE^\top = \FF \sff_i \see_j^\top \EE^\top$. If we define $\GG(\MM) := \FF \MM \EE^\top$, then this criterion is satisfied.
+
+    We now show that this $\GG$ is invertible. Since $E$ and $F$ are bases, then Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors} implies $\EE^{-1}$ and $\FF^{-1}$ exist. This allows us to define $\HH(\NN) := \FF^{-1} \NN \EE^{-\top}
+
+    so if $(a_{ij}) = \sum a_{ij} \sff_i \see_j^\top$ then $\GG(a_{ij}) = \sum a_{ij} \ff_i \ee_j^\top$
 \end{proof}
 
 \begin{theorem}
-    Let $V$ and $W$ be finite-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then
+    Let $V$ and $W$ be finite-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then $\ff$ is a sum of rank-1 linear functions:
 
     \begin{align*}
-        \ff = \sum a_{ij} \sff_i
+        \ff = \sum a_{ij} \ff_i \circ \phi_{\ee_i}
     \end{align*}
 \end{theorem}
+
+\begin{proof}
+    
+\end{proof}
 
 \begin{theorem}
     Any linear function $V \rightarrow W$ is a linear combination of rank-1 linear functions $V \rightarrow W$.

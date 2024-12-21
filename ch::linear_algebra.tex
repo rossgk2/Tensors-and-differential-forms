@@ -945,7 +945,7 @@ The following theorem gives further geometric intuition for how linear functions
 
 \begin{theorem}
 \label{ch::lin_alg::thm::linear_fn_1-1_trivial_kernel}
-    (One-to-one linear functions have trivial kernels). 
+    (One-to-one linear functions are the linear functions that have trivial kernels). 
     
     Let $V$ and $W$ be vector spaces. A linear function $\ff:V \rightarrow W$ is one-to-one iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$. That is, a linear function is one-to-one iff it has a trivial kernel.
 \end{theorem}
@@ -965,7 +965,7 @@ The following theorem gives further geometric intuition for how linear functions
 \begin{theorem}
 \label{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}
 
-    (Only one-to-one linear functions preserve linear independence). 
+    (One-to-one linear functions are the linear functions that preserve linear independence). 
     
     Let $V$ and $W$ be finite-dimensional vector spaces. A linear function $\ff:V \rightarrow W$ preserves the linear independence of vectors iff it is one-to-one. That is, 
     
@@ -1048,21 +1048,32 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \begin{proof}
     We use the contrapositive to show that, assuming the hypotheses, $\ff$ is not one-to-one iff it is not onto.
     
-    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this condition is equivalent to $\dim(V) > \dim(\ff(V))$. Since we assumed $\dim(V) = \dim(W)$, this most recent condition is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y_1$ and $Y_2$ are subspaces of the same finite-dimensional vector space, then $\dim(Y_1) > \dim(Y_2)$ iff $Y_1 \supsetneq Y_2$. Using $Y_1 = W$ and $Y_2 = \ff(V)$, we can conclude that $W \supsetneq \ff(V)$. So, $\ff$ is not onto.
+    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this condition is equivalent to $\dim(V) > \dim(\ff(V))$. Since we assumed $\dim(V) = \dim(W)$, this most recent condition is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y_1$ and $Y_2$ are subspaces of the same finite-dimensional vector space, then $\dim(Y_1) > \dim(Y_2)$ iff $Y_1 \supsetneq Y_2$. Using $Y_1 = W$ and $Y_2 = \ff(V)$, we obtain the equivalent condition $W \supsetneq \ff(V)$. This is equivalent to $\ff$ not being onto.
 \end{proof}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::same_dim_iff_isomorphic}
-    (Finite-dimensional vector spaces have the same dimension iff they are isomorphic).
+    (Finite-dimensional vector spaces are isomorphic iff they have the same dimension).
     
     Let $V$ and $W$ be finite-dimensional vector spaces. Then there exists a linear isomorphism $V \rightarrow W$ iff $\dim(V) = \dim(W)$.
 \end{theorem}
 
 \begin{proof}
     \mbox{} \\ \indent
-    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then $\ff$ preserves linear independence of vectors. Therefore, if $E = \{\ee_1, ..., \ee_n\}$ is a basis of $n$ vectors for $V$ then $\{\ff(\ee_1), ..., \ff(\ee_n)\}$ is a basis of $n$ vectors for $W$. Thus $\dim(V) = \dim(W)$.
+    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then it has a trivial kernel. The main dimension theorem then implies that $\dim(W) = \dim(V) - \dim(\ff^{-1}(\mathbf{0})) = \dim(V) - 0 = \dim(V)$.
     
     ($\impliedby$). It suffices to show that every $n$-dimensional vector space is isomorphic to $K^n$. So, let $V$ be an $n$-dimensional vector space, and let $E$ be a basis for $V$. In Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis} we will define the linear function $[\cdot]_E:V \rightarrow K^n$; Theorem \ref{ch::lin_alg::thm::[]E_invertible} will show that $[\cdot]_E$ is a linear isomorphism.
+\end{proof}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::iso_bases_to_bases}
+    (Linear isomorphisms send bases to bases).
+
+    Let $V$ and $W$ be finite-dimensional vector spaces. If $E$ is a basis of $V$ and $\ff:V \rightarrow W$ is a linear isomorphism, then $\ff(E)$ is a basis for $W$.
+\end{theorem}
+
+\begin{proof}
+    Linear isomorphisms are one-to-one, so they preserve the linear independence of vectors. Thus $\ff(E)$ is a linearly independent set of $\dim(V)$ many vectors. Since $\ff$ is an isomorphism, then $\dim(V) = \dim(W)$, so $\ff(E)$ is a linearly independent set of $\dim(W)$ many vectors. Recall from Lemma \ref{ch::lin_alg::lemma::n_lin_indep_vectors_span_n_dim_space} that a linearly independent set of $n$ vectors from an $n$-dimensional vector space span that space. This makes $\ff(E)$ is a basis for $W$.
 \end{proof}
 
 \begin{defn}
@@ -1589,16 +1600,6 @@ First, we restate the earlier hasty definition of ``matrix''; in this definition
     We denote the identity matrix by $\II$ rather than by the more verbose notation $\II_{K^n}(\sE)$, and infer $n$ from context.
 \end{defn}
 
-This following topic of ``matrix transposes'' does not become significant until Chapter \ref{ch::bilinear_forms_metric_tensors}. We give the definition anyhow because matrix transposes do appear occasionally before Chapter \ref{ch::bilinear_forms_metric_tensors}, even if not in a theoretically significant way.
-
-\begin{defn}
-    (Transpose of a matrix).
-
-    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$} is the $n \times m$ matrix whose $ij$ entry is the $ji$ entry of $\AA$: $\AA^\top := (a_{ji})$. 
-    
-    For any matrix $\AA$, the columns of $\AA^\top$ are the rows of $\AA$, and the rows of $\AA^\top$ are the columns of $\AA$.
-\end{defn}
-
 Now we return to the relationship between linear functions and matrices.
 
 \begin{theorem}
@@ -1732,15 +1733,13 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 \begin{defn}
     (Inverse matrix).
     
-    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff the function $\vv \mapsto \AA \vv$ is invertible. Immediately, we can note that because only same-dimension vector spaces can be linearly isomorphic, we must have $n = m$. That is, $\AA$ must be a \textit{square matrix} for it to be invertible.
-
-    If $\AA$ is invertible, then we use $\AA^{-1}$ to denote the standard matrix of the inverse of $\vv \mapsto \AA \vv$. In other words, if $\ff:K^n \rightarrow K^n$ is an invertible linear function, then $\ff(\sE)^{-1} := \ff^{-1}(\sE)$.
+    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff there exists a matrix $\AA^{-1}$ such that $\AA^{-1} \AA = \II = \AA \AA^{-1}$.
 \end{defn}
 
 \begin{theorem}
     (Inverse matrix).
 
-    Let $\AA$ be an invertible $n \times n$ matrix with entries in a field $K$.    Because the composition of $\vv \mapsto \AA \vv$ with its inverse is the identity on $K^n$, then $\AA^{-1} \AA$ and $\AA \AA^{-1}$ are both the standard matrices of the identity on $K^n$, and so $\AA \AA^{-1} = \II = \AA \AA^{-1}$. 
+    Let $\AA$ be an invertible $n \times n$ matrix with entries in a field $K$, and consider the linear function $\ff:K^n \rightarrow K^n$ defined by $\ff(\vv) = \AA \vv$. Because $\ff^{-1} \circ \ff = \II = \ff \circ \ff^{-1}$, it follows that $\AA^{-1}$ is equal to the standard matrix of $\ff^{-1}$. In other words, if $\ff:K^n \rightarrow K^n$ is an invertible linear function, then $\ff(\sE)^{-1} := \ff^{-1}(\sE)$.
 \end{theorem}
 
 \begin{theorem}
@@ -1784,12 +1783,61 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 \begin{remark}
     (Matrix pedagogy). 
     
-    Most linear algebra texts present the relationship between linear functions and matrices in the following way: first define matrices in the context of systems of linear equations (we have not seen how matrices are related to systems of linear equations), then define a linear function to be one for which $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c\vv) = c\ff(\vv)$ for all vectors $\vv, \ww$ and scalars $c$, and then prove that each linear function has a standard matrix. This is bad pedagogy; there should be no need to conjecture and prove that a matrix-vector product corresponds to the action of a linear function, because this fact is apparent from Derivation \ref{ch::lin_alg::deriv::standard_matrix}. (Furthermore, while systems of linear equations are an important application of linear algebra, and while their study does enhance our knowledge about the kernels of linear functions, they should not be the starting point).
+    Most linear algebra texts present the relationship between linear functions and matrices in the following way: first define matrices in the context of systems of linear equations (we have not seen how matrices are related to systems of linear equations), then define a linear function to be one for which $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c\vv) = c\ff(\vv)$ for all vectors $\vv, \ww$ and scalars $c$, and then prove that each linear function has a standard matrix. This is bad pedagogy; there should be no need to conjecture and prove that a matrix-vector product corresponds to the action of a linear function, because this fact is apparent from natural investigations (such as Derivation \ref{ch::lin_alg::deriv::standard_matrix}). (Furthermore, while systems of linear equations are an important application of linear algebra, and while their study does enhance our knowledge about the kernels of linear functions, they should not be the starting point).
     
     Oftentimes, linear algebra texts present the formula for the $i$th entry of a matrix-vector product and the formula for the $ij$ entry of a matrix-matrix product as facts that should be memorized rather than understood. Be wary of this! You \textit{should not} memorize these formulas. If you can't quite remember them, try to derive them by starting with the fact that linear functions on finite-dimensional vector spaces are determined by what they do to bases, and by following the derivations given in this book!
 \end{remark}
 
 \newpage
+
+\subsubsection{Matrix transposes}
+
+The topic of matrix tranposes does not become theoretically significant until Chapter \ref{ch::bilinear_forms_metric_tensors}. We present some surface-level details now, though, because they do appear occasionally before Chapter \ref{ch::bilinear_forms_metric_tensors}.
+
+\begin{defn}
+    (Transpose of a matrix).
+
+    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$. The \textit{transpose $\AA^\top$ of $\AA$} is the $n \times m$ matrix whose $ij$ entry is the $ji$ entry of $\AA$: $\AA^\top := (a_{ji})$. 
+    
+    We also use the notation $a_{ij}^\top$ to denote the $ij$ entry of $(a_{ij})^\top$.
+
+    For any matrix $\AA$, the columns of $\AA^\top$ are the rows of $\AA$, and the rows of $\AA^\top$ are the columns of $\AA$.
+\end{defn}
+
+\begin{theorem}
+    (Properties of the transpose).
+
+    \begin{enumerate}
+        \item $\II^\top = \II$.
+        \item $(\AA^\top)^\top = \AA$ for all matrices $\AA$.
+        \item $\AA \mapsto \AA^\top$ is linear for all matrices $\AA$.
+        \item $(\BB \AA)^\top = \AA^\top \BB^\top$ for all matrices $\AA, \BB$ compatible with each other for matrix multiplication.
+        \item $(\AA^{\top})^{-1} = (\AA^{-1})^\top$ for all invertible matrices $\AA$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\    
+    \begin{enumerate}
+        \item This is true because $\delta_{ij} = \delta_{ji}$.
+        \item $((a_{ij})^\top)^\top = (a_{ij}^\top)^\top = (a_{ji})^\top = (a_{ji}^\top) = (a_{ij})$.
+        \item We must show that $(\AA + \BB)^\top = \AA^\top + \BB^\top$ for all matrices $\AA$ and $\BB$ and that $(c\AA)^\top = c\AA^\top$ for all matrices $\AA$ and scalars $c$.
+
+        We have $((a_{ij}) + (b_{ij}))^\top = (a_{ij} + b_{ij})^\top = (a_{ji} + b_{ji}) = (a_{ji}) + (b_{ji}) = (a_{ij})^\top + (b_{ij})^\top$, so the first property holds.
+
+        We also have $(c(a_{ij}))^\top = (c a_{ij})^\top = (c a_{ji}) = c (a_{ji}) = c (a_{ij})^\top$, so the second property holds as well.
+        
+        \item $((b_{ij}) (a_{ij}))^\top = ( \sum_k b_{ik}a_{kj})^\top = (\sum_k b_{jk} a_{ki}) = (\sum_k a_{ik}^\top b_{kj}^\top) = (a_{ij}^\top) (b_{ij}^\top) = (a_{ij})^\top (b_{ij})^\top$.
+        
+        \item We need to show that $\AA^\top (\AA^{-1})^\top = \II$. By property (2), this equation is equivalent to $\AA^{-1} \AA = \II$, which is true.
+    \end{enumerate}
+\end{proof}
+
+\begin{defn}
+    (Inverse transpose).
+
+    Let $\AA$ be a matrix. Because the matrix inversion and transposition operations commute, it is unambiguous to define $\AA^{-\top} := (\AA^{\top})^{-1} = (\AA^{-1})^\top$.
+\end{defn}
 
 \subsection*{Matrices relative to bases}
 
@@ -1875,7 +1923,7 @@ We will now discover how when we have a finite-dimensional vector space with bas
     
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$. 
     
-    The characterizing property of matrices relative to $E$ and $F$ says that for any linear function $\ff:V \rightarrow V$, we have $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$. In particular, when $\ff$ is the identity $\II_V$ on $V$, we obtain
+    The characterizing property of matrices relative to $E$ and $F$ says that for any linear function $\ff:V \rightarrow V$, we have $[\ff(\vv)]_F = [\ff(E)]_F [\vv]_E$. In particular, when $\ff$ is the identity on $V$, we obtain
     
     \begin{align*}
         \boxed
@@ -1901,7 +1949,22 @@ The following is an important special case\footnote{Use the substitutions $E := 
     (Change of basis from standard basis for vectors).
     \label{ch::lin_alg::thm::basis_change_from_standard_vectors}
 
-    Let $K$ be a field, consider the vector space $K^n$, and let $E$ be a basis of $K^n$. By Lemma \ref{ch::lin_alg::lemma::basis_inverse}, the standard matrix $[\cdot]_E^{-1}(\sE)$ of $[\cdot]_E^{-1}$ is $[\cdot]_E^{-1}(\sE) = \EE$ and the standard matrix $[\cdot]_E(\sE)$ of $[\cdot]_E$ is $[\cdot]_E(\sE) = \EE^{-1}$. Thus,
+    Let $V$ be a vector space and let $E$ be a basis of $V$. Then from the definition of $[\cdot]_E$ (recall Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis}) it immediately follows that
+
+    \begin{align*}
+        \boxed
+        {
+            \vv = \EE [\vv]_E \text{ for all $\vv \in V$}
+        }
+    \end{align*}
+
+    When $V = K^n$, then the list $E$ becomes a matrix of column vectors $\EE$, and the standard matrices of $[\cdot]_E$ and $[\cdot]_E^{-1}$ exist. Using the result of Lemma \ref{ch::lin_alg::lemma::basis_inverse}, we see they are:
+
+    \begin{align*}
+        [\cdot]_E^{-1}(\sE) = \EE \text{ and } [\cdot]_E(\sE) = \EE^{-1}
+    \end{align*}
+
+    Importantly, we see that $\EE^{-1}$ exists. We can now use $\EE^{-1}$ to solve the equation $\vv = \EE[\vv]_E$ for $[\vv]_E$:
 
     \begin{align*}
         \boxed
@@ -1909,18 +1972,17 @@ The following is an important special case\footnote{Use the substitutions $E := 
             [\vv]_E = \EE^{-1} \vv \text{ for all $\vv \in K^n$}
         }
     \end{align*}
-    
 \end{theorem}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::I_EF}
-    ($(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$).
+    ($\II_{E,F}^{-1} = \II_{F,E}$).
     
-    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. The identity function $\II_V:V \rightarrow V$ on $V$ satisfies $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$. As a corollary, we have $[\EE]_F^{-1} = [\FF]_E$.
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. The identity function $\II:V \rightarrow V$ on $V$ satisfies $\II_{E,F}^{-1} = \II_{F,E}$. As a corollary, we have $[\EE]_F^{-1} = [\FF]_E$.
 \end{theorem}
 
 \begin{proof}
-    Since $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$, then $(\II_V)_{E,F} = [\cdot]_F \circ [\cdot]_E^{-1}$ and $(\II_V)_{F,E} = [\cdot]_E \circ [\cdot]_F^{-1}$. We clearly have $(\II_V)_{E,F}^{-1} = (\II_V)_{F,E}$.
+    Since $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$, then $\II_{E,F} = [\cdot]_F \circ [\cdot]_E^{-1}$ and $\II_{F,E} = [\cdot]_E \circ [\cdot]_F^{-1}$. We clearly have $\II_{E,F}^{-1} = \II_{F,E}$.
 \end{proof}
 
 \begin{theorem}
@@ -1946,7 +2008,7 @@ The following is an important special case\footnote{Use the substitutions $E := 
 
 \newpage
 
-\subsection*{Similar matrices}
+\subsection*{Matrix similarity}
 
 Not all linear algebra resources use the above notion of matrices relative to bases and instead investigate matrices of the form $\EE^{-1} \AA \EE$. The following theorem explains that such matrices arise as a special case of matrices relative to bases.
 
@@ -1967,11 +2029,20 @@ Not all linear algebra resources use the above notion of matrices relative to ba
 \end{proof}
 
 \begin{remark}
-    (Similar matrices).
+    (Matrix similarity).
 
     Most linear algebra texts do not define the matrix of a linear function $V \rightarrow W$ relative to bases $E$ and $F$, and only define ``the matrix of a linear function $\ff:V \rightarrow V$ relative to the basis $E$'' to be $\EE^{-1} \ff(\sE) \EE$.
 
-    In such texts, matrices $\AA$ and $\BB$ are called \textit{similar} iff there exists a matrix $\SS$ such that $\BB = \SS^{-1} \AA \SS$. This is an entirely reasonable definition. Unfortunately, though, many of these texts don't actually use that definition of similarity, and instead say: ``$\AA$ and $\BB$ are called \textit{similar} iff there exists a matrix $\SS$ such that $\BB = \SS \AA \SS^{-1}$''. Of course, since all matrices of the form $\SS^{-1} \AA \SS$ are also of the form $\SS \AA \SS^{-1}$, this later definition is equivalent to the former one. But it makes things more confusing, since the placement of the matrix inverse in the later definition is different than it is in the formula $[\ff(E)]_E = \EE^{-1} \ff(\sE) \EE$. This could lead one to think that ``$[\ff(E)]_E = \EE \ff(E) \EE^{-1}$'', which is not true!
+    In such texts, one of two definitions of \textit{matrix similarity} is given:
+
+    \begin{enumerate}
+        \item Matrices $\AA$ and $\BB$ are \textit{similar} iff there exists a matrix $\EE$ such that $\BB = \EE^{-1} \AA \EE$.
+        \item Matrices $\AA$ and $\BB$ are \textit{similar} iff there exists a matrix $\EE$ such that $\BB = \EE \AA \EE^{-1}$.
+    \end{enumerate}
+    
+    The definitions are equivalent because matrices of the form $\EE^{-1} \AA \EE$ are also of the form $\EE \AA \EE^{-1}$.
+    
+    It is much better to use the first definition than the second one, though, since the placement of the matrix inverse in the second definition is different than it is in the formula $[\ff(E)]_E = \EE^{-1} \ff(\sE) \EE$. Using the second definition could lead one to think that ``$[\ff(E)]_E = \EE \ff(E) \EE^{-1}$'', which is not true!
 \end{remark}
 
 \newpage
@@ -3227,7 +3298,7 @@ This section generalizes the notion of the dot product, which we only know to be
 \begin{remark}
     (``Characteristic vectors'').
     
-    The word ``eigen'' within ``eigenvector'' is German. Back when eigenvectors were first defined, English-speaking mathematicians called them ``characteristic vectors''. This terminology is not used today, but is helpful to keep it in mind, as we will see that, in some cases, a linear function is completely specified if its eigenvectors and corresponding eigenvalues are known.
+    The word ``eigen'' within ``eigenvector'' is German. Back when eigenvectors were first defined, English-speaking mathematicians called them ``characteristic vectors''. This terminology is not used today, but is helpful to keep it in mind, as we will see that, in some cases, a linear function is completely specified if its ``characteristic vectors'' and corresponding ``characteristic values'' are known.
 \end{remark}
 
 \begin{theorem}
@@ -3243,7 +3314,7 @@ This section generalizes the notion of the dot product, which we only know to be
     
     According to the above definition, $\mathbf{0}$ is an eigenvector of every linear function, with its corresponding eigenvalue being $0$. 
     
-    Some authors explicitly disallow $\mathbf{0}$ from being an eigenvector of any linear function (and thus disallow $0$ from being an eigenvalue of any linear function) in their definition of ``eigenvector'' so that the condition ``$\mathbf{0}$ is the only eigenvector of $\ff$ whose eigenvalue is $0$'' is equivalent to the condition ``$0$ is not an eigenvalue of $\ff$''. The later is easier to say than the former. This convention is a bit too contrived, though, so we will not use it.
+    Some authors explicitly disallow $\mathbf{0}$ from being an eigenvector of any linear function in their definition of ``eigenvector'' so that the condition ``$\mathbf{0}$ is the only eigenvector of $\ff$ whose eigenvalue is $0$'' is equivalent to the condition ``$0$ is not an eigenvalue of $\ff$''. The later is easier to say than the former. This convention is a bit too contrived, though, so we will not use it.
 \end{remark}
 
 \begin{theorem}
@@ -3257,46 +3328,41 @@ This section generalizes the notion of the dot product, which we only know to be
 \end{theorem}
 
 \begin{deriv}
-    (Characterization of eigenvectors and eigenvalues).
+    (Eigenvectors).
 
-    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be linear function. In this derivation, we will discover a characterization of the eigenvectors and eigenvalues of $\ff$.
-    
-    Suppose $\vv \in V$ is an eigenvector of $\ff$. Then
-    
+     Let $V$ and $W$ be vector spaces over a field $K$ and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is an eigenvector of $\ff$ with eigenvalue $c$ iff
+
     \begin{align*}
-        &\exists c \in K \st \ff(\vv) = c \vv \\
-        \iff &\exists c \in K \st \ff(\vv) - c \vv = \mathbf{0} \\
-        \iff &\exists c \in K \st \ff(\vv) - c\II(\vv) = \mathbf{0}, \text{ where $\II$ is the identity on $V$} \\
-        \iff &\exists c \in K \st (\ff - c\II)(\vv) = \mathbf{0} \\
-        \iff &\exists c \in K \st \vv \in \ker(\ff - c\II).
+        &\quad \quad \quad \ff(\vv) = c \vv \\
+        &\iff \ff(\vv) - c \vv = \mathbf{0} \\
+        &\iff \ff(\vv) - c\II(\vv) = \mathbf{0} \\
+        &\iff (\ff - c\II)(\vv) = \mathbf{0} \\
+        &\iff \vv \in \ker(\ff - c\II).
     \end{align*}
 
-    [use $\II_V$?]
-    
-    (In the last line of the above, $\ff - c\II$ is the linear function defined by $(\ff - c\II)(\vv) = \ff(\vv) - c\II(\vv)$).
-    
-    In all, we see that $\vv$ is an eigenvector of $\ff$ iff $\exists c \in K \st \vv \in \ker(\ff - c \II)$. Thus the set of eigenvectors of $\ff$ is equal to $\bigcup_{c \in K} \ker(\ff - c \II)$.
-    
-    An argument analogous to the one above shows that $c$ is a nonzero eigenvalue of $\ff$ iff ${\exists \vv \neq \mathbf{0} 
-    \spc \vv \in \ker(\ff - c \II)}$, i.e., iff $\ker(\ff - c\II) \neq \{\mathbf{0}\}$. Since $\ker(\ff - c\II) \neq \{\mathbf{0}\}$ iff $\det(\ff - c\II) = 0$ (see the previous theorem), we have in all that $c$ is a nonzero eigenvalue of $\ff$ iff $\det(\ff - c \II) = 0$.
-    
-    So:
-    
+    Thus,
+
     \begin{align*}
-        \text{eigenvectors of $\ff$} &= \bigcup_{c \in K} \ker(\ff - c \II) \\
-        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+        \boxed
+        {
+            \text{$\vv$ is an eigenvector of $\ff$ with eigenvalue $c$ iff $\vv \in \ker(\ff - c\II)$}
+        }
     \end{align*}
+\end{proof}
+
+\begin{deriv}
+    (Eigenvalues).
+
+    Let $V$ and $W$ be vector spaces over a field $K$ and let $\ff:V \rightarrow W$ be a linear function.
     
-    We can get even more specific with our characterization of the eigenvectors of $\ff$. Notice that, in the above union, we need not include kernels that are just $\{\mathbf{0}\}$, since every kernel contains $\mathbf{0}$. An equivalent union consists of nontrivial kernels, i.e., of kernels of noninvertible linear functions, i.e., of kernels of linear functions with determinant $0$. This gives us the following:
-    
+    A scalar $c \in K$ is an eigenvalue of $\ff$ if and only if $\ker(\ff - c\II)$ is nonempty, which is the case if and only if $\ff - c\II$ is not invertible. This is equivalent to the condition $\det(\ff - c\II) = 0$. Thus,
+
     \begin{align*}
-        \text{eigenvectors of $\ff$} &=
-        \bigcup_{\substack{c \in K \\ c \spc : \spc \det(\ff - c \II) = 0}} \ker(\ff - c \II) = 
-        \bigcup_{\substack{c \in K \\ c \spc : \spc \text{$c$ is a nonzero eigenvalue of $\ff$}}} \ker(\ff - c \II)
-        \\
-        \quad
-        \\
-        \text{nonzero eigenvalues of $\ff$} &= \{ c \in K \mid \det(\ff - c \II) = 0 \}
+        \boxed
+        {
+            \text{$c$ is an eigenvalue of $\ff$ iff $\det(\ff - c\II) = 0$}
+        }
     \end{align*}
-    
 \end{deriv}
+
+\begin{}
