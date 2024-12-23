@@ -1862,6 +1862,8 @@ The topic of matrix tranposes does not become theoretically significant until Ch
     Let $\AA$ be a matrix. Because the matrix inversion and transposition operations commute, it is unambiguous to define $\AA^{-\top} := (\AA^{\top})^{-1} = (\AA^{-1})^\top$.
 \end{defn}
 
+\newpage
+
 \subsection*{Matrices relative to bases}
 
 We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
@@ -1935,57 +1937,7 @@ Notice that $E$ is not a matrix in the above lemma! It is a list of vectors that
     The standard matrix $\ff(\sE)$ of a linear function $\ff:K^n \rightarrow K^m$ is the matrix $\ff(\sE) = [\ff(\sE)]_\sE$ of $\ff:K^n \rightarrow K^m$ relative to the bases $\sE$ and $\sE$.
 \end{remark}
 
-\subsection*{Linear isomorphism between linear functions and matrices}
-
-We've alluded to the correspondence between linear functions and matrices several times. Now that we know of matrices relative to bases, we can formalize our knowledge of this relationship.
-
-\begin{theorem}
-    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism}
-    (Linear isomorphism between linear functions and matrices).
-    
-    Let $V, W$, and $Y$ be finite-dimensional vector spaces over a field $K$, with bases $E$, $F$, and $G$.
-
-    The function $\FF:\LLLL(V \rightarrow Y) \rightarrow K^{\dim(Y) \times \dim(V)}$ defined by $\FF(\ff) := [\ff(E)]_G$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$.
-
-    The inverse $\FF^{-1}:K^{\dim(Y) \times \dim(V)} \rightarrow \LLLL(V \rightarrow Y)$ is defined by $\FF^{-1}(\AA) = [\cdot]_F^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions with $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
-\end{theorem}
-
-\begin{proof}
-    We first prove the statements regarding $\FF$, and then prove the statements regarding the claimed inverse to $\FF$.
-    
-    Notice that $\FF = \QQ \circ \PP$, where ${\PP:\LLLL(V \rightarrow Y) \rightarrow \LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)})}$ is defined by $\PP(\ff) := \ff_{E,G}$ and where ${\QQ:\LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)}) \rightarrow K^{\dim(Y) \times \dim(V)}}$ is defined by $\QQ(\gg) := \gg(\sE)$. (We have $(\QQ \circ \PP)(\ff) = \QQ(\PP(\ff)) = \QQ(\ff_{E,G}) = \ff_{E,G}(\sE) = [\ff(E)]_G$). We need to show that $\FF$ is linear, that it is invertible, and that it satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$.
-
-    \begin{itemize}    
-        \item ($\FF$ is linear). It's easy to check that $\ff \mapsto \ff(E)$ is a linear function. Once we know this, then since $\ff \mapsto \ff(E)$ and $[\cdot]_F$ are both linear functions, we see $\ff \mapsto \FF(\ff) = [\ff(E)]_G$ is a composition of linear functions, and is thus linear.
-        
-        \item ($\FF$ is invertible). It suffices to show that $\PP$ and $\QQ$ are invertible.
-        
-        Since we have $\PP(\ff) = \ff_{E,G} = [\cdot]_G \circ \ff \circ [\cdot]_E^{-1}$, then $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$. Thus $\PP$ is invertible.
-        
-        Since $\QQ(\gg)$ is the standard matrix of $\gg$, we claim that $\QQ^{-1}(\AA)$ is the linear function obtained from the matrix $\AA$: we claim $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We have $\QQ^{-1}(\QQ(\gg)) = \QQ^{-1}(\gg(\sE)) = (\vv \mapsto \gg(\sE) \vv) = \gg$ and $\QQ(\QQ^{-1}(\AA)) = \QQ(\vv \mapsto \AA \vv) = (\vv \mapsto \AA \vv)(\sE) = \AA$, so $\QQ^{-1}$ is indeed defined by $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. Thus $\QQ$ is invertible too.
-        
-        \item ($\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$). We have $\FF(\gg \circ \ff) = (\QQ \circ \PP)(\gg \circ \ff) = \QQ(\PP(\gg \circ \ff)) = \QQ((\gg \circ \ff)_{E,G})$. Notice that $(\gg \circ \ff)_{E,G} = [\cdot]_G \circ \gg \circ \ff \circ [\cdot]_E^{-1} = ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}$. Thus $\QQ((\gg \circ \ff)_{E,G}) = \QQ(\gg_{F,G} \circ \ff_{E,F})$. Since $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ and $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, we can apply the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard} to conclude that the standard matrix of the composition is equal to the matrix-matrix product of the corresponding standard matrices; that is, $\QQ(\gg_{F,G} \circ \ff_{E,F}) = \gg_{F,G}(\sE) \ff_{E,F}(\sE) = [\gg(F)]_G [\ff(E)]_F$.
-    \end{itemize}
-
-    Now we prove the statements regarding the claimed inverse to $\FF$. We first derive the expression for $\FF^{-1}(\AA)$. Above, we saw that $\FF = \QQ \circ \PP$, where $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$ and $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We therefore have $\FF^{-1}(\AA) = (\PP^{-1} \circ \QQ^{-1})(\AA) = \PP^{-1}(\QQ^{-1}(\AA)) = \PP^{-1}(\vv \mapsto \AA \vv) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, as desired.
-
-    Lastly, we prove that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. We start with the proven fact $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
-    ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$. In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. This is the desired result.
-\end{proof}
-
-The following special case of the above theorem follows immediately.
-
-\begin{theorem}
-    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism_special_case}
-
-    (Special case of linear isomorphism between linear functions and matrices).
-    
-    Let $K$ be a field, and let $\sE$ be a basis for $K^n$ and $\sF$ be a basis for $K^m$.
-    
-    The function $\FF:\LLLL(K^n \rightarrow K^p) \rightarrow K^{p \times n}$ defined by $\FF(\ff) := \ff(\sE)$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = \gg(\sF) \ff(\sE)$ for all linear functions $\ff:K^n \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$.
-
-    The inverse $\FF^{-1}:K^{p \times n} \rightarrow \LLLL(K^n \rightarrow K^p)$ is defined by $\FF^{-1}(\AA) = (\vv \mapsto \AA \vv)$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff(\sE) = \AA$ and $\gg(\sE) = \BB$.
-\end{theorem}
+\newpage
 
 \subsection*{Vectors relative to bases}
 
@@ -2119,6 +2071,60 @@ Not all linear algebra resources use the above notion of matrices relative to ba
     
     It is much better to use the first definition than the second one, though, since the placement of the matrix inverse in the second definition is different than it is in the formula $[\ff(E)]_E = \EE^{-1} \ff(\sE) \EE$. Using the second definition could lead one to think that ``$[\ff(E)]_E = \EE \ff(E) \EE^{-1}$'', which is not true!
 \end{remark}
+
+\newpage
+
+\subsection*{Linear isomorphism between linear functions and matrices}
+
+We've alluded to the correspondence between linear functions and matrices several times. Now that we know of matrices relative to bases, we can formalize our knowledge of this relationship.
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism}
+    (Linear isomorphism between linear functions and matrices).
+    
+    Let $V, W$, and $Y$ be finite-dimensional vector spaces over a field $K$, with bases $E$, $F$, and $G$.
+
+    The function $\FF:\LLLL(V \rightarrow Y) \rightarrow K^{\dim(Y) \times \dim(V)}$ defined by $\FF(\ff) := [\ff(E)]_G$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$.
+
+    The inverse $\FF^{-1}:K^{\dim(Y) \times \dim(V)} \rightarrow \LLLL(V \rightarrow Y)$ is defined by $\FF^{-1}(\AA) = [\cdot]_F^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions with $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
+\end{theorem}
+
+\begin{proof}
+    We first prove the statements regarding $\FF$, and then prove the statements regarding the claimed inverse to $\FF$.
+    
+    Notice that $\FF = \QQ \circ \PP$, where ${\PP:\LLLL(V \rightarrow Y) \rightarrow \LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)})}$ is defined by $\PP(\ff) := \ff_{E,G}$ and where ${\QQ:\LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)}) \rightarrow K^{\dim(Y) \times \dim(V)}}$ is defined by $\QQ(\gg) := \gg(\sE)$. (We have $(\QQ \circ \PP)(\ff) = \QQ(\PP(\ff)) = \QQ(\ff_{E,G}) = \ff_{E,G}(\sE) = [\ff(E)]_G$). We need to show that $\FF$ is linear, that it is invertible, and that it satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$.
+
+    \begin{itemize}    
+        \item ($\FF$ is linear). It's easy to check that $\ff \mapsto \ff(E)$ is a linear function. Once we know this, then since $\ff \mapsto \ff(E)$ and $[\cdot]_G$ are both linear functions, we see $\ff \mapsto \FF(\ff) = [\ff(E)]_G$ is a composition of linear functions, and is thus linear.
+        
+        \item ($\FF$ is invertible). It suffices to show that $\PP$ and $\QQ$ are invertible.
+        
+        Since we have $\PP(\ff) = \ff_{E,G} = [\cdot]_G \circ \ff \circ [\cdot]_E^{-1}$, then $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$. Thus $\PP$ is invertible.
+        
+        Since $\QQ(\gg)$ is the standard matrix of $\gg$, we claim that $\QQ^{-1}(\AA)$ is the linear function obtained from the matrix $\AA$: we claim $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We have $\QQ^{-1}(\QQ(\gg)) = \QQ^{-1}(\gg(\sE)) = (\vv \mapsto \gg(\sE) \vv) = \gg$ and $\QQ(\QQ^{-1}(\AA)) = \QQ(\vv \mapsto \AA \vv) = (\vv \mapsto \AA \vv)(\sE) = \AA$, so $\QQ^{-1}$ is indeed defined by $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. Thus $\QQ$ is invertible too.
+        
+        \item ($\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$). We have $\FF(\gg \circ \ff) = (\QQ \circ \PP)(\gg \circ \ff) = \QQ(\PP(\gg \circ \ff)) = \QQ((\gg \circ \ff)_{E,G})$. Notice that $(\gg \circ \ff)_{E,G} = [\cdot]_G \circ \gg \circ \ff \circ [\cdot]_E^{-1} = ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}$. Thus $\QQ((\gg \circ \ff)_{E,G}) = \QQ(\gg_{F,G} \circ \ff_{E,F})$. Since $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ and $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, we can apply the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard} to conclude that the standard matrix of the composition is equal to the matrix-matrix product of the corresponding standard matrices; that is, $\QQ(\gg_{F,G} \circ \ff_{E,F}) = \gg_{F,G}(\sE) \ff_{E,F}(\sE) = [\gg(F)]_G [\ff(E)]_F$.
+    \end{itemize}
+
+    Now we prove the statements regarding the claimed inverse to $\FF$. We first derive the expression for $\FF^{-1}(\AA)$. Above, we saw that $\FF = \QQ \circ \PP$, where $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$ and $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We therefore have $\FF^{-1}(\AA) = (\PP^{-1} \circ \QQ^{-1})(\AA) = \PP^{-1}(\QQ^{-1}(\AA)) = \PP^{-1}(\vv \mapsto \AA \vv) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, as desired.
+
+    Lastly, we prove that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. We start with the proven fact $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
+    ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$. In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. This is the desired result.
+\end{proof}
+
+The following special case of the above theorem follows immediately.
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism_special_case}
+
+    (Special case of linear isomorphism between linear functions and matrices).
+    
+    Let $K$ be a field, and let $\sE$ be a basis for $K^n$ and $\sF$ be a basis for $K^m$.
+    
+    The function $\FF:\LLLL(K^n \rightarrow K^p) \rightarrow K^{p \times n}$ defined by $\FF(\ff) := \ff(\sE)$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = \gg(\sF) \ff(\sE)$ for all linear functions $\ff:K^n \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$.
+
+    The inverse $\FF^{-1}:K^{p \times n} \rightarrow \LLLL(K^n \rightarrow K^p)$ is defined by $\FF^{-1}(\AA) = (\vv \mapsto \AA \vv)$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff(\sE) = \AA$ and $\gg(\sE) = \BB$.
+\end{theorem}
 
 \newpage
 
