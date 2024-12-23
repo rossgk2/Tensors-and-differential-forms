@@ -616,7 +616,7 @@ Before our detour into the world of dual spaces, we derived Theorem \ref{ch::mot
 \label{ch::motivated_intro::defn::pq_tensor_coords}
     (Coordinates of a tensor).
 
-    Let $V$ be a finite-dimensional vector space over a field $K$ with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$, and let $T = V_1 \otimes ... \otimes V_k$ be a tensor space on $V$. The \textit{coordinates of a tensor $\TT \in T$ relative to $E$ and $E^*$} are the scalars indexed by $i_1, ..., i_k$ such that
+    Let $V$ be a finite-dimensional vector space over a field $K$ with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$, and let $T = V_1 \otimes ... \otimes V_k$ be a tensor space on $V$. The \textit{coordinates of a tensor $\TT \in T$ relative to $E$ and $E^*$} are the scalars in $K$ indexed by $i_1, ..., i_k$ such that
     
     \begin{itemize}
         \item $i_\ell$ is a superscript iff $V_\ell = V$ and $i_\ell$ is a subscript iff $V_\ell = V^*$.
@@ -650,11 +650,19 @@ Before our detour into the world of dual spaces, we derived Theorem \ref{ch::mot
     Let $V$ be a vector space. We define the vector space $T_{p,q}(V)$ of \textit{$(p, q)$ tensors on $V$} to be the tensor space on $V$ of type $^p{}_q$. That is, the vector space $T_{p,q}(V)$ of $(p, q)$ tensors on $V$ is defined to be $T_{p,q}(V) := V^{\otimes p} \otimes (V^*)^{\otimes q}$.
 \end{defn}
 
+Recall, the below theorem is what motivated our definition of tensors in the first place.
+
 \begin{theorem}
     ($(1, 1)$ tensors are naturally identified with linear functions).
     
     Since $T_{1,1}(V) = V \otimes V^*$ and $V \otimes V^* \cong \LLLL(V \rightarrow V)$ naturally, then $T_{1,1}(V) \cong \LLLL(V \rightarrow V)$ naturally. 
 \end{theorem}
+
+\begin{remark}
+    (Coordinates of $(p, q)$ tensors).
+
+    Since $(p, q)$ tensors are of type $^p{}_q$, then the coordinates of a $(p, q)$ tensor are of the form $T^{i_1 ... i_p}{}_{j_1 ... j_q} \in K$, with all of the superscripts occurring before all of the subscripts.
+\end{remark}
 
 \begin{remark}
     (Multilinearity and ``recursive linearity'').

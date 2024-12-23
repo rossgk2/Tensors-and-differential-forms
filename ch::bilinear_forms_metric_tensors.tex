@@ -31,7 +31,7 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 \label{ch::bilinear_forms_metric_tensors::defn::nondegen_bilinear_form}
     (The musical functions).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces. If $B$ is a bilinear form on $V$ and $W$, then there are linear functions $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ defined\footnote{$B(\vv, \cdot)$ denotes the function $\ww \mapsto B(\vv, \ww)$ and $B(\cdot, \ww)$ denotes the function $\vv \mapsto B(\vv, \ww)$.} by $\flat_1(\vv) := B(\vv, \cdot)$ and $\flat_2(\ww) := B(\cdot, \ww)$. We denote $\vv^{\flat_1} := \flat_1(\vv)$ and $\ww^{\flat_2} := \flat_2(\ww)$.
+    Let $V$ and $W$ be finite-dimensional vector spaces. If $B$ is a bilinear form on $V$ and $W$, then there are linear functions $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ defined\footnote{$B(\vv, \cdot)$ denotes the function $\ww \mapsto B(\vv, \ww)$ and $B(\cdot, \ww)$ denotes the function $\vv \mapsto B(\vv, \ww)$.} by $\flat_1(\vv) := B(\vv, \cdot)$ and $\flat_2(\ww) := B(\cdot, \ww)$. These are called the \textit{musical functions (induced by $B$)}. We denote $\vv^{\flat_1} := \flat_1(\vv)$ and $\ww^{\flat_2} := \flat_2(\ww)$.
 \end{defn}
 
 \begin{theorem}
@@ -41,10 +41,10 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
 
     \begin{enumerate}
         \item $\flat_1$ and $\flat_2$ are one-to-one
-        \item $(B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ or } \ww = \mathbf{0}) \text{ for all } \vv \in V, \ww \in W$
+        \item $B(\vv, \ww) = \mathbf{0} \iff \vv = \mathbf{0} \text{ or } \ww = \mathbf{0} \text{ for all } \vv \in V, \ww \in W$
     \end{enumerate}
 
-    When they are isomorphisms, $\flat_1$ and $\flat_2$ are called the \textit{musical isomorphisms induced by $B$}. We denote the inverses of $\flat_1$ and $\flat_2$ by $\sharp_1$ and $\sharp_2$, respectively: $\sharp_1 = \flat_1^{-1}:W^* \rightarrow V$ and $\sharp_2 = \flat_2^{-1}:V^* \rightarrow W$.
+    When they are isomorphisms, $\flat_1$ and $\flat_2$ are called the \textit{musical isomorphisms (induced by $B$)}. We denote the inverses of $\flat_1$ and $\flat_2$ by $\sharp_1$ and $\sharp_2$, respectively: $\sharp_1 = \flat_1^{-1}:W^* \rightarrow V$ and $\sharp_2 = \flat_2^{-1}:V^* \rightarrow W$.
 
     Note that the musical isomorphisms are natural isomorphisms because they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
 \end{theorem}
@@ -60,7 +60,7 @@ We build up to these ideas about coordinates by investigating \textit{bilinear f
     \end{enumerate}
 \end{proof}
 
-The second condition of the previous theorem describes bilinear forms that generate musical isomorphisms, motivating the following definition.
+The second condition of the previous theorem describes bilinear forms that generate musical isomorphisms and therefore motivates a new definition.
 
 \begin{defn}
     (Nondegenerate bilinear form).
@@ -109,7 +109,7 @@ The second condition of the previous theorem describes bilinear forms that gener
 \label{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos}
     (Matrices of the musical isomorphisms).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, let $B$ be a bilinear form on $V$ and $W$, and let $E^*$ and $F^*$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$. We have\footnote{One can refer to $\BB$ as ``the matrix of $B$ relative to $E$ and $F$'' because, as we will see, $\BB$ satisfies a characterizing property similar to the one for the matrix $\ff(E)$ of a linear function ${\ff:U \rightarrow K^m}$, where $U$ is a finite-dimensional vector space over a field $K$. Similarly, $\widetilde{\BB}$ is the matrix of $\widetilde{B}$ relative to $F^*$ and $E^*$.}
+    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, let $B$ be a bilinear form on $V$ and $W$, and let $E^*$ and $F^*$ be the bases for $V^*$ and $W^*$ induced by $E$ and $F$. We have
 
     \begin{align*}
         [\flat_1(E)]_{F^*} = \BB^\top \text{ and } [\flat_2(F)]_{E^*} = \BB, \text{ where $\BB := \Big(B(\ee_i, \ee_j)\Big)$} \\
@@ -149,16 +149,18 @@ The second condition of the previous theorem describes bilinear forms that gener
         ((\vv^{\flat_1})^{\widetilde{\flat}_1}(\phi) = \Phi_\vv(\phi) \text{ for all $\vv \in V, \phi \in V^*$})$. Since $(\vv^{\flat_1})^{\widetilde{\flat}_1}(\phi) = \widetilde{B}(\vv^{\flat_1}, \phi) = B(\vv, \phi^{\sharp_2}) = \vv^{\flat_1}(\phi^{\sharp_2})$ and $\Phi_\vv(\phi) = \phi(\vv)$, an equivalent condition is $(\vv^{\flat_1}(\phi^{\sharp_2}) = \phi(\vv) \text{ for all $\vv, \ww \in V$})$. Then since $\sharp_2$ is an isomorphism we can substitute $\ww \in W$ for $\phi^{\sharp_2}$ to obtain another equivalent condition, $(\vv^{\flat_1}(\ww) = \ww^{\flat_2}(\vv) \text{ for all $\vv \in V, \phi \in V^*$})$, which is equivalent to the obviously true condition $(B(\vv, \ww) = B(\vv, \ww) \text{ for all $\vv, \ww \in V$})$.
         
         \item The matrix of a composition of a linear function is equal to the matrix-matrix product of the matrices (with respect to the appropriate bases) of the functions in the composition, so we have $[\widetilde{\flat}_1 \circ \flat_1]_{E^{**}} = [\widetilde{\flat}_1(F^*)]_{E^{**}} [\flat_1(E)]_{F^*}$. Since $\widetilde{\flat}_1 \circ \flat_1 = (\vv \mapsto \Phi_\vv)$, we can prove the desired fact- that the matrices on the right side of this last equation are inverses- by showing that the matrix of $(\vv \mapsto \Phi_\vv) = \FF$ relative to $E$ and $E^{**}$ is $\II$. To do so, define $\FF(\vv) = \Phi_\vv$, so that the matrix of $(\vv \mapsto \Phi_\vv) = \FF$ relative to $E$ and $E^{**}$ is $[\FF(E)]_{E^{**}}$. The $ij$ entry of this matrix is $([\FF(\ee_j)]_{E^{**}})^i = ([\Phi_{\ee_j}]_{E^{**}})^i = \Phi_{\ee_j}(\phi^{\ee_i})$, where $\phi^{\ee_i}$ denotes the $i$th basis vector in $E^*$. Since $\Phi_{\ee_j}(\phi^{\ee_i}) = \phi^{\ee_i}(\ee_j) = \delta^i{}_j$, the matrix itself is $\II$.
-        \item Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos} tells us that $[\flat_1(E)]_{F^*} = \BB^\top$ and $[\widetilde{\flat}_1(F^*)]_{E^{**}} = (\widetilde{\BB})^\top$. Using these results with (2), we obtain $(\widetilde{\BB})^\top \BB^\top = \II$. Take the transpose of both sides to obtain $\widetilde{\BB} \BB = \II$, as desired. \textbf{before using transpose have to define symmetric linear function}
+        \item Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrices_musical_isos} tells us that $[\flat_1(E)]_{F^*} = \BB^\top$ and $[\widetilde{\flat}_1(F^*)]_{E^{**}} = (\widetilde{\BB})^\top$. Using these results with (2), we obtain $(\widetilde{\BB})^\top \BB^\top = \II$. Take the transpose of both sides to obtain $\widetilde{\BB} \BB = \II$, as desired.
     \end{enumerate}
 \end{proof}
+
+\newpage
 
 \subsection*{Metric tensors}
 
 \begin{defn}
     (Metric tensor).
     
-    Let $V$ be a finite-dimensional vector space. A nondegenerate bilinear form on $V$ that is also \textit{symmetric}, in the sense that $g(\vv_1, \vv_2) = g(\vv_2, \vv_1)$ for all $\vv_1, \vv_2 \in V$, is called a \textit{metric tensor on $V$}.
+    Let $V$ be a finite-dimensional vector space. A nondegenerate bilinear form $g$ on $V$ that is also \textit{symmetric}, in the sense that $g(\vv, \ww) = g(\ww, \vv)$ for all $\vv, \ww \in V$, is called a \textit{metric tensor on $V$}.
 \end{defn}
 
 \begin{remark}
@@ -181,7 +183,7 @@ The second condition of the previous theorem describes bilinear forms that gener
      Let $V$ be a finite-dimensional vector space with a nondegenerate bilinear form $B$ and a basis $E = \{\ee_1, ..., \ee_n\}$. Let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. The musical isomorphism $\flat$ induced by $B$ sends basis vectors to induced dual basis vectors, $\ee_i \mapsto \phi^{\ee_i}$, iff $B(\ee_i, 
      \ee_j) = \delta^i_j$ for all $i, j$. 
      
-     In the special case when $B$ is an inner product, $B = \langle \cdot, \cdot \rangle$, this means that $\flat$ sends basis vectors to induced dual basis vectors iff $E$ is orthonormal with respect to the inner product.
+     In the special case when $B$ is an inner product, $B = \langle \cdot, \cdot \rangle$, this means that $\flat$ sends basis vectors from $E$ to induced dual basis vectors iff $E$ is orthonormal with respect to the inner product.
 \end{theorem}
 
 \begin{proof}
@@ -297,6 +299,17 @@ The second condition of the previous theorem describes bilinear forms that gener
     \end{align*}
     
     for all $\vv \in V$, $\ww \in W$, $\phi \in V^*$, and $\psi \in W^*$, where $\BB = (B(\ee_i, \ee_j))$ and $\widetilde{\BB} = (\widetilde{B}(\psi^{\ff_i}, \phi^{\ee_j}))$.
+
+    \vspace{.25cm}
+
+    In the special case when $V = W$ and $E = F$, we have
+
+    \begin{align*}
+        [\vv]_E &= \BB^{-\top} [\vv^{\flat_1}]_{E^*} = \BB^{-1} [\vv^{\flat_2}]_{E^*} \\
+        [\phi]_{E^*} &= \BB^\top [\phi^{\sharp_1}]_E = \BB [\phi^{\sharp_2}]_E,
+    \end{align*}
+
+    for all $\vv \in V, \phi \in V^*$, where $\BB = (B(\ee_i, \ee_j))$ and $\widetilde{\BB} = (\widetilde{B}(\phi^{\ee_i}, \phi^{\ee_j}))$.
 \end{theorem}
 
 \begin{proof}
@@ -308,18 +321,16 @@ The second condition of the previous theorem describes bilinear forms that gener
 \end{proof}
 
 \begin{remark}
-    (Metric tensors and coordinates of vectors and dual vectors).
+    (Metric tensors in physics).
     
-    When tensors are used in physics, the above theorem is employed to the situation in which we have a vector space $V$ with a metric tensor $g$. (Recall that a metric tensor on $V$ is a nondegenerate symmetric bilinear form on $V$).
-    
-    Since $g$ is symmetric, we have $\flat := \flat_1 = \flat_2$, $\sharp := \sharp_1 = \sharp_2$, and $\gg^\top = \gg$, so the above equations simplify to 
+    In physics, the typical situation is to have a vector space with metric tensor $g$. (Recall that a metric tensor on a vector space $V$ is a nondegenerate symmetric bilinear form on $V$ and $V$). In this situation, the symmetry of $g$ further simplifies the special case of the above theorem:
     
     \begin{align*}
-        [\vv]_E = \gg^{-1} [\vv^{\flat}]_{E^*} &\iff [\vv^{\flat}]_{E^*} = \gg [\vv]_E \\
-        [\phi]_{E^*} = \gg [\phi^{\sharp}]_E &\iff [\phi^{\sharp}]_E = \gg^{-1} [\phi]_{E^*}.
+        [\vv]_E = \gg^{-1} [\vv^\flat]_{E^*} &\iff [\vv^\flat]_{E^*} = \gg [\vv]_E \\
+        [\phi]_{E^*} = \gg [\phi^\sharp]_E &\iff [\phi^\sharp]_E = \gg^{-1} [\phi]_{E^*}.
     \end{align*}
     
-    Physicists also make the definitions $v^i := ([\vv]_E)^i$, $v_i := ([\vv^{\flat}]_{E^*})_i$, $\phi_i := ([\phi]_{E^*})_i$, and $\phi^i := ([\phi^{\sharp}]_E)^i$. With these definitions, the above equations become
+    Physicists also make the definitions $v^i := ([\vv]_E)^i$, $v_i := ([\vv^\flat]_{E^*})_i$, $\phi_i := ([\phi]_{E^*})_i$, and $\phi^i := ([\phi^\sharp]_E)^i$. With these definitions, the above equations become
     
     \begin{align*}
         v^i = \sum_j g^{ij} v_j &\iff v_i = \sum_j g_{ij} v^j \\
@@ -329,59 +340,55 @@ The second condition of the previous theorem describes bilinear forms that gener
     This notation has the advantage of being compact, and it's what I would personally use when doing calculations. However, it is best for reference materials such as this one to introduce the relations between $v^i$ and $v_i$ with notation that does involve explicit mention of the basis $E$.
 \end{remark}
 
-investigate whether below theorem can be discovered without knowing the above thm about $\BB$ and coordinates
-
-[$T^p_q(V) \cong T^r_s(V)$ when $p + q = r + s$. Normally this isomorphism is not natural, and we have to obtain it by choosing a basis. But when we have a metric tensor $g$ on $V$, then the musical isomorphism $\flat:V \rightarrow V^*$ achieves this isomorphism naturally.]
-
 \begin{theorem}
     (Using a metric tensor to convert between vectors and dual vectors in a $(p, q)$ tensor).
     
-    \textbf{double check whether $B_{ij} = B_{ji}$ is used or not in this theorem. i really hope it isn't...}
-    
-    \textbf{seems like it's not. we'll just have to change $\flat$ to $\flat_1$ and state two extra results at end to generalize to case when multiplying by $B_{jr}$ rather than $B_{rj}$}
-    
-    Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $B$ be a metric tensor on $V$, with $\flat = \flat_1 = \flat_2$ being the musical isomorphism $V \rightarrow V^*$ (recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::nondegen_bilinear_form}), and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the dual basis for $V^*$ induced by $E$. (Note: recall from Remark \ref{ch::bilinear_forms_metric_tensors::thm::musical_iso_unique_self_dual_iso} that $\ee_i \mapsto \phi^{\ee_i}$ is a natural isomorphism, due to the presence of $\flat$).
-    
-    We can send a basis $(p, q)$ tensor $\TT = \ee_{i_1} \otimes ... \otimes &\ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \in T_{p,q}(V)$ to a $(p - 1, q + 1)$ tensor by applying the map $\flat:V \rightarrow V^*$ to one of the $p$ vectors in $\TT$.
+    Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the dual basis for $V^*$ induced by $E$, and consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$ with coordinates $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$,
+
+    \begin{align*}
+        \TT = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}.
+    \end{align*}
+
+    If we have a metric tensor $g$ on $V$, then we can send a basis $(p, q)$ tensor $\SS^{i_1 ... i_p}{}_{j_1 ... j_q}$ to a $(p - 1, q + 1)$ tensor by applying the map $\flat:V \rightarrow V^*$ to one of the $p$ vectors (as opposed to one of the $q$ dual vectors): 
     
     \begin{align*}
-        \TT = \ee_{i_1} \otimes ... \otimes &\ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
+        \SS^{i_1 ... i_p}{}_{j_1 ... j_q} := \ee_{i_1} \otimes ... \otimes &\ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
         &\qquad \longmapsto \\
-        \ee_{i_1} \otimes ... \otimes &\ee_{i_k}^{\flat} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}.
+        \ee_{i_1} \otimes ... \otimes &\ee_{i_k}^\flat \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}.
     \end{align*}
     
-    Using Theorem \ref{ch::bilinear_forms_metric_tensors::coords_vectors_dual_vectors}, we compute $\ee_{i_k}^{\flat}$ to be 
+    Using the equation $[\phi]_{E^*} = \gg [\phi^\sharp]_E \iff ([\phi]_{E^*})^r = \sum_{j = 1}^n g_{rj} ([\phi^\sharp]_E)^j$ from the previous remark, we compute $\ee_{i_k}^\flat$ to be 
     
     \begin{align*}
-        \ee_{i_k}^{\flat} = \sum_{r = 1}^n ([\ee_{i_k}^{\flat}]_{E^*})_r \phi^{\ee_r} \underset{\text{Theorem \ref{ch::bilinear_forms_metric_tensors::coords_vectors_dual_vectors}}}{=}
+        \ee_{i_k}^\flat = \sum_{r = 1}^n ([\ee_{i_k}^\flat]_{E^*})^r \phi^{\ee_r} =
         \sum_{r = 1}^n \Big( \sum_{j = 1}^n g_{rj} ([\ee_{i_k}]_E)^j \Big) \phi^{\ee_r} = \sum_{r = 1}^n \Big( \sum_{j = 1}^n g_{rj} \delta^j{}_{i_k} \Big) \phi^{\ee_r}
-        = \sum_{r = 1}^n g_{i_k r} \phi^{\ee_r},
+        = \sum_{r = 1}^n g_{r i_k} \phi^{\ee_r},
     \end{align*}
     
-    so $\TT$ is sent to
+    so $\SS^{i_1 ... i_p}{}_{j_1 ... j_q}$ is sent to
     
     \begin{align*}
-        &\ee_{i_1} \otimes ... \otimes \ee_{i_{k - 1}} \otimes \sum_{r = 1}^n \Big( g_{i_k r} \phi^{\ee_r} \Big) \otimes \ee_{i_{k + 1}} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
-        &= \sum_{r = 1}^n g_{i_k r} \Big( \ee_{i_1} \otimes ... \otimes \ee_{i_{k - 1}} \otimes \phi^{\ee_r} \otimes \ee_{i_{k + 1}} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \Big).
+        &\ee_{i_1} \otimes ... \otimes \ee_{i_{k - 1}} \otimes \sum_{r = 1}^n \Big( g_{r i_k} \phi^{\ee_r} \Big) \otimes \ee_{i_{k + 1}} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
+        &= \sum_{r = 1}^n g_{r i_k} \Big( \ee_{i_1} \otimes ... \otimes \ee_{i_{k - 1}} \otimes \phi^{\ee_r} \otimes \ee_{i_{k + 1}} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \Big).
     \end{align*}
     
     Thus, if the coordinates of $\TT$ relative to $E$ and $E^*$ were originally $T^{i_1 ... i_p}{}_{j_1 ... j_q}$, then they get sent to 
     
     \begin{align*}
-        \sum_{r = 1}^n g_{i_k r} T^{i_1 ... i_{k - 1}}{}_{r}{}^{i_{k + 1} ... i_p}{}_{j_1 ... j_q}.
+        \sum_{r = 1}^n g_{r i_k} T^{i_1 ... i_{k - 1}}{}_{r}{}^{i_{k + 1} ... i_p}{}_{j_1 ... j_q}.
     \end{align*}
     
     Following a similar process to above, we can use the other musical isomorphism, the sharp map $\sharp = \flat^{-1}$, to convert a $(p, q)$ tensor to a $(p + 1, q - 1)$ tensor. This approach would send $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ to
     
     \begin{align*}
-        \sum_{r = 1}^n g^{j_k r} T^{i_1 ... i_p}{}_{j_1 ... j_{k - 1}}{}^{r}{}_{j_{k + 1} ... j_q}.
+        \sum_{r = 1}^n g^{r j_k} T^{i_1 ... i_p}{}_{j_1 ... j_{k - 1}}{}^{r}{}_{j_{k + 1} ... j_q}.
     \end{align*}
     
-    So we have the following ``index lowering'' and ``index raising'' mappings:
+    So, using the notation at the end of the previous remark, we have the following ``index lowering'' and ``index raising'' mappings:
     
     \begin{empheq}[box = \fbox]{align*}
-        T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g_{i_k r} T^{i_1 ... i_{k - 1}}{}_{r}{}^{i_{k + 1} ... i_p}{}_{j_1 ... j_q} \quad \text{(index lowering)} \\
-        T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g^{j_k r} T^{i_1 ... i_p}{}_{j_1 ... j_{k - 1}}{}^{r}{}_{j_{k + 1} ... j_q} \quad \text{(index raising)}
+        T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g_{r i_k} T^{i_1 ... i_{k - 1}}{}_{r}{}^{i_{k + 1} ... i_p}{}_{j_1 ... j_q} \quad \text{(index lowering)} \\
+        T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g^{r j_k} T^{i_1 ... i_p}{}_{j_1 ... j_{k - 1}}{}^{r}{}_{j_{k + 1} ... j_q} \quad \text{(index raising)}
     \end{empheq}
 \end{theorem}
 
