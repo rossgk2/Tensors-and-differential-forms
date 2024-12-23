@@ -503,6 +503,7 @@ Now that we have defined what a vector space is in full generality, we present a
 When determining whether a set $V$ is a vector space or not, it is almost always easier to check the above closure conditions than to check if there is a set that spans $V$. Thus, the following characterization of vector spaces is almost always what one should use when testing if a set is a vector space.
 
 \begin{theorem}
+\label{ch::lin_alg::thm::vector_space_alt_characterization}
     (Alternate characterization of vector spaces).
     
     Suppose that $K$ is a field, that $V$ is a set, and that there exist functions $+:V \times V \rightarrow V$ and $\cdot:K \times V \rightarrow V$. The tuple $(V, K, +, \cdot)$ is a vector space iff
@@ -865,7 +866,7 @@ This characterization of linear functions quickly generalizes to the following f
 \label{ch::lin_alg::thm::basis_sent_to_any_ordered_list}
     (Any basis can get sent to any list of vectors by some linear function).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces and let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$. For all $\ww_1, ..., \ww_n \in W$, there exists a linear function sending $\ee_i \mapsto \ww_i$.
+    Let $V$ and $W$ be finite-dimensional vector spaces and let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$. For all ${\ww_1, ..., \ww_n \in W}$, there exists a linear function sending $\ee_i \mapsto \ww_i$.
 \end{theorem}
 
 \begin{proof}
@@ -898,6 +899,32 @@ The following theorem gives further geometric intuition for how linear functions
    Let $\ff$ be a linear function $\R^n \rightarrow \R^n$. Theorem \ref{ch::lin_alg::thm::linear_functions_have_zero_in_image} showed that $\ff(\mathbf{0}) = \mathbf{0}$, so it remains to show that $\ff$ sends parallel lines to parallel lines. 
    
    Consider two parallel lines in $\R^n$ described by $\eell_1(t) = \vv_0 + t\vv$ and $\eell_2(t) = \ww_0 + t\vv$. We have $\ff(\eell_1(t)) = \ff(\vv_0) + t \ff(\vv)$ and $\ff(\eell_2(t)) = \ff(\ww_0) + t \ff(\vv)$. These transformed lines are parallel because they have the same direction vector, $\ff(\vv)$.
+\end{proof}
+
+Now that we are somewhat familiar with linear functions, we present a more abstract result, which formalizes the way in which we can think of linear functions as themselves being vectors.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::vector_space_linear_functions}
+    (Vector space of linear functions).
+
+    Let $V$ and $W$ be vector spaces over a field $K$. The set $\LLLL(V \rightarrow W)$ of linear functions $V \rightarrow W$, taken together with $+:V \rightarrow V \rightarrow V$ being function addition and $\cdot:V \rightarrow K \rightarrow V$ being function scalar multiplication, is a vector space over $K$.
+\end{theorem}
+
+\begin{proof}
+    According to Theorem \ref{ch::lin_alg::thm::vector_space_alt_characterization}, we need to show that $\LLLL(V \rightarrow W)$ is a vector-containing set and that $\LLLL(V \rightarrow W)$ is closed under vector addition and vector scaling. We leave showing that $\LLLL(V \rightarrow W)$ is a vector-containing set as an exercise, and show the other two conditions.
+
+    \begin{itemize}
+        \item (Closure under vector addition). Assume $\ff, \gg \in \LLLL(V \rightarrow W)$, and consider $\ff + \gg$. We need to show $(\ff + \gg) \in \LLLL(V \rightarrow W)$; that is, we need to show (1) that $(\ff + \gg)(\vv + \ww) = (\ff + \gg)(\vv) + (\ff + \gg)(\ww)$ for all $\vv, \ww \in V$ and (2) that $(\ff + \gg)(c\vv) = c(\ff + \gg)(\vv)$ for all $\vv \in V$ and $c \in K$.
+        \begin{itemize}
+            \item[1.] We have $(\ff + \gg)(\vv + \ww) = (\ff + \gg)(\vv) + (\ff + \gg)(\ww) = \ff(\vv) + \gg(\vv) + \ff(\ww) + \gg(\ww) = \ff(\vv) + \gg(\vv) + \ff(\ww) + \gg(\ww) = (\ff + \gg)(\vv) + (\ff + \gg)(\ww)$.
+            \item[2.] We have $(\ff + \gg)(c\vv) = \ff(c\vv) + \gg(c\vv) = c\ff(\vv) + c\gg(\vv) = c(\ff(\vv) + \gg(\vv)) = c(\ff + \gg)(\vv)$.
+        \end{itemize}
+        \item (Closure under vector scaling). Assume $\ff \in \LLLL(V \rightarrow W)$ and $c \in K$. We need to show $c\ff \in \LLLL(V \rightarrow W)$; that is, we need to show (1) that $(c\ff)(\vv + \ww) = (c\ff)(\vv) + (c\ff)(\ww)$ for all $\vv, \ww \in V$ and (2) that $(c\ff)(d\vv) = d(c\ff)(\vv)$ for all $d \in K$ and $\vv \in V$.
+        \begin{enumerate}
+            \item[1.] We have $(c\ff)(\vv + \ww) = c \ff(\vv + \ww) = c (\ff(\vv) + \ff(\ww)) = c \ff(\vv) + c \ff(\ww) = (c\ff)(\vv) + (c\ff)(\ww)$.
+            \item[2.] We have $(c\ff)(d\vv) = c\ff(d\vv) = cd\ff(\vv) = c(d\ff(\vv)) = c(d\ff)(\vv)$.
+        \end{enumerate}
+    \end{itemize}
 \end{proof}
 
 \newpage
@@ -1082,6 +1109,8 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
     
     Roughly speaking, a linear isomorphism is said to be ``natural'' if it does not depend on a choice of basis. This definition of ``natural'' is not completely technically correct, but it will suffice for our purposes, because the converse (any linear isomorphism which depends on a choice of basis is unnatural) \textit{is} true. To read more about what ``natural'' really means, look up ``natural isomorphism category theory'' online.
 \end{defn}
+
+\newpage
 
 \subsection*{Coordinatization of vectors}
 
@@ -1275,6 +1304,7 @@ The following derivation shows us how to coordinatize a linear function $K^n \ri
 \end{deriv}
 
 \begin{deriv}
+\label{ch::lin_alg::deriv::matrix_vector_product}
     (Matrix-vector product).
     
     Let $K$ be a field and consider a linear function $\ff:K^n \rightarrow K^m$. The previous derivation showed that a linear function $\ff:K^n \rightarrow K^m$ is represented by its standard matrix, $\begin{pmatrix} \ff(\see_1) & \hdots & \ff(\see_n) \end{pmatrix}$. In this derivation, we formalize the notion of using $\ff$'s standard matrix to determine $\ff$ itself.
@@ -1424,8 +1454,8 @@ Now, we can restate the characterizing property of standard matrices concisely.
 
 Since we know that a composition of linear functions is another linear function and that every linear function is represented by the matrix, we naturally ask: ``What is the matrix of a composition of linear functions''?
 
-\begin{defn}
-\label{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}
+\begin{deriv}
+\label{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}
     (Standard matrix of a composition of linear functions, matrix-matrix product). 
     
     Let $K$ be a field, and consider linear functions $\ff:K^n \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$. Additionally, let $\sE = \{\ee_1, ..., \ee_n\}$ be the standard basis for $K^n$, $\sF = \{\see_1, ..., \see_m\}$ be the standard basis for $K^m$, and $\sG = \{\see_1, ..., \see_p\}$ be the standard basis for $K^p$.
@@ -1493,12 +1523,12 @@ Since we know that a composition of linear functions is another linear function 
     \begin{align*}
         (\gg \circ \ff)(\sE) = \gg(\sF) \spc \ff(\sE).
     \end{align*}
-\end{defn}
+\end{deriv}
 
 \begin{remark}
     (Compatibility of matrices for matrix-matrix products). 
     
-    We now expand on what was meant when we said the matrix-matrix product $\BB \AA$ is only defined when the sizes of $\BB$ and $\AA$ are ``compatible''.
+    We now expand on what was meant when we said the matrix-matrix product $\BB \AA$ is only defined when the sizes of $\AA$ and $\BB$ are ``compatible''.
     
     Consider that the composition $\gg \circ \ff$ of linear functions $\ff$ and $\gg$ is only defined when the output space of $\ff$ is the entire input space of $\gg$, i.e., when the dimension of $\ff$'s output is the same as the dimension of $\gg$'s input. Because of this, the matrix-matrix product $\BB \AA$ of an $m \times n$ matrix with an $r \times s$ matrix $\BB$ is only defined when $r = n$, i.e., when $\BB$ has as many columns as $\AA$ has rows.
 \end{remark}
@@ -1600,42 +1630,9 @@ First, we restate the earlier hasty definition of ``matrix''; in this definition
     We denote the identity matrix by $\II$ rather than by the more verbose notation $\II_{K^n}(\sE)$, and infer $n$ from context.
 \end{defn}
 
-Now we return to the relationship between linear functions and matrices.
+\subsubsection{Matrix-vector products}
 
-\begin{theorem}
-    (Linear functions from matrices).
-    
-    If $\AA$ is an $m \times n$ matrix with entries in a field $K$, then the function $\vv \mapsto \AA \vv$ is linear, and $\AA$ is the standard matrix of this function. We define $\ker(\AA) := \ker(\vv \mapsto \AA \vv)$ and $\im(\AA) := \im(\vv \mapsto \AA \vv)$.
-\end{theorem}
-
-\begin{proof}
-    Define $\ff$ by $\ff(\vv) = \AA \vv$. We will show that $\ff$ is linear and that $\AA = \ff(\sE)$.
-
-    Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, we can interpret the $i$th column $\aa_i$ of $\AA$ to be $\gg(\see_i)$ for some linear function $\gg$. Thus $\AA = \gg(\sE)$, and so $\ff(\vv) = \AA \vv = \gg(\sE) \vv = \gg(\sE) [\vv]_\sE$. The characterizing property of standard matrices says that $\gg(\sE) [\vv]_\sE = \gg(\vv)$, so we have $\ff(\vv) = \gg(\vv)$ for all $\vv \in K^n$, i.e. $\ff = \gg$. Since $\gg$ is linear, $\ff$ is also linear.
-    
-    The standard matrix $\ff(\sE)$ of $\ff$ has $i$th column $\ff(\see_i) = \AA \see_i$. Compute the matrix-vector product $\AA \see_i$ to verify that $\AA \see_i = \aa_i$, where $\aa_i$ is the $i$th column of $\AA$. This tells us that $\ff(\see_i) = \aa_i$, which means $\ff(\sE) = \AA$.
-    
-    %Since we have $\AA \vv = \ff(\vv)$ and $\ff(\sE) \vv = \ff(\vv)$, the uniqueness of standard matrices implies that $\AA = \ff(\sE)$. \textbf{Now we have to show that $\ff(\sE) = \gg(\sE)$, where $\gg(\vv) = \AA \vv$}.
-\end{proof}
-
-\begin{theorem}
-    (Properties of the matrix-vector product).
-    
-    Practically speaking, the linearity of the function $\vv \mapsto \AA \vv$ translates into properties of the matrix-vector product: we have $\AA(\vv + \ww) = \AA \vv + \AA \ww$ and $\AA(c\vv) = c(\AA \vv)$ for any matrix $\AA$, column vectors $\vv$ and $\ww$, and scalar $c$. 
-\end{theorem}
-
-\begin{theorem}
-    \label{ch::lin_alg::thm::linear_functions_matrices_bijection}
-    (Bijection between linear functions and matrices).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. The set of linear functions from $V$ to $W$ and the set of $\dim(W) \times \dim(V)$ matrices with entries in $K$ are in bijection.
-\end{theorem}
-
-\begin{proof}
-   The set of linear functions $V \rightarrow W$ is in bijection with the set of linear functions ${K^{\dim(V)} \rightarrow K^{\dim(W)}}$, since the functions $\ff \mapsto \ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E$ and $\gg \mapsto [\cdot]_F^{-1} \circ \gg \circ [\cdot]_E^{-1}$ are inverses. Thus, it suffices to show the set of linear functions $K^{\dim(V)} \rightarrow K^{\dim(W)}$ is in bijection with $K^{\dim(V) \times \dim(W)}$. We claim that the function $\FF$ sending a linear function $\ff:K^{\dim(V)} \rightarrow K^{\dim(W)}$ to its standard matrix $\ff(\sE) \in K^{\dim(W) \times \dim(V)}$ is a bijection. Derivation \ref{ch::lin_alg::deriv::standard_matrix}  hints\footnote{If $\ff$ and $\gg$ are distinct linear functions, then, because linear functions are determined by what they do to the standard basis, there must be some $\see_i$ for which $\ff(\see_i) \neq \gg(\see_i)$. This causes the standard matrices of $\ff$ and $\gg$ to differ (in the $i$th column).} at a proof that $\FF$ is one-to-one, and Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list} shows that $\FF$ is onto.
-\end{proof}
-
-Restate definition of matrix-vector product for convenience:
+Now we return to the relationship between linear functions and matrices. This relationship hinges on the matrix-vector product, which we revisit. We first restate the definition of the matrix-vector product from Derivation \ref{ch::lin_alg::deriv::matrix_vector_product} for convenience.
 
 \begin{defn}
     (Matrix-vector product).
@@ -1657,11 +1654,13 @@ Restate definition of matrix-vector product for convenience:
     \end{align*}
 \end{defn}
 
+Now we present several new theorems.
+
 \begin{theorem}
 \label{ch::lin_alg::thm::coordinates_of_matrix_vector_product}
     ($i$th entry of matrix-vector product).
     
-        Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$ and let $\vv = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \in K^n$ be a column vector. Referring to the definition of matrix-vector product in Derivation \ref{ch::lin_alg::deriv::standard_matrix}, we see the matrix-vector product $\AA \vv$ is equal to the following:
+        Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$ and let $\vv = \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix} \in K^n$ be a column vector. By the previous definition, the matrix-vector product $\AA \vv$ is equal to the following:
     
     \begin{align*}
             \AA \vv = 
@@ -1709,9 +1708,31 @@ Restate definition of matrix-vector product for convenience:
     The last section of this chapter discusses the dot product in depth.
 \end{theorem}
 
-[segway to compositions of linear functions]
+\begin{theorem}
+    (Linear functions from matrices).
+    
+    If $\AA$ is an $m \times n$ matrix with entries in a field $K$, then the function $\vv \mapsto \AA \vv$ is linear, and $\AA$ is the standard matrix of this function. We define $\ker(\AA) := \ker(\vv \mapsto \AA \vv)$ and $\im(\AA) := \im(\vv \mapsto \AA \vv)$.
+\end{theorem}
 
-We now state some facts about matrix-matrix products. First, we restate the definition of the matrix-matrix product for convenience.
+\begin{proof}
+    Define $\ff$ by $\ff(\vv) = \AA \vv$. We will show that $\ff$ is linear and that $\AA = \ff(\sE)$.
+
+    Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, we can interpret the $i$th column $\aa_i$ of $\AA$ to be $\gg(\see_i)$ for some linear function $\gg$. Thus $\AA = \gg(\sE)$, and so $\ff(\vv) = \AA \vv = \gg(\sE) \vv = \gg(\sE) [\vv]_\sE$. The characterizing property of standard matrices says that $\gg(\sE) [\vv]_\sE = \gg(\vv)$, so we have $\ff(\vv) = \gg(\vv)$ for all $\vv \in K^n$, i.e. $\ff = \gg$. Since $\gg$ is linear, $\ff$ is also linear.
+    
+    The standard matrix $\ff(\sE)$ of $\ff$ has $i$th column $\ff(\see_i) = \AA \see_i$. Compute the matrix-vector product $\AA \see_i$ to verify that $\AA \see_i = \aa_i$, where $\aa_i$ is the $i$th column of $\AA$. This tells us that $\ff(\see_i) = \aa_i$, which means $\ff(\sE) = \AA$.
+    
+    %Since we have $\AA \vv = \ff(\vv)$ and $\ff(\sE) \vv = \ff(\vv)$, the uniqueness of standard matrices implies that $\AA = \ff(\sE)$. \textbf{Now we have to show that $\ff(\sE) = \gg(\sE)$, where $\gg(\vv) = \AA \vv$}.
+\end{proof}
+
+\begin{theorem}
+    (Properties of the matrix-vector product).
+    
+    Practically speaking, the linearity of the function $\vv \mapsto \AA \vv$ translates into properties of the matrix-vector product: we have $\AA(\vv + \ww) = \AA \vv + \AA \ww$ and $\AA(c\vv) = c(\AA \vv)$ for any matrix $\AA$, column vectors $\vv$ and $\ww$, and scalar $c$. 
+\end{theorem}
+
+\subsubsection{Matrix-matrix products}
+
+We also revisit the matrix-matrix product for convenience. Similarly to as was with matrix-vector products, we restate the definition of matrix-matrix product from Definition \ref{lin_alg::thm::matrix_matrix_product_relative_to_bases_standard} for convenience.
 
 \begin{defn}
     (Matrix-matrix product).
@@ -1724,30 +1745,14 @@ We now state some facts about matrix-matrix products. First, we restate the defi
     \end{align*}
 \end{defn}
 
-\begin{remark}
-    (Matrix-matrix products are associative).
-    
-    One would expect that $(\BB \AA) \vv = \BB (\AA \vv)$ for all column vectors $\vv$ when $\AA$ and $\BB$ are ``compatible'' matrices. This is indeed true because the corresponding linear functions $\ff$ and $\gg$ satisfy $(\gg \circ \ff)(\vv) = \gg(\ff(\vv))$.
-\end{remark}
-
-\begin{defn}
-    (Inverse matrix).
-    
-    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff there exists a matrix $\AA^{-1}$ such that $\AA^{-1} \AA = \II = \AA \AA^{-1}$.
-\end{defn}
-
-\begin{theorem}
-    (Inverse matrix).
-
-    Let $\AA$ be an invertible $n \times n$ matrix with entries in a field $K$, and consider the linear function $\ff:K^n \rightarrow K^n$ defined by $\ff(\vv) = \AA \vv$. Because $\ff^{-1} \circ \ff = \II = \ff \circ \ff^{-1}$, it follows that $\AA^{-1}$ is equal to the standard matrix of $\ff^{-1}$. In other words, if $\ff:K^n \rightarrow K^n$ is an invertible linear function, then $\ff(\sE)^{-1} := \ff^{-1}(\sE)$.
-\end{theorem}
+Now, we present several new concepts regarding matrix-matrix products.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::coordinates_of_matrix_matrix_product}
 
     ($ij$ entry of matrix-matrix product). 
     
-    Let $K$ be a field, let $\AA = (a_{ij}) \in K^{m \times n}$, and let $\BB = (b_{ij}) \in K^{m \times p}$. The $ij$ entry of the matrix-matrix product $\BB \AA$ can be computed by using the definition of the matrix-matrix product (Theorem \ref{ch::lin_alg::thm::matrix_matrix_product_relative_to_bases_standard}) together with the fact that the $i$th entry of the matrix-vector product $\AA \vv$ is $(\text{$i$th row of $\AA$}) \cdot \vv$, where $\cdot$ is the dot product. We have
+    Let $K$ be a field, let $\AA = (a_{ij}) \in K^{m \times n}$, and let $\BB = (b_{ij}) \in K^{m \times p}$. The $ij$ entry of the matrix-matrix product $\BB \AA$ can be computed by using the definition of the matrix-matrix product (Theorem \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}) together with the fact that the $i$th entry of the matrix-vector product $\AA \vv$ is $(\text{$i$th row of $\AA$}) \cdot \vv$, where $\cdot$ is the dot product. We have
     
     \begin{align*}
         \BB \AA
@@ -1781,14 +1786,32 @@ We now state some facts about matrix-matrix products. First, we restate the defi
 \end{theorem}
 
 \begin{remark}
+    (Matrix-matrix products are associative).
+    
+    One would expect that $(\BB \AA) \vv = \BB (\AA \vv)$ for all column vectors $\vv$ when $\AA$ and $\BB$ are ``compatible'' matrices. This is indeed true because the corresponding linear functions $\ff$ and $\gg$ satisfy $(\gg \circ \ff)(\vv) = \gg(\ff(\vv))$.
+\end{remark}
+
+\begin{defn}
+    (Inverse matrix).
+    
+    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. We say that $\AA$ is \textit{invertible} iff there exists a matrix $\AA^{-1}$ such that $\AA^{-1} \AA = \II = \AA \AA^{-1}$.
+\end{defn}
+
+\begin{theorem}
+    (Inverse matrix).
+
+    Let $\AA$ be an invertible $m \times n$ matrix with entries in a field $K$, and consider the linear function $\ff:K^m \rightarrow K^n$ defined by $\ff(\vv) = \AA \vv$. Because $\ff^{-1} \circ \ff = \II = \ff \circ \ff^{-1}$, it follows that $\AA = \ff(\sE)$ is invertible iff $\ff$ is, and that when $\AA^{-1}$ exists, it is equal to the standard matrix of $\ff^{-1}$. In other words, if $\ff:K^n \rightarrow K^n$ is an invertible linear function, then $\ff(\sE)^{-1} := \ff^{-1}(\sE)$.
+    
+    Since it is only possible for $\ff$ to be invertible when $n = m$, it follows that $\AA$ must be a $n \times n$ matrix, or \textit{square matrix}, in order to be invertible.
+\end{theorem}
+
+\begin{remark}
     (Matrix pedagogy). 
     
     Most linear algebra texts present the relationship between linear functions and matrices in the following way: first define matrices in the context of systems of linear equations (we have not seen how matrices are related to systems of linear equations), then define a linear function to be one for which $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c\vv) = c\ff(\vv)$ for all vectors $\vv, \ww$ and scalars $c$, and then prove that each linear function has a standard matrix. This is bad pedagogy; there should be no need to conjecture and prove that a matrix-vector product corresponds to the action of a linear function, because this fact is apparent from natural investigations (such as Derivation \ref{ch::lin_alg::deriv::standard_matrix}). (Furthermore, while systems of linear equations are an important application of linear algebra, and while their study does enhance our knowledge about the kernels of linear functions, they should not be the starting point).
     
     Oftentimes, linear algebra texts present the formula for the $i$th entry of a matrix-vector product and the formula for the $ij$ entry of a matrix-matrix product as facts that should be memorized rather than understood. Be wary of this! You \textit{should not} memorize these formulas. If you can't quite remember them, try to derive them by starting with the fact that linear functions on finite-dimensional vector spaces are determined by what they do to bases, and by following the derivations given in this book!
 \end{remark}
-
-\newpage
 
 \subsubsection{Matrix transposes}
 
@@ -1843,7 +1866,7 @@ The topic of matrix tranposes does not become theoretically significant until Ch
 
 We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
 
-In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_bijection}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
 
 \begin{lemma}
     \label{ch::lin_alg::lemma::basis_inverse}
@@ -1912,6 +1935,58 @@ Notice that $E$ is not a matrix in the above lemma! It is a list of vectors that
     The standard matrix $\ff(\sE)$ of a linear function $\ff:K^n \rightarrow K^m$ is the matrix $\ff(\sE) = [\ff(\sE)]_\sE$ of $\ff:K^n \rightarrow K^m$ relative to the bases $\sE$ and $\sE$.
 \end{remark}
 
+\subsection*{Linear isomorphism between linear functions and matrices}
+
+We've alluded to the correspondence between linear functions and matrices several times. Now that we know of matrices relative to bases, we can formalize our knowledge of this relationship.
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism}
+    (Linear isomorphism between linear functions and matrices).
+    
+    Let $V, W$, and $Y$ be finite-dimensional vector spaces over a field $K$, with bases $E$, $F$, and $G$.
+
+    The function $\FF:\LLLL(V \rightarrow Y) \rightarrow K^{\dim(Y) \times \dim(V)}$ defined by $\FF(\ff) := [\ff(E)]_G$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$.
+
+    The inverse $\FF^{-1}:K^{\dim(Y) \times \dim(V)} \rightarrow \LLLL(V \rightarrow Y)$ is defined by $\FF^{-1}(\AA) = [\cdot]_F^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions with $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
+\end{theorem}
+
+\begin{proof}
+    We first prove the statements regarding $\FF$, and then prove the statements regarding the claimed inverse to $\FF$.
+    
+    Notice that $\FF = \QQ \circ \PP$, where ${\PP:\LLLL(V \rightarrow Y) \rightarrow \LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)})}$ is defined by $\PP(\ff) := \ff_{E,G}$ and where ${\QQ:\LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)}) \rightarrow K^{\dim(Y) \times \dim(V)}}$ is defined by $\QQ(\gg) := \gg(\sE)$. (We have $(\QQ \circ \PP)(\ff) = \QQ(\PP(\ff)) = \QQ(\ff_{E,G}) = \ff_{E,G}(\sE) = [\ff(E)]_G$). We need to show that $\FF$ is linear, that it is invertible, and that it satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$.
+
+    \begin{itemize}    
+        \item ($\FF$ is linear). It's easy to check that $\ff \mapsto \ff(E)$ is a linear function. Once we know this, then since $\ff \mapsto \ff(E)$ and $[\cdot]_F$ are both linear functions, we see $\ff \mapsto \FF(\ff) = [\ff(E)]_G$ is a composition of linear functions, and is thus linear.
+        
+        \item ($\FF$ is invertible). It suffices to show that $\PP$ and $\QQ$ are invertible.
+        
+        Since we have $\PP(\ff) = \ff_{E,G} = [\cdot]_G \circ \ff \circ [\cdot]_E^{-1}$, then $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$. Thus $\PP$ is invertible.
+        
+        Since $\QQ(\gg)$ is the standard matrix of $\gg$, we claim that $\QQ^{-1}(\AA)$ is the linear function obtained from the matrix $\AA$: we claim $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We have $\QQ^{-1}(\QQ(\gg)) = \QQ^{-1}(\gg(\sE)) = (\vv \mapsto \gg(\sE) \vv) = \gg$ and $\QQ(\QQ^{-1}(\AA)) = \QQ(\vv \mapsto \AA \vv) = (\vv \mapsto \AA \vv)(\sE) = \AA$, so $\QQ^{-1}$ is indeed defined by $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. Thus $\QQ$ is invertible too.
+        
+        \item ($\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$). We have $\FF(\gg \circ \ff) = (\QQ \circ \PP)(\gg \circ \ff) = \QQ(\PP(\gg \circ \ff)) = \QQ((\gg \circ \ff)_{E,G})$. Notice that $(\gg \circ \ff)_{E,G} = [\cdot]_G \circ \gg \circ \ff \circ [\cdot]_E^{-1} = ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}$. Thus $\QQ((\gg \circ \ff)_{E,G}) = \QQ(\gg_{F,G} \circ \ff_{E,F})$. Since $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ and $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, we can apply the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard} to conclude that the standard matrix of the composition is equal to the matrix-matrix product of the corresponding standard matrices; that is, $\QQ(\gg_{F,G} \circ \ff_{E,F}) = \gg_{F,G}(\sE) \ff_{E,F}(\sE) = [\gg(F)]_G [\ff(E)]_F$.
+    \end{itemize}
+
+    Now we prove the statements regarding the claimed inverse to $\FF$. We first derive the expression for $\FF^{-1}(\AA)$. Above, we saw that $\FF = \QQ \circ \PP$, where $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$ and $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We therefore have $\FF^{-1}(\AA) = (\PP^{-1} \circ \QQ^{-1})(\AA) = \PP^{-1}(\QQ^{-1}(\AA)) = \PP^{-1}(\vv \mapsto \AA \vv) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, as desired.
+
+    Lastly, we prove that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. We start with the proven fact $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
+    ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$. In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. This is the desired result.
+\end{proof}
+
+The following special case of the above theorem follows immediately.
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::linear_functions_matrices_isomorphism_special_case}
+
+    (Special case of linear isomorphism between linear functions and matrices).
+    
+    Let $K$ be a field, and let $\sE$ be a basis for $K^n$ and $\sF$ be a basis for $K^m$.
+    
+    The function $\FF:\LLLL(K^n \rightarrow K^p) \rightarrow K^{p \times n}$ defined by $\FF(\ff) := \ff(\sE)$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = \gg(\sF) \ff(\sE)$ for all linear functions $\ff:K^n \rightarrow K^m$ and $\gg:K^m \rightarrow K^p$.
+
+    The inverse $\FF^{-1}:K^{p \times n} \rightarrow \LLLL(K^n \rightarrow K^p)$ is defined by $\FF^{-1}(\AA) = (\vv \mapsto \AA \vv)$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff(\sE) = \AA$ and $\gg(\sE) = \BB$.
+\end{theorem}
+
 \subsection*{Vectors relative to bases}
 
 We will now discover how when we have a finite-dimensional vector space with bases $E$ and $F$ we can relate $[\vv]_E$ to $[\vv]_F$ for any vector $\vv$.
@@ -1976,9 +2051,9 @@ The following is an important special case\footnote{Use the substitutions $E := 
 
 \begin{theorem}
 \label{ch::lin_alg::thm::I_EF}
-    ($\II_{E,F}^{-1} = \II_{F,E}$).
+    ($\II_{E,F}^{-1} = \II_{F,E}$ when $V = K^n$).
     
-    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. The identity function $\II:V \rightarrow V$ on $V$ satisfies $\II_{E,F}^{-1} = \II_{F,E}$. As a corollary, we have $[\EE]_F^{-1} = [\FF]_E$.
+    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. The identity function $\II:V \rightarrow V$ on $V$ satisfies $\II_{E,F}^{-1} = \II_{F,E}$. As a corollary, when $V = K^n$, then $E$ and $F$ are both lists of column vectors, so we have $[\EE]_F^{-1} = [\FF]_E$.
 \end{theorem}
 
 \begin{proof}
@@ -2013,25 +2088,25 @@ The following is an important special case\footnote{Use the substitutions $E := 
 Not all linear algebra resources use the above notion of matrices relative to bases and instead investigate matrices of the form $\EE^{-1} \AA \EE$. The following theorem explains that such matrices arise as a special case of matrices relative to bases.
 
 \begin{theorem}
-    (Matrices of linear functions $K^n \rightarrow K^n$ relative to $E$ and $E$).
+    (Matrices of linear functions $K^n \rightarrow K^n$ relative to bases).
     
-    Let $K$ be a field, let $E$ be a basis for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is
+    Let $K$ be a field, consider the vector space $K^n$, let $E$ and $F$ be bases for $K^n$, and consider a linear function $\ff:K^n \rightarrow K^n$. The matrix $[\ff(E)]_F$ of $\ff$ relative to $E$ and $F$ is
     
     \begin{align*}
-        [\ff(E)]_E = \EE^{-1} \ff(\sE) \EE,
+        [\ff(E)]_F = \FF^{-1} \ff(\sE) \EE.
     \end{align*}
-    
-    where $\EE$ is the matrix whose $i$th column is $\ee_i$.
+
+    An important special case of this theorem is that the matrix of $\ff$ relative to $E$ and $E$ is $\EE^{-1} \ff(\sE) \EE$.
 \end{theorem}
 
 \begin{proof}
-   The matrix $[\ff(E)]_E$ of $\ff$ relative to $E$ and $E$ is the standard matrix $\ff_{E,E}(\sE)$ of $\ff_{E,E} = [\cdot]_E \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,E}(\sE) = [\cdot]_E(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. We know that $[\cdot]_E(\sE) = \EE^{-1}$ and $[\cdot]_E^{-1}(\sE) = \EE$ from Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}, so the most recent expression is equal to $\EE^{-1} \ff(\sE) \EE$, as claimed.
+   The matrix $[\ff(E)]_F$ of $\ff$ relative to $E$ and $F$ is the standard matrix $\ff_{E,F}(\sE)$ of $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$, which is $\ff_{E,F}(\sE) = [\cdot]_F(\sE) \spc \ff(\sE) \spc [\cdot]_E^{-1}(\sE)$. Since $F$ is a list of column vectors, then the corollary of Theorem \ref{ch::lin_alg::thm::I_EF} applies, and $[\cdot]_F(\sE) = [\sE]_F$ is equal to $[\FF]_\sE^{-1} = \FF^{-1}$. Also, because $E$ is a list of column vectors, we can apply Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}, which says $[\cdot]_E^{-1}(\sE) = \EE$. So the most recent expression is equal to $\FF^{-1} \ff(\sE) \EE$, as claimed.
 \end{proof}
 
 \begin{remark}
     (Matrix similarity).
 
-    Most linear algebra texts do not define the matrix of a linear function $V \rightarrow W$ relative to bases $E$ and $F$, and only define ``the matrix of a linear function $\ff:V \rightarrow V$ relative to the basis $E$'' to be $\EE^{-1} \ff(\sE) \EE$.
+    Most linear algebra texts do not define the matrix of a linear function $V \rightarrow W$ relative to bases $E$ and $F$, and only define the ``matrix of a linear function $\ff:K^n \rightarrow K^n$ relative to the basis $E$ of $K^n$'' to be $\EE^{-1} \ff(\sE) \EE$.
 
     In such texts, one of two definitions of \textit{matrix similarity} is given:
 
@@ -3282,6 +3357,8 @@ This section generalizes the notion of the dot product, which we only know to be
 \begin{remark}
     The above theorem reveals that the algebraic dot product (in $\R^2) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
 \end{remark}
+
+\newpage
 
 \section{Eigenvectors and eigenvalues}
 

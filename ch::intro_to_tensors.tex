@@ -1,4 +1,4 @@
-\chapter{A motivated introduction to tensors}
+\chapter{Introduction to tensors}
 \label{ch::motivated_intro}
 
 In this chapter, we introduce the idea of a \textit{tensor}, since tensors underpin differential forms. There are two key ideas that we must formalize before we define what a tensor is.
@@ -28,14 +28,16 @@ The second key idea in the theory of tensors is to think of linear functions as 
 \begin{defn}
     (Vector space of multilinear functions).
     
-    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling. In particular, the case $k = 1$ implies that $\LLLL(V \rightarrow W)$ denotes the set of linear functions $V \rightarrow W$.
+    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling.
+    
+    Notice, the case $k = 1$ is consistent with our definition in Theorem \ref{ch::lin_alg::thm::vector_space_linear_functions} of $\LLLL(V_1 \rightarrow W)$ as being the set of linear functions $V_1 \rightarrow W$.
 \end{defn}
 
 \begin{proof}
      The proof that $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ is indeed a vector space is left as an exercise.
 \end{proof}
 
-Elements of a vector space can be considered to be ``linear elements'' because their decompositions relative to a basis are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' We will see that elements of tensor product spaces are  ``multilinear elements''.
+Elements of a vector space can be considered to be ``linear elements'' because their decompositions relative to a basis are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function_intuitive}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' We will see that elements of tensor product spaces are  ``multilinear elements''.
 
 \newpage
 
@@ -126,7 +128,7 @@ Elements of a vector space can be considered to be ``linear elements'' because t
       
       by the seeming-bilinearity of $\otimes$.
       
-      To show linear independence, assume that $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j$ is the zero tensor. We must show that all of the $T_{i,j}$'s are $0$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \Big(\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j\Big) \cdot 0 = \ee_i \otimes \mathbf{0}$ for some $i$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$ for $\vv \in V$, or $\mathbf{0} \otimes \ww$ for $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{i,j}$ are $0$.
+      To show linear independence, assume that $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j$ is the zero tensor. We must show that all of the $T_{i,j}$'s are $0$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0} = \vv \otimes \mathbf{0}$ for any $\vv \in V$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$ for $\vv \in V$, or $\mathbf{0} \otimes \ww$ for $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{i,j}$ are $0$.
 \end{proof}
 
 The following theorem formalizes the notion that multilinear functions preserve the decomposition of multilinear elements. More precisely, it states that a multilinear function uniquely corresponds to a linear function on a tensor product space, which is a function that preserves the decomposition of an element of a tensor product space.
@@ -184,6 +186,38 @@ The theorem we will discover is that when $V$ and $W$ are finite-dimensional vec
 
 We begin with the observation given in the following theorem.
 
+\begin{lemma}
+    (Standard basis matrices).
+
+    Let $K$ be a field, and consider the standard bases $\sF = \{ \sff_1, ..., \sff_m\}$ and $\sE = \{\see_1, ..., \see_n\}$ for $K^m$ and $K^n$. The $m \times n$ matrix whose only nonzero entry is a $1$ in the $ith$ row and $j$th column is equal to $\sff_i \see_j^\top$. For example, if $m = 4$ and $n = 3$, we have
+
+    \begin{align*}
+        \sff_3 \see_2 = 
+        \begin{pmatrix}
+            0 \\
+            0 \\
+            1 \\
+            0
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 & 1 & 0
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0 & 0 & 0 \\
+            0 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 0
+        \end{pmatrix}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    The $k\ell$ entry of $\sff_i \see_j$ is the dot product of the $k$th row of $\sff_i$ with the $\ell$th column of $\see_j$. The $k$th row of $\sff_i$ is the scalar $\delta_{ki}$, the $\ell$th column of $\see_j$ is the scalar $\delta_{j\ell}$, and their dot product (in this degenerate case) is simply the product $\delta_{ki} \delta_{j \ell}$. This expression is only nonzero when $k = i$ and $\ell = j$, and when it is nonzero, it is equal to $1$. Thus the $k\ell$ entry of $\sff_i \see_j$ is $1$ when $(k, \ell) = (i, j)$ and $0$ otherwise.
+\end{proof}
+
+This lemma allows us to decomposes matrices into sums of ``standard basis matrices'', i.e., matrices of the form $\see_i \see_j^\top$ for some $i$ and $j$.
+
 \begin{theorem}
     If $(a_{ij})$ is an $m \times n$ matrix with entries in a field $K$, then
 
@@ -192,47 +226,84 @@ We begin with the observation given in the following theorem.
     \end{align*}
 \end{theorem}
 
-\begin{proof}
-    We have $(a_{ij}) = \sum_{ij} a_{ij} \delta_{ij}$. Since $\delta_{ij} = \sff_i \cdot \see_j = \sff_i \see_j^\top$, the result follows.
-\end{proof}
-
-This theorem can be generalized to hold so that the matrices involved are from arbtirary bases for $K^n$ and $K^m$ rather than the standard bases.
+The next step is to generalize this theorem so that the matrices involved are from arbitrary bases for $K^n$ and $K^m$ rather than the standard bases.
 
 \begin{theorem}
-    Let $K$ be a field and let $E$ and $F$ be bases of $K^n$ and $K^m$, respectively. If $(a_{ij})$ is an $m \times n$ matrix with entries in $K$, then there exist $b_{ij} \in K$ such that
+    Let $K$ be a field and let $E$ and $F$ be bases of $K^n$ and $K^m$, respectively. If $(a_{ij})$ is an $m \times n$ matrix with entries in $K$, then
 
    \begin{align*}
-        (a_{ij}) = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \ff_i \ee_j^\top.
+        (a_{ij}) = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \ff_i \ee_j^\top \text{ for some $b_{ij} \in K$}.
     \end{align*}
 \end{theorem}
 
 \begin{proof}
-    If we can find an invertible linear function $\GG:K^{m \times n} \rightarrow K^{m \times n}$ with $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top$, then since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), we will know that $\{\ff_i \ee_j^\top\}$ is a basis for $K^{m \times n}$.
+    An equivalent statement to the theorem is that $\{\ff_i \ee_j^\top\}$ is a basis for $K^{m \times n}$. If we can find an invertible linear function $\GG:K^{m \times n} \rightarrow K^{m \times n}$ with $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top$, then since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), we will have proved this.
 
-    Since for all $\vv \in K^m$ and $\ww \in K^m$ we have $\vv = \EE [\vv]_E$ and $\ww = \FF [\ww]_F$ (recall Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}), then our $\GG$ must satisfy $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top = \FF [\ff_i]_F (\EE [\ee_j]_E)^\top = \FF [\ff_i]_F [\ee_j]_E^\top \EE^\top = \FF \sff_i \see_j^\top \EE^\top$. If we define $\GG(\MM) := \FF \MM \EE^\top$, then this criterion is satisfied.
+    We have $\vv = \EE [\vv]_E$ and $\ww = \FF [\ww]_F$ (recall Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors}) for all $\vv \in K^m$ and $\ww \in K^m$, so $\GG$ must satisfy $\GG(\sff_i \see_j^\top) = \ff_i \ee_j^\top = \FF [\ff_i]_F (\EE [\ee_j]_E)^\top = \FF [\ff_i]_F [\ee_j]_E^\top \EE^\top = \FF \sff_i \see_j^\top \EE^\top$. An easy way to ensure this is to define $\GG(\AA) := \FF \AA \EE^\top$.
 
-    We now show that this $\GG$ is invertible. Since $E$ and $F$ are bases, then Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors} implies $\EE^{-1}$ and $\FF^{-1}$ exist. This allows us to define $\HH(\NN) := \FF^{-1} \NN \EE^{-\top}
-
-    so if $(a_{ij}) = \sum a_{ij} \sff_i \see_j^\top$ then $\GG(a_{ij}) = \sum a_{ij} \ff_i \ee_j^\top$
+    We now show that this $\GG$ is invertible. Since $E$ and $F$ are bases, then Theorem \ref{ch::lin_alg::thm::basis_change_from_standard_vectors} implies $\EE^{-\top}$ and $\FF^{-1}$ exist\footnote{$\EE^{-\top}$ exists because $\EE^{-1}$ exists and $\EE^{-\top} = (\EE^{-1})^\top$.}. We use these matrices to find that the $\AA$ satisfying $\BB = \FF \AA \EE^\top$ and find $\AA = \FF^{-1} \BB \EE^{-\top}$. Thus $\GG^{-1}(\BB) = \FF^{-1} \BB \EE^{-\top}$, so $\GG$ is invertible, as claimed.
 \end{proof}
 
-\begin{theorem}
-    Let $V$ and $W$ be finite-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then $\ff$ is a sum of rank-1 linear functions:
+Now, we transfer the idea of the above theorem to the landscape of linear functions. This is where important concepts underlying the key fact we seek to show begin to reveal themselves.
+
+\begin{deriv}
+
+    Let $K$ be a field,  consider the vector spaces $K^n$ and $K^m$, and let $\ff:K^n \rightarrow K^m$ be a linear function. The standard matrix $\ff(\sE)$ of $\ff$ can be decomposed by using the previous theorem:
 
     \begin{align*}
-        \ff = \sum a_{ij} \ff_i \circ \phi_{\ee_i}
+        \ff(\sE) = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \ff_i \ee_j^\top \text{ for some $b_{ij} \in K$}.
     \end{align*}
+
+    We now use the linear isomorphism between matrices and linear functions to rephrase the above equation in terms of linear functions. Formally, we know from Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism_special_case} that the linear isomorphism $\GG$ defined by $\GG(\AA) = (\AA \mapsto \AA \vv)$ is such that for all matrices $\AA$ and $\BB$ compatible with each other for matrix multiplication, we have $\GG(\BB \AA) = \gg \circ \ff$, where $\ff(\vv) = \AA \vv$ and $\gg(\vv) = \BB \vv$.
+
+    Applying this isomorphism to the above causes
+    \begin{itemize}
+        \item $\ff(\sE)$ to be replaced with $\ff$
+        \item matrix multiplication to be replaced by function composition $\circ$
+        \item $\ee_j^\top$ to be replaced by the linear function $\phi_{\ee_j}:K^n \rightarrow K$, i.e. $\phi_{\ee_j} \in \LLLL(K^n \rightarrow K)$, whose standard matrix is $\ee_j^\top$; that is, $\phi_{\ee_j}(\vv) = \ee_j^\top \vv$
+        \item $\ff_i$ to be replaced with the linear function $\tilde{\ff}_i:K \rightarrow K^m$, i.e. $\tilde{\ff}_i \in \LLLL(K \rightarrow K^m)$, whose standard matrix is $\ff_i$; that is, $\tilde{\ff}_i(c) = c\ff_i$
+    \end{itemize}
+
+    So, we have
+
+    \begin{align*}
+        \ff = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} b_{ij} \tilde{\ff}_i \circ \phi_{\ee_j} \text{ for some $b_{ij} \in K$},
+    \end{align*}
+
+    where $\phi_{\ee_j} \in \LLLL(K^n \rightarrow K)$ and $\tilde{\ff} \in \LLLL(K \rightarrow K^m)$ are defined by $\phi_{\ee_j}(\vv) = \ee_j^\top \vv$ and $\tilde{\ff}_i(c) = c\ff_i$.
+\end{deriv}
+
+Since the previous theorem only applies to linear function $K^n \rightarrow K^m$, it suggests another more general result for linear functions between arbitrary finite-dimensional vector spaces. We could invoke the previous theorem to prove this generalization, but now, almost immediately at the heart of the concept behind tensors, we prefer a more elegant basis-free approach\footnote{We could have in fact omitted all previous theorems in this chapter and started the chapter with the following theorem! We just preferred to motivate the following theorem by stumbling upon the idea via the matrices $\see_i \see_j^\top$ first.}.
+
+
+
+\begin{theorem}
+    Let $V$ and $W$ be finite-dimensional vector spaces over a field $K$. Any linear function $\ff:V \rightarrow W$ can be decomposed as
+
+    \begin{align*}
+        \ff = \sum_{ij} c_{ij} \tww_i \circ \phi_j \text{ for some $c_{ij} \in K$},
+    \end{align*}
+
+    where $\phi_j \in \LLLL(V \rightarrow K)$ and $\tww_i \in \LLLL(K \rightarrow W)$.
 \end{theorem}
 
 \begin{proof}
+    We know that $\ff(E) = \sum_{i = 1}^n \ff(\ee_i) \see_i^\top$.
+
+    Applying the linear isomorphism $\GG$ from Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism} to this equation causes
+
+    \begin{itemize}
+        \item $\ff(E)$ to be replaced with $\ff$
+        \item matrix multiplication to be replaced by function composition $\circ$
+        \item $\see_j^\top$ to be replaced the element $\phi_{\see_j}$ of $\LLLL(K^n \rightarrow K)$ whose matrix relative to $E$ is $\see_j^\top$; that is, $\phi_{\ee_j}(\vv) = \see_j^\top [\vv]_E$
+        \item $\ff(\ee_i)$ to be replaced by the element $\widetilde{\ff(\ee_i)}$ of $\LLLL(K \rightarrow W)$ whose standard matrix is $\ff(\ee_i)$; that is, $\widetilde{\ff(\ee_i)}(c) = c\ff(\ee_i)$
+    \end{itemize}
+
+    So, we have $\ff = \sum_{i = 1}^n \widetilde{\ff(\ee_i)} \circ \phi_{\ee_i}$
+
     
 \end{proof}
 
-\begin{theorem}
-    Any linear function $V \rightarrow W$ is a linear combination of rank-1 linear functions $V \rightarrow W$.
-\end{theorem}
-
-To recover the particular format of the above basis-dependent result, we use the previous theorem in conjunction with the following theorem.
 
 \begin{theorem}
     Let $V$ and $W$ be vector spaces. Any rank-1 linear function $V \rightarrow W$ can be expressed as $\ww \circ \phi$, for some $\ww \in W$ and some linear function $\phi:V \rightarrow K$, where $\ww:K \rightarrow W$ is the linear map defined by $\ww(c) = c \ww$.
