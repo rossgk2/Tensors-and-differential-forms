@@ -3263,14 +3263,14 @@ This section generalizes the notion of the dot product, which we only know to be
     \begin{enumerate}
         \item (Bilinearity). The functions $\vv \mapsto \langle \vv, \ww \rangle$ and $\ww \mapsto \langle \vv, \ww \rangle$ are linear for all $\vv, \ww \in V$. In other words $\langle \cdot, \cdot \rangle$ is ``linear in each argument''.
         \item (Symmetry). $\langle \vv, \ww \rangle = \langle \ww, \vv \rangle$ for all $\vv, \ww \in V$.
-        \item (Weak non-degeneracy). $\langle \vv, \vv \rangle = 0$ iff $\vv = \mathbf{0}$.
+        \item (Nondegeneracy). $\langle \vv, \vv \rangle = 0 \implies \vv = \mathbf{0}$ for all $\vv \in V$.
     \end{enumerate}
 \end{defn}
 
 \begin{remark}
     (Inner product conventions).
 
-    Some authors define inner products to satisfy the ``positive-definitness'' criterion rather than the weak nondegeneracy criterion. A function $V \times V \rightarrow K$ is \textit{positive-definite} iff $\langle \vv, \vv \rangle \geq 0$ for all $\vv \in V$, with $\langle \vv, \vv \rangle = 0$ occurring only when $\vv = \mathbf{0}$. A \textit{negative-definite} inner product is defined similarly and involves the condition $\langle \vv, \vv \rangle \leq 0$ for all $\vv \in V$.
+    Some authors define inner products to satisfy the ``positive-definitness'' criterion rather than the nondegeneracy criterion. A function $V \times V \rightarrow K$ is \textit{positive-definite} iff $\langle \vv, \vv \rangle \geq 0$ for all $\vv \in V$, with $\langle \vv, \vv \rangle = 0$ occurring only when $\vv = \mathbf{0}$. A \textit{negative-definite} inner product is defined similarly and involves the condition $\langle \vv, \vv \rangle \leq 0$ for all $\vv \in V$.
 \end{remark}
 
 \begin{defn}
