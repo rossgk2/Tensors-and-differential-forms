@@ -340,7 +340,7 @@ The second condition of the previous theorem describes bilinear forms that gener
     This notation has the advantage of being compact, and it's what I would personally use when doing calculations. However, it is best for reference materials such as this one to introduce the relations between $v^i$ and $v_i$ with notation that does involve explicit mention of the basis $E$.
 \end{remark}
 
-\begin{theorem}
+\begin{deriv}
     (Using a metric tensor to convert between vectors and dual vectors in a $(p, q)$ tensor).
     
     Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the dual basis for $V^*$ induced by $E$, and consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$ with coordinates $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$,
@@ -390,7 +390,42 @@ The second condition of the previous theorem describes bilinear forms that gener
         T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g_{r i_k} T^{i_1 ... i_{k - 1}}{}_{r}{}^{i_{k + 1} ... i_p}{}_{j_1 ... j_q} \quad \text{(index lowering)} \\
         T^{i_1 ... i_p}{}_{j_1 ... j_q} &\mapsto \sum_{r = 1}^n g^{r j_k} T^{i_1 ... i_p}{}_{j_1 ... j_{k - 1}}{}^{r}{}_{j_{k + 1} ... j_q} \quad \text{(index raising)}
     \end{empheq}
-\end{theorem}
+\end{deriv}
+
+\begin{remark}
+    (Index raising and lowering in greater generality).
+
+    It is possible to prove a version of the above result that applies when we have a tensor from $V_1 \otimes ... \otimes V_k$, where each ${V_i \in \{V, V^*, W, W^*\}}$, and a not-necessarily-symmetric nondegenerate bilinear form on finite-dimensional vector spaces $V$ and $W$.
+    
+    In this situation, we wouldn't necessarily have $\flat_1 = \flat_2$, $\sharp_1 = \sharp_2$, and $\BB = \BB^\top$. The full generality of the previous theorem would imply that there would be two different index-lowering operations (one involving multiplication by $B_{i_k r}$ and one involving multiplication by $B_{r i_k}$) and two different index-raising operations (one involving multiplication by $B_{j_k r}$ and one involving multiplication by $B^{r j_k}$).
+    
+    If the form of $V_1 \otimes ... \otimes V_k$ were set in stone for our purposes, e.g., $V_1 \otimes ... \otimes V_k = V \otimes W^* \otimes V^* \otimes W^{\otimes 2}$, then we would have a natural way to distinguish between indices that are lowered or raised as a result of applying $\flat_1$ or $\sharp_1$ and indices that are lowered or raised as a result of applying $\flat_2$ or $\sharp_2$: if an index corresponds to $V$ or $W^*$, then $\flat_1$ and $\sharp_1$ are applicable, and if an index corresponds to $W$ or $V^*$, then $\flat_2$ and $\sharp_2$ are applicable.
+
+    If the form of $V_1 \otimes ... \otimes V_k$ weren't set in stone, however- perhaps because we wanted to investigate with as much generality as possible- then things would be much uglier. We would have to distinguish between index operations from resulting from $\flat_1$ and $\sharp_1$ and index operations resulting from $\flat_2$ and $\sharp_2$.    This could be achieved by putting primes $'$ or tildes $\sim$ on indices that are raised or lowered with $\flat_2$ or $\sharp_2$, and leaving indices that are raised or lowered with $\flat_1$ or $\sharp_1$ alone. But as you can see, that is quite cumbersome.
+
+    % Here is a derivation of the above remark. Consider the equations of the previous theorem,
+
+    % \begin{align*}
+    %     [\vv]_E = \BB^{-\top} [\vv^{\flat_1}]_{F^*} &\text{ and }
+    %     [\ww]_F = \BB^{-1} [\ww^{\flat_2}]_{E^*} \\
+    %     [\phi]_{E^*} = \BB [\phi^{\sharp_2}]_F &\text{ and }
+    %     [\psi]_{F^*} = \BB^\top [\psi^{\sharp_1}]_E.
+    % \end{align*}
+
+    % \begin{itemize}
+    %     \item applying $\flat_1$ necessitates using expression for $[\psi]_{F^*}$, which is found in the bottom right equation of the previous theorem. since this equation involves matrix multiplication by $\BB^\top$, multiplication by $B_{r i_k}{}^\top = B_{i_k r}$ appears in the end result. this would be an index-lowering operation.
+
+    %     \item applying $\sharp_1$ necessitates using expression for $[\vv]_E$, which is found in the top left equation of the previous theorem. since this equation involves matrix multiplication by $\BB^{-\top}$, multiplication by $(B^{r j_k})^\top = B^{j_k r}$ appears in the end result. this would be an index-raising operation.
+    % \end{itemize}
+
+    % and
+
+    % \begin{itemize}
+    %     \item applying $\flat_2$ necessitates using expression for $[\phi]_{E^*}$, which is found in the bottom left equation of the previous theorem. since this equation involves matrix multiplication by $\BB$, multiplication by $B_{r i_k}$ appears in the end result. this would be an index-lowering operation.
+
+    %     \item applying $\sharp_2$ necessitates using expression for $[\ww]_F$, which is found in the top right equation of the previous theorem. since this equation involves matrix multiplication by $\BB^{-\top}$, multiplication by $B^{r j_k}$ appears in the end result. this would be an index-raising operation.
+    % \end{itemize}
+\end{remark}
 
 \subsection*{Change of basis for $(p, q)$ tensors}
 
