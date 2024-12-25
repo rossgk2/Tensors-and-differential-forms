@@ -207,7 +207,7 @@ Now we define \textit{point} and \textit{vector} in terms of elements of $\R^n$.
 \begin{defn}
     (Points and vectors in $\R^n$).
     
-    A \textit{point} in $\R^n$ is an element of $\R^n$. A \textit{vector} in $\R^n$ is also an element of $\R^n$.
+    A \textit{point} in $\R^n$ is an element of $\R^n$. A \textit{vector} in $\R^n$ is also an element of $\R^n$. (That was pretty simple, wasn't it?)
     
     When we have $\xx = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$, we can interpret $\xx$ to be either a point or vector. The numbers $x_1, ..., x_n \in \R$ are called the \textit{entries}, or \textit{components}, of $\xx$.
     
@@ -343,9 +343,11 @@ In other words, in the same way that a vector is ``something that lives in a vec
 \end{defn}
 
 \begin{remark}
-    (Examples of fields).
+    (Examples and non-examples of fields).
     
     \begin{itemize}
+        \item The integers $\Z$ are \textit{not} a field because the multiplicative inverse of any $x \neq 1$ is not an integer.
+        \item The rational numbers $\Q = \{\frac{a}{b} \mid a, b \in \Z\}$ is a field.
         \item $\R$ is a field.
         \item The complex numbers $\C = \{ a + b\sqrt{-1} \mid a, b \in \R\}$ are a field.
     \end{itemize}
@@ -396,7 +398,7 @@ Without further ado, we define ``vector-containing set over a field''.
 
 Now that our notion of vector-containing set is complete, we can make use of vector-containing sets. 
 
-Most often, we interpret vectors to be points. In the setting of the vector-containing set $\R^n$, it is easy to describe a point: you simply list the displacements $x_1, ..., x_n \in \R$ of the point from each of the mutually perpendicular coordinate axes (we discussed this in Remark \ref{ch::lin_alg::rmk::geometric_intuition_points_vectors}). We can't describe a vector from a general vector this way, though, because the vectors are not necessarily elements of $\R^n$! We can do something similar, though. Just as $\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ is a weighted sum of the vectors $\begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, ..., \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix} \in \R^n$, we can consider weighted sums of vectors from vector-containing sets. The following definition gives a name for vectors that are the result of such weighted sums.
+Most often, we interpret vectors to be points. In the setting of the vector-containing set $\R^n$, it is easy to describe a point: you simply list the displacements $x_1, ..., x_n \in \R$ of the point from each of the mutually perpendicular coordinate axes (we discussed this in Remark \ref{ch::lin_alg::rmk::geometric_intuition_points_vectors}). We can't describe a vector from a general vector space this way, though, because the vectors are not necessarily elements of $\R^n$! We can do something similar, though. Just as $\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ is a weighted sum of the vectors $\begin{pmatrix} 1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \begin{pmatrix} 0 \\ 1 \\ \vdots \\ 0 \end{pmatrix}, ..., \begin{pmatrix} 0 \\ 0 \\ \vdots \\ 1 \end{pmatrix} \in \R^n$, we can consider weighted sums of vectors from vector-containing sets. The following definition gives a name for vectors that are the result of such weighted sums.
 
 \begin{defn}
     (Linear combination).
@@ -410,7 +412,7 @@ Most often, we interpret vectors to be points. In the setting of the vector-cont
     where $c_1, ..., c_k$ are some scalars in $K$. So, a linear combination of $\vv_1, ..., \vv_k$ is a ``weighted sum'' involving $\vv_1, ..., \vv_k$.
 \end{defn}
 
-[motivation for considering vector containing sets that are spanned]
+As we continue to investigate vectors, we will primarily be interested in vector-containing sets that are closed under the operation of taking linear combinations. The next two definitions formalize this idea. In the second definition, we see that such vector-containing sets are called \textit{vector spaces}.
 
 \begin{defn}
     (Span).
@@ -441,6 +443,8 @@ Most often, we interpret vectors to be points. In the setting of the vector-cont
 \end{defn}
 
 \begin{remark}
+    (Vector-containing sets are subsets of vector spaces).
+
     Vector-containing sets and subsets of vector spaces are one and the same: vector-containing sets are subsets of vector spaces, and subsets of vector spaces are vector-containing sets. From this point on, we will favor ``subset of a vector space'' over ``vector-containing set'', because the terminology ``vector-containing set'' is nonstandard.
 \end{remark}
 
@@ -452,10 +456,9 @@ Most of the examples of vector-containing sets over $\R$ we gave before are actu
     Here are some examples of vector spaces:
     
     \begin{itemize}
-        \item $\R^n$ 
-        \item $K^n$.
-        \item The set of polynomials with real coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
-        \item The set of polynomials with rational coefficients of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
+        \item $\R^n$ over $\R$
+        \item $K^n$ over $K$, where $K$ is a field
+        \item The set of polynomials with coefficients in a field $K$ of degree less than $n$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number
         \item The set of infinitely differentiable functions $\R \rightarrow \R$, where $+$ is function addition and $\cdot$ is the scaling of a function by a real number.
         \item The set of infinite sequences of real numbers, where $+$ and $\cdot$ are defined in the ways you would expect.
     \end{itemize}
@@ -464,7 +467,7 @@ Most of the examples of vector-containing sets over $\R$ we gave before are actu
     
     \begin{itemize}
         \item $\Big\{\begin{pmatrix} 1 \\ 2 \end{pmatrix}, \begin{pmatrix} -3 \\ 0 \end{pmatrix}\Big\} \subseteq \R^2$.
-        \item $\{\vv_1, ..., \vv_k\} \subseteq S$.
+        \item $\{\vv_1, ..., \vv_k\} \subseteq S$, where $S$ is a vector-containing set
         \item $\{ z \in \R \mid z \geq ax + by \} \subseteq \R^3$, where $a, b \in \R$.
         \item $\{ x_n \in \R \mid x_n \geq c_1 x_1 + ... + c_k x_k \} \subseteq \R^n$, where $c_1, ..., c_k \in \R$, $k \leq n - 1$.
     \end{itemize}
@@ -520,7 +523,7 @@ When determining whether a set $V$ is a vector space or not, it is almost always
 
 We know that if $V$ is a vector space, then $V$ is a vector-containing set, and thus that there is a set $T \supseteq V$ that contains zero and the additive inverse of every vector in $V$. We now see that the fact that vector spaces are spanned by vector-containing sets implies these important vectors are members of all vector spaces.
 
-\begin{deriv}
+\begin{theorem}
     (Vector spaces have zero and additive inverses).
 
     Let $V$ be a vector space. Then for any $\vv \in V$,
@@ -531,7 +534,7 @@ We know that if $V$ is a vector space, then $V$ is a vector-containing set, and 
     \end{enumerate}
 
     Because $V$ is closed under vector scaling, both of these vectors are in $V$.
-\end{deriv}
+\end{theorem}
 
 \begin{proof}
     We've already explained that if the given formulas for the zero vector and additive inverses are true, then $V$ contains the zero vector and all additive inverses. We now show that the formulas are true.
@@ -544,12 +547,23 @@ We know that if $V$ is a vector space, then $V$ is a vector-containing set, and 
 
 \subsection*{Vector subspaces}
 
+Some vector spaces are subsets of vector spaces. We quickly discuss such spaces.
+
 \begin{defn}
 \label{ch::lin_alg::defn::vector_subspace}
     (Vector subspace). 
     
-    If $V$ and $W$ are vector spaces over $K$ and $W \subseteq V$, then $W$ is a \textit{vector subspace} of $V$.
+    If $V$ and $W$ are vector spaces and $W \subseteq V$, then $W$ is a \textit{vector subspace} of $V$.
 \end{defn}
+
+Since every vector subspace is a subset of a vector space, then every vector subspace is a vector-containing set. This fact yields a simple characterization of vector subspaces.
+
+\begin{theorem}
+\label{ch::lin_alg::defn::vector_subspace_characterization}
+    (Vector subspace characterization).
+
+    If $W$ is a subset of a vector space $V$, then $W$ is a vector subspace of $V$ iff $W$ is closed under vector addition and vector scaling. (See Theorem \ref{ch::lin_alg::thm::vector_space_alt_characterization} for the precise meaning of this).
+\end{theorem}
 
 \begin{remark}
     (Examples of vector subspaces).
@@ -569,7 +583,7 @@ We know that if $V$ is a vector space, then $V$ is a vector-containing set, and 
 
 \subsection*{Linear independence}
 
-In this subsection, we introduce the concept of \textit{linear independence}, which will serve as formal footing that can be used to justify future geometric intuitions.
+In this subsection, we introduce the concept of \textit{linearly independent vectors}, which is a generalization of the notion of ``non-parallel vectors'' to higher dimensions\footnote{In fact, we will see that linear independence helps us define what \textit{dimension} even means!}.
 
 \begin{defn}
     (Linear independence).
@@ -722,17 +736,12 @@ The following two lemmas enable us to obtain a more useful characterization of b
 \begin{theorem}
     (Bases for finite-dimensional vector spaces are linearly independent spanning sets).
     
-    Let $V$ be a finite-dimensional vector space. A set $E$ of vectors is a basis for $V$ iff
-    
-    \begin{enumerate}
-        \item $E$ spans $V$.
-        \item $E$ is linearly independent.
-    \end{enumerate}
+    Let $V$ be a finite-dimensional vector space. A set $E$ of vectors is a basis for $V$ iff $E$ spans $V$ and $E$ is linearly independent.
 \end{theorem}
 
 \begin{proof}
     \mbox{} \\ \indent
-    We show $(\text{$E$ is a minimal spanning set of $V$}) \iff (\text{$E$ is linearly independent})$.
+    We need to show $(\text{$E$ is a minimal spanning set of $V$}) \iff (\text{$E$ is linearly independent})$.
     
     (Case $E \neq \emptyset$).
     
@@ -751,12 +760,7 @@ Because the minimality condition in the definition we gave for ``basis'' boils d
 \begin{defn}
     (Basis).
     
-    Let $V$ be a vector space. We say that a set $E$ of vectors is a \textit{basis} for $V$ iff
-   
-   \begin{enumerate}
-        \item $E$ spans $V$.
-        \item $E$ is linearly independent.
-    \end{enumerate}
+    Let $V$ be a vector space. We say that a set $E$ of vectors is a \textit{basis} for $V$ iff $E$ spans $V$ and $E$ is linearly independent.
 \end{defn}
 
 \begin{remark}
@@ -859,7 +863,7 @@ This characterization of linear functions quickly generalizes to the following f
     
     Every linear function includes $\mathbf{0}$ in its image because $\ff(0 \cdot \vv) = 0 \cdot \ff(\vv) = \mathbf{0}$ for linear function $\ff$ and any vector $\vv$.
     
-    Somewhat counterintuitively, this means that only lines that pass through the origin $\mathbf{0}$ can be images of linear functions.
+    This means that only lines that pass through the origin can be images of linear functions.
 \end{theorem}
 
 \begin{theorem}
@@ -870,7 +874,11 @@ This characterization of linear functions quickly generalizes to the following f
 \end{theorem}
 
 \begin{proof}
-    For any linear function $\ff$, we have $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. We want to construct a linear function $\gg$ with $\gg(\ee_i) = \ww_i$. Thinking about replacing the $\ff(\ee_i)$ in the previous sum with $\ww_i$ gives us the idea to define $\gg(\vv) := \sum_{i = 1}^n ([\vv]_E)_i \ww_i$. It is straightforward to check that we indeed have $\gg(\ee_i) = \ww_i$ and that $\gg$ is linear.
+    For any linear function $\ff$, we have $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. We want to construct a linear function $\gg$ with $\gg(\ee_i) = \ww_i$. Thinking about replacing the $\ff(\ee_i)$ in the previous sum with $\ww_i$ gives us the idea to define $\gg(\vv) := \sum_{i = 1}^n ([\vv]_E)_i \ww_i$. 
+    
+    We now check that $\gg(\ee_i) = \ww_i$. We have $\gg(\ee_i) = \sum_{j = 1}^n ([\ee_i]_E)_j \ww_j = \sum_{j = 1}^n \delta_{ij} \ww_j = \ww_i$, as desired. 
+    
+    Lastly, we have to check that $\gg$ is linear. This is straightforward and left as an exercise.
 \end{proof}
 
 Now that we are familiar with theoretical characterizations of linear functions, we will investigate linear functions from a geometric perspective.
@@ -886,7 +894,7 @@ Now that we are familiar with theoretical characterizations of linear functions,
         \item projection onto a line through the origin
     \end{itemize}
     
-    In order to convince yourself that the above functions are linear, check that each above function $\ff$ satisfies $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c \vv) = c \vv$.
+    In order to convince yourself that the above functions are linear, convince yourself that each above function $\ff$ satisfies $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c \vv) = c \vv$. (For example, if $\ff$ is a rotation about the origin, then $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ is intuitively true because rotating the sum $\vv + \ww$ intuitively produces the same result as summing the rotated vectors $\ff(\vv)$ and $\ff(\ww)$).  
 \end{remark}
 
 The following theorem gives further geometric intuition for how linear functions behave.
@@ -931,6 +939,8 @@ Now that we are somewhat familiar with linear functions, we present a more abstr
 
 \subsection*{Kernel and image of linear functions}
 
+This section focuses on two important vector subspaces that come with every linear function.
+
 \begin{defn}
     (Kernel, image of a linear function).
     
@@ -947,13 +957,6 @@ Now that we are somewhat familiar with linear functions, we present a more abstr
     \end{align*}
 \end{defn}
 
-\begin{defn}
-\label{ch::lin_alg::defn::rank}
-    (Rank of a linear function). 
-    
-    Let $V$ and $W$ be vector spaces, and let $\ff:V \rightarrow W$ be a linear function. The \textit{rank} of $\ff$ is defined to be $\dim(\ff(V))$, the dimension of the image of $\ff$.
-\end{defn}
-
 \begin{theorem}
     (Kernel and image are vector subspaces). 
     
@@ -961,7 +964,19 @@ Now that we are somewhat familiar with linear functions, we present a more abstr
 \end{theorem}
 
 \begin{proof}
-   Left as exercise.
+    According to Theorem \ref{ch::lin_alg::defn::vector_subspace_characterization}, we need to show that each claimed subspace is closed under vector addition and vector scaling.
+
+    We first do so for the kernel, $\ff^{-1}(\{\mathbf{0}\})$.
+    \begin{itemize}
+        \item (Closure under vector addition). Let $\vv_1, \vv_2 \in \ff^{-1}(\{\mathbf{0}\})$. Then $\ff(\vv_1) = \mathbf{0}$ and $\ff(\vv_2) = \mathbf{0}$. We have $\ff(\vv_1 + \vv_2) =\ff(\vv_1) + \ff(\vv_2) = \mathbf{0} + \mathbf{0} = \mathbf{0}$, so $(\vv_1 + \vv_2) \in \ff^{-1}(\{\mathbf{0}\})$.        
+        \item (Closure under vector scaling). Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$. Then $\ff(\vv) = \mathbf{0}$. We have $\ff(c\vv) = c\ff(\vv) = c\cdot \mathbf{0} = \mathbf{0}$, so $c\vv \in \ff^{-1}(\{\mathbf{0}\})$.
+    \end{itemize}
+
+    Now we do so for the image, $\ff(V)$.
+    \begin{itemize}
+        \item (Closure under vector addition). Let $\ww_1, \ww_2 \in \ff(V)$. Then there exist $\vv_1, \vv_2 \in V$ such that $\ww_1 = \ff(\vv_1)$ and $\ww_2 = \ff(\vv_2)$. We have $\ww_1 + \ww_2 = \ff(\vv_1) + \ff(\vv_2) = \ff(\vv_1 + \vv_2)$, where $(\vv_1 + \vv_2) \in V$, so $(\ww_2 + \ww_2) \in \ff(V)$.
+        \item (Closure under vector scaling). Let $\ww \in \ff(V)$. Then there exists $\vv \in V$ such that $\ff(\vv) = \ww$. We have $c\ww = c\ff(\vv) = \ff(c\vv)$, where $c\vv \in V$, so $c\ww \in \ff(V)$.
+    \end{itemize}
 \end{proof}
 
 \begin{defn}
@@ -1039,6 +1054,8 @@ Now that we are somewhat familiar with linear functions, we present a more abstr
     It remains to show $\{\ee_{k + 1}, ..., \ee_n\}$ is a linearly independent set. Suppose for the sake of contradiction it's linearly dependent, i.e., that there are $c_{k + 1}, ..., c_n$ not all zero such that $c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = \mathbf{0}$. By the linearity of $\ff$, this is equivalent with $\ff(c_{k + 1} \ee_{k + 1} + ... + c_n \ee_n) = \mathbf{0}$ for some $c_i$'s not all zero. Thus $c_{k + 1} \ee_{k + 1} + ... + c_n \ee_n \in \ff^{-1}(\{\mathbf{0}\}) = \spann(\{\ee_1, ..., \ee_k\})$, which means $c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = d_1 \ee_1 + ... + d_k \ee_k$ for some $c_i$'s and $d_i$'s not all zero. Then $-(d_1 \ee_1 + ... + d_k \ee_k) + c_{k + 1} \ff(\ee_{k + 1}) + ... + c_n \ff(\ee_n) = 0$ for some $c_i$'s and $d_i$'s not all zero. But $\{\ee_1, ..., \ee_n\}$ is a basis for $V$, so this cannot happen. Thus $\ff(\ee_{k + 1}), ..., \ff(\ee_n)$ are linearly independent.
 \end{proof}
 
+\newpage
+
 \subsection*{Linear isomorphisms}
 
 \begin{defn}
@@ -1087,7 +1104,7 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 
 \begin{proof}
     \mbox{} \\ \indent
-    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then it has a trivial kernel. The main dimension theorem then implies that $\dim(W) = \dim(V) - \dim(\ff^{-1}(\mathbf{0})) = \dim(V) - 0 = \dim(V)$.
+    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then it has a trivial kernel. The main dimension theorem then implies that $\dim(W) = \dim(V) - \dim(\ff^{-1}(\{\mathbf{0}\})) = \dim(V) - 0 = \dim(V)$.
     
     ($\impliedby$). It suffices to show that every $n$-dimensional vector space is isomorphic to $K^n$. So, let $V$ be an $n$-dimensional vector space, and let $E$ be a basis for $V$. In Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis} we will define the linear function $[\cdot]_E:V \rightarrow K^n$; Theorem \ref{ch::lin_alg::thm::[]E_invertible} will show that $[\cdot]_E$ is a linear isomorphism.
 \end{proof}
@@ -1153,7 +1170,7 @@ Of more practical importance than the above is the following fact.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::[]E_invertible}
-    ($[\cdot]_E$ is an invertible linear function).
+    ($[\cdot]_E$ is a linear isomorphism).
     
     If $V$ is a finite-dimensional vector space with basis $E$, then $[\cdot]_E:V \rightarrow K^{\dim(V)}$ is an invertible linear function.
 \end{theorem}
@@ -1184,7 +1201,7 @@ Of more practical importance than the above is the following fact.
         = c[\vv]_E.
     \end{align*}
     
-    $[\cdot]_E$ is invertible because it sends basis vectors to basis vectors, and therefore preserves linear independence.
+    Since $[\cdot]_E$ sends basis vectors to basis vectors, it preserves linear independence, and is therefore one-to-one (recall Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}). Since $[\cdot]_E$ is a one-to-one linear function between vector spaces of the same dimension, it must also be onto. Thus $[\cdot]_E$ is a linear isomorphism.
 
     %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a trivial kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
 \end{proof}
@@ -1440,7 +1457,9 @@ Now, we can restate the characterizing property of standard matrices concisely.
     (The left side of the above equation is a matrix-vector product).
 \end{theorem}
 
-[segway]
+\subsection*{Composition of linear functions}
+
+In the previous section, we discovered how the action of a linear function on a vector corresponded to an operation involving the linear function's matrix and the vector. In this section, we discover an operation involving two linear functions' matrices. The operation arises from the fact that a composition of functions represented by matrices produces yet another function represented by a matrix.
 
 \begin{theorem}
     (A composition of linear functions is also linear).
@@ -1449,10 +1468,10 @@ Now, we can restate the characterizing property of standard matrices concisely.
 \end{theorem}
 
 \begin{proof}
-   Left as an exercise.
+   We have $(\gg \circ \ff)(\vv + \ww) = \gg(\ff(\vv + \ww)) = \gg(\ff(\vv) + \ff(\ww)) = \gg(\ff(\vv)) + \gg(\ff(\ww)) = (\gg \circ \ff)(\vv) + (\gg \circ \ff)(\ww)$ for all $\vv, \ww \in V$ and $(\gg \circ \ff)(c\vv) = \gg(\ff(c\vv)) = \gg(c\ff(\vv)) = c\gg(\ff(\vv)) = c (\gg \circ \ff)(\vv)$ for all $\vv \in V$ and $c \in K$.
 \end{proof}
 
-Since we know that a composition of linear functions is another linear function and that every linear function is represented by the matrix, we naturally ask: ``What is the matrix of a composition of linear functions''?
+Now, we answer the question: ``how is the standard matrix of $\gg \circ \ff$ related to the standard matrices of $\gg$ and $\ff$?''.
 
 \begin{deriv}
 \label{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}
@@ -1502,7 +1521,7 @@ Since we know that a composition of linear functions is another linear function 
         \begin{pmatrix} \BB \aa_1 & \hdots & \BB \aa_n \end{pmatrix}.
     \end{align*}
     
-    Just as was the case with the matrix-vector product $\pp$, no one actually uses the letter $\PP$ when notating matrix-matrix products. Instead, we establish the convention that writing two matrices of compatible sizes next to each other indicates the evaluation of the corresponding matrix-matrix product. That is, given an $m \times n$ matrix $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and a $p \times m$ matrix $\BB$, we define
+    Just as was the case with the matrix-vector product $\pp$, no one actually uses the letter $\PP$ when notating matrix-matrix products. Instead, we establish the convention that writing two matrices of compatible sizes next to each other indicates the evaluation of the corresponding matrix-matrix product. That is, given an $m \times n$ matrix $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and a $p \times m$ matrix $\BB$, we define the $p \times n$ matrix $\BB \AA$ as follows:
 
     \begin{align*}
         \boxed
@@ -1531,6 +1550,8 @@ Since we know that a composition of linear functions is another linear function 
     We now expand on what was meant when we said the matrix-matrix product $\BB \AA$ is only defined when the sizes of $\AA$ and $\BB$ are ``compatible''.
     
     Consider that the composition $\gg \circ \ff$ of linear functions $\ff$ and $\gg$ is only defined when the output space of $\ff$ is the entire input space of $\gg$, i.e., when the dimension of $\ff$'s output is the same as the dimension of $\gg$'s input. Because of this, the matrix-matrix product $\BB \AA$ of an $m \times n$ matrix with an $r \times s$ matrix $\BB$ is only defined when $r = n$, i.e., when $\BB$ has as many columns as $\AA$ has rows.
+
+    Additionally, when $\AA$ is $m \times n$ and $\BB$ is $p \times m$, then $\AA$ represents a linear function $K^n \rightarrow K^m$ and $\BB$ represents a linear function $K^m \rightarrow K^p$, so $\BB \AA$ represents a linear function $K^n \rightarrow K^p$. Thus when $\AA$ is $m \times n$ and $\BB$ is $p \times m$, we know $\BB \AA$ must be $p \times n$.
 \end{remark}
 
 \begin{remark}
@@ -1689,11 +1710,12 @@ Now we present several new theorems.
     \begin{align*}
         \boxed
         {
-            (\AA \vv)_i = (\text{$i$th row of $\AA$}) \cdot \vv
+            (\AA \vv)_i = (\text{$i$th row of $\AA$})^\top \cdot \vv
         }
     \end{align*}
+
     
-    Here $\cdot:K^n \times K^n \rightarrow K$ denotes the \textit{dot product} of vectors in $K^n$, defined by
+    Here $\cdot:K^n \times K^n \rightarrow K$ denotes the \textit{dot product}\footnote{We discuss the dot product in-depth later in this chapter.} of vectors in $K^n$, defined by
     
     \begin{align*}
         \begin{pmatrix} v_1 \\ \vdots \\ v_n \end{pmatrix}
@@ -1702,10 +1724,8 @@ Now we present several new theorems.
         =
         v_1 w_1 + ... + v_n w_n.
     \end{align*}
-    
-    Since the dot product must take two column vectors as input, what we technically mean by ``$i$th row of $\AA$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
-    
-    The last section of this chapter discusses the dot product in depth.
+
+    Notice how since the dot product must take two column vectors as input, the above boxed formula uses the transposed $i$th row of $\AA$, which is a column vector, instead of the ``unmodified'' $i$th row of $\AA$.
 \end{theorem}
 
 \begin{theorem}
@@ -1737,7 +1757,7 @@ We also revisit the matrix-matrix product for convenience. Similarly to as was w
 \begin{defn}
     (Matrix-matrix product).
 
-    Let $K$ be a field. Given $\AA \in K^{m \times n}$ with $i$th column $\aa_i$ and $\BB \in K^{p \times m}$, we define the \textit{matrix-matrix product} $\BB \AA$ to be the following:
+    Let $K$ be a field. Given $\AA \in K^{m \times n}$ with $i$th column $\aa_i$ and $\BB \in K^{p \times m}$, we define the \textit{matrix-matrix product} $\BB \AA \in K^{p \times n}$ to be the following:
 
     \begin{align*}
         \BB \AA = \BB \underbrace{\begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}}_\AA := 
@@ -1778,11 +1798,11 @@ Now, we present several new concepts regarding matrix-matrix products.
     \begin{align*}
         \boxed
         {
-            (\BB \AA)_{ij} = (\text{$i$th row of $\BB$}) \cdot (\text{$j$th column of $\AA$})
+            (\BB \AA)_{ij} = (\text{$i$th row of $\BB$})^\top \cdot (\text{$j$th column of $\AA$})
         }
     \end{align*}
     
-    As was the case in Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_vector_product}, what we mean by ``$i$th row of $\BB$'' in the boxed equation is ``column vector that contains entries of $i$th row of $\AA$''.
+    Similarly to in Theorem \ref{ch::lin_alg::thm::coordinates_of_matrix_vector_product}, we have to transpose the $i$th row of $\BB$ so that it is a column vector.
 \end{theorem}
 
 \begin{remark}
@@ -1866,9 +1886,7 @@ The topic of matrix tranposes does not become theoretically significant until Ch
 
 \subsection*{Matrices relative to bases}
 
-We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$.
-
-In Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism}, we saw that this result about representations of linear functions $K^n \rightarrow K^m$ ``ripples up'' to a result about representations of linear functions $V \rightarrow W$: that is, every linear function $V \rightarrow W$ is represented by a $\dim(V) \times \dim(W)$ matrix. That theorem does not tell us how to compute the matrix representation of an arbitrary linear function, however. We investigate this now.
+We started this section- ``Coordinatization of linear functions with matrices''- by noting that if $V$ and $W$ are $n$- and $m$-dimensional vector spaces, we can effectively study linear functions $V \rightarrow W$ by studying linear functions $K^n \rightarrow K^m$. Then, we showed that because a linear function $K^n \rightarrow K^m$ is determined by how it acts on the standard basis $\sE = \{\see_1, ..., \see_n\}$ of $K^n$, any linear function $\ff:K^n \rightarrow K^m$ is represented by the matrix $\ff(\sE)$. We now extend this result so that it is applicable for a linear function $V \rightarrow W$, where $V$ and $W$ are arbitrary finite-dimensional vector spaces.
 
 \begin{lemma}
     \label{ch::lin_alg::lemma::basis_inverse}
@@ -2086,30 +2104,30 @@ We've alluded to the correspondence between linear functions and matrices severa
 
     The function $\FF:\LLLL(V \rightarrow Y) \rightarrow K^{\dim(Y) \times \dim(V)}$ defined by $\FF(\ff) := [\ff(E)]_G$ is a linear isomorphism, and also satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$.
 
-    The inverse $\FF^{-1}:K^{\dim(Y) \times \dim(V)} \rightarrow \LLLL(V \rightarrow Y)$ is defined by $\FF^{-1}(\AA) = [\cdot]_F^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions with $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
+    The inverse $\FF^{-1}:K^{\dim(Y) \times \dim(V)} \rightarrow \LLLL(V \rightarrow Y)$ is defined by $\FF^{-1}(\AA) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ are linear functions with $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
 \end{theorem}
 
-\begin{proof}
-    We first prove the statements regarding $\FF$, and then prove the statements regarding the claimed inverse to $\FF$.
-    
-    Notice that $\FF = \QQ \circ \PP$, where ${\PP:\LLLL(V \rightarrow Y) \rightarrow \LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)})}$ is defined by $\PP(\ff) := \ff_{E,G}$ and where ${\QQ:\LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)}) \rightarrow K^{\dim(Y) \times \dim(V)}}$ is defined by $\QQ(\gg) := \gg(\sE)$. (We have $(\QQ \circ \PP)(\ff) = \QQ(\PP(\ff)) = \QQ(\ff_{E,G}) = \ff_{E,G}(\sE) = [\ff(E)]_G$). We need to show that $\FF$ is linear, that it is invertible, and that it satisfies $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$.
+\begin{proof}   
+    Notice that $\FF = \QQ \circ \PP$, where ${\PP:\LLLL(V \rightarrow Y) \rightarrow \LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)})}$ is defined by $\PP(\ff) := \ff_{E,G}$ and where ${\QQ:\LLLL(K^{\dim(V)} \rightarrow K^{\dim(Y)}) \rightarrow K^{\dim(Y) \times \dim(V)}}$ is defined by $\QQ(\gg) := \gg(\sE)$. (We have $(\QQ \circ \PP)(\ff) = \QQ(\PP(\ff)) = \QQ(\ff_{E,G}) = \ff_{E,G}(\sE) = [\ff(E)]_G$). 
 
     \begin{itemize}    
         \item ($\FF$ is linear). It's easy to check that $\ff \mapsto \ff(E)$ is a linear function. Once we know this, then since $\ff \mapsto \ff(E)$ and $[\cdot]_G$ are both linear functions, we see $\ff \mapsto \FF(\ff) = [\ff(E)]_G$ is a composition of linear functions, and is thus linear.
         
-        \item ($\FF$ is invertible). It suffices to show that $\PP$ and $\QQ$ are invertible.
-        
-        Since we have $\PP(\ff) = \ff_{E,G} = [\cdot]_G \circ \ff \circ [\cdot]_E^{-1}$, then $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$. Thus $\PP$ is invertible.
-        
-        Since $\QQ(\gg)$ is the standard matrix of $\gg$, we claim that $\QQ^{-1}(\AA)$ is the linear function obtained from the matrix $\AA$: we claim $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We have $\QQ^{-1}(\QQ(\gg)) = \QQ^{-1}(\gg(\sE)) = (\vv \mapsto \gg(\sE) \vv) = \gg$ and $\QQ(\QQ^{-1}(\AA)) = \QQ(\vv \mapsto \AA \vv) = (\vv \mapsto \AA \vv)(\sE) = \AA$, so $\QQ^{-1}$ is indeed defined by $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. Thus $\QQ$ is invertible too.
+        \item ($\FF^{-1} = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$). To prove this, we first find $\QQ^{-1}$ and $\PP^{-1}$ and then use the fact that $\FF^{-1} = \PP^{-1} \circ \QQ^{-1}$.
+                
+        Since $\QQ(\gg)$ is the standard matrix of $\gg$, we claim that $\QQ^{-1}(\AA)$ is the linear function obtained from the matrix $\AA$: we claim $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We have $\QQ^{-1}(\QQ(\gg)) = \QQ^{-1}(\gg(\sE)) = (\vv \mapsto \gg(\sE) \vv) = \gg$ and $\QQ(\QQ^{-1}(\AA)) = \QQ(\vv \mapsto \AA \vv) = (\vv \mapsto \AA \vv)(\sE) = \AA$, so $\QQ^{-1}$ is indeed defined by $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$.
+
+        Since we have $\PP(\ff) = \ff_{E,G} = [\cdot]_G \circ \ff \circ [\cdot]_E^{-1}$, then $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$.
+
+        Thus $\FF^{-1} = (\PP^{-1} \circ \QQ^{-1})(\AA) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$.
         
         \item ($\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$). We have $\FF(\gg \circ \ff) = (\QQ \circ \PP)(\gg \circ \ff) = \QQ(\PP(\gg \circ \ff)) = \QQ((\gg \circ \ff)_{E,G})$. Notice that $(\gg \circ \ff)_{E,G} = [\cdot]_G \circ \gg \circ \ff \circ [\cdot]_E^{-1} = ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) = \gg_{F,G} \circ \ff_{E,F}$. Thus $\QQ((\gg \circ \ff)_{E,G}) = \QQ(\gg_{F,G} \circ \ff_{E,F})$. Since $\ff_{E,F}:K^{\dim(V)} \rightarrow K^{\dim(W)}$ and $\gg:K^{\dim(W)} \rightarrow K^{\dim(Y)}$, we can apply the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard} to conclude that the standard matrix of the composition is equal to the matrix-matrix product of the corresponding standard matrices; that is, $\QQ(\gg_{F,G} \circ \ff_{E,F}) = \gg_{F,G}(\sE) \ff_{E,F}(\sE) = [\gg(F)]_G [\ff(E)]_F$.
+
+        \item ($\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$). We start with the proven fact ${\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F}$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
+        ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$.
+        
+        In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
     \end{itemize}
-
-    Now we prove the statements regarding the claimed inverse to $\FF$. We first derive the expression for $\FF^{-1}(\AA)$. Above, we saw that $\FF = \QQ \circ \PP$, where $\PP^{-1}(\gg) = [\cdot]_G^{-1} \circ \gg \circ [\cdot]_E$ and $\QQ^{-1}(\AA) = (\vv \mapsto \AA \vv)$. We therefore have $\FF^{-1}(\AA) = (\PP^{-1} \circ \QQ^{-1})(\AA) = \PP^{-1}(\QQ^{-1}(\AA)) = \PP^{-1}(\vv \mapsto \AA \vv) = [\cdot]_G^{-1} \circ (\vv \mapsto \AA \vv) \circ [\cdot]_E$, as desired.
-
-    Lastly, we prove that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. We start with the proven fact $\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
-    ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$. In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$. This is the desired result.
 \end{proof}
 
 The following special case of the above theorem follows immediately.
@@ -2125,418 +2143,6 @@ The following special case of the above theorem follows immediately.
 
     The inverse $\FF^{-1}:K^{p \times n} \rightarrow \LLLL(K^n \rightarrow K^p)$ is defined by $\FF^{-1}(\AA) = (\vv \mapsto \AA \vv)$, and satisfies $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $\ff(\sE) = \AA$ and $\gg(\sE) = \BB$.
 \end{theorem}
-
-\newpage
-
-\section*{Outline}
-
-\begin{itemize}
-    \item solving linear equations
-    \item correspondence between linear matrix equations and systems of linear equations
-    \item augmented matrices
-    \item because adding equations, multiplying equations by a scalar, and swapping equations doesn't change the system, performing the analogous row operations on the corresponding matrix doesn't change the system to which the matrix corresponds
-    \item RREF
-    \item finding a basis for the kernel
-    \begin{itemize}
-        \item corollary: $\rref(\AA) = \II$ iff $\AA$ is invertible
-    \end{itemize}
-    \item finding a basis for the image
-    \begin{itemize}
-        \item The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
-        \begin{itemize}
-            \item Proof. Let $\AA = (\aa_1 ... \aa_n)$. 
-            
-            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$. [?]
-
-            (Case: $\rref(\AA)$ has pivot columns). We have $\rref(\AA) = (\see_1, ..., \see_k, \bb_{k + 1}, ..., \bb_n)$ for some integer $k > 0$. Since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA) = (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Lemma \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
-
-            [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
-        \end{itemize}
-    \end{itemize}
-    \item test for linear independence
-    \item row operations don't change the kernel and column operations don't change the image
-\end{itemize}
-
-misc.
-\begin{itemize}
-    \item rref is an invertible linear operation
-    \item the standard basis is indeed a basis. true because $(c_1, ..., c_n)$ is the zero vector only when all $c_i$'s are zero.
-\end{itemize}
-
-\section{Systems of linear equations with matrices}
-
-This section presents how systems of linear equations can be solved by using concepts from linear algebra.
-
-Reading this section is entirely unnecessary for the remaining content in this book. This treatment of systems of linear equations has only been provided to serve as a superior alternative to the traditional approach of teaching linear algebra (which is: start with systems of linear equations, define the matrix-vector product, and then haphazardly discover the other linear algebra material we have covered). The approach we take emphasizes that linear algebra should not be introduced as a field of study that is discovered by starting with systems of linear equations\footnote{Linear algebra \textit{did} historically grow out of the study of systems of linear equations. Just remember that the historical approach is not always the most enlightening one!}, and that systems of linear equations should be viewed as an application of linear algebra.
-
-\begin{defn}
-    (Linear equation).
-
-    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a function, and let $\ww \in W$. When $\ff$ is linear, the equation $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$ is called a \textit{linear equation}.
-
-    The set of solutions to the equation, $\{\text{solns}\} := \{\vv \in V \mid \ff(\vv) = \ww\}$, is a vector space whenever it is nonempty.
-\end{defn}
-
-Linear equations are ``easy'' to solve whenever the linear function $\ff$ involved is invertible. When $\ff$ isn't invertible, we convert the problem of the linear equation into an equivalent problem and solve that instead.
-
-\begin{deriv}
-    (Linear matrix equations).
-    
-    Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$. Since $\ff:V \rightarrow W$ can be studied by choosing bases for $V$ and $W$ and investigating the induced linear function $K^n \rightarrow K^m$, we can study the linear equation
-
-    \begin{align*}
-        \ff(\vv) = \ww \text{ for all $\vv \in V$, where $\ff:V \rightarrow W$ is linear and $\ww \in W$},
-    \end{align*}
-    
-    by studying equations of the form 
-
-    \begin{align*}
-        \ff(\vv) = \ww \text{ for all $\vv \in K^n$, where $\ff:K^n \rightarrow K^m$ is linear and $\ww \in K^m$}.
-    \end{align*}
-
-    Since for $\ff:K^n \rightarrow K^m$ we have $\ff(\vv) = \ff(\sE) \vv$ for all $\vv \in K^n$, and since the columns of $\ff(\sE)$ vary over $K^m$ (recall Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}), we can study equations of the above form by studying equtions of the form
-
-    \begin{align*}
-        \AA \vv = \ww \text{ for all $\vv \in K^n$, where $\AA \in K^{m \times n}$ and $\ww \in K^m$}.
-    \end{align*}
-    
-    Equations of the above form are called \textit{(linear) matrix equations}\footnote{These equations are most commonly called \textit{matrix equations}}. 
-\end{deriv}
-
-\begin{deriv}
-    (Systems of linear equations).
-
-    Let $\AA = (a_{ij})$ be an $m \times n$ matrix with entries in a field $K$, let $\ww \in K^m$, and consider the linear matrix equation
-
-    \begin{align*}
-        \AA \vv = \ww \text{ for all $\vv \in V$}.
-    \end{align*}
-
-    If $\vv$ has $i$th component $v_i$ and $\ww$ has $i$th component $w_i$, then this is the same as
-
-    \begin{align*}
-        \begin{pmatrix}
-            a_{11} & \hdots & a_{1n} \\
-            \vdots & & \vdots \\
-            a_{m1} & \hdots & a_{mn}
-        \end{pmatrix}
-        \begin{pmatrix}
-            v_1 \\ \vdots \\ v_n
-        \end{pmatrix}
-        &=
-        \begin{pmatrix}
-            w_1 \\ \vdots \\ w_m
-        \end{pmatrix}
-        \text{ for all $v_1, ..., v_n \in K$}
-        \\
-        \begin{pmatrix}
-            v_1 a_{11} + ... + v_n a_{1n} \\
-            \vdots \\
-            v_1 a_{m1} + ... + v_n a_{mn}
-        \end{pmatrix}
-        &=
-        \begin{pmatrix}
-            w_1 \\ \vdots \\ w_m
-        \end{pmatrix}
-        \text{ for all $v_1, ..., v_n \in K$}
-        ,
-    \end{align*}
-
-    which is equivalent to the system of equations
-
-    \begin{align*}
-        \begin{cases}
-            v_1 a_{11} + ... + v_n a_{1n} = w_1 \\
-            \vdots \\
-            v_1 a_{m1} + ... + v_n a_{mn} = w_m
-        \end{cases}
-        \text{ for all $v_1, ..., v_n \in K$}.
-    \end{align*}
-\end{deriv}
-
-
-
-Obviously, the linear equation $\ff(\vv) = \ww$ is ``easy'' to solve when $\ff$ is invertible, as $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$ in that case. One might think that things become difficult when $\ff$ is not invertible. The following theorem says otherwise!
-
-\begin{theorem}
-    (Solutions to linear equations).
-
-    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation
-
-    \begin{align*}
-        \ff(\vv) = \ww \text{ for all $\vv \in V$}.
-    \end{align*}
-    
-    When the set of solutions $\{\text{solns}\}$ is nonempty, it can be described in terms of any particular solution:
-
-    \begin{align*}
-        \{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}.
-    \end{align*}
-
-    This theorem is very useful when in the case when $\ff$ is not invertible, as it says that we can obtain the entire solution set by finding a \textit{single} solution to the equation, finding the kernel of $\ff$, and then combining these two pieces of information in a simple way.
-\end{theorem}
-
-\begin{proof}
-    \mbox{} \\
-
-    Since the theorem assumes solutions to the linear equation exist, we know there is some $\vv \in \{\text{solns}\}$.
-    
-    \indent (Case: $\ff$ is invertible). In this case, $\ker(\ff) = \{\mathbf{0}\}$ and $\vv = \ff^{-1}(\ww)$, so $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{ \vv \} = \{\ff^{-1}(\ww)\}$. Since $\ff$ is invertible, the solution to the linear equation is unique, and $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$. Thus $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{\ff^{-1}(\ww)\} = \{\text{solns}\}$.
-
-    (Case: $\ff$ is not invertible). We need to show $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \subseteq \{\text{solns}\}$ and $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \supseteq \{\text{solns}\}$.
-
-    \indent \indent ($\subseteq$). Let $\uu$ be in the first set, so $\uu = \vv + \vv_0$ for some $\vv_0 \in \ker(\ff)$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$. Overall, we have $\ff(\uu) = \ww$, so $\uu$ is in the second set.
-
-    \indent \indent ($\supseteq$). Let $\uu$ be in the second set, so $\ff(\uu) = \ww$. We have $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ker(\ff)$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ker(\ff)$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ker(\ff)$, so $\uu$ is in the first set.
-\end{proof}
-
-\begin{theorem}
-    (Number of solutions to linear equations).
-
-    A linear equation has either zero, one, or infinitely many solutions.
-\end{theorem}
-
-\begin{proof}
-    Let $V$ and $W$ be finite-dimensional vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation $\ff(\vv) = \ww$.
-
-    (Case: there are no solutions).
-
-    (Case: there are solutions). 
-    
-    \indent \indent (Case: $\ff$ is invertible). We saw in the previous proof that the solution set is $\{\ff^{-1}(\ww)\}$ in this case. 
-
-    \indent \indent (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
-\end{proof}
-
-
-\begin{deriv}
-    (Equation of an $n$-dimensional plane).
-
-    A \textit{$k$-dimensional plane in $K^n$} is a subset of $K^n$ of the form
-
-    \begin{align*}
-        \Bigg\{ \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n \Big| \spc x_{n + 1} = c_1 x_1 + ... + c_k x_k + d \Bigg\}, \text{ where $c_1, ..., c_k, d \in K$}.
-    \end{align*}
-
-    Notice, for example, that a familiar line- or $1$-dimensional plane in $\R^2$- is a set of the form
-
-    \begin{align*}
-        \Bigg\{ \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \in \R^2 \Big| \spc x_2 = c x_1 + d \Bigg\} \text{, where $c, d \in \R$}.
-    \end{align*}
-
-    The type of equation satisfied by a point in an $n$-dimensional plane (an equation of the form $x_{n + 1} = a_1 x_1 + ... + a_n x_n + b$) is called a \textit{linear equation}\footnote{Although linear equations are related to linear functions (since the dot product is a bilinear function), the word ``linear`` in ``linear function'' has a different meaning than it does in ``linear equation''}. 
-\end{deriv}
-
-\begin{defn}
-    (System of linear equations).
-    
-    A system of linear equations is simply a set of linear equations such as the following:
-    
-    \begin{align*}
-        a_{1,1} x_1 + &... + a_{1,n} x_n = b_1, \\
-        a_{2,1} x_1 + &... + a_{2,n} x_n = b_2, \\
-        &\vdots \\
-        a_{m,1} x_1 + &... + a_{m,n} x_n = b_m.
-    \end{align*}
-    
-    Just as was the case with linear equations, when one considers a system of linear equations, one is typically interested in the set of points  $\begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} \in \R^n$ that satisfy all equations in the system.
-\end{defn}
-
-\begin{lemma}
-    (Intersection of two $k$-dimensional planes).
-    
-    The intersection of two $k$-dimensional planes is either an $k$-dimensional plane, an $(k - 1)$-dimensional plane, or the empty set.
-\end{lemma}
-
-\begin{proof}
-    
-\end{proof}
-
-\begin{theorem}
-    (Number of solutions to systems of linear equations). 
-    
-    no solutions, infinitely many solutions, or exactly one solution.
-\end{theorem}
-
-\begin{proof}
-    % There are three different proofs: 
-    % \begin{enumerate}
-    %     \item Reasoning about $n$-dimensional planes and induction \item Reasoning about $\ff(\xx) = \bb$ where $\ff:\R^n \rightarrow \R^m$ is the linear function representing the system and considering cases $n < m$, $n = m$, $n > m$
-    %     \item Reasoning about $\AA \xx = \bb$, RREFing, and considering analogous cases to ones in (2)
-    % \end{enumerate}
-    
-    Consider a system of $m$ linear equations in $n$ unknowns. Let the planes given by the equations be $P_{11}, ...,  P_{1m}$.
-    
-    (Case: $m$ is even). For each $i \in [1, \infty)$, set $P_{i + 1, 1} := P_{i, \sigma_i(1)} \cap P_{i, \sigma_i(2)}, P_{i + 1, 2} := P_{i, \sigma_i(3)} \cap P_{i, \sigma_i(4)}, ..., P_{i + 1, 2^{1 - (i + 1)} m} = P_{i \spc \sigma_i(2^{1 - i}m - 1)} \cap P_{i \spc \sigma_i(2^{1 - i}m)}$, where $\sigma_i:\{1, ..., n\}$ is defined as follows: if the planes $P_{i,1}, ..., P_{i,2^{1 - i}m}$ of the $i$th iteration can be reordered so that for some $j$ there is a plane ${P_{i + 1, j} = P_{i,\sigma_i(j)} \cap P_{i,\sigma_i(j + 1)}}$ of the $(i + 1)$st iteration that is the empty set, then $\sigma_i$ is that reordering; otherwise, $\sigma_i$ is the identity reordering that sends $j$ to $j$.
-
-    We now prove inductively that the planes of the $i$th iteration are either all $n - (i + 1)$ dimensional or are all the empty set.
-
-    (Base case).
-
-    (Inductive case).
-
-    \indent \indent (Case: one of the planes is the empty set). 
-    
-    \indent \indent (Case: none of the planes of the $i$th iteration is the empty set).
-
-    \indent \indent \indent (Case: one of the intersections of the $(i + 1)$st iteration is the empty set). Done
-
-    \indent \indent \indent (Case: none of the intersections of the $(i + 1)$st iteration is the empty set). By the inductive hypothesis, all of the planes are $n - (i - 1)$-dimensional. Apply the lemma
-    
-    (Case: $m$ is odd). 
-
-        
-    
-
-\end{proof}
-
-\begin{deriv}
-    (Systems of linear equations correspond to vector equations).
-    
-    Consider the system of linear equations
-    
-    \begin{align*}
-        a_{1,1} x_1 + &... + a_{1,n} x_n = b_1, \\
-        a_{2,1} x_1 + &... + a_{2,n} x_n = b_2, \\
-        &\vdots \\
-        a_{m,1} x_1 + &... + a_{m,n} x_n = b_m.
-    \end{align*}
-    
-    We can represent this system of equations in an alternate form to the above by reorganizing information. If we collect all the coefficents $a_{i,j}$ into a matrix $\AA$,
-    
-    \begin{align*}
-        \AA
-        =
-        \begin{pmatrix}
-            a_{1, 1} & \hdots & a_{1, n} \\
-            a_{2, 1} & \hdots & a_{2, n} \\
-            & \vdots & \\
-            a_{m, 1} & \hdots & a_{m, n} \\
-        \end{pmatrix},
-    \end{align*}
-    
-    and also collect the $x_i$ and $b_i$ into a vectors $\xx$ and $\bb$,   
-    
-    \begin{align*}
-        \xx
-        =
-        \begin{pmatrix}
-            x_1 \\ \vdots \\ x_n
-        \end{pmatrix}, \quad
-        \bb
-        =
-        \begin{pmatrix}
-            b_1 \\ \vdots \\ b_n
-        \end{pmatrix},
-    \end{align*}
-    
-    then the above system of equations corresponds to the tuple $(\AA, \xx, \bb)$. We can go a step further, however.
-    
-    Notice that the system of linear equations that arises from the vector equation $\AA \xx = \bb$ is exactly the system of linear equations we started with. 
-    
-    The vector equation
-    
-    \begin{align*}
-        \underbrace
-        {\begin{pmatrix}
-            a_{1, 1} & \hdots & a_{1, n} \\
-            a_{2, 1} & \hdots & a_{2, n} \\
-            & \vdots & \\
-            a_{m, 1} & \hdots & a_{m, n} \\
-        \end{pmatrix}}_{\AA}
-        \underbrace{
-        \begin{pmatrix}
-            x_1 \\ \vdots \\ x_n
-        \end{pmatrix}}_{\xx}
-        =
-        \underbrace
-        {\begin{pmatrix}
-            b_1 \\ \vdots \\ b_n
-        \end{pmatrix}}_{\bb}
-    \end{align*}
-    
-    is equivalent to
-    
-\begin{align*}
-        \begin{pmatrix}
-            \begin{pmatrix} a_{1, 1} & \hdots & a_{1, n} \end{pmatrix} \cdot \xx \\
-            \begin{pmatrix} a_{2, 1} & \hdots & a_{2, n} \end{pmatrix} \cdot \xx \\
-            \vdots \\
-            \begin{pmatrix} a_{m, 1} & \hdots & a_{m, n} \end{pmatrix} \cdot \xx
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            b_1 \\ \vdots \\ b_n
-        \end{pmatrix},
-\end{align*}
-
-which is equivalent to
-
-\begin{align*}
-    \begin{pmatrix}
-            a_{1, 1} x_1 + ... + a_{1, n} x_n \\
-            a_{2, 1} x_1 + ... + a_{2, n} x_n \\
-            \vdots \\
-            a_{m, 1} x_1 + ... + a_{m, n} x_n
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            b_1 \\ \vdots \\ b_n
-        \end{pmatrix}.
-\end{align*}
-
-The set of equations obtained by equating the components of the vectors on either sides of the equality is the original system of equations we began with.
-
-\end{deriv}
-
-\begin{theorem}
-    (Row operations are linear transformations).
-\end{theorem}
-
-\begin{remark}
-    (Column operations).
-\end{remark}
-
-\begin{comment}
-    \begin{lemma}
-        (The rows of an invertible matrix form a basis for $K^n$).
-        
-        Suppose $\AA$ is an $n \times n$ matrix with entries in a field $K$. If $\AA$ is invertible, then it has a trivial kernel, and so by considering the equation $\AA \vv = \mathbf{0} \iff \sum_i v_i \aa_i = \mathbf{0}$ we see that $\AA$ has $n$ linearly independent columns, i.e., the columns of $\AA$ form a basis for $K^n$.
-        
-        If $\AA$ is invertible, then $\AA^\top$ is also invertible (with $(\AA^\top)^{-1} = (\AA^{-1})^\top$). And if $\AA^\top$ is invertible, then the columns of $\AA^\top$ (i.e. the rows of $\AA$ form a basis for $K^n$).
-        
-        In all, we see that if $\AA$ is invertible, then the rows of $\AA$ form a basis for $K^n$ and the columns of $\AA$ also form a basis for $K^n$.
-    \end{lemma}
-\end{comment}
-
-\begin{lemma}
-    (A linear function is invertible iff it is a composition of elementary linear functions).
-    
-    Equivalently, a matrix is invertible iff it is a product of elementary matrices.
-\end{lemma}
-
-\begin{proof}
-   
-\end{proof}
-
-\begin{theorem}
-    (A matrix is invertible iff its RREF is the identity matrix).
-\end{theorem}
-
-\begin{proof}
-   
-   \mbox{} \\ \indent
-   ($\implies$). Consider an arbitrary invertible matrix $\AA$. Since $\AA$ is invertible, it is a product of elementary matrices, $\AA = \EE_i ... \EE_1$.
-
-   
-   
-   
-   ($\impliedby$). Suppose $\text{rref}(\AA) = \II$. Since RREF is obtained by performing a sequence of row operations, and since performing a row operation is equivalent to multiplying on the left by an elementary matrix, we have $\text{rref}(\AA) = \EE_i ... \EE_1$ for some elementary matrices $\EE_1, ..., \EE_i$. Thus $\EE_i ... \EE_1 \AA = \II$. Elementary matrices are invertible, so we see that
-   
-   [...]
-   
-   row operations correspond to invertible linear functions. since columns are LI iff invertible and (only) linear functions preserve LI, RREF must be identity iff invertible.
-\end{proof}
 
 \newpage
 
@@ -3361,8 +2967,455 @@ This section generalizes the notion of the dot product, which we only know to be
 \end{theorem}
 
 \begin{remark}
-    The above theorem reveals that the algebraic dot product (in $\R^2) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
+    The above theorem reveals that the algebraic dot product (in $\R^2$) can also be discovered as an orthogonality condition between vectors. When $\vv_1, \vv_2 \in \R^2$ are orthogonal, they form a right triangle, so Pythagorean theorem gives $||\vv_1||^2 + ||\vv_2||^2 = ||\vv_1 - \vv_2||^2$. Use $||\vv_i||^2 = \sum_{j = 1}^2 (([\vv_i]_\sE)_j)^2$ to discover that we must have $([\vv_1]_\sE)_1 ([\vv_2]_\sE)_1 + ([\vv_1]_\sE)_2 ([\vv_2]_\sE)_2 = 0$.
 \end{remark}
+
+\newpage
+
+\section{Systems of linear equations with matrices}
+
+This section presents how systems of linear equations can be solved by using concepts from linear algebra.
+
+Reading this section is entirely unnecessary for the remaining content in this book. This treatment of systems of linear equations has only been provided to serve as a superior alternative to the traditional approach of teaching linear algebra (which is: start with systems of linear equations, define the matrix-vector product, and then haphazardly discover the other material we have covered). The approach we take emphasizes that linear algebra should not be introduced as a field of study that is discovered by starting with systems of linear equations\footnote{Linear algebra \textit{did} historically grow out of the study of systems of linear equations. Just remember that the historical approach is not always the most enlightening one!}, and that systems of linear equations should be viewed as an application of linear algebra.
+
+\begin{defn}
+    (Linear equation).
+
+    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a function, and let $\ww \in W$. When $\ff$ is linear, the equation
+    
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in V$}
+    \end{align*}
+    
+    is called a \textit{linear equation}.
+
+    The set of solutions to the equation, $\{\text{solns}\} := \{\vv \in V \mid \ff(\vv) = \ww\}$, is a vector space whenever it is nonempty.
+\end{defn}
+
+We first present a recursive characterization of solutions to linear equations. This isn't an algorithm for finding solutions; it's only a characterization.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::solutions_to_linear_equations}
+    (Solutions to linear equations).
+
+    Let $V$ and $W$ be vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in V$}.
+    \end{align*}
+    
+    When the set of solutions $\{\text{solns}\}$ is nonempty, it can be described in terms of any particular solution:
+
+    \begin{align*}
+        \{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}.
+    \end{align*}
+
+    This theorem is very useful when in the case when $\ff$ is not invertible, as it says that we can obtain the entire solution set by finding a \textit{single} solution to the equation, finding the kernel of $\ff$, and then combining these two pieces of information in a simple way.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+
+    Since the theorem assumes solutions to the linear equation exist, we know there is some $\vv \in \{\text{solns}\}$.
+    
+    \indent (Case: $\ff$ is invertible). In this case, $\ker(\ff) = \{\mathbf{0}\}$ and $\vv = \ff^{-1}(\ww)$, so $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{ \vv \} = \{\ff^{-1}(\ww)\}$. Since $\ff$ is invertible, the solution to the linear equation is unique, and $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$. Thus $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{\ff^{-1}(\ww)\} = \{\text{solns}\}$.
+
+    (Case: $\ff$ is not invertible). We need to show $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \subseteq \{\text{solns}\}$ and $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \supseteq \{\text{solns}\}$.
+
+    \indent \indent ($\subseteq$). Let $\uu$ be in the first set, so $\uu = \vv + \vv_0$ for some $\vv_0 \in \ker(\ff)$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$. Overall, we have $\ff(\uu) = \ww$, so $\uu$ is in the second set.
+
+    \indent \indent ($\supseteq$). Let $\uu$ be in the second set, so $\ff(\uu) = \ww$. We have $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ker(\ff)$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ker(\ff)$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ker(\ff)$, so $\uu$ is in the first set.
+\end{proof}
+
+The above characterization implies the following theorem.
+
+\newpage
+
+\begin{theorem}
+    (Number of solutions to a linear equation).
+
+    A linear equation has either zero, one, or infinitely many solutions.
+\end{theorem}
+
+\begin{proof}
+    Let $V$ and $W$ be finite-dimensional vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation $\ff(\vv) = \ww$.
+
+    (Case: there are no solutions).
+
+    (Case: there are solutions). There are zero solutions in this case. 
+    
+    \indent \indent (Case: $\ff$ is invertible). We saw in the previous proof that the solution set is $\{\ff^{-1}(\ww)\}$ in this case. There is one solution in this case.
+
+    \indent \indent (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
+\end{proof}
+
+The first theorem in this chapter recursively characterizes the problem of solving linear equations, telling us that in order to solve $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$, we have to solve another linear equation, $(\ff(\vv) = \mathbf{0} \text{ for all $\vv \in V$})$. Thus, the problem of solving linear equations remains unsolved at this point.
+
+We address this problem now. In order to solve a linear equation, we will transform it into an equivalent system of linear equations, and solve that.
+
+\begin{deriv}
+    (System of linear equations corresponding to a linear equation).
+    
+    Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$. Since $\ff:V \rightarrow W$ can be studied by choosing bases for $V$ and $W$ and investigating the induced linear function $K^n \rightarrow K^m$, we can study the linear equation
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in V$, where $\ff:V \rightarrow W$ is linear and $\ww \in W$},
+    \end{align*}
+    
+    by studying equations of the form 
+
+    \begin{align*}
+        \ff(\vv) = \ww \text{ for all $\vv \in K^n$, where $\ff:K^n \rightarrow K^m$ is linear and $\ww \in K^m$}.
+    \end{align*}
+
+    Furthermore, since for $\ff:K^n \rightarrow K^m$ we have $\ff(\vv) = \ff(\sE) \vv$ for all $\vv \in K^n$, and since the columns of $\ff(\sE)$ vary over $K^m$ (recall Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}), we can study equations of the above form by studying equtions of the form
+
+    \begin{align*}
+        \AA \vv = \ww \text{ for all $\vv \in K^n$, where $\AA \in K^{m \times n}$ and $\ww \in K^m$}.
+    \end{align*}
+    
+    Equations of the above form are called \textit{(linear) matrix equations}\footnote{These equations are most commonly called \textit{matrix equations}.}. Traditionally, they are typically written with $\xx \in K^n$ instead of $\vv \in K^n$ and $\bb \in K^m$ instead of $\ww \in K^m$:
+
+    \begin{align*}
+        \AA \xx = \bb \text{ for all $\xx \in K^n$, where $\AA \in K^{m \times n}$ and $\bb \in K^m$}.
+    \end{align*}
+    
+    Notice that if $\xx \in K^n$ has $i$th component $x_i$ and $\bb \in K^m$ has $i$th component $b_i$, then the above linear matrix equation is the same as
+
+    \begin{align*}
+        \begin{pmatrix}
+            a_{11} & \hdots & a_{1n} \\
+            \vdots & & \vdots \\
+            a_{m1} & \hdots & a_{mn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_1 \\ \vdots \\ x_n
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_m
+        \end{pmatrix}
+        \text{ for all $x_1, ..., x_n \in K$}
+        \\
+        \begin{pmatrix}
+            x_1 a_{11} + ... + x_n a_{1n} \\
+            \vdots \\
+            x_1 a_{m1} + ... + x_n a_{mn}
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            b_1 \\ \vdots \\ b_m
+        \end{pmatrix}
+        \text{ for all $x_1, ..., x_n \in K$},
+    \end{align*}
+
+    which is equivalent to the system of linear\footnote{Each equation in this system is itself a linear equation because the function $(x_1, ..., x_n) \mapsto x_1 a_{i1} + ... + x_n a_{in}$ is linear for all $i$.} equations
+
+    \begin{align*}
+        \begin{cases}
+            x_1 a_{11} + ... + x_n a_{1n} = b_1 \\
+            \vdots \\
+            x_1 a_{m1} + ... + x_n a_{mn} = b_m
+        \end{cases}
+        \text{ for all $x_1, ..., x_n \in K$}.
+    \end{align*}
+\end{deriv}
+
+
+
+\newpage
+
+\begin{example}
+    (Example of finding basis for the kernel of a matrix).
+
+    If
+    \begin{align*}
+        \rref(\AA) = 
+        \begin{pmatrix}
+            1 & 0 & 2 & 0 & 5 \\
+            0 & 1 & -1 & 0 & -3 \\
+            0 & 0 & 0 & 1 & 2
+        \end{pmatrix},
+    \end{align*}
+
+     then $\AA \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{pmatrix} = \mathbf{0}$ iff
+
+     \begin{align*}
+         \begin{cases}
+             x_1 + 2x_3 + 5x_5 = 0 \\
+             x_2 - x_3 - 3x_5 = 0 \\ 
+             x_3 = x_3 \\
+             x_4 + 2x_5 = 0 \\
+             x_5 = x_5
+         \end{cases}
+     \end{align*}
+
+     iff
+
+     \begin{align*}
+         \begin{cases}
+             x_1 = -2x_3 - 5x_5 \\
+             x_2 = x_3 + 3x_5 \\ 
+             x_3 = x_3 \\
+             x_4 = -2x_5 \\
+             x_5 = x_5
+         \end{cases}
+     \end{align*}
+     
+     so
+
+    \begin{align*}
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -2x_3 - 5x_5 \\
+            x_3 + 3x_5 \\
+            x_3 \\
+            -2x_5 \\
+            x_5
+        \end{pmatrix}
+        =
+        x_3
+        \begin{pmatrix}
+            -2 \\ 1 \\ 1 \\ 0 \\ 0
+        \end{pmatrix}
+        + x_5
+        \begin{pmatrix}
+            -5 \\ 3 \\ 0 \\ -2 \\ 1
+        \end{pmatrix}
+    \end{align*}
+\end{example}
+
+\begin{deriv}
+    (Basis for the kernel of a matrix).
+
+    Consider $\rref(\AA) = (b_{ij}) := \rref(\AA)$.
+
+    
+    Let $x_{j_1}, ..., x_{j_p}$ be the pivot variables, $y_{k_1}, ..., y_{k_q}$ be the free variables, and consider the system of equations $\rref(\AA) \xx = \mathbf{0}$, where $\xx = (x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q})^\top$ 
+
+    [same as considering $\rref(\AA) (x_1, ..., x_n)^\top = \mathbf{0}$]
+    
+    [???]
+    
+    \begin{align*}
+        \begin{cases}
+            x_{j_1} + \sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} = 0 \\
+            \vdots \\
+            x_{j_p} + \sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha} = 0  \\
+            y_{k_1} = y_{k_1} \\
+            \vdots \\
+            y_{k_q} = y_{k_q} \\
+        \end{cases}.
+    \end{align*}
+
+    [better notation than ``$y_{k_\alpha} = y_{k_\alpha}$''?] This system is equivalent to
+
+    \begin{align*}
+        \begin{cases}
+            x_{j_1} = -\sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} \\
+            \vdots \\
+            x_{j_p} = -\sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha}  \\
+            y_{k_1} = y_{k_1} \\
+            \vdots \\
+            y_{k_q} = y_{k_q} \\
+        \end{cases},
+    \end{align*}
+
+    which is equivalent to the vector equation
+
+    \begin{align*}
+        \begin{pmatrix}
+            x_{j_1} \\
+            x_{j_2} \\
+            \vdots \\
+            x_{j_p} \\
+            y_{k_1} \\ 
+            y_{k_2} \\
+            \vdots \\
+            y_{k_q}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -\sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} \\
+            -\sum_{\alpha = 1}^q b_{j_2 k_\alpha} y_{k_\alpha} \\
+            \vdots \\
+            -\sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha} \\
+            t_1 \\
+            t_2 \\
+            \vdots \\
+            t_q
+        \end{pmatrix}
+        =
+        y_{k_1}
+        \begin{pmatrix}
+            -b_{j_1 k_1} \\
+            -b_{j_2 k_1} \\
+            \vdots \\
+            -b_{j_p k_1} \\
+            1 \\
+            0 \\
+            \vdots \\
+            0
+        \end{pmatrix}
+        +
+        y_{k_2}
+        \begin{pmatrix}
+            -b_{j_1 k_2} \\
+            -b_{j_2 k_2} \\
+            \vdots \\
+            -b_{j_p k_2} \\
+            0 \\
+            1 \\
+            \vdots \\
+            0
+        \end{pmatrix}
+        + ... +
+        y_{k_q}
+        \begin{pmatrix}
+            -b_{j_1 k_q} \\
+            -b_{j_2 k_q} \\
+            \vdots \\
+            -b_{j_p k_q} \\
+            0 \\
+            0 \\
+            \vdots \\
+            1
+        \end{pmatrix}.
+    \end{align*}
+
+    Thus
+
+    \begin{align*}
+        \xx &\in
+        \spann
+        \left(\left\{
+            \begin{pmatrix}
+                -b_{j_1 k_1} \\
+                -b_{j_2 k_1} \\
+                \vdots \\
+                -b_{j_p k_1} \\
+                1 \\
+                0 \\
+                \vdots \\
+                0
+            \end{pmatrix}
+            ,
+            \begin{pmatrix}
+                -b_{j_1 k_2} \\
+                -b_{j_2 k_2} \\
+                \vdots \\
+                -b_{j_p k_2} \\
+                0 \\
+                1 \\
+                \vdots \\
+                0
+            \end{pmatrix}
+            , ...,
+            \begin{pmatrix}
+                -b_{j_1 k_q} \\
+                -b_{j_2 k_q} \\
+                \vdots \\
+                -b_{j_p k_q} \\
+                0 \\
+                0 \\
+                \vdots \\
+                1
+            \end{pmatrix}
+        \right\}\right)
+    \end{align*}
+
+    The set of vectors in the above span is of the form
+
+    \begin{align*}
+        \left\{
+        \begin{pmatrix} \cc_1 \\ \see_1 \end{pmatrix},
+        \begin{pmatrix} \cc_2 \\ \see_2 \end{pmatrix},
+        ...
+        \begin{pmatrix} \cc_q \\ \see_q \end{pmatrix}
+        \right\},
+    \end{align*}
+
+    where $\cc_\alpha \in K^p$, $\see_\alpha \in K^q$ and where $\begin{pmatrix} \cc_\alpha \\ \see_\alpha \end{pmatrix}$ denotes the vector in $K^{p + q}$ formed by ``stacking'' $\cc_\alpha$ above $\see_\alpha$.
+
+    Since $\see_1, ..., \see_q$ are linearly independent, it follows that this set of vectors is linearly independent, too. Since the dimension of $\ker(\AA)$ is equal to the number of free variables, $\dim(\ker(\AA)) = q$, then this set is a linearly independent set of $\dim(\ker(\AA))$ many vectors, and is thus a basis for $\ker(\AA)$.
+\end{deriv}
+
+\newpage
+
+\subsection*{Outline}
+
+\textbf{(T) Theory}
+\begin{enumerate}
+    \item defn. linear equation
+    \item thm. $\{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}$
+    \item thm. number of solutions to a linear equation
+\end{enumerate}
+
+\textbf{(M) Motivating study of systems of linear equations}
+\begin{enumerate}
+    \item deriv. linear equations <-> linear matrix equations <-> systems of linear equations
+    \item Remark. (Using intuition about planes with systems of linear equations). 
+    
+    Notice that a linear equation in $n$ variables $v_1, ..., v_n$ is of the form $\vv \cdot \nn = 0$ for some $\nn \in \R^n$ and $c \in K$. 
+
+    \textbf{not all linear equations are of this form. some are of the form $\vv \cdot \nn = c$ for $c \neq 0$}
+    
+    In general, the \textit{orthogonal complement} to a vector subspace $W$ of vector space $V$ with inner product $\langle \cdot, \cdot \rangle$, is defined to be the vector subspace $W^\perp := \{ \langle \vv, \ww \rangle = 0 \mid \vv \in V \text{ and } \ww \in W \}$ of vectors in $V$ perpendicular to all vectors in $W$. An \textit{$(n - 1)$-dimensional plane in $\R^n$} is then defined to be the the orthogonal complement of $\spann(\nn)^\top = \{ \vv \cdot \ww = 0 \mid \vv \in \R^n \text{ and } \ww \in \spann(\nn)\} = \{ \vv \cdot \nn = 0 \mid \vv \in V\}$ for some $\nn \in \R^n$.
+    
+    Thus, a linear equation in $n$ variables is the equation of an $(n - 1)$-dimensional plane, and so a system of $m$ linear equations in $n$ variables can be interpreted to be an intersection of $m$ many $(n - 1)$-dimensional planes.
+
+    Intuition about $2$-dimensional planes in $\R^3$ can therefore be used to gain intuition about the number of solutions to a system of linear equations.
+\end{enumerate}
+
+\textbf{(S) Solving linear equations with augmented matrices}
+\begin{enumerate}
+    \item defn. augmented matrix corresponding to a system of linear equations
+    \item because adding equations, multiplying equations by a scalar, and swapping equations doesn't change the system, performing the analogous row operations on the corresponding matrix doesn't change the system to which the augmented matrix corresponds
+    \item RREF on augmented matrices; pivot variables, free variables. A matrix is in RREF iff
+    \begin{itemize}
+        \item All zero rows (rows equal to $\mathbf{0}^\top$) are at the bottom of the matrix.
+        \item Every nonzero row's leftmost nonzero entry is a $1$. Such $1$'s are called ``leading $1$'s'', or ``pivots''.
+        \item Each column containing some row's leading $1$ has zeros in all its other entries.
+        \begin{itemize}
+            \item Corollary: every row has at most $1$ pivot and every column has at most $1$ pivot. (Proof. (Rows). A row is either zero or nonzero. If it is zero, it has no pivots; if it is nonzero, it has one pivot. (Columns). A column is either zero or nonzero. If it is zero, it has no pivots. If it is nonzero, it either contains some row's leading $1$ or doesn't. If it does, it contains one pivot. If it doesn't, it contains zero pivots.)
+        \end{itemize}
+    \end{itemize}
+    \item reading solutions to a linear equation from a RREF
+    \item RREF as linear function represented by product of elementary matrices
+\end{enumerate}
+
+\textbf{(F) Finding $\ker(\AA)$}
+\begin{enumerate}    
+    \item $\AA$ is invertible (and thus has a trivial kernel) iff $\rref(\AA) = \II$
+    \begin{itemize}
+        \item    
+        ($\implies$). We prove the contrapositive, $\rref(\AA) \neq \II \implies \text{$\AA$ is not invertible}$. Suppose $\rref(\AA) \neq \II$, and consider the augmented matrix $(\rref(\AA) \mid \mathbf{0})$. Since $\rref(\AA) \neq \II$, then for some $i$ the set $\{j \mid \text{$j$ is a free column in the $i$th row of $\rref((\AA \mid \mathbf{0}))$}\}$ is nonempty. The $i$th row of $(\rref(\AA) \mid \mathbf{0})$ then corresponds to the equation $v_i + \sum_j c_j w_j = 0$. Since the $w_j$ are linearly independent [???], then $v_i = -\sum_j w_j \neq 0$. This means that the solution $\vv \in K^n$ to $\AA \vv = \mathbf{0}$ has a nonzero $i$th component, and is thus itself nonzero; $\vv \neq \mathbf{0}$. The kernel of $\AA$ is therefore nontrivial, so $\AA$ is not invertible. 
+
+        ($\impliedby$). If $\rref(\AA) = \II$ then $\EE_k ... \EE_1 \AA = \II$ and thus $\AA^{-1} = \EE_1^{-1} ... \EE_k^{-1}$.
+    \end{itemize}
+    \item (basis for the kernel). The set of vectors obtained via the method of S.4 from $(\rref(\AA) \mid \mathbf{0})$ is a basis for the $\ker(\rref(\AA))$. Since $\ker(\rref(\AA)) = \ker(\AA)$, it is also a basis for $\ker(\AA)$.
+    \begin{itemize}
+        \item proof: already written
+    \end{itemize}
+    \item finding a basis for the image
+    \begin{itemize}
+        \item The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
+        \begin{itemize}
+            \item Proof. Let $\AA = (\aa_1 ... \aa_n)$. 
+            
+            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$. [?]
+
+            (Case: $\rref(\AA)$ has pivot columns). We have $\rref(\AA) = (\see_1, ..., \see_k, \bb_{k + 1}, ..., \bb_n)$ for some integer $k > 0$. Since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA) = (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
+
+            [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
+        \end{itemize}
+    \end{itemize}
+    \item test for linear independence: $\vv_1, ..., \vv_k$ linearly independent iff the kernel of $\begin{pmatrix} \vv_1 & \hdots & \vv_k \end{pmatrix}$ is trivial. i.e. if its RREF is $\II$
+    \item row operations don't change the kernel and column operations don't change the image
+\end{enumerate}
 
 \newpage
 
