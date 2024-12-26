@@ -3119,79 +3119,63 @@ We address this now. In order to solve a linear equation, we will transform it i
     Each equation in this system is itself a linear equation because the function $(x_1, ..., x_n) \mapsto x_1 a_{i1} + ... + x_n a_{in}$ is linear for all $i$.
 \end{deriv}
 
+\subsection*{Finding bases for the kernel and image of matrix}
 
+[...image has to come first...]
 
-\newpage
+\begin{theorem}
+    (Basis for the image of a matrix).
 
-\begin{example}
-    (Example of finding basis for the kernel of a matrix).
+    The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
 
-    If
-    \begin{align*}
-        \rref(\AA) = 
-        \begin{pmatrix}
-            1 & 0 & 2 & 0 & 5 \\
-            0 & 1 & -1 & 0 & -3 \\
-            0 & 0 & 0 & 1 & 2
-        \end{pmatrix},
-    \end{align*}
+    [probably turn into a derivation]
+\end{theorem}
 
-     then $\AA \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{pmatrix} = \mathbf{0}$ iff
+\begin{proof}
+    Let $\rr_j$ be the $j$th column of $\rref(\AA)$, and let $\rr_{j_1}, ..., \rr_{j_\alpha}$ be the pivot columns of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, then $\rr_{j_\alpha}$ has in its $i$th row the entry $\delta_{ij_\alpha}$. Equivalently, $\rr_{j_\alpha} = \see_\alpha$. The pivot columns $\rr_{j_1} = \see_{j_1}, ..., \rr_{j_p} = \see_{j_p}$ are thus linearly independent. 
 
-     \begin{align*}
-         \begin{cases}
-             x_1 + 2x_3 + 5x_5 = 0 \\
-             x_2 - x_3 - 3x_5 = 0 \\ 
-             x_3 = x_3 \\
-             x_4 + 2x_5 = 0 \\
-             x_5 = x_5
-         \end{cases}
-     \end{align*}
+    We now show that the pivot columns span $\im(\AA)$. Since $\rref(\AA)$ is in RREF, then the columns of $\rref(\AA)$ containing free variables are linear combinations of the pivot columns of $\rref(\AA)$, so $R_\beta := \{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_\beta}\}$ is linearly dependent for every $\beta \in [1, q]$. Since $\im(\AA) = \spann(\{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_q}\}) = \spann(R_q)$, and since removing a vector from a linearly dependent set does not change the span of the set (recall Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}), then $R_\beta = R_{\beta + 1} - \{\rr_{k_{\beta + 1}}\}$ spans $\im(\AA)$ for all $\beta \in [0, q]$. In particular, $R_0 = \{\rr_{j_1}, ..., \rr_{j_p}\}$, which is the set of pivot columns, spans $\im(\AA)$. 
 
-     iff
+    Since $\rr_{j_1}, ..., \rr_{j_p}$ are linearly independent and span $\im(\AA)$, they are a basis of $\im(\AA)$.
 
-     \begin{align*}
-         \begin{cases}
-             x_1 = -2x_3 - 5x_5 \\
-             x_2 = x_3 + 3x_5 \\ 
-             x_3 = x_3 \\
-             x_4 = -2x_5 \\
-             x_5 = x_5
-         \end{cases}
-     \end{align*}
-     
-     so
+    [noticed that we have a new theorem: if $\ee_1, ..., \ee_n \in W \supseteq V$ are linearly independent and span $V$, then (because they are in $V$, they span $V$), and are thus a basis for $V$. used this theorem in proof of basis of kernel]
 
-    \begin{align*}
-        \begin{pmatrix}
-            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
-        \end{pmatrix}
-        =
-        \begin{pmatrix}
-            -2x_3 - 5x_5 \\
-            x_3 + 3x_5 \\
-            x_3 \\
-            -2x_5 \\
-            x_5
-        \end{pmatrix}
-        =
-        x_3
-        \begin{pmatrix}
-            -2 \\ 1 \\ 1 \\ 0 \\ 0
-        \end{pmatrix}
-        + x_5
-        \begin{pmatrix}
-            -5 \\ 3 \\ 0 \\ -2 \\ 1
-        \end{pmatrix}
-    \end{align*}
-\end{example}
+    Lastly, we show that the columns in $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ corresponding to the pivot columns of $\rref(\AA)$ are a basis of $\im(\AA)$. That is, we show that $\{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis for $\im(\AA)$. Since row-reduction is an invertible linear operation, then there exists an invertible linear matrix $\RR$ such that $\RR \AA = \rref(\AA)$. We then have $\AA = \RR^{-1} \rref(\AA)$, i.e., $\aa_i = \RR^{-1} \rr_i$, and, in particular, $\{\aa_{j_1}, ..., \aa_{j_p}\} = \{\RR^{-1} \rr_{j_1}, ..., \RR^{-1} \rr_{j_p}\}$. Since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), then $\{\RR^{-1} \rr_{j_1}, ..., \RR^{-1} \rr_{j_p}\} = \{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis of $\im(\AA)$.
+
+    [check if strictly increasing indices needed in proof for basis of kernel]
+\end{proof}
+
+% \begin{proof}
+%     Proof. Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and $\rref(\AA) = \begin{pmatrix} \rr_1 & \hdots & \rr_n \end{pmatrix}$.
+    
+%     (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$.
+    
+%     (Case: $\rref(\AA)$ has pivot columns). 
+%     Let $x_{j_1}, ..., x_{j_p}$ be the pivot variables of $\rref(\AA)$ and let $x_{k_1}, ..., x_{k_q}$ be the free variables of $\rref(\AA)$. Now consider $\SS := \begin{pmatrix} \rr_{j_1} & \hdots & \rr_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Since for each $\alpha$, the vector $\rr_{j_\alpha}$ is the pivot column of index $\alpha$ from $\rref(\AA)$, then $\rr_{j_\alpha} = \see_{j_\alpha}$. Thus $\SS = \begin{pmatrix} \see_{j_1} & \hdots & \see_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Now, since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA)$, or equivalently, $\aa_i = \RR^{-1} \rr_i$.
+    
+%     ================= 
+    
+%     $= (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
+    
+%     [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
+% \end{proof}
+
+\begin{theorem}
+    (Dimension of a matrix's kernel and image).
+
+    dimension of image is number of pivots
+
+    dimension of kernel is number of free fariables
+\end{theorem}
 
 \begin{deriv}
     (Basis for the kernel of a matrix).
 
     The previous lemma immediately implies that $\ker(\AA) = \ker(\rref(\AA))$. Thus, if we can find a basis for $\ker(\rref(\AA))$, it is also a basis of $\ker(\AA)$.
 
-    We have $\ker(\rref(\AA)) = \{\xx \in K^n \mid \rref(\AA) \xx = \mathbf{0}\}$. Consider the system of linear equations corresponding to the linear matrix equation $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$. If $(r_{ij}) = \rref(\AA)$, this system is
+    We have $\ker(\rref(\AA)) = \{\xx \in K^n \mid \rref(\AA) \xx = \mathbf{0}\}$. So, we consider the system of linear equations corresponding to the linear matrix equation $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$. 
+    
+    If $(r_{ij}) = \rref(\AA)$, this system is
 
     \begin{align*}
         \begin{cases}
@@ -3204,11 +3188,7 @@ We address this now. In order to solve a linear equation, we will transform it i
 
     Now, we consider two cases.
     
-    (Case: $\rref(\AA) \neq \mathbf{0}$). In this case, $\rref(\AA)$ has at least one pivot variable. So, we can let $x_{j_1}, ..., x_{j_p} \in K$ be the pivot variables of $\rref(\AA)$ and let $y_{k_1}, ..., y_{k_q} \in K$ be the free variables of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, the $i$th row consists of a $1$ in the $j_i$ column, $0$'s in all other pivot columns, and $r_{j_i k_\alpha}$ in the free-variable-column of index $k_\alpha$. Thus, when the $i$th row is not a zero row, the $i$th equation in the system is $(x_{j_i} + \sum_{\alpha = 1}^q r_{j_i k_\alpha} y_{k_\alpha} = 0)$.
-
-    (Case: $\rref(\AA) = \mathbf{0}$). Set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$. The equation $(x_{j_i} + \sum_{\alpha = 1}^q r_{j_i k_\alpha} y_{k_\alpha} = 0)$ then trivially holds for all $i$.
-
-    In both cases, the system can be written as
+    (Case: $\rref(\AA) \neq \mathbf{0}$). In this case, $\rref(\AA)$ has at least one pivot variable. So, we can let $x_{j_1}, ..., x_{j_p} \in K$ be the pivot variables of $\rref(\AA)$ and let $y_{k_1}, ..., y_{k_q} \in K$ be the free variables of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, the $i$th row consists of a $1$ in the $j_i$ column, $0$'s in all other pivot columns, and $r_{j_i k_\alpha}$ in the free-variable-column of index $k_\alpha$. Thus, the system can be written as
     
     \begin{align*}
         \begin{cases}
@@ -3219,23 +3199,27 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}.
     \end{align*}
 
-    (In the case $\rref(\AA) = \mathbf{0}$, all equations in the system are either of the form $(0 = 0)$ or $(y_{k_\alpha} = y_{k_\alpha})$).
-
-    Solving for the pivot variables and appending $q$ equations to describe the free variables, we obtain the system
+    Solving for the pivot variables, and then appending $q$ equations relating the free variables to themselves, we obtain the system
 
     \begin{align*}
         \begin{cases}
             x_{j_1} = -\sum_{\alpha = 1}^q r_{j_1 k_\alpha} y_{k_\alpha} \\
+            x_{j_2} = -\sum_{\alpha = 1}^q r_{j_2 k_\alpha} y_{k_\alpha} \\
             \vdots \\
             x_{j_p} = -\sum_{\alpha = 1}^q r_{j_p k_\alpha} y_{k_\alpha}  \\
             y_{k_1} = y_{k_1} \\
+            y_{k_2} = y_{k_2} \\
             \vdots \\
             y_{k_q} = y_{k_q} \\
         \end{cases}
         \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}
     \end{align*}
 
-    This system is equivalent to the vector equation
+    (Case: $\rref(\AA) = \mathbf{0}$). Then the system of equations corresponding to the linear-matrix equation $(\rref(\AA) \xx = \mathbf{0})$ is the trivial system that only contains copies of the equation $(0 = 0)$. If we set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$, then the last system from the previous case holds and is equal to the trivial system.
+
+    \vspace{.25cm}
+
+    We've seen that in either case, the system of equations corresponding to $\rref(\AA) \xx = \mathbf{0}$ is equivalent to the one shown at the end of the case $\rref(\AA) \neq \mathbf{0}$. That same system is equivalent to the vector equation
 
     \begin{align*}
         \begin{pmatrix}
@@ -3352,19 +3336,19 @@ We address this now. In order to solve a linear equation, we will transform it i
 
     where $\rr_\alpha \in K^p$, $\see_\alpha \in K^q$ and where $\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}$ denotes the vector in $K^{p + q}$ formed by ``stacking'' $\rr_\alpha$ above $\see_\alpha$.
 
-    Now, notice the following.
+    Now, notice the following:
 
     \newcommand{\realpha}{\left\{\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}\right\}_\alpha}
 
     \begin{itemize}
-        \item Each $\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}$ is in $\ker(\AA)$, since $\ker(\AA)$ is equal to $\spann\left(\realpha\right)$.
-        \item The dimension of $\ker(\AA)$ is equal to the number of free variables, $\dim(\ker(\AA)) = q$ (recall Theorem [...]).
+        \item Since $\ker(\AA)$ is equal to $\spann\left(\realpha\right)$, each $\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}$ is in $\ker(\AA)$.
+        \item Because of Theorem [...], the dimension of $\ker(\AA)$ is equal to the number of free variables, $\dim(\ker(\AA)) = q$.
         \item Since $\see_1, ..., \see_q$ are linearly independent, $\realpha$ is a linearly independent set of $q$ vectors. 
     \end{itemize}
 
     Combining the above facts, we conclude that $\realpha$ is a basis for $\ker(\AA)$.
 
-    How did we obtain this basis? Looking back through the derivation, we see that was obtained from applying [``parametric form method''] to the system of equations corresponding to $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$.
+    How did we obtain this basis? Looking back through the derivation, we see that the basis was obtained by applying [``parametric form method''] to the system of equations corresponding to $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$.
 
     Therefore,
 
@@ -3374,6 +3358,129 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ is a basis for $\ker(\AA)$}
     \end{empheq}
 \end{deriv}
+
+\begin{example}
+    (Basis for the kernel of a matrix).
+
+    If $\AA \in \R^{3 \times 5}$ is such that
+    
+    \begin{align*}
+        \rref(\AA) = 
+        \begin{pmatrix}
+            1 & 0 & 2 & 0 & 5 \\
+            0 & 1 & -1 & 0 & -3 \\
+            0 & 0 & 0 & 1 & 2
+        \end{pmatrix},
+    \end{align*}
+
+     then $(x_1, x_2, x_3, x_4, x_5)^\top \in \ker(\AA)$ iff
+     
+     \begin{align*}
+         \underbrace{
+             \begin{pmatrix}
+                1 & 0 & 2 & 0 & 5 \\
+                0 & 1 & -1 & 0 & -3 \\
+                0 & 0 & 0 & 1 & 2
+            \end{pmatrix}
+         }_{\AA}
+         \begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5 \end{pmatrix}
+         =
+         \begin{pmatrix}
+             0 \\ 0 \\ 0
+         \end{pmatrix}.
+     \end{align*}
+
+     This linear matrix equation is equivalent to the following system of linear equations:
+
+     \begin{align*}
+         \begin{cases}
+             x_1 + 2x_3 + 5x_5 = 0 \\
+             x_2 - x_3 - 3x_5 = 0 \\ 
+             x_4 + 2x_5 = 0 \\
+         \end{cases}
+         \text{ for all $x_1, x_2, x_3, x_4, x_5 \in \R$}.
+     \end{align*}
+
+     Solving for the pivot variables ($x_1, x_2, x_4$) in terms of the free variables ($x_3, x_5$), we obtain the equivalent system
+
+     \begin{align*}
+         \begin{cases}
+             x_1 = -2x_3 - 5x_5 \\
+             x_2 = x_3 + 3x_5 \\ 
+             x_4 = -2x_5
+        \end{cases}
+        \text{ for all $x_1, x_2, x_3, x_4, x_5 \in \R$}.
+     \end{align*}
+
+     Appending equations relating the free variables to themselves, we obtain the system
+     
+     \begin{align*}
+         \begin{cases}
+             x_1 = -2x_3 - 5x_5 \\
+             x_3 = x_3 \\
+             x_2 = x_3 + 3x_5 \\ 
+             x_4 = -2x_5 \\
+             x_5 = x_5
+        \end{cases}
+        \text{ for all $x_1, x_2, x_3, x_4, x_5 \in \R$}.
+     \end{align*}
+
+     This system is equivalent to the vector equation
+
+    \begin{align*}
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -2x_3 - 5x_5 \\
+            x_3 + 3x_5 \\
+            x_3 \\
+            -2x_5 \\
+            x_5
+        \end{pmatrix}
+        =
+        x_3
+        \begin{pmatrix}
+            -2 \\ 1 \\ 1 \\ 0 \\ 0
+        \end{pmatrix}
+        + x_5
+        \begin{pmatrix}
+            -5 \\ 3 \\ 0 \\ -2 \\ 1
+        \end{pmatrix} \text{ for all $x_1, x_2, x_3, x_4, x_5 \in \R$}.
+    \end{align*}
+
+    Thus,
+
+    \begin{align*}
+        \begin{pmatrix}
+            x_1 \\ x_2 \\ x_3 \\ x_4 \\ x_5
+        \end{pmatrix}
+        \in\spann\left(\left\{
+        \begin{pmatrix}
+            -2 \\ 1 \\ 1 \\ 0 \\ 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            -5 \\ 3 \\ 0 \\ -2 \\ 1
+        \end{pmatrix}
+        \right\}\right).
+    \end{align*}
+
+    The result of the previous derivation ensures us that
+
+    \begin{align*}
+        \left\{
+        \begin{pmatrix}
+            -2 \\ 1 \\ 1 \\ 0 \\ 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            -5 \\ 3 \\ 0 \\ -2 \\ 1
+        \end{pmatrix}
+        \right\}
+    \end{align*}
+
+    is a basis for $\ker(\AA)$. 
+\end{example}
 
 \newpage
 
@@ -3435,21 +3542,7 @@ We address this now. In order to solve a linear equation, we will transform it i
     \end{itemize}
     \item finding a basis for the image (has to come before basis for kernel so that we know the relationship between pivots, free variables, and dimensions of image and kernel).
     \begin{itemize}
-        \item The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
-        \begin{itemize}
-            \item Proof. Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and $\rref(\AA) = \begin{pmatrix} \rr_1 & \hdots & \rr_n \end{pmatrix}$.
-            
-            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$.
-
-            (Case: $\rref(\AA)$ has pivot columns). 
-            Let $x_{j_1}, ..., x_{j_p}$ be the pivot variables of $\rref(\AA)$ and let $x_{k_1}, ..., x_{k_q}$ be the free variables of $\rref(\AA)$. Now consider $\SS := \begin{pmatrix} \rr_{j_1} & \hdots & \rr_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Since for each $\alpha$, the vector $\rr_{j_\alpha}$ is the pivot column of index $\alpha$ from $\rref(\AA)$, then $\rr_{j_\alpha} = \see_{j_\alpha}$. Thus $\SS = \begin{pmatrix} \see_{j_1} & \hdots & \see_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Now, since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA)$, or equivalently, $\aa_i = \RR^{-1} \rr_i$.
-
-            
-            
-            $= (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
-
-            [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
-        \end{itemize}
+        \item proof: in progress
     \end{itemize}
     \item (lemma for basis of the kernel). $\dim(\im(\AA))$ is number of pivots. follows from main dimension theorem that $\dim(\ker(\AA))$ is number of free variables.
     \item (basis for the kernel). The set of vectors obtained via the method of S.4 from $(\rref(\AA) \mid \mathbf{0})$ is a basis for the $\ker(\rref(\AA))$. Since $\ker(\rref(\AA)) = \ker(\AA)$, it is also a basis for $\ker(\AA)$.
