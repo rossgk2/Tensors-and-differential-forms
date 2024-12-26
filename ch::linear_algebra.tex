@@ -2126,7 +2126,7 @@ We've alluded to the correspondence between linear functions and matrices severa
         \item ($\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$). We start with the proven fact ${\FF(\gg \circ \ff) = [\gg(F)]_G [\ff(E)]_F}$. Applying $\FF^{-1}$ to both sides, we obtain ${\gg \circ \ff = [\cdot]_G^{-1} \circ (\vv \mapsto [\gg(F)]_G [\ff(E)]_F \vv) \circ [\cdot]_E}$. Consider the matrix-matrix product that appears in the expression on the right side, $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$. Again applying the result from the end of Derivation \ref{ch::lin_alg::deriv::matrix_matrix_product_relative_to_bases_standard}, we see that the matrix-matrix product of standard matrices $\gg_{F,G}(\sE) \ff_{E,F}(\sE)$ is equal to the standard matrix of the composition $\gg_{F,G} \circ \ff_{E,F}$; that is, \\ ${\gg_{F,G}(\sE) \ff_{E,F}(\sE) = (\gg_{F,G} \circ \ff_{E,F})(\sE)}$. Furthermore, we have
         ${\vv \mapsto (\gg_{F,G} \circ \ff_{E,F})(\sE) \vv = \gg_{F,G} \circ \ff_{E,F}}$. Thus $\gg \circ \ff = [\cdot]_G^{-1} \circ (\gg_{F,G} \circ \ff_{E,F}) \circ [\cdot]_E = [\cdot]_G^{-1} \circ ([\cdot]_G \circ \gg \circ [\cdot]_F^{-1}) \circ ([\cdot]_F \circ \ff \circ [\cdot]_E^{-1}) \circ [\cdot]_E^{-1} = \gg \circ \ff$.
         
-        In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Because of Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}, then for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
+        In all, we've shown that $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ for all linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$. Recall from Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}that for any set of vectors, there exists a linear function sending basis vectors to those vectors. It follows that for any matrices $\AA$ and $\BB$ there exist linear functions $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ such that $\AA = [\ff(E)]_F$ and $\BB = [\gg(F)]_G$. We can apply the equation $\FF^{-1}([\gg(F)]_G [\ff(E)]_F) = \gg \circ \ff$ to these $\ff$ and $\gg$ to obtain that $\FF^{-1}(\BB \AA) = \gg \circ \ff$, where $[\ff(E)]_F = \AA$ and $[\gg(F)]_G = \BB$.
     \end{itemize}
 \end{proof}
 
@@ -3049,36 +3049,32 @@ The above characterization implies the following theorem.
     \indent \indent (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
 \end{proof}
 
-The first theorem in this chapter recursively characterizes the problem of solving linear equations, telling us that in order to solve $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$, we have to solve another linear equation, $(\ff(\vv) = \mathbf{0} \text{ for all $\vv \in V$})$. Thus, the problem of solving linear equations remains unsolved at this point.
+The first theorem in this chapter recursively characterizes the problem of solving linear equations, telling us that in order to solve $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$, we have to solve another linear equation, $(\ff(\vv) = \mathbf{0} \text{ for all $\vv \in V$})$. We haven't yet discussed a method for actually solving either of these linear equations, though!
 
-We address this problem now. In order to solve a linear equation, we will transform it into an equivalent system of linear equations, and solve that.
+We address this now. In order to solve a linear equation, we will transform it into an equivalent system of linear equations, and then solve that.
 
 \begin{deriv}
     (System of linear equations corresponding to a linear equation).
     
-    Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$. Since $\ff:V \rightarrow W$ can be studied by choosing bases for $V$ and $W$ and investigating the induced linear function $K^n \rightarrow K^m$, we can study the linear equation
+    Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$, let $\ff:V \rightarrow W$ be a linear function, let $\ww \in W$, and consider the linear equation
 
     \begin{align*}
-        \ff(\vv) = \ww \text{ for all $\vv \in V$, where $\ff:V \rightarrow W$ is linear and $\ww \in W$},
+        \ff(\vv) = \ww \text{ for all $\vv \in V$}.
+    \end{align*}
+
+    Making use of the characterizing property of the matrix $[\ff(E)]_F$ of $\ff$ relative to $E$ and $F$ (recall the result at the end of Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases}), the above equation is equivalent to
+
+    \begin{align*}
+       [\ff(E)]_F [\vv]_E = [\ww]_F \text{ for all $\vv \in V$}.
+    \end{align*}
+
+    If we let $[\ff(E)]_F$ vary\footnote{We can vary $\AA := [\ff(E)]_F$ over $K^{m \times n}$ because for any set of vectors, there exists a linear function sending basis vectors to those vectors (recall Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}). We can let $[\vv]_E$ vary over $K^n$ and $[\ww]_F$ vary over $K^m$ because $[\cdot]_E$ and $[\cdot]_F$ are invertible.} over $K^{m \times n}$, $\xx := [\vv]_E$ vary over $K^n$, and $\bb:= [\ww]_F$ vary over $K^m$, we see that the above equation is of the form
+
+    \begin{align*}
+        \AA \xx = \bb \text{ for all $\xx \in K^n$}.
     \end{align*}
     
-    by studying equations of the form 
-
-    \begin{align*}
-        \ff(\vv) = \ww \text{ for all $\vv \in K^n$, where $\ff:K^n \rightarrow K^m$ is linear and $\ww \in K^m$}.
-    \end{align*}
-
-    Furthermore, since for $\ff:K^n \rightarrow K^m$ we have $\ff(\vv) = \ff(\sE) \vv$ for all $\vv \in K^n$, and since the columns of $\ff(\sE)$ vary over $K^m$ (recall Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}), we can study equations of the above form by studying equtions of the form
-
-    \begin{align*}
-        \AA \vv = \ww \text{ for all $\vv \in K^n$, where $\AA \in K^{m \times n}$ and $\ww \in K^m$}.
-    \end{align*}
-    
-    Equations of the above form are called \textit{(linear) matrix equations}\footnote{These equations are most commonly called \textit{matrix equations}.}. Traditionally, they are typically written with $\xx \in K^n$ instead of $\vv \in K^n$ and $\bb \in K^m$ instead of $\ww \in K^m$:
-
-    \begin{align*}
-        \AA \xx = \bb \text{ for all $\xx \in K^n$, where $\AA \in K^{m \times n}$ and $\bb \in K^m$}.
-    \end{align*}
+    Equations of the above form are called \textit{(linear) matrix equations}\footnote{Unfortunately, in practice, \textit{matrix equation} usually means \textit{linear matrix equation}.}.
     
     Notice that if $\xx \in K^n$ has $i$th component $x_i$ and $\bb \in K^m$ has $i$th component $b_i$, then the above linear matrix equation is the same as
 
@@ -3109,7 +3105,7 @@ We address this problem now. In order to solve a linear equation, we will transf
         \text{ for all $x_1, ..., x_n \in K$},
     \end{align*}
 
-    which is equivalent to the system of linear\footnote{Each equation in this system is itself a linear equation because the function $(x_1, ..., x_n) \mapsto x_1 a_{i1} + ... + x_n a_{in}$ is linear for all $i$.} equations
+    which is equivalent to the system of linear equations
 
     \begin{align*}
         \begin{cases}
@@ -3119,6 +3115,8 @@ We address this problem now. In order to solve a linear equation, we will transf
         \end{cases}
         \text{ for all $x_1, ..., x_n \in K$}.
     \end{align*}
+
+    Each equation in this system is itself a linear equation because the function $(x_1, ..., x_n) \mapsto x_1 a_{i1} + ... + x_n a_{in}$ is linear for all $i$.
 \end{deriv}
 
 
@@ -3191,40 +3189,53 @@ We address this problem now. In order to solve a linear equation, we will transf
 \begin{deriv}
     (Basis for the kernel of a matrix).
 
-    Consider $\rref(\AA) = (b_{ij}) := \rref(\AA)$.
+    The previous lemma immediately implies that $\ker(\AA) = \ker(\rref(\AA))$. Thus, if we can find a basis for $\ker(\rref(\AA))$, it is also a basis of $\ker(\AA)$.
 
-    
-    Let $x_{j_1}, ..., x_{j_p}$ be the pivot variables, $y_{k_1}, ..., y_{k_q}$ be the free variables, and consider the system of equations $\rref(\AA) \xx = \mathbf{0}$, where $\xx = (x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q})^\top$ 
-
-    [same as considering $\rref(\AA) (x_1, ..., x_n)^\top = \mathbf{0}$]
-    
-    [???]
-    
-    \begin{align*}
-        \begin{cases}
-            x_{j_1} + \sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} = 0 \\
-            \vdots \\
-            x_{j_p} + \sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha} = 0  \\
-            y_{k_1} = y_{k_1} \\
-            \vdots \\
-            y_{k_q} = y_{k_q} \\
-        \end{cases}.
-    \end{align*}
-
-    [better notation than ``$y_{k_\alpha} = y_{k_\alpha}$''?] This system is equivalent to
+    We have $\ker(\rref(\AA)) = \{\xx \in K^n \mid \rref(\AA) \xx = \mathbf{0}\}$. Consider the system of linear equations corresponding to the linear matrix equation $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$. If $(r_{ij}) = \rref(\AA)$, this system is
 
     \begin{align*}
         \begin{cases}
-            x_{j_1} = -\sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} \\
+            x_1 r_{11} + ... + x_n r_{1n} = 0 \\
             \vdots \\
-            x_{j_p} = -\sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha}  \\
+            x_1 r_{m1} + ... + x_n r_{mn} = 0
+        \end{cases}
+        \text{ for all $x_1, ..., x_n \in K$}.
+    \end{align*}
+
+    Now, we consider two cases.
+    
+    (Case: $\rref(\AA) \neq \mathbf{0}$). In this case, $\rref(\AA)$ has at least one pivot variable. So, we can let $x_{j_1}, ..., x_{j_p} \in K$ be the pivot variables of $\rref(\AA)$ and let $y_{k_1}, ..., y_{k_q} \in K$ be the free variables of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, the $i$th row consists of a $1$ in the $j_i$ column, $0$'s in all other pivot columns, and $r_{j_i k_\alpha}$ in the free-variable-column of index $k_\alpha$. Thus, when the $i$th row is not a zero row, the $i$th equation in the system is $(x_{j_i} + \sum_{\alpha = 1}^q r_{j_i k_\alpha} y_{k_\alpha} = 0)$.
+
+    (Case: $\rref(\AA) = \mathbf{0}$). Set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$. The equation $(x_{j_i} + \sum_{\alpha = 1}^q r_{j_i k_\alpha} y_{k_\alpha} = 0)$ then trivially holds for all $i$.
+
+    In both cases, the system can be written as
+    
+    \begin{align*}
+        \begin{cases}
+            x_{j_1} + \sum_{\alpha = 1}^q r_{j_1 k_\alpha} y_{k_\alpha} = 0 \\
+            \vdots \\
+            x_{j_p} + \sum_{\alpha = 1}^q r_{j_p k_\alpha} y_{k_\alpha} = 0
+        \end{cases}
+        \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}.
+    \end{align*}
+
+    (In the case $\rref(\AA) = \mathbf{0}$, all equations in the system are either of the form $(0 = 0)$ or $(y_{k_\alpha} = y_{k_\alpha})$).
+
+    Solving for the pivot variables and appending $q$ equations to describe the free variables, we obtain the system
+
+    \begin{align*}
+        \begin{cases}
+            x_{j_1} = -\sum_{\alpha = 1}^q r_{j_1 k_\alpha} y_{k_\alpha} \\
+            \vdots \\
+            x_{j_p} = -\sum_{\alpha = 1}^q r_{j_p k_\alpha} y_{k_\alpha}  \\
             y_{k_1} = y_{k_1} \\
             \vdots \\
             y_{k_q} = y_{k_q} \\
-        \end{cases},
+        \end{cases}
+        \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}
     \end{align*}
 
-    which is equivalent to the vector equation
+    This system is equivalent to the vector equation
 
     \begin{align*}
         \begin{pmatrix}
@@ -3239,22 +3250,22 @@ We address this problem now. In order to solve a linear equation, we will transf
         \end{pmatrix}
         =
         \begin{pmatrix}
-            -\sum_{\alpha = 1}^q b_{j_1 k_\alpha} y_{k_\alpha} \\
-            -\sum_{\alpha = 1}^q b_{j_2 k_\alpha} y_{k_\alpha} \\
+            -\sum_{\alpha = 1}^q r_{j_1 k_\alpha} y_{k_\alpha} \\
+            -\sum_{\alpha = 1}^q r_{j_2 k_\alpha} y_{k_\alpha} \\
             \vdots \\
-            -\sum_{\alpha = 1}^q b_{j_p k_\alpha} y_{k_\alpha} \\
-            t_1 \\
-            t_2 \\
+            -\sum_{\alpha = 1}^q r_{j_p k_\alpha} y_{k_\alpha} \\
+            y_{k_1} \\
+            y_{k_2} \\
             \vdots \\
-            t_q
+            y_{k_q}
         \end{pmatrix}
         =
         y_{k_1}
         \begin{pmatrix}
-            -b_{j_1 k_1} \\
-            -b_{j_2 k_1} \\
+            -r_{j_1 k_1} \\
+            -r_{j_2 k_1} \\
             \vdots \\
-            -b_{j_p k_1} \\
+            -r_{j_p k_1} \\
             1 \\
             0 \\
             \vdots \\
@@ -3263,10 +3274,10 @@ We address this problem now. In order to solve a linear equation, we will transf
         +
         y_{k_2}
         \begin{pmatrix}
-            -b_{j_1 k_2} \\
-            -b_{j_2 k_2} \\
+            -r_{j_1 k_2} \\
+            -r_{j_2 k_2} \\
             \vdots \\
-            -b_{j_p k_2} \\
+            -r_{j_p k_2} \\
             0 \\
             1 \\
             \vdots \\
@@ -3275,15 +3286,16 @@ We address this problem now. In order to solve a linear equation, we will transf
         + ... +
         y_{k_q}
         \begin{pmatrix}
-            -b_{j_1 k_q} \\
-            -b_{j_2 k_q} \\
+            -r_{j_1 k_q} \\
+            -r_{j_2 k_q} \\
             \vdots \\
-            -b_{j_p k_q} \\
+            -r_{j_p k_q} \\
             0 \\
             0 \\
             \vdots \\
             1
-        \end{pmatrix}.
+        \end{pmatrix}
+        \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}.
     \end{align*}
 
     Thus
@@ -3293,10 +3305,10 @@ We address this problem now. In order to solve a linear equation, we will transf
         \spann
         \left(\left\{
             \begin{pmatrix}
-                -b_{j_1 k_1} \\
-                -b_{j_2 k_1} \\
+                -r_{j_1 k_1} \\
+                -r_{j_2 k_1} \\
                 \vdots \\
-                -b_{j_p k_1} \\
+                -r_{j_p k_1} \\
                 1 \\
                 0 \\
                 \vdots \\
@@ -3304,10 +3316,10 @@ We address this problem now. In order to solve a linear equation, we will transf
             \end{pmatrix}
             ,
             \begin{pmatrix}
-                -b_{j_1 k_2} \\
-                -b_{j_2 k_2} \\
+                -r_{j_1 k_2} \\
+                -r_{j_2 k_2} \\
                 \vdots \\
-                -b_{j_p k_2} \\
+                -r_{j_p k_2} \\
                 0 \\
                 1 \\
                 \vdots \\
@@ -3315,10 +3327,10 @@ We address this problem now. In order to solve a linear equation, we will transf
             \end{pmatrix}
             , ...,
             \begin{pmatrix}
-                -b_{j_1 k_q} \\
-                -b_{j_2 k_q} \\
+                -r_{j_1 k_q} \\
+                -r_{j_2 k_q} \\
                 \vdots \\
-                -b_{j_p k_q} \\
+                -r_{j_p k_q} \\
                 0 \\
                 0 \\
                 \vdots \\
@@ -3331,16 +3343,36 @@ We address this problem now. In order to solve a linear equation, we will transf
 
     \begin{align*}
         \left\{
-        \begin{pmatrix} \cc_1 \\ \see_1 \end{pmatrix},
-        \begin{pmatrix} \cc_2 \\ \see_2 \end{pmatrix},
+        \begin{pmatrix} \rr_1 \\ \see_1 \end{pmatrix},
+        \begin{pmatrix} \rr_2 \\ \see_2 \end{pmatrix},
         ...
-        \begin{pmatrix} \cc_q \\ \see_q \end{pmatrix}
+        \begin{pmatrix} \rr_q \\ \see_q \end{pmatrix}
         \right\},
     \end{align*}
 
-    where $\cc_\alpha \in K^p$, $\see_\alpha \in K^q$ and where $\begin{pmatrix} \cc_\alpha \\ \see_\alpha \end{pmatrix}$ denotes the vector in $K^{p + q}$ formed by ``stacking'' $\cc_\alpha$ above $\see_\alpha$.
+    where $\rr_\alpha \in K^p$, $\see_\alpha \in K^q$ and where $\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}$ denotes the vector in $K^{p + q}$ formed by ``stacking'' $\rr_\alpha$ above $\see_\alpha$.
 
-    Since $\see_1, ..., \see_q$ are linearly independent, it follows that this set of vectors is linearly independent, too. Since the dimension of $\ker(\AA)$ is equal to the number of free variables, $\dim(\ker(\AA)) = q$, then this set is a linearly independent set of $\dim(\ker(\AA))$ many vectors, and is thus a basis for $\ker(\AA)$.
+    Now, notice the following.
+
+    \newcommand{\realpha}{\left\{\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}\right\}_\alpha}
+
+    \begin{itemize}
+        \item Each $\begin{pmatrix} \rr_\alpha \\ \see_\alpha \end{pmatrix}$ is in $\ker(\AA)$, since $\ker(\AA)$ is equal to $\spann\left(\realpha\right)$.
+        \item The dimension of $\ker(\AA)$ is equal to the number of free variables, $\dim(\ker(\AA)) = q$ (recall Theorem [...]).
+        \item Since $\see_1, ..., \see_q$ are linearly independent, $\realpha$ is a linearly independent set of $q$ vectors. 
+    \end{itemize}
+
+    Combining the above facts, we conclude that $\realpha$ is a basis for $\ker(\AA)$.
+
+    How did we obtain this basis? Looking back through the derivation, we see that was obtained from applying [``parametric form method''] to the system of equations corresponding to $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$.
+
+    Therefore,
+
+    \begin{empheq}[box = \fbox]{align*}
+        \text{Any set of vectors obtained from applying [``parametric form method''] to the equation} \\
+        \rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$} \\
+        \text{ is a basis for $\ker(\AA)$}
+    \end{empheq}
 \end{deriv}
 
 \newpage
@@ -3396,26 +3428,41 @@ We address this problem now. In order to solve a linear equation, we will transf
 
         ($\impliedby$). If $\rref(\AA) = \II$ then $\EE_k ... \EE_1 \AA = \II$ and thus $\AA^{-1} = \EE_1^{-1} ... \EE_k^{-1}$.
     \end{itemize}
-    \item (basis for the kernel). The set of vectors obtained via the method of S.4 from $(\rref(\AA) \mid \mathbf{0})$ is a basis for the $\ker(\rref(\AA))$. Since $\ker(\rref(\AA)) = \ker(\AA)$, it is also a basis for $\ker(\AA)$.
+    \item lemma. $\rref(\AA)$ has no pivots iff $\rref(\AA) = \mathbf{0}$.
     \begin{itemize}
-        \item proof: already written
+        \item ($\implies$). It suffices to show that if a row has no pivots then it is $\mathbf{0}^\top$. Assume for contradiction that a row $\rr \in K^{1 \times n}$ has no pivots and is not equal to $\mathbf{0}^\top$. Then $\rr$ has some nonzero entries $r_1, ..., r_k$. Consider the leftmost such entry, $r_j$. This $r_i$ is the leading entry of $\rr$. Either $r_i = 1$ or $r_i \neq 1$. If $r_i = 1$, then $\rr$ has a pivot and thus $\rref(\AA)$ has a pivot; contradiction. If $r_i \neq 1$, then $\rr$ has a leading entry that is not equal to $1$, so $\rref(\AA)$ is not in RREF; contradiction. 
+        ($\impliedby$). If $\rref(\AA) = \mathbf{0}$ then there are no $1$'s in $\rref(\AA)$. Thus there are no leading $1$'s, i.e., no pivots.
     \end{itemize}
-    \item finding a basis for the image
+    \item finding a basis for the image (has to come before basis for kernel so that we know the relationship between pivots, free variables, and dimensions of image and kernel).
     \begin{itemize}
         \item The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
         \begin{itemize}
-            \item Proof. Let $\AA = (\aa_1 ... \aa_n)$. 
+            \item Proof. Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and $\rref(\AA) = \begin{pmatrix} \rr_1 & \hdots & \rr_n \end{pmatrix}$.
             
-            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$. [?]
+            (Case: $\rref(\AA)$ has no pivot columns). Then $\rref(\AA) = \mathbf{0}$.
 
-            (Case: $\rref(\AA)$ has pivot columns). We have $\rref(\AA) = (\see_1, ..., \see_k, \bb_{k + 1}, ..., \bb_n)$ for some integer $k > 0$. Since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA) = (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
+            (Case: $\rref(\AA)$ has pivot columns). 
+            Let $x_{j_1}, ..., x_{j_p}$ be the pivot variables of $\rref(\AA)$ and let $x_{k_1}, ..., x_{k_q}$ be the free variables of $\rref(\AA)$. Now consider $\SS := \begin{pmatrix} \rr_{j_1} & \hdots & \rr_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Since for each $\alpha$, the vector $\rr_{j_\alpha}$ is the pivot column of index $\alpha$ from $\rref(\AA)$, then $\rr_{j_\alpha} = \see_{j_\alpha}$. Thus $\SS = \begin{pmatrix} \see_{j_1} & \hdots & \see_{j_p} & \rr_{k_1} & \hdots & \rr_{k_q} \end{pmatrix}$. Now, since row-reduction is an invertible linear operation, there is an invertible matrix $\RR$ for which $\rref(\AA) = \RR \AA$. We thus have $\AA = \RR^{-1} \rref(\AA)$, or equivalently, $\aa_i = \RR^{-1} \rr_i$.
+
+            
+            
+            $= (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
 
             [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
         \end{itemize}
     \end{itemize}
+    \item (lemma for basis of the kernel). $\dim(\im(\AA))$ is number of pivots. follows from main dimension theorem that $\dim(\ker(\AA))$ is number of free variables.
+    \item (basis for the kernel). The set of vectors obtained via the method of S.4 from $(\rref(\AA) \mid \mathbf{0})$ is a basis for the $\ker(\rref(\AA))$. Since $\ker(\rref(\AA)) = \ker(\AA)$, it is also a basis for $\ker(\AA)$.
+    \begin{itemize}
+        \item proof: already written
+    \end{itemize}
+\end{enumerate}
+
+misc.
+\begin{itemize}
     \item test for linear independence: $\vv_1, ..., \vv_k$ linearly independent iff the kernel of $\begin{pmatrix} \vv_1 & \hdots & \vv_k \end{pmatrix}$ is trivial. i.e. if its RREF is $\II$
     \item row operations don't change the kernel and column operations don't change the image
-\end{enumerate}
+\end{itemize}
 
 \newpage
 
