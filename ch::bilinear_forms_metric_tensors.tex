@@ -346,7 +346,7 @@ The second condition of the previous theorem describes bilinear forms that gener
     Let $V$ be a finite-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the dual basis for $V^*$ induced by $E$, and consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$ with coordinates $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$,
 
     \begin{align*}
-        \TT = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}.
+        \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., m\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}.
     \end{align*}
 
     If we have a metric tensor $g$ on $V$, then we can send a basis $(p, q)$ tensor $\SS^{i_1 ... i_p}{}_{j_1 ... j_q}$ to a $(p - 1, q + 1)$ tensor by applying the map $\flat:V \rightarrow V^*$ to one of the $p$ vectors (as opposed to one of the $q$ dual vectors): 
@@ -395,7 +395,7 @@ The second condition of the previous theorem describes bilinear forms that gener
 \begin{remark}
     (Index raising and lowering in greater generality).
 
-    It is possible to prove a version of the above result that applies when we have a tensor from $V_1 \otimes ... \otimes V_k$, where each ${V_i \in \{V, V^*, W, W^*\}}$, and a not-necessarily-symmetric nondegenerate bilinear form on finite-dimensional vector spaces $V$ and $W$.
+    It is possible to prove a version of the above result that applies when we have a tensor from $V_1 \otimes ... \otimes V_k$, where ${V_i \in \{V, V^*, W, W^*\}}$, and a not-necessarily-symmetric nondegenerate bilinear form on finite-dimensional vector spaces $V$ and $W$.
     
     In this situation, we wouldn't necessarily have $\flat_1 = \flat_2$, $\sharp_1 = \sharp_2$, and $\BB = \BB^\top$. The full generality of the previous theorem would imply that there would be two different index-lowering operations (one involving multiplication by $B_{i_k r}$ and one involving multiplication by $B_{r i_k}$) and two different index-raising operations (one involving multiplication by $B_{j_k r}$ and one involving multiplication by $B^{r j_k}$).
     

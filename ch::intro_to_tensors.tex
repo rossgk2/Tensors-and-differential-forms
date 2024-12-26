@@ -215,6 +215,7 @@ We first need a lemma.
 Now we begin our investigation.
 
 \begin{deriv}
+\label{ch::motivated_intro::deriv::decomposition_of_a_linear_function}
     (Decomposition of a linear function).
 
     Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces over a field $K$, and consider the matrix $[\ff(E)]_F$ of $\ff$ relative to $E$ and $F$.
@@ -280,6 +281,7 @@ Using these definitions together with the result from the end of the above deriv
 One final ``big leap'' will complete our discovery. Recall, our original goal was to show ${\LLLL(V \rightarrow W) \cong W \otimes V^*}$. We've seen that dual spaces (i.e. $V^*$) have become involved. Tensor product spaces (i.e. $\otimes$) have not, yet, but will now.
 
 \begin{deriv}
+\label{ch::motivated_intro::deriv::linear_functions_V_W_iso_W_Vstar}
     ($\LLLL(V \rightarrow W) \cong W \otimes V^*$ naturally).
     
     We know from the previous theorem that $\ff \in \LLLL(V \rightarrow W)$ decomposes as a sum of linear functions of the form $\tww \circ \phi$, where $\phi \in V^*$ and $\ww \in W$. The idea is to take advantage of this decomposition and define a linear isomorphism $\FF:\LLLL(V \rightarrow W) \rightarrow W \otimes V^*$ that sends ${(\tww \circ \phi) \in \LLLL(V \rightarrow W)}$ to the elementary tensor $\ww \otimes \phi \in W \otimes V^*$:
@@ -376,6 +378,20 @@ So, we have proved the following theorem.
     We thought of the linear function $\ff:V \rightarrow W$ as a vector when we decomposed it into a linear combination of ``elementary compositions''. The notion of dual spaces allowed us to further abstract away the component $\phi \in V^* = \LLLL(V \rightarrow K)$ in the ``elementary composition'' $\ww \circ \phi$.
     
     In order distill ``elementary compositions'' $\ww \circ \phi$ down into objects which express the key aspects of their bilinear structure, we used the seeming-bilinearity of $\otimes$ to think of these elementary compositions as ``multilinear elements'' (speficially, we thought of them as ``bilinear elements'').
+\end{remark}
+
+\begin{remark}
+\label{ch::motivated_intro::rmk::outer_products}
+    (Outer products).
+
+    When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product}), we gave motivation for why inner products are called ``inner products'', and said that we would later explain the relevance of ``outer products''. Here is that explanation. 
+
+    Let $K$ be a field. We showed in the first derivation of this chapter (Derivation \ref{ch::motivated_intro::deriv::decomposition_of_a_linear_function}) that every matrix $\AA \in K^{m \times n}$ can be decomposed as $\AA = \sum_{\vv \in E, \ww \in F} \ww \vv^\top$, where $E \subseteq K^n$ and $F \subseteq K^m$. Because, in the expression $\ww \vv^\top$, the transpose $\top$ is on the ``outside'' of $\ww$ and $\vv$, then $\ww \vv^\top$ is sometimes called the ``outer product'' of $\ww$ and $\vv$. This is the main point. Here are some additional details:
+
+    \begin{itemize}
+        \item We've seen that matrices of the form $\ww \vv^\top$ (where $\ww \in K^m$ and $\vv \in K^n$) are identified with linear functions of the form $\ww \circ \phi$ (where $\ww \in K^m$ and $\phi \in (K^n)^*$), which are identified with tensors of the form $\ww \otimes \phi$, (where $\ww \in K^m$ and $\phi \in (K^n)^*$). Because elementary tensors are related to matrix outer products in this way, then when $V$ and $W$ are vector spaces, a tensor $\ww \otimes \vv \in W \otimes V$ is unfortunately sometimes called the ``outer product of $\ww$ and $\vv$''.
+        \item Some texts take advantage of the fact that the function $(\vv, \ww) \mapsto \ww \vv^\top$ is bilinear, and define the tensor product of $\ww \in K^m$ and $\vv \in K^n$ to be $\ww \otimes \vv := \ww^\top \vv$.
+    \end{itemize}
 \end{remark}
 
 \newpage
@@ -595,21 +611,22 @@ Let $V$ be a finite-dimensional vector space. Once we have taken the dual $V^*$ 
 Before our detour into the world of dual spaces, we derived Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}, and learned that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. One implication of this theorem is of particular interest: the vector space of linear maps $V \rightarrow V$ is naturally isomorphic to $V \otimes V^*$. The characterization of linear maps $V \rightarrow V$ as elements of $V \otimes V^*$ lends itself to generalization. We can generalize the notion of linear function by ``tensor-producting in'' more copies of $V$ and $V^*$! This is the idea behind the following definition.
 
 \begin{defn}
-    (Tensor space).
+\label{ch::motivated_intro::defn::tensor_space_on_a_vector_space}
+    (Tensor space on a vector space).
     
-    Let $V$ be a vector space. We define a \textit{tensor space on $V$}, or more colloquially, a \textit{tensor space}, to be a vector space of the form $V_1 \otimes ... \otimes V_k$, where each $V_i$ is either $V$ or $V^*$.
+    Let $V$ be a vector space. We define a \textit{tensor space on $V$}, or more colloquially to be a vector space of the form $V_1 \otimes ... \otimes V_k$, where each $V_i$ is either $V$ or $V^*$.
     
     The \textit{type} of a tensor space on $V$ is the sequence of positive integer superscripts and subscripts constructed in the pattern of the following examples\footnote{It is possible to give a formal definition of this notion of ``type'', but any such definition will be verbose and not particularly illustrative of the concept.}$^{,}$ \footnote{This convention goes against Definition \ref{ch::motivated_intro::defn::covariance_contravariance}, which sets the convention that vectors are associated with subscripts and covectors are associated with superscripts. This is necessary because we want the pattern of subscripts and superscripts in a tensor's type to mirror the pattern of subscripts and superscripts in a tensor's coordinates.}:
     
     \begin{itemize}
-        \item The type of the tensor space $V \otimes V^* \otimes V$ is $^1{}_1{}^1$.
-        \item The type of the tensor space $V^* \otimes (V)^{\otimes 3}$ is $_1{}^3$.
-        \item The type of the tensor space $(V)^{\otimes 2} \otimes V^* \otimes V$ is $^2{}_1{}^1$.
+        \item The type of $V \otimes V^* \otimes V$ as a tensor space on $V$ is $^1{}_1{}^1$.
+        \item The type of $V^* \otimes (V)^{\otimes 3}$ as a tensor space on $V$ is $_1{}^3$.
+        \item The type of the tensor space $(V)^{\otimes 2} \otimes V^* \otimes V$ as a tensor space on $V$ is $^2{}_1{}^1$.
     \end{itemize}
 
     (Superscripts coorrespond to $V$ and subscripts coorrespond to $V^*$).
     
-    We additionally define a \textit{tensor on $V$}, or more colloquially, a \textit{tensor}, to be an element of a tensor space on $V$. The \textit{type} of a tensor on $V$ is the type of the tensor space of which the tensor is a member.
+    We additionally define a \textit{tensor on $V$}, or more colloquially, a \textit{tensor}, to be an element of a tensor space on $V$. The \textit{type} of a tensor on $V$ is the type of the tensor space on $V$ of which the tensor is a member.
 \end{defn}
 
 \begin{defn}
@@ -658,40 +675,41 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     Since $T_{1,1}(V) = V \otimes V^*$ and $V \otimes V^* \cong \LLLL(V \rightarrow V)$ naturally, then $T_{1,1}(V) \cong \LLLL(V \rightarrow V)$ naturally. 
 \end{theorem}
 
-\begin{remark}
+\begin{theorem}
     (Coordinates of $(p, q)$ tensors).
 
-    Since $(p, q)$ tensors are of type $^p{}_q$, then the coordinates of a $(p, q)$ tensor are of the form $T^{i_1 ... i_p}{}_{j_1 ... j_q} \in K$, with all of the superscripts occurring before all of the subscripts.
-\end{remark}
+    Let $V$ be a vector space over a field $K$, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, and let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$. Since $(p, q)$ tensors are of type $^p{}_q$, then the coordinates of $\TT \in T_{p,q}(V)$ relative to $E$ and $E^*$ are of the form $T^{i_1 ... i_p}{}_{j_1 ... j_q} \in K$, with all of the superscripts occurring before all of the subscripts. Using the coordinates to express $\TT$, we have
 
-\begin{remark}
-    (Multilinearity and ``recursive linearity'').
-    
-    [TO-DO: mention second physicist's definition of tensor, call it ``recursive linearity''. This defn is equivalent to above defn of $(p, q)$ tensor when $V = \R^n$, due to the second boxed equation of Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}.]
-\end{remark}
+     \begin{align*}
+        \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., m\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
+    \end{align*}
+\end{theorem}
+
+\begin{example}
+\label{ch::motivated_intro::thm::linear_fn_cooresp_to_1_1_tensor}
+    (Linear function corresponding to a $(1, 1)$ tensor).
+
+    Let $V$ be a vector space, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, and let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$. Any $(1, 1)$ tensor on $V$, $\TT \in T_{1,1}(V)$, can be expressed as
+
+    \begin{align*}
+        \TT = \sum_{i,j \in \{1, ..., n\}} T^i{}_j \ee_i \otimes \epsilon^j.
+    \end{align*}
+
+    Recall from Derivation \ref{ch::motivated_intro::deriv::linear_functions_V_W_iso_W_Vstar} that $(1, 1)$ tensors are naturally identified with elements of $\LLLL(V \rightarrow V)$ via the linear isomorphism $\GG:T_{1,1}(V) = V \otimes V^* \rightarrow \LLLL(V \rightarrow V)$ defined on elementary tensors by $\GG(\ee_i \otimes \epsilon^j) := \widetilde{\ee}_i \circ \epsilon^j$, where $\widetilde{\ee}_i \in \LLLL(K \rightarrow V)$ is defined by $\widetilde{\ee}_i(c) = c\ee_i$. Thus, the corresponding element of $\LLLL(V \rightarrow V)$ is
+
+    \begin{align*}
+        \GG(\TT) = \sum_{i,j \in \{1, ..., n\}} T^i{}_j \widetilde{\ee}_i \circ \epsilon^j.
+    \end{align*}
+\end{example}
 
 \begin{remark}
     ($\delta^{ij}$ vs. $\delta^i{}_j$ vs. $\delta^i{}_j$).
     
-    One may be confused when they consider that there are three ways to write the Kronecker delta: $\delta^{ij}, \delta^i{}_j$, and $\delta_{ij}$. The difference between these functions of $i$ and $j$ is straightforward: $\delta^{ij}$ is used for coordinates of a $(2, 0)$ tensor, $\delta^i{}_j$ is used for a coordinates of a $(1, 1)$ tensor, and $\delta_{ij}$ is used for coordinates of a $(0, 2)$ tensor. All three functions of $i$ and $j$ are defined, as usual, to be $1$ when $i = j$ and $0$ otherwise.
-\end{remark}
-
-\begin{remark}
-\label{ch::motivated_intro::rmk::many_defs_tensor}
-    (There are many definitions of ``tensor'').
-    
-    There are many ways to define the notion of a ``tensor''. Here are three common ways to define what a tensor is that differ from our definition.
-    
-    \begin{itemize}
-        \item (A physicist's definition of a tensor). Physicists and engineers most commonly define tensors to be ``multidimensional matrices'' that follow the ``the tensor transformation law'' (which is really a change of basis formula; we will derive this in Theorem \ref{ch::bilinear_forms_metric_tensors::thm::ricci}). This definition of tensor is clearly unmotivated, as it describes how tensors behave before explaining what they really are.
-        \item (The more ``concrete'' but less insightful mathematical definition of a tensor). Mathematicians often define a $(p, q)$ tensor to be a multilinear map $(V^*)^{\times p} \times V^{\times q} \rightarrow K$. This definition is equivalent to the one we have used (we see why in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}), but it is less preferable because it obscures the concept of a ``multilinear element'' that tensor product spaces so nicely capture.
-        \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``$n$th order tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear map that sends a $(n - 1)$ order tensor to a vector in $V$, where a tensor of order $2$ is defined to be a linear map $V \rightarrow V$. This definition works because we have the natural isomorphism $T^1_1(V) = V \otimes V^* \cong \FF(V \rightarrow V)$. Note also that, when a basis for $V$ is fixed (which is often always done in physics, since often we have $V = \R^3$, so we can use the standard basis), there is no ambiguity when one says ``second order tensor'', as $T^2_0(V) \cong T^1_1(V) \cong T^0_2(V)$ due to the (unnatural) isomorphism $V \cong V^*$ that is obtained by choosing a basis (see Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*}).
-    \end{itemize}
-    
+    One may be confused when they consider that there are three ways to write the Kronecker delta: $\delta^{ij}, \delta^i{}_j$, and $\delta_{ij}$. The difference between these functions of $i$ and $j$ is straightforward: $\delta^{ij}$ is used to denote coordinates of a $(2, 0)$ tensor, $\delta^i{}_j$ is used to denote coordinates of a $(1, 1)$ tensor, and $\delta_{ij}$ is used to denote coordinates of a $(0, 2)$ tensor. All three functions of $i$ and $j$ are defined, as usual, to be $1$ when $i = j$ and $0$ otherwise.
 \end{remark}
 
 \begin{defn}
-    (Valence and order of a tensor). 
+    (Valence and order of a $(p, q)$ tensor). 
     
     The \textit{valence} of a $(p, q)$ tensor is the tuple $(p, q)$. The \textit{order} of a $(p, q)$ tensor is $p + q$.
 \end{defn}
@@ -753,6 +771,19 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     \end{center}
     
     It's instructive to apply these interpretations to vectors and to dual vectors. Vectors are $1$-linear elements by definition, and they are less obviously linear functions because they are naturally identifiable with elements of $V^{**}$. Dual vectors are linear functions by definition, and they are less obviously $1$-linear elements because they form a vector space.
+\end{remark}
+
+\begin{remark}
+\label{ch::motivated_intro::rmk::many_defs_tensor}
+    (There are many definitions of ``tensor'').
+    
+    There are many ways to define the notion of a ``tensor''. Here are three common ways to define what a tensor is that differ from our definition.
+    
+    \begin{itemize}
+        \item (A physicist's definition of a tensor). Physicists and engineers most commonly define tensors to be ``multidimensional matrices'' that follow the ``the tensor transformation law'' (which is really a change of basis formula; we will derive this in Theorem \ref{ch::bilinear_forms_metric_tensors::thm::ricci}). This definition of tensor is clearly unmotivated, as it describes how tensors behave before explaining what they really are.
+        \item (The more ``concrete'' but less insightful mathematical definition of a tensor). Mathematicians often define a $(p, q)$ tensor to be a multilinear map $(V^*)^{\times p} \times V^{\times q} \rightarrow K$. This definition is equivalent to the one we have used (we see why in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}), but it is less preferable because it obscures the concept of a ``multilinear element'' that tensor product spaces so nicely capture.
+        \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``order-$n$ tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear map that sends an order-$(n - 1)$ tensor to a vector in $V$, where an order-$1$ tensor is defined to be a vector in $V$. Thus, an order-$2$ tensor is an element of $\LLLL(V \rightarrow V) \cong V \otimes V^*$, and an order-$3$ tensor is an element of $\LLLL(\LLLL(V \rightarrow V) \rightarrow V) \cong \LLLL(V \otimes V^* \rightarrow V) \cong V \otimes V^* \otimes V^*$. We can use induction to prove that an $n$-order tensor of this definition is identified with an element of $V \otimes (V^{*})^{n - 1} = T_{1, n - 1}(V)$.
+    \end{itemize}
 \end{remark}
 
 \begin{theorem}

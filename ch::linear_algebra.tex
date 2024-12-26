@@ -2871,9 +2871,12 @@ This section generalizes the notion of the dot product, which we only know to be
         \item (Symmetry). $\langle \vv, \ww \rangle = \langle \ww, \vv \rangle$ for all $\vv, \ww \in V$.
         \item (Nondegeneracy). $\langle \vv, \vv \rangle = 0 \implies \vv = \mathbf{0}$ for all $\vv \in V$.
     \end{enumerate}
+
+    Inner products are called ``inner products'' because they generalize the dot product, which satisfies ${\vv \cdot \ww = \vv^\top \ww}$ for all $\vv, \ww \in K^n$; notice how the position of the transpose $\top$ is ``inside'' $\vv$ and $\ww$, here. Contrastingly, the ``outer product'' of vectors $\ww, \vv \in K^n$ is sometimes defined to be $\ww \vv^\top$, since the position of the transpose $\top$ is on the ``outside'' of $\ww$ and $\vv$. We will learn more about the outer product in Remark \ref{ch::motivated_intro::rmk::outer_products}.
 \end{defn}
 
 \begin{remark}
+\label{ch::lin_alg::rmk::inner_product_conventions}
     (Inner product conventions).
 
     Some authors define inner products to satisfy the ``positive-definitness'' criterion rather than the nondegeneracy criterion. A function $V \times V \rightarrow K$ is \textit{positive-definite} iff $\langle \vv, \vv \rangle \geq 0$ for all $\vv \in V$, with $\langle \vv, \vv \rangle = 0$ occurring only when $\vv = \mathbf{0}$. A \textit{negative-definite} inner product is defined similarly and involves the condition $\langle \vv, \vv \rangle \leq 0$ for all $\vv \in V$.
