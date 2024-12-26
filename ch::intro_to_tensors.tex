@@ -263,6 +263,7 @@ Since we have seen $\LLLL(V \rightarrow K)$ and $\LLLL(K \rightarrow W)$ have fu
 Using these definitions together with the result from the end of the above derivation yields the following theorem.
 
 \begin{theorem}
+\label{ch::motivated_intro::thm::decomposition_of_a_linear_function}
     (Decomposition of a linear function).
     
     Let $V$ and $W$ be $n$- and $m$-dimensional vector spaces. Any linear function $\ff:V \rightarrow W$ can be decomposed as
@@ -380,19 +381,16 @@ So, we have proved the following theorem.
     In order distill ``elementary compositions'' $\ww \circ \phi$ down into objects which express the key aspects of their bilinear structure, we used the seeming-bilinearity of $\otimes$ to think of these elementary compositions as ``multilinear elements'' (speficially, we thought of them as ``bilinear elements'').
 \end{remark}
 
-\begin{remark}
+When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product}), we gave motivation for why inner products are called ``inner products'', and said that we would later explain the relevance of ``outer products''. Here is that explanation. 
+
+\begin{defn}
 \label{ch::motivated_intro::rmk::outer_products}
     (Outer products).
 
-    When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product}), we gave motivation for why inner products are called ``inner products'', and said that we would later explain the relevance of ``outer products''. Here is that explanation. 
-
-    Let $K$ be a field. We showed in the first derivation of this chapter (Derivation \ref{ch::motivated_intro::deriv::decomposition_of_a_linear_function}) that every matrix $\AA \in K^{m \times n}$ can be decomposed as $\AA = \sum_{\vv \in E, \ww \in F} \ww \vv^\top$, where $E \subseteq K^n$ and $F \subseteq K^m$. Because, in the expression $\ww \vv^\top$, the transpose $\top$ is on the ``outside'' of $\ww$ and $\vv$, then $\ww \vv^\top$ is sometimes called the ``outer product'' of $\ww$ and $\vv$. This is the main point. Here are some additional details:
-
-    \begin{itemize}
-        \item We've seen that matrices of the form $\ww \vv^\top$ (where $\ww \in K^m$ and $\vv \in K^n$) are identified with linear functions of the form $\ww \circ \phi$ (where $\ww \in K^m$ and $\phi \in (K^n)^*$), which are identified with tensors of the form $\ww \otimes \phi$, (where $\ww \in K^m$ and $\phi \in (K^n)^*$). Because elementary tensors are related to matrix outer products in this way, then when $V$ and $W$ are vector spaces, a tensor $\ww \otimes \vv \in W \otimes V$ is unfortunately sometimes called the ``outer product of $\ww$ and $\vv$''.
-        \item Some texts take advantage of the fact that the function $(\vv, \ww) \mapsto \ww \vv^\top$ is bilinear, and define the tensor product of $\ww \in K^m$ and $\vv \in K^n$ to be $\ww \otimes \vv := \ww^\top \vv$.
-    \end{itemize}
-\end{remark}
+    Let $\vv \in K^n$ and let $\ww \in K^m$. Throughout this chapter, we've seen that matrices of the form $\ww \vv^\top$ are identified with linear functions of the form ${\ww \circ \phi, \phi \in V^*}$, which are identified with tensors of the form ${\ww \otimes \phi, \phi \in V^*}$. Because elementary tensors are related to outer products in this way, then when $V$ and $W$ are vector spaces, a tensor $\ww \otimes \vv \in W \otimes V$ is unfortunately sometimes called ``the outer product of $\ww$ and $\vv$''.
+    
+    Additionally, some texts take advantage of the fact that the function $(\vv, \ww) \mapsto \ww \vv^\top$ is bilinear, and actually \textit{define} the tensor product of $\ww \in K^m$ and $\vv \in K^n$ to be $\ww \otimes \vv := \ww^\top \vv$.
+\end{defn}
 
 \newpage
 
