@@ -3124,29 +3124,6 @@ We address this now. In order to solve a linear equation, we will transform it i
 
 \subsection*{Finding bases for the kernel and image of matrix}
 
-[...image has to come first...]
-
-\begin{theorem}
-    (Basis for the image of a matrix).
-
-    The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
-
-    [probably turn into a derivation]
-\end{theorem}
-
-\begin{proof}
-    Let $\rr_j$ be the $j$th column of $\rref(\AA)$, and let $\rr_{j_1}, ..., \rr_{j_\alpha}$ be the pivot columns of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, then $\rr_{j_\alpha}$ has in its $i$th row the entry $\delta_{ij_\alpha}$. Equivalently, $\rr_{j_\alpha} = \see_\alpha$. The pivot columns $\rr_{j_1} = \see_{j_1}, ..., \rr_{j_p} = \see_{j_p}$ are thus linearly independent. 
-
-    We now show that the pivot columns span $\im(\AA)$. Since $\rref(\AA)$ is in RREF, then the columns of $\rref(\AA)$ containing free variables are linear combinations of the pivot columns of $\rref(\AA)$, so $R_\beta := \{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_\beta}\}$ is linearly dependent for every $\beta \in [1, q]$. Since $\im(\AA) = \spann(\{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_q}\}) = \spann(R_q)$, and since removing a vector from a linearly dependent set does not change the span of the set (recall Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}), then $R_\beta = R_{\beta + 1} - \{\rr_{k_{\beta + 1}}\}$ spans $\im(\AA)$ for all $\beta \in [0, q]$. In particular, $R_0 = \{\rr_{j_1}, ..., \rr_{j_p}\}$, which is the set of pivot columns, spans $\im(\AA)$. 
-
-    Since $\rr_{j_1}, ..., \rr_{j_p}$ are linearly independent and span $\im(\AA)$, they are a basis of $\im(\AA)$.
-
-    [noticed that we have a new theorem: if $\ee_1, ..., \ee_n \in W \supseteq V$ are linearly independent and span $V$, then (because they are in $V$, they span $V$), and are thus a basis for $V$. used this theorem in proof of basis of kernel]
-
-    Lastly, we show that the columns in $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ corresponding to the pivot columns of $\rref(\AA)$ are a basis of $\im(\AA)$. That is, we show that $\{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis for $\im(\AA)$. Since row-reduction is an invertible linear operation, then there exists an invertible linear matrix $\RR$ such that $\RR \AA = \rref(\AA)$. We then have $\AA = \RR^{-1} \rref(\AA)$, i.e., $\aa_i = \RR^{-1} \rr_i$, and, in particular, $\{\aa_{j_1}, ..., \aa_{j_p}\} = \{\RR^{-1} \rr_{j_1}, ..., \RR^{-1} \rr_{j_p}\}$. Since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), then $\{\RR^{-1} \rr_{j_1}, ..., \RR^{-1} \rr_{j_p}\} = \{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis of $\im(\AA)$.
-
-    [check if strictly increasing indices needed in proof for basis of kernel]
-\end{proof}
 
 % \begin{proof}
 %     Proof. Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and $\rref(\AA) = \begin{pmatrix} \rr_1 & \hdots & \rr_n \end{pmatrix}$.
@@ -3176,9 +3153,7 @@ We address this now. In order to solve a linear equation, we will transform it i
 
     The previous lemma immediately implies that $\ker(\AA) = \ker(\rref(\AA))$. Thus, if we can find a basis for $\ker(\rref(\AA))$, it is also a basis of $\ker(\AA)$.
 
-    We have $\ker(\rref(\AA)) = \{\xx \in K^n \mid \rref(\AA) \xx = \mathbf{0}\}$. So, we consider the system of linear equations corresponding to the linear matrix equation $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$. 
-    
-    If $(r_{ij}) = \rref(\AA)$, this system is
+    Let $(r_{ij}) = \rref(\AA)$. We have that $\xx = (x_1, ..., x_n) \in K^n$ is in $\ker(\rref(\AA))$ iff $\rref(\AA) \xx = \mathbf{0}$, that is, iff this system of equations holds:
 
     \begin{align*}
         \begin{cases}
@@ -3218,7 +3193,7 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}
     \end{align*}
 
-    (Case: $\rref(\AA) = \mathbf{0}$). Then the system of equations corresponding to the linear-matrix equation $(\rref(\AA) \xx = \mathbf{0})$ is the trivial system that only contains copies of the equation $(0 = 0)$. If we set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$, then the last system from the previous case holds and is equal to the trivial system.
+    (Case: $\rref(\AA) = \mathbf{0}$). Then the system of equations corresponding to the linear-matrix equation $(\rref(\AA) \xx = \mathbf{0})$ is the trivial system that only contains copies of the equation $(0 = 0)$. If we set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$, then the last system from the previous case is equal to the trivial system.
 
     \vspace{.25cm}
 
@@ -3484,6 +3459,29 @@ We address this now. In order to solve a linear equation, we will transform it i
 
     is a basis for $\ker(\AA)$. 
 \end{example}
+
+\begin{theorem}
+    (Basis for the image of a matrix).
+
+    The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
+
+    [probably turn into a derivation]
+\end{theorem}
+
+\begin{proof}
+    Let $\rr_j$ be the $j$th column of $\rref(\AA)$, and let $\rr_{j_1}, ..., \rr_{j_\alpha}$ be the pivot columns of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, then $\rr_{j_\alpha}$ has in its $i$th row the entry $\delta_{ij_\alpha}$. Equivalently, $\rr_{j_\alpha} = \see_\alpha$. The pivot columns $\rr_{j_1} = \see_{j_1}, ..., \rr_{j_p} = \see_{j_p}$ are thus linearly independent. 
+
+    We now show that the pivot columns span $\im(\AA)$. Since $\rref(\AA)$ is in RREF, then the columns of $\rref(\AA)$ containing free variables are linear combinations of the pivot columns of $\rref(\AA)$, so $R_\beta := \{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_\beta}\}$ is linearly dependent for every $\beta \in [1, q]$. Since $\im(\AA) = \spann(\{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_q}\}) = \spann(R_q)$, and since removing a vector from a linearly dependent set does not change the span of the set (recall Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}), then $R_\beta = R_{\beta + 1} - \{\rr_{k_{\beta + 1}}\}$ spans $\im(\AA)$ for all $\beta \in [0, q]$. In particular, $R_0 = \{\rr_{j_1}, ..., \rr_{j_p}\}$, which is the set of pivot columns, spans $\im(\AA)$. 
+
+    Since $\rr_{j_1}, ..., \rr_{j_p}$ are linearly independent and span $\im(\AA)$, they are a basis of $\im(\AA)$.
+
+    [noticed that we have a new theorem: if $\ee_1, ..., \ee_n \in W \supseteq V$ are linearly independent and span $V$, then (because they are in $V$, they span $V$), and are thus a basis for $V$. used this theorem in proof of basis of kernel]
+
+    Lastly, we show that the columns in $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ corresponding to the pivot columns of $\rref(\AA)$ are a basis of $\im(\AA)$. That is, we show that $\{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis for $\im(\AA)$. Since row-reduction is an invertible linear operation, then there exists an invertible linear matrix $\SS$ such that $\SS \AA = \rref(\AA)$. We then have $\AA = \SS^{-1} \rref(\AA)$, i.e., $\aa_i = \SS^{-1} \rr_i$, and, in particular, $\{\aa_{j_1}, ..., \aa_{j_p}\} = \{\SS^{-1} \rr_{j_1}, ..., \SS^{-1} \rr_{j_p}\}$. Since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), then $\{\SS^{-1} \rr_{j_1}, ..., \SS^{-1} \rr_{j_p}\} = \{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis of $\im(\AA)$.
+
+    [check if strictly increasing indices needed in proof for basis of kernel]
+\end{proof}
+
 
 \newpage
 

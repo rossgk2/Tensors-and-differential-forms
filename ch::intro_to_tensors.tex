@@ -387,11 +387,15 @@ When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product
 \label{ch::motivated_intro::rmk::outer_products}
     (Outer products).
 
-    Let $\vv \in K^n$ and let $\ww \in K^m$. We define the \textit{outer product of $\ww$ and $\vv$} to be the matrix $\ww \vv^\top \in K^{m \times n}$. 
+    Let $K$ be a field. We define the \textit{outer product of $\ww \in K^m$ and $\vv \in K^n$} to be the matrix $\ww \vv^\top \in K^{m \times n}$. 
     
-    Throughout this chapter, we've seen that matrices of the form $\ww \vv^\top$ are identified with linear functions of the form ${\ww \circ \phi:V \rightarrow W, \phi \in V^*}$, which are identified with tensors of the form ${\ww \otimes \phi \in W \otimes V^*}$. Thus outer products are fundamentally at play whenever tensors are involved.
+    Now let $V$ and $W$ be finite-dimensional vector spaces. Throughout this chapter, we've seen that matrices of the form $\ww \vv^\top$ are identified with linear functions of the form $\ww \circ \phi \in \LLLL(V \rightarrow W)$, where $\phi \in V^*$, and that those linear functions are identified with tensors of the form $\ww \otimes \phi \in W \otimes V^*$. Thus the significance of outer products is that they are fundamentally at play whenever tensors are involved.
     
-    Because, when $\vv \in K^n$ and $\ww \in K^m$, the matrix $\ww \vv^\top$ can be identified with the tensor $\ww \otimes \vv \in W \otimes V$, the tensor product $\otimes$ is unfortunately sometimes referred to as ``the outer product''. Some authors even take advantage of the fact that for $\vv \in K^n$ and $\ww \in K^n$ the function $(\vv, \ww) \mapsto \ww \vv^\top$ is bilinear, and define the tensor product on $K^n$ so that it actually is the outer product: $\ww \otimes \vv := \ww \vv^\top$.
+    Since when $\vv \in K^n$ and $\ww \in K^m$, the matrix $\ww \vv^\top$ can be identified with the tensor $\ww \otimes \vv \in W \otimes V$, then the tensor product $\otimes$ is unfortunately sometimes referred to as ``the outer product''. Some authors even take advantage of the fact that for $\vv \in K^n$ and $\ww \in K^n$ the function $(\vv, \ww) \mapsto \ww \vv^\top$ is bilinear, and define the tensor product on $K^n$ so that it actually is the outer product: ``$\ww \otimes \vv := \ww \vv^\top$''.
+
+    Note: there is no sort of fundamental duality between inner products (Definition \ref{ch::lin_alg::defn::inner_product}) and outer products. The two topics are relatively unrelated.
+
+    There is one last definition whose name sounds like it is related to inner products and outer products, and that is the \textit{exterior product of vectors}. We discuss this in Remark \ref{ch::exterior_pwrs::rmk::exterior_product}.
 \end{defn}
 
 \newpage
