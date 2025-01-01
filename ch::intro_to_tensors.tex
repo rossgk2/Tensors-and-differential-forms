@@ -414,7 +414,7 @@ Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor b
     
     Let $V$ be a vector space over a field $K$. The \textit{dual vector space} $V^*$ to $V$ is the vector space $V^* := \LLLL(V \rightarrow K)$.
 
-    Elements of $V^*$ have various names. They may be called \textit{dual vectors}, \textit{covectors}, \textit{linear functionals}, or even \textit{linear $1$-forms} (not to be mistaken with the notion of a \textit{differential} 1-form).
+    Elements of $V^*$ have various names. They may be called \textit{dual vectors}, \textit{covectors}, \textit{linear functionals}, or even \textit{linear $1$-forms} (not to be mistaken with the notion of a \textit{differential} 1-form, which we have not yet defined).
 \end{defn}
 
 \begin{defn}
@@ -483,6 +483,7 @@ Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor b
 \end{proof}
 
 \begin{theorem}
+\label{ch::motivated_intro::thm::characterizations_of_induced_dual_basis}
     (Characterizations of an induced dual basis).
      
     Let $V$ be a finite-dimensional vector space. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then the dual basis $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ for $V^*$ induced by $E$ is characterized by the following equivalent conditions:
@@ -533,6 +534,8 @@ The following theorem explains why $V^* = \LLLL(V \rightarrow K)$ is called the 
 
 For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::function_input_duality} in the appendix.
 
+\newpage
+
 \subsection*{Corresponding elements of dual spaces induced by bases}
 
 \begin{defn}
@@ -549,7 +552,7 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
 \end{theorem}
 
 \begin{proof}
-    To prove the theorem, we check that $\GG(\FF(\vv)) = \Phi_\vv$, where $\Phi_\vv(\phi) := \phi(\vv)$, holds for all $\vv \in V$. Since $\vv = \sum_{i = 1}^n ([\vv]_E)^i \ee_i$, we have $\FF(\vv) = \sum_{i = 1}^n ([\vv]_E)^i \phi^{\ee_i}$ and $\GG(\FF(\vv)) = \sum_{i = 1}^n ([\vv]_E)^i \Phi_{\phi^{\ee_i}}$. Thus, $\Big(\GG(\FF(\vv))\Big)(\phi) = \sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big)$. Applying Theorem ..., we have $([\vv]_E)^i = \phi^{\ee_i}(\vv)$ and $\Phi_{\phi^{\ee_i}}(\phi) = ([\phi]_{E^*})^i$, so $\sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big) = \sum_{i = 1}^n \Big( ([\phi]_{E^*})^i \phi^{\ee_i}(\vv) \Big) = \Big(\sum_{i = 1}^n ([\phi]_{E^*})^i \phi^{\ee_i}\Big)(\vv) = \phi(\vv) = \Phi_\vv(\phi)$.
+    To prove the theorem, we check that $\GG(\FF(\vv)) = \Phi_\vv$, where $\Phi_\vv(\phi) := \phi(\vv)$, holds for all $\vv \in V$. Since $\vv = \sum_{i = 1}^n ([\vv]_E)^i \ee_i$, we have $\FF(\vv) = \sum_{i = 1}^n ([\vv]_E)^i \phi^{\ee_i}$ and $\GG(\FF(\vv)) = \sum_{i = 1}^n ([\vv]_E)^i \Phi_{\phi^{\ee_i}}$. Thus, $\Big(\GG(\FF(\vv))\Big)(\phi) = \sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big)$. Applying Theorem \ref{ch::motivated_intro::thm::characterizations_of_induced_dual_basis}, we have $([\vv]_E)^i = \phi^{\ee_i}(\vv)$ and $\Phi_{\phi^{\ee_i}}(\phi) = ([\phi]_{E^*})^i$, so \\ ${\sum_{i = 1}^n \Big( ([\vv]_E)^i \Phi_{\phi^{\ee_i}}(\phi) \Big) = \sum_{i = 1}^n \Big( \phi^{\ee_i}(\vv) ([\phi]_{E^*})^i \Big) = \sum_{i = 1}^n \Big( ([\phi]_{E^*})^i \phi^{\ee_i}(\vv) \Big) = \Big(\sum_{i = 1}^n ([\phi]_{E^*})^i \phi^{\ee_i}\Big)(\vv) = \phi(\vv) = \Phi_\vv(\phi)}$.
 \end{proof}
 
 \begin{theorem}
@@ -559,6 +562,10 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
     
     Assume the hypotheses of the previous definition. We have $[\vv]_E = [\phi^\vv]_{E^*}$ for any $\vv \in V$.
 \end{theorem}
+
+\begin{proof}
+    The theorem is true because $\FF(\ee_i) = \phi^{\ee_i}$. A more explicit check is left to the reader.
+\end{proof}
 
 \begin{remark}
     (The misleading star notation for dual vectors).
@@ -579,13 +586,13 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
 \begin{theorem}
     (Dual transformation is represented by transpose matrix).
 
-    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, and let $E^*$ and $F^*$ be the induced dual bases for $V^*$ and $W^*$. Consider a linear function $\ff:V \rightarrow W$. Recall that $[\ff(E)]_F$ denotes the matrix of $\ff:V \rightarrow W$ relative to $E$ and $F$. The matrix $[\ff^*(F^*)]_{E^*}$ of $\ff^*:W^* \rightarrow V^*$ relative to $F^*$ and $E^*$ is $[\ff^*(F^*)]_{E^*} = [\ff(E)]_F^{\top}$.
+    Let $V$ and $W$ be finite-dimensional vector spaces with bases $E$ and $F$, and let $E^*$ and $F^*$ be the induced dual bases for $V^*$ and $W^*$. Consider a linear function $\ff:V \rightarrow W$. Recall from Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases} that $[\ff(E)]_F$ denotes the matrix of $\ff:V \rightarrow W$ relative to $E$ and $F$. The matrix $[\ff^*(F^*)]_{E^*}$ of $\ff^*:W^* \rightarrow V^*$ relative to $F^*$ and $E^*$ is $[\ff^*(F^*)]_{E^*} = [\ff(E)]_F^{\top}$.
 \end{theorem}
 
 \begin{proof}
-    Let $E = \{\ee_1, ..., \ee_n\}$, $F = \{\ff_1, ..., \ff_m\}$, $E^* = \{\epsilon_1, ..., \epsilon_n\}$, $F^* = \{\delta_1, ..., \delta_n\}$. We will show that the $ij$ entry of $[\ff^*(F^*)]_{E^*}$ is the $ji$ entry of $[\ff(E)]_F$.
+    Let $E = \{\ee_1, ..., \ee_n\}$, $F = \{\ff_1, ..., \ff_m\}$, $E^* = \{\epsilon^1, ..., \epsilon^n\}$, $F^* = \{\delta^1, ..., \delta^n\}$. We will show that the $ij$ entry of $[\ff^*(F^*)]_{E^*}$ is the $ji$ entry of $[\ff(E)]_F$.
     
-    The $j$th column of $[\ff^*(F^*)]_{E^*}$ is $[\ff^*(\delta_j)]_{E^*}$. The $i$th entry of this column is $([\ff^*(\delta_j)]_{E^*})_i$. By\footnote{Though this theorem is from a later chapter, its proof is understandable now. If this is your first time reading this book, then, when reading the theorem, ignore the upper and lower indices, and pretend that all indices are lower.} Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}, we have $([\ff^*(\delta_j)]_{E^*})_i = \ff^*(\delta_j)(\ee_i)$. Then $\ff^*(\delta_j)(\ee_i) = (\delta_j \circ \ff)(\ee_i) = \delta_j(\ff(\ee_i)) = ([\ff(\ee_i)]_F)_j$, which is the $ji$ entry of $[\ff(E)]_F$.
+    The $j$th column of $[\ff^*(F^*)]_{E^*}$ is $[\ff^*(\delta^j)]_{E^*}$. The $i$th entry of this column is $([\ff^*(\delta^j)]_{E^*})_i$. By Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}, we have $([\ff^*(\delta^j)]_{E^*})_i = \ff^*(\delta^j)(\ee_i)$. We have $\ff^*(\delta^j)(\ee_i) = (\delta^j \circ \ff)(\ee_i) = \delta^j(\ff(\ee_i)) = ([\ff(\ee_i)]_F)_j$, which is the $ji$ entry of $[\ff(E)]_F$, i.e., the $ij$ entry of $[\ff(E)]_F^\top$.
 \end{proof}
 
 \begin{remark}
@@ -597,13 +604,13 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
 \begin{theorem}
      (Dual of a composition).
      
-     Let $U, V, W$ be finite-dimensional vector spaces, and let $\ff:U \rightarrow V$, $\gg:V \rightarrow W$ be linear functions. Then $(\gg \circ \ff)^* = \gg^* \circ \ff^*$. 
+     Let $V, W$, and $Y$ be finite-dimensional vector spaces, and let $\ff:V \rightarrow W$ and $\gg:W \rightarrow Y$ be linear functions. Then $(\gg \circ \ff)^* = \ff^* \circ \gg^*$. 
      
      This fact is what underlies the fact $(\AA \BB)^\top = \BB^\top \AA^\top$, which tells how to transpose a matrix-matrix product.
 \end{theorem}
 
 \begin{proof}
-     Left as an exercise.
+    For all $\psi \in Y^*$ we have $(\gg \circ \ff)^*(\psi) = \psi \circ (\gg \circ \ff) = (\psi \circ \gg) \circ \ff = \gg^*(\psi) \circ \ff$, where $\gg^*(\psi) \in V^*$. Then for all $\psi \in Y^*$ we have $\gg^*(\psi) \circ \ff = \ff^*(\gg^*(\psi)) = (\ff^* \circ \gg^*)(\psi)$.
 \end{proof}
 
 \newpage
