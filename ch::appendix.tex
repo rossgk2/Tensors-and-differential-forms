@@ -1,11 +1,28 @@
-\chapter{Appendix to chapter \ref{ch::bilinear_forms_metric_tensors}}
+\chapter{Appendix}
+
+\section*{Function-input duality}
+
+\begin{deriv}
+\label{ch::appendix::deriv::function_input_duality}
+    (Function-input duality).
+    
+    Let $X$ and $Y$ be sets, let $x \in X$, let $f:X \rightarrow Y$ be a function, and consider the expression $f(x)$.
+
+    Typically, we think of $f$ as being applied to $x$ to produce the output $f(x)$. We can also think of $x$ as being applied to $f$, in some sense, to produce $f(x)$. In intuitive notation, we have $\text{``}x(f)\text{''} = f(x)$.
+
+    To formalize the intuition, notice that for every $x \in X$ there is a function $F_x$ that itself takes a function $X \rightarrow Y$ as input and applies it to $x$; so, $F_x(f) = f(x)$. Since the function sending $x \mapsto F_x$ is a bijection, we can identify $x$ with $F_x$ and then think of $x$ as being applied to $f$ via the action of $F_x$ on $f$. The intuition thus formalizes as $\text{``}x(f)\text{''} = F_x(f) = f(x)$.
+
+    We've successfully formalized the idea of applying inputs to functions, but there is still more insight to be had. If we define $X^* := \{\text{functions $X \rightarrow Y$}\}$, then we have $f \in X^*$ and $F_x \in (X^*)^* = X^{**}$. We've seen that $x \mapsto F_x$ is a bijection $X \rightarrow X^{**}$. Thus, $X$ and $X^{**}$ are ``the same'', in some sense, and we write $X \cong X^{**}$. On the other hand, there is no natural bijection between $X$ and $X^*$.
+
+    Overall, the relationship between $X$, $X^*$, and $X^{**}$ is that elements of $X \cong X^{**}$ and $X^*$ act on each other. Since elements of $X^*$ cannot be naturally identified with elements $X$, yet can still act on elements of $X$, we call $X^*$ the \textit{dual set (to $X$)}. (We call $X^{**}$ the \textit{double dual set (to $X$)}).
+\end{deriv}
 
 \section*{Symmetric and orthogonal linear functions}
 
 The only results from this appendix that are necessary to know are the conditions (3) and (4) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::orthogonal_linear_fn} satisfied by an orthogonal linear function.
 
 \begin{deriv}
-\label{ch::bilinear_forms_metric_tensors::defn::dual_transf_after_id}
+\label{ch::appendix::defn::dual_transf_after_id}
     (The adjoint of a linear function with respect to a nondegenerate bilinear form).
     
     Let $V$ and $W$ be finite-dimensional vector spaces, let $B$ be a nondegenerate bilinear form on $V$ and $W$, and consider the musical isomorphisms $\flat_1:V \rightarrow W^{*}$ and $\flat_2:W \rightarrow V^{*}$ induced by $B$.

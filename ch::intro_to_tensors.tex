@@ -182,7 +182,7 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 
 Now we will discover the theorem which generalizes the two key notions (thinking of linear functions as vectors and ``multilinear elements'') discussed at the beginning of the chapter. Since we now have familiarity with the first key idea, ``accidentally'' discovering and formalizing the second idea as we go is hopefully not too ambitious.
 
-The theorem we will discover is that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, where $V^*$ is the \textit{dual vector space} to $W$. We can see that the two key ideas (the first being thinking of linear functions as vectors and the second being ``multilinear elements'') are represented in this theorem with formal notation: the theorem includes a dual vector space $V^*$, which (we will see) indicates that thinking of linear functions as vectors is involved, and it also includes the tensor product $\otimes$, which indicates that multilinear structure is involved.
+The theorem we will discover is that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, where $V^*$ is the \textit{dual vector space} to $V$. We can see that the two key ideas (the first being thinking of linear functions as vectors and the second being ``multilinear elements'') are represented in this theorem with formal notation: the theorem includes a dual vector space $V^*$, which (we will see) indicates that thinking of linear functions as vectors is involved, and it also includes the tensor product $\otimes$, which indicates that multilinear structure is involved.
 
 We first need a lemma.
 
@@ -229,17 +229,17 @@ Now we begin our investigation.
     Applying the linear isomorphism $\FF^{-1}$ between $m \times n$ matrices and linear functions $V \rightarrow W$ from Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism} to this equation causes  \begin{itemize}
         \item $[\ff(E)]_F$ to be replaced with $\ff$
         \item matrix multiplication to be replaced by function composition $\circ$
-        \item $\see_j^\top$ to be replaced the element $\phi_{\see_j}$ of $\LLLL(V \rightarrow K)$ whose matrix relative to $E$ is $\see_j^\top$ (so $\phi_{\ee_j}(\vv) = \see_j^\top [\vv]_E$)
+        \item $\see_j^\top$ to be replaced the element $\phi^{\see_j}$ of $\LLLL(V \rightarrow K)$ whose matrix relative to $E$ is $\see_j^\top$ (so $\phi^{\ee_j}(\vv) = \see_j^\top [\vv]_E$)
         \item $\sff_i$ to be replaced by the element $\tsff_i$ of $\LLLL(K \rightarrow W)$ whose standard matrix is $\sff_i$ (so $\tsff_i(c) = c\sff_i$)
     \end{itemize}
 
     So, we have
 
     \begin{align*}
-        \ff = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} a_{ij} \tsff_i \circ \phi_{\ee_i},
+        \ff = \sum_{\substack{i \in \{1, ..., n\} \\ j \in \{1, ..., m\}}} a_{ij} \tsff_i \circ \phi^{\ee_i},
     \end{align*}
 
-    where $\phi_{\ee_i} \in \LLLL(V \rightarrow K)$ and $\tsff_i \in \LLLL(K \rightarrow W)$.
+    where $\phi^{\ee_i} \in \LLLL(V \rightarrow K)$ and $\tsff_i \in \LLLL(K \rightarrow W)$.
 \end{deriv}
 
 \newpage
@@ -250,7 +250,7 @@ Since we have seen $\LLLL(V \rightarrow K)$ and $\LLLL(K \rightarrow W)$ have fu
 \label{ch::motivated_intro::defn::dual_space_1}
     (Dual vector space).
     
-    Let $V$ be a vector space over a field $K$. The \textit{dual vector space} $V^*$ to $V$ is the vector space over $K$ consisting of the linear functions $V \rightarrow K$ under the operations of function addition and function scaling: $V^* := \LLLL(V \rightarrow K)$.
+    Let $V$ be a vector space over a field $K$. The \textit{dual vector space} $V^*$ to $V$ is the vector space $V^* := \LLLL(V \rightarrow K)$.
 \end{defn}
 
 \begin{defn}
@@ -365,6 +365,10 @@ So, we have proved the following theorem.
     This isomorphism is natural because it does not depend on a choice of basis. (See Definition \ref{ch::lin_alg::defn::natural_iso}).
 \end{theorem}
 
+\begin{proof}
+    See the previous derivation.
+\end{proof}
+
 \begin{remark}
     (Tensor product space as the structure behind composition).
     
@@ -402,15 +406,13 @@ When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product
 
 \section{Dual vector spaces}
 
-Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor because they allow us to think of linear functions $V \rightarrow V$ as vectors. As was previously mentioned, every linear function $V \rightarrow V$ is a linear combination of elements of $V^*$.
-
-We now restate the definition of a dual space and make some additional remarks.
+Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor because they allow us to think of linear functions as vectors. We now restate the definition of a dual space and make some additional remarks.
 
 \begin{defn}
 \label{ch::motivated_intro::defn::dual_space_2}
     (Dual vector space).
     
-    Let $V$ be a vector space over a field $K$. The \textit{dual vector space} $V^*$ to $V$ is the vector space over $K$ consisting of the linear functions $V \rightarrow K$ under the operations of function addition and function scaling: $V^* := \LLLL(V \rightarrow K)$.
+    Let $V$ be a vector space over a field $K$. The \textit{dual vector space} $V^*$ to $V$ is the vector space $V^* := \LLLL(V \rightarrow K)$.
 
     Elements of $V^*$ have various names. They may be called \textit{dual vectors}, \textit{covectors}, \textit{linear functionals}, or even \textit{linear $1$-forms} (not to be mistaken with the notion of a \textit{differential} 1-form).
 \end{defn}
@@ -434,11 +436,9 @@ We now restate the definition of a dual space and make some additional remarks.
 \label{ch::motivated_intro::deriv::induced_dual_basis}
     (Induced dual basis).
     
-    Let $V$ be a finite-dimensional vector space and let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. We can discover a basis for $V^*$ by using the basis $E$ for $V$ to decompose an arbitrary $\phi \in V^*$ into a basis sum. 
+    Let $V$ be a finite-dimensional vector space and let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$. We can discover a basis for $V^*$ by decomposing the matrix corresponding to an element of $V^*$.
     
-    To achieve this decomposition, we utilize the correspondence between linear transformations and matrices. Any element $\phi \in V^* = \LLLL(V \rightarrow K)$ is represented relative to the basis $E$ by its matrix $\phi(E)$ relative to $E$ (recall Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases}).
-    
-    Recall from Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} that the matrix $\phi(E)$ is
+    Specifically, any element ${\phi \in V^* = \LLLL(V \rightarrow K)}$ is represented by its matrix $\phi(E)$ relative to $E$ (recall Derivation \ref{ch::lin_alg::deriv::matrix_relative_to_bases}),
     
     \begin{align*}
         \phi(E)
@@ -448,27 +448,27 @@ We now restate the definition of a dual space and make some additional remarks.
         \end{pmatrix}.
     \end{align*}
     
-    Now we express $\phi(E)$ as a linear combination of ``basis'' row matrices:
+    We we express $\phi(E)$ as a linear combination of ``basis'' row matrices:
     
     \begin{align*}
         \phi(E) = \sum_{i = 1}^n \phi(\ee_i) \see_i^\top.
     \end{align*}
     
-    Applying the linear isomorphism $\FF^{-1}$ between $n \times 1$ matrices and linear functions $V \rightarrow K$ from Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism} to this equation causes  \begin{itemize}
+    Applying the linear isomorphism $\FF^{-1}$ between $1 \times n$ matrices and linear functions $V \rightarrow K$ from Theorem \ref{ch::lin_alg::thm::linear_functions_matrices_isomorphism} to this equation causes  \begin{itemize}
         \item $\phi(E)$ to be replaced with $\phi$
         \item matrix multiplication to be replaced by function composition $\circ$
-        \item $\see_i^\top$ to be replaced the element $\phi_{\see_i}$ of $\LLLL(V \rightarrow K)$ whose matrix relative to $E$ is $\see_i^\top$; that is, $\phi_{\ee_i}(\vv) = \see_i^\top [\vv]_E$
+        \item $\see_i^\top$ to be replaced the element $\phi^{\see_i}$ of $\LLLL(V \rightarrow K)$ whose matrix relative to $E$ is $\see_i^\top$; that is, $\phi^{\ee_i}(\vv) = \see_i^\top [\vv]_E$
     \end{itemize}
 
     Therefore
     
     \begin{align*}
-        \phi = \sum_{i = 1}^n \phi(\ee_i) \phi_{\ee_i},
+        \phi = \sum_{i = 1}^n \phi(\ee_i) \phi^{\ee_i},
     \end{align*}
 
-    where $\phi_{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
+    where $\phi^{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
     
-    We see that any $\phi \in V^*$ is a linear combination of the $\phi_{\ee_i}$, so the $\phi_{\ee_i}$ span $V^*$. The $\phi_{\ee_i}$ are also linearly independent because they are represented by the linearly independent row-matrices $\see_i^\top$. Thus, the set ${E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}}$ is a basis for $V^*$. Since $E^*$ depends on $E$, we call $E^*$ the \textit{dual basis for $V^*$ induced by $E$}. We will often refer to $E^*$ simply as the \textit{induced dual basis}.
+    We see that any $\phi \in V^*$ is a linear combination of $\phi^{\ee_1}, ..., \phi^{\ee_n}$, so $\phi^{\ee_1}, ..., \phi^{\ee_n}$ span $V^*$. Since $\see_1^\top, ..., \see_n^\top$ are linearly independent, and as $\FF^{-1}$ is a linear isomorphism, then $\phi^{\ee_1}, ..., \phi^{\ee_n}$ are also linearly independent (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}). Thus, the set ${E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}}$ is a basis for $V^*$. Since $E^*$ depends on $E$, we call $E^*$ the \textit{dual basis for $V^*$ induced by $E$}.
 \end{deriv}
 
 \begin{theorem}
@@ -485,26 +485,26 @@ We now restate the definition of a dual space and make some additional remarks.
 \begin{theorem}
     (Characterizations of an induced dual basis).
      
-    Let $V$ be a finite-dimensional vector space. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then the dual basis $E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}$ for $V^*$ induced by $E$ is characterized by the following equivalent conditions:
+    Let $V$ be a finite-dimensional vector space. If $E = \{\ee_1, ..., \ee_n\}$ is a basis for $V$, then the dual basis $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ for $V^*$ induced by $E$ is characterized by the following equivalent conditions:
              
     \begin{enumerate}
-        \item $\phi_{\ee_i}$ is the element of $V^*$ that is represented relative to $E$ by the (primitive) matrix $\see_i^\top$. That is, $\phi_{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
-        \item $\phi_{\ee_i}(\vv) = ([\vv]_E)^i$.
-        \item $\phi_{\ee_i}(\ee_j) = \delta_{ij}$.
+        \item $\phi^{\ee_i}$ is the element of $V^*$ whose matrix $\phi^{\ee_i}(E)$ relative to $E$ is $\phi^{\ee_i}(E) = \see_i^\top$. That is, $\phi^{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
+        \item $\phi^{\ee_i}(\vv) = ([\vv]_E)^i$.
+        \item $\phi^{\ee_i}(\ee_j) = \delta_{ij}$.
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    The first and second items are obviously equivalent. We show that the second condition is equivalent to the third condition; we show $(\phi_{\ee_i}(\vv) = ([\vv]_E)^i \iff \phi_{\ee_i}(\ee_j) = \delta_{ij})$. To prove the forward direction, substitute $\vv = \ee_j$. For the reverse direction, we have $\phi_{\ee_i}(\vv) = \sum_{j = 1}^n ([\vv]_E)^j \phi(\ee_j) = \sum_{j = 1}^n ([\vv]_E)^j \delta_{ij} = ([\vv]_E)^i$.
+    The first and second items are obviously equivalent. We show that the second condition is equivalent to the third condition; we show $(\phi^{\ee_i}(\vv) = ([\vv]_E)^i \iff \phi^{\ee_i}(\ee_j) = \delta_{ij})$. To prove the forward direction, substitute $\vv = \ee_j$. For the reverse direction, we have $\phi^{\ee_i}(\vv) = \sum_{j = 1}^n ([\vv]_E)^j \phi(\ee_j) = \sum_{j = 1}^n ([\vv]_E)^j \delta_{ij} = ([\vv]_E)^i$.
 \end{proof}
 
 \begin{remark}
 \label{ch::motivated_intro::rmk::unnatural_iso_V_V*}
     (An ``unnatural'' isomorphism $V \cong V^*$).
     
-    Suppose we've chosen a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, so that we have the induced dual basis ${E^* = \{\phi_{\ee_1}, ..., \phi_{\ee_n}\}}$ for $V^*$. We can define a linear isomorphism $V \rightarrow V^*$ that is defined on basis vectors by $\ee_i \mapsto \phi_{\ee_i}$.
+    Suppose we've chosen a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, so that we have the induced dual basis ${E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}}$ for $V^*$. We can define a linear isomorphism $V \rightarrow V^*$ that is defined on basis vectors by $\ee_i \mapsto \phi^{\ee_i}$.
     
-    This isomorphism is \textit{not} natural (see Definition \ref{ch::lin_alg::defn::natural_iso}) because it depends on how we choose the basis $E$ for $V$. Additionally, the map $\ee_i \mapsto \phi_{\ee_i}$ is only onto when $V$ is finite-dimensional, because when $V$ is infinite-dimensional the cardinality of $V^*$ is strictly greater than the cardinality of $V$.    
+    This isomorphism is \textit{not} natural (see Definition \ref{ch::lin_alg::defn::natural_iso}) because it depends on the basis $E$ for $V$. Additionally, the map $\ee_i \mapsto \phi^{\ee_i}$ is onto but not one-to-one when $V$ is finite-dimensional, because when $V$ is infinite-dimensional the cardinality of $V^*$ is strictly greater than the cardinality of $V$.    
 \end{remark}
 
 \begin{remark}
@@ -513,27 +513,25 @@ We now restate the definition of a dual space and make some additional remarks.
     We don't have to pick a basis of $V$ to pick a basis for $V^*$. Derivation \ref{ch::motivated_intro::deriv::induced_dual_basis} showed that when $V$ is finite-dimensional, then $V^*$ is finite-dimensional. Therefore, when $V$ is finite-dimensional, we can pick an \textit{arbitrary} basis for $V^*$.
 \end{remark}
 
-\begin{proof}
-    The theorem is true precisely because $\FF(\ee_i) = \phi^{\ee_i}$. A more explicit check is left to the reader.
-\end{proof}
-
 \subsection*{The double dual}
 
-Let $V$ be a finite-dimensional vector space. Once we have taken the dual $V^*$ of $V$, we might ask ``what happens if we take the dual again?''. The answer is that taking the ``double dual'' essentially returns the original space.
-
-
+The following theorem explains why $V^* = \LLLL(V \rightarrow K)$ is called the ``dual vector space'' to $V$.
 \begin{theorem}
 \label{ch::motivated_intro::thm::V_iso_double_dual}
     ($V \cong V^{**}$ naturally). 
     
-    Let $V$ be a finite-dimensional vector space. There is a natural linear isomorphism $V \rightarrow V^{**}$ that sends $\vv \mapsto \Phi_\vv$, where $\Phi_\vv:V^* \rightarrow K$ is the element of $V^{**}$ defined by $\Phi_\vv(\phi) = \phi(\vv)$.
+    Let $V$ be a finite-dimensional vector space. The function $\vv \mapsto \Phi_\vv$, where $\Phi_\vv:V^* \rightarrow K$ is the element of $(V^*)^* = V^{**}$ defined by $\Phi_\vv(\phi) = \phi(\vv)$, is a natural linear isomorphism $V \rightarrow V^{**}$. Thus $V \cong V^{**}$ naturally.
+
+    This theorem tells us that not only is $V^*$ the dual space to $V$, but that, since $(V^*)^* \cong V$ naturally, it is also true in some sense that $V$ is the dual space to $V^*$.
 \end{theorem}
 
 \begin{proof}
-    Define $\FF:V \rightarrow V^{**}$ by $\FF(\vv) = \Phi_\vv$. We need to show that $\FF$ is linear, one-to-one, and onto. Checking linearity is straightforward; $\FF$ is linear regardless of the dimensionality of $V$. As for showing that $\FF$ is one-to-one and onto, first recall from Theorem \ref{ch::motivated_intro::deriv::dim_dual_space} that since $V$ is finite-dimensional we have $\dim(V) = \dim(V^{**})$. Thus, to show that $\FF$ is an isomorphism it suffices to show that $\FF$ has a trivial kernel.
+    Define $\FF:V \rightarrow V^{**}$ by $\FF(\vv) = \Phi_\vv$. We need to show that $\FF$ is linear, one-to-one, and onto. Checking linearity is straightforward; $\FF$ is linear regardless of the dimensionality of $V$. As for showing that $\FF$ is one-to-one and onto, first recall from Theorem \ref{ch::motivated_intro::deriv::dim_dual_space} that since $V$ is finite-dimensional we have $\dim(V) = \dim(V^{**})$. Thus, to show that $\FF$ is an isomorphism it suffices to show that $\FF$ has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}).
     
-    We have the following: if $\FF(\vv) = \mathbf{0}$, then $\Phi_\vv$ is the zero function, and so $\Phi_\vv(\phi) \phi(\vv) = 0$ for all $\phi \in V^*$. One would think that this most recent statement implies $\vv = \mathbf{0}$, and this is indeed the case, because the contrapositive of $((\forall \phi \in V^* \spc \phi(\vv) = 0) \implies \vv = \mathbf{0})$, which is $(\vv \neq \mathbf{0} \implies (\exists \phi \in V^* \spc \phi(\vv) \neq 0))$, is clearly true: if $\vv \neq \mathbf{0}$, then for any basis $E$ of $V$, some component $([\vv]_E)^i \neq 0$ of $\vv$ is nonzero, and thus the element of $V^*$ defined by $\vv \mapsto ([\vv]_E)^i$ sends $\vv$ to a nonzero scalar, as desired.
+    We have the following: if $\FF(\vv) = \mathbf{0}$, then $\Phi_\vv$ is the zero function, and so $\Phi_\vv(\phi) = \phi(\vv) = 0$ for all $\phi \in V^*$. One would think that this most recent statement implies $\vv = \mathbf{0}$, and this is indeed the case, because the contrapositive of $((\forall \phi \in V^* \spc \phi(\vv) = 0) \implies \vv = \mathbf{0})$, which is $(\vv \neq \mathbf{0} \implies (\exists \phi \in V^* \spc \phi(\vv) \neq 0))$, is clearly true: if $\vv \neq \mathbf{0}$, then for any basis $E$ of $V$, some component $([\vv]_E)^i \neq 0$ of $\vv$ is nonzero, and thus the element of $V^*$ defined by $\vv \mapsto ([\vv]_E)^i$ sends $\vv$ to a nonzero scalar, as desired.
 \end{proof}
+
+For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::function_input_duality} in the appendix.
 
 \subsection*{Corresponding elements of dual spaces induced by bases}
 

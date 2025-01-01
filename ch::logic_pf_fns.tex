@@ -330,7 +330,7 @@ Another way of proving $P \implies Q$ that is similar in spirit to a proof by co
 In summary, a proof of $P \implies Q$ by contradiction is a proof of
 
 \begin{align*}
-    \text{not}(P \implies Q) \implies (R \text{ and } (\text{not } R)),
+    \text{not}(P \implies Q) \implies (R \text{ and } (\text{not } R)) = F,
 \end{align*}
 
 where $R$ is some proposition.
@@ -338,7 +338,7 @@ where $R$ is some proposition.
 Since we have $(\text{not}(P \implies Q)) = (P \text{ and } (\text{not } Q))$, we see that a proof of $P \implies Q$ by contradiction is equivalently a proof of
 
 \begin{align*}
-    (P \text{ and } (\text{not } Q)) \implies (R \text{ and } (\text{not } R)).
+    (P \text{ and } (\text{not } Q)) \implies (R \text{ and } (\text{not } R)) = F.
 \end{align*}
 
 This is the form of proof by contradiction that is used in practice. Authors typically begin a proof of $P \implies Q$ by contradiction by saying ``Assume $P$. For the sake of obtaining a contradiction, also assume $\text{not } Q$.'' A contradiction $(R \text{ and } (\text{not } R))$ is then derived, and the author writes the following to finish the proof: ``This contradicts the assumption $\text{not } Q$. Therefore $Q$ must be true.'' 
@@ -350,7 +350,7 @@ We now investigate the difference between proof by contradiction and proof by co
 When the contradiction $(R \text{ and } (\text{not } R))$ derived in a proof by contradiction is $(P \text{ and } (\text{not } P))$, the overall proof by contradiction is
 
 \begin{align*}
-    (P \text{ and } (\text{not } Q)) \implies (P \text{ and } (\text{not } P)).
+    (P \text{ and } (\text{not } Q)) \implies (P \text{ and } (\text{not } P)) = F.
 \end{align*}
 
 The above implies the following:

@@ -1005,7 +1005,7 @@ This section focuses on two important vector subspaces that come with every line
 \end{remark}
 
 \begin{theorem}
-\label{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}
+\label{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}
 
     (One-to-one linear functions are the linear functions that preserve linear independence). 
     
@@ -1084,9 +1084,9 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \begin{theorem}
     \label{ch::lin_alg::thm::linear_fn_1-1_iff_onto}
     
-    (A linear function of finite-dimensional vector spaces of the same dimension is one-to-one iff it is onto).
+    (A linear function between finite-dimensional vector spaces of the same dimension is one-to-one iff it is onto).
     
-    Let $V$ and $W$ be finite dimensional vector spaces with same dimension, $\dim(V) = \dim(W)$, and let ${\ff:V \rightarrow W}$ be a linear function. Then $\ff$ is one-to-one iff $\ff$ is onto. In other words, $\ff$ is a linear isomorphism iff it is either one-to-one or onto.
+    Let $V$ and $W$ be finite dimensional vector spaces with the same dimension, $\dim(V) = \dim(W)$, and let ${\ff:V \rightarrow W}$ be a linear function. Then $\ff$ is one-to-one iff $\ff$ is onto. In other words, $\ff$ is a linear isomorphism iff it is either one-to-one or onto.
 \end{theorem}
 
 \begin{proof}
@@ -1201,7 +1201,7 @@ Of more practical importance than the above is the following fact.
         = c[\vv]_E.
     \end{align*}
     
-    Since $[\cdot]_E$ sends basis vectors to basis vectors, it preserves linear independence, and is therefore one-to-one (recall Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}). Since $[\cdot]_E$ is a one-to-one linear function between vector spaces of the same dimension, it must also be onto. Thus $[\cdot]_E$ is a linear isomorphism.
+    Since $[\cdot]_E$ sends basis vectors to basis vectors, it preserves linear independence, and is therefore one-to-one (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}). Since $[\cdot]_E$ is a one-to-one linear function between vector spaces of the same dimension, it must also be onto. Thus $[\cdot]_E$ is a linear isomorphism.
 
     %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a trivial kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
 \end{proof}
@@ -3151,7 +3151,7 @@ We address this now. In order to solve a linear equation, we will transform it i
     
 %     ================= 
     
-%     $= (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
+%     $= (\RR^{-1}\see_1, ..., \RR^{-1}\see_k, \RR^{-1}\bb_{k + 1}, ..., \RR^{-1}\bb_n)$. Recall from Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence} that because $\RR^{-1}$ is invertible it preserves linear independence. Thus, since $\see_1, ..., \see_k$ are linearly independent, $\aa_1 = \RR^{-1} \see_1, ..., \aa_k = \RR^{-1} \see_k$ are linearly independent.
     
 %     [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
 % \end{proof}
@@ -3182,7 +3182,7 @@ We address this now. In order to solve a linear equation, we will transform it i
 
     Now, we consider two cases.
     
-    (Case: $\rref(\AA) \neq \mathbf{0}$). In this case, $\rref(\AA)$ has at least one pivot variable. So, we can let $x_{j_1}, ..., x_{j_p} \in \{x_1, ..., x_n\}$ be the pivot variables of $\rref(\AA)$ and let $y_{k_1}, ..., y_{k_q} \in \{x_1, ..., x_n\}$ be the free variables of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, the $i$th row consists of a $1$ in the $j_i$ column, $0$'s in all other pivot columns, and $r_{j_i k_\alpha}$ in the free-variable-column of index $k_\alpha$. Thus, the system can be written as
+    (Case: $\rref(\AA) \neq \mathbf{0}$). In this case, $\rref(\AA)$ has at least one pivot variable. So, we can let ${x_{j_1}, ..., x_{j_p} \in \{x_1, ..., x_n\}}$ be the pivot variables of $\rref(\AA)$ and let $y_{k_1}, ..., y_{k_q} \in \{x_1, ..., x_n\}$ be the free variables of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, the $i$th row consists of a $1$ in the $j_i$ column, $0$'s in all other pivot columns, and $r_{j_i k_\alpha}$ in the free-variable-column of index $k_\alpha$. Thus, the system can be written as
     
     \begin{align*}
         \begin{cases}
@@ -3209,7 +3209,7 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ for all $x_{j_1}, ..., x_{j_p}, y_{k_1}, ..., y_{k_q} \in K$}
     \end{align*}
 
-    (Case: $\rref(\AA) = \mathbf{0}$). Then the system of equations corresponding to the linear-matrix equation ${\rref(\AA) \xx = \mathbf{0}}$ is the trivial system that only contains copies of the equation $(0 = 0)$. If we set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$, then the last system from the previous case is equal to this trivial system.
+    (Case: $\rref(\AA) = \mathbf{0}$). In this case, the system of equations corresponding to the linear-matrix equation ${\rref(\AA) \xx = \mathbf{0}}$ is the trivial system that only contains copies of the equation $(0 = 0)$. If we set $x_{j_1} = ... = x_{j_p} = y_{k_1}, ..., y_{k_q} := 0$, then the last system from the previous case is equal to this trivial system.
 
     \vspace{.25cm}
 
@@ -3368,11 +3368,11 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ where $\vv_1, ..., \vv_q \in K^p$}.
     \end{align*}
 
-    Now consider the set of vectors in the span. Since $\see_1, ..., \see_1$ are linearly independent, it follows that $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are linearly independent. Since $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are linearly independent, and as $\ss$ is an invertible linear function, then the above set of vectors is linearly independent, too (recall Theorem \ref{ch::lin_alg::lemma::only_inv_fns_preserve_lin_indep}).
+    Now consider the set of vectors in the span. Since $\see_1, ..., \see_1$ are linearly independent, it follows that $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are linearly independent. Since $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are linearly independent, and as $\ss$ is an invertible linear function, then the above set of vectors is linearly independent, too (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}).
     
     Since the above set of vectors is a linearly independent spanning set for $\ker(\AA)$, it is a basis for $\ker(\AA)$.
 
-    How did we obtain this basis? Well, since the vectors $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are obtained by using the [parametric form method] to compute an expression for $(x_{j_1}, ..., x_{j_p}, x_{k_1}, ..., x_{k_q})^\top$, and since $\ss$ swaps entries so that $\ss((x_{j_1}, ..., x_{j_p}, x_{k_1}, ..., x_{k_q})) = (x_1, ..., x_n)^\top = \xx$, then $\ss\left(\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}\right), ..., \ss\left(\begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}\right)$ is the vector obtained by using [the parametric form method] to compute an expression for $(x_1, ..., x_n)^\top$.
+    How did we obtain this basis? Well, since the vectors $\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}, ..., \begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}$ are obtained by using the [parametric form method] to compute an expression for $(x_{j_1}, ..., x_{j_p}, x_{k_1}, ..., x_{k_q})^\top$, and since $\ss$ swaps entries so that $\ss((x_{j_1}, ..., x_{j_p}, x_{k_1}, ..., x_{k_q})) = (x_1, ..., x_n)^\top = \xx$, then $\ss\left(\begin{pmatrix} \vv_1 \\ \see_1 \end{pmatrix}\right), ..., \ss\left(\begin{pmatrix} \vv_q \\ \see_q \end{pmatrix}\right)$ is the set of vectors in the set-argument of the span that is obtained by using [the parametric form method] to compute an expression for $(x_1, ..., x_n)^\top$.
     
     Looking back through the derivation, we see that the basis was obtained by applying [the parametric form method] to the system of equations corresponding to $(\rref(\AA) \xx = \mathbf{0} \text{ for all $\xx \in K^n$})$.
 
