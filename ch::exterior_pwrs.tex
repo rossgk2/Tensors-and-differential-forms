@@ -1172,25 +1172,22 @@ We have now laid out the landscape for the interpretation of tensor product spac
 
     (Pushforward on the dual is multiplication by $\det(\phi^i(\ee_j))$).
     
-    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. For all $\phi^1, ..., \phi^n \in V^*$, we have
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. Since the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}), then we have
     
     \begin{align*}
-        \phi^1 \wedge ... \wedge \phi^n = \det(\ff^*) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n},
+        \phi^1 \wedge ... \wedge \phi^n = \det(\gg) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n}
+        \text{ for all  $\phi^1, ..., \phi^n \in V^*$}
     \end{align*}
-    
-    because the pushforward on a top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}). Since the matrix of $\ff^*$ relative to $E^*$ and $E^*$ has $i$th column $[\phi^i]_{E^*}$, we have
+
+    where $\gg:V^* \rightarrow V^*$ is the linear function that is defined on basis vectors by $\gg(\phi^{\ee_i})) = \phi^i$. The matrix $[\ff(E^*)]_{E^*}$ of $\ff$ relative to $E^*$ and $E^*$ is $\begin{pmatrix} [\phi^1]_{E^*} & \hdots & [\phi^1]_{E^*} \end{pmatrix}$, so we have
     
     \begin{align*}
         \phi^1 \wedge ... \wedge \phi^n &= \det \begin{pmatrix} [\phi^1]_{E^*} & \hdots & [\phi^1]_{E^*} \end{pmatrix} \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n} \\
-        &= \det(\phi^i(\ee_j)) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n}.
+        &= \det(\phi^i(\ee_j)) \phi^{\ee_1} \wedge ... \wedge \phi^{\ee_n} \text{ for all $\phi^1, ..., \phi^n \in V^*$}.
     \end{align*}
     
     To obtain the last expression, recall the fact that for any $\phi \in V^*$ and basis $F^*$ of $V^*$ induced by a basis $F = \{\ff_1, ..., \ff_n\}$ of $V$, we have $([\phi]_{F^*})_i = \phi(\ff_i)$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}).
 \end{lemma}
-
-\begin{remark}
-    Interestingly, the fact $\det(\ff^*) = \det(\ff)$ does \textit{not} come in useful for the current line of argument (the ``current line of argument'' started with the previous lemma).
-\end{remark}
 
 \begin{lemma}
 \label{ch::exterior_pwrs::lemma::action_dual_wedge_dual_basis}
