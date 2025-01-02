@@ -573,8 +573,8 @@ Since every vector subspace is a subset of a vector space, then every vector sub
         \item $\R^n$ is a vector subspace of $\R^m$ whenever $n < m$.
         \item Any line in the plane is a vector subspace of $\R^2$.
         \item A line in three-dimensional space is not a vector subspace of $\R^2$ but is a vector subspace of $\R^3$.
-        \item Two-dimensional planes of the form $\spann(\vv, \ww)$, for nonzero $\vv, \ww \in \R^3$, are not vector subspaces of $\R^2$ but are vector subspaces of $\R^3$.
-        \item Two-dimensional planes of the form $\spann(\vv, \ww)$, for nonzero $\vv, \ww \in \R^4$, are not vector subspaces of $\R^3$ but are vector subspaces of $\R^4$.
+        \item Two-dimensional planes of the form $\spann(\{\vv, \ww\})$, for nonzero $\vv, \ww \in \R^3$, are not vector subspaces of $\R^2$ but are vector subspaces of $\R^3$.
+        \item Two-dimensional planes of the form $\spann(\{\vv, \ww\})$, for nonzero $\vv, \ww \in \R^4$, are not vector subspaces of $\R^3$ but are vector subspaces of $\R^4$.
         \item ``$k$-dimensional planes'' of the form $\spann(\{\vv_1, ..., \vv_k\})$, for nonzero $\vv_1, ..., \vv_k \in \R^n$, are not vector subspaces of $\R^k$ for $k < n$, but are vector subspaces of $\R^n$.
     \end{itemize}
 \end{remark}
@@ -661,13 +661,19 @@ In this subsection, we define the concepts of \textit{basis} and \textit{dimensi
 \begin{defn}
     (Basis for a finite-dimensional vector space). 
     
-    Let $V$ be a finite-dimensional vector space. We say that a subset $E \subseteq V$ is a \textit{basis} for $V$ iff
+    Let $V$ and $W$ be finite-dimensional vector spaces. We say that a subset $E \subseteq W$ is a \textit{basis} for $V$ iff
     
     \begin{enumerate}
         \item $E$ spans $V$.
         \item $E$ is minimal: if $F$ is another set of vectors spanning $V$, then $|F| \geq |E|$.
     \end{enumerate}
 \end{defn}
+
+\begin{remark}
+    (Bases are automatically subsets of the vector spaces they span).
+
+    Notice that if $E$ spans $V$, then it is automatically true that $E \subseteq V$, since for any $\vv \in E$ we have ${\vv \in \spann(E) = V}$.
+\end{remark}
 
 \begin{defn}
     (Dimension of a finite-dimensional vector space).
@@ -2991,7 +2997,7 @@ This section generalizes the notion of the dot product, which we only know to be
 
 \newpage
 
-\section{Systems of linear equations with matrices}
+\section{Systems of linear equations}
 
 This section presents how systems of linear equations can be solved by using concepts from linear algebra.
 
@@ -3138,8 +3144,7 @@ We address this now. In order to solve a linear equation, we will transform it i
     Each equation in this system is itself a linear equation because the function $(x_1, ..., x_n) \mapsto x_1 a_{i1} + ... + x_n a_{in}$ is linear for all $i$.
 \end{deriv}
 
-\subsection*{Finding bases for the kernel and image of matrix}
-
+\subsection*{Finding bases for the kernel and image of a matrix}
 
 % \begin{proof}
 %     Proof. Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ and $\rref(\AA) = \begin{pmatrix} \rr_1 & \hdots & \rr_n \end{pmatrix}$.
@@ -3156,14 +3161,8 @@ We address this now. In order to solve a linear equation, we will transform it i
 %     [need to prove that $\see_1, ..., \see_k$ span $\im(\rref(\AA))$]
 % \end{proof}
 
-\begin{theorem}
-    (Dimension of a matrix's kernel and image).
 
-    dimension of image is number of pivots
-
-    dimension of kernel is number of free fariables
-\end{theorem}
-
+\begin{comment}
 \begin{deriv}
     (Basis for the kernel of a matrix).
 
@@ -3384,6 +3383,53 @@ We address this now. In order to solve a linear equation, we will transform it i
         \text{ is a basis for $\ker(\AA)$}
     \end{empheq}
 \end{deriv}
+\end{comment}
+
+\begin{theorem}
+    ().
+    
+    row operations preserve the kernel
+
+    column operations preserve the image
+\end{theorem}
+
+\begin{theorem}
+    (Basis for the kernel of a matrix).
+    
+    Let $\AA$ be an $m \times n$ matrix with entries in a field $K$. Since row operations preserve the kernel, then $\ker(\rref(\AA)) = \ker(\AA)$.
+    
+    The following algorithm produces a basis for $\ker(\rref(\AA)) = \ker(\AA)$.
+
+    \begin{enumerate}
+        \item Since $\xx \in \ker(\rref(\AA))$ iff $\rref(\AA) \xx = \mathbf{0}$, consider the system of equations corresponding to the linear matrix equation $\rref(\AA) \xx = \mathbf{0}$. Let $x_{j_1}, ..., x_{j_p} \in \{x_1, ..., x_n\}$ be the pivot variables of $\rref(\AA)$ and let $x_{k_1}, ..., x_{k_q} \in \{x_1, ..., x_n\}$ be the free variables of $\rref(\AA)$. 
+        \item Obtain an equivalent system of equations by solving each equation of the previous system for its pivot variable, so that the $i$th equation in the new system is $x_{j_i} = c_{i1} x_{k_1} + ... + c_{ip} x_{k_q}$ for some $c_{i1}, ..., c_{ip} \in K$.
+        \item Obtain another equivalent system by appending the $q$ equations $x_{k_1} = x_{k_1}$, ..., $x_{k_q} = x_{k_q}$, which express the free variables in terms of themselves, to the previous system of equations.
+        \item Consider the vector equation that corresponds to the previous system of linear equations. The left side of this vector equation is $(x_1, ..., x_n)^\top$. The right side has $i$th entry $c_{i_1} x_{k_1} + ... + c_{i_p} x_{k_q}$ when $i$ is the index of a pivot variable and $i$th entry $x_i$ when $i$ is the index of a free variable.
+        \item Rewrite the previous vector equation so that it is of the form
+
+        \begin{align*}
+            \xx =
+            \begin{pmatrix}
+                x_1 \\ \vdots \\ x_n
+            \end{pmatrix}
+            = 
+            x_{k_1} \vv_1 + … + x_{k_q} \vv_q,
+        \end{align*}
+
+        for some $\vv_1, ..., \vv_q \in K^n$. In this equation, $\xx$ is expressed as a weighted sum of vectors, where the weights are the free variables.
+
+        \item Since all of the previous systems of equations and vector equations are equivalent, we clearly have ${\xx \in \ker(\rref(\AA))}$ iff $\xx \in \spann(\{\vv_1, ..., \vv_q\})$. Thus $\ker(\AA) = \ker(\rref(\AA)) = \spann(\{\vv_1, ..., \vv_q\})$. 
+        In the below, we show that $\{\vv_1, ..., \vv_q\}$ is linearly independent and is thus a basis for $\ker(\rref(\AA)) = \ker(\AA)$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove that the set $\{\vv_1, ..., \vv_q\}$ returned by the algorithm is linearly independent.
+
+    The form of the system of equations in (4) implies that in (5), the vector $\vv_j$ has an $i$th entry of $\delta_{ij}$ when $i$ is restricted to be an index of a free variable. It follows from this constraint that $\vv_1, ..., \vv_q$ are linearly independent. 
+    
+    To see this, consider the equation $c_1 \vv_1 + … + c_q \vv_q = 0$, where $c_1, ..., c_q \in K$. Since, when $i$ is the index of a free variable, the $i$th entry of $c_j \vv_j$ is $c_j \delta_{ij}$, then when $i$ is the index of a free variable, the $i$th entry of the sum is $\sum_{j = 1}^q c_j \delta_{ij} = c_i$. Thus the entries of the sum corresponding to free variables are $c_1, ..., c_q$. For the sum to be the zero vector, all entries of the sum must be zero, including all of $c_1, ..., c_q$. Thus $\vv_1, ..., \vv_q$ are linearly independent.
+\end{proof}
 
 \begin{example}
     (Basis for the kernel of a matrix).
@@ -3492,7 +3538,7 @@ We address this now. In order to solve a linear equation, we will transform it i
         \right\}\right).
     \end{align*}
 
-    The result of the previous derivation ensures us that
+    The result of the previous theorem ensures us that
 
     \begin{align*}
         \left\{
@@ -3511,25 +3557,34 @@ We address this now. In order to solve a linear equation, we will transform it i
 \begin{theorem}
     (Basis for the image of a matrix).
 
-    The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ form a basis of the image.
-
-    [probably turn into a derivation]
+    Let $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ be a matrix, consider $\rref(\AA)$, and let $x_{j_1}, ..., x_{j_p}$ be the pivot variables of $\rref(\AA)$. The columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ is a basis for $\im(\AA)$. More precisely, $\{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis for $\im(\AA)$.
 \end{theorem}
 
 \begin{proof}
-    Let $\rr_j$ be the $j$th column of $\rref(\AA)$, and let $\rr_{j_1}, ..., \rr_{j_\alpha} \in \{\rr_1, ..., \rr_n\}$ be the pivot columns of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, then $\rr_{j_\alpha}$ has in its $i$th row the entry $\delta_{ij_\alpha}$. Equivalently, $\rr_{j_\alpha} = \see_\alpha$. The pivot columns $\rr_{j_1} = \see_{j_1}, ..., \rr_{j_p} = \see_{j_p}$ are thus linearly independent. 
+    First, we show that the pivot columns of $\rref(\AA)$ are a basis for $\im(\AA)$. Secondly, we show that the corresponding columns of $\AA$ are a basis for $\im(\AA)$.
 
-    We now show that the pivot columns span $\im(\AA)$. Since $\rref(\AA)$ is in RREF, then the columns of $\rref(\AA)$ containing free variables, $\rr_{k_1}, ..., \rr_{k_q} \in \{\rr_1, ..., \rr_n\}$, are linear combinations of the pivot columns of $\rref(\AA)$, so $R_\beta := \{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_\beta}\}$ is linearly dependent for every $\beta \in [1, q]$. Since $\im(\AA) = \spann(\{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_q}\}) = \spann(R_q)$, and since removing a vector from a linearly dependent set does not change the span of the set (recall Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}), then $R_\beta = R_{\beta + 1} - \{\rr_{k_{\beta + 1}}\}$ spans $\im(\AA)$ for all $\beta \in [0, q]$. In particular, $R_0 = \{\rr_{j_1}, ..., \rr_{j_p}\}$, which is the set of pivot columns, spans $\im(\AA)$. 
+    \begin{enumerate}
+        \item (Pivot columns of $\rref(\AA)$ are a basis for $\im(\AA)$). Let $\rr_j$ be the $j$th column of $\rref(\AA)$, and let $\rr_{j_1}, ..., \rr_{j_p} \in \{\rr_1, ..., \rr_n\}$ be the pivot columns of $\rref(\AA)$. Since $\rref(\AA)$ is in RREF, then $\rr_{j_\alpha}$ has in its $i$th row the entry $\delta_{ij_\alpha}$. Equivalently, $\rr_{j_\alpha} = \see_{j_\alpha}$. The pivot columns $\rr_{j_1} = \see_{j_1}, ..., \rr_{j_p} = \see_{j_p}$ are thus linearly independent. 
 
-    Since $\rr_{j_1}, ..., \rr_{j_p}$ are linearly independent and span $\im(\AA)$, they are a basis of $\im(\AA)$.
+        We now show that the pivot columns span $\im(\AA)$. Since $\rref(\AA)$ is in RREF, then the columns of $\rref(\AA)$ containing free variables, $\rr_{k_1}, ..., \rr_{k_q} \in \{\rr_1, ..., \rr_n\}$, are linear combinations of the pivot columns of $\rref(\AA)$, so $R_\beta := \{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_\beta}\}$ is linearly dependent for every $\beta \in [1, q]$. Since $\im(\AA) = \spann(\{\rr_{j_1}, ..., \rr_{j_p}, \rr_{k_1}, ..., \rr_{k_q}\}) = \spann(R_q)$, and since removing a vector from a linearly dependent set does not change the span of the set (recall Lemma \ref{ch::lin_alg::lemma::adding_removing_vectors_li_ld_sets}), then $R_\beta = R_{\beta + 1} - \{\rr_{k_{\beta + 1}}\}$ spans $\im(\AA)$ for all $\beta \in [0, q]$. In particular, $R_0 = \{\rr_{j_1}, ..., \rr_{j_p}\}$, which is the set of pivot columns, spans $\im(\AA)$. 
+    
+        Since $\rr_{j_1}, ..., \rr_{j_p}$ are linearly independent and span $\im(\AA)$, they are a basis of $\im(\AA)$.
 
-    [noticed that we have a new theorem: if $\ee_1, ..., \ee_n \in W \supseteq V$ are linearly independent and span $V$, then (because they are in $V$, they span $V$), and are thus a basis for $V$. used this theorem in proof of basis of kernel]
-
-    We lastly show that the columns in $\AA = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ corresponding to the pivot columns of $\rref(\AA)$ are a basis of $\im(\AA)$. That is, we show that $\{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis for $\im(\AA)$. Since row-reduction is an invertible linear operation, then there exists an invertible linear function $\ff$ such that $\ff(\AA) = \rref(\AA)$. We then have $\AA = \ff^{-1}(\rref(\AA))$, i.e., $\aa_i = \ff^{-1}(\rr_i)$, and, in particular, $\{\aa_{j_1}, ..., \aa_{j_p}\} = \{\ff^{-1}(\rr_{j_1}), ..., \ff^{-1}(\rr_{j_p})\}$. Since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), then $\{\ff^{-1}(\rr_{j_1}), ..., \ff^{-1}(\rr_{j_p})\} = \{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis of $\im(\AA)$.
-
-    [check if strictly increasing indices needed in proof for basis of kernel]
+        \item (Columns of $\AA$ corresponding to the pivot columns of $\rref(\AA)$ are a basis of $\im(\AA)$). Since row-reduction is an invertible linear operation, then there exists an invertible linear function $\ff$ such that $\ff(\AA) = \rref(\AA)$. We then have $\AA = \ff^{-1}(\rref(\AA))$, i.e., $\aa_i = \ff^{-1}(\rr_i)$, and, in particular, $\{\aa_{j_1}, ..., \aa_{j_p}\} = \{\ff^{-1}(\rr_{j_1}), ..., \ff^{-1}(\rr_{j_p})\}$. Since invertible linear functions send bases to bases (recall Theorem \ref{ch::lin_alg::thm::iso_bases_to_bases}), then $\{\ff^{-1}(\rr_{j_1}), ..., \ff^{-1}(\rr_{j_p})\} = \{\aa_{j_1}, ..., \aa_{j_p}\}$ is a basis of $\im(\AA)$.
+    \end{enumerate}
 \end{proof}
 
+\begin{deriv}
+    (Main dimension theorem with matrices).
+
+    Let $\AA$ be a matrix with entries in a field $K$. The theorem about the basis for the kernel of a matrix showed that the number of vectors in a basis for $\ker(\AA)$ is the number of free variables of $\rref(\AA)$, and the theorem about the basis for the image of a matrix showed that the number of vectors in a basis for $\im(\AA)$ is the number of pivot variables of $\rref(\AA)$. Thus, $\dim(\ker(\AA))$ is the number of free variables of $\rref(\AA)$ and $\dim(\im(\AA))$ is the number of pivot variables of $\rref(\AA)$.
+    
+    Recall the main dimension theorem (Theorem \ref{ch::lin_alg::thm::main_dim}), which says that when $V$ is a finite-dimensional vector space we have $\dim(\im(\AA)) = \dim(V) - \dim(\ker(\AA))$. Applying this theorem, we see that if $\AA \in K^{m \times n}$, then, since the function $\vv \mapsto \AA \vv$ is a linear function $K^n \rightarrow K^m$, we have
+
+    \begin{align*}
+        (\text{number of pivot variables in $\rref(\AA)$}) = n - (\text{number of free variables in $\rref(\AA)$})
+    \end{align*}.
+\end{deriv}
 
 \newpage
 
@@ -3589,10 +3644,10 @@ We address this now. In order to solve a linear equation, we will transform it i
         \item ($\implies$). It suffices to show that if a row has no pivots then it is $\mathbf{0}^\top$. Assume for contradiction that a row $\rr \in K^{1 \times n}$ has no pivots and is not equal to $\mathbf{0}^\top$. Then $\rr$ has some nonzero entries $r_1, ..., r_k$. Consider the leftmost such entry, $r_j$. This $r_i$ is the leading entry of $\rr$. Either $r_i = 1$ or $r_i \neq 1$. If $r_i = 1$, then $\rr$ has a pivot and thus $\rref(\AA)$ has a pivot; contradiction. If $r_i \neq 1$, then $\rr$ has a leading entry that is not equal to $1$, so $\rref(\AA)$ is not in RREF; contradiction. 
         ($\impliedby$). If $\rref(\AA) = \mathbf{0}$ then there are no $1$'s in $\rref(\AA)$. Thus there are no leading $1$'s, i.e., no pivots.
     \end{itemize}
-    \item $\dim(V)$ is number of columns, dimension of image is number of pivots, dimension of kernel is number of free variables, so $n$ is number of pivots plus number of free variables
     \item (lemma for basis for kernel). row swaps preserve kernel and column swaps preserve image
     \item basis for kernel
     \item basis for image
+    \item $\dim(V)$ is number of columns, dimension of image is number of pivots, dimension of kernel is number of free variables, so $n$ is number of pivots plus number of free variables
 \end{enumerate}
 
 misc.
