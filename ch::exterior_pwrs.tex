@@ -346,10 +346,10 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 [segway]
 
 \begin{defn}
-\label{ch::exterior_pwrs::defn::pushforward_on_Tk0}
+\label{ch::exterior_pwrs::defn::pushforward_pullback}
     (Pushforwards and pullbacks).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual $\ff^*:W^* \rightarrow V^*$. We define the following \textit{pushforward} and \textit{pullback} maps on $T_{k,0}(V) = V^{\otimes k}$ and $T_{0,k}(W) = (W^*)^{\otimes k}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
+    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual ${\ff^*:W^* \rightarrow V^*}$. We define the following \textit{pushforward} and \textit{pullback} maps on ${T_{k,0}(V) = V^{\otimes k}}$ and ${T_{0,k}(W) = (W^*)^{\otimes k}}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
     
     \begin{align*}
         \vv_1 \otimes ... \otimes \vv_k \in T_{k,0}(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T_{k,0}(W) \quad \text{(``pushforward on $T_{k,0}(V)$'')} \\
@@ -368,7 +368,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 \label{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}
     (Star notation for pushforward and pullback).
     
-    The above notation of using $\otimes_{0, k} \ff:V \rightarrow W$ and $\Lambda^k \ff$ for the pushforwards and using ${\otimes_{k, 0} \ff^*:W^* \rightarrow V^*}$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$. Somewhat less commonly, pushforwards are denoted by ${\ff_*:T_{k,0}(V) \rightarrow T_{k,0}(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$.
+    The above notation of using $\otimes_{0, k} \ff:T_{k,0}(V) \rightarrow T_{k,0}(W)$ and $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ for the pushforwards and using $\otimes_{k, 0} \ff^*$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pushforwards by ${\ff_*:T_{k,0}(V) \rightarrow T_{k,0}(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$ and the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
     
     Once the above definitions of pushforward and pullback are understood, this ``star notation'' can be useful. But it can be difficult to understand what the various pushforwards and pullbacks are if this notation is used from the start, due to the potential for confusing the dual $\ff^*:W^* \rightarrow V^*$ with either of the pullbacks ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}, {\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
     
@@ -1068,20 +1068,37 @@ To achieve our goals, we first formalize some notation about the alternative int
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. We define $V_1^* \totimes ... \totimes V_k^*$ to be the vector space spanned by elements of the form $\phi^1 \totimes ... \totimes \phi^k$, where $\phi^i \in V_i^*$. Thus, 
     
     \begin{align*}
-        V_1^* \totimes ... \totimes V_k^* = \LLLL(V_1^* \times ... \times V_k^* \rightarrow K).
+        V_1^* \totimes ... \totimes V_k^* = \LLLL(V_1 \times ... \times V_k \rightarrow K).
     \end{align*}
     
-    We also define $V_1 \totimes ... \totimes V_k := V_1^{**} \totimes ... \totimes V_k^{**} = \LLLL(V_1^{**} \times ... \times V_k^{**} \rightarrow K)$.
+    In analogy to the above, we also define $V_1 \totimes ... \totimes V_k := \LLLL(V_1^* \times ... \times V_k^* \rightarrow K)$.
 \end{defn}
+
+\begin{theorem}
+    (Dual distributes over $\totimes$).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces. Then we have the natural isomorphism
+    
+    \begin{align*}
+        (V \totimes W)^* \cong
+        V^* \totimes W^*
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    By taking the dual of each side, we see that an equivalent fact is $(V^* \totimes W^*)^* \cong V \totimes W$. This is indeed the case, as we have $(V^* \totimes W^*)^* = \LLLL(V \times W \rightarrow K)^* \cong \LLLL(V \otimes W \rightarrow K)^* = (V \otimes W)^{**} \cong (V^* \otimes W^*)^* = \LLLL(V^* \otimes W^* \rightarrow K) \cong \LLLL(V^* \times W^* \rightarrow K) \cong V \totimes W$.
+
+        
+\end{proof}
 
 \begin{theorem}
     (Natural isomorphisms relating $\otimes$ and $\totimes$).
      
-    For finite-dimensional vector spaces $V$ and $W$, we have $V^* \totimes W^* \cong V^* \otimes W^*$ naturally. From this, it follows that $V \totimes W \cong V \otimes W$ naturally. Induction then gives that $V^{\totimes k} \cong V^{\otimes k}$.
+    For finite-dimensional vector spaces $V$ and $W$ over a field $K$, we have $V^* \totimes W^* \cong V^* \otimes W^*$ naturally. It follows from taking the dual of each side of this natural isomorphism and applying that $V \totimes W \cong V \otimes W$ naturally. Induction then gives that $V^{\totimes k} \cong V^{\otimes k}$.
 \end{theorem}
 
 \begin{proof}
-    To prove the first statement, send elementary tensors to elementary tensors via the linear map $\phi \totimes \psi \mapsto \phi \otimes \psi$, and extend this map with linearity. The rest follows easily.
+   We prove the first statement: we have $V^* \totimes W^* = \LLLL(V \times W \rightarrow K) \cong \LLLL(V \otimes W \rightarrow K) = (V \otimes W)^* \cong V^* \otimes W^*$.
 \end{proof}
 
 \begin{defn}
@@ -1117,13 +1134,13 @@ To achieve our goals, we first formalize some notation about the alternative int
         V_1^* \twedge ... \twedge V_k^* = (\alt \LLLL)(V_1 \times ... \times V_k \rightarrow K).
     \end{align*}
     
-    We also define $V_1 \twedge ... \twedge V_k := V_1^{**} \twedge ... \twedge V_k^{**} = (\alt \LLLL)(V_1^{**} \times ... \times V_k^{**} \rightarrow K)$.
+    We also define $V_1 \twedge ... \twedge V_k := \LLLL(V_1^* \times ... \times V_k^* \rightarrow K)$.
 \end{defn}
 
 \begin{theorem}
     (Natural isomorphisms relating $\wedge$ and $\twedge$).
      
-    For finite-dimensional vector spaces $V$ and $W$, we have $V^* \twedge W^* \cong V^* \wedge W^*$ naturally. From this, it follows that $V \twedge W \cong V \wedge W$ naturally. Induction then gives that $V^{\twedge k} \cong V^{\wedge k}$.
+    For finite-dimensional vector spaces $V$ and $W$, we have $V^* \twedge W^* \cong V^* \wedge W^*$ naturally. It follows from taking the dual of each side of this natural isomorphism that $V \twedge W \cong V \wedge W$ naturally. Induction then gives that $V^{\twedge k} \cong V^{\wedge k}$.
 \end{theorem}
 
 \begin{proof}
@@ -1254,13 +1271,13 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \begin{deriv}
     (Pushforward on $\tT_{k,0}(V)$)
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0} defined the pushforward $\otimes_{k, 0} \ff: T_{k,0}(V) \rightarrow T_{k,0}(W)$ by
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_pullback} defined the pushforward $\otimes_{k, 0} \ff: T_{k,0}(V) \rightarrow T_{k,0}(W)$ by
     
     \begin{align*}
         \vv_1 \otimes ... \otimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k).
     \end{align*}
     
-    The natural isomorphisms $T_{k,0}(V) \cong \tT_{k,0}(V)$ and $T_{k,0}(W) \cong \tT_{k,0}(W)$ induce a pushforward map $\totimes_{k,0} \ff:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)$ defined by
+    The natural isomorphisms $T_{k,0}(V) \cong \tT_{k,0}(V)$ and $T_{k,0}(W) \cong \tT_{k,0}(W)$ induce a pushforward map ${\totimes_{k,0} \ff:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)}$ defined by
     
     \begin{align*}
         \vv_1 \totimes ... \totimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \totimes ... \totimes \ff(\vv_k).
@@ -1277,16 +1294,16 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \label{ch::exterior_pwrs::deriv::pullback_on_tT0k}
     (Pullback on $\tT_{0,k}(W)$).
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pullback_on_T0k} defined the pullback $\otimes_{k, 0} \ff^*: T_{0,k}(W) \rightarrow T_{0,k}(V)$ by
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_pullback} defined the pullback $\otimes_{k, 0} \ff^*: T_{0,k}(W) \rightarrow T_{0,k}(V)$ by
     
     \begin{align*}
         \psi^1 \totimes ... \totimes \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k).
     \end{align*}
     
-    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
+    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes_{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
     
     \begin{align*}
-        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes{0,k} \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
+        \psi^1 \totimes ... \totimes \psi^k \overset{\totimes_{0,k} \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
     \end{align*}
     
     It can be checked using the definition of $\totimes$ that $(\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff) = (\psi^1 \totimes ... \totimes \psi^k) \circ \ff$. Therefore
@@ -1327,7 +1344,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \begin{deriv}
     (Pushforward on $\tLambda^k(V)$).
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_exterior_pwr} defined the pushforward $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ by
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_pullback} defined the pushforward $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ by
     
     \begin{align*}
         \vv_1 \wedge ... \wedge \vv_k \overset{\Lambda^k \ff}{\longmapsto} \ff(\vv_1) \wedge ... \wedge \ff(\vv_k).
@@ -1357,7 +1374,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \label{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns}
     (Pullback on $\tLambda^k(W^*)$).
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_on_exterior_pwr} defined the pullback $\Lambda^k \ff^*:\Lambda^k(W^*) \rightarrow \Lambda^k(V^*)$ by
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Definition \ref{ch::exterior_pwrs::defn::pushforward_pullback} defined the pullback $\Lambda^k \ff^*:\Lambda^k(W^*) \rightarrow \Lambda^k(V^*)$ by
     
     \begin{align*}
         \psi^1 \wedge ... \wedge \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^k).
@@ -1411,7 +1428,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 
 At the end of Chapter \ref{ch::lin_alg}, we presented an explanation for the dot product that remedies two common problematic ways to explain the dot product. The cross product also comes with two common pedagogical problems. We describe and remedy those here.
 
-The first pedagogical problem with the cross product is that the complicated algebraic formula for the cross product is rarely explained. (The formula is $\vv \times \ww = \Big( ([\vv_1]_E)^2 ([\vv_2]_E)^3 - ([\vv_1]_E)^3 ([\vv_2]_E)^2 \Big) - \Big( ([\vv_1]_E)^1 ([\vv_2]_E)^3 - ([\vv_1]_E)^3 ([\vv_2]_E)^1 \Big) + \Big( ([\vv_1]_E)^1 ([\vv_2]_E)^2 - ([\vv_1]_E)^2 ([\vv_2]_E)^1 \Big)$).
+The first pedagogical problem with the cross product is that the complicated algebraic formula for the cross product is rarely explained. (The formula is $\vv \times \ww = \Big( ([\vv]_E)^2 ([\ww]_E)^3 - ([\vv]_E)^3` ([\ww]_E)^2 \Big) - \Big( ([\vv]_E)^1 ([\ww]_E)^3 - ([\vv]_E)^3 ([\ww]_E)^1 \Big) + \Big( ([\vv]_E)^1 ([\ww]_E)^2 - ([\vv]_E)^2 ([\ww]_E)^1 \Big)$).
 
 The second problem is that the ``right hand rule'' is never explicitly formalized. One common ``explanation'' for the right hand rule goes as follows: ``you can use a `left hand rule' if you want to, but then you'll have to account for a minus sign''. This is a true statement, but it only relates the ``right hand rule'' with the ``left hand rule''- it does not explain the fundamental reason why a right hand rule or left hand rule would emerge in the first place. The ``right hand rule'' is really a consequence of conventions about orientation.
 
