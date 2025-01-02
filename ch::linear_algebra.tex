@@ -3615,17 +3615,33 @@ We address this now. In order to solve a linear equation, we will transform it i
 
 \textbf{(S) Solving linear equations with augmented matrices}
 \begin{enumerate}
-    \item defn. augmented matrix corresponding to a system of linear equations
-    \item because adding equations, multiplying equations by a scalar, and swapping equations doesn't change the system, performing the analogous row operations on the corresponding matrix doesn't change the system to which the augmented matrix corresponds
-    \item RREF on augmented matrices; pivot variables, free variables. A matrix is in RREF iff
-    \begin{itemize}
+    \item Deriv. Augmented matrix corresponding to a system of linear equations
+    \item Because adding equations, multiplying equations by a scalar, and swapping equations doesn't change a system of equations, performing the analogous row operations on the corresponding matrix doesn't change the system to which the augmented matrix correspond. The following algorithm takes advantage of this fact and uses it to put every matrix in a form from which it is easy to read the solution to the corresponding system of linear equations
+    \item Definition. (Gaussian elimination algorithm).
+    \item (Gaussian elimination produces matrices in RREF). After Gaussian elimination, an augmented matrix is in the following form:
+     \begin{itemize}
         \item All zero rows (rows equal to $\mathbf{0}^\top$) are at the bottom of the matrix.
         \item Every nonzero row's leftmost nonzero entry is a $1$. Such $1$'s are called ``leading $1$'s'', or ``pivots''.
         \item Each column containing some row's leading $1$ has zeros in all its other entries.
-        \begin{itemize}
-            \item Corollary: every row has at most $1$ pivot and every column has at most $1$ pivot. (Proof. (Rows). A row is either zero or nonzero. If it is zero, it has no pivots; if it is nonzero, it has one pivot. (Columns). A column is either zero or nonzero. If it is zero, it has no pivots. If it is nonzero, it either contains some row's leading $1$ or doesn't. If it does, it contains one pivot. If it doesn't, it contains zero pivots.)
-        \end{itemize}
     \end{itemize}
+        
+    This form is known as \textit{reduced row echelon form}, or \textit{RREF}.
+
+    [Discuss how solutions to the corresponding system are easy to read off...]
+
+    Variables whose corresponding columns have a pivot are called \textit{pivot variables}. Notice that, after considering the system of equations corresponding to an augmented matrix in RREF, we can express each pivot variable as the evaluation of a (linear) function on the non-pivot variables:
+
+    \begin{align*}
+        ...
+    \end{align*}
+
+    Thus, [we see the solution to the system is easy to read off.]
+    
+    Since the non-pivot variables are treated as independent variables, and since independent variables can be thought of as being allowed to freely vary, the non-pivot variables are called \textit{free variables}.
+    \item Lemma about RREF.
+    \begin{itemize}
+        \item Every row has at most $1$ pivot and every column has at most $1$ pivot. (Proof. (Rows). A row is either zero or nonzero. If it is zero, it has no pivots; if it is nonzero, it has one pivot. (Columns). A column is either zero or nonzero. If it is zero, it has no pivots. If it is nonzero, it either contains some row's leading $1$ or doesn't. If it does, it contains one pivot. If it doesn't, it contains zero pivots.)
+        \end{itemize}   
     \item reading solutions to a linear equation from a RREF
     \item RREF as linear function represented by product of elementary matrices
 \end{enumerate}
@@ -3665,7 +3681,7 @@ misc.
 \begin{defn}
     (Eigenvectors and eigenvalues of a linear function).
     
-    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is said to be an \textit{eigenvector (of $\ff$)} iff there is a scalar $c \in K$ such that $\ff(\vv) = c \vv$. Iff $\vv$ is indeed an eigenvector of $\ff$, then the $c \in K$ for which $\ff(\vv) = c \vv$ is said to be the \textit{eigenvalue corresponding to $\vv$}.
+    Let $V$ and $W$ be vector spaces over a field $K$, and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is said to be an \textit{eigenvector (of $\ff$)} iff there is a scalar $\lambda \in K$ such that $\ff(\vv) = \lambda \vv$. Iff $\vv$ is indeed an eigenvector of $\ff$, then the $\lambda \in K$ for which $\ff(\vv) = \lambda \vv$ is said to be the \textit{eigenvalue corresponding to $\vv$}.
     
     In other words, the eigenvectors of a linear function are the vectors that get sent to scalar multiples of themselves by the function, and the eigenvalues corresponding to those eigenvectors are the scalars involved in said scalar multiples.
 \end{defn}
@@ -3705,14 +3721,14 @@ misc.
 \begin{deriv}
     (Eigenvectors).
 
-     Let $V$ and $W$ be vector spaces over a field $K$ and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is an eigenvector of $\ff$ with eigenvalue $c$ iff
+     Let $V$ and $W$ be vector spaces over a field $K$ and let $\ff:V \rightarrow W$ be a linear function. A vector $\vv \in V$ is an eigenvector of $\ff$ with eigenvalue $\lambda$ iff
 
     \begin{align*}
-        &\quad \quad \quad \ff(\vv) = c \vv \\
-        &\iff \ff(\vv) - c \vv = \mathbf{0} \\
-        &\iff \ff(\vv) - c\II(\vv) = \mathbf{0} \\
-        &\iff (\ff - c\II)(\vv) = \mathbf{0} \\
-        &\iff \vv \in \ker(\ff - c\II).
+        &\quad \quad \quad \ff(\vv) = \lambda \vv \\
+        &\iff \ff(\vv) - \lambda \vv = \mathbf{0} \\
+        &\iff \ff(\vv) - \lambda \II(\vv) = \mathbf{0} \\
+        &\iff (\ff - \lambda \II)(\vv) = \mathbf{0} \\
+        &\iff \vv \in \ker(\ff - \lambda \II).
     \end{align*}
 
     Thus,
@@ -3720,24 +3736,22 @@ misc.
     \begin{align*}
         \boxed
         {
-            \text{$\vv$ is an eigenvector of $\ff$ with eigenvalue $c$ iff $\vv \in \ker(\ff - c\II)$}
+            \text{$\vv$ is an eigenvector of $\ff$ with eigenvalue $\lambda$ iff $\vv \in \ker(\ff - \lambda \II)$}
         }
     \end{align*}
-\end{proof}
+\end{deriv}
 
 \begin{deriv}
     (Eigenvalues).
 
     Let $V$ and $W$ be vector spaces over a field $K$ and let $\ff:V \rightarrow W$ be a linear function.
     
-    A scalar $c \in K$ is an eigenvalue of $\ff$ if and only if $\ker(\ff - c\II)$ is nonempty, which is the case if and only if $\ff - c\II$ is not invertible. This is equivalent to the condition $\det(\ff - c\II) = 0$. Thus,
+    A scalar $\lambda \in K$ is an eigenvalue of $\ff$ if and only if $\ker(\ff - \lambda \II)$ is nonempty, which is the case if and only if $\ff - \lambda \II$ is not invertible. This is equivalent to the condition $\det(\ff - \lambda \II) = 0$. Thus,
 
     \begin{align*}
         \boxed
         {
-            \text{$c$ is an eigenvalue of $\ff$ iff $\det(\ff - c\II) = 0$}
+            \text{$\lambda$ is an eigenvalue of $\ff$ iff $\det(\ff - \lambda \II) = 0$}
         }
     \end{align*}
 \end{deriv}
-
-\begin{}
