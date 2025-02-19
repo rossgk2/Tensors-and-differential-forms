@@ -6,7 +6,7 @@ The reason is because the pedagogy in this book is superior, at least from the p
 
 ## Linear algebra
 
-* An intuitive definition for linear independence is used. A set of vectors is defined to be linearly independent if and only if every vector in the set is not in the span of all of the other vectors. The traditional definition of linear independence is proved to be equivalent to this alternative definition.
+* An intuitive definition for linear independence is used: a set of vectors is defined to be linearly independent if and only if every vector in the set is not in the span of all of the other vectors. The traditional definition of linear independence is proved to be equivalent to this alternative definition.
 * A basis of a vector space is defined to be a spanning set for that vector space of minimal size. (The traditional approach of defining a basis to be a linearly independent spanning set has the downside of requiring a proof that the dimension of every finite-dimensional vector space is unique, which would ideally be an obvious fact that doesn't require a long proof). In the approach we use, it is an immediate consequence of minimality that dimension is unique. This alternative approach approach also uses the same idea as in the proof required by the traditional approach to prove that a set is a spanning set of minimal size if and only if it is a linearly independent spanning set, thus effectively switching a definition and a theorem from the traditional approach for pedadogical benefit.
 * Extremely convenient notation for the matrix of a linear function $\mathbf{f}$ relative to bases $E$ and $F$, $\[\mathbf{f}(E)\]_F$, is used. I have not seen this notation used elsewhere.
 
