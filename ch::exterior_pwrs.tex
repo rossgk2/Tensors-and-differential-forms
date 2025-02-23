@@ -698,24 +698,26 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 
 \textit{Orientation} is the mathematical formalization of the notions of ``clockwise'' and ``counterclockwise''; it is the notion which distinguishes different ``rotational configurations'' from each other.
 
-Our discussion of orientation will be as follows. First, we define an \textit{orientation on an inner product space} to be a choice of an ordered orthonormal basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
+Our discussion of orientation will be as follows. First, we define an \textit{orientation on a vector space} to be a choice of an ordered orthonormal basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
 
 After we finish the definition of orientation for inner product spaces, we end the subsection on oriented inner product spaces by presenting the fact that the determinant ``tracks'' orientation. This fact allows us to generalize the notion of orientation to finite dimensional vector spaces that may or may not have an inner product. Lastly, we show how the top exterior power of a finite-dimensional vector space can be used for the purposes of orientation.
 
-\subsection*{First notions of orientation for inner product spaces}
+[TO-DO: fix the terminology of the above]
+
+\subsection*{First notions of orientation}
 
 \begin{defn}
     (Ordered basis).
     
-    We will formalize the notion of orientation relying on the concept of an ordered basis. An \textit{ordered basis} is a basis for a finite-dimensional vector space in which the order that vectors are specified matters. 
+    An \textit{ordered basis} for a vector space is a simply a tuple containing some ordering of the basis vectors for that space.
     
-    For example, if $V$ is a 2-dimensional vector space, then the ordered bases $E_1 = \{\ee_1, \ee_2\}$ and $E_2 = \{\ee_2, \ee_1\}$ for $V$ are not equal, $E_1 \neq E_2$.
+    For example, if $V$ is a 2-dimensional vector space and has basis $E = \{\ee_1, \ee_2\}$, then $(\ee_1, \ee_2)$ and $(\ee_2, \ee_1)$ are both ordered bases of $V$. We have $(\ee_1, \ee_2) \neq (\ee_2, \ee_1)$.
 \end{defn}
 
 \begin{defn}
     (Permutation acting on an ordered basis). 
     
-    Let $E = \{\ee_1, ..., \ee_n\}$ be an ordered basis for some finite-dimensional vector space. Given a permutation $\sigma \in S_n$, we define $E^\sigma := \{\ee_{\sigma(1)}, ..., \ee_{\sigma(n)}\}$.
+    Let $E = (\ee_1, ..., \ee_n)$ be an ordered basis for some finite-dimensional vector space. Given a permutation $\sigma \in S_n$, we define $E^\sigma := (\ee_{\sigma(1)}, ..., \ee_{\sigma(n)})$.
 \end{defn}
 
 We now discover a consequence of imposing that the bases under consideration be ordered.
@@ -724,7 +726,7 @@ We now discover a consequence of imposing that the bases under consideration be 
 \label{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}
     (Intuition for the antisymmetry of ordered bases).
     
-    Consider the plane $\R^2$, and consider also two permutations of the standard ordered basis $\sE = \{\see_1, \see_2\}$ for $\R^2$: $\{\see_1, \see_2\}$ and $\{\see_1, -\see_2\}$. (Draw these ordered bases out on paper). Notice that no matter how you rotate the entire second ordered basis (rotate each vector in the second ordered basis by the same amount), it is impossible to make all vectors from the second ordered basis simultaneously align with their counterparts from the first ordered basis. This is also impossible for the ordered bases $\{\see_1, \see_2\}$ and $\{\see_2, \see_1\}$. Finally, consider the ordered bases $\{\see_1, \see_2\}$ and $\{-\see_2, \see_1\}$ of $\R^2$. It \textit{is} possible to make each vector from the first ordered basis with its counterpart from the second ordered basis by rotating either the entire first ordered basis or the entire second ordered basis.
+    Consider the plane $\R^2$, and consider also two permutations of the standard ordered basis $\sE = (\see_1, \see_2)$ for $\R^2$: $(\see_1, \see_2)$ and $(\see_1, -\see_2)$. (Draw these ordered bases out on paper). Notice that no matter how you rotate the entire second ordered basis (rotate each vector in the second ordered basis by the same amount), it is impossible to make all vectors from the second ordered basis simultaneously align with their counterparts from the first ordered basis. This is also impossible for the ordered bases $(\see_1, \see_2)$ and $(\see_2, \see_1)$. Finally, consider the ordered bases $(\see_1, \see_2)$ and $(-\see_2, \see_1)$ of $\R^2$. It \textit{is} possible to make each vector from the first ordered basis with its counterpart from the second ordered basis by rotating either the entire first ordered basis or the entire second ordered basis.
     
     What we have discovered is that \textit{swapping adjacent vectors in an ordered basis of two vectors produces an ordered basis that is} equivalent under rotation \textit{to the ordered basis obtained from the original by negating one of the vectors that have been swapped}. We refer to this fact as the \textit{antisymmetry of ordered bases}.
 \end{deriv}
@@ -747,7 +749,7 @@ We would now like to work towards a more precise statement of the antisymmetry o
     
     for some $\theta \in [0, 2\pi)$.
     
-    Now consider the case when $V$ is an $n$-dimensional inner product space, $n > 2$. Suppose ${\hU = \{\huu_1, ..., \huu_n\}}$ is an orthonormal ordered basis for $V$. An \textit{extension (to $V$) of a $2$-rotation on the oriented\footnote{When we say ``oriented subspace'', we mean that the orientation of $\spann(\uu_i, \uu_j)$ is given by the ordered basis $\{\huu_i, \huu_j\}$.} subspace} $\spann(\huu_i, \huu_j) \subseteq V$ \textit{is a linear function $V \rightarrow V$ for which there exist $i, j$ such that}:
+    Now consider the case when $V$ is an $n$-dimensional inner product space, $n > 2$. Suppose ${\hU = (\huu_1, ..., \huu_n)}$ is an orthonormal ordered basis for $V$. An \textit{extension (to $V$) of a $2$-rotation on the oriented\footnote{When we say ``oriented subspace'', we mean that the orientation of $\spann(\uu_i, \uu_j)$ is given by the ordered basis $(\huu_i, \huu_j)$.} subspace} $\spann(\huu_i, \huu_j) \subseteq V$ \textit{is a linear function $V \rightarrow V$ for which there exist $i, j$ such that}:
     
     \begin{itemize}
         \item the map $(\vv_i, \vv_j) \mapsto \RR_\theta(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n)$ is a $2$-rotation on $\spann(\vv_i, \vv_j)$
@@ -776,13 +778,13 @@ We would now like to work towards a more precise statement of the antisymmetry o
 \begin{defn}
     (Equivalence under rotation for $2$-dimensional inner product spaces).
     
-    We define orthonormal ordered bases $\hU = \{\huu_1, \huu_2\}$ and $\tU = \{\tuu_1, \tuu_2\}$ of a 2-dimensional inner product space $V$ to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tU = (\tuu_1, \tuu_2)$ of a 2-dimensional inner product space $V$ to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
 \end{defn}
 
 \begin{theorem}
     (Antisymmetry of ordered bases for a $2$-dimensional inner product space).
     
-    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = \{\huu_1, \huu_2\}$ be an orthonormal ordered basis of a $2$-dimensional inner product space $V$. When $\theta = -\frac{\pi}{2}$ or $\theta = \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
+    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space $V$. When $\theta = -\frac{\pi}{2}$ or $\theta = \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \pm
@@ -792,11 +794,11 @@ We would now like to work towards a more precise statement of the antisymmetry o
         \end{pmatrix}.
     \end{align*}
     
-    Computing $\RR_\theta(\hU) = \RR_\theta(\{\huu_1, \huu_2\})$ for $\theta = -\frac{\pi}{2}, \frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
+    Computing $\RR_\theta(\hU) = \RR_\theta((\huu_1, \huu_2))$ for $\theta = -\frac{\pi}{2}, \frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
     
     \begin{align*}
-        \{\huu_1, \huu_2\} &\sim \{-\huu_2, \huu_1\} \sim \{\huu_2, -\huu_1\} \\
-        \{\huu_2, \huu_1 \} &\sim \{-\huu_1, \huu_2\} \sim \{\huu_1, - \huu_2\}.
+        (\huu_1, \huu_2) &\sim (-\huu_2, \huu_1) \sim (\huu_2, -\huu_1) \\
+        (\huu_2, \huu_1 ) &\sim (-\huu_1, \huu_2) \sim (\huu_1, - \huu_2).
     \end{align*}
 
     This is what we noticed in the informal discussion of Derivation \ref{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}.
@@ -807,33 +809,33 @@ We now generalize the equivalence under rotation and the antisymmetry of ordered
 \begin{defn}
     (Equivalence under rotation for $n$-dimensional inner product spaces).
     
-    We define orthonormal ordered bases $\hU = \{\huu_1, ..., \huu_n\}$ and $\tU = \{\tuu_1, ..., \tuu_n\}$ of an $n$-dimensional inner product space $V$ to be \textit{equivalent under rotation}, and thus write $\hU \sim \tU$, iff there is a composition of $2$-dimensional rotations $\RR = \RR_k \circ ... \circ \RR_1$, defined on some oriented subspaces $\spann(\huu_i, \huu_j)$, for which $\RR(\hU) = \tU$. This notion of ``equivalence under rotation'' is indeed an equivalence relation on orthonormal ordered bases of $V$.
+    We define orthonormal ordered bases $\hU = (\huu_1, ..., \huu_n)$ and $\tU = (\tuu_1, ..., \tuu_n)$ of an $n$-dimensional inner product space $V$ to be \textit{equivalent under rotation}, and thus write $\hU \sim \tU$, iff there is a composition of $2$-dimensional rotations $\RR = \RR_k \circ ... \circ \RR_1$, defined on some oriented subspaces $\spann(\huu_i, \huu_j)$, for which $\RR(\hU) = \tU$. This notion of ``equivalence under rotation'' is indeed an equivalence relation on orthonormal ordered bases of $V$.
 \end{defn}
 
 \begin{theorem}
     (Antisymmetry of ordered bases for an $n$-dimensional inner product space).
     
-     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional  rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$, we have
+     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional  rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$, we have
     
     \begin{align*}
-        \{\huu_1, ..., \huu_i, \huu_{i + 1}, ..., \huu_n\}
+        (\huu_1, ..., \huu_i, \huu_{i + 1}, ..., \huu_n)
         \sim
-        -\{\huu_1, ..., \huu_{i + 1}, \huu_i, ..., \huu_n\}.
+        -(\huu_1, ..., \huu_{i + 1}, \huu_i, ..., \huu_n).
     \end{align*}
     
-    Equivalently, for any orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$ and any permutation $\sigma \in S_n$,
+    Equivalently, for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ and any permutation $\sigma \in S_n$,
     
     \begin{align*}
-        \{\huu_1, ..., \huu_n\}
+        (\huu_1, ..., \huu_n)
         \sim
-        \sgn(\sigma) \{\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}\}.
+        \sgn(\sigma) (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}).
     \end{align*}
 \end{theorem}
 
 \begin{defn}
     (Orientation of permuted ordered bases).
     
-    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = \{\huu_1, ..., \huu_n\}$ for $V$. Suppose $\hU^\sigma = \{\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}\}$, where $\sigma \in S_n$, is a permutation of $\hU$ that is not rotationally equivalent to $\hU$ (so choose any $\sigma$ with $\sgn(\sigma) = - 1$). By the antisymmetry of ordered bases, any other permutation $\hU^\pi = \{\huu_{\pi(1)}, ..., \huu_{\pi(n)}\}$, $\pi \in S_n$, of $\hU$ is rotationally equivalent either to $\hU$ or to $\hU^\sigma$. In other words, there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. Suppose $\hU^\sigma = (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)})$, where $\sigma \in S_n$, is a permutation of $\hU$ that is not rotationally equivalent to $\hU$ (so choose any $\sigma$ with $\sgn(\sigma) = - 1$). By the antisymmetry of ordered bases, any other permutation $\hU^\pi = (\huu_{\pi(1)}, ..., \huu_{\pi(n)})$, $\pi \in S_n$, of $\hU$ is rotationally equivalent either to $\hU$ or to $\hU^\sigma$. In other words, there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
     
     We can now begin to set up the notion of orientation. An \textit{orientation for the $n$-dimensional inner product space $V$} is a choice of an orthonormal ordered basis $\hU$ for $V$. When $V$ is given the orientation $\hU$, then the \textit{orientation of a permutation of $\hU$ (relative to $\hU$)} is said to be \textit{positive} iff that permutation of $\hU$ is rotationally equivalent to $\hU$, and is said to be \textit{negative} otherwise. Per the previous paragraph, every permutation of $\hU$ is either positively oriented or negatively oriented relative to $\hU$.
 \end{defn}
@@ -844,9 +846,9 @@ We now generalize the equivalence under rotation and the antisymmetry of ordered
     
     At the beginning of this section, we said that orientation would formalize the notions of ``clockwise'' and ``counterclockwise''. This formalization has been achieved by the previous definition.
     
-    A \textit{counterclockwise rotational configuration} is another name for the orientation given to $\R^3$ by the standard basis, \textit{when we use the normal} human \textit{convention} of drawing the ordered basis $\sE = \{\see_1, \see_2, \see_3\}$ such that $\sE$ can be rotated so that $\see_1$ points out of the page, $\see_2$ points to the right, and $\see_3$ points upwards on the page. In this visual convention, the direction of each basis vector corresponds to its position in $\sE$. Counterclockwise rotational configurations are also called ``right handed coordinate systems''.
+    A \textit{counterclockwise rotational configuration} is another name for the orientation given to $\R^3$ by the standard basis, \textit{when we use the normal} human \textit{convention} of drawing the ordered basis $\sE = (\see_1, \see_2, \see_3)$ such that $\sE$ can be rotated so that $\see_1$ points out of the page, $\see_2$ points to the right, and $\see_3$ points upwards on the page. In this visual convention, the direction of each basis vector corresponds to its position in $\sE$. Counterclockwise rotational configurations are also called ``right handed coordinate systems''.
     
-    A \textit{clockwise rotational configuration} then corresponds to the ordered bases which are not rotationally equivalent to $\sE$. One such ordered basis, $\{-\see_1, \see_2, \see_3\}$, can be depicted using the visual convention just established by drawing $\see_1$ as pointing into the page (i.e. $-\see_1$ points out of the page), $\see_2$ as pointing to the right, and $\see_3$ as pointing upwards on the page. Clockwise rotational configurations are also called ``left handed coordinate systems''.
+    A \textit{clockwise rotational configuration} then corresponds to the ordered bases which are not rotationally equivalent to $\sE$. One such ordered basis, $(-\see_1, \see_2, \see_3)$, can be depicted using the visual convention just established by drawing $\see_1$ as pointing into the page (i.e. $-\see_1$ points out of the page), $\see_2$ as pointing to the right, and $\see_3$ as pointing upwards on the page. Clockwise rotational configurations are also called ``left handed coordinate systems''.
     
     We could have easily picked a different visual convention (i.e. a different permutation of in/out, left/right, up/down) to represent the ordering of the basis that is considered to orient the space.
 \end{remark}
@@ -875,13 +877,13 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \label{ch::exterior_pwrs::thm::3_rot_acts_on_subspaces}
     (In three dimensions, every $2$-dimensional orthonormal ordered basis is ``rotationally close'' to a permuted orthonormal basis).
     
-    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = \{ \tuu_1, \tuu_2 \}$ and $\hU = \{ \huu_1, \huu_2 \}$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there exists a $3$-rotation which takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
+    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, \tuu_2 )$ and $\hU = ( \huu_1, \huu_2 )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there exists a $3$-rotation which takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
 \end{lemma}
 
 \begin{proof}
    By definition, a $3$-rotation is of the form $\RR = \RR_\gamma \circ \RR_\beta \circ \RR_\alpha$, where $\RR_\alpha, \RR_\beta$, and $\RR_\gamma$ are $2$-rotations. (Sidenote: $\alpha, \beta, \gamma \in [0, 2\pi)$ are called \textit{Euler angles}).
    
-   We must show that there exist $\alpha, \beta, \gamma$ for which $\RR(\tU) = \hU$. To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$. $2$-rotations are orthogonal linear functions, so they preserve the orthonormality of bases. Thus, $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$, so $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$. Therefore, $\RR(\tU) = \{\huu_1, \pm \huu_2 \}$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
+   We must show that there exist $\alpha, \beta, \gamma$ for which $\RR(\tU) = \hU$. To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$. $2$-rotations are orthogonal linear functions, so they preserve the orthonormality of bases. Thus, $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$, so $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$. Therefore, $\RR(\tU) = (\huu_1, \pm \huu_2 )$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
    
    %\textbf{proof that such $\alpha, \beta, \gamma$ exist?} 
 \end{proof}
@@ -894,17 +896,17 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \label{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
      (In $n$ dimensions, any ordered basis is ``rotationally close'' to a permuted orthonormal basis).
      
-     Let $V$ be an $n$-dimensional vector space, let $k \leq n$, and consider $k$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = \{ \tuu_1, ..., \tuu_n \}$ and $\hU = \{ \huu_1, ..., \huu_n \}$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there is an $n$-rotation taking $\tU$ to some permutation $\hU^\sigma$ of $\hU$. 
+     Let $V$ be an $n$-dimensional vector space, let $k \leq n$, and consider $k$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, ..., \tuu_n )$ and $\hU = ( \huu_1, ..., \huu_n )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there is an $n$-rotation taking $\tU$ to some permutation $\hU^\sigma$ of $\hU$. 
 \end{theorem}
 
 \begin{proof}
    When $n \in \{2, 3\}$, the previous lemma yields the desired $n$-rotation as a composition of $3$-rotations (for $n = 2$, just take the restriction of the $3$-rotations). We need to show that the theorem holds when $n > 3$. We consider the cases when $n$ is even and $n$ is odd.
    
-   If $n$ is even, then, for $i \in \{1, ..., n\}$, let $\RR_i$ be the $3$-rotation taking $\{ \huu_i,  \huu_{i + 1} \}$ to $\{ \tuu_{\sigma_i(i)},  \tuu_{\sigma_i(i + 1)} \}$, where $\sigma_i \in S(\{i, i + 1\})$ is some permutation. Then $\RR_{\frac{n}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\sigma$, where $\sigma \in S_n$ is the permutation defined by $\sigma(i) = \sigma_{j(i)}(i)$, where $j(i) = i$ when $i$ is odd and $j(i) = i - 1$ when $i$ is even.
+   If $n$ is even, then, for $i \in \{1, ..., n\}$, let $\RR_i$ be the $3$-rotation taking $( \huu_i,  \huu_{i + 1} )$ to $( \tuu_{\sigma_i(i)},  \tuu_{\sigma_i(i + 1)} )$, where $\sigma_i \in S(\{i, i + 1\})$ is some permutation. Then $\RR_{\frac{n}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\sigma$, where $\sigma \in S_n$ is the permutation defined by $\sigma(i) = \sigma_{j(i)}(i)$, where $j(i) = i$ when $i$ is odd and $j(i) = i - 1$ when $i$ is even.
             
-    If $n$ is odd, then let $\RR$ be the $3$-rotation taking $\{ \huu_{n - 2}, \huu_{n - 1}, \huu_n \}$ to \\ $\{ \tuu_{\sigma_{n - 2}(n - 2)}, \tuu_{\sigma_{n - 2}(n - 1)}, \tuu_{\sigma_{n - 2}(n)} \}$, where $\sigma_{n - 2} \in S(\{n - 2, n - 1, n\})$ is some permutation.
+    If $n$ is odd, then let $\RR$ be the $3$-rotation taking $( \huu_{n - 2}, \huu_{n - 1}, \huu_n )$ to \\ $( \tuu_{\sigma_{n - 2}(n - 2)}, \tuu_{\sigma_{n - 2}(n - 1)}, \tuu_{\sigma_{n - 2}(n)} )$, where $\sigma_{n - 2} \in S(\{n - 2, n - 1, n\})$ is some permutation.
             
-    By the previous case (when $n$ was even), there is a composition $\RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ of $3$-rotations taking $\tU - \{\tuu_{n - 2}, \tuu_{n - 1}, \tuu_n\}$ to $\hU - \{\huu_{n - 2}, \huu_{n - 1}, \huu_n\})^\sigma$, for some permutation $\sigma \in S_n$. Thus $\RR \circ \RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\pi$, where $\pi(i) = \sigma(i)$ when $i \in \{1, ..., n - 3\}$ and $\pi(i) = \sigma_{n - 2}(i)$ when $i \in \{n - 2, n - 1, n\}$.
+    By the previous case (when $n$ was even), there is a composition $\RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ of $3$-rotations taking $\tU - (\tuu_{n - 2}, \tuu_{n - 1}, \tuu_n)$ to $\hU - (\huu_{n - 2}, \huu_{n - 1}, \huu_n))^\sigma$, for some permutation $\sigma \in S_n$. Thus $\RR \circ \RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\pi$, where $\pi(i) = \sigma(i)$ when $i \in \{1, ..., n - 3\}$ and $\pi(i) = \sigma_{n - 2}(i)$ when $i \in \{n - 2, n - 1, n\}$.
 \end{proof}
 
 \subsection*{Completing the definition of orientation for inner product spaces}
@@ -912,7 +914,7 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \begin{defn}
     (Orientation of arbitrary ordered bases).
     
-    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$ for $V$. We know how to ``orient'' ordered bases for $V$ that happen to be permutations of $\hU$. Now, we generalize the notion of orientation so that it applies to any ordered orthonormal basis of $V$.
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. We know how to ``orient'' ordered bases for $V$ that happen to be permutations of $\hU$. Now, we generalize the notion of orientation so that it applies to any ordered orthonormal basis of $V$.
     
     We define the \textit{orientation of an orthonormal ordered basis $E$ of $V$} that is not a permutation of $\hU$ to be the orientation of the unique permuted orthonormal basis $\hU^\sigma$, $\sigma \in S^n$, of $\hU$ for which there exists an $n$-rotation taking $E$ to $\hU^\sigma$.
     
@@ -923,13 +925,13 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \label{ch::exterior_pwrs::thm::det_tracks_orientation}
     (The determinant tracks orientation). 
     
-    Let $V$ be an $n$-dimensional inner product space with an orientation given by an orthonormal ordered basis $\hU$. Let $E = \{\ee_1, ..., \ee_n\}$ be any ordered basis (not necessarily orthonormal) of $V$. We have $\det([\EE]_{\hU}) > 0$ iff $E$ is positively oriented relative to $\hU$, and $\det([\EE]_{\hU}) < 0$ iff $E$ is negatively oriented relative to $\hU$.
+    Let $V$ be an $n$-dimensional inner product space with an orientation given by an orthonormal ordered basis $\hU$. Let $E = (\ee_1, ..., \ee_n)$ be any ordered basis (not necessarily orthonormal) of $V$. We have $\det([\EE]_{\hU}) > 0$ iff $E$ is positively oriented relative to $\hU$, and $\det([\EE]_{\hU}) < 0$ iff $E$ is negatively oriented relative to $\hU$.
 \end{theorem}
 
 \begin{proof}
    This proof has two overarching steps. First, we pass the definition of orientation for arbitrary ordered bases of $V$ to the definition of orthonormal ordered bases of $V$ by obtaining an orthonormal ordered basis $\hU_E$ from $E$. Then we pass the definition of orientation for orthonormal ordered bases of $V$ that are not permutations of $\hU$ to the definition of orientation for orthonormal ordered bases of $V$ that are permutations of $\hU$.
    
-   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $\{[\ee_1]_{\hU}, ..., [\ee_n]_{\hU}\}$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::exterior_pwrs::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = \{\tuu_1, ..., \tuu_n\}$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
+   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::exterior_pwrs::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = (\tuu_1, ..., \tuu_n)$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
    
    \begin{align*}
        \det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU}) = \det([\tuu_1]_{\hU}, ..., [\tuu_n]_{\hU})
@@ -980,9 +982,9 @@ We now show how the top exterior power of a vector space can be used to describe
 
     (Orientation with top degree wedges).
     
-    Let $V$ be a finite-dimensional vector space with an orientation $E = \{\ee_1, ..., \ee_n\}$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
+    Let $V$ be a finite-dimensional vector space with an orientation $E = (\ee_1, ..., \ee_n)$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
     
-    Notice, we can identify $E = \{\ee_1, ..., \ee_n\}$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
+    Notice, we can identify $E = (\ee_1, ..., \ee_n)$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
     
     Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_pwrs::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
 \end{theorem}
@@ -1002,11 +1004,11 @@ As a last sidenote, the following theorem gives some justification as to why our
     \fontsize{10pt}{12pt}\selectfont \\
     \indent ($\subseteq$). This is just Theorem \ref{ch::exterior_pwrs::thm::n_dim_rot_det_1}.
     
-    \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = \{\huu_1, ..., \huu_n\}$ of $V$ to another orthonormal basis $\ff(\hU) = \{\ff(\huu_1), ..., \ff(\huu_n)\}$.
+    \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ to another orthonormal basis $\ff(\hU) = (\ff(\huu_1), ..., \ff(\huu_n))$.
 
     Let $\RR_1$ be the $2$-rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a map from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
     
-    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-rotation always exists because $\det(\ff) = 1$ implies that $\{\ff(\huu_1), ..., \ff(\huu_n)\}$ has the same orientation as $\{\huu_1, ..., \huu_n\}$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-rotations.
+    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-rotation always exists because $\det(\ff) = 1$ implies that $(\ff(\huu_1), ..., \ff(\huu_n))$ has the same orientation as $(\huu_1, ..., \huu_n)$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-rotations.
     
     Thus, since $\ff = \RR_n^{-1} \circ (\RR_n \circ \ff)$, we see $\ff$ is a composition of the $2$-rotations $\RR_n^{-1}$ and $\RR_n^{-1} \circ \ff$.
     
