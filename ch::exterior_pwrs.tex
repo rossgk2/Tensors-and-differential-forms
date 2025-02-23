@@ -738,12 +738,12 @@ We would now like to work towards a more precise statement of the antisymmetry o
     ($2$-rotation).
     
     Let $V$ be a $2$-dimensional inner product space, and let $\hU$ be an orthonormal ordered basis for $V$.
-    A \textit{$2$-rotation on the $2$-dimensional inner product space $V$} is a linear function $\RR_\theta:V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is
+    A \textit{$2$-rotation (on the $2$-dimensional inner product space $V$)} is a linear function $\RR_\theta:V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \begin{pmatrix}
-            \cos(\theta) & \sin(\theta) \\
-            \sin(\theta) & -\cos(\theta)
+            \cos(\theta) & -\sin(\theta) \\
+            \sin(\theta) & \cos(\theta)
         \end{pmatrix}
     \end{align*}
     
@@ -772,19 +772,19 @@ We would now like to work towards a more precise statement of the antisymmetry o
     
     (The columns other than the $i$th and $j$th columns are the columns of the $n \times n$ identity matrix).
     
-    If $\RR_\theta$ is a $2$-rotation on a $2$-dimensional inner product space or is an extension of a $2$-dimensional  rotation on an $n$-dimensional inner product space, it is simply called a \textit{$2$-dimensional  rotation}, or a \textit{$2$-rotation}. In this looser terminology, the phrase ``a $2$-rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$'' really means ``an extension of a $2$-rotation, defined on the oriented subspace $\spann(\huu_i, \huu_j)$''.
+    If $\RR_\theta$ is a $2$-rotation on a $2$-dimensional inner product space or is an extension of a $2$-dimensional  rotation on an $n$-dimensional inner product space, it is simply called a \textit{$2$-dimensional  rotation}, or a \textit{$2$-rotation}.
 \end{defn}
 
 \begin{defn}
     (Equivalence under rotation for $2$-dimensional inner product spaces).
-    
-    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tU = (\tuu_1, \tuu_2)$ of a 2-dimensional inner product space $V$ to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+
+    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tU = (\tuu_1, \tuu_2)$ of a 2-dimensional inner product space\footnote{Note, this is the first time we have required that the vector space under consideration be an inner product space. We need this constraint so that we can speak of orthonormal bases.} to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
 \end{defn}
 
 \begin{theorem}
     (Antisymmetry of ordered bases for a $2$-dimensional inner product space).
     
-    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space $V$. When $\theta = -\frac{\pi}{2}$ or $\theta = \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
+    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta = \pm \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \pm
@@ -794,11 +794,11 @@ We would now like to work towards a more precise statement of the antisymmetry o
         \end{pmatrix}.
     \end{align*}
     
-    Computing $\RR_\theta(\hU) = \RR_\theta((\huu_1, \huu_2))$ for $\theta = -\frac{\pi}{2}, \frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
+    Computing $\RR_\theta(\hU) = \RR_\theta((\huu_1, \huu_2)) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2))$ for $\theta = - \frac{\pi}{2}$ and $\theta =\frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
     
     \begin{align*}
-        (\huu_1, \huu_2) &\sim (-\huu_2, \huu_1) \sim (\huu_2, -\huu_1) \\
-        (\huu_2, \huu_1 ) &\sim (-\huu_1, \huu_2) \sim (\huu_1, - \huu_2).
+        (\huu_2, \huu_1 ) &\sim (-\huu_1, \huu_2) \sim (\huu_1, - \huu_2) \\
+        (\huu_1, \huu_2) &\sim (-\huu_2, \huu_1) \sim (\huu_2, -\huu_1)
     \end{align*}
 
     This is what we noticed in the informal discussion of Derivation \ref{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}.
@@ -857,12 +857,51 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 
 \subsection*{Rotations in $n$-dimensions}
 
-\begin{defn}
-\label{ch::exterior_pwrs::defn::n-rotation}
-    ($n$-rotation).
+
+\begin{theorem}
+    Let $V$ be an $n$-dimensional inner product space. For any orthonormal ordered bases $\hU$ and $\tU$ of $V$, there exists an \textbf{[Euler rotation]} $\RR:V \rightarrow V$ and a permutation $\sigma \in S_n$ such that $\RR(\hU) = \tU^\sigma$.
+\end{theorem}
+
+============================
+
+\begin{lemma}
+    If $V$ is a $n$-dimensional inner product space, $n \in \{2, 3\}$, then there exists an invertible composition of extensions of 2-rotations from $V$ to $V$.
+\end{lemma}
+
+\begin{proof}
+    \mbox{} \\
     
-    An \textit{$n$-rotation on an $n$-dimensional inner product space} is a composition of extensions of $2$-rotations on that space.
-\end{defn}
+    (Case $n = 2$). Trivial.
+    
+    (Case $n = 3$). Let $\RR_\alpha, \RR_\beta$, and $\RR_\gamma$ be the 2-rotations within the planes $\spann(\ee_1, \ee_2)$, $\spann(\ee_2, \ee_3)$, and $\spann(\ee_3, \ee_1)$ by angles $\alpha$, $\beta$, and $\gamma$, respectively\footnote{$\alpha$, $\beta$, and $\gamma$ are called \textit{Euler angles}}. These rotations are all clearly orthogonal linear functions
+    
+    We claim that $\RR_\gamma \circ \RR_\beta \circ \RR_\alpha$ is invertible. 
+    
+    Using trigonometric identities, we compute that the determinant of this matrix is $1$. Thus, $\RR_\gamma \circ \RR_\beta \circ \RR_\alpha$ is an linear function. All orthogonal linear functions are invertible. Thus we have our desired onto composition of extensions to 2-rotations.
+\end{proof}
+
+\begin{theorem}
+    If $V$ is a finite-dimensional inner product space then there exists a composition of 2-rotations from $V$ to $V$ that is onto.
+\end{theorem}
+
+\begin{proof}
+    ($\dim(V)$ is even). Use case $n = 2$ of lemma.
+    
+    ($\dim(V)$ is odd). Use case $n = 2$ of lemma for all but last 3 entries of the input vector. Use case $n = 3$ of lemma for the last 3 entries.
+\end{proof}
+
+\begin{theorem}
+    determinant tracks orientation
+
+    \begin{itemize}
+        \item arbitrary ordered basis of $V$ -> orthonormal ordered basis of $V$ via Gram-Schmidt
+        \item orthonormal ordered basis of $V$ -> permutation of $\hU$ via Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
+        \item Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}: any ordered basis is rotationally close to a permuted orthonormal basis
+    \end{itemize} 
+
+    $\RR$ is invertible
+    
+\end{theorem}
 
 \begin{theorem}
 \label{ch::exterior_pwrs::thm::n_dim_rot_det_1}
@@ -909,7 +948,7 @@ At this point, we need some definitions and facts about $n$-rotations before we 
     By the previous case (when $n$ was even), there is a composition $\RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ of $3$-rotations taking $\tU - (\tuu_{n - 2}, \tuu_{n - 1}, \tuu_n)$ to $\hU - (\huu_{n - 2}, \huu_{n - 1}, \huu_n))^\sigma$, for some permutation $\sigma \in S_n$. Thus $\RR \circ \RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\pi$, where $\pi(i) = \sigma(i)$ when $i \in \{1, ..., n - 3\}$ and $\pi(i) = \sigma_{n - 2}(i)$ when $i \in \{n - 2, n - 1, n\}$.
 \end{proof}
 
-\subsection*{Completing the definition of orientation for inner product spaces}
+\subsection*{Completing the definition of orientation for finite-dimensional inner product spaces}
 
 \begin{defn}
     (Orientation of arbitrary ordered bases).

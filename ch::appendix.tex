@@ -99,18 +99,7 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
 \end{defn}
         
 \begin{proof}
-    We need to show that the conditions are indeed equivalent. To do so, we prove $(3) \iff (4) \iff (5)$ and then $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
-    
-    \vspace{.2cm}
-    
-    Here is the proof that $(3) \iff (4) \iff (5)$:
-    \\ \indent $(3 \implies 4)$. Length is a function of inner product, $||\vv|| = \sqrt{\langle \vv, \vv \rangle}$. Therefore, if inner product is preserved, then length is preserved.
-    \\ \indent $(4 \iff 5)$. The reverse direction is obvious; we need to show the forward direction. The angle $\theta$ between $\vv_1$ and $\vv_2$ is $\theta = \cos^{-1}\Big(\frac{\vv_1 \cdot \vv_2}{||\vv_1||||\vv_2||}\Big)$. Since $\theta$ is a function of preserved quantities (dot product and length), it too is a preserved quantity.
-    \\ \indent $(5 \implies 3)$. Replace the dot product $\cdot$ on $\R^n$ with the inner product $\langle \cdot, \cdot \rangle$ on $V$ in the equation stated in the proof of Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product} to show that $\langle \vv_1, \vv_2 \rangle = \frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2))$. That is, the inner product $\langle \vv_1, \vv_2 \rangle$ is a function of $||\vv_1||$ and $||\vv_2||$. Applying the previous formula, the inner product $\langle \ff(\vv_1), \ff(\vv_2) \rangle$ is a function of $||\ff(\vv_1)||$ and $||\ff(\vv_2)||$: ${\langle \ff(\vv_1), \ff(\vv_2) \rangle = \frac{1}{2}(||\ff(\vv_1) + \ff(\vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))}$. Since $\ff$ is linear, this becomes $\frac{1}{2}(||\ff(\vv_1 + \vv_2)||^2 - (||\ff(\vv_1)||^2 + ||\ff(\vv_2)||^2))$. If length is preserved, then this is the same as $\frac{1}{2}(||\vv_1 + \vv_2||^2 - (||\vv_1||^2 + ||\vv_2||^2) = \langle \vv_1, \vv_2 \rangle$.
-
-    \vspace{.2cm}
-
-    Now we show $(1) \iff (2) \iff (3) \iff (6) \iff (7)$.
+    We need to show that the conditions are indeed equivalent. To do so, we prove $(3) \iff (4) \iff (5)$ and then $(1) \iff (2) \iff (3) \iff (6) \iff (7)$. The proof of $(3) \iff (4) \iff (5)$ is essentially the same as the proof of Lemma \ref{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}; just replace the dot product of that lemma with an inner product. So, it remains to show $(1) \iff (2) \iff (3) \iff (6) \iff (7)$:
     \mbox{} \\
         ($1 \iff 2$).
         \\ \indent ($\implies$). Use $\ff^\dag = \ff^{-1}$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$.
