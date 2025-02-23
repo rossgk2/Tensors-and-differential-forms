@@ -90,9 +90,9 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
     \begin{enumerate}
         \item $\ff^\dag = \ff^{-1}$.
         \item $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^{-1}(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
-        \item $\ff$ preserves inner product: $\langle \vv_1, \vv_2 \rangle = \langle \ff(\vv_1), \ff(\vv_2) \rangle$.
-        \item $\ff$ preserves length.
-        \item $\ff$ preserves length and angle.
+        \item $\ff$ preserves inner product: $\langle \vv_1, \vv_2 \rangle = \langle \ff(\vv_1), \ff(\vv_2) \rangle$ for all $\vv_1, \vv_2 \in V$.
+        \item $\ff$ preserves length: $\langle \vv, \vv \rangle = \langle \ff(\vv), \ff(\vv) \rangle$ for all $\vv \in V$.
+        \item $\ff$ preserves length and angle: $\langle \vv, \vv \rangle = \langle \ff(\vv), \ff(\vv) \rangle$ for all $\vv \in V$ and $\theta(\vv_1, \vv_2) = \theta(\ff(\vv_1), \ff(\vv_2))$ for all $\vv_1, \vv_2 \in V$.
         \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then the matrix $[\ff(\hU)]_{\hU}$ of $\ff$ relative to $\hU$ has orthonormal columns.
         \item If $V$ is finite-dimensional and $\hU$ is an orthonormal basis of $V$, then $[\ff(\hU)]_{\hU}^{-1} = [\ff(\hU)]_{\hU}^{\top}$.
     \end{enumerate}
@@ -104,12 +104,11 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
         ($1 \iff 2$).
         \\ \indent ($\implies$). Use $\ff^\dag = \ff^{-1}$ with $\langle \vv_1, \ff^\dag(\vv_2) \rangle = \langle \vv_2, \ff(\vv_1) \rangle$.
         \\ \indent($\impliedby$). $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \ff(\vv_1), \vv_2 \rangle$ by hypothesis, and $\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$ by condition on $\langle \cdot, \cdot \rangle$ imposed by identifying $V \cong V^*$ for $\ff^\dag$. Thus $\langle \vv_1, \ff^{-1}(\vv_2) \rangle = \langle \vv_1, \ff^\dag(\vv_2) \rangle$.
-        \\ ($2 \implies 3$). Substitute $\vv_3 = \ff^{-1}(\vv_2)$, so that we have $\langle \ff(\vv_1), \ff(\vv_3) \rangle = \langle \vv_1, \vv_3 \rangle$ for all $\vv_1, \vv_3 \in V$.
+        \\ ($2 \iff 3$). Setting $\vv_3 := \ff^{-1}(\vv_2)$ shows that ${(\langle \ff(\vv_1), \vv_2 \rangle = \langle \vv_1, \ff^{-1}(\vv_2) \rangle \text{ for all $\vv_1, \vv_2 \in V$})} \iff$ \\ ${(\langle \ff(\vv_1), \ff(\vv_3) \rangle = \langle \vv_1, \vv_3 \rangle \text{ for all $\vv_1, \vv_3 \in V$})}$.
         \\ ($3 \iff 6$). 
         \\ \indent $(\implies$). We have in particular that $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \langle \huu_i, {\uu}_j \rangle$. Since $\hU$ is orthonormal, $\langle \huu_i, \huu_j \rangle = \delta^i{}_j$. Therefore $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$, so the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal.
         \\ \indent $(\impliedby)$. Since the columns $[\ff(\huu_i)]_{\hU}$ of the matrix of $\ff$ relative to $\hU$ are orthonormal, we have $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Extend with multilinearity to obtain the conclusion.
         \\ ($6 \iff 7$).
         \\ \indent $(\implies$). The $^i_j$ entry of $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top$ is $(\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th column of $[\ff(\hU)]_{\hU}$})\top = (\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th row of $[\ff(\hU)]_{\hU}$}) = \langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top = \II$. A similar argument shows $[\ff(\hU)]_{\hU}^\top [\ff(\hU)]_{\hU} = \II$.
         \\ \indent $(\impliedby)$. Reversing the logic of the forward direction, we know $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore (3) is satisfied. Then we use $(3) \implies (6)$.
-        \\ ($5 \implies 1$). Use the fact that $[\ff(\hU)]_{\hU}^\top$ is the matrix of the adjoint $\ff^\dag:V \rightarrow V$.
 \end{proof}
