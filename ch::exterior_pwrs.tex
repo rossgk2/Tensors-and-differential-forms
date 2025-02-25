@@ -857,74 +857,211 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 
 \subsection*{Rotations in $n$-dimensions}
 
+\begin{defn}
+    (Euler rotations).
+
+    Let $V$ be an $n$-dimensional inner product space and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. A \textit{rotation by the Euler angles $\theta_1, ..., \theta_k \in [0, 2\pi)$} is a function $\RR_{\theta_1, ..., \theta_k}:V \rightarrow V$ of the form ${\RR_{\theta_1, ..., \theta_k} = \RR_{k, \theta_k} \circ ... \circ \RR_{1, \theta_1}}$, where, for each $i$, $\RR_{i, \theta_i}$ is the $2$-rotation by $\theta_i \in [0, 2\pi)$ on the subspace $\spann(\hU - \{\huu_i\})$. The angles $\theta_1, ..., \theta_k$ are called \textit{Euler angles}.
+\end{defn}
 
 \begin{theorem}
-    Let $V$ be an $n$-dimensional inner product space. For any orthonormal ordered bases $\hU$ and $\tU$ of $V$, there exists an \textbf{[Euler rotation]} $\RR:V \rightarrow V$ and a permutation $\sigma \in S_n$ such that $\RR(\hU) = \tU^\sigma$.
+    All rotations by Euler angles are orthogonal linear functions.
 \end{theorem}
 
-============================
+\begin{proof}
+    This follows because $2$-dimensional rotations are orthogonal linear functions, and since a composition of orthogonal linear functions is another orthogonal linear function.
+\end{proof}
+
+% \begin{theorem}
+%     Outline of proof that determinant tracks orientation:
+
+%     \begin{itemize}
+%         \item arbitrary ordered basis of $V$ -> orthonormal ordered basis of $V$ via Gram-Schmidt
+%         \item orthonormal ordered basis of $V$ -> permutation of $\hU$ via Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
+%         \item Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}: any ordered basis is rotationally close to a permuted orthonormal basis
+%     \end{itemize} 
+
+%     ``To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$.''    
+% \end{theorem}
 
 \begin{lemma}
-    If $V$ is a $n$-dimensional inner product space, $n \in \{2, 3\}$, then there exists an invertible composition of extensions of 2-rotations from $V$ to $V$.
+    (Standard matrix of Euler rotation).
+
+    Let $V$ be a $3$-dimensional inner product space and let $\hU$ be an orthonormal ordered basis for $V$. Consider a rotation $\RR_{\alpha, \beta, \gamma}$ by the Euler angles $\alpha, \beta, \gamma \in [0, 2\pi)$. The matrix of $\RR_{\alpha, \beta, \gamma}$ relative to $\hU$ and $\hU$ is the product of the standard matrices of $\RR_\alpha$, $\RR_\beta$, and $\RR_\gamma$, and is equal to
+
+    \begin{align*}
+        &\begin{pmatrix}
+            \cos(\gamma) & -\sin(\gamma) & 0 \\ \sin(\gamma) & \cos(\gamma) & 0 \\
+            0 & 0 & 1
+        \end{pmatrix} 
+        \begin{pmatrix}
+            \cos(\beta) & 0 & \sin(\beta) \\
+            0 & 1 & 0 \\
+            -\sin(\beta) & 0 & \cos(\beta)
+            \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & \cos(\alpha) & -\sin(\alpha) \\
+            0 & \sin(\alpha) & \cos(\alpha)
+        \end{pmatrix} \\
+        = 
+        &\begin{pmatrix}
+            \cos(\gamma)\cos(\beta) & \cos(\gamma)\sin(\beta)\sin(\alpha)-\sin(\gamma)\cos(\alpha) & \cos(\gamma)\sin(\beta)\cos(\alpha)+\sin(\gamma)\sin(\alpha) \\
+            \sin(\gamma)\cos(\beta) & \sin(\gamma)\sin(\beta)\sin(\alpha)+\cos(\gamma)\cos(\alpha) & \sin(\gamma)\sin(\beta)\cos(\alpha)-\cos(\gamma)\sin(\alpha) \\
+            -\sin(\beta) & \cos(\beta)\sin(\alpha) & \cos(\beta)\cos(\alpha)
+        \end{pmatrix}.
+    \end{align*}
 \end{lemma}
 
 \begin{proof}
-    \mbox{} \\
-    
-    (Case $n = 2$). Trivial.
-    
-    (Case $n = 3$). Let $\RR_\alpha, \RR_\beta$, and $\RR_\gamma$ be the 2-rotations within the planes $\spann(\ee_1, \ee_2)$, $\spann(\ee_2, \ee_3)$, and $\spann(\ee_3, \ee_1)$ by angles $\alpha$, $\beta$, and $\gamma$, respectively\footnote{$\alpha$, $\beta$, and $\gamma$ are called \textit{Euler angles}}. These rotations are all clearly orthogonal linear functions
-    
-    We claim that $\RR_\gamma \circ \RR_\beta \circ \RR_\alpha$ is invertible. 
-    
-    Using trigonometric identities, we compute that the determinant of this matrix is $1$. Thus, $\RR_\gamma \circ \RR_\beta \circ \RR_\alpha$ is an linear function. All orthogonal linear functions are invertible. Thus we have our desired onto composition of extensions to 2-rotations.
+    Left as an exercise :)
 \end{proof}
 
-\begin{theorem}
-    If $V$ is a finite-dimensional inner product space then there exists a composition of 2-rotations from $V$ to $V$ that is onto.
-\end{theorem}
+\begin{lemma}
+    (In three dimensions, there is an Euler rotation taking any nonzero vector to any other vector).
+
+    Let $\hU$ be an orthonormal ordered basis of a $3$-dimensional inner product space $V$. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists an Euler rotation $\RR$ such that $\RR(\vv) = \ww$.
+\end{lemma}
 
 \begin{proof}
-    ($\dim(V)$ is even). Use case $n = 2$ of lemma.
+    If we can find angles $\alpha_1, \beta_1$ that rotate $\vv$ to align with $\huu_3$,
+
+    \begin{align*}
+        (\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3,
+    \end{align*}
     
-    ($\dim(V)$ is odd). Use case $n = 2$ of lemma for all but last 3 entries of the input vector. Use case $n = 3$ of lemma for the last 3 entries.
+    and angles $\alpha_2, \beta_2$ that rotate $\huu_3$ to align with $\ww$, 
+
+    \begin{align*}
+        (\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww,
+    \end{align*}
+
+    then the Euler rotation $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, and we are done.
+
+    ============================
+
+    Let $[\vv]_{\hU} = (v_1, v_2, v_3)^\top$. 
+    
+    We have
+    
+    \begin{align*}
+        [\RR_{1, \alpha_1}(\vv)]_{\hU} =
+        \underbrace
+        {
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & \cos(\alpha_1) & -\sin(\alpha_1) \\
+                0 & \sin(\alpha_1) & \cos(\alpha_1)
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_1}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                v_1 \\ v_2 \\ v_3
+            \end{pmatrix}
+        }_{[\vv]_{\hU}}
+        =
+        \begin{pmatrix}
+            v_1 \\
+            v_2 \cos(\alpha_1) - v_3 \sin(\alpha_1) \\
+            v_2 \sin(\alpha_1) + v_3 \cos(\alpha_1)
+        \end{pmatrix}.
+    \end{align*}
+
+    $\alpha_1$ is such that the second component of the above is zero,
+
+    \begin{align*}
+        v_2 \cos(\alpha_1) - v_3 \sin(\alpha_1) = 0.
+    \end{align*}
+    
+    That is, $\alpha_1 = \arctan2(v_2, v_3)$. Since $\cos(\alpha_1) = v_3/\sqrt{v_2^2 + v_3^2}$ and $\sin(\alpha_1) = v_2/\sqrt{v_2^2 + v_3^2}$, the above is
+    
+    \begin{align*}
+        [\RR_{1, \alpha_1}(\vv)]_{\hU} =
+        \begin{pmatrix}
+            v_1 \\
+            (v_2 v_3)/\sqrt{v_2^2 + v_3^2} - (v_3 v_2)/\sqrt{v_2^2 + v_3^2} \\
+            (v_2^2 + v_3^2)/\sqrt{v_2^2 + v_3^2}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            v_1 \\
+            0 \\
+            \sqrt{v_2^2 + v_3^2}
+        \end{pmatrix}.
+    \end{align*}
+
+    Now we have
+
+    \begin{align*}
+        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} &= [\RR_{2, \beta_1}(\hU)]_{\hU} [\RR_{1, \alpha_1}(\vv)]_{\hU} \\
+        &=
+        \underbrace
+        {
+            \begin{pmatrix}
+                \cos(\beta_1) & 0 & -\sin(\beta_1) \\
+                0 & 1 & 0 \\
+                \sin(\beta_1) & 0 & \cos(\beta_1)
+            \end{pmatrix}
+        }_{[\RR_{2, \beta_1}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                v_1 \\
+                0 \\
+                \sqrt{v_2^2 + v_3^2}
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_1}(\vv)]_{\hU}} \\
+        &=
+        \begin{pmatrix}
+            v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) \\
+            0 \\
+            v_1 \sin(\beta_1) + \sqrt{v_2^2 + v_3^2} \cos(\beta_1)
+        \end{pmatrix}
+    \end{align*}
+
+    $\beta_1$ is such that the first component of the above is zero,
+
+    \begin{align*}
+        v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) = 0.
+    \end{align*}
+    
+    That is, $\beta_1 = \arctan2(v_1, \sqrt{v_2^2 + v_3^2})$. Since $\cos(\beta_1) = \sqrt{v_2^2 + v_3^2}$ and $\sin(\beta_1) = v_1$, we have
+
+    \begin{align*}
+        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} = 
+        \begin{pmatrix}
+            v_1 \sqrt{v_2^2 + v_3^2} -(\sqrt{v_2^2 + v_3^2}) v_1 \\
+            0 \\
+            v_1^2 + \sqrt{v_2^2 + v_3^2}^2
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0 \\
+            0 \\
+            ||\vv||
+        \end{pmatrix}
+    \end{align*}.
+
+    ==================================
+
+    Now do similar thing for $\alpha_2, \beta_2$
 \end{proof}
 
-\begin{theorem}
-    determinant tracks orientation
-
-    \begin{itemize}
-        \item arbitrary ordered basis of $V$ -> orthonormal ordered basis of $V$ via Gram-Schmidt
-        \item orthonormal ordered basis of $V$ -> permutation of $\hU$ via Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
-        \item Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}: any ordered basis is rotationally close to a permuted orthonormal basis
-    \end{itemize} 
-
-    $\RR$ is invertible
-    
-\end{theorem}
-
-\begin{theorem}
-\label{ch::exterior_pwrs::thm::n_dim_rot_det_1}
-    Every $n$-rotation is an orthogonal linear function.
-\end{theorem}
-
-\begin{proof}
-    Every $n$-rotation is a composition of $2$-rotations, which are orthogonal linear functions.
-\end{proof}
+\begin{lemma}
+    Previous lemma is true for $n$ dimensions?
+\end{lemma}
 
 \begin{lemma}
 \label{ch::exterior_pwrs::thm::3_rot_acts_on_subspaces}
     (In three dimensions, every $2$-dimensional orthonormal ordered basis is ``rotationally close'' to a permuted orthonormal basis).
     
-    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, \tuu_2 )$ and $\hU = ( \huu_1, \huu_2 )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there exists a $3$-rotation which takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
+    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, \tuu_2 )$ and $\hU = ( \huu_1, \huu_2 )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, there exists an Euler rotation that takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
 \end{lemma}
 
 \begin{proof}
-   By definition, a $3$-rotation is of the form $\RR = \RR_\gamma \circ \RR_\beta \circ \RR_\alpha$, where $\RR_\alpha, \RR_\beta$, and $\RR_\gamma$ are $2$-rotations. (Sidenote: $\alpha, \beta, \gamma \in [0, 2\pi)$ are called \textit{Euler angles}).
-   
-   We must show that there exist $\alpha, \beta, \gamma$ for which $\RR(\tU) = \hU$. To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$. $2$-rotations are orthogonal linear functions, so they preserve the orthonormality of bases. Thus, $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$, so $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$. Therefore, $\RR(\tU) = (\huu_1, \pm \huu_2 )$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
-   
-   %\textbf{proof that such $\alpha, \beta, \gamma$ exist?} 
+    By the lemma, consider an Euler rotation $\RR_{\alpha, \beta, \gamma}$ such that $\RR_{\alpha, \beta, \gamma}(\tuu_1) = \huu_1$.
+
+    Since $\RR_{\alpha, \beta, \gamma}$ is an orthogonal linear function, then $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$. Thus $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$, and $\RR(\tU) = (\huu_1, \pm \huu_2 )$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
 \end{proof}
 
 \begin{remark}
