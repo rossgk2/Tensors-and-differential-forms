@@ -675,7 +675,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 %\begin{proof}
     % For CTRL-F: well-defined, well-defined
 
-    %Let $\tU_1$ and $\tU_2$ be additional positively oriented orthonormal bases for $V$ and $W$.
+    %Let $\tW_1$ and $\tW_2$ be additional positively oriented orthonormal bases for $V$ and $W$.
     
     %[TO-DO]
     
@@ -698,7 +698,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 
 \textit{Orientation} is the mathematical formalization of the notions of ``clockwise'' and ``counterclockwise''; it is the notion which distinguishes different ``rotational configurations'' from each other.
 
-Our discussion of orientation will be as follows. First, we define an \textit{orientation on a vector space} to be a choice of an ordered orthonormal basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
+Our discussion of orientation will be as follows. First, we define an \textit{orientation on a vector space} to be a choice of an orthonormal ordered basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
 
 After we finish the definition of orientation for inner product spaces, we end the subsection on oriented inner product spaces by presenting the fact that the determinant ``tracks'' orientation. This fact allows us to generalize the notion of orientation to finite dimensional vector spaces that may or may not have an inner product. Lastly, we show how the top exterior power of a finite-dimensional vector space can be used for the purposes of orientation.
 
@@ -735,50 +735,26 @@ We would now like to work towards a more precise statement of the antisymmetry o
 
 \begin{defn}
 \label{ch::exterior_pwrs::defn::2-rotation}
-    ($2$-rotation).
+    ($2$-dimensional rotation).
     
     Let $V$ be a $2$-dimensional inner product space, and let $\hU$ be an orthonormal ordered basis for $V$.
-    A \textit{$2$-rotation (on the $2$-dimensional inner product space $V$)} is a linear function $\RR_\theta:V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is
+    A \textit{$2$-dimensional rotation on $V$} is a linear function $\RR_\theta:V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \begin{pmatrix}
             \cos(\theta) & -\sin(\theta) \\
             \sin(\theta) & \cos(\theta)
-        \end{pmatrix}
+        \end{pmatrix},
+        \text{ where $\theta \in [0, \pi)$}
     \end{align*}
     
     for some $\theta \in [0, 2\pi)$.
-    
-    Now consider the case when $V$ is an $n$-dimensional inner product space, $n > 2$. Suppose ${\hU = (\huu_1, ..., \huu_n)}$ is an orthonormal ordered basis for $V$. An \textit{extension (to $V$) of a $2$-rotation on the oriented\footnote{When we say ``oriented subspace'', we mean that the orientation of $\spann(\uu_i, \uu_j)$ is given by the ordered basis $(\huu_i, \huu_j)$.} subspace} $\spann(\huu_i, \huu_j) \subseteq V$ \textit{is a linear function $V \rightarrow V$ for which there exist $i, j$ such that}:
-    
-    \begin{itemize}
-        \item the map $(\vv_i, \vv_j) \mapsto \RR_\theta(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n)$ is a $2$-rotation on $\spann(\vv_i, \vv_j)$
-        \item the map $(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n) \mapsto \RR_\theta(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n)$ is the identity \\ on $\spann(\vv_1, ..., \cancel{\vv_i}, ..., \cancel{\vv_j}, ..., \vv_n)$.
-    \end{itemize}
-    
-    Note that the extension of a $2$-rotation restricts to a $2$-rotation on the subspace $\spann(\huu_i, \huu_j)$. It's also worth noting that the matrix of such an extension relative to $\hU$ and $\hU$ is, for some $i, j \in \{1, ..., n\}$,
-    
-    \begin{align*}
-        \kbordermatrix
-        {
-             & & & \text{$i$th column} &  & \text{$j$th column}   \\
-             & 1 & \hdots & \cos(\theta) & 0 & -\sin(\theta) & 0 \\
-             & 0 & & 0 & \vdots & 0 & \vdots \\
-             & 0 & & \vdots & 1 & \vdots & \vdots \\
-             & \vdots & & 0 & \vdots & 0 & \vdots \\
-             & 0 & \hdots & \sin(\theta)  & 0 & \cos(\theta) & 1
-        }.
-    \end{align*}
-    
-    (The columns other than the $i$th and $j$th columns are the columns of the $n \times n$ identity matrix).
-    
-    If $\RR_\theta$ is a $2$-rotation on a $2$-dimensional inner product space or is an extension of a $2$-dimensional  rotation on an $n$-dimensional inner product space, it is simply called a \textit{$2$-dimensional  rotation}, or a \textit{$2$-rotation}.
 \end{defn}
 
 \begin{defn}
     (Equivalence under rotation for $2$-dimensional inner product spaces).
 
-    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tU = (\tuu_1, \tuu_2)$ of a 2-dimensional inner product space\footnote{Note, this is the first time we have required that the vector space under consideration be an inner product space. We need this constraint so that we can speak of orthonormal bases.} to be \textit{equivalent under rotation} iff there exists a $2$-dimensional  rotation $\RR_\theta$ for which $\tU = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tW = (\hww_1, \hww_2)$ of a 2-dimensional inner product space\footnote{Note, this is the first time we have required that the vector space under consideration be an inner product space. We need this constraint so that we can speak of orthonormal bases.} to be \textit{equivalent under rotation} iff there exists a $2$-dimensional rotation $\RR_\theta$ for which $\tW = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
 \end{defn}
 
 \begin{theorem}
@@ -806,36 +782,89 @@ We would now like to work towards a more precise statement of the antisymmetry o
 
 We now generalize the equivalence under rotation and the antisymmetry of ordered bases to $n$-dimensional inner product spaces.
 
+First, we formalize the notion of applying $2$-dimensional rotations to vectors of dimension greater than $2$. We do this by ``extending'' $2$-dimensional rotations so that they can be applied to elements of $n$-dimensional inner product spaces. 
+
 \begin{defn}
-    (Equivalence under rotation for $n$-dimensional inner product spaces).
+    (Extension of a function).
+
+    Let $X$ and $Y$ be sets, let $X_1 \subset X$ be subset of $X$, and consider a function $f:X_1 \rightarrow Y$. The \textit{extension of $f$ to $X$} is the function $f_{\text{ext}}$ defined by
+
+    \begin{align*}
+        f_{\text{ext}}(x) =
+        \begin{cases}
+            f(x) & x \in X_1 \\
+            x & x \notin X_1 
+        \end{cases}.
+    \end{align*}
     
-    We define orthonormal ordered bases $\hU = (\huu_1, ..., \huu_n)$ and $\tU = (\tuu_1, ..., \tuu_n)$ of an $n$-dimensional inner product space $V$ to be \textit{equivalent under rotation}, and thus write $\hU \sim \tU$, iff there is a composition of $2$-dimensional rotations $\RR = \RR_k \circ ... \circ \RR_1$, defined on some oriented subspaces $\spann(\huu_i, \huu_j)$, for which $\RR(\hU) = \tU$. This notion of ``equivalence under rotation'' is indeed an equivalence relation on orthonormal ordered bases of $V$.
+    We will speak frequently of extensions of $2$-dimensional rotations. In fact, we will engage in a bit of abuse of notation: when $V$ is an inner product space, we will say ``the $2$-dimensional rotation $\RR_\theta$ on $V$'' to mean ``the extension of the $2$-dimensional rotation $\RR_\theta$ to $V$'', and use $\RR_\theta$ to denote $(\RR_\theta)_{\text{ext}}$.
+    
+    It's helpful to spell out a further detail. If $\RR_\theta$ is a $2$-dimensional on a finite-dimensional inner product space and $\hU$ is an orthonormal basis of the space, then the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is    
+    
+    \begin{align*}
+        [\RR_\theta(\hU)]_{\hU} =
+        \kbordermatrix
+        {
+             & & & \text{$i$th column} &  & \text{$j$th column}   \\
+             & 1 & \hdots & \cos(\theta) & 0 & -\sin(\theta) & 0 \\
+             & 0 & & 0 & \vdots & 0 & \vdots \\
+             & 0 & & \vdots & 1 & \vdots & \vdots \\
+             & \vdots & & 0 & \vdots & 0 & \vdots \\
+             & 0 & \hdots & \sin(\theta)  & 0 & \cos(\theta) & 1
+        }.
+    \end{align*}
+    
+    (The columns other than the $i$th and $j$th columns are the columns of the $n \times n$ identity matrix).
 \end{defn}
 
+Equipped with $2$-rotations that can be applied on finite-dimensional inner product spaces, we can now generalize our ideas about orientation to $n$ dimensions.
+
 \begin{theorem}
+    \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}
+
     (Antisymmetry of ordered bases for an $n$-dimensional inner product space).
     
-     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional  rotation defined on the oriented subspace $\spann(\huu_i, \huu_j)$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$, we have
+     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional rotation defined on $\spann((\huu_i, \huu_j))$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$, we have
     
     \begin{align*}
         (\huu_1, ..., \huu_i, \huu_{i + 1}, ..., \huu_n)
         \sim
-        -(\huu_1, ..., \huu_{i + 1}, \huu_i, ..., \huu_n).
-    \end{align*}
-    
-    Equivalently, for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ and any permutation $\sigma \in S_n$,
-    
-    \begin{align*}
-        (\huu_1, ..., \huu_n)
+        (\huu_1, ..., -\huu_{i + 1}, \huu_i, ..., \huu_n)
         \sim
-        \sgn(\sigma) (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)}).
+        (\huu_1, ..., \huu_{i + 1}, -\huu_i, ..., \huu_n).
     \end{align*}
 \end{theorem}
+
+\begin{theorem}
+    \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_signs}
+
+    (...).
+    
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an inner product space. If $s_1, ..., s_n \in \{-1, 1\}$, we have
+
+    \begin{align*}
+        (s_1 \huu_1, ..., s_n \huu_n) \sim
+        \begin{cases}
+            (\huu_1, ..., \huu_n), & \text{the number of $s_i$ equal to $-1$ is $-1$ is even} \\
+            (\huu_1, ..., \huu_{i - 1}, -\huu_i, \huu_{i + 1}, ..., \huu_n) \text{ for any $i \in \{1, ..., n\}$}, & \text{the number of $s_i$ equal to $-1$ is $-1$ is odd} 
+        \end{cases}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    
+    (Case: the number of $s_i$ equal to $-1$ is even). Since the number of $s_i$ equal to $-1$ is even, we can pair every $s_i \huu_i$ with $s_i = -1$ to some $s_j \huu_j$ with $s_j = -1$, so that all $s_i \huu_i$ with $s_i = -1$ appear as a member of only one pair. If we swap the vectors in each pair twice, then, as illustrated by the example $(-\huu_i, -\huu_j) \sim (\huu_j, -\huu_i) \sim (\huu_i, \huu_j)$, the coefficients on these vectors in the rotationally equivalent ortonormal ordered basis will be $1$, with the order of the vectors being the same as in the original pair. Thus $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_n)$.
+
+    (Case: the number of $s_i$ equal to $-1$ is odd). Since the number of $s_i$ equal to $-1$ is odd, we can pair every $s_i \huu_i$ with $s_i = -1$ to some $s_j \huu_j$ with $s_j = -1$, so that all but one $s_i \huu_i$ with $s_i = -1$ appear as a member of only one pair. Let $s_k \huu_k$ be the vector with $s_k = -1$ that is not a member of a pair. Applying the same reasoning as in the previous case, we see that $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ... \huu_n)$. Making use of the example $(-\huu_k, \huu_\ell) \sim (\huu_\ell, \huu_k) \sim (\huu_k, -\huu_\ell)$, we see that this orthonormal ordered basis is rotationally equivalent to $(\huu_1, \huu_2, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Thus, when the number of $s_i$ equal to $-1$ is odd, the orthonormal ordered basis $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Replace $\ell$ with $i$ to obtain the result.
+\end{proof}
 
 \begin{defn}
     (Orientation of permuted ordered bases).
     
-    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. Suppose $\hU^\sigma = (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)})$, where $\sigma \in S_n$, is a permutation of $\hU$ that is not rotationally equivalent to $\hU$ (so choose any $\sigma$ with $\sgn(\sigma) = - 1$). By the antisymmetry of ordered bases, any other permutation $\hU^\pi = (\huu_{\pi(1)}, ..., \huu_{\pi(n)})$, $\pi \in S_n$, of $\hU$ is rotationally equivalent either to $\hU$ or to $\hU^\sigma$. In other words, there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. Consider $\hU^\sigma = (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)})$, where $\sigma \in S_n$.
+    
+    By the antisymmetry of ordered bases, all $\hU^\sigma$ with $\sgn(\sigma) = -1$ (all $\hU^\sigma$ obtained from $\hU$ by performing an odd numer of swaps) are rotationally equivalent to each other, and all $\hU^\sigma$ with $\sgn(\sigma) = 1$ (all $\hU^\sigma$ obtained from $\hU$ by performing an odd numer of swaps) are rotationally equivalent to each other. This means that there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
     
     We can now begin to set up the notion of orientation. An \textit{orientation for the $n$-dimensional inner product space $V$} is a choice of an orthonormal ordered basis $\hU$ for $V$. When $V$ is given the orientation $\hU$, then the \textit{orientation of a permutation of $\hU$ (relative to $\hU$)} is said to be \textit{positive} iff that permutation of $\hU$ is rotationally equivalent to $\hU$, and is said to be \textit{negative} otherwise. Per the previous paragraph, every permutation of $\hU$ is either positively oriented or negatively oriented relative to $\hU$.
 \end{defn}
@@ -858,13 +887,13 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \subsection*{Rotations in $n$-dimensions}
 
 \begin{defn}
-    (Euler rotations).
+    ($n$-dimensional rotations by Euler angles).
 
-    Let $V$ be an $n$-dimensional inner product space and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. A \textit{rotation by the Euler angles $\theta_1, ..., \theta_k \in [0, 2\pi)$} is a function $\RR_{\theta_1, ..., \theta_k}:V \rightarrow V$ of the form ${\RR_{\theta_1, ..., \theta_k} = \RR_{k, \theta_k} \circ ... \circ \RR_{1, \theta_1}}$, where, for each $i$, $\RR_{i, \theta_i}$ is the $2$-rotation by $\theta_i \in [0, 2\pi)$ on the subspace $\spann(\hU - \{\huu_i\})$. The angles $\theta_1, ..., \theta_k$ are called \textit{Euler angles}.
+    Let $V$ be an $n$-dimensional inner product space and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. An \textit{($n$-dimensional) Euler rotation} is a function $\RR_{\theta_1, ..., \theta_k}:V \rightarrow V$ of the form ${\RR_{\theta_1, ..., \theta_k} = \RR_{k, \theta_k} \circ ... \circ \RR_{1, \theta_1}}$, where, for each $i$, $\RR_{i, \theta_i}$ is the $2$-dimensional rotation by $\theta_i \in [0, 2\pi)$ on the subspace $\spann(\hU - \{\huu_i\})$. The angles $\theta_1, ..., \theta_k$ are called \textit{Euler angles}.
 \end{defn}
 
 \begin{theorem}
-    All rotations by Euler angles are orthogonal linear functions.
+    All Euler rotations are orthogonal linear functions.
 \end{theorem}
 
 \begin{proof}
@@ -880,9 +909,10 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 %         \item Theorem \ref{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}: any ordered basis is rotationally close to a permuted orthonormal basis
 %     \end{itemize} 
 
-%     ``To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\tuu_1) = \huu_1$.''    
+%     ``To do so, we first choose $\alpha, \beta, \gamma$ such that $\RR(\hww_1) = \huu_1$.''    
 % \end{theorem}
 
+\begin{comment}
 \begin{lemma}
     (Standard matrix of Euler rotation).
 
@@ -915,15 +945,16 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \begin{proof}
     Left as an exercise :)
 \end{proof}
+\end{comment}
 
 \begin{lemma}
     (In three dimensions, there is an Euler rotation taking any nonzero vector to any other vector).
 
-    Let $\hU$ be an orthonormal ordered basis of a $3$-dimensional inner product space $V$. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists an Euler rotation $\RR$ such that $\RR(\vv) = \ww$.
+    Let $V$ be a $3$-dimensional inner product space. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists an Euler rotation $\RR$ such that $\RR(\vv) = \ww$.
 \end{lemma}
 
 \begin{proof}
-    If we can find angles $\alpha_1, \beta_1$ that rotate $\vv$ to align with $\huu_3$,
+    Let $\hU = (\huu_1, \huu_2, \huu_3)$ be an orthornormal ordered basis of $V$. If we can find angles $\alpha_1, \beta_1$ that rotate $\vv$ to align with $\huu_3$,
 
     \begin{align*}
         (\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3,
@@ -935,13 +966,13 @@ At this point, we need some definitions and facts about $n$-rotations before we 
         (\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww,
     \end{align*}
 
-    then the Euler rotation $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, and we are done.
+    then the Euler rotation $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, the lemma is proven.
 
-    ============================
+    \vspace{.5cm}
 
-    Let $[\vv]_{\hU} = (v_1, v_2, v_3)^\top$. 
-    
-    We have
+    First, we find $\alpha_1$ and $\beta_1$ such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3$.
+
+    Letting $(v_1, v_2, v_3)^\top := [\vv]_{\hU}$, we have
     
     \begin{align*}
         [\RR_{1, \alpha_1}(\vv)]_{\hU} =
@@ -973,7 +1004,7 @@ At this point, we need some definitions and facts about $n$-rotations before we 
         v_2 \cos(\alpha_1) - v_3 \sin(\alpha_1) = 0.
     \end{align*}
     
-    That is, $\alpha_1 = \arctan2(v_2, v_3)$. Since $\cos(\alpha_1) = v_3/\sqrt{v_2^2 + v_3^2}$ and $\sin(\alpha_1) = v_2/\sqrt{v_2^2 + v_3^2}$, the above is
+    One value of $\alpha_1$ that solves this equation is $\alpha_1 = \arctan(v_2/v_3)$. With this choice of $\alpha_1$, we have \\ ${\cos(\alpha_1) = v_3/\sqrt{v_2^2 + v_3^2}}$ and ${\sin(\alpha_1) = v_2/\sqrt{v_2^2 + v_3^2}}$. Thus the above is
     
     \begin{align*}
         [\RR_{1, \alpha_1}(\vv)]_{\hU} =
@@ -993,7 +1024,8 @@ At this point, we need some definitions and facts about $n$-rotations before we 
     Now we have
 
     \begin{align*}
-        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} &= [\RR_{2, \beta_1}(\hU)]_{\hU} [\RR_{1, \alpha_1}(\vv)]_{\hU} \\
+        [(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv)]_{\hU} &=
+        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} = [\RR_{2, \beta_1}(\hU)]_{\hU} [\RR_{1, \alpha_1}(\vv)]_{\hU} \\
         &=
         \underbrace
         {
@@ -1010,79 +1042,152 @@ At this point, we need some definitions and facts about $n$-rotations before we 
                 0 \\
                 \sqrt{v_2^2 + v_3^2}
             \end{pmatrix}
-        }_{[\RR_{1, \alpha_1}(\vv)]_{\hU}} \\
-        &=
+        }_{[\RR_{1, \alpha_1}(\vv)]_{\hU}}
+        =
         \begin{pmatrix}
             v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) \\
             0 \\
             v_1 \sin(\beta_1) + \sqrt{v_2^2 + v_3^2} \cos(\beta_1)
-        \end{pmatrix}
+        \end{pmatrix}.
     \end{align*}
 
-    $\beta_1$ is such that the first component of the above is zero,
+    $\beta_1$ is such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3 \iff [(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv)]_{\hU} = ||\vv||\see_3$. So $\beta_1$ satisfies the following system of equations:
 
     \begin{align*}
-        v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) = 0.
+        \begin{cases}
+            v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) = 0 \\
+            0 = 0 \\
+            v_1 \sin(\beta_1) + \sqrt{v_2^2 + v_3^2} \cos(\beta_1) = ||\vv||
+        \end{cases}.
     \end{align*}
+
+    One value of $\beta_1$ that solves the first equation is $\beta_1 = \arctan(v_1/ \sqrt{v_2^2 + v_3^2})$. 
     
-    That is, $\beta_1 = \arctan2(v_1, \sqrt{v_2^2 + v_3^2})$. Since $\cos(\beta_1) = \sqrt{v_2^2 + v_3^2}$ and $\sin(\beta_1) = v_1$, we have
+    Since $\cos(\beta_1) = \sqrt{v_2^2 + v_3^2}/||\vv||$ and $\sin(\beta_1) = v_1/||\vv||$, the third equation is also satisfied:
 
     \begin{align*}
-        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} = 
+        \frac{v_1^2}{||\vv||} + \frac{\sqrt{v_2^2 + v_3^2}^2}{||\vv||} = \frac{v_1^2 + v_2^2 + v_3^2}{||\vv||} = \frac{||\vv||^2}{||\vv||} = ||\vv||.
+    \end{align*}
+
+    Thus we have found $\alpha_1$ and $\beta_1$ such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3$.
+
+    \vspace{.5cm}
+
+    Now, we find $\alpha_2$ and $\beta_2$ such that $(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww$.
+    
+    We have
+
+    \begin{align*}
+        [(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3)]_{\hU} &=
+        [\RR_{2, \beta_2}(\hU)]_{\hU} [\RR_{1, \alpha_2}(\hU)]_{\hU} \huu_3 \\
+        &=
+        \underbrace
+        {
+            \begin{pmatrix}
+                \cos(\beta_2) & 0 & -\sin(\beta_2) \\
+                0 & 1 & 0 \\
+                \sin(\beta_2) & 0 & \cos(\beta_2)
+            \end{pmatrix}
+        }_{[\RR_{2, \beta_2}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & \cos(\alpha_2) & -\sin(\alpha_2) \\
+                0 & \sin(\alpha_2) & \cos(\alpha_2)
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_2}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                0 \\ 0 \\ 1
+            \end{pmatrix}
+        }_{\huu_3} \\
+        &=
         \begin{pmatrix}
-            v_1 \sqrt{v_2^2 + v_3^2} -(\sqrt{v_2^2 + v_3^2}) v_1 \\
+            \cos(\beta_2) & 0 & -\sin(\beta_2) \\
+            0 & 1 & 0 \\
+            \sin(\beta_2) & 0 & \cos(\beta_2)
+        \end{pmatrix}
+        \begin{pmatrix}
             0 \\
-            v_1^2 + \sqrt{v_2^2 + v_3^2}^2
+            -\sin(\alpha_2) \\
+            \cos(\alpha_2)
         \end{pmatrix}
         =
         \begin{pmatrix}
-            0 \\
-            0 \\
-            ||\vv||
-        \end{pmatrix}
-    \end{align*}.
+            -\cos(\alpha_2) \sin(\beta_2) \\
+            -\sin(\alpha_2) \\
+            \cos(\alpha_2) \cos(\beta_2)
+        \end{pmatrix}.
+    \end{align*}
 
-    ==================================
+    \newcommand{\hw}{\hat{w}}
 
-    Now do similar thing for $\alpha_2, \beta_2$
+    $\alpha_2$ and $\beta_2$ are such that $\hww = (\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) \iff [\hww]_{\hU} = [(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3)]_{\hU}$. Letting $\hw_i$ denote the $i$th component of $[\hww]_{\hU}$, we see $\alpha_2$ and $\beta_2$ must satisfy the following system of equations:
+
+    \begin{align*}
+        \begin{cases}
+            \hw_1 = -\cos(\alpha_2) \sin(\beta_2) \\
+            \hw_2 = -\sin(\alpha_2) \\
+            \hw_3 = \cos(\alpha_2) \cos(\beta_2)
+        \end{cases}.
+    \end{align*}
+
+    One value of $\alpha_2$ that solves the second equation is $\alpha_2 = -\arcsin(\hw_2)$. Dividing the first equation by the third, we have $\hw_1/\hw_3 = -\tan(\beta_2)$ and thus one value of $\beta_2$ that solves the first equation is $\beta_2 = \arctan(-\hw_1/\hw_3) = -\arctan(\hw_1/\hw_3)$.
+
+    Thus we have found $\alpha_2$ and $\beta_2$ such that $(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww$.
 \end{proof}
 
-\begin{lemma}
-    Previous lemma is true for $n$ dimensions?
-\end{lemma}
+The previous lemma can easily be generalized so that it holds for all dimensions greater than or equal to $2$.
 
 \begin{lemma}
-\label{ch::exterior_pwrs::thm::3_rot_acts_on_subspaces}
-    (In three dimensions, every $2$-dimensional orthonormal ordered basis is ``rotationally close'' to a permuted orthonormal basis).
+    (There is an Euler rotation taking any nonzero vector to any other vector).
     
-    Let $V$ be a inner product space with $\dim(V) \geq 3$, and consider $3$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, \tuu_2 )$ and $\hU = ( \huu_1, \huu_2 )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, there exists an Euler rotation that takes $\tU$ to $\hU^\sigma$ for some $\sigma \in S_2$.
+    Let $V$ be an $n$-dimensional inner product space. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists an Euler rotation $\RR$ such that $\RR(\vv) = \ww$.
 \end{lemma}
 
 \begin{proof}
-    By the lemma, consider an Euler rotation $\RR_{\alpha, \beta, \gamma}$ such that $\RR_{\alpha, \beta, \gamma}(\tuu_1) = \huu_1$.
+    \mbox{} \\
 
-    Since $\RR_{\alpha, \beta, \gamma}$ is an orthogonal linear function, then $\RR(\tuu_2)$ must have length $1$ and be orthogonal to $\RR(\tuu_1) = \huu_1$. Thus $\RR(\tuu_2)$ is either $\huu_2$ or $-\huu_2$, and $\RR(\tU) = (\huu_1, \pm \huu_2 )$. More formally, $\RR(\tU) =\hU^\sigma$ for some $\sigma \in S_2$.
+    (Case: $n = 2$). The rotation $\RR_{\theta(\vv, \ww)}$ by $\theta(\vv, \ww)$ sends $\vv$ to $\ww$.
+    
+    (Case: $n = 3$). See the previous lemma.
+    
+    (Case: $n > 3$).
+    
+    \indent (Case: $n$ is even). [TO-DO]
+    
+    \indent (Case: $n$ is odd). [TO-DO]
 \end{proof}
-
-\begin{remark}
-    The contribution of the previous lemma to the theorem we prove next is that the previous lemma captures the notion of rotating a lesser dimensional subspace within a higher dimensional ambient vector space. This machinery is required in the next theorem in the case when $n$ is odd.
-\end{remark}
 
 \begin{theorem}
 \label{ch::exterior_pwrs::thm::n_rot_acts_on_orthonormal_basis}
-     (In $n$ dimensions, any ordered basis is ``rotationally close'' to a permuted orthonormal basis).
+     (Any ordered basis is ``rotationally close'' to a permuted orthonormal basis).
      
-     Let $V$ be an $n$-dimensional vector space, let $k \leq n$, and consider $k$-dimensional subspaces $\widetilde{W}$ and $W$ of $V$. If $\tU = ( \tuu_1, ..., \tuu_n )$ and $\hU = ( \huu_1, ..., \huu_n )$ are orthonormal ordered bases of $\widetilde{W}$ and $W$, respectively, then there is an $n$-rotation taking $\tU$ to some permutation $\hU^\sigma$ of $\hU$. 
+     Let $V$ be an finite-dimensional inner product space. If $\hW = (\hww_1, ..., \hww_k)$ and $\hU = (\huu_1, ..., \huu_k)$ are orthonormal ordered bases of subspaces of $V$, then there is an Euler rotation taking $\hW$ to an ordered basis that is rotationally equivalent to some permutation $\hU^\sigma$ of $\hU$. 
 \end{theorem}
 
 \begin{proof}
-   When $n \in \{2, 3\}$, the previous lemma yields the desired $n$-rotation as a composition of $3$-rotations (for $n = 2$, just take the restriction of the $3$-rotations). We need to show that the theorem holds when $n > 3$. We consider the cases when $n$ is even and $n$ is odd.
-   
-   If $n$ is even, then, for $i \in \{1, ..., n\}$, let $\RR_i$ be the $3$-rotation taking $( \huu_i,  \huu_{i + 1} )$ to $( \tuu_{\sigma_i(i)},  \tuu_{\sigma_i(i + 1)} )$, where $\sigma_i \in S(\{i, i + 1\})$ is some permutation. Then $\RR_{\frac{n}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\sigma$, where $\sigma \in S_n$ is the permutation defined by $\sigma(i) = \sigma_{j(i)}(i)$, where $j(i) = i$ when $i$ is odd and $j(i) = i - 1$ when $i$ is even.
-            
-    If $n$ is odd, then let $\RR$ be the $3$-rotation taking $( \huu_{n - 2}, \huu_{n - 1}, \huu_n )$ to \\ $( \tuu_{\sigma_{n - 2}(n - 2)}, \tuu_{\sigma_{n - 2}(n - 1)}, \tuu_{\sigma_{n - 2}(n)} )$, where $\sigma_{n - 2} \in S(\{n - 2, n - 1, n\})$ is some permutation.
-            
-    By the previous case (when $n$ was even), there is a composition $\RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ of $3$-rotations taking $\tU - (\tuu_{n - 2}, \tuu_{n - 1}, \tuu_n)$ to $\hU - (\huu_{n - 2}, \huu_{n - 1}, \huu_n))^\sigma$, for some permutation $\sigma \in S_n$. Thus $\RR \circ \RR_{\frac{n - 3}{2}} \circ ... \circ \RR_1$ is a composition of $3$-rotations taking $\tU$ to $\hU^\pi$, where $\pi(i) = \sigma(i)$ when $i \in \{1, ..., n - 3\}$ and $\pi(i) = \sigma_{n - 2}(i)$ when $i \in \{n - 2, n - 1, n\}$.
+    By the previous lemma, we know there is an Euler rotation $\RR$ that satisfies $\RR(\hww_1) = \huu_1$. 
+    
+    We first prove that for all $i$ we have $\RR(\hww_i) = s_i \huu_i$, where $s_i \in \{-1, 1\}$. And we show this by using induction to show that for all $i$, $\text{when $j \leq i$, we have $\RR(\hww_j) = s_j \huu_j$, where $s_j \in \{-1, 1\}$}$.
+
+    (Base case). We have $R(\hww_1) = \huu_1 = s_1 u_1$, where $s_1 = 1$.
+
+    (Inductive case). Assume that $\text{when $j \leq i$, we have $\RR(\hww_j) = s_j \huu_j$, where $s_j \in \{-1, 1\}$}$.
+
+    Since $\RR$ is an orthogonal linear function, it preserves orthonormality (\textbf{see Theorem [...]}), and so $(\RR(\hww_1), ..., \RR(\hww_k))$ is orthonormal. Thus, for each $j$, $\RR(\hww_j)$ is perpendicular to all of $\RR(\hww_1), ..., \cancel{\RR(\hww_j)}, ..., \RR(\hww_k)$. In particular, when $j \geq i + 1$, each $\RR(\hww_j)$ is perpendicular to all of $\RR(\hww_1), ..., \RR(\hww_i)$. By the inductive hypothesis, $\RR(\hww_1) = s_1 \huu_1, ..., \RR(\hww_i) = s_i \huu_i$, where $s_1, ..., s_i \in \{-1, 1\}$. So when $j \geq i + 1$, each $\RR(\hww_j)$ is perpendicular to all of $s_1 \huu_1, ..., s_i \huu_i$; it follows that each $\RR(\hww_j)$ with $j \geq i + 1$ is perpendicular to all of $\huu_1, ..., \huu_i$. This means that each $\RR(\hww_j)$ with $j \geq i + 1$ is in the orthogonal complement of $\spann((\huu_1, …, \huu_i))$.
+    
+    This orthogonal complement is equal to $\spann((\huu_{i + 1}, …, \huu_k)$. Therefore $\RR(\hww_{i + 1}), ..., \RR(\hww_k) \in \spann(\huu_{i + 1}, ..., \huu_k)$. Since $\RR$ preserves orthonormality (\textbf{again, see Theorem [...]}), then $\RR(\hww_{i + 1}), ..., \RR(\hww_k)$ are also orthonormal.
+    
+    Since $\RR(\hww_{i + 1}) \in \spann(\huu_{i + 1}, ..., \huu_k)$, then $\RR(\hww_{i + 1}) = c_{i + 1} \huu_{i + 1} + c_{i + 2} \huu_{i + 2} + ... + c_k \huu_k$ for some scalars $c_{i + 1}, ..., c_k$. We claim that we must have $c_{i + 2} = ... = c_k = 0$; assume for contradiction that $c_{\ell_1}, ..., c_{\ell_p}$ are nonzero scalars with $\ell_1, ..., \ell_p > i + 1$. A quick inner product computation shows that $\RR(\hww_{i + 1})$ is not perpendicular to any of $\huu_{\ell_1}, ..., \huu_{\ell_p}$. Since $\RR(\hww_{i + 2}), ..., \RR(\hww_k)$ must all be perpendicular to $\RR(\hww_{i + 1})$, it follows that $\RR(\hww_{i + 2}), ..., \RR(\hww_k) \notin \spann((\huu_{\ell_1}, ..., \huu_{\ell_p}))$. Thus $\RR(\hww_{i + 2}), ..., \RR(\hww_k) \in \spann((\huu_{i + 2}, ..., \huu_k) - (\huu_{\ell_1}, ..., \huu_{\ell_p}))$, which is a subspace of dimension $|[i + 2, k] \cap \Z| - p$. On the other hand, since $(\RR(\hww_{i + 2}, ..., \RR(\hww_k))$ is an orthonormal basis, then $(\RR(\hww_{i + 2}), ..., \RR(\hww_k))$ span a $|[i + 2, k]|$-dimensional space. This is a contradiction; vectors cannot be in a space that has a lesser dimension than their span. Therefore, $c_{i + 2} = ... = c_k = 0$, and $\RR(\hww_{i + 1}) = c_{i + 1} \huu_{i + 1}$, i.e., $\RR(\hww_{i + 1}) \in \spann(\huu_{i + 1})$. Since $\RR(\hww_{i + 1})$ is a unit vector, then $||\RR(\hww_{i + 1})|| = ||s_{i + 1} \huu_{i + 1}|| = |s_{i + 1}| = 1$. Thus $s_{i + 1} \in \{-1, 1\}$, and $\RR(\hww_{i + 1}) = s_{i + 1} \huu_{i + 1}$, as desired.
+
+    \vspace{.25cm}
+
+    Since $\RR(\hww_i) = s_i \huu_i$ for all $i$, where $s_i \in \{-1, 1\}$, then $\RR(\hW) = (s_1 \huu_1, ..., s_k \huu_k)$, where $s_1, ..., s_k \in \{-1, 1\}$. 
+
+    If the number of $s_i$ equal to $-1$ is even, then ${(s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for all $\sigma$ with $\sgn(\sigma) = 1$, and if the number of $s_i$ equal to $-1$ is odd, then ${(s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for all $\sigma$ with $\sgn(\sigma) = -1$. (Recall Derivation     \ref{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_signs}). We see that in either case, ${\RR(\hW) = (s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for some $\sigma \in S_k$. This proves the theorem.
 \end{proof}
 
 \subsection*{Completing the definition of orientation for finite-dimensional inner product spaces}
@@ -1090,7 +1195,7 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \begin{defn}
     (Orientation of arbitrary ordered bases).
     
-    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. We know how to ``orient'' ordered bases for $V$ that happen to be permutations of $\hU$. Now, we generalize the notion of orientation so that it applies to any ordered orthonormal basis of $V$.
+    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. We know how to ``orient'' ordered bases for $V$ that happen to be permutations of $\hU$. Now, we generalize the notion of orientation so that it applies to any orthonormal ordered basis of $V$.
     
     We define the \textit{orientation of an orthonormal ordered basis $E$ of $V$} that is not a permutation of $\hU$ to be the orientation of the unique permuted orthonormal basis $\hU^\sigma$, $\sigma \in S^n$, of $\hU$ for which there exists an $n$-rotation taking $E$ to $\hU^\sigma$.
     
@@ -1107,10 +1212,10 @@ At this point, we need some definitions and facts about $n$-rotations before we 
 \begin{proof}
    This proof has two overarching steps. First, we pass the definition of orientation for arbitrary ordered bases of $V$ to the definition of orthonormal ordered bases of $V$ by obtaining an orthonormal ordered basis $\hU_E$ from $E$. Then we pass the definition of orientation for orthonormal ordered bases of $V$ that are not permutations of $\hU$ to the definition of orientation for orthonormal ordered bases of $V$ that are permutations of $\hU$.
    
-   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::exterior_pwrs::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = (\tuu_1, ..., \tuu_n)$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
+   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::exterior_pwrs::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = (\hww_1, ..., \hww_n)$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
    
    \begin{align*}
-       \det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU}) = \det([\tuu_1]_{\hU}, ..., [\tuu_n]_{\hU})
+       \det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU}) = \det([\hww_1]_{\hU}, ..., [\hww_n]_{\hU})
        =
        \det([\hU_E]_{\hU}).
    \end{align*}
@@ -1182,11 +1287,11 @@ As a last sidenote, the following theorem gives some justification as to why our
     
     \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ to another orthonormal basis $\ff(\hU) = (\ff(\huu_1), ..., \ff(\huu_n))$.
 
-    Let $\RR_1$ be the $2$-rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a map from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
+    Let $\RR_1$ be the $2$-dimensional rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a map from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
     
-    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-rotation always exists because $\det(\ff) = 1$ implies that $(\ff(\huu_1), ..., \ff(\huu_n))$ has the same orientation as $(\huu_1, ..., \huu_n)$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-rotations.
+    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-dimensional rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-dimensional rotation always exists because $\det(\ff) = 1$ implies that $(\ff(\huu_1), ..., \ff(\huu_n))$ has the same orientation as $(\huu_1, ..., \huu_n)$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-dimensional rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-dimensional rotations.
     
-    Thus, since $\ff = \RR_n^{-1} \circ (\RR_n \circ \ff)$, we see $\ff$ is a composition of the $2$-rotations $\RR_n^{-1}$ and $\RR_n^{-1} \circ \ff$.
+    Thus, since $\ff = \RR_n^{-1} \circ (\RR_n \circ \ff)$, we see $\ff$ is a composition of the $2$-dimensional rotations $\RR_n^{-1}$ and $\RR_n^{-1} \circ \ff$.
     
     %If T is an orthogonal endomorphism then T maps the standard basis e_1, ..., e_n to an orthonormal basis u_1, ..., u_n.
 
