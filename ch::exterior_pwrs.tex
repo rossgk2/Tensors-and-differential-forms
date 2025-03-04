@@ -98,7 +98,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
         \alt(\TT)^\pi &= \Big(\sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)\Big)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) \TT^{\pi \circ \sigma}.
     \end{align*}
             
-    Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\tau \in S_k$ there is a $\sigma \in S_k$ such that $\tau = \pi \circ \sigma$; namely, $\sigma = \pi^{-1} \circ \tau$. So the sum becomes
+    Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\sigma \in S_k$ there is a $\tau \in S_k$ such that $\tau = \pi \circ \sigma \iff \sigma = \pi^{-1} \circ \tau$. So the sum becomes
             
     \begin{align*}
         \sum_{\tau \in S_k} \sgn(\pi^{-1} \circ \tau) \TT^\tau &= \sgn(\pi^{-1}) \sum_{\tau \in S_k} \sgn(\tau) \TT^\tau = -\sgn(\pi) \alt(\TT).
@@ -675,7 +675,7 @@ In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that
 %\begin{proof}
     % For CTRL-F: well-defined, well-defined
 
-    %Let $\tW_1$ and $\tW_2$ be additional positively oriented orthonormal bases for $V$ and $W$.
+    %Let $\hW_1$ and $\hW_2$ be additional positively oriented orthonormal bases for $V$ and $W$.
     
     %[TO-DO]
     
@@ -714,12 +714,6 @@ After we finish the definition of orientation for inner product spaces, we end t
     For example, if $V$ is a 2-dimensional vector space and has basis $E = \{\ee_1, \ee_2\}$, then $(\ee_1, \ee_2)$ and $(\ee_2, \ee_1)$ are both ordered bases of $V$. We have $(\ee_1, \ee_2) \neq (\ee_2, \ee_1)$.
 \end{defn}
 
-\begin{defn}
-    (Permutation acting on an ordered basis). 
-    
-    Let $E = (\ee_1, ..., \ee_n)$ be an ordered basis for some finite-dimensional vector space. Given a permutation $\sigma \in S_n$, we define $E^\sigma := (\ee_{\sigma(1)}, ..., \ee_{\sigma(n)})$.
-\end{defn}
-
 We now discover a consequence of imposing that the bases under consideration be ordered.
 
 \begin{deriv}
@@ -754,13 +748,13 @@ We would now like to work towards a more precise statement of the antisymmetry o
 \begin{defn}
     (Equivalence under rotation for $2$-dimensional inner product spaces).
 
-    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\tW = (\hww_1, \hww_2)$ of a 2-dimensional inner product space\footnote{Note, this is the first time we have required that the vector space under consideration be an inner product space. We need this constraint so that we can speak of orthonormal bases.} to be \textit{equivalent under rotation} iff there exists a $2$-dimensional rotation $\RR_\theta$ for which $\tW = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+    We define orthonormal ordered bases $\hU = (\huu_1, \huu_2)$ and $\hW = (\hww_1, \hww_2)$ of a 2-dimensional inner product space\footnote{Note, this is the first time we have required that the vector space under consideration be an inner product space. We need this constraint so that we can speak of orthonormal bases.} to be \textit{equivalent under rotation} iff there exists a $2$-dimensional rotation $\RR_\theta$ for which $\hW = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
 \end{defn}
 
 \begin{theorem}
     (Antisymmetry of ordered bases for a $2$-dimensional inner product space).
     
-    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta = \pm \frac{\pi}{2}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
+    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2} \}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \pm
@@ -770,7 +764,7 @@ We would now like to work towards a more precise statement of the antisymmetry o
         \end{pmatrix}.
     \end{align*}
     
-    Computing $\RR_\theta(\hU) = \RR_\theta((\huu_1, \huu_2)) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2))$ for $\theta = - \frac{\pi}{2}$ and $\theta =\frac{\pi}{2}$, we see that the following ordered bases are rotationally equivalent:
+    Computing $\RR_\theta(\hU) = \RR_\theta((\huu_1, \huu_2)) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2))$ for $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$, we see that the following ordered bases are rotationally equivalent:
     
     \begin{align*}
         (\huu_2, \huu_1 ) &\sim (-\huu_1, \huu_2) \sim (\huu_1, - \huu_2) \\
@@ -780,7 +774,10 @@ We would now like to work towards a more precise statement of the antisymmetry o
     This is what we noticed in the informal discussion of Derivation \ref{ch::exterior_pwrs::deriv::ordered_bases_antisymmetry_intuition}.
 \end{theorem}
 
+\subsection*{sdfsdf}
+
 We now generalize the equivalence under rotation and the antisymmetry of ordered bases to $n$-dimensional inner product spaces.
+
 
 First, we formalize the notion of applying $2$-dimensional rotations to vectors of dimension greater than $2$. We do this by ``extending'' $2$-dimensional rotations so that they can be applied to elements of $n$-dimensional inner product spaces. 
 
@@ -799,7 +796,7 @@ First, we formalize the notion of applying $2$-dimensional rotations to vectors 
     
     We will speak frequently of extensions of $2$-dimensional rotations. In fact, we will engage in a bit of abuse of notation: when $V$ is an inner product space, we will say ``the $2$-dimensional rotation $\RR_\theta$ on $V$'' to mean ``the extension of the $2$-dimensional rotation $\RR_\theta$ to $V$'', and use $\RR_\theta$ to denote $(\RR_\theta)_{\text{ext}}$.
     
-    It's helpful to spell out a further detail. If $\RR_\theta$ is a $2$-dimensional on a finite-dimensional inner product space and $\hU$ is an orthonormal basis of the space, then the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is    
+    It's helpful to spell out a further detail. If $\RR_\theta$ is a $2$-dimensional rotation on a finite-dimensional inner product space and $\hU$ is an orthonormal basis of the space, then the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is    
     
     \begin{align*}
         [\RR_\theta(\hU)]_{\hU} =
@@ -817,14 +814,36 @@ First, we formalize the notion of applying $2$-dimensional rotations to vectors 
     (The columns other than the $i$th and $j$th columns are the columns of the $n \times n$ identity matrix).
 \end{defn}
 
-Equipped with $2$-rotations that can be applied on finite-dimensional inner product spaces, we can now generalize our ideas about orientation to $n$ dimensions.
+Now that we are equipped with $2$-rotations that can be applied on finite-dimensional inner product spaces, we can generalize our definition of rotational equivalence to $n$ dimensions.
+
+\begin{defn}
+    (Equivalence under rotation).
+    
+    We define orthonormal ordered bases $\hU$ and $\hW$ of a finite-dimensional inner product space to be \textit{equivalent under rotation} iff there exists a $2$-dimensional rotation $\RR_\theta$ for which $\hW = \RR_\theta(\hU)$. (Recall Definition \ref{ch::lin_alg::defn::linear_fn_acts_on_vectors} for the meaning of $\RR_\theta(\hU)$).
+\end{defn}
+
+\begin{defn}
+    (Permutation acting on a tuple). 
+    
+    Let $X = (x_1, ..., x_n)$ be an $n$-tuple. Given a permutation $\sigma \in S_n$, we define $X^\sigma := (x_{\sigma(1)}, ..., x_{\sigma(n)})$. For example, if $E = (\ee_1, ..., \ee_n)$ is a basis of a finite-dimensional vector space, then $E^\sigma = (\ee_{\sigma(1)}, ..., \ee_{\sigma(n)})$.
+\end{defn}
+
+\begin{theorem}
+    \label{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}
+
+    (Permutations preserve rotational equivalence).
+    
+    If $\hU$ and $\hW$ are orthonormal ordered bases of an $n$-dimensional inner product space, then ${\hU \sim \hW \iff \hU^\sigma \sim \hW^\sigma}$ for all permutations $\sigma \in S_n$.
+\end{theorem}
+
+Similarly to what was done in the previous derivation, we use $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$ in the matrix relative to bases of a $2$-dimensional rotation defined on $\spann((\huu_i, \huu_j))$ to obtain the formal characterization of the antisymmetry of ordered bases.
 
 \begin{theorem}
     \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}
 
     (Antisymmetry of ordered bases for an $n$-dimensional inner product space).
     
-     Similarly to what was done in the previous derivation, we use $\theta = -\frac{\pi}{2}$ and $\theta = \frac{\pi}{2}$ in the matrix relative to bases of a $2$-dimensional rotation defined on $\spann((\huu_i, \huu_j))$ to obtain the formal statement of the antisymmetry of ordered bases: for any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of $V$, we have
+    For any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of an $n$-dimensional inner product space, we have
     
     \begin{align*}
         (\huu_1, ..., \huu_i, \huu_{i + 1}, ..., \huu_n)
@@ -835,18 +854,20 @@ Equipped with $2$-rotations that can be applied on finite-dimensional inner prod
     \end{align*}
 \end{theorem}
 
+This fundamental result leads to the following [...].
+
 \begin{theorem}
     \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_signs}
 
-    (...).
+    (Orthonormal ordered bases of signed vectors).
     
-    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an inner product space. If $s_1, ..., s_n \in \{-1, 1\}$, we have
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space. If $s_1, ..., s_n \in \{-1, 1\}$, then
 
     \begin{align*}
         (s_1 \huu_1, ..., s_n \huu_n) \sim
         \begin{cases}
             (\huu_1, ..., \huu_n), & \text{the number of $s_i$ equal to $-1$ is $-1$ is even} \\
-            (\huu_1, ..., \huu_{i - 1}, -\huu_i, \huu_{i + 1}, ..., \huu_n) \text{ for any $i \in \{1, ..., n\}$}, & \text{the number of $s_i$ equal to $-1$ is $-1$ is odd} 
+            (\huu_1, ..., \huu_{j - 1}, -\huu_j, \huu_{j + 1}, ..., \huu_n) \text{ for any $j \in \{1, ..., n\}$}, & \text{the number of $s_i$ equal to $-1$ is $-1$ is odd} 
         \end{cases}.
     \end{align*}
 \end{theorem}
@@ -856,15 +877,70 @@ Equipped with $2$-rotations that can be applied on finite-dimensional inner prod
     
     (Case: the number of $s_i$ equal to $-1$ is even). Since the number of $s_i$ equal to $-1$ is even, we can pair every $s_i \huu_i$ with $s_i = -1$ to some $s_j \huu_j$ with $s_j = -1$, so that all $s_i \huu_i$ with $s_i = -1$ appear as a member of only one pair. If we swap the vectors in each pair twice, then, as illustrated by the example $(-\huu_i, -\huu_j) \sim (\huu_j, -\huu_i) \sim (\huu_i, \huu_j)$, the coefficients on these vectors in the rotationally equivalent ortonormal ordered basis will be $1$, with the order of the vectors being the same as in the original pair. Thus $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_n)$.
 
-    (Case: the number of $s_i$ equal to $-1$ is odd). Since the number of $s_i$ equal to $-1$ is odd, we can pair every $s_i \huu_i$ with $s_i = -1$ to some $s_j \huu_j$ with $s_j = -1$, so that all but one $s_i \huu_i$ with $s_i = -1$ appear as a member of only one pair. Let $s_k \huu_k$ be the vector with $s_k = -1$ that is not a member of a pair. Applying the same reasoning as in the previous case, we see that $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ... \huu_n)$. Making use of the example $(-\huu_k, \huu_\ell) \sim (\huu_\ell, \huu_k) \sim (\huu_k, -\huu_\ell)$, we see that this orthonormal ordered basis is rotationally equivalent to $(\huu_1, \huu_2, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Thus, when the number of $s_i$ equal to $-1$ is odd, the orthonormal ordered basis $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Replace $\ell$ with $i$ to obtain the result.
+    (Case: the number of $s_i$ equal to $-1$ is odd). Since the number of $s_i$ equal to $-1$ is odd, we can pair every $s_i \huu_i$ with $s_i = -1$ to some $s_j \huu_j$ with $s_j = -1$, so that all but one $s_i \huu_i$ with $s_i = -1$ appear as a member of only one pair. Let $s_k \huu_k$ be the vector with $s_k = -1$ that is not a member of a pair. Applying the same reasoning as in the previous case, we see that $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ... \huu_n)$. Making use of the example $(-\huu_k, \huu_\ell) \sim (\huu_\ell, \huu_k) \sim (\huu_k, -\huu_\ell)$, we see that this orthonormal ordered basis is rotationally equivalent to $(\huu_1, \huu_2, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Thus, when the number of $s_i$ equal to $-1$ is odd, the orthonormal ordered basis $(s_1 \huu_1, ..., s_n \huu_n)$ is rotationally equivalent to $(\huu_1, ..., \huu_{\ell - 1}, -\huu_\ell, \huu_{\ell + 1}, ..., \huu_n)$ for any $\ell \in \{1, ..., n\}$. Replace $\ell$ with $j$ to obtain the result.
 \end{proof}
+
+\begin{lemma}
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space.  We have
+
+    \begin{align*}
+        \hU^\sigma \sim \hU \text{ for all $\sigma \in S_n$ with $\sgn(\sigma) = 1$}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    The sign of a permutation is $1$ iff it consists of an even number of swaps. So, an equivalent statement to the theorem is: for all $n$, if $\sigma$ consists of $2n$ swaps, then $\hU^\sigma \sim \hU$. We prove this statement by induction on $n$.
+    
+    (Base case). Consider $\hU^\sigma$, where $\sigma = \tau \circ \pi$, and where $\pi, \tau$ are swaps. 
+    
+    The permutation $\pi$ swaps some $i, j$. Using the example $(\huu_j, \huu_i) \sim (-\huu_i, \huu_j)$, we see \\ $\hU^\pi \sim (\huu_1, ..., \huu_{i - 1}, -\huu_i, \huu_{i + 1}, ..., \huu_n)$. Since this orthonormal ordered basis has only one basis vector with a coefficient of $-1$, it follows from the previous theorem that it is rotationally equivalent to every other such orthonormal ordered basis; in particular, it is rotationally equivalent to $\hW :=  (-\huu_1, ..., \huu_n)$.
+
+    So far, we've shown $\hU^\pi \sim \hW$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), we may apply the permutation $\tau$ to each side of the rotational equivalence $\hU^\pi \sim \hW$ to obtain $(\hU^\pi)^\tau = \hU^{\tau \circ \pi}  = \hU^\sigma \sim \hW^\tau$.
+
+    We now compute the right side of this rotational equivalence, $\hW^\tau$.
+    
+    (Case: $\tau$ swaps $1$ with some $\ell > 1$). By studying the example $(\huu_\ell, -\huu_1) \sim (\huu_1, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (\huu_1, ..., \huu_n) = \hU$.
+    
+    (Case: $\tau$ swaps $k \neq 1$ with some $\ell > k$). By studying the example $(\huu_\ell, \huu_k) \sim (-\huu_k, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (-\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ..., \huu_n)$. In this last orthonormal ordered basis, the number of basis vectors with a coefficient of $-1$ is even. It follows from the previous theorem that this last orthonormal ordered basis is rotationally equivalent to $\hU$.
+
+    We've shown that $\hW^\tau = \hU$ for all $\tau \in S_n$. Therefore, we have $\hU^\sigma \sim \hW^\tau \sim \hU$, as desired.
+    
+    (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ swaps, then $\hU^\sigma \sim \hU$. We need to prove that if $\sigma$ consists of $2(n + 1)$ swaps, then $\hU^\sigma \sim \hU$.
+
+    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ swaps. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ swaps and $\tau$ consists of $2$ swaps. We have $\hU^\sigma = (\hU^\pi)^\tau$. By the inductive hypothesis, $\hU^\pi \sim \hU$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), then $(\hU^\pi)^\tau = \hU^{\tau \circ \pi} = \hU^\sigma \sim \hU^\tau$. \textbf{apply base case to $\hU^\tau$}
+\end{proof}
+
+\begin{theorem}
+
+
+    \begin{align*}
+        \hU^\sigma \sim \hU^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    ($\impliedby$). 
+    
+    ($\implies$). If $\hU^\sigma \sim \hU^\pi$, then $\hU^\pi = \RR_\theta(\hU^\sigma)$ for some $\theta \in [0, 2\pi)$.
+    
+    (Case: $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). The matrix $[\RR_\theta(\hU^\sigma)]_{\hU^\sigma}$ has one column containing the entries $\cos(\theta), \sin(\theta)$, and one column containing the entries $-\sin(\theta), \cos(\theta)$. Since $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$, then these columns contain entries in $[0, 1] - \{0, 1\} = (0, 1)$. Because of this, each of these columns is not equal to $\see_i$ for any $i$. It follows that each of the vectors in $\RR_\theta(\hU^\sigma)$ corresponding to these columns is not equal to $\huu_i$ for any $i$. So, $\RR_\theta(\hU^\sigma)$ is not a permutation of $\hU$. This contradicts the assumption $\hU^\sigma \sim \hU^\pi$, making this case impossible.
+
+    (Case: $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). As we saw in Theorem \ref{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}
+
+    ($\impliedby$).
+    
+\end{proof}
+
 
 \begin{defn}
     (Orientation of permuted ordered bases).
+
+    \textbf{LOOK OVER THIS. MAYBE EDIT IN LIGHT OF NEW PREVIOUS THEOREM}
     
-    Let $V$ be an $n$-dimensional inner product space, and fix an orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ for $V$. Consider $\hU^\sigma = (\huu_{\sigma(1)}, ..., \huu_{\sigma(n)})$, where $\sigma \in S_n$.
     
-    By the antisymmetry of ordered bases, all $\hU^\sigma$ with $\sgn(\sigma) = -1$ (all $\hU^\sigma$ obtained from $\hU$ by performing an odd numer of swaps) are rotationally equivalent to each other, and all $\hU^\sigma$ with $\sgn(\sigma) = 1$ (all $\hU^\sigma$ obtained from $\hU$ by performing an odd numer of swaps) are rotationally equivalent to each other. This means that there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
+    
+    This means that there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
     
     We can now begin to set up the notion of orientation. An \textit{orientation for the $n$-dimensional inner product space $V$} is a choice of an orthonormal ordered basis $\hU$ for $V$. When $V$ is given the orientation $\hU$, then the \textit{orientation of a permutation of $\hU$ (relative to $\hU$)} is said to be \textit{positive} iff that permutation of $\hU$ is rotationally equivalent to $\hU$, and is said to be \textit{negative} otherwise. Per the previous paragraph, every permutation of $\hU$ is either positively oriented or negatively oriented relative to $\hU$.
 \end{defn}
