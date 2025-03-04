@@ -752,6 +752,8 @@ We would now like to work towards a more precise statement of the antisymmetry o
 \end{defn}
 
 \begin{theorem}
+    \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_2_dimensions}
+
     (Antisymmetry of ordered bases for a $2$-dimensional inner product space).
     
     Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2} \}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
@@ -836,12 +838,14 @@ Now that we are equipped with $2$-rotations that can be applied on finite-dimens
     If $\hU$ and $\hW$ are orthonormal ordered bases of an $n$-dimensional inner product space, then ${\hU \sim \hW \iff \hU^\sigma \sim \hW^\sigma}$ for all permutations $\sigma \in S_n$.
 \end{theorem}
 
-Similarly to what was done in the previous derivation, we use $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$ in the matrix relative to bases of a $2$-dimensional rotation defined on $\spann((\huu_i, \huu_j))$ to obtain the formal characterization of the antisymmetry of ordered bases.
+
 
 \begin{theorem}
     \label{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}
 
     (Antisymmetry of ordered bases for an $n$-dimensional inner product space).
+
+    Let $\hU$ be an orthonormal ordered basis of an $n$-dimensional inner product space. Similarly to what was done in Theorem \ref{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_2_dimensions}, we use $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$ in the matrix relative to $\hU$ and $\hU$ of a $2$-dimensional rotation to obtain the formal characterization of the antisymmetry of ordered bases.
     
     For any orthonormal ordered basis $\hU = (\huu_1, ..., \huu_n)$ of an $n$-dimensional inner product space, we have
     
@@ -881,7 +885,7 @@ This fundamental result leads to the following [...].
 \end{proof}
 
 \begin{lemma}
-    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space.  We have
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space. We have
 
     \begin{align*}
         \hU^\sigma \sim \hU \text{ for all $\sigma \in S_n$ with $\sgn(\sigma) = 1$}.
@@ -907,30 +911,32 @@ This fundamental result leads to the following [...].
     
     (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ swaps, then $\hU^\sigma \sim \hU$. We need to prove that if $\sigma$ consists of $2(n + 1)$ swaps, then $\hU^\sigma \sim \hU$.
 
-    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ swaps. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ swaps and $\tau$ consists of $2$ swaps. We have $\hU^\sigma = (\hU^\pi)^\tau$. By the inductive hypothesis, $\hU^\pi \sim \hU$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), then $(\hU^\pi)^\tau = \hU^{\tau \circ \pi} = \hU^\sigma \sim \hU^\tau$. \textbf{apply base case to $\hU^\tau$}
+    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ swaps. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ swaps and $\tau$ consists of $2$ swaps. By the inductive hypothesis, $\hU^\pi \sim \hU$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), then $(\hU^\pi)^\tau = \hU^{\tau \circ \pi} = \hU^\sigma \sim \hU^\tau$. Since $\tau$ consists of $2$ swaps, then from the base case it follows that $\hU^\tau \sim \hU$. Thus $\hU^\sigma \sim \hU^\tau \sim \hU$, as desired.
+\end{proof}
+
+\begin{lemma}
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space. We have
+
+    \begin{align*}
+        \hU \sim \hU^\sigma \implies \sgn(\sigma) = 1 \text{ for all $\sigma \in S_n$}.
+    \end{align*}
+\end{lemma}
+
+\begin{proof}
+    If $\hU \sim \hU^\sigma$, then $\hU^\sigma = \RR_\theta(\hU)$ for some $\theta \in [0, 2\pi)$.
+    
+    (Case: $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). The matrix $[\RR_\theta(\hU)]_{\hU}$ has one column containing the entries $\cos(\theta), \sin(\theta)$, and one column containing the entries $-\sin(\theta), \cos(\theta)$. Since $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$, then these columns contain entries in $[0, 1] - \{0, 1\} = (0, 1)$. Because of this, each of these columns is not equal to $\see_i$ for any $i$. It follows that each of the vectors in $\RR_\theta(\hU)$ corresponding to these columns is not equal to $\huu_i$ for any $i$. So, $\RR_\theta(\hU)$ is not a permutation of $\hU$. This contradicts the assumption $\hU \sim \hU^\sigma$, making this case impossible.
+
+    (Case: $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). As was alluded to in Theorem \ref{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}, when $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$, then \\ $\RR_\theta(\hU) \in \{(\huu_1, ..., -\huu_{i + 1}, \huu_i, ..., \huu_n), (\huu_1, ...,\huu_{i + 1}, -\huu_i, ..., \huu_n)\}$. 
 \end{proof}
 
 \begin{theorem}
-
-
     \begin{align*}
         \hU^\sigma \sim \hU^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}.
     \end{align*}
 \end{theorem}
 
-\begin{proof}
-    \mbox{} \\ \indent
-    ($\impliedby$). 
-    
-    ($\implies$). If $\hU^\sigma \sim \hU^\pi$, then $\hU^\pi = \RR_\theta(\hU^\sigma)$ for some $\theta \in [0, 2\pi)$.
-    
-    (Case: $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). The matrix $[\RR_\theta(\hU^\sigma)]_{\hU^\sigma}$ has one column containing the entries $\cos(\theta), \sin(\theta)$, and one column containing the entries $-\sin(\theta), \cos(\theta)$. Since $\theta \notin \{\frac{\pi}{2}, \frac{3\pi}{2}\}$, then these columns contain entries in $[0, 1] - \{0, 1\} = (0, 1)$. Because of this, each of these columns is not equal to $\see_i$ for any $i$. It follows that each of the vectors in $\RR_\theta(\hU^\sigma)$ corresponding to these columns is not equal to $\huu_i$ for any $i$. So, $\RR_\theta(\hU^\sigma)$ is not a permutation of $\hU$. This contradicts the assumption $\hU^\sigma \sim \hU^\pi$, making this case impossible.
 
-    (Case: $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2}\}$). As we saw in Theorem \ref{ch::exterior_pwrs::thm::antisymmetry_ordered_bases_general}
-
-    ($\impliedby$).
-    
-\end{proof}
 
 
 \begin{defn}
