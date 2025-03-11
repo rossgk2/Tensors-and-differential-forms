@@ -100,9 +100,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 \begin{theorem}
     (Every permutation is a composition of cycles).
 
-    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. 
-    
-    Furthermore, the set of cycles involved in the decomposition is unique.
+    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. Furthermore, the set of cycles involved in the decomposition is unique.
 \end{theorem}
 
 \begin{proof}
@@ -121,15 +119,17 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 
     \newcommand{\tpi}{\widetilde{\pi}}
 
-    Lastly, we have to show that the set of cycles involved in the decomposition is unique.
-
+    We now show that the set of cycles involved in the decomposition is unique. 
+    
     For each $i \in \{1, ..., k\}$:
     
     \begin{itemize}
-        \item Let $Y_i$ be the set of elements of $X$ that appear in the tuple representation of $\pi_i$. Since $\pi_i$ is the unique cycle from $C$ that has all $x \in Y_i$ in its tuple representation, then $\sigma$ must include $\pi_i$ in its decomposition.
+        \item Let $Y_i$ be the set of elements of $X$ that appear in the tuple representation of $\pi_i$. For every $x \in Y_i$, the cycle $\pi_i$ is the unique cycle from $C$ that has $x$ in its tuple representation. Thus, $\sigma$ must include $\pi_i$ in its decomposition. (Otherwise, $\sigma$ would act on every $x \in Y_i$ as the identity; $\sigma(x) = x$!) 
     \end{itemize}
     
-    This is true for all $i \in \{1, ..., n\}$, so so $\sigma$ includes all of $\pi_1, ..., \pi_k$ in its decomposition. Lastly, $\sigma$ cannot include an additional cycle that is not one of $\pi_1, ..., \pi_k$ in its decomposition; if it did, then that cycle's tuple representation would contain an $x_0 \in X$ that is not in any other cycle's tuple representation. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ were captured by some cycle $\pi_1, ..., \pi_k$.
+    This is true for all $i \in \{1, ..., n\}$, so $\sigma$ includes all of $\pi_1, ..., \pi_k$ in its decomposition.
+
+    It remains to show that $\sigma$ includes \textit{only} $\pi_1, ..., \pi_k$ in its decomposition. Suppose for contradiction that some cycle $\tau \notin \{\pi_1, ..., \pi_k\}$ were included in the decomposition of $\sigma$. If this were the case, then the tuple representation of $\tau$ would contain an $x_0 \in X$ that is not in the tuple representation of any of $\pi_1, ..., \pi_k$. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ were captured by some cycle $\pi_1, ..., \pi_k$.
 \end{proof}
 
 \begin{lemma}
