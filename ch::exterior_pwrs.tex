@@ -69,9 +69,9 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 \begin{proof}
     \mbox{} \\ \indent
     \begin{enumerate}
-        \item Suppose $x_0$ appears in two different cycles. Then the lengths $k$ and $\ell$, $k \neq \ell$, of these cycles are the minimal $r$ and $s$ such that $\sigma^{r - 1}(x_0) = x_0$ and $\sigma^{s - 1}(x_0) = x_0$. The minimal $t$ for which $\sigma^{t - 1}(x_0) = x_0$ is unique, so we have $k = t = \ell$, which contradicts $k \neq \ell$. Thus the cycles must be the same.
+        \item Suppose $x_0$ appears in two different cycles. The lengths $k$ and $\ell$, $k \neq \ell$, of these cycles are ${k = \text{argmin}_r \sigma^{k - 1}(x_0) = x_0}$ and ${\ell = \text{argmin}_s \sigma^{s - 1}(x_0) = x_0}$. These argmins are clearly equal, so $k = \ell$, which contradicts the fact $k \neq \ell$. Thus the cycles must be the same.
         
-        \item Let $\pi = \begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix}$. We need to show that $\pi$, which is the cycle of itself about $x_1$, is also the cycle of itself about $x_{\sigma^i(1)}$ for all $i \in \{1, ..., n\}$. Since, as $i$ varies over $\{1, ..., n\}$, the expression $\sigma^i(1)$ varies over $\{1, ..., n\}$, it is equivalent to show that $\pi$ is the cycle of itself about $x_j$ for all $j \in \{1, ..., n\}$.
+        \item Let $\pi = \begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix}$. We need to show that $\pi$, which is the cycle of itself about $x_1$, is also the cycle of itself about $x_{\sigma^i(1)}$ for all $i \in \{1, ..., n\}$. Since as $i$ varies over $\{1, ..., n\}$, the expression $\sigma^i(1)$ varies over $\{1, ..., n\}$, it is equivalent to show that $\pi$ is the cycle of itself about $x_j$ for all $j \in \{1, ..., n\}$.
         
         By the definition of the tuple-without-commas notation for cycles, we have 
 
@@ -79,57 +79,58 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
             x_1 = x_1, x_2 = \pi(x_1), ..., x_j = \pi^{j - 1}(x_1). \tag{1}
         \end{align*}
         
-        So, $x_1 = \pi^{-(j - 1)}(x_j)$. By definition of the cycle of $\pi$ about $x_1$, we also have $x_1 = \pi^{p - 1}(x_1)$, where $p = \text{argmin}_q \pi^{q - 1}(x_1) = x_1$. Substituting $x_1 = \pi^{-(j - 1)}(x_j)$ into $x_1 = \pi^{p - 1}(x_1)$, we obtain
+        So, $x_1 = \pi^{-(j - 1)}(x_j)$. By definition of the cycle of $\pi$ about $x_1$, we also have $x_1 = \pi^{k - 1}(x_1)$, where $k = \text{argmin}_\ell \pi^{\ell - 1}(x_1) = x_1$. Substituting $x_1 = \pi^{-(j - 1)}(x_j)$ into $x_1 = \pi^{k - 1}(x_1)$, we obtain
         
         \begin{align*}
-            x_1 = \pi^{(p - 1) - (j - 1)}(x_j). \tag{2}
+            x_1 = \pi^{(k - 1) - (j - 1)}(x_j). \tag{2}
         \end{align*}
 
         Equation (2) maps $x_j$ to $x_1$, and equation (1) maps $x_1$ to $x_j$. Combining these two equations, we can map $x_j$ to $x_j$:
         
         \begin{align*}
-            x_j = \pi^{j - 1}(\pi^{(p - 1) - (j - 1)}(x_j)) = \pi^{p - 1}(x_j).
+            x_j = \pi^{j - 1}(\pi^{(k - 1) - (j - 1)}(x_j)) = \pi^{k - 1}(x_j).
         \end{align*}
         
-        Since $\pi^{p - 1}(x_j) = x_j$, then $\pi$ is the cycle of $\pi$ about $x_j$.
+        Since $\pi^{k - 1}(x_j) = x_j$, then $\pi$ is the cycle of $\pi$ about $x_j$.
         
-        \item We can use (2) to obtain an equivalent tuple that has $x_0$ as its first element. This tuple represents the cycle about $x_0$.
+        \item We can use (2) to obtain an equivalent tuple that has $x_0$ as its first element. This tuple represents the cycle of $\sigma$ about $x_0$.
     \end{enumerate}
 \end{proof}
 
 \begin{theorem}
     (Every permutation is a composition of cycles).
 
-    Every permutation $\sigma$ on a finite set can be uniquely decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles.    
+    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. 
+    
+    Furthermore, the set of cycles involved in the decomposition is unique.
 \end{theorem}
 
 \begin{proof}
     For each $x_0 \in X$:
 
     \begin{itemize}
-        \item Consider the sequence $(x_0, \sigma(x_0), ..., \sigma^i(x_0), ...)$. Since $X$ is a finite set, then the pigeonhole principle implies that for some $j > i \geq |X|$ we have $\sigma^i(x_0) = \sigma^j(x_0)$. Applying $(\sigma^{-1})^i$ to each side of this equation, we have $\sigma^{j - i}(x_0) = x_0$. So, we see that there exists $k - 1$ such that $\sigma^{k - 1}(x_0) = x_0$. (We have $k - 1 = j - i \iff k = j - i + 1$).
+        \item Consider the sequence $(x_0, \sigma(x_0), ..., \sigma^i(x_0), ...)$. Since $X$ is a finite set, then the pigeonhole principle implies that for some $i$ and $j$ with $j > i \geq |X|$ we have $\sigma^i(x_0) = \sigma^j(x_0)$. Applying $(\sigma^{-1})^i$ to each side of this equation, we have $\sigma^{j - i}(x_0) = x_0$. So, we see that there exists $k - 1$ such that $\sigma^{k - 1}(x_0) = x_0$. (Namely, $k - 1 = j - i \iff k = j - i + 1$).
         \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$ of length $\ell$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
     \end{itemize}
 
     Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P = \prod_{\pi \in C} \pi$.
     
-    To prove this, let $x \in X$. By the previous lemma, there is a unique cycle $\pi_x \in C$ of $\sigma$ that has $x$ in its image. Since no other cycles from $C$ have $x$ in their image, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \pi_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x$ in the image of $\sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. So we have $P(x) = \pi_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$, as desired.
+    To prove this, let $x \in X$. By the previous lemma, there is a unique cycle $\tau_x \in C$ of $\sigma$ that has $x$ in its tuple representation. Since no other cycles from $C$ have $x$ in their tuple representation, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \tau_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x$ in the tuple representation of $\sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. Since $\tau_x \in C$, we have $P(x) = \tau_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$. Since $X$ is finite, then $C$ is finite, so $\sigma = \pi_k \circ ... \circ \pi_1$ for some $k$, where $\pi_1, ..., \pi_k$ are cycles, as desired.
 
-    ...
+    \vspace{.5cm}
 
-    [uniqueness]
+    \newcommand{\tpi}{\widetilde{\pi}}
 
-    % \begin{itemize}
-    %     \item if a cycle has $x$ in its image then it is about $x$
-    %     \item cycles are either disjoint or equal
-    %     \item cycles are disjoint <=> all elements of one are disjoint with the entire other
-    % \end{itemize}
+    Lastly, we have to show that the set of cycles involved in the decomposition is unique.
+
+    For each $i \in \{1, ..., k\}$:
     
+    \begin{itemize}
+        \item Let $Y_i$ be the set of elements of $X$ that appear in the tuple representation of $\pi_i$. Since $\pi_i$ is the unique cycle from $C$ that has all $x \in Y_i$ in its tuple representation, then $\sigma$ must include $\pi_i$ in its decomposition.
+    \end{itemize}
+    
+    This is true for all $i \in \{1, ..., n\}$, so so $\sigma$ includes all of $\pi_1, ..., \pi_k$ in its decomposition. Lastly, $\sigma$ cannot include an additional cycle that is not one of $\pi_1, ..., \pi_k$ in its decomposition; if it did, then that cycle's tuple representation would contain an $x_0 \in X$ that is not in any other cycle's tuple representation. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ were captured by some cycle $\pi_1, ..., \pi_k$.
 \end{proof}
-
-\begin{lemma}
-    
-\end{lemma}
 
 \begin{lemma}
     Let $\sigma$ be a permutation, $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. If $\pi$ is a transposition, then the permutation $\pi \circ \sigma$ either has
