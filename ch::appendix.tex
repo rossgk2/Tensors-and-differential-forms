@@ -112,3 +112,23 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
         \\ \indent $(\implies$). The $^i_j$ entry of $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top$ is $(\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th column of $[\ff(\hU)]_{\hU}$})\top = (\text{$i$th row of $[\ff(\hU)]_{\hU}$}) \cdot (\text{$j$th row of $[\ff(\hU)]_{\hU}$}) = \langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore $[\ff(\hU)]_{\hU} [\ff(\hU)]_{\hU}^\top = \II$. A similar argument shows $[\ff(\hU)]_{\hU}^\top [\ff(\hU)]_{\hU} = \II$.
         \\ \indent $(\impliedby)$. Reversing the logic of the forward direction, we know $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore (3) is satisfied. Then we use $(3) \implies (6)$.
 \end{proof}
+
+\section*{Bubble sort}
+
+\begin{defn}
+\label{ch::appendix::defn::bubble_sort}
+    (Bubble sort).
+    
+    Given a permutation $\sigma \in S_n$, the \textit{bubble sort algorithm} operates on the tuple $(\sigma(1), ..., \sigma(n))$, and produces the tuple $(1, ..., n)$ as output.
+    
+    The following is a description of bubble sort that does not include the popular optimizations:
+    
+    \begin{itemize}
+        \item For each $i \in \{1, ..., n\}$:
+        \begin{itemize}
+            \item For each $j \in \{1, ..., n - 1\}$, if $\sigma(j) \geq \sigma(j + 1)$, then swap (i.e. apply a transposition to) $\sigma(j)$ and $\sigma(j + 1)$.
+        \end{itemize}
+    \end{itemize}
+    
+    This algorithm indeed sorts $(\sigma(1), ..., \sigma(n))$ because the $i$th greatest element of the tuple is in its final position after the $i$th pass of the outer loop. (The first-greatest element of the tuple, or maximum, is in its final position after the first pass of the loop, the second-greatest element of the tuple is in its final position after the second pass of the loop, and so on).
+\end{defn}

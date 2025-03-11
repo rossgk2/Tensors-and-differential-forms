@@ -5,35 +5,185 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 
 \section{Exterior powers}
 
-\subsection*{Antisymmetric tensors}
+\subsection*{Permutations}
 
 \begin{defn}
     (Permutations on $\{1, ..., n\}$).
     
     Let $X$ be any set. A \textit{permutation on $X$} is a bijection $X \rightarrow X$. Intuitively, a permutation on $X$ is thought of as redistributing the names of the elements of $X$.
     
-    We use $S_n$ to denote the \textit{set of permutations on $\{1, ..., n\}$}. Formally, $S_n := \{ \text{functions } \text{$\{1, ..., n\} \rightarrow \{1, ... n \}$} \}$.
+    We use $S_n$ to denote the set of permutations on $\{1, ..., n\}$. Formally, $S_n := \{ \text{functions } \text{$\{1, ..., n\} \rightarrow \{1, ... n \}$} \}$.
 \end{defn}
 
-\begin{remark}
-    (Sign of a permutation).
+\begin{defn}
+    (Transposition).
 
-    A permutation $\sigma$ is called a \textit{swap}, or \textit{transposition}, iff there exist $j, k$ such that $\sigma(j) = k$, $\sigma(k) = j$, and $\sigma(i) = i$ for all $i \notin \{j, k\}$. Every permutation can be decomposed into a composition of swaps.
+    A \textit{transposition} is a permutation that swaps two elements and leaves all of the others fixed. That is, a permutation $\sigma$ on a set $X$ is a transposition iff there exist $x_1, x_2 \in X$ such that $\sigma(x_1) = x_2$, $\sigma(x_2) = x_1$, and $\sigma(x) = x$ for all $x \in X - \{x_1, x_2\}$.
+\end{defn}
+
+\begin{theorem}
+    (Every permutation is a composition of transpositions).
+
+    Every permutation $\sigma$ on a finite set can be nonuniquely decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions.
+\end{theorem}
+
+\begin{proof}
+    We only prove the case when $X = \{1, ..., n\}$ and $\sigma \in S_n$. The general case follows easily.
+    
+    Notice that
+    
+    \begin{itemize}
+        \item The function $\text{sort}_\sigma$ that sorts $(\sigma(1), ..., \sigma(n))$ from least to greatest satisfies $\text{sort}_\sigma((\sigma(1), ..., \sigma(n))) = (1, ..., n)$.
+        \item We also have $\sigma^{-1}((\sigma(1), ..., \sigma(n))) = (\sigma^{-1}(\sigma(1)), ..., \sigma^{-1}(\sigma(n)) = (1, ..., n)$.
+    \end{itemize} 
+    
+    Thus, $\text{sort}_\sigma = \sigma^{-1}$. Since are many ways to describe $\text{sort}_\sigma$ as a composition of transpositions\footnote{See Definition \ref{ch::appendix::defn::bubble_sort} in the appendix for a description of one such description, the \textit{bubble sort algorithm}.}, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are transpositions. The inverse of a transposition is a transposition, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are transpositions. So, we have shown that $\sigma$ decomposes into a composition of transpositions. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
+    
+    % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are transpositions. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
+\end{proof}
+
+\begin{defn}
+    (Cycle).
+
+    A permutation $\sigma$ on a set $X$ is a \textit{cycle (of $\sigma$ about $x \in X_0$)} iff there exist $x_0 \in X$ and a positive integer $\ell$ such that $\sigma^{\ell - 1}(x_0) = x_0$. The \textit{length} of a cycle about $x_0$ is $\text{argmin}_\ell \sigma^{\ell - 1}(x_0) = x_0$.
+    
+    We denote a cycle about $x_0$ with length $k$ as the following tuple without commas: $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$.
+\end{defn}
+
+\begin{lemma}
+    (Facts about cycles).
+    
+    Consider a permutation $\sigma$ on a set $X$.
+    
+    \begin{enumerate}
+        \item The cycle of $\sigma$ about $x_0$ is unique for all $x_0 \in X$.
+        \item If $x_1, ..., x_n \in X$ and $\sigma = \begin{pmatrix} 1 & \hdots & n \end{pmatrix}$, then $\begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix} = \begin{pmatrix} x_{\sigma^i(1)} & \hdots & x_{\sigma^i(n)} \end{pmatrix}$ for all positive integers $i \geq 1$.
+        \begin{itemize}
+            \item For example, using $\sigma = \begin{pmatrix}
+            1 & 2 & 3 \end{pmatrix}$ and $i \in \{1, 2\}$ gives $\begin{pmatrix} x_1 & x_2 & x_3 \end{pmatrix} = \begin{pmatrix} x_3 & x_1 & x_2 \end{pmatrix} = \begin{pmatrix} x_2 & x_3 & x_1 \end{pmatrix}$.
+        \end{itemize}
+        \item If a cycle of $\sigma$ has $x_0 \in X$ in its tuple representation, then that cycle is the cycle of $\sigma$ about $x_0$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    \begin{enumerate}
+        \item Suppose $x_0$ appears in two different cycles. Then the lengths $k$ and $\ell$, $k \neq \ell$, of these cycles are the minimal $r$ and $s$ such that $\sigma^{r - 1}(x_0) = x_0$ and $\sigma^{s - 1}(x_0) = x_0$. The minimal $t$ for which $\sigma^{t - 1}(x_0) = x_0$ is unique, so we have $k = t = \ell$, which contradicts $k \neq \ell$. Thus the cycles must be the same.
+        
+        \item Let $\pi = \begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix}$. We need to show that $\pi$, which is the cycle of itself about $x_1$, is also the cycle of itself about $x_{\sigma^i(1)}$ for all $i \in \{1, ..., n\}$. Since, as $i$ varies over $\{1, ..., n\}$, the expression $\sigma^i(1)$ varies over $\{1, ..., n\}$, it is equivalent to show that $\pi$ is the cycle of itself about $x_j$ for all $j \in \{1, ..., n\}$.
+        
+        By the definition of the tuple-without-commas notation for cycles, we have 
+
+        \begin{align*}
+            x_1 = x_1, x_2 = \pi(x_1), ..., x_j = \pi^{j - 1}(x_1). \tag{1}
+        \end{align*}
+        
+        So, $x_1 = \pi^{-(j - 1)}(x_j)$. By definition of the cycle of $\pi$ about $x_1$, we also have $x_1 = \pi^{p - 1}(x_1)$, where $p = \text{argmin}_q \pi^{q - 1}(x_1) = x_1$. Substituting $x_1 = \pi^{-(j - 1)}(x_j)$ into $x_1 = \pi^{p - 1}(x_1)$, we obtain
+        
+        \begin{align*}
+            x_1 = \pi^{(p - 1) - (j - 1)}(x_j). \tag{2}
+        \end{align*}
+
+        Equation (2) maps $x_j$ to $x_1$, and equation (1) maps $x_1$ to $x_j$. Combining these two equations, we can map $x_j$ to $x_j$:
+        
+        \begin{align*}
+            x_j = \pi^{j - 1}(\pi^{(p - 1) - (j - 1)}(x_j)) = \pi^{p - 1}(x_j).
+        \end{align*}
+        
+        Since $\pi^{p - 1}(x_j) = x_j$, then $\pi$ is the cycle of $\pi$ about $x_j$.
+        
+        \item We can use (2) to obtain an equivalent tuple that has $x_0$ as its first element. This tuple represents the cycle about $x_0$.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    (Every permutation is a composition of cycles).
+
+    Every permutation $\sigma$ on a finite set can be uniquely decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles.    
+\end{theorem}
+
+\begin{proof}
+    For each $x_0 \in X$:
+
+    \begin{itemize}
+        \item Consider the sequence $(x_0, \sigma(x_0), ..., \sigma^i(x_0), ...)$. Since $X$ is a finite set, then the pigeonhole principle implies that for some $j > i \geq |X|$ we have $\sigma^i(x_0) = \sigma^j(x_0)$. Applying $(\sigma^{-1})^i$ to each side of this equation, we have $\sigma^{j - i}(x_0) = x_0$. So, we see that there exists $k - 1$ such that $\sigma^{k - 1}(x_0) = x_0$. (We have $k - 1 = j - i \iff k = j - i + 1$).
+        \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$ of length $\ell$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
+    \end{itemize}
+
+    Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P = \prod_{\pi \in C} \pi$.
+    
+    To prove this, let $x \in X$. By the previous lemma, there is a unique cycle $\pi_x \in C$ of $\sigma$ that has $x$ in its image. Since no other cycles from $C$ have $x$ in their image, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \pi_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x$ in the image of $\sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. So we have $P(x) = \pi_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$, as desired.
+
+    ...
+
+    [uniqueness]
+
+    % \begin{itemize}
+    %     \item if a cycle has $x$ in its image then it is about $x$
+    %     \item cycles are either disjoint or equal
+    %     \item cycles are disjoint <=> all elements of one are disjoint with the entire other
+    % \end{itemize}
+    
+\end{proof}
+
+\begin{lemma}
+    
+\end{lemma}
+
+\begin{lemma}
+    Let $\sigma$ be a permutation, $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. If $\pi$ is a transposition, then the permutation $\pi \circ \sigma$ either has
+
+    \begin{enumerate}
+        \item one more cycle than $\sigma$
+        \item one fewer cycle than $\sigma$
+        \item It changes the elements within cycles without changing the number of cycles
+    \end{enumerate}
+\end{lemma}
+
+\begin{defn}
+    (Sign of a permutation).
     
     The \textit{sign} $\sgn(\sigma)$ of a permutation $\sigma$ is defined to be
     
     \begin{align*}
         \sgn(\sigma) := 
         \begin{cases}
-            1 & \text{there are an even number of swaps in any decomposition of $\sigma$} \\
-            -1 & \text{there are an odd number of swaps in any decomposition of $\sigma$}
+            1 & \text{there are an even number of transpositions in any decomposition of $\sigma$} \\
+            -1 & \text{there are an odd number of transpositions in any decomposition of $\sigma$}
         \end{cases}.
     \end{align*}
     
-    Surprisingly, $\sgn$ is a well-defined function.: the parity (the ``evenness'' or ``oddness'') of the number of swaps in a permutation's decomposition into only swaps is always the same. (We do not prove this).
+    We will need to prove that $\sgn$ is a well-defined function; that is, we will need to prove that the parity\footnote{The \textit{parity} of an integer $n$ is even iff $n$ is even and odd iff $n$ is odd.} of the number of transpositions in a permutation's decomposition.
 
     A permutation is called \textit{even} iff its sign is $1$ and is called \textit{odd} iff its sign is $-1$.
-\end{remark}
+\end{defn}
+
+\begin{proof}
+    Let $\sigma \in S_n$. We need to prove that if we decompose $\sigma$ into transpositions in two different ways, $\sigma = \sigma_k \circ ... \circ \sigma_1$ and $\sigma = \pi_\ell \circ ... \circ \pi_1$, where $\sigma_1, ..., \sigma_k$ and $\pi_1, .., \pi_\ell$ are transpositions, then the parity of $k$ is the same as the parity of $\ell$. [TO-DO]
+\end{proof}
+
+\begin{proof}
+    
+    
+    Let's define $c(\sigma)$ as the number of cycles in the permutation $\sigma$. When we apply a transposition $\tau$ to $\sigma$, the change in the number of cycles, $c(\tau \circ \sigma) - c(\sigma)$, is always $\pm1$. Specifically:
+    \begin{itemize}
+        \item If the transposition joins two cycles, then $c(\tau \circ \sigma) = c(\sigma) - 1$
+        \item If the transposition splits one cycle, then $c(\tau \circ \sigma) = c(\sigma) + 1$
+    
+    \end{itemize}
+    Now, consider the identity permutation $e$. It consists of $n$ cycles (each element is in its own 1-cycle), where $n$ is the number of elements in our set.
+    
+    Let's say we have a composition of $m$ transpositions that equals the identity: $e = \tau_m \circ \tau_{m-1} \circ \ldots \circ \tau_1$. Starting with $e$, each transposition changes the number of cycles by $±1$. After applying all $m$ transpositions, we must return to $n$ cycles.
+    
+    Therefore, the total change in the number of cycles must be even, which means $m$ must be even.
+    
+    More formally, let $\sigma_0 = e$ and $\sigma_i = \tau_i \circ \sigma_{i-1}$ for $i = 1, 2, \ldots, m$. Then $\sigma_m = e$, and each $c(\sigma_i) - c(\sigma_{i-1}) = ±1$. Since $c(\sigma_m) = c(\sigma_0)$, the sum $\sum_{i=1}^{m} (c(\sigma_i) - c(\sigma_{i-1})) = 0$, which means we must have an equal number of +1s and -1s in this sum. This is only possible if $m$ is even.
+    
+    Therefore, the identity permutation cannot be written as a composition of an odd number of transpositions, which proves that if $\sigma = \sigma_k \circ \ldots \circ \sigma_1 = \pi_\ell \circ \ldots \circ \pi_1$, then $k$ and $\ell$ must have the same parity.
+\end{proof}
+
+\subsection*{Antisymmetric tensors}
 
 \begin{defn}
     (Permuting an element of a tensor product space).
@@ -898,9 +1048,9 @@ This fundamental result leads to the following [...].
 \end{lemma}
 
 \begin{proof}
-    Let $\hU = (\huu_1, ..., \huu_n)$. The sign of a permutation is $1$ iff the permutation consists of an even number of swaps. So, an equivalent statement to the theorem is: for all $n$, if $\sigma$ consists of $2n$ swaps, then $\hU^\sigma \sim \hU$. We prove this statement by induction on $n$.
+    Let $\hU = (\huu_1, ..., \huu_n)$. The sign of a permutation is $1$ iff the permutation consists of an even number of swaps. So, an equivalent statement to the theorem is: for all $n$, if $\sigma$ consists of $2n$ transpositions, then $\hU^\sigma \sim \hU$. We prove this statement by induction on $n$.
     
-    (Base case). Consider $\hU^\sigma$, where $\sigma = \tau \circ \pi$, and where $\pi, \tau$ are swaps. 
+    (Base case). Consider $\hU^\sigma$, where $\sigma = \tau \circ \pi$, and where $\pi, \tau$ are transpositions. 
     
     The permutation $\pi$ swaps some $i, j$. Using the example $(\huu_j, \huu_i) \sim (-\huu_i, \huu_j)$, we see \\ $\hU^\pi \sim (\huu_1, ..., \huu_{i - 1}, -\huu_i, \huu_{i + 1}, ..., \huu_n)$. Since this orthonormal ordered basis has only one basis vector with a coefficient of $-1$, it follows from the previous theorem that it is rotationally equivalent to every other such orthonormal ordered basis; in particular, it is rotationally equivalent to $\hW :=  (-\huu_1, ..., \huu_n)$.
 
@@ -914,9 +1064,9 @@ This fundamental result leads to the following [...].
 
     We've shown that $\hW^\tau = \hU$ for all $\tau \in S_n$. Therefore, we have $\hU^\sigma \sim \hW^\tau \sim \hU$, as desired.
     
-    (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ swaps, then $\hU^\sigma \sim \hU$. We need to prove that if $\sigma$ consists of $2(n + 1)$ swaps, then $\hU^\sigma \sim \hU$.
+    (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ transpositions, then $\hU^\sigma \sim \hU$. We need to prove that if $\sigma$ consists of $2(n + 1)$ transpositions, then $\hU^\sigma \sim \hU$.
 
-    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ swaps. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ swaps and $\tau$ consists of $2$ swaps. By the inductive hypothesis, $\hU^\pi \sim \hU$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), then $(\hU^\pi)^\tau = \hU^{\tau \circ \pi} = \hU^\sigma \sim \hU^\tau$. Since $\tau$ consists of $2$ swaps, then from the base case it follows that $\hU^\tau \sim \hU$. Thus $\hU^\sigma \sim \hU^\tau \sim \hU$, as desired.
+    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ transpositions. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ transpositions and $\tau$ consists of $2$ transpositions. By the inductive hypothesis, $\hU^\pi \sim \hU$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::exterior_pwrs::thm::permutations_preserve_rotational_equivalence}), then $(\hU^\pi)^\tau = \hU^{\tau \circ \pi} = \hU^\sigma \sim \hU^\tau$. Since $\tau$ consists of $2$ transpositions, then from the base case it follows that $\hU^\tau \sim \hU$. Thus $\hU^\sigma \sim \hU^\tau \sim \hU$, as desired.
 \end{proof}
 
 \begin{theorem}
@@ -981,8 +1131,6 @@ This fundamental result leads to the following [...].
     (Orientation of permuted ordered bases).
 
     \textbf{LOOK OVER THIS. MAYBE EDIT IN LIGHT OF NEW PREVIOUS THEOREM}
-    
-    
     
     This means that there are only two equivalence classes\footnote{I find this relatively surprising. My intuition is that there would be something like $2^n$ or $n!$ equivalence classes of ``equivalence under rotation'' in $n$ dimensions, but nope! There are $2$ equivalence classes of ``equivalence under rotation'' for every $n$.} of ``equivalence under rotation''.
     
@@ -1352,7 +1500,7 @@ The previous lemma can easily be generalized so that it holds for all dimensions
         = \det([\hU^\sigma]_{\hU}).
    \end{align*}
    
-   To conclude the proof, we will show that $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$; once we have shown this, we are done, since $\sgn(\sigma) \det([\hU]_{\hU}) = \sgn(\sigma) \det(\II) = \sgn(\sigma)$. Since any permutation is a composition of ``swaps'' (a ``swap'' is a permutation defined on a two-element set), then $\hU^\sigma$ can be obtained from $\hU$ by repeatedly swapping vectors in $\hU$. Whenever vectors are swapped in the determinant, the sign of the determinant is multiplied by $-1$. This accounts for the $\sgn(\sigma)$ factor in the equation $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$.
+   To conclude the proof, we will show that $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$; once we have shown this, we are done, since $\sgn(\sigma) \det([\hU]_{\hU}) = \sgn(\sigma) \det(\II) = \sgn(\sigma)$. Since any permutation is a composition of transpositions, then $\hU^\sigma$ can be obtained from $\hU$ by repeatedly swapping vectors in $\hU$. Whenever vectors are swapped in the determinant, the sign of the determinant is multiplied by $-1$. This accounts for the $\sgn(\sigma)$ factor in the equation $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$.
 \end{proof}
 
 \subsection*{Orientation of finite-dimensional vector spaces}
