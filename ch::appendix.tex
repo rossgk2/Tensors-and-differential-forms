@@ -113,31 +113,7 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
         \\ \indent $(\impliedby)$. Reversing the logic of the forward direction, we know $\langle \ff(\huu_i), \ff(\huu_j) \rangle = \delta^i{}_j$. Therefore (3) is satisfied. Then we use $(3) \implies (6)$.
 \end{proof}
 
-\section*{Permutations}
-
-\begin{theorem}
-\label{ch::exterior_pwrs::thm::permutations_decompose_into_swaps}
-    (Every permutation is a composition of swaps).
-
-    Every permutation $\sigma$ on a finite set can be nonuniquely decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are swaps.
-\end{theorem}
-
-\begin{proof}
-    We only prove the case when $X = \{1, ..., n\}$ and $\sigma \in S_n$. The general case follows easily.
-    
-    Notice that
-    
-    \begin{itemize}
-        \item The function $\text{sort}_\sigma$ that sorts $(\sigma(1), ..., \sigma(n))$ from least to greatest satisfies $\text{sort}_\sigma((\sigma(1), ..., \sigma(n))) = (1, ..., n)$.
-        \item We also have $\sigma^{-1}((\sigma(1), ..., \sigma(n))) = (\sigma^{-1}(\sigma(1)), ..., \sigma^{-1}(\sigma(n)) = (1, ..., n)$.
-    \end{itemize} 
-    
-    Thus, $\text{sort}_\sigma = \sigma^{-1}$. Since are many ways to describe $\text{sort}_\sigma$ as a composition of swaps, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are swaps. (See the next definition for a description of one such description, the \textit{bubble sort algorithm}. The inverse of a swap is a swap, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are swaps. 
-    
-    So, we have shown that $\sigma$ decomposes into a composition of swaps. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
-    
-    % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are swaps. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
-\end{proof}
+\section*{Bubble sort}
 
 \begin{defn}
 \label{ch::appendix::defn::bubble_sort}
@@ -150,7 +126,7 @@ Now, we consider linear functions $\ff$ for which $\ff = \ff^\dag$ and for which
     \begin{itemize}
         \item For each $i \in \{1, ..., n\}$:
         \begin{itemize}
-            \item For each $j \in \{1, ..., n - 1\}$, if $\sigma(j) \geq \sigma(j + 1)$, then swap (i.e. apply a swap to) $\sigma(j)$ and $\sigma(j + 1)$.
+            \item For each $j \in \{1, ..., n - 1\}$, if $\sigma(j) \geq \sigma(j + 1)$, then swap (i.e. apply a transposition to) $\sigma(j)$ and $\sigma(j + 1)$.
         \end{itemize}
     \end{itemize}
     
