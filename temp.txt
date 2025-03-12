@@ -1,1 +1,0 @@
-This file is being added to the GitHub project so that the GitHub repo will be one commit ahead of the Overleaf repo. This will allow me to pull the GitHub content into Overleaf.
