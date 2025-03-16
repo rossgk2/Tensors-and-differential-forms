@@ -57,13 +57,15 @@ In order to formalize the idea of swapping
 
     Let $X$ be a finite set. When $\sigma$ is a permutation on $X$, we define the \textit{cycle of $\sigma$ about $x \in X$} to be the set ${\cyc_\sigma(x) := \{ \sigma^i(x) \mid i \in \Z \cap [1, \infty) \}}$ of all elements of $X$ that are obtained by repeatedly applying $\sigma$ to $x$.
 
-    We say that a permutation $\sigma$ is a \textit{cycle} iff the set $\{x \in X \mid \sigma(x) \neq x\}$ of elements in $X$ not fixed by $\sigma$ is equal to $\cyc_\sigma(x)$ for some $x \in X$.
+    We say that a permutation $\sigma$ is a \textit{cycle} iff the set $\{x \in X \mid \sigma(x) \neq x\}$ of elements in $X$ not fixed by $\sigma$ is equal to $\cyc_\sigma(x_0)$ for some $x_0 \in X$.
+
+    Given a cycle $\sigma$, we say ``$x \in \sigma$'', ``$x$ is in $\sigma$'', or that ``$\sigma$ contains $x$'' to mean \textbf{???}
 \end{defn}
 
 \begin{lemma}
     (Being in a cycle is an equivalence relation).
 
-    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation. Additionally, if $\sigma$ is a cycle and $x \in \sigma$, then that cycle is the cycle of $\sigma$ about $x$.
+    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation. Additionally, if $\sigma$ is a cycle and $x \in \sigma$, then \textbf{$\sigma$ is equal to $\cyc_\sigma(x)$}. \textbf{but these are objects of different types; one is a function and one is a set} 
 \end{lemma}
 
 \begin{proof}
@@ -86,22 +88,16 @@ In order to formalize the idea of swapping
 \begin{defn}
     (Cycle notation).
 
-    When $x_0, x_1, ..., x_{k - 1} \in X$, we use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 2\}$ and $x_{k - 1} \mapsto x_0$. Clearly, this permutation is a cycle.
+    When $x_0, x_1, ..., x_{k - 1} \in X$, we use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 2\}$ and $x_{k - 1} \mapsto x_0$. Clearly, this permutation is a cycle. Notice, because every element of $X$ is in a unique cycle, then the cycles about each of $x_0, ..., x_{k - 1} \in X$ are all equal: $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
+    =
+    \begin{pmatrix} x_{k - 1} & x_0 & x_1 & \hdots & x_{k - 2} \end{pmatrix}
+    =
+    ...
+    =
+    \begin{pmatrix} x_1 & & \hdots & x_{k - 1} & x_0 \end{pmatrix}$.
 
-    Notice, with this definition, an arbitrary cycle $\sigma$ can be written as the tuple-without commas $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$ for some $x_0 \in X$.
-
-    In a slight abuse of notation, when $\sigma$ is a cycle, we write ``$x \in \sigma$'' or say ``$x$ is in $\sigma$'' to mean that $x$ is one of the elements appearing in the tuple-without-commas notation for $\sigma$.
+    Also notice that, with this definition, an arbitrary cycle $\sigma$ can be written as the tuple-without commas $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$ for some $x_0 \in X$.
 \end{defn}
-
-\begin{lemma}
-    $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
-        =
-        \begin{pmatrix} x_{k - 1} & x_0 & x_1 & \hdots & x_{k - 2} \end{pmatrix}
-        =
-        ...
-        =
-        \begin{pmatrix} x_1 & & \hdots & x_{k - 1} & x_0 \end{pmatrix}$ for all $x_0, x_1, ..., x_{k - 1} \in X$.
-\end{lemma}
 
 \begin{theorem}
     (Every permutation is a composition of cycles).
@@ -114,12 +110,12 @@ In order to formalize the idea of swapping
 
     \begin{itemize}
         \item Consider the sequence $(x_0, \sigma(x_0), ..., \sigma^i(x_0), ...)$. Since $X$ is a finite set, then the pigeonhole principle implies that for some $i$ and $j$ with $j > i \geq |X|$ we have $\sigma^i(x_0) = \sigma^j(x_0)$. Applying $(\sigma^{-1})^i$ to each side of this equation, we have $\sigma^{j - i}(x_0) = x_0$. So, we see that there exists $k - 1$ such that $\sigma^{k - 1}(x_0) = x_0$. (Namely, $k - 1 = j - i \iff k = j - i + 1$).
-        \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$ of length $\ell$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
+        \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
     \end{itemize}
 
     Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P := \prod_{\pi \in C} \pi$.
     
-    To prove this, let $x \in X$. By the previous lemma, there is a unique cycle $\tau_x \in C$ of $\sigma$ that has $x$ in its tuple representation. Since no other cycles from $C$ have $x$ in their tuple representation, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \tau_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x$ in the tuple representation of $\sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. Since $\tau_x \in C$, we have $P(x) = \tau_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$. Since $X$ is finite, then $C$ is finite, so $\sigma = \pi_k \circ ... \circ \pi_1$ for some $k$, where $\pi_1, ..., \pi_k$ are cycles, as desired.
+    To prove this, let $x \in X$. There is a unique cycle $\tau_x \in C$ of $\sigma$ containing $x$. Since no other cycles from $C$ contain $x$, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \tau_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x \in \sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. Since $\tau_x \in C$, we have $P(x) = \tau_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$. Since $X$ is finite, then $C$ is finite, so $\sigma = \pi_k \circ ... \circ \pi_1$ for some $k$, where $\pi_1, ..., \pi_k$ are cycles, as desired.
 
     \vspace{.5cm}
 
@@ -130,12 +126,12 @@ In order to formalize the idea of swapping
     For each $i \in \{1, ..., k\}$:
     
     \begin{itemize}
-        \item Let $Y_i$ be the set of elements of $X$ that appear in the tuple representation of $\pi_i$. For every $x \in Y_i$, the cycle $\pi_i$ is the unique cycle from $C$ that has $x$ in its tuple representation. Thus, $\sigma$ must include $\pi_i$ in its decomposition. (Otherwise, $\sigma$ would act on every $x \in Y_i$ as the identity; $\sigma(x) = x$!) 
+        \item Let $Y_i$ be the set of elements of $X$ that are in $\pi_i$. For every $x \in Y_i$, the cycle $\pi_i$ is the unique cycle from $C$ with $x \in \pi_i$. Thus, $\sigma$ must include $\pi_i$ in its decomposition. (Otherwise, $\sigma$ would act on every $x \in Y_i$ as the identity; $\sigma(x) = x$!) 
     \end{itemize}
     
     This is true for all $i \in \{1, ..., n\}$, so $\sigma$ includes all of $\pi_1, ..., \pi_k$ in its decomposition.
 
-    It remains to show that $\sigma$ includes \textit{only} $\pi_1, ..., \pi_k$ in its decomposition. Suppose for contradiction that some cycle $\tau \notin \{\pi_1, ..., \pi_k\}$ were included in the decomposition of $\sigma$. If this were the case, then the tuple representation of $\tau$ would contain an $x_0 \in X$ that is not in the tuple representation of any of $\pi_1, ..., \pi_k$. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ were captured by some cycle $\pi_1, ..., \pi_k$.
+    It remains to show that $\sigma$ includes \textit{only} $\pi_1, ..., \pi_k$ in its decomposition. Suppose for contradiction that some cycle $\tau \notin \{\pi_1, ..., \pi_k\}$ were included in the decomposition of $\sigma$. If this were the case, then $\tau$ would contain an $x_0 \in X$ that is not in any of $\pi_1, ..., \pi_k$. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ are in some cycle $\pi_1, ..., \pi_k$.
 \end{proof}
 
 \begin{lemma}
