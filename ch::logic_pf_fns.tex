@@ -571,13 +571,13 @@ For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 \begin{defn}
     (Relation).
 
-    Let $S$ be a set. A \textit{relation (on $S$)} is simply a subset of $S \times S$. Given a relation $R$ on $S$, we write $xRy$ to mean $(x, y) \in R$, and say ``$x$ is related to $y$'' iff $xRy$.
+    Let $S$ and $T$ be sets. A \textit{relation on $S$ and $T$} is simply a subset of $S \times T$. Given a relation $R$ on $S$ and $T$, we write $xRy$ to mean $(x, y) \in R$, and say ``$x$ is related to $y$'' iff $xRy$.
 \end{defn}
 
 \begin{defn}
     (Inverse relation).
 
-    Given a relation $R$ on a set $S$, the \textit{inverse relation} to $R$ is the relation on $S$ denoted by $R^{-1}$ and defined by $R^{-1} := \{(y, x) \in S \times S \mid (x, y) \in R\}$. That is, $yR^{-1}x$ iff $xRy$.
+    Given a relation $R$ on set $S$ and $T$, the \textit{inverse relation} to $R$ is the relation on $T$ and $S$ denoted by $R^{-1}$ and defined by $R^{-1} := \{(y, x) \in T \times S \mid (x, y) \in R\}$. That is, $yR^{-1}x$ iff $xRy$.
 \end{defn}
 
 \subsection*{Equivalence relations}
@@ -585,7 +585,7 @@ For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 \begin{defn}
     (Equivalence relation).
 
-    An \textit{equivalence relation} on a set $S$ is a relation on $S$ that satisfies the following properties:
+    An \textit{equivalence relation on a set $S$} is a relation on $S$ and $S$ that behaves like the equality relation, and thus satisfies the following properties:
 
     \begin{itemize}
         \item (Reflexivity). $\forall x \in S \spc xRx$.
@@ -608,8 +608,8 @@ For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 
 \begin{defn}
     (Uniqueness).
-    
-    $\exists !x \spc P(x) := (\exists x_0 \spc P(x_0)) \text{ and } (\forall x \spc P(x) \implies x = x_0)$.
+
+    We say that there exists a \textit{unique} entity $x$ satisfying a predicate $P$, and write $\exists !x \spc P(x)$, iff there is only one entity $x$ for which $P(x)$ is true. Formally, we have ${\exists !x \spc P(x) := (\exists x \spc P(x)) \text{ and } (\forall y \spc P(y) \implies y = x)}$.
 \end{defn}
 
 \begin{defn}
@@ -694,11 +694,13 @@ For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 \begin{theorem}
     (Invertibility characterization).
 
-    If $X$ and $Y$ are sets and $f:X \rightarrow Y$ is an invertible function, then the inverse function $f^{-1}:Y \rightarrow X$ satisfies $f \circ f^{-1} = \text{id}_Y$ and $f^{-1} \circ f = \text{id}_X$.
+    If $X$ and $Y$ are sets and $f:X \rightarrow Y$ is an invertible function, then the inverse function $f^{-1}:Y \rightarrow X$ satisfies $f^{-1}(f(x)) = x$ for all $x \in X$ and $f(f^{-1}(y)) = x$ for all $y \in Y$. That is, $f^{-1} \circ f = \text{id}_X$ and $f \circ f^{-1} = \text{id}_Y$.
 \end{theorem}
 
 \begin{proof}
+    For all $x \in X$, we have $(x, f(x)) \in f$, and, since $f^{-1}$ is the inverse relation of $f$, we have $(f(x), x) \in f^{-1}$. Thus $f^{-1}(f(x)) = x$ for all $x \in X$.
     
+    Similarly, for all $y \in Y$, we have $(y, f^{-1}(y)) \in f^{-1}$, and, since $f$ is the inverse relation of $f^{-1}$, we have $(f^{-1}(y), y) \in f$. Thus $f(f^{-1}(y)) = y$ for all $y \in Y$.
 \end{proof}
 
 \begin{defn}
@@ -744,6 +746,12 @@ For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 
     ($\impliedby$). Assume $f$ has a left inverse $\ell$. We need to show the implication $\forall x, y \in X \spc f(x) = f(y) \implies x = y$. So, assume $f(x) = f(y)$. Applying the left inverse to both sides of this equation, we obtain $x = y$, as desired. 
 \end{proof}
+
+\begin{remark}
+    (One-to-one functions and uniqueness).
+
+    Notice that the statement ``$x$ is the unique object satisfying $P(x)$'' is equivalent to the statement ``$P(x)$ and $P$ is one-to-one''.
+\end{remark}
 
 \begin{defn}
     (Onto functions).
