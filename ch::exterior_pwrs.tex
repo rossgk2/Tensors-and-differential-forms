@@ -61,27 +61,25 @@ In order to formalize the idea of swapping
 \end{defn}
 
 \begin{lemma}
-    $x \in \cyc_\sigma(y) \iff \cyc_\sigma(x) = \cyc_\sigma(y)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
-\end{lemma}
-
-\begin{proof}
-    Suppose $x \in \cyc_\sigma(y)$. Since $x \in \cyc_\sigma(y)$, we have $x = \sigma^i(y) \iff y = \sigma^{-i}(x)$ for some $i > 0$. Since $y \in \cyc_\sigma(y)$, we also have $y = \sigma^j(y)$ for some $j > 0$. Without loss of generality, we can assume $j - i > 0 \iff j > i$. (We show that there exists $k$ such that $y = \sigma^k(y)$, where $k > i$: if $j \ngtr i$, then there exists an  $n \geq 0$ such that $nj > i$; applying $\sigma^{nj}$ to both sides of $y = \sigma^j(y)$, we obtain $y = \sigma^{nj + 1}(y)$, where $nj + 1 > nj > i$. Thus, $k := nj + 1 > i$ is such that $y = \sigma^k(y)$). Combining these two equations, we have $y = \sigma^j(\sigma^{-i}(x)) = \sigma^{j - i}(x)$. So, we know $y = \sigma^{j - i}(x)$, where $j - i > 0$, i.e., $y \in \cyc_\sigma(x)$.
-\end{proof}
-
-\begin{lemma}
     (Being in a cycle is an equivalence relation).
 
-    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation.
+    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation. Additionally, if $\sigma$ is a cycle and $x \in \sigma$, then that cycle is the cycle of $\sigma$ about $x$.
 \end{lemma}
 
 \begin{proof}
     \mbox{} \\
     \begin{enumerate}
-        \item ($x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and $x \in X$). Clearly, we have $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
-        
-        \item ($x \in \cyc_\sigma(y) \iff y \in \cyc_\sigma(x)$ for all $x, y \in X$). If $x \in \cyc_\sigma(y)$ then $\cyc_\sigma(y) = \cyc_\sigma(x)$. We have $y \in \cyc_\sigma(y) = \cyc_\sigma(x)$ by reflexivity.
+        \item (Reflexivity: $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and $x \in X$). Clearly, we have $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
 
-        \item ($x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z) \implies x \in \cyc_\sigma(z)$ for all $x, y, z \in X$).
+        \item (Transitivity: $x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z) \implies x \in \cyc_\sigma(z)$ for all $x, y, z \in X$). Let $x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z)$. Then $x = \sigma^i(y)$ for some $i > 0$ and $y = \sigma^j(z)$ for some $j > 0$. Combining these equations, we have $x = \sigma^i(\sigma^j(z)) = \sigma^{i + j}(z)$, where $i + j > 0$, i.e., $x \in \cyc_\sigma(z)$.
+
+        \item (``Additionally''). An equivalent statement to the claim of ``Additionally'' is: $x \in \cyc_\sigma(y) \iff \cyc_\sigma(x) = \cyc_\sigma(y)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
+        
+        To show this, let $x, y \in X$ and suppose $x \in \cyc_\sigma(y)$. If we show $\cyc_\sigma(x) \subseteq \cyc_\sigma(y)$, then by permuting $x$ and $y$ we have that $\cyc_\sigma(y) \subseteq \sigma(x)$, and thus $\cyc_\sigma(x) = \cyc_\sigma(y)$. 
+        
+        So, it suffices to show $\cyc_\sigma(x) \subseteq \cyc_\sigma(y)$ for all $x, y \in X$. Suppose $x \in \cyc_\sigma(y)$. Let $z \in \cyc_\sigma(x)$. Since $x \in \cyc_\sigma(y)$, then by transitivity we have $z \in \cyc_\sigma(y)$.
+        
+        \item (Symmetry: $x \in \cyc_\sigma(y) \iff y \in \cyc_\sigma(x)$ for all $x, y \in X$). If $x \in \cyc_\sigma(y)$ then $\cyc_\sigma(y) = \cyc_\sigma(x)$ by the ``Additionally'' remark. We have $y \in \cyc_\sigma(y) = \cyc_\sigma(x)$ by reflexivity.
     \end{enumerate}
 \end{proof}
 
