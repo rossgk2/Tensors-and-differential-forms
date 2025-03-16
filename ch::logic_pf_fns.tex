@@ -556,7 +556,15 @@ Sometimes it's useful to take the Cartesian product of a set with itself multipl
 
 One important example is that the identity $\R^2 = \R \times \R$ can be interpreted to state that the plane ($\R^2$) can be thought of as the Cartesian product of the ``$x$-axis'' (the first $\R$) with the ``$y$-axis'' (the second $\R$).
 
-\newpage
+\subsubsection*{Abuse of notation}
+
+We now define a common abuse of notation related to Cartesian products:
+
+\begin{align*}
+    (\forall x_1, ..., x_n \in S) := (\forall (x_1, ..., x_n) \in S^n).
+\end{align*}
+
+For example, $\forall x, y \in S$ means $\forall (x, y) \in S^2$.
 
 \section{Relations}
 
@@ -587,22 +595,16 @@ One important example is that the identity $\R^2 = \R \times \R$ can be interpre
 \end{defn}
 
 \begin{defn}
+    (Equivalence class).
+\end{defn}
+
+\begin{defn}
 \label{ch::logic_pf_fns::defn::quotient_set}
 
     (Quotient set).
 \end{defn}
 
-\subsection*{Functions}
-
-Latin meanings of injective and surjective.
-
-\begin{defn}
-    (Function).
-    
-    Functions are also commonly called \textit{maps}, or \textit{mappings}.
-    
-    domain, codomain, range
-\end{defn}
+\section*{Functions}
 
 \begin{defn}
     (Uniqueness).
@@ -610,44 +612,186 @@ Latin meanings of injective and surjective.
     $\exists !x \spc P(x) := (\exists x_0 \spc P(x_0)) \text{ and } (\forall x \spc P(x) \implies x = x_0)$.
 \end{defn}
 
+\begin{defn}
+    (Function).
+
+    Let $X$ and $Y$ be sets. A relation $f$ on $X$ and $Y$ is said to be a \textit{function from $X$ to $Y$}, and is denoted $f:X \rightarrow Y$, iff for all $x \in X$ there exists a unique $y \in Y$ such that $(x, y) \in f$.
+
+    When $f$ is a function from $X$ to $Y$, we write $f(x) = y$ to mean $(x, y) \in f$.
+    
+    Functions are also commonly called \textit{mappings} or \textit{maps}. They are less commonly called \textit{unique assignments}\footnote{In mathematics-adjacent literature, it is common for authors to say something like ``suppose $f$ uniquely assigns objects from $X$ to objects in $Y$'' instead of saying ``suppose $f$ is a function from $X$ to $Y$''.}.
+\end{defn}
+
 \begin{remark}
     (Well-definedness and uniqueness).
     
-    What well-definedness refers to
-    
-    Any property which is unique is the output of a well-defined function
+    Technically, we should check the well-definedness of every function we define. It is obvious that many functions are well-defined, though, so we don't have to do this a lot of the time.
+
+    [have to do it when equivalence classes at play]
 \end{remark}
 
 \begin{defn}
-    (One-to-one, injection).
+    (Domain, codomain, image).
+
+    Let $X$ and $Y$ be sets, and let $f:X \rightarrow Y$ be a function. The set $X$ is called the \textit{domain of $f$} and the set $Y$ is called\footnote{You may have heard of the \textit{range} of a function in your precalculus class. We do not define the term ``range'' because it is ambiguous. Some authors use it to mean ``image'', and others use it to mean ``codomain''.} the \textit{codomain of $f$}.
+    
+    The \textit{image of a subset $X_1 \subseteq X$ under $f$}, denoted $f(X_1)$, is the subset of the codomain $Y$ that is obtained by applying $f$ to all elements of $X_1$:
+
+    \begin{align*}
+        f(X_1) := \{ y \in Y \mid \exists x \in X_1 \spc f(x) = y\}.
+    \end{align*}
+
+    The \textit{image of $f$} is defined to be the image of the domain under $f$, $\text{im}(f) := f(X)$.
+
+    The \textit{preimage of a subset $Y_1 \subseteq Y$ under $f$}, denoted $f^{-1}(Y_1)$, is the subset of the domain $X$ whose image is $Y_1$:
+
+    \begin{align*}
+        f^{-1}(Y_1) = \{ x \in X \mid f(x) \in Y_1 \}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+    (Function equality).
+
+    Let $X$ and $Y$ be sets. We define an equivalence relation $=$ on functions from $X$ to $Y$ so that \\ ${f = g \iff (f(x) = g(x) \text{ for all $x \in X$})}$.
+\end{defn}
+
+\begin{proof}
+    Checking that this $=$ is an equivalence relation is left to the reader.
+\end{proof}
+
+\begin{defn}
+    (Function composition).
+
+    Let $X, Y, Z$ be sets and consider functions $f:X \rightarrow Y$ and $g:Y \rightarrow Z$. The \textit{composition of $f$ with $g$} is the function $g \circ f:X \rightarrow Z$ defined by $(g \circ f)(x) := g(f(x))$.
 \end{defn}
 
 \begin{theorem}
-    (A function's inverse relation is a function iff the function is one-to-one).
+    (Function composition is associative).
+
+    Let $X_1, X_2, X_3, X_4$ be sets, and consider functions $f:X_1 \rightarrow X_2$, $g:x_2 \rightarrow X_3$, and $h:X_3 \rightarrow X_4$. We have $(h \circ g) \circ f = h \circ (g \circ f)$.
 \end{theorem}
 
-\begin{defn}
-    (Onto, surjection).
-\end{defn}
+\begin{proof}
+    We have $((h \circ g) \circ f)(x) = (h \circ g)(f(x)) = h(g(f(x)) = h((g \circ f)(x)) = (h \circ (g \circ f))(x)$. Since $((h \circ g) \circ f)(x) = (h \circ (g \circ f))(x)$ for all $x \in X$, then $h \circ (g \circ f) = (h \circ g) \circ f$. 
+\end{proof}
 
 \begin{defn}
-    (Bijection).
+    (Identity function).
+
+    Let $X$ be a set. The \textit{identity function on $X$} is the function $\text{id}_X$ defined by $\text{id}_X(x) = x$.
 \end{defn}
 
-\begin{theorem}
-    (A function is a bijection iff it is invertible).
-\end{theorem}
-
-left-inverse, right-inverse, relation to -jectivities
-
-addition of fns, scaling of fns?, image-set
-
-preimages (not neccess fns)
+\subsubsection*{Inverse functions}
 
 \begin{defn}
 \label{ch::logic_pf_fns::defn::inverse_fn}
+    (Invertiblity).
 
-    (Inverse function).
+    A function is said to be \textit{invertible} iff its inverse relation $f^{-1}$ is a function.
+\end{defn}
+
+\begin{theorem}
+    (Invertibility characterization).
+
+    If $X$ and $Y$ are sets and $f:X \rightarrow Y$ is an invertible function, then the inverse function $f^{-1}:Y \rightarrow X$ satisfies $f \circ f^{-1} = \text{id}_Y$ and $f^{-1} \circ f = \text{id}_X$.
+\end{theorem}
+
+\begin{proof}
+    
+\end{proof}
+
+\begin{defn}
+    (Left and right inverses).
+
+    Let $X$ and $Y$ be sets, and let $f:X \rightarrow Y$ be a function. A \textit{left-inverse} of $f$ is a function $\ell:Y \rightarrow X$ such that $\ell \circ f = \text{id}_X$. A \textit{right-inverse} of $f$ is a function $r:Y \rightarrow X$ such that $f \circ r = \text{id}_Y$.
+\end{defn}
+
+\begin{theorem}
+    A function is invertible iff it has a left inverse and a right inverse.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+
+    ($\implies$). If $f$ is invertible, then $f^{-1}$ is both a left and right inverse.
+
+    ($\impliedby$). Suppose $f$ has a left inverse $\ell$ and a right inverse $r$. Then $\ell = \ell \circ \text{id}_Y = \ell \circ (f \circ r) = (\ell \circ f) \circ r = \text{id}_X \circ r = r$. If we define $g := l = r$, then $g$ satisfies $f \circ g = f \circ r = \text{id}_Y$ and $g \circ f = \ell \circ f = \text{id}_X$, so $g$ is the inverse of $f$. This shows the inverse of $f$ exists.
+\end{proof}
+
+\subsubsection*{'jections}
+
+\begin{defn}
+    (One-to-one functions).
+
+    Let $X$ and $Y$ be sets. A function $f:X \rightarrow Y$ is said to be \textit{one-to-one} iff for all $x, y \in X$ implies $x \neq y \implies f(x) \neq f(y)$. That is, a function is one-to-one iff are mapped to the same output by the function.
+
+    Taking the contrapositive of this implication, we see that $f$ is one-to-one iff for all $x, y \in X$ implies $f(x) = f(y) \implies x = y$.
+\end{defn}
+
+\begin{theorem}
+    Let $f$ be a function. Then $f$ is one-to-one $\iff$ $f$ has a left inverse.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+
+    ($\implies$). Assume $f$ is one-to-one.
+    
+    First, let $y \in f(X)$. Since $y \in f(X)$, there is some $x \in X$ such that $y = f(x)$; since $f$ is one-to-one, there is no $x_1 \in X - \{x\}$ such that $y = f(x_1)$. So, we see that for every $y \in f(X)$ there is a unique $x$ such that $y = f(x)$.
+    
+    Thus, we may define $\ell:f(X) \rightarrow X$ by setting $\ell(y)$ to be the unique $x$ for which $f(x) = y$. Clearly, we have $\ell(f(x)) = x$ for all $x \in X$, so $\ell$ is a left inverse of $f$.
+
+    ($\impliedby$). Assume $f$ has a left inverse $\ell$. We need to show the implication $\forall x, y \in X \spc f(x) = f(y) \implies x = y$. So, assume $f(x) = f(y)$. Applying the left inverse to both sides of this equation, we obtain $x = y$, as desired. 
+\end{proof}
+
+\begin{defn}
+    (Onto functions).
+
+    Let $X$ and $Y$ be sets. A function $f:X \rightarrow Y$ is said to be \textit{onto} iff for all $y \in Y$ there exists an $x \in X$ such that $f(x) = y$. That is, a function is onto iff every possible output is mapped to by the function. 
+\end{defn}
+
+\begin{theorem}
+    Let $f$ be a function. $f$ is onto $\iff$ $f$ has a right inverse.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+
+    ($\implies$). Assume $f$ is onto. Then for all $y \in Y$ there exists\footnote{You may wonder at why we write $x$ in the definition of an onto function rather than the $x_y$ here. The answer is that we only write $x_y$ when it useful. In a proof, the notation is useful; in the particular definition we gave, it is not.} an $x_y \in X$ such that $y = f(x)$. Set $X_1 := \cup_{y \in Y} x_y$. Define a right inverse $r:Y \rightarrow X_1 \subseteq X$ by $r(y) = x_y$. We have $f(r(x)) = f(x_y) = y$, so $r$ is a right inverse of $f$.
+
+    ($\impliedby$). Assume $f$ has a right inverse. We need to show that for all $y \in Y$ there exists an $x_y \in X$ such that $y = f(x)$. This is simple: we have $x_y = r(y)$, since $f(r(y)) = y$.
+\end{proof}
+
+\begin{remark}
+    (Left and right inverses of noninvertible functions are not unique).
+
+    Left and right inverses of noninvertible functions are not unique.
+
+    (Left inverses). If $f$ is not onto, then additional left inverses of $f$ can be constructed from an existing left inverse $\ell$ of $f$, since it is irrelevant how any left inverse acts on elements of $Y$ that are not in the image of $f$. More specifically, the function $\widetilde{\ell}_g$, defined below, is a left inverse for any function $g:(Y - f(X)) \rightarrow X$:
+
+    \begin{align*}
+        \widetilde{\ell}_g(y) :=
+        \begin{cases}
+            \ell(y) & y \in f(X) \\
+            g(y) & y \notin f(X)
+        \end{cases}.
+    \end{align*}
+
+    
+    (Right inverses). If $f$ is not one-to-one, then for some $y \in Y$, there are at least two $x_y \in X$ such that $y = f(x_y)$. Thus, there are at least two possible values for the set $X_1 := \cup_{y \in Y} x_y$, meaning there are at least two possible values right inverses $r:Y \rightarrow X_1 \subseteq X$.
+\end{remark}
+
+\begin{remark}
+    (Injections and surjections).
+
+    One-to-one functions are also called \textit{injections}, or \textit{injective} functions, and onto functions are called \textit{surjections}, or \textit{surjective} functions.
+\end{remark}
+
+\begin{defn}
+    (Bijection).
+
+    A function is a \textit{bijection} iff it is an injection and a surjection. That is, a bijection is a function that is both one-to-one and onto.
 \end{defn}
 
 \begin{theorem}
@@ -655,22 +799,24 @@ preimages (not neccess fns)
     (Invertible iff bijection).
 \end{theorem}
 
+\begin{proof}
+    $f$ is invertible iff it has a left inverse and a right inverse. $f$ has a left inverse iff it is one-to-one, and has a right inverse iff it is onto. Therefore $f$ is invertible iff it is one-to-one and onto, i.e., if it is a bijection.
+\end{proof}
+
+\begin{remark}
+    (Restrictions of surjections are bijections).
+
+    The following almost-tautological statement can come in very handy when proving that a function is invertible: if $f:X \rightarrow Y$ is one-to-one, then $f:X \rightarrow f(X)$ is a bijection.
+
+    For example, since $(-x)^2 = x^2$ for all $x \in \R$, then $f:\R \rightarrow \R$ defined by $f(x) = x^2$ is not one-to-one and is thus not invertible. On the other hand, the function $g: \{x \geq 0 \mid x \in \R\} \rightarrow \{x \geq 0 \mid x \in \R\}$ defined by the same formula, $g(x) = x^2$, is a bijection and is thus invertible.
+\end{remark}
+
 \subsection*{Cardinality of sets}
 
 It was mentioned earlier that sets can be finite or infinite. We formally define
 
-\begin{theorem}
-    (Left inverse and right inverse implies two-sided inverse). Let $X$ and $Y$ be sets, and let $f:X \rightarrow Y$ be a function. A \textit{left-inverse} of $f$ is a function $\ell:Y \rightarrow X$ such that $\ell \circ f = I_X$, where $I_X$ is the identity on $X$. A \textit{right-inverse} of $f$ is a function $r:Y \rightarrow X$ such that $f \circ r = I_Y$, where $I_Y$ is the identity on $Y$.
-    
-    If $f:X \rightarrow Y$ has a left-inverse $\ell$ and a right-inverse $r$, then they must be equal, and we denote them by $f^{-1} := \ell = r$.
-\end{theorem}
-
-\begin{proof}
-    Let $\ell$ and $r$ be left- and right- inverses of $f$, respectively. Then by associativity of function composition, $\ell \circ f \circ r = \ell \circ I_Y = I_X \circ r$. Therefore $\ell = r$.
-\end{proof}
-
 \begin{defn}
     (Proof by induction).
     
-    Defn?
+    
 \end{defn}

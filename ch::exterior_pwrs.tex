@@ -1,11 +1,21 @@
 \chapter{Exterior powers, the determinant, and orientation}
 \label{ch::exterior_pwrs}
 
-This chapter focuses on \textit{antisymmetric tensors}. We need to know about these because differential forms, when evaluated a point, are antisymmetric tensors. Antisymmetric tensors are also closely related to the determinant; we will define the determinant and explore this relationship in the second part of this chapter. We will also show how to use antisymmetric tensors- or, more specifically, elements of a \textit{top exterior power}- to give \textit{orientation} to a finite dimensional vector space. Lastly, we investigate \textit{pushing forward} and \textit{pulling back} elements of top exterior powers, as this concept will be necessary for discussing integration of differential forms in Chapter \ref{ch::diff_forms}.
+This chapter focuses on \textit{antisymmetric} mathematical objects. Loosely speaking, a mathematical object is antisymmetric iff swapping two of its components is equivalent to negating one of the components.
+
+In the first part of the chapter, we define \textit{antisymmetric tensors}. Then we define \textit{exterior powers}, which are vector spaces of antisymmetric tensors that are closed under addition and scalar multiplication. We need to know about exterior powers because differential forms, when evaluated a point, are elements of exterior powers.
+
+In the second part of the chapter, we measure the volume of a parallelapiped spanned by multiple vectors with the \textit{determinant}, which is a multilinear and \textit{antisymmetric function}. Since the determinant is antisymmmetric, it has a natural relationship with exterior powers (namely, the \textit{top exterior power}), which we explore.
+
+In the third part of the chapter, we show that the notion of giving an \textit{orientation} to a finite dimensional vector space is also fundamentally antisymmetric. We show the determinant and elements of top exterior power are fundamental to the concept of orientation.
+
+Lastly, in the fourth part of the chapter, we investigate \textit{pushing forward} and \textit{pulling back} elements of top exterior powers, as this concept will be necessary for discussing integration of differential forms in Chapter \ref{ch::diff_forms}.
 
 \section{Exterior powers}
 
 \subsection*{Permutations}
+
+In order to formalize the idea of swapping
 
 \begin{defn}
     (Permutations on $\{1, ..., n\}$).
@@ -37,7 +47,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
         \item We also have $\sigma^{-1}((\sigma(1), ..., \sigma(n))) = (\sigma^{-1}(\sigma(1)), ..., \sigma^{-1}(\sigma(n)) = (1, ..., n)$.
     \end{itemize} 
     
-    Thus, $\text{sort}_\sigma = \sigma^{-1}$. Since are many ways to describe $\text{sort}_\sigma$ as a composition of transpositions\footnote{See Definition \ref{ch::appendix::defn::bubble_sort} in the appendix for a description of one such description, the \textit{bubble sort algorithm}.}, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are transpositions. The inverse of a transposition is a transposition, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are transpositions. So, we have shown that $\sigma$ decomposes into a composition of transpositions. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
+    Thus, $\text{sort}_\sigma = \sigma^{-1}$. Since there are many ways to describe $\text{sort}_\sigma$ as a composition of transpositions\footnote{See Definition \ref{ch::appendix::defn::bubble_sort} in the appendix for a description of one such description, the \textit{bubble sort algorithm}.}, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are transpositions. The inverse of a transposition is a transposition, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are transpositions. So, we have shown that $\sigma$ decomposes into a composition of transpositions. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
     
     % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are transpositions. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
 \end{proof}
@@ -45,62 +55,55 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
 \begin{defn}
     (Cycle).
 
-    A permutation $\sigma$ on a set $X$ is a \textit{cycle (of $\sigma$ about $x \in X_0$)} iff there exist $x_0 \in X$ and a positive integer $\ell$ such that $\sigma^{\ell - 1}(x_0) = x_0$. The \textit{length} of a cycle about $x_0$ is $\text{argmin}_\ell \sigma^{\ell - 1}(x_0) = x_0$.
-    
-    We denote a cycle about $x_0$ with length $k$ as the following tuple without commas: $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$.
+    Let $X$ be a finite set. When $\sigma$ is a permutation on $X$, we define the \textit{cycle of $\sigma$ about $x \in X$} to be the set ${\cyc_\sigma(x) := \{ \sigma^i(x) \mid i \in \Z \cap [1, \infty) \}}$ of all elements of $X$ that are obtained by repeatedly applying $\sigma$ to $x$.
+
+    We say that a permutation $\sigma$ is a \textit{cycle} iff there exists an $x \in X$ such that $\sigma(X) = \cyc_\sigma(x)$. 
+\end{defn}
+
+\begin{defn}
+    (Cycle notation).
+
+    We use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_k \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 1\}$ and $x_k \mapsto x_0$. Clearly, this permutation is a cycle.
+
+    In a slight abuse of notation, we write ``$x \in \sigma$'' to mean that $x$ is one of the elements appearing in the tuple-without-commas notation for $\sigma$.
 \end{defn}
 
 \begin{lemma}
     (Facts about cycles).
-    
-    Consider a permutation $\sigma$ on a set $X$.
-    
+
     \begin{enumerate}
-        \item The cycle of $\sigma$ about $x_0$ is unique for all $x_0 \in X$.
-        \item If $x_1, ..., x_n \in X$ and $\sigma = \begin{pmatrix} 1 & \hdots & n \end{pmatrix}$, then $\begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix} = \begin{pmatrix} x_{\sigma^i(1)} & \hdots & x_{\sigma^i(n)} \end{pmatrix}$ for all positive integers $i \geq 1$.
-        \begin{itemize}
-            \item For example, using $\sigma = \begin{pmatrix}
-            1 & 2 & 3 \end{pmatrix}$ and $i \in \{1, 2\}$ gives $\begin{pmatrix} x_1 & x_2 & x_3 \end{pmatrix} = \begin{pmatrix} x_3 & x_1 & x_2 \end{pmatrix} = \begin{pmatrix} x_2 & x_3 & x_1 \end{pmatrix}$.
-        \end{itemize}
-        \item If a cycle of $\sigma$ has $x_0 \in X$ in its tuple representation, then that cycle is the cycle of $\sigma$ about $x_0$.
-    \end{enumerate}
+        \item If $\sigma$ is a cycle, then the $x \in X$ for which $\sigma(X) = \cyc_\sigma(x)$ is unique.
+        \item If $x \in X$ is in a cycle, then that cycle is the cycle about $x$.
+        \item $\begin{pmatrix} x_0 & x_1 & \hdots & x_k \end{pmatrix}
+        =
+        \begin{pmatrix} x_k & x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
+        =
+        ...
+        =
+        \begin{pmatrix} x_1 & & \hdots & x_k & x_0 \end{pmatrix}$
+        \end{enumerate}
+        \item The cycle of $\sigma$ about $x$ is equal to the cycle consisting of $\begin{pmatrix} x & \sigma(x) & \hdots & \sigma^{k - 1}(x) \end{pmatrix}$, where $k = \text{argmin}_\ell \sigma^{\ell - 1}(x) = x$.
 \end{lemma}
 
 \begin{proof}
-    \mbox{} \\ \indent
+    \mbox{} \\
     \begin{enumerate}
-        \item Suppose $x_0$ appears in two different cycles. The lengths $k$ and $\ell$, $k \neq \ell$, of these cycles are ${k = \text{argmin}_r \sigma^{k - 1}(x_0) = x_0}$ and ${\ell = \text{argmin}_s \sigma^{s - 1}(x_0) = x_0}$. These argmins are clearly equal, so $k = \ell$, which contradicts the fact $k \neq \ell$. Thus the cycles must be the same.
+        \item 
+        \item Suppose $x \in \sigma$, where $\sigma = \cyc_\pi(y)$ for some permutation $\pi$ and some $y \in X$. So, $x \in \cyc_\pi(y)$.
         
-        \item Let $\pi = \begin{pmatrix} x_1 & \hdots & x_n \end{pmatrix}$. We need to show that $\pi$, which is the cycle of itself about $x_1$, is also the cycle of itself about $x_{\sigma^i(1)}$ for all $i \in \{1, ..., n\}$. Since as $i$ varies over $\{1, ..., n\}$, the expression $\sigma^i(1)$ varies over $\{1, ..., n\}$, it is equivalent to show that $\pi$ is the cycle of itself about $x_j$ for all $j \in \{1, ..., n\}$.
-        
-        By the definition of the tuple-without-commas notation for cycles, we have 
+        We need to show that $\cyc_\pi(y) = \cyc_\pi(x)$. Since $x \in \cyc_\pi(y)$, we have $x = \pi^i(y) \iff y = \pi^{-i}(x)$ for some $i$. Since $y \in \cyc_\pi(y)$, we also have $y = \pi^j(y)$ for some $j$. Without loss of generality, we can assume $j - i > 0 \iff j > i$. (We show that there exists $k$ such that $y = \pi^k(y)$, where $k > i$: if $j \ngtr i$, then there exists an  $n \geq 0$ such that $nj > i$; applying $\pi^{nj}$ to both sides $y = \pi^j(y)$, we obtain $y = \pi^{nj + 1}(y)$, where $nj + 1 > nj > i$. Thus, $k := nj + 1 > i$ is such that $y = \pi^k(y)$). Combining these two equations, we have $y = \pi^j(\pi^{-i}(x)) = \pi^{j - i}(x)$. So, we know $y = \pi^{j - i}(x)$, where $j - i > 0$, i.e., $y \in \cyc_\pi(x)$.
 
-        \begin{align*}
-            x_1 = x_1, x_2 = \pi(x_1), ..., x_j = \pi^{j - 1}(x_1). \tag{1}
-        \end{align*}
+        Overall, we've shown that, for all $x,y \in X$, if $x \in \cyc_\pi(y)$ then $y \in \cyc_\pi(x)$.
         
-        So, $x_1 = \pi^{-(j - 1)}(x_j)$. By definition of the cycle of $\pi$ about $x_1$, we also have $x_1 = \pi^{k - 1}(x_1)$, where $k = \text{argmin}_\ell \pi^{\ell - 1}(x_1) = x_1$. Substituting $x_1 = \pi^{-(j - 1)}(x_j)$ into $x_1 = \pi^{k - 1}(x_1)$, we obtain
-        
-        \begin{align*}
-            x_1 = \pi^{(k - 1) - (j - 1)}(x_j). \tag{2}
-        \end{align*}
-
-        Equation (2) maps $x_j$ to $x_1$, and equation (1) maps $x_1$ to $x_j$. Combining these two equations, we can map $x_j$ to $x_j$:
-        
-        \begin{align*}
-            x_j = \pi^{j - 1}(\pi^{(k - 1) - (j - 1)}(x_j)) = \pi^{k - 1}(x_j).
-        \end{align*}
-        
-        Since $\pi^{k - 1}(x_j) = x_j$, then $\pi$ is the cycle of $\pi$ about $x_j$.
-        
-        \item We can use (2) to obtain an equivalent tuple that has $x_0$ as its first element. This tuple represents the cycle of $\sigma$ about $x_0$.
+        \item Follows directly from (2)
     \end{enumerate}
 \end{proof}
+
 
 \begin{theorem}
     (Every permutation is a composition of cycles).
 
-    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. Furthermore, the set of cycles involved in the decomposition is unique.
+    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. Furthermore, the set of cycles in the decomposition uniquely corresponds to $\sigma$.
 \end{theorem}
 
 \begin{proof}
@@ -111,7 +114,7 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
         \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$ of length $\ell$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
     \end{itemize}
 
-    Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P = \prod_{\pi \in C} \pi$.
+    Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P := \prod_{\pi \in C} \pi$.
     
     To prove this, let $x \in X$. By the previous lemma, there is a unique cycle $\tau_x \in C$ of $\sigma$ that has $x$ in its tuple representation. Since no other cycles from $C$ have $x$ in their tuple representation, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \tau_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x$ in the tuple representation of $\sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. Since $\tau_x \in C$, we have $P(x) = \tau_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$. Since $X$ is finite, then $C$ is finite, so $\sigma = \pi_k \circ ... \circ \pi_1$ for some $k$, where $\pi_1, ..., \pi_k$ are cycles, as desired.
 
@@ -141,6 +144,12 @@ This chapter focuses on \textit{antisymmetric tensors}. We need to know about th
         \item It changes the elements within cycles without changing the number of cycles
     \end{enumerate}
 \end{lemma}
+
+\begin{remark}
+    (Comparing types of permutation decompositions).
+    
+    Why is the decomposition of a permutation into cycles unique (up to order), while the decomposition of a permutation into transpositions is not? The core reason is that different cycles cannot ``interfere'' with each other- cycles are either disjoint or equal- while permutations can ``interfere'' with one another. \textbf{show more}
+\end{remark}
 
 \begin{defn}
     (Sign of a permutation).
