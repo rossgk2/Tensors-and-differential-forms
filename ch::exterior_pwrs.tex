@@ -34,7 +34,7 @@ In order to formalize the idea of swapping
 \begin{theorem}
     (Every permutation is a composition of transpositions).
 
-    Every permutation $\sigma$ on a finite set can be nonuniquely decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions.
+    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions. Note, the set of cycles in the decomposition does not uniquely coorespond to $\sigma$.
 \end{theorem}
 
 \begin{proof}
@@ -57,48 +57,53 @@ In order to formalize the idea of swapping
 
     Let $X$ be a finite set. When $\sigma$ is a permutation on $X$, we define the \textit{cycle of $\sigma$ about $x \in X$} to be the set ${\cyc_\sigma(x) := \{ \sigma^i(x) \mid i \in \Z \cap [1, \infty) \}}$ of all elements of $X$ that are obtained by repeatedly applying $\sigma$ to $x$.
 
-    We say that a permutation $\sigma$ is a \textit{cycle} iff there exists an $x \in X$ such that $\sigma(X) = \cyc_\sigma(x)$. 
-\end{defn}
-
-\begin{defn}
-    (Cycle notation).
-
-    We use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_k \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 1\}$ and $x_k \mapsto x_0$. Clearly, this permutation is a cycle.
-
-    In a slight abuse of notation, we write ``$x \in \sigma$'' to mean that $x$ is one of the elements appearing in the tuple-without-commas notation for $\sigma$.
+    We say that a permutation $\sigma$ is a \textit{cycle} iff the set $\{x \in X \mid \sigma(x) \neq x\}$ of elements in $X$ not fixed by $\sigma$ is equal to $\cyc_\sigma(x)$ for some $x \in X$.
 \end{defn}
 
 \begin{lemma}
-    (Facts about cycles).
+    $x \in \cyc_\sigma(y) \iff \cyc_\sigma(x) = \cyc_\sigma(y)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
+\end{lemma}
 
-    \begin{enumerate}
-        \item If $\sigma$ is a cycle, then the $x \in X$ for which $\sigma(X) = \cyc_\sigma(x)$ is unique.
-        \item If $x \in X$ is in a cycle, then that cycle is the cycle about $x$.
-        \item $\begin{pmatrix} x_0 & x_1 & \hdots & x_k \end{pmatrix}
-        =
-        \begin{pmatrix} x_k & x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
-        =
-        ...
-        =
-        \begin{pmatrix} x_1 & & \hdots & x_k & x_0 \end{pmatrix}$
-        \end{enumerate}
-        \item The cycle of $\sigma$ about $x$ is equal to the cycle consisting of $\begin{pmatrix} x & \sigma(x) & \hdots & \sigma^{k - 1}(x) \end{pmatrix}$, where $k = \text{argmin}_\ell \sigma^{\ell - 1}(x) = x$.
+\begin{proof}
+    Suppose $x \in \cyc_\sigma(y)$. Since $x \in \cyc_\sigma(y)$, we have $x = \sigma^i(y) \iff y = \sigma^{-i}(x)$ for some $i > 0$. Since $y \in \cyc_\sigma(y)$, we also have $y = \sigma^j(y)$ for some $j > 0$. Without loss of generality, we can assume $j - i > 0 \iff j > i$. (We show that there exists $k$ such that $y = \sigma^k(y)$, where $k > i$: if $j \ngtr i$, then there exists an  $n \geq 0$ such that $nj > i$; applying $\sigma^{nj}$ to both sides of $y = \sigma^j(y)$, we obtain $y = \sigma^{nj + 1}(y)$, where $nj + 1 > nj > i$. Thus, $k := nj + 1 > i$ is such that $y = \sigma^k(y)$). Combining these two equations, we have $y = \sigma^j(\sigma^{-i}(x)) = \sigma^{j - i}(x)$. So, we know $y = \sigma^{j - i}(x)$, where $j - i > 0$, i.e., $y \in \cyc_\sigma(x)$.
+\end{proof}
+
+\begin{lemma}
+    (Being in a cycle is an equivalence relation).
+
+    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation.
 \end{lemma}
 
 \begin{proof}
     \mbox{} \\
     \begin{enumerate}
-        \item 
-        \item Suppose $x \in \sigma$, where $\sigma = \cyc_\pi(y)$ for some permutation $\pi$ and some $y \in X$. So, $x \in \cyc_\pi(y)$.
+        \item ($x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and $x \in X$). Clearly, we have $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
         
-        We need to show that $\cyc_\pi(y) = \cyc_\pi(x)$. Since $x \in \cyc_\pi(y)$, we have $x = \pi^i(y) \iff y = \pi^{-i}(x)$ for some $i$. Since $y \in \cyc_\pi(y)$, we also have $y = \pi^j(y)$ for some $j$. Without loss of generality, we can assume $j - i > 0 \iff j > i$. (We show that there exists $k$ such that $y = \pi^k(y)$, where $k > i$: if $j \ngtr i$, then there exists an  $n \geq 0$ such that $nj > i$; applying $\pi^{nj}$ to both sides $y = \pi^j(y)$, we obtain $y = \pi^{nj + 1}(y)$, where $nj + 1 > nj > i$. Thus, $k := nj + 1 > i$ is such that $y = \pi^k(y)$). Combining these two equations, we have $y = \pi^j(\pi^{-i}(x)) = \pi^{j - i}(x)$. So, we know $y = \pi^{j - i}(x)$, where $j - i > 0$, i.e., $y \in \cyc_\pi(x)$.
+        \item ($x \in \cyc_\sigma(y) \iff y \in \cyc_\sigma(x)$ for all $x, y \in X$). If $x \in \cyc_\sigma(y)$ then $\cyc_\sigma(y) = \cyc_\sigma(x)$. We have $y \in \cyc_\sigma(y) = \cyc_\sigma(x)$ by reflexivity.
 
-        Overall, we've shown that, for all $x,y \in X$, if $x \in \cyc_\pi(y)$ then $y \in \cyc_\pi(x)$.
-        
-        \item Follows directly from (2)
+        \item ($x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z) \implies x \in \cyc_\sigma(z)$ for all $x, y, z \in X$).
     \end{enumerate}
 \end{proof}
 
+\begin{defn}
+    (Cycle notation).
+
+    When $x_0, x_1, ..., x_{k - 1} \in X$, we use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 2\}$ and $x_{k - 1} \mapsto x_0$. Clearly, this permutation is a cycle.
+
+    Notice, with this definition, an arbitrary cycle $\sigma$ can be written as the tuple-without commas $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$ for some $x_0 \in X$.
+
+    In a slight abuse of notation, when $\sigma$ is a cycle, we write ``$x \in \sigma$'' or say ``$x$ is in $\sigma$'' to mean that $x$ is one of the elements appearing in the tuple-without-commas notation for $\sigma$.
+\end{defn}
+
+\begin{lemma}
+    $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
+        =
+        \begin{pmatrix} x_{k - 1} & x_0 & x_1 & \hdots & x_{k - 2} \end{pmatrix}
+        =
+        ...
+        =
+        \begin{pmatrix} x_1 & & \hdots & x_{k - 1} & x_0 \end{pmatrix}$ for all $x_0, x_1, ..., x_{k - 1} \in X$.
+\end{lemma}
 
 \begin{theorem}
     (Every permutation is a composition of cycles).
