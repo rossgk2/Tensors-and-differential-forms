@@ -13,17 +13,52 @@ Lastly, in the fourth part of the chapter, we investigate \textit{pushing forwar
 
 \section{Exterior powers}
 
-\subsection*{Permutations}
+\subsection*{Basic notions of antisymmetry}
 
-In order to formalize the idea of swapping
+First, we formalize the notion of swapping elements in a list and in a tensor.
 
 \begin{defn}
-    (Permutations on $\{1, ..., n\}$).
+    (Transposition).
+
+    A \textit{transposition} is a function $\{1, ..., n\} \rightarrow \{1, ..., n\}$ that swaps two elements and leaves all of the others fixed. That is, a transposition is a function $\sigma:\{1, ..., n\} \rightarrow \{1, ..., n\}$ for which there exist $i, j \in \{1, ..., n\}$, $i \neq j$, such that $\sigma(i) = j$, $\sigma(j) = i$, and $\sigma(k) = k$ for all $k \notin \{i, j\}$.
+\end{defn}
+
+\begin{defn}
+    (Transposition of a tensor).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. Given a transposition $\sigma$ and a tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define the map $(\cdot)^\sigma:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
+    
+    \begin{align*}
+        (\vv_1 \otimes ... \otimes \vv_i \otimes ... \otimes \vv_j \otimes ... \otimes \vv_k)^\sigma &:= \vv_{\sigma(1)} \otimes ... \otimes \vv_{\sigma(i)} \otimes ... \otimes \vv_{\sigma(j)} \otimes ... \otimes \vv_{\sigma(k)} \\
+        &= \vv_1 \otimes ... \otimes \vv_j \otimes ... \otimes \vv_i \otimes ... \otimes \vv_k.
+    \end{align*}
+
+    So, for example, if $\TT = \vv_1 \otimes \vv_2 \otimes \vv_3 + \vv_3 \otimes \vv_1 \otimes \vv_2$ and $\sigma$ is the transposition swapping $1$ and $2$, $\sigma(1) = 2$ and $\sigma(2) = 1$, then $\TT^\sigma = \vv_2 \otimes \vv_1 \otimes \vv_3 + \vv_3 \otimes \vv_2 \otimes \vv_1$.
+\end{defn}
+
+Now that we have notation for applying a transposition to every element in a tensor's decomposition, we can define antisymmetry.
+
+\begin{defn}
+    (Antisymmetry in terms of transpositions).
+    
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We say a tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
+\end{defn}
+
+The above is a characterization of antisymmetry in terms of a transposition. One can imagine that since any reordering of $1, ..., k$ can be achieved by a sequence of transpositions\footnote{This is an intuitive, yet unproven, claim. We formally prove this in Theorem \ref{ch::exterior_pwrs::thm::permutations_decomposition_into_transpositions}}, antisymmetry can be characterized in terms of what happens when a more general reordering like this is applied.
+
+Such reorderings are called \textit{permutations}. A basic understanding of permutations is crucial for further understanding of antisymmetry, so we briefly pause to study permutations now.
+
+\subsection*{Permutations}
+
+\begin{defn}
+    (Permutations).
     
     Let $X$ be any set. A \textit{permutation on $X$} is a bijection $X \rightarrow X$. Intuitively, a permutation on $X$ is thought of as redistributing the names of the elements of $X$.
     
     We use $S_n$ to denote the set of permutations on $\{1, ..., n\}$. Formally, $S_n := \{ \text{functions } \text{$\{1, ..., n\} \rightarrow \{1, ... n \}$} \}$.
 \end{defn}
+
+The definition of permutation allows for a more general definition of permutation.
 
 \begin{defn}
     (Transposition).
@@ -31,10 +66,13 @@ In order to formalize the idea of swapping
     A \textit{transposition} is a permutation that swaps two elements and leaves all of the others fixed. That is, a permutation $\sigma$ on a set $X$ is a transposition iff there exist $x_1, x_2 \in X$ such that $\sigma(x_1) = x_2$, $\sigma(x_2) = x_1$, and $\sigma(x) = x$ for all $x \in X - \{x_1, x_2\}$.
 \end{defn}
 
+Now, we prove an intuitive theorem which we alluded to earlier.
+
 \begin{theorem}
+\label{ch::exterior_pwrs::thm::permutations_decomposition_into_transpositions}
     (Every permutation is a composition of transpositions).
 
-    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions. Note, the set of cycles in the decomposition does not uniquely coorespond to $\sigma$.
+    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions. Note, the set of transpositions in the decomposition does not uniquely correspond to $\sigma$.
 \end{theorem}
 
 \begin{proof}
@@ -52,150 +90,44 @@ In order to formalize the idea of swapping
     % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are transpositions. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
 \end{proof}
 
-\begin{defn}
-    (Cycle).
-
-    Let $X$ be a finite set. When $\sigma$ is a permutation on $X$, we define the \textit{cycle of $\sigma$ about $x \in X$} to be the set ${\cyc_\sigma(x) := \{ \sigma^i(x) \mid i \in \Z \cap [1, \infty) \}}$ of all elements of $X$ that are obtained by repeatedly applying $\sigma$ to $x$.
-
-    We say that a permutation $\sigma$ is a \textit{cycle} iff the set $\{x \in X \mid \sigma(x) \neq x\}$ of elements in $X$ not fixed by $\sigma$ is equal to $\cyc_\sigma(x_0)$ for some $x_0 \in X$.
-
-    Given a cycle $\sigma$, we say ``$x \in \sigma$'', ``$x$ is in $\sigma$'', or that ``$\sigma$ contains $x$'' to mean \textbf{???}
-\end{defn}
-
-\begin{lemma}
-    (Being in a cycle is an equivalence relation).
-
-    Let $X$ be a finite set. The relation $R$ defined by $xRy \iff x \in \cyc_\sigma(y)$ is an equivalence relation. Additionally, if $\sigma$ is a cycle and $x \in \sigma$, then \textbf{$\sigma$ is equal to $\cyc_\sigma(x)$}. \textbf{but these are objects of different types; one is a function and one is a set} 
-\end{lemma}
-
-\begin{proof}
-    \mbox{} \\
-    \begin{enumerate}
-        \item (Reflexivity: $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and $x \in X$). Clearly, we have $x \in \cyc_\sigma(x)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
-
-        \item (Transitivity: $x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z) \implies x \in \cyc_\sigma(z)$ for all $x, y, z \in X$). Let $x \in \cyc_\sigma(y)$ and $y \in \cyc_\sigma(z)$. Then $x = \sigma^i(y)$ for some $i > 0$ and $y = \sigma^j(z)$ for some $j > 0$. Combining these equations, we have $x = \sigma^i(\sigma^j(z)) = \sigma^{i + j}(z)$, where $i + j > 0$, i.e., $x \in \cyc_\sigma(z)$.
-
-        \item (``Additionally''). An equivalent statement to the claim of ``Additionally'' is: $x \in \cyc_\sigma(y) \iff \cyc_\sigma(x) = \cyc_\sigma(y)$ for all permutations $\sigma$ on $X$ and all $x \in X$.
-        
-        To show this, let $x, y \in X$ and suppose $x \in \cyc_\sigma(y)$. If we show $\cyc_\sigma(x) \subseteq \cyc_\sigma(y)$, then by permuting $x$ and $y$ we have that $\cyc_\sigma(y) \subseteq \sigma(x)$, and thus $\cyc_\sigma(x) = \cyc_\sigma(y)$. 
-        
-        So, it suffices to show $\cyc_\sigma(x) \subseteq \cyc_\sigma(y)$ for all $x, y \in X$. Suppose $x \in \cyc_\sigma(y)$. Let $z \in \cyc_\sigma(x)$. Since $x \in \cyc_\sigma(y)$, then by transitivity we have $z \in \cyc_\sigma(y)$.
-        
-        \item (Symmetry: $x \in \cyc_\sigma(y) \iff y \in \cyc_\sigma(x)$ for all $x, y \in X$). If $x \in \cyc_\sigma(y)$ then $\cyc_\sigma(y) = \cyc_\sigma(x)$ by the ``Additionally'' remark. We have $y \in \cyc_\sigma(y) = \cyc_\sigma(x)$ by reflexivity.
-    \end{enumerate}
-\end{proof}
+Lastly, we present the following definition and theorem- the main reason for our excursion into permutations.
 
 \begin{defn}
-    (Cycle notation).
+    (Parity of a permutation).
 
-    When $x_0, x_1, ..., x_{k - 1} \in X$, we use the tuple-without-commas $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}$ to denote the permutation that sends $x_i \mapsto x_{i + 1}$ for $i \in \{0, 1, ..., k - 2\}$ and $x_{k - 1} \mapsto x_0$. Clearly, this permutation is a cycle. Notice, because every element of $X$ is in a unique cycle, then the cycles about each of $x_0, ..., x_{k - 1} \in X$ are all equal: $\begin{pmatrix} x_0 & x_1 & \hdots & x_{k - 1} \end{pmatrix}
-    =
-    \begin{pmatrix} x_{k - 1} & x_0 & x_1 & \hdots & x_{k - 2} \end{pmatrix}
-    =
-    ...
-    =
-    \begin{pmatrix} x_1 & & \hdots & x_{k - 1} & x_0 \end{pmatrix}$.
-
-    Also notice that, with this definition, an arbitrary cycle $\sigma$ can be written as the tuple-without commas $\begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{k - 1}(x_0) \end{pmatrix}$ for some $x_0 \in X$.
+    A permutation is said to have \textit{even parity}, or to be \textit{even}, iff it is equal to the composition of an even number of transpositions. A permutation is said to have \textit{odd parity}, or to be \textit{odd}, iff it is equal to the composition of an odd number of transpositions.
 \end{defn}
 
 \begin{theorem}
-    (Every permutation is a composition of cycles).
+    (The parity of a permutation is unique).
 
-    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. Furthermore, the set of cycles in the decomposition uniquely corresponds to $\sigma$.
+    A permutation cannot be both even and odd.
 \end{theorem}
-
-\begin{proof}
-    For each $x_0 \in X$:
-
-    \begin{itemize}
-        \item Consider the sequence $(x_0, \sigma(x_0), ..., \sigma^i(x_0), ...)$. Since $X$ is a finite set, then the pigeonhole principle implies that for some $i$ and $j$ with $j > i \geq |X|$ we have $\sigma^i(x_0) = \sigma^j(x_0)$. Applying $(\sigma^{-1})^i$ to each side of this equation, we have $\sigma^{j - i}(x_0) = x_0$. So, we see that there exists $k - 1$ such that $\sigma^{k - 1}(x_0) = x_0$. (Namely, $k - 1 = j - i \iff k = j - i + 1$).
-        \item Let $\ell$ be the smallest $k$ such that $\sigma^{k - 1}(x_0) = x_0$. We can define a cycle about $x_0$, $\sigma_{x_0} := \begin{pmatrix} x_0 & \sigma(x_0) & \hdots & \sigma^{\ell - 1}(x_0) \end{pmatrix}$.
-    \end{itemize}
-
-    Now let $C := \{ \sigma_{x_0} \mid x_0 \in X \}$ be the set of unique cycles produced by the above method. We claim that $\sigma = P$, where $P := \prod_{\pi \in C} \pi$.
-    
-    To prove this, let $x \in X$. There is a unique cycle $\tau_x \in C$ of $\sigma$ containing $x$. Since no other cycles from $C$ contain $x$, then when they act on $x$, they return $x$, unchanged, as output. Thus $P(x) = \tau_x(x)$. Our definition of $\sigma_{x_0}$ ensures that $\sigma_{x_0}(x) = \sigma(x)$ for any $x \in \sigma_{x_0}$; i.e., that $\pi(x) = \sigma(x)$ for all $\pi \in C$. Since $\tau_x \in C$, we have $P(x) = \tau_x(x) = \sigma(x)$ for all $x \in X$, and $\sigma = P = \prod_{\pi \in C} \pi$. Since $X$ is finite, then $C$ is finite, so $\sigma = \pi_k \circ ... \circ \pi_1$ for some $k$, where $\pi_1, ..., \pi_k$ are cycles, as desired.
-
-    \vspace{.5cm}
-
-    \newcommand{\tpi}{\widetilde{\pi}}
-
-    We now show that the set of cycles involved in the decomposition is unique. 
-    
-    For each $i \in \{1, ..., k\}$:
-    
-    \begin{itemize}
-        \item Let $Y_i$ be the set of elements of $X$ that are in $\pi_i$. For every $x \in Y_i$, the cycle $\pi_i$ is the unique cycle from $C$ with $x \in \pi_i$. Thus, $\sigma$ must include $\pi_i$ in its decomposition. (Otherwise, $\sigma$ would act on every $x \in Y_i$ as the identity; $\sigma(x) = x$!) 
-    \end{itemize}
-    
-    This is true for all $i \in \{1, ..., n\}$, so $\sigma$ includes all of $\pi_1, ..., \pi_k$ in its decomposition.
-
-    It remains to show that $\sigma$ includes \textit{only} $\pi_1, ..., \pi_k$ in its decomposition. Suppose for contradiction that some cycle $\tau \notin \{\pi_1, ..., \pi_k\}$ were included in the decomposition of $\sigma$. If this were the case, then $\tau$ would contain an $x_0 \in X$ that is not in any of $\pi_1, ..., \pi_k$. This is a contradiction because the algorithm that produced $C$ ensured that all $x_0 \in X$ are in some cycle $\pi_1, ..., \pi_k$.
-\end{proof}
-
-\begin{lemma}
-    Let $\sigma$ be a permutation, $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are cycles. If $\pi$ is a transposition, then the permutation $\pi \circ \sigma$ either has
-
-    \begin{enumerate}
-        \item one more cycle than $\sigma$
-        \item one fewer cycle than $\sigma$
-        \item It changes the elements within cycles without changing the number of cycles
-    \end{enumerate}
-\end{lemma}
-
-\begin{remark}
-    (Comparing types of permutation decompositions).
-    
-    Why is the decomposition of a permutation into cycles unique (up to order), while the decomposition of a permutation into transpositions is not? The core reason is that different cycles cannot ``interfere'' with each other- cycles are either disjoint or equal- while permutations can ``interfere'' with one another. \textbf{show more}
-\end{remark}
-
-\begin{defn}
-    (Sign of a permutation).
-    
-    The \textit{sign} $\sgn(\sigma)$ of a permutation $\sigma$ is defined to be
-    
-    \begin{align*}
-        \sgn(\sigma) := 
-        \begin{cases}
-            1 & \text{there are an even number of transpositions in any decomposition of $\sigma$} \\
-            -1 & \text{there are an odd number of transpositions in any decomposition of $\sigma$}
-        \end{cases}.
-    \end{align*}
-    
-    We will need to prove that $\sgn$ is a well-defined function; that is, we will need to prove that the parity\footnote{The \textit{parity} of an integer $n$ is even iff $n$ is even and odd iff $n$ is odd.} of the number of transpositions in a permutation's decomposition.
-
-    A permutation is called \textit{even} iff its sign is $1$ and is called \textit{odd} iff its sign is $-1$.
-\end{defn}
 
 \begin{proof}
     Let $\sigma \in S_n$. We need to prove that if we decompose $\sigma$ into transpositions in two different ways, $\sigma = \sigma_k \circ ... \circ \sigma_1$ and $\sigma = \pi_\ell \circ ... \circ \pi_1$, where $\sigma_1, ..., \sigma_k$ and $\pi_1, .., \pi_\ell$ are transpositions, then the parity of $k$ is the same as the parity of $\ell$. [TO-DO]
 \end{proof}
 
-\begin{proof}
+\begin{defn}
+    The \textit{sign} $\sgn(\sigma)$ of a permutation $\sigma$ is defined to be
     
-    
-    Let's define $c(\sigma)$ as the number of cycles in the permutation $\sigma$. When we apply a transposition $\tau$ to $\sigma$, the change in the number of cycles, $c(\tau \circ \sigma) - c(\sigma)$, is always $\pm1$. Specifically:
-    \begin{itemize}
-        \item If the transposition joins two cycles, then $c(\tau \circ \sigma) = c(\sigma) - 1$
-        \item If the transposition splits one cycle, then $c(\tau \circ \sigma) = c(\sigma) + 1$
-    
-    \end{itemize}
-    Now, consider the identity permutation $e$. It consists of $n$ cycles (each element is in its own 1-cycle), where $n$ is the number of elements in our set.
-    
-    Let's say we have a composition of $m$ transpositions that equals the identity: $e = \tau_m \circ \tau_{m-1} \circ \ldots \circ \tau_1$. Starting with $e$, each transposition changes the number of cycles by $±1$. After applying all $m$ transpositions, we must return to $n$ cycles.
-    
-    Therefore, the total change in the number of cycles must be even, which means $m$ must be even.
-    
-    More formally, let $\sigma_0 = e$ and $\sigma_i = \tau_i \circ \sigma_{i-1}$ for $i = 1, 2, \ldots, m$. Then $\sigma_m = e$, and each $c(\sigma_i) - c(\sigma_{i-1}) = ±1$. Since $c(\sigma_m) = c(\sigma_0)$, the sum $\sum_{i=1}^{m} (c(\sigma_i) - c(\sigma_{i-1})) = 0$, which means we must have an equal number of +1s and -1s in this sum. This is only possible if $m$ is even.
-    
-    Therefore, the identity permutation cannot be written as a composition of an odd number of transpositions, which proves that if $\sigma = \sigma_k \circ \ldots \circ \sigma_1 = \pi_\ell \circ \ldots \circ \pi_1$, then $k$ and $\ell$ must have the same parity.
-\end{proof}
+    \begin{align*}
+        \sgn(\sigma) := 
+        \begin{cases}
+            1 & \text{$\sigma$ is even} \\
+            -1 & \text{$\sigma$ is odd}
+        \end{cases}.
+    \end{align*}
+
+    It's useful to note that $\sgn(\sigma) = (-1)^k$, where $k$ is the number of transpositions in one of the decompositions for $\sigma$.
+\end{defn}
 
 \subsection*{Antisymmetric tensors}
 
+As promised, we can now characterize antisymmetric tensors in terms of arbitrary permutations, not just transpositions.
+
 \begin{defn}
-    (Permuting an element of a tensor product space).
+    (Permutation of a tensor).
     
     Let $V_1, ..., V_k$ be vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define the map $(\cdot)^\sigma:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
     
@@ -204,41 +136,22 @@ In order to formalize the idea of swapping
     \end{align*}
 \end{defn}
 
-\begin{defn}
+\begin{theorem}
 \label{ch::exterior_pwrs::defn::antisymmetric_tensor}
     (Antisymmetric tensor). 
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We say a tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff $\TT^\sigma = \sgn(\sigma) \TT$.
-\end{defn}
+    Let $V_1, ..., V_k$ be vector spaces over the same field. A tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff $\TT^\sigma = \sgn(\sigma) \TT$ for all permutations $\sigma \in S_k$.
+\end{theorem}
 
-\begin{defn}
-    (Algebra).
-    
-    Consider a tuple $(A, K, +, \cdot, \star)$, where $(A, K, +, \cdot)$ is a vector space. We say that $A$ is an \textit{algebra over $K$} iff $\star:A \times A \rightarrow A$ is bilinear with respect to $+$ and $\cdot$.
-\end{defn}
+\begin{proof}
+    We must prove that $\TT^\pi = -\TT$ for all transpositions $\pi \in S_k$ $\iff$ $\TT^\sigma = \sgn(\sigma) \TT$ for all permutations $\sigma \in S_k$.
 
-\begin{remark}
-\label{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}
-    (We want to construct an algebra of antisymmetric tensors).
-    
-    Let $V_1, ..., V_k$ be vector spaces over the same field. Observe that the tuple
-    
-    \begin{align*}
-        (\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \otimes )
-    \end{align*}
-    
-    is \textit{not} an algebra, since the tensor product $\otimes$ of antisymmetric two tensors in $V_1 \otimes ... \otimes V_k$ is \textit{not} necessarily another antisymmetric tensor. Consider, for example, the\footnote{$\vv_1$ is antisymmetric because its only permutation $\vv_1^\sigma$ is equal to $\vv_1^\sigma = \sgn(\sigma) \vv_1$, where $\sigma = i$ is the identity. For the same reason, $\vv_2$ is antisymmetric.} antisymmetric $(1, 0)$ tensors (i.e. vectors) $\vv_1$ and $\vv_2$; their tensor product $\vv_1 \otimes \vv_2$ does not satisfy $\vv_1 \otimes \vv_2 = -\vv_2 \otimes \vv_1$.
-    
-    We will construct a function $\wedge:(V_1 \otimes ... \otimes V_k) \times (V_1 \otimes ... \otimes V_k) \rightarrow V_1 \otimes ... \otimes V_k$, called the \textit{wedge product}, such that 
-    
-    \begin{align*}
-        (\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \wedge )
-    \end{align*}
-    
-    \textit{is} an algebra.
-\end{remark}
+    ($\implies$). Decompose $\sigma$ into a product of transpositions, $\sigma = \sigma_k \circ ... \circ \sigma_1$. We have $\TT^\sigma = ((\TT^{\sigma_1})^{\sigma_2}...)^{\sigma_k} = (-1)^k \TT = \sgn(\sigma) \TT$.
 
-\subsection*{Constructing the wedge product}
+    ($\impliedby$). If $\pi$ is a transposition, then $\sgn(\pi) = -1$ and we have $\TT^\pi = \sgn(\pi)\TT = -\TT$.
+\end{proof}
+
+Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors). This is important, as we haven't shown that antisymmetric tensors actually exist.
 
 \begin{defn}
     (Antisymmetrization of elements of tensor product spaces).
@@ -269,6 +182,16 @@ In order to formalize the idea of swapping
     
     This shows $\alt(\TT)^\pi = \sgn(\pi) \alt(\TT)$.
 \end{proof}
+
+Unsuprisingly, the tensor product of two antisymmetric tensors is not guarenteed to be antisymmetric.
+
+\begin{theorem}
+    
+\end{theorem}
+
+Therefore, if we want an operation $\wedge$ such that if $\TT$ and $\SS$ are antisymmetric tensors, then $\TT \wedge \SS$ is another antisymmetric tensor, we must do some additional work.
+
+\subsection*{Constructing the wedge product}
 
 \begin{defn}
     (Wedge product).
@@ -380,6 +303,7 @@ In order to formalize the idea of swapping
 In Remark \ref{ch::exterior_pwrs::rmk::want_antisymmetric_algebra}, we said that we wanted to find a function $\wedge:(V_1 \otimes ... \otimes V_k) \times (V_1 \otimes ... \otimes V_k) \rightarrow V_1 \otimes ... \otimes V_k$ for which the tuple $(\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \wedge )$ is an algebra. We have done so by constructing the wedge product $\wedge$, and now formalize this result with the next definitions.
 
 \begin{defn}
+\label{ch::exterior_pwrs::defn::wedge_product_space}
     (Wedge product space). 
     
     Let $V_1, ..., V_k$ be vector spaces over a field $K$. We define the \textit{wedge product space} $V_1 \wedge ... \wedge V_k$ to be the algebra 
@@ -2200,12 +2124,5 @@ We can actually define the Hodge dual in a more general context.
     
     where $\omega_{\text{vol}}$ is the volume form on $V$ and $\widetilde{g}$ is the metric tensor on $\Lambda^k(V)$ from the previous definition.
     
-    Therefore, the Hodge dual is basis independent and thus well-defined.
+    Therefore, the Hodge dual is basis-independent and thus well-defined.
 \end{theorem}
-
-
-
-
-
-
-
