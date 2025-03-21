@@ -107,24 +107,6 @@ The following definition and theorem are the main reason for our excursion into 
     A permutation in $S_n$ is said to have \textit{even parity}, or to be \textit{even}, iff it is equal to the composition of an even number of transpositions. A permutation is said to have \textit{odd parity}, or to be \textit{odd}, iff it is equal to the composition of an odd number of transpositions.
 \end{defn}
 
-\begin{lemma}
-    (Composition of transpositions).
-    
-    If $\sigma$ and $\pi$ are transpositions in $S_n$ with $\sigma \neq \pi$, then there exist transpositions $\gamma$ and $\delta$ in $S_n$ and $i \in \{1, ..., n\}$ such that $\pi \circ \sigma = \delta \circ \gamma$, where $\gamma$ moves $i$ and $\delta$ fixes $i$.
-\end{lemma}
-
-\begin{proof}
-    Since $\pi \neq \sigma$, there are two possible cases.
-    
-    (Case: $\pi$ is disjoint with $\sigma$). If $\pi$ and $\sigma$ are disjoint, then they commute, $\pi \circ \sigma = \sigma \circ \pi$. Set $\delta := \sigma$, $\gamma := \pi$, and let $i \in \gamma$. Then $\gamma$ moves $i$, $\delta$ fixes $i$, and we have $\pi \circ \sigma = \delta \circ \gamma$.
-    
-    (Case: $\pi$ is not disjoint with $\sigma$).
-    
-    \indent \indent (Case: $\pi \circ \sigma = \transp{i}{j} \circ \transp{i}{r}$ for some $r \neq j$). We have $\pi \circ \sigma = \transp{i}{j} \circ \transp{i}{r} = \begin{pmatrix} i & r & j \end{pmatrix} = \begin{pmatrix} j & i & r \end{pmatrix} = \transp{j}{r} \circ \transp{i}{j}$. The transposition $\gamma := \transp{i}{j}$ moves $i$ and the transposition $\delta := \transp{j}{r}$ fixes $i$, as desired.
-    
-    \indent \indent (Case: $\pi \circ \sigma = \transp{i}{j} \circ \transp{j}{s}$ for some $s \neq i$). A similar argument produces $\gamma := \transp{j}{i}$, which moves $j$, and $\delta := \transp{i}{s}$, which fixes $j$, as desired.
-\end{proof}
-
 \begin{theorem}
     (The parity of a permutation is unique).
 
@@ -138,21 +120,35 @@ The following definition and theorem are the main reason for our excursion into 
     
     Since the identity is a composition of an odd number of transpositions, it cannot be a composition of zero transpositions. It also cannot be a composition of one of one transposition, as no single transposition is the identity! Therefore, the identity is a composition of more than one transposition. Let $r$ be the smallest integer with $r > 1$ such that $\text{id} = \tau_r \circ ... \circ \tau_1$, where $\tau_1, ..., \tau_r$ are transpositions.
     
-    \newcommand{\tttau}{\widetilde{\tau}}  
-    We now prove by induction on $s \in \{r, r - 1, ..., 2\}$ that there exist transpositions $\tttau_1, ..., \tttau_s$ and $i \in \{1, ..., n\}$ such that $\tau_r \circ ... \circ \tau_s = \tttau_r \circ ... \circ \tttau_s$, where all of the transpositions on the right side of the equation, except for the rightmost one, fix $i$. (That is, $\tttau_r, \tttau_{r - 1} ..., \tttau_{s + 1}$ fix $i$ and $\tttau_s$ moves $i$). After we know this, then in particular, when $s = 2$, we have that there exists an $i \in \{1, ..., n\}$ such that $\id = \tttau_r \circ ... \circ \tttau_2 \circ \tttau_1$, where $\tttau_r, ..., \tttau_2$ do not move $i$ and where $\tttau_1$ moves $i$. Thus, $\id(i) = \tttau_1(i) \neq i$, which is a contradiction!
+    Consider the following cases.
 
-    \vspace{.25cm}
-    
-    It remains to prove the statement on $s$ by induction.
-    
-    (Base case: $s = r - 1$). We have to show that there exist transpositions $\tttau_r, \tttau_{r - 1}$ and $i \in \{1, ..., n\}$ such that $\tau_r \circ \tau_{r - 1} = \tttau_r \circ \tttau_{r - 1}$, where $\tttau_{r - 1}$ moves $i$ and $\tau_r$ fixes $i$.
-    
-    Note that $\tau_r \neq \tau_{r - 1}$; otherwise, $\tau_r \circ \tau_{r - 1}$ can be written as a composition of zero transpositions, making $r$ not minimal. Since $\tau_r \neq \tau_{r - 1}$, the previous lemma, which gives us exactly what we desire, can be applied to $\tau_r \circ \tau_{r - 1}$.
-    
-    (Inductive case: $s < r - 1$). By the inductive hypothesis, we have $\tau_r \circ ... \circ \tau_s = \tttau_r \circ ... \circ \tttau_s$, where all of the transpositions on the right side of the equation except for the rightmost one fix $i$.
+    (Case: $\tau_r = \tau_{r - 1}$). Then $\tau_r \circ \tau_{r - 1} = \text{id}$, and $\tau_r \circ ... \circ \tau_1 = \tau_{r - 2} \circ ... \circ \tau_1$ is a composition of $r - 2$ transpositions. We see $r$ is not minimal; this is a contradiction, so this case is impossible.
 
-    Similarly as to in the base case, we cannot have $\tttau_s = \tau_{s - 1}$; if we did, then $r$ would not be minimal. Thus $\tttau_s \neq \tau_{s - 1}$, and the previous lemma can be applied. The lemma says that there exist $i \in \{1, ..., n\}$, a 
-    transposition $\gamma$ fixing $i$, and a transposition  $\delta$ moving $i$ such that $\tttau_s \circ \tau_{s - 1} = \gamma \circ \delta$. Thus, $\tttau_r \circ ... \circ \tttau_s \circ \tau_{s - 1} = \tttau_r \circ ... \circ \tttau_{s - 2} \circ \gamma \circ \delta$, so that all of the transpositions on the right side of the equation except for the rightmost one fix $i$, as desired.
+    (Case: $\tau_r \neq \tau_{r - 1}$). Suppose $\tau_r = \transp{i}{j}$.
+    
+    \fullindent
+    {
+        (Case: $\tau_r$ and $\tau_{r - 1}$ are disjoint). If $\tau_r$ and $\tau_{r - 1}$ are disjoint, then $\tau_r \circ \tau_{r - 1} = \tau_{r - 1} \circ \tau_r = \tau_{r - 1} \circ \transp{i}{j}$.
+    
+        (Case: $\tau_r$ and $\tau_{r - 1}$ share one element).
+    
+        \fullindent
+        {
+            \fullindent
+            {
+                (Case: $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \transp{i}{r}$ for some $r \neq j$). We have $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \transp{i}{r} = \begin{pmatrix} i & r & j \end{pmatrix} = \begin{pmatrix} j & i & r \end{pmatrix} = \transp{j}{r} \circ \transp{i}{j}$. 
+            }
+
+            \fullindent
+            {
+                (Case: $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \transp{j}{s}$ for some $s \neq i$). We have $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \transp{j}{s} = \begin{pmatrix} i & j & s \end{pmatrix} = \transp{s}{j} \circ \transp{i}{s}$.
+            }
+        }
+    }
+
+    \newcommand{\tttau}{\widetilde{\tau}}
+            
+    To summarize the above, in both of the possible cases, we have $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \tau_{r - 1} = \tttau_r \circ \transp{i}{a_1}$ for some $a_1 \in \{1, ..., n\} - \{i\}$ and some transposition $\tttau_r$ that fixes $a_1$. Thus, $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ \transp{i}{a_1} \circ \tau_{r - 2} \circ ... \circ \tau_1$, where $\tttau_r$ fixes $i$. Repeating this process, we see $\id = \tau_r \circ \tau_{r - 1} \circ \transp{i}{a_2} \circ ... \circ \tau_1$. It follows from induction that there exist $a \in \{1, ..., n\} - \{i\}$ and transpositions $\tttau_2, ..., \tttau_r$ such that $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ ... \circ \tttau_2 \circ \transp{i}{a}$, where all of $\tttau_2, ..., \tttau_r$ fix $i$. Thus $\id(i) = a \neq i$. This is a contradiction, since the identity fixes every element of $\{1, ..., n\}$.
 \end{proof}
 
 \begin{defn}

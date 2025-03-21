@@ -29,3 +29,11 @@
    \itshape}
   {\par\normalfont\hfill--\ \chapquote@author\hspace*{\@tempdima}\par\bigskip}
 \makeatother
+
+% for indentation
+\usepackage{changepage}
+\newcommand{\fullindent}[1]{%
+  \begin{adjustwidth}{2em}{0pt}
+    #1
+  \end{adjustwidth}
+}
