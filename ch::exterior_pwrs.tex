@@ -36,34 +36,45 @@ First, we formalize the notion of swapping elements in a list and in a tensor.
     So, for example, if $\TT = \vv_1 \otimes \vv_2 \otimes \vv_3 + \vv_3 \otimes \vv_1 \otimes \vv_2$ and $\sigma$ is the transposition swapping $1$ and $2$, $\sigma(1) = 2$ and $\sigma(2) = 1$, then $\TT^\sigma = \vv_2 \otimes \vv_1 \otimes \vv_3 + \vv_3 \otimes \vv_2 \otimes \vv_1$.
 \end{defn}
 
-Now that we have notation for applying a transposition to every element in a tensor's decomposition, we can define antisymmetry.
+Now that we have notation for applying a transposition to every element in a tensor's decomposition, we can define antisymmetric tensors.
 
 \begin{defn}
     (Antisymmetry in terms of transpositions).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We say a tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
+    Let $V_1, ..., V_k$ be vector spaces over the same field. A tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
 \end{defn}
 
-The above is a characterization of antisymmetry in terms of a transposition. One can imagine that since any reordering of $1, ..., k$ can be achieved by a sequence of transpositions\footnote{This is an intuitive, yet unproven, claim. We formally prove this in Theorem \ref{ch::exterior_pwrs::thm::permutations_decomposition_into_transpositions}}, antisymmetry can be characterized in terms of what happens when a more general reordering like this is applied.
+The above is a characterization of antisymmetry in terms of a transposition. One can imagine that since any reordering of $1, ..., k$ can be achieved by a sequence of transpositions\footnote{This is an intuitive, yet unproven, claim. We formally prove this in Theorem \ref{ch::exterior_pwrs::thm::permutations_decomposition_into_transpositions}.}, antisymmetry can be characterized in terms of what happens when a more general reordering like this is applied.
 
 Such reorderings are called \textit{permutations}. A basic understanding of permutations is crucial for further understanding of antisymmetry, so we briefly pause to study permutations now.
 
 \subsection*{Permutations}
 
 \begin{defn}
-    (Permutations).
+    (Permutation).
     
-    Let $X$ be any set. A \textit{permutation on $X$} is a bijection $X \rightarrow X$. Intuitively, a permutation on $X$ is thought of as redistributing the names of the elements of $X$.
-    
-    We use $S_n$ to denote the set of permutations on $\{1, ..., n\}$. Formally, $S_n := \{ \text{functions } \text{$\{1, ..., n\} \rightarrow \{1, ... n \}$} \}$.
+    A \textit{permutation (on $\{1, ..., n\}$)} is a bijection $\{1, ..., n\} \rightarrow \{1, ... n \}$. The set of permutations on $\{1, ..., n\}$ is denoted $S_n$.
 \end{defn}
 
-The definition of permutation allows for a more general definition of permutation.
+\begin{defn}
+    (Cycle).
+
+    A permutation in $S_n$ is a \textit{cycle} iff it is defined by
+
+    \begin{align*}
+        \begin{cases}
+            i_j \mapsto i_{j + 1} & j \in \{1, ..., k - 1\} \\
+            i_j \mapsto i_1 & j = k
+        \end{cases}
+    \end{align*}
+
+    for some $i_1, ..., i_k \in \{1, ..., n\}$. If such $i_1, ..., i_k$ exist, then the cycle is represented as the following tuple without commas: $\begin{pmatrix} i_1 & \hdots & i_k \end{pmatrix}$.
+\end{defn}
 
 \begin{defn}
     (Transposition).
 
-    A \textit{transposition} is a permutation that swaps two elements and leaves all of the others fixed. That is, a permutation $\sigma$ on a set $X$ is a transposition iff there exist $x_1, x_2 \in X$ such that $\sigma(x_1) = x_2$, $\sigma(x_2) = x_1$, and $\sigma(x) = x$ for all $x \in X - \{x_1, x_2\}$.
+    A permutation in $S_n$ is a \textit{transposition} iff it swaps two elements and leaves all of the others fixed. Notice, every transposition can be written as the cycle $\transp{i}{j}$ for some $i, j \in \{1, ..., n\}$.
 \end{defn}
 
 Now, we prove an intuitive theorem which we alluded to earlier.
@@ -72,16 +83,14 @@ Now, we prove an intuitive theorem which we alluded to earlier.
 \label{ch::exterior_pwrs::thm::permutations_decomposition_into_transpositions}
     (Every permutation is a composition of transpositions).
 
-    Every permutation $\sigma$ on a finite set can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k$ are transpositions. Note, the set of transpositions in the decomposition does not uniquely correspond to $\sigma$.
+    Every permutation $\sigma \in S_n$ can be decomposed as $\sigma = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_n$ are transpositions. Note, the set of transpositions in the decomposition does not uniquely correspond to $\sigma$.
 \end{theorem}
 
-\begin{proof}
-    We only prove the case when $X = \{1, ..., n\}$ and $\sigma \in S_n$. The general case follows easily.
-    
+\begin{proof}  
     Notice that
     
     \begin{itemize}
-        \item The function $\text{sort}_\sigma$ that sorts $(\sigma(1), ..., \sigma(n))$ from least to greatest satisfies $\text{sort}_\sigma((\sigma(1), ..., \sigma(n))) = (1, ..., n)$.
+        \item The function $\text{sort}_\sigma \in S_n$ that sorts $(\sigma(1), ..., \sigma(n))$ from least to greatest satisfies $\text{sort}_\sigma((\sigma(1), ..., \sigma(n))) = (1, ..., n)$.
         \item We also have $\sigma^{-1}((\sigma(1), ..., \sigma(n))) = (\sigma^{-1}(\sigma(1)), ..., \sigma^{-1}(\sigma(n)) = (1, ..., n)$.
     \end{itemize} 
     
@@ -90,26 +99,64 @@ Now, we prove an intuitive theorem which we alluded to earlier.
     % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are transpositions. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
 \end{proof}
 
-Lastly, we present the following definition and theorem- the main reason for our excursion into permutations.
+The following definition and theorem are the main reason for our excursion into permutations.
 
 \begin{defn}
     (Parity of a permutation).
 
-    A permutation is said to have \textit{even parity}, or to be \textit{even}, iff it is equal to the composition of an even number of transpositions. A permutation is said to have \textit{odd parity}, or to be \textit{odd}, iff it is equal to the composition of an odd number of transpositions.
+    A permutation in $S_n$ is said to have \textit{even parity}, or to be \textit{even}, iff it is equal to the composition of an even number of transpositions. A permutation is said to have \textit{odd parity}, or to be \textit{odd}, iff it is equal to the composition of an odd number of transpositions.
 \end{defn}
+
+\begin{lemma}
+    (Composition of transpositions).
+    
+    If $\sigma$ and $\pi$ are transpositions in $S_n$ with $\sigma \neq \pi$, then there exist transpositions $\gamma$ and $\delta$ in $S_n$ and $i \in \{1, ..., n\}$ such that $\pi \circ \sigma = \delta \circ \gamma$, where $\gamma$ moves $i$ and $\delta$ fixes $i$.
+\end{lemma}
+
+\begin{proof}
+    Since $\pi \neq \sigma$, there are two possible cases.
+    
+    (Case: $\pi$ is disjoint with $\sigma$). If $\pi$ and $\sigma$ are disjoint, then they commute, $\pi \circ \sigma = \sigma \circ \pi$. Set $\delta := \sigma$, $\gamma := \pi$, and let $i \in \gamma$. Then $\gamma$ moves $i$, $\delta$ fixes $i$, and we have $\pi \circ \sigma = \delta \circ \gamma$.
+    
+    (Case: $\pi$ is not disjoint with $\sigma$).
+    
+    \indent \indent (Case: $\pi \circ \sigma = \transp{i}{j} \circ \transp{i}{r}$ for some $r \neq j$). We have $\pi \circ \sigma = \transp{i}{j} \circ \transp{i}{r} = \begin{pmatrix} i & r & j \end{pmatrix} = \begin{pmatrix} j & i & r \end{pmatrix} = \transp{j}{r} \circ \transp{i}{j}$. The transposition $\gamma := \transp{i}{j}$ moves $i$ and the transposition $\delta := \transp{j}{r}$ fixes $i$, as desired.
+    
+    \indent \indent (Case: $\pi \circ \sigma = \transp{i}{j} \circ \transp{j}{s}$ for some $s \neq i$). A similar argument produces $\gamma := \transp{j}{i}$, which moves $j$, and $\delta := \transp{i}{s}$, which fixes $j$, as desired.
+\end{proof}
 
 \begin{theorem}
     (The parity of a permutation is unique).
 
-    A permutation cannot be both even and odd.
+    A permutation in $S_n$ cannot be both even and odd.
 \end{theorem}
 
 \begin{proof}
-    Let $\sigma \in S_n$. We need to prove that if we decompose $\sigma$ into transpositions in two different ways, $\sigma = \sigma_k \circ ... \circ \sigma_1$ and $\sigma = \pi_\ell \circ ... \circ \pi_1$, where $\sigma_1, ..., \sigma_k$ and $\pi_1, .., \pi_\ell$ are transpositions, then the parity of $k$ is the same as the parity of $\ell$. [TO-DO]
+    Let $\sigma \in S_n$, and suppose $\sigma = \sigma_k \circ ... \circ \sigma_1$ and $\sigma = \pi_\ell \circ ... \circ \pi_1$, where $\sigma_1, ..., \sigma_k$ and $\pi_1, .., \pi_\ell$ are transpositions. We need to prove that $k$ and $\ell$ have the same parity.
+    
+    Suppose for contradiction that $k$ and $\ell$ have different parities. We have $\sigma_k \circ ... \circ \sigma_1 = \pi_k \circ ... \circ \pi_1$, and so $\text{id} = \pi_1^{-1} \circ ... \circ \pi_\ell^{-1} \circ \sigma_k \circ ... \circ \sigma_1 = \pi_1 \circ ... \circ \pi_\ell \circ \sigma_k \circ ... \circ \sigma_1$. Since $k$ and $\ell$ have different parities, then  $k + \ell$ is odd, and the identity permutation is a composition of an odd number of transpositions.
+    
+    Since the identity is a composition of an odd number of transpositions, it cannot be a composition of zero transpositions. It also cannot be a composition of one of one transposition, as no single transposition is the identity! Therefore, the identity is a composition of more than one transposition. Let $r$ be the smallest integer with $r > 1$ such that $\text{id} = \tau_r \circ ... \circ \tau_1$, where $\tau_1, ..., \tau_r$ are transpositions.
+    
+    \newcommand{\tttau}{\widetilde{\tau}}  
+    We now prove by induction on $s \in \{r, r - 1, ..., 2\}$ that there exist transpositions $\tttau_1, ..., \tttau_s$ and $i \in \{1, ..., n\}$ such that $\tau_r \circ ... \circ \tau_s = \tttau_r \circ ... \circ \tttau_s$, where all of the transpositions on the right side of the equation, except for the rightmost one, fix $i$. (That is, $\tttau_r, \tttau_{r - 1} ..., \tttau_{s + 1}$ fix $i$ and $\tttau_s$ moves $i$). After we know this, then in particular, when $s = 2$, we have that there exists an $i \in \{1, ..., n\}$ such that $\id = \tttau_r \circ ... \circ \tttau_2 \circ \tttau_1$, where $\tttau_r, ..., \tttau_2$ do not move $i$ and where $\tttau_1$ moves $i$. Thus, $\id(i) = \tttau_1(i) \neq i$, which is a contradiction!
+
+    \vspace{.25cm}
+    
+    It remains to prove the statement on $s$ by induction.
+    
+    (Base case: $s = r - 1$). We have to show that there exist transpositions $\tttau_r, \tttau_{r - 1}$ and $i \in \{1, ..., n\}$ such that $\tau_r \circ \tau_{r - 1} = \tttau_r \circ \tttau_{r - 1}$, where $\tttau_{r - 1}$ moves $i$ and $\tau_r$ fixes $i$.
+    
+    Note that $\tau_r \neq \tau_{r - 1}$; otherwise, $\tau_r \circ \tau_{r - 1}$ can be written as a composition of zero transpositions, making $r$ not minimal. Since $\tau_r \neq \tau_{r - 1}$, the previous lemma, which gives us exactly what we desire, can be applied to $\tau_r \circ \tau_{r - 1}$.
+    
+    (Inductive case: $s < r - 1$). By the inductive hypothesis, we have $\tau_r \circ ... \circ \tau_s = \tttau_r \circ ... \circ \tttau_s$, where all of the transpositions on the right side of the equation except for the rightmost one fix $i$.
+
+    Similarly as to in the base case, we cannot have $\tttau_s = \tau_{s - 1}$; if we did, then $r$ would not be minimal. Thus $\tttau_s \neq \tau_{s - 1}$, and the previous lemma can be applied. The lemma says that there exist $i \in \{1, ..., n\}$, a 
+    transposition $\gamma$ fixing $i$, and a transposition  $\delta$ moving $i$ such that $\tttau_s \circ \tau_{s - 1} = \gamma \circ \delta$. Thus, $\tttau_r \circ ... \circ \tttau_s \circ \tau_{s - 1} = \tttau_r \circ ... \circ \tttau_{s - 2} \circ \gamma \circ \delta$, so that all of the transpositions on the right side of the equation except for the rightmost one fix $i$, as desired.
 \end{proof}
 
 \begin{defn}
-    The \textit{sign} $\sgn(\sigma)$ of a permutation $\sigma$ is defined to be
+    The \textit{sign} $\sgn(\sigma)$ of a permutation $\sigma \in S_n$ is defined to be
     
     \begin{align*}
         \sgn(\sigma) := 
@@ -118,6 +165,8 @@ Lastly, we present the following definition and theorem- the main reason for our
             -1 & \text{$\sigma$ is odd}
         \end{cases}.
     \end{align*}
+
+    Notice, $\sgn$ is a well-defined function because the parity of a permutation is unique.
 
     It's useful to note that $\sgn(\sigma) = (-1)^k$, where $k$ is the number of transpositions in one of the decompositions for $\sigma$.
 \end{defn}
@@ -156,7 +205,7 @@ Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors
 \begin{defn}
     (Antisymmetrization of elements of tensor product spaces).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We define an \textit{antisymmetrizing function} ${\alt:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k}$ that converts any tensor $\TT \in V_1 \otimes ... \otimes V_k$ into an antisymmetric tensor in $V_1 \otimes ... \otimes V_k$. We define $\alt$ on elementary tensors and extend linearly: for an elementary tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We define ${\alt:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k}$ on elementary tensors and extend linearly; for an elementary tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define
     
     \begin{align*}
         \alt(\TT) := \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma.
@@ -177,19 +226,23 @@ Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors
     Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\sigma \in S_k$ there is a $\tau \in S_k$ such that $\tau = \pi \circ \sigma \iff \sigma = \pi^{-1} \circ \tau$. So the sum becomes
             
     \begin{align*}
-        \sum_{\tau \in S_k} \sgn(\pi^{-1} \circ \tau) \TT^\tau &= \sgn(\pi^{-1}) \sum_{\tau \in S_k} \sgn(\tau) \TT^\tau = -\sgn(\pi) \alt(\TT).
+        \sum_{\tau \in S_k} \sgn(\pi^{-1} \circ \tau) \TT^\tau &= \sgn(\pi^{-1}) \sum_{\tau \in S_k} \sgn(\tau) \TT^\tau = \sgn(\pi) \alt(\TT),
     \end{align*}
-    
-    This shows $\alt(\TT)^\pi = \sgn(\pi) \alt(\TT)$.
+
+    as desired.
 \end{proof}
 
-Unsuprisingly, the tensor product of two antisymmetric tensors is not guarenteed to be antisymmetric.
+Unsurprisingly, the tensor product of two antisymmetric tensors is not guaranteed to be antisymmetric.
 
 \begin{theorem}
-    
+    (The tensor product of antisymmetric tensors is not always antisymmetric).
 \end{theorem}
 
-Therefore, if we want an operation $\wedge$ such that if $\TT$ and $\SS$ are antisymmetric tensors, then $\TT \wedge \SS$ is another antisymmetric tensor, we must do some additional work.
+\begin{proof}
+    
+\end{proof}
+
+Therefore, if we want an operation $\wedge$ such that $\TT \wedge \SS$ is an antisymmetric tensor whenever $\TT$ and $\SS$ are antisymmetric tensors, we must do some additional work.
 
 \subsection*{Constructing the wedge product}
 
