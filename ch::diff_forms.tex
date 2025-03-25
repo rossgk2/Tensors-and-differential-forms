@@ -73,7 +73,7 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
     
     Let $M$ and $N$ be $n$-smooth manifolds, let $(U, \xx)$ and $(V, \yy)$ be smooth charts on $M$ and $N$, and let $\FF:U \subseteq M \rightarrow V \subseteq N$ be a smooth function. Consider a differential $k$-form $\omega \in \Omega^k(V)$, $k \leq n$, on $V \subseteq N$.
     
-    In Definition \ref{ch::exterior_pwrs::defn::pushforward_on_Tk0}, we showed how when $V$ and $W$ are finite-dimensional vector spaces and $\ff:V \rightarrow W$ is a linear function, it is possible to use the dual $\ff:W^* \rightarrow V^*$ to``pull back'' an element of $\Lambda^k(W^*)$ and obtain an element of $\Lambda^k(V^*)$. 
+    In Definition \ref{ch::antisymmetry::defn::pushforward_on_Tk0}, we showed how when $V$ and $W$ are finite-dimensional vector spaces and $\ff:V \rightarrow W$ is a linear function, it is possible to use the dual $\ff:W^* \rightarrow V^*$ to``pull back'' an element of $\Lambda^k(W^*)$ and obtain an element of $\Lambda^k(V^*)$. 
     
     $T_\pp(M)$ and $T_{\FF(\pp)}(N)$ are finite-dimensional vector spaces and ${d\FF_\pp:T_\pp(M) \rightarrow T_{\FF(\pp)}(N)}$ is a linear function, so it is possible to ``pull back'' an element of $\Lambda^k(T_{\FF(\pp)}(N))$ to obtain an element of $\Lambda^k(T_\pp(M))$.
     
@@ -178,20 +178,20 @@ To begin, we define the pullback of a differential $k$-form by a diffeomorphism 
         (d\FF_\pp)^*(dy^1_\pp) \wedge ... \wedge (d\FF_\pp)^*(dy^n_\pp).
     \end{align*}
     
-    Since the pushforward on the top exterior power is multiplication by the determinant (Theorem \ref{ch::exterior_pwrs::rmk::top_pullback_det}), the above is equal to
+    Since the pushforward on the top exterior power is multiplication by the determinant (Theorem \ref{ch::antisymmetry::rmk::top_pullback_det}), the above is equal to
     
     \begin{align*}
          \det(d\FF_\pp^*) \spc (f \circ \FF)(\pp) \spc dx^1_\pp \wedge ... \wedge dx^n_\pp.
     \end{align*}
 
-    Recall from Theorem \label{ch::exterior_pwrs::rmk::det_dual_invariant} that if $\ff:V \rightarrow V$ is a linear function on a finite-dimensional vector space $V$, then $\det(\ff^*) = \det(\ff)$. Thus $\det(d\FF_\pp^*) =  \det(d\FF_\pp)$, so the result is proven.
+    Recall from Theorem \label{ch::antisymmetry::rmk::det_dual_invariant} that if $\ff:V \rightarrow V$ is a linear function on a finite-dimensional vector space $V$, then $\det(\ff^*) = \det(\ff)$. Thus $\det(d\FF_\pp^*) =  \det(d\FF_\pp)$, so the result is proven.
 \end{proof}
 
 \begin{remark}
 \label{ch::diff_forms::rmk::pullback_star_notation}
     (Star notation for the pullback of a top degree differential form).
     
-    In Remark \ref{ch::exterior_pwrs::rmk::star_notation_pushforward_pullback}, we introduced the practice of using $\FF^*$ to denote a pullback. From now on, we denote the pullback $\Omega^k \FF^*:T_{\FF(\pp)}(N) \rightarrow T_\pp(M)$ by $\FF^*:T_{\FF(\pp)}(N) \rightarrow T_\pp(M)$.
+    In Remark \ref{ch::antisymmetry::rmk::star_notation_pushforward_pullback}, we introduced the practice of using $\FF^*$ to denote a pullback. From now on, we denote the pullback $\Omega^k \FF^*:T_{\FF(\pp)}(N) \rightarrow T_\pp(M)$ by $\FF^*:T_{\FF(\pp)}(N) \rightarrow T_\pp(M)$.
 \end{remark}
 
 \newpage
@@ -390,7 +390,7 @@ The previous theorem has sound algebraic intuition, but we have not yet seen any
         \end{cases}
     \end{align*}
     
-    Since $\TT \in \Lambda^k(W^*) \overset{\tLambda^k \ff^*}{\longmapsto} \TT \circ \ff = \ff^*(\TT) \in \Lambda^k(V^*)$ (see the equation in Theorem \ref{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns} right above the boxed equation), the above becomes
+    Since $\TT \in \Lambda^k(W^*) \overset{\tLambda^k \ff^*}{\longmapsto} \TT \circ \ff = \ff^*(\TT) \in \Lambda^k(V^*)$ (see the equation in Theorem \ref{ch::antisymmetry::deriv::pullback_on_exterior_pwr_of_actual_fns} right above the boxed equation), the above becomes
     
     \begin{align*}
         \begin{cases}
@@ -410,7 +410,7 @@ The previous theorem has sound algebraic intuition, but we have not yet seen any
     
     When $f$ is a $0$-form, we still have $\Omega^k \FF^*(f) = f \circ \FF$.
     
-    (Note, instead of using the intermediary step of the equation before the above boxed equation, we could have directly applied the boxed equation of Theorem \ref{ch::exterior_pwrs::deriv::pullback_on_exterior_pwr_of_actual_fns} to the case $k \geq 1$).
+    (Note, instead of using the intermediary step of the equation before the above boxed equation, we could have directly applied the boxed equation of Theorem \ref{ch::antisymmetry::deriv::pullback_on_exterior_pwr_of_actual_fns} to the case $k \geq 1$).
 \end{deriv}
 
 The next theorem describes a way to interpret the integral of a ``regular'' differential form $\omega \in \Omega^k(M)$ over $U \subseteq M$ as an integral of a corresponding differential form $\tomega \in \tOmega^k(M)$ evaluated on a basis of $T_\pp(M)$.
@@ -449,7 +449,7 @@ The next theorem describes a way to interpret the integral of a ``regular'' diff
         \pm \int_U (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n = \pm \int_U f \circ \xx.
     \end{align*}
 
-    We now consider the differential form $\xx^*(\tomega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n \in \tOmega^k(U)$ that corresponds to the ``regular'' differential form\footnote{``Regular'' here means ``is not treated as a function when evaluated at a point''.} $\xx^*(\omega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n \in \Omega^k(U)$. Applying Lemma \ref{ch::exterior_pwrs::lemma::action_dual_wedge_dual_basis} at each point in $U$, we have
+    We now consider the differential form $\xx^*(\tomega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n \in \tOmega^k(U)$ that corresponds to the ``regular'' differential form\footnote{``Regular'' here means ``is not treated as a function when evaluated at a point''.} $\xx^*(\omega) = (f \circ \xx) \spc d\tx_{(V, \yy)}^1 \wedge ... \wedge d\tx_{(V, \yy)}^n \in \Omega^k(U)$. Applying Lemma \ref{ch::antisymmetry::lemma::action_dual_wedge_dual_basis} at each point in $U$, we have
     
     \begin{align*}
         d\tx_{(V, \yy)}^1 \twedge ... \twedge d\tx_{(V, \yy)}^n\Big( \frac{\pd}{\pd \tx_{(V, \yy)}^1}, ..., \frac{\pd}{\pd \tx_{(V, \yy)}^n}\Big) = 1.
@@ -703,7 +703,7 @@ To define a notion of differentiating differential forms, we will interpret diff
 \end{proof}
 
 \begin{theorem}
-    \label{ch::exterior_pwrs::thm::exterior_derivative_commutes_with_pullback}
+    \label{ch::antisymmetry::thm::exterior_derivative_commutes_with_pullback}
     \smallcite{book::SM}{366} (The exterior derivative commutes with the pullback of a smooth function $M \rightarrow N$).
     
     Let $M$ and $N$ be smooth manifolds, let $U \subseteq M$ be open, and consider a smooth function $\FF:U \subseteq M \rightarrow N$. Additionally, let $\pp \in U \subseteq M$, and let $d_\pp$ denote the map $f \overset{d_\pp}{\mapsto} df_\pp$. Then for any smooth differential $k$-form $\omega \in \tOmega^k(N)$ on $N$, we have
@@ -987,7 +987,7 @@ Having set up integration on manifolds and having defined the exterior derivativ
         \sum_{i = 1}^k \int_M d \omega_i = \sum_{i = 1}^k \int_{\xx_i(U_i)} (\xx_i^{-1})^*(d \omega_i).
     \end{align*}
     
-    Because the differential commutes with the pullback of a differential (Theorem \ref{ch::exterior_pwrs::thm::exterior_derivative_commutes_with_pullback}), we have
+    Because the differential commutes with the pullback of a differential (Theorem \ref{ch::antisymmetry::thm::exterior_derivative_commutes_with_pullback}), we have
     
     \begin{align*}
         \sum_{i = 1}^k \int_{\xx_i(U_i)} (\xx_i^{-1})^*(d \omega_i) = \sum_{i = 1}^k \int_{\xx_i(U_i)} d \Big( (\xx_i^{-1})^*(\omega_i) \Big).
