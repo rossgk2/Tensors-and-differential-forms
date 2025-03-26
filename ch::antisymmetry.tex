@@ -1,7 +1,7 @@
 \chapter{The determinant and orientation}
 \label{ch::antisymmetry}
 
-\section*{Permutations}
+\section{Permutations}
 
 \begin{defn}
     (Permutation).
@@ -132,7 +132,7 @@ The following definition and theorem are the main reason for our excursion into 
 
 \newpage
 
-\section*{The determinant}
+\section{The determinant}
 
 \label{ch::antisymmetry::determinant}
 
@@ -179,7 +179,7 @@ We quickly define alternating functions to be functions that have this alternati
 \begin{theorem}
     (Succinct characterization of the determinant).
 
-    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so in Remark [...].} alternating linear $k$-form sending $\sE \mapsto 1$. (Recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::linear_k_form}).
+    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \ref{ch::antisymmetry::deriv::permutation_formula_for_determinant}.} alternating linear $k$-form sending $\sE \mapsto 1$. (Recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::linear_k_form}).
 \end{theorem}
 
 We now investigate more properties of the determinant that follow from this succint characterization.
@@ -225,9 +225,10 @@ Using the properties we have amassed, we can derive a formula for the determinan
 \end{defn}
 
 \begin{deriv}
+\label{ch::antisymmetry::deriv::permutation_formula_for_determinant}
     (Permutation formula for the determinant).
     
-    We now derive \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::antisymmetry::defn::determinant} exists; since this formula is derived from the axioms of the determinant, it is also a unique formula for the determinant.
+    We now derive \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::antisymmetry::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
     
     Consider vectors $\cc_1, ..., \cc_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\cc_i]_\sE)^j$. Then...
     
@@ -260,12 +261,6 @@ Using the properties we have amassed, we can derive a formula for the determinan
     
     There are four major steps in the derivation. The first step is to use the multilinearity of the determinant to turn the determinant of $(a^i_j)$ into a sum of the determinants of matrices that only have one nonzero entry in each column (see the line directly above the line labeled with ``where $i_1, ..., i_n$ are distinct from each other''). The second step is to disregard all determinants in this previous sum whose matrix arguments have two or more columns that have their nonzero entries in the same row (i.e. whose matrix arguments are matrices of linearly dependent columns). This leaves us with a sum of determinants of diagonal matrices whose columns have been shuffled (this corresponds to the line labeled with ``where $i_1, ..., i_n$ are distinct from each other'' and the line directly below it). The third step, which corresponds to the third to last line, is to use multilinearity to pull out all the constants. The fourth step is to use the alternatingness of the determinant so that every determinant argument in the sum is the identity matrix; this results in multiplying each term in the sum by $\sgn(\sigma)$.
 \end{deriv}
-
-\begin{remark}
-    (Determinant is well-defined).
-
-    Since the boxed formula was derived by assuming the axioms of the determinant, and since the right side of the boxed formula is a well-defined function of every variable it involves, then the determinant is the unique function satisfying the axioms. Thus, the determinant is the unique alternating linear $k$-form sending $\sE \mapsto 1$.
-\end{remark}
 
 \begin{deriv}
 \label{ch::antisymmetry::thm::det_transpose_invariant}    
@@ -376,7 +371,7 @@ Using the properties we have amassed, we can derive a formula for the determinan
         \ff(\ee_k)) = \det(\ff) h(\ee_1, ..., \ee_k).
    \end{align*}
    
-   Using the seeming-multilinearity of $\wedge$, we can extend this fact to apply to any list of vectors in $V$ and obtain the lemma.
+   Since $h$ is multilinear, we can extend this fact to apply to any list of vectors in $V$. This gives the lemma.
 \end{proof}
 
 \begin{theorem}
@@ -1949,16 +1944,16 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \TT \in \Lambda^k(W^*) \overset{\tLambda^k \ff^*}{\longmapsto} \TT \circ \ff = \ff^*(\TT) \in \Lambda^k(V^*).
     \end{align*}
     
-    Therefore, $\tLambda^k \ff^*:\tLambda^k(W^*) \rightarrow \tLambda^k(V^*)$ acts on $k$ vectors from $V$ by
+    Therefore, if $\TT \in \tLambda^k(W^*)$, then $(\tLambda^k \ff^*)(\TT) \in \tLambda^k(V^*)$ acts on $k$ vectors from $V$ by
     
     \begin{align*}
         \boxed
         {
-            \tLambda^k \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))
+            \Big((\tLambda^k \ff^*)(\TT)\Big)(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))
         }
     \end{align*}
     
-    In appearance, it seems that $\tLambda^k \ff^*$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes_{0,k} \ff^*$, since $\totimes_{0,k} \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on multilinear alternating functions $\TT$, while $\totimes_{0,k} \ff^*$ acts on multilinear (not necessarily alternating) functions $\TT$.
+    In appearance, it seems that $(\tLambda^k \ff^*)(\TT)$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes_{0,k} \ff^*$, since $\totimes_{0,k} \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on multilinear alternating functions $\TT$, while $\totimes_{0,k} \ff^*$ acts on multilinear (not necessarily alternating) functions $\TT$.
 \end{deriv}
 
 \newpage
@@ -1968,7 +1963,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 
 At the end of Chapter \ref{ch::lin_alg}, we presented an explanation for the dot product that remedies two common problematic ways to explain the dot product. The cross product also comes with two common pedagogical problems. We describe and remedy those here.
 
-The first pedagogical problem with the cross product is that the complicated algebraic formula for the cross product is rarely explained. (The formula is $\vv \times \ww = \Big( ([\vv]_E)^2 ([\ww]_E)^3 - ([\vv]_E)^3` ([\ww]_E)^2 \Big) - \Big( ([\vv]_E)^1 ([\ww]_E)^3 - ([\vv]_E)^3 ([\ww]_E)^1 \Big) + \Big( ([\vv]_E)^1 ([\ww]_E)^2 - ([\vv]_E)^2 ([\ww]_E)^1 \Big)$).
+The first pedagogical problem with the cross product is that the complicated algebraic formula for the cross product is rarely explained. The formula is $\vv \times \ww = (v^2 w^3 - w^3 v^2) \see_1 - (v^1 w^3 - v^3 w^1) \see_2`+ (v^1 w^2 - v^2 w^1) \see_3$, where $v^i := [\vv]_\sE^i$ and $w^i := [\ww]_\sE^i$.
 
 The second problem is that the ``right hand rule'' is never explicitly formalized. One common ``explanation'' for the right hand rule goes as follows: ``you can use a `left hand rule' if you want to, but then you'll have to account for a minus sign''. This is a true statement, but it only relates the ``right hand rule'' with the ``left hand rule''- it does not explain the fundamental reason why a right hand rule or left hand rule would emerge in the first place. The ``right hand rule'' is really a consequence of conventions about orientation.
 
@@ -2013,6 +2008,16 @@ The second problem is that the ``right hand rule'' is never explicitly formalize
         (\vv_1 \times \vv_2) \cdot \vv = \det(\vv_1, \vv_2, \vv) \text{ for all $\vv \in \R^3$}.
     \end{align*}
 \end{deriv}
+
+\begin{remark}
+    (The cross product is unique).
+
+    We have not justified that the above definition of the cross product defines a unique vector. We quickly do so now.
+\end{remark}
+
+\begin{proof}
+    Suppose for contradiction that there exist $\cc, \dd$ with $\cc \neq \dd$ such that $\cc \cdot \vv = \det(\vv_1, \vv_2, \vv)$ for all $\vv \in \R^3$ and $\dd \cdot \vv = \det(\vv_1, \vv_2, \vv)$ for all $\vv \in \R^3$. Subtracting these equations, we have $(\cc - \dd) \cdot \vv = 0$. Since the dot product [is positive definite], we must have $\cc - \dd = \mathbf{0}$, i.e., $\cc = \dd$, which contradicts $\cc \neq \dd$.
+\end{proof}
 
 We now prove that $\vv_1 \times \vv_2$ satisfies the previously mentioned geometric properties.
 
