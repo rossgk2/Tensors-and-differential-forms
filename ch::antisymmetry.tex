@@ -1230,12 +1230,16 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \end{proof}
 
 \begin{lemma}
-    possible approaches:
+    TO-DO:
+    
+    \begin{itemize}
+        \item move proof of $\vv_1 \wedge ... \wedge \vv_k = \det(\ff) \ff(\vv_1) \wedge ... \wedge \ff(\vv_k)$ here
+        \item show that $\wedge$ has similar properties to ``consequent properties of det'' underneath
+        \item put a restatement of first bullet point in pushforward and pullback section
+        \item this leaves one theorem from current ``wedge products and determinant'' section that should also be moved to pushforward and pullback section; it should go right below restatement of first bullet point in that section
+    \end{itemize}
 
-    \begin{enumerate}
-        \item prove that $\vv_1 \wedge ... \wedge \vv_k = \det(\ff) \ff(\vv_1) \wedge ... \wedge \ff(\vv_k)$ and then show that $\wedge$ has analogous properties to the determinant
-        \item note that $\wedge$ has analogous properties to the determinant because it seems to be an alternating function
-    \end{enumerate}
+    also, maybe pushforward and pullback can go after ext powers as vector spaces of functions?
 \end{lemma}
 
 \begin{theorem}
@@ -1899,6 +1903,79 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \end{deriv}
 
 \newpage
+
+\section{Wedge products and the determinant}
+
+Given that the determinant is a multilinear alternating function, and the wedge product looks like a multilinear alternating function, there must be some fundamental connection between the two concepts. We present that connection now.
+
+\begin{deriv}
+\label{ch::antisymmetry::rmk::top_pushforward_det}
+    (The pushforward on the top exterior power is multiplication by the determinant).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces over a field $K$, let $\ff:V \rightarrow W$ be a linear function, and consider $\Lambda^n(V)$.
+    
+    We follow an argument similar to that given in the proof of Lemma \ref{ch::antisymmetry::lemma:det_as_scale_factor}\footnote{Unfortunately, we can't directly use the result of said lemma to avoid writing what is a bit of a redundant derivation because doing so requires machinery we yet have.}. Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and consider
+    
+    \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge \ff(\ee_n).
+    \end{align*}
+    
+    Because $\Lambda^n(\ff)$ is multilinear and alternating, the wedge product is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n)) = \det([\ff(E)]_F) = \det(\ff)$. So, set $(a^i_j) = [\ff(E)]_F$, and then use essentially the same argument as was made to derive the permutation formula on the left side of the above. We obtain
+    
+    \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge 
+        \ff(\ee_n) 
+        &= \sum_{\sigma \in S_n} \Big( a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n \Big)
+        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
+        &= \det([\ff(E)]_F) (\ee_1 \wedge ... \wedge \ee_n)
+        = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+    \end{align*}
+    
+   So, we have the statement on the basis $E$
+   
+   \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge 
+        \ff(\ee_n) = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+   \end{align*}
+   
+   Using the seeming-multilinearity of $\wedge$, we can extend this fact to apply to any list of vectors in $V$:
+   
+   \begin{align*}
+       \boxed
+       {
+        \ff(\vv_1) \wedge ... \wedge \ff(\vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}
+       }
+   \end{align*}
+   
+   We can explicitly involve the pullback $\Lambda^n \ff$ and write the above as
+   
+   \begin{align*}
+       (\Lambda^n \ff)(\vv_1 \wedge ... \wedge \vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}.
+   \end{align*}
+   
+   Thus, $\Lambda^n(\ff)$ is multiplication by $\det(\ff)$.
+\end{deriv}
+
+\begin{theorem}
+\label{ch::antisymmetry::rmk::top_pullback_det}
+
+    (The pullback on the top exterior power is multiplication by the determinant).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Consider additionally the dual $\ff^*:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then, applying the previous theorem and using that $\det(\ff) = \det(\ff^*)$, we see that the pullback $\Lambda^n \ff^*$ on the top exterior power satisfies
+    
+    \begin{align*}
+        (\Lambda^n \ff^*)(\ww_1 \wedge ... \wedge \ww_n) = \det(\ff) ( \ww_1 \wedge ... \wedge \ww_n ) \text{ for all $\ww_1, ..., \ww_n \in V$}.
+    \end{align*}
+    
+    That is,
+    
+    \begin{align*}
+        \boxed
+        {
+            \ff^*(\ww_1) \wedge ... \wedge \ff^*(\ww_n) = \det(\ff)(\ww_1 \wedge ... \wedge \ww_n)
+        }
+    \end{align*}
+\end{theorem}
 
 \section{Wedge products and orientation}
 
