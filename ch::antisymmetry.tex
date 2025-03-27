@@ -228,7 +228,7 @@ Using the properties we have amassed, we can derive a formula for the determinan
 \label{ch::antisymmetry::deriv::permutation_formula_for_determinant}
     (Permutation formula for the determinant).
     
-    We now derive \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::antisymmetry::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
+    We now derive the \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::antisymmetry::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
     
     Consider vectors $\cc_1, ..., \cc_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\cc_i]_\sE)^j$. Then...
     
@@ -349,7 +349,7 @@ Using the properties we have amassed, we can derive a formula for the determinan
 \label{ch::antisymmetry::lemma:det_as_scale_factor}
     (Determinant as scale factor).
 
-    Let $V$ and $W$ be vector spaces over the same field. Let $\hh$ be an alternating linear $k$-form. If $\ff:V \rightarrow W$ is a linear function, then $h(\vv_1, ..., \vv_k) = \det(\ff) h(\ff(\vv_1), ..., \ff(\vv_k))$.
+    Let $V$ and $W$ be vector spaces over the same field. Let $h$ be an alternating linear $k$-form. If $\ff:V \rightarrow W$ is a linear function, then $h(\vv_1, ..., \vv_k) = \det(\ff) h(\ff(\vv_1), ..., \ff(\vv_k))$.
 \end{lemma}
 
 \begin{proof}
@@ -1114,7 +1114,7 @@ As a last sidenote, the following theorem gives some justification as to why our
     
     \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ to another orthonormal basis $\ff(\hU) = (\ff(\huu_1), ..., \ff(\huu_n))$.
 
-    Let $\RR_1$ be the $2$-dimensional rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a map from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
+    Let $\RR_1$ be the $2$-dimensional rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a function from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
     
     We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-dimensional rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-dimensional rotation always exists because $\det(\ff) = 1$ implies that $(\ff(\huu_1), ..., \ff(\huu_n))$ has the same orientation as $(\huu_1, ..., \huu_n)$. (Recall, having the same orientation involves ``rotational equivalence'' via $n$-rotations, which are compositions of $2$-dimensional rotations). By induction, $\RR_n \circ \ff$ is a composition of $2$-dimensional rotations.
     
@@ -1129,62 +1129,114 @@ As a last sidenote, the following theorem gives some justification as to why our
 
 \chapter{The wedge product and exterior powers}
 
+Earlier, we constructed tensor product spaces so that we could think of multilinear functions on vectors as linear functions of objects that appeared to be multilinear (tensors). In our study of the determinant, we've seen that multilinear alternating functions are also highly relevant. So, we now seek a way to represent these functions with linear functions. Following the pattern established with multilinear functions, we will represent multilinear alternating functions as linear functions of objects that appear to be multilinear and alternating. These objects will be called \textit{wedge products}. Just as tensor products use the notation $\otimes$, wedge products will use the notation $\wedge$.
+
 \section*{The wedge product}
 
-We restate an earlier definition for convenience.
+First, we remind the reader of the definition of an alternating function, and define notation for the vector space of all such functions.
 
 \begin{defn}
     (Alternating function).
 
-    If $V$ and $W$ are vector spaces, then a function $\ff:V^{\times k} \rightarrow W$ is \textit{alternating} iff \\ ${\ff(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_k) = -\ff(\vv_1, ..., \vv_j, ..., \vv_i, ..., \vv_k)}$ for all $\vv_1, ..., \vv_k \in V$. Equivalently, $\ff:V^{\times k} \rightarrow W$ is alternating iff
+    If $V$ and $W$ are vector spaces, then a function $\ff:V^{\times k} \rightarrow W$ is \textit{alternating} iff \\ ${\ff(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_k) = -\ff(\vv_1, ..., \vv_j, ..., \vv_i, ..., \vv_k)}$ for all $\vv_1, ..., \vv_k \in V$. That is, $\ff$ is alternating iff swapping inputs is equivalent to negating the output obtained by evaluating the original ordering of inputs.
+    
+    Equivalently, $\ff:V^{\times k} \rightarrow W$ is alternating iff
     ${\ff(\vv_{\sigma(1)}, ..., \vv_{\sigma(k)}) = \sgn(\sigma) \ff(\vv_1, ..., \vv_k)}$ for all $\vv_1, ..., \vv_k \in V$ and $\sigma \in S_k$.
 \end{defn}
 
 \begin{defn}
     (Vector space of alternating functions).
     
-    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $(\alt \LLLL)(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-alternating functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling.
+    If $V$ and $W$ are vector spaces over a field $K$, then we use $(\alt \LLLL)(V^{\times k} \rightarrow W)$ to denote the vector space over $K$ of alternating functions $V^{\times k} \rightarrow W$ under the operations of function addition and function scaling.
 \end{defn}
 
-\begin{deriv}
-    (The wedge product).
+Now we define the wedge product, very similarly to how we defined the tensor product (recall Definition \ref{ch::motivated_intro::defn::tensor_product_space}).
 
-    We have a way to represent multilinear functions as vectors. (The way: tensors). Given that we've seen multilinear alternating functions are also highly relevant [determinant], we now seek a way to represent such functions as vectors.
-
-    Just as multilinear functions correspond to symbols of the form $\vv_1 \otimes ... \otimes \vv_k$, where $\otimes$ is multilinear, we will have multilinear alternating functions correspond to symbols of the form $\vv_1 \wedge ... \wedge \vv_k$ such that
+\begin{defn}
+    (Wedge product and exterior powers).
+    
+    Let $V$ be a finite-dimensional vector space over a field $K$. The \textit{$k$th exterior power of $V$} $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$ is defined to be the vector space over $K$ whose elements are from the set $\underbrace{V \times ... \times V}_{\text{$k$ times}} = V^{\wedge k} = V^{\times k}$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$ as $\vv_1 \wedge ... \wedge \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
+    
+    The equivalence relation is defined by by the following conditions:
     
     \begin{enumerate}
-        \item $\wedge$ looks as if it is bilinear, just as was the case with $\otimes$. That is, [...]
-        
-        \item $\wedge$ is associative, just as was the case with $\otimes$: [...]
-        
-        \item $\wedge$ looks as it it is an antisymmetric map: [...]
-        
-        \item $\wedge$ is \textit{skew-commutative}: [...] %if $\TT \in V_1 \otimes ... \otimes V_k$ and $\SS \in V_1 \otimes ... \otimes V_\ell$, then $\SS \wedge \TT = (-1)^{k + \ell} (\TT \wedge \SS)$.
-        
-        \item $\vv_1 \wedge ... \vv \wedge ... \wedge \vv \wedge ... \wedge \vv_k = \mathbf{0}$ for all $\vv \in V_i$ and all $i$
-    \end{enumerate}
+        \item We require
+        \begin{align*}
+            \vv_1 \wedge ... \wedge \vv_{i - 1} &\wedge \vv_{i} \wedge \vv_{i + 1} ... \wedge \vv_k \\
+            &+ \\
+            \vv_1 \wedge ... \wedge \vv_{i - 1} &\wedge \vv_{j} \wedge \vv_{i + 1} ... \wedge \vv_k \\
+            &= \\
+            \vv_1 \wedge ... \wedge \vv_{i - 1} \wedge (\vv_{i} &+ \vv_{j}) \wedge \vv_{i + 1} ... \wedge \vv_k
+        \end{align*}
 
-    We define $V_1 \wedge ... \wedge V_k$ to be the vector space spanned by elements of the form $\vv_1 \wedge ... \wedge \vv_k$, where $\vv_1 \in V_1, ..., \vv_k \in V_k$.
-\end{deriv}
+        for all $\vv_1, ..., \vv_k \in V$, and
+        
+        \begin{align*}
+            c (\vv_1 \wedge ... &\wedge \vv_i \wedge ... \wedge \vv_k ) \\
+            &= \\
+            \vv_1 \wedge ... &\wedge (c \vv_i) \wedge ... \wedge \vv_k,
+        \end{align*}
+
+        for all $\vv_1, ..., \vv_k \in V$ and $c \in K$, so that $\wedge$ looks like it is a multilinear function.
+
+        \item We require
+
+        \begin{align*}
+            \vv_1 \wedge ... &\wedge \vv_i \wedge ... \wedge \vv_j \wedge ... \wedge \vv_k \\
+            &= \\
+            -\vv_1 \wedge ... &\wedge \vv_j \wedge ... \wedge \vv_i \wedge ... \wedge \vv_k,
+        \end{align*}
+
+        for all $\vv_1, ..., \vv_k \in V$, so that $\wedge$ looks like it is an alternating function.
+    \end{enumerate}
+\end{defn}
+
+\begin{remark}
+    (Existence of wedge product).
+
+    We have not yet shown that a mathematical object satisfying the wedge product properties actually exists. We show how to contruct the wedge product $\wedge$ from the tensor product $\otimes$ in the next section.
+\end{remark}
+
+\begin{remark}
+    (Bivectors, trivectors, blades).
+
+    Elementary wedge products of the form $\vv_1 \wedge \vv_2$ are sometimes called ``bivectors'', elementary wedge products of the form $\vv_1 \wedge \vv_2 \wedge \vv_3$ are sometimes called ``trivectors'', and elementary wedge products of the form $\vv_1 \wedge ... \wedge \vv_k$ are sometimes called ``blades''.
+\end{remark}
+
+\begin{theorem}
+    (Associativity of wedge product). 
+    
+    Let $V$ be a vector space. Then there are natural isomorphisms
+    
+    \begin{align*}
+        (V \wedge V) \otimes V \cong V \wedge V \otimes V \cong V \otimes (V \otimes V).
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Replacing the symbol $\otimes$ with $\wedge$ in the proof of the associativity of the tensor product $\otimes$ from Theorem \ref{ch::motivated_intro::thm::tensor_product_associative} gives a proof of this theorem. 
+\end{proof}
+
+Already, we are able to see how wedge products allow us to represent multilinear alternating functions as linear functions.
 
 \begin{theorem}
     (Universal property for exterior powers).
     
-    Let $V_1, V_2, W$ be vector spaces over the same field, and let $\ff:V_1 \times V_2 \rightarrow W$ be an alternating bilinear function. Then there exists a linear function $\hh:V_1 \wedge V_2 \rightarrow W$ with $\ff = \hh \circ \gg$ where $\hh$ uniquely depends on $\ff$, and where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$.
-    
-    In Remark \ref{ch::antisymmetry::rmk::alternating_antisymmetric}, we mentioned that there exists a ``universal property of the exterior algebra''. Note that this theorem is \textit{not} the universal property of the exterior algebra, but a special case of it. (As mentioned before, we have not stated the universal property of the exterior algebra, and will not state it in this book).
+    Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V \times V \rightarrow W$ be an alternating bilinear function. Then there exists a linear function $\hh:V \wedge V \rightarrow W$ with $\ff = \hh \circ \gg$ where $\hh$ uniquely depends on $\ff$, and where $\gg:V \times V \rightarrow V \wedge V$.
 \end{theorem}
 
 \begin{proof}
     The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the maps we define in this proof are extended using antisymmetry and bilinearity, rather than just bilinearity.
 \end{proof}
 
-\begin{theorem}
-    (Exterior powers).
-    
-    Let $V$ be a vector space. We define the \textit{$k$th exterior power $\Lambda^k(V)$} of $V$ to be the wedge product space $\Lambda^k(V) := V^{\wedge k}$.
-\end{theorem}
+\begin{lemma}
+    possible approaches:
+
+    \begin{enumerate}
+        \item prove that $\vv_1 \wedge ... \wedge \vv_k = \det(\ff) \ff(\vv_1) \wedge ... \wedge \ff(\vv_k)$ and then show that $\wedge$ has analogous properties to the determinant
+        \item note that $\wedge$ has analogous properties to the determinant because it seems to be an alternating function
+    \end{enumerate}
+\end{lemma}
 
 \begin{theorem}
     (Basis and dimension of exterior powers).
@@ -1194,14 +1246,51 @@ We restate an earlier definition for convenience.
     \begin{align*}
         \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid k \in \{1, ..., n\} \text{ and } (i_1, ..., i_k) \text{ is strictly increasing} \}.
     \end{align*}
-    
-    Note, $(i_1, ..., i_k)$ must be strictly increasing because $\vv \wedge \vv = \mathbf{0}$.
 \end{theorem}
 
 \begin{proof}
    To show that this set spans $\Lambda^k(V)$, use the seeming-multilinearity of $\wedge$ as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
    
-   For linear independence, note that if the sequence $i_1, ..., i_k$ were not strictly increasing, then we would have a $\mathbf{0}$ in the proposed basis, which would make our proposed basis a linearly dependent set. Since there is no $\mathbf{0}$ in the proposed basis, we can follow the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
+    We use induction to show that all size-$m$ subsets of the proposed basis are linearly independent for all $m \in \{1, ..., n\}$.
+
+    (Base case: $m = 1$). The claim that a size-$1$ subset of the proposed basis is linearly independent is equivalent to the claim that $\ee_{i_1} \wedge ... \wedge \ee_{i_k}$ is linearly independent for all $i_1, ..., i_k$. This is the case because $\ee_{i_1} \wedge ... \wedge \ee_{i_k} \neq \mathbf{0}$.
+
+    (Inductive case: $m > 1$). Assume as the inductive hypothesis that $\ee_$
+
+    \vspace{.25cm}
+   
+    The number of basis vectors is the number of strictly increasing $k$-sized subsets of $\{1, ..., n\}$, i.e., the number of distinct subsets of $\{1, ..., n\}$, which is $\binom{n}{k}$.
+\end{proof}
+
+\begin{theorem}
+\label{ch::antisymmetry::thm::fundamental_isos_exterior_pwrs}
+    (Fundamental natural isomorphisms for exterior powers). 
+    
+    Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos} stated that there are natural isomorphisms
+    
+    \begin{align*}
+        \LLLL(V_1 \times ... \times V_k \rightarrow W) &\cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W) \\
+        \LLLL(V \rightarrow W) &\cong W \otimes V^* \\
+        (V \otimes W)^* &\cong V^* \otimes W^* \\
+        T_{p,q}(V) &\cong T_{q,p}(V^*)
+    \end{align*}
+    
+    Analogously, there are natural isomorphisms
+    
+    \begin{empheq}[box = \fbox]{align*}
+        (\alt \LLLL)(V_1 \times ... \times V_k \rightarrow W) &\cong (\alt \LLLL)(V_1 \wedge ... \wedge V_k \rightarrow W) \\
+        (\alt \LLLL)(V \rightarrow W) &\cong W \wedge V^* \\
+        (V \wedge W)^* &\cong V^* \wedge W^* \\
+        \Lambda^k(V)^* &\cong \Lambda^k(V^*)
+    \end{empheq}
+\end{theorem}
+
+\begin{proof}
+     To show the first equation in the box, show that the function sending an alternating bilinear function to its unique linear counterpart defined on wedge product spaces (which is guaranteed to exist by the universal property for exterior powers) is a linear isomorphism. (This is what we did when we proved the coorresponding fact for tensor product spaces; those steps can essentially be repeated for this proof. See Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}). This proves the first equation for the case $k = 2$. The general result follows by induction.  
+     
+    To prove the second line, use a similar isomorphism as was presented at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}, when we derived the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. That is, take an element $\ff \in (\alt \LLLL)(V \rightarrow W)$, decompose it into a linear combination of ``alternating elementary compositions'', and then send each alternating elementary composition $\ww \circ \phi \mapsto \ww \wedge \phi$. The formal check that this function is a linear isomorphism is essentially the same as the check described at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}.
+    
+    The third line in the box is proved similarly as was in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}; the only difference is that it is necessary to extend with antisymmetry and bilinearity rather than just bilinearity. The fourth line follows from the third line.
 \end{proof}
 
 \section*{Construction of the wedge product}
@@ -1209,7 +1298,7 @@ We restate an earlier definition for convenience.
 \begin{defn}
     (Permutation of a tensor).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define the map $(\cdot)^\sigma:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
+    Let $V_1, ..., V_k$ be vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V^{\otimes k}$, we define the function $(\cdot)^\sigma:V^{\otimes k} \rightarrow V^{\otimes k}$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
     
     \begin{align*}
         (\vv_1 \otimes ... \otimes \vv_k)^\sigma := \vv_{\sigma(1)} \otimes ... \otimes \vv_{\sigma(k)}.
@@ -1217,10 +1306,22 @@ We restate an earlier definition for convenience.
 \end{defn}
 
 \begin{defn}
+\label{ch::antisymmetry::defn::antisymmetric_tensor}
     (Antisymmetric tensor).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. A tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
+    Let $V$ be a vector space. A tensor $\TT \in V^{\otimes k}$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
 \end{defn}
+
+\begin{example}
+    (Antisymmetric tensor of order $2$).
+
+    Let $V_1$ and $V_2$ are vector spaces and $\vv_1, \vv_2 \in V$. The tensor $\TT = \vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1$ in $V^{\otimes 2}$ is antisymmetric, since for all $\sigma \in S_2 = \{\text{id}, (1 \spc 2)\}$ we have $\TT^\sigma = \sgn(\sigma) \TT$:
+
+    \begin{align*}
+        \TT^\id &= (\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1)^{\id} = \vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1 = \TT = \sgn(\id) \TT, \\
+        \TT^{(1 \spc 2)} &= (\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1)^{(1 \spc 2)} = \vv_2 \otimes \vv_1 - \vv_1 \otimes \vv_2 = -(\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1) = -\TT = \sgn((1 \spc 2)) \TT.
+    \end{align*}
+\end{example}
 
 \begin{remark}
 \label{ch::antisymmetry::rmk::alternating_antisymmetric}
@@ -1234,35 +1335,20 @@ We restate an earlier definition for convenience.
     We have not defined what the exterior algebra is (and won't), but it is good to know this context.
 \end{remark}
 
-\begin{theorem}
-\label{ch::antisymmetry::defn::antisymmetric_tensor}
-    (Antisymmetric tensor). 
-    
-    Let $V_1, ..., V_k$ be vector spaces over the same field. A tensor $\TT \in V_1 \otimes ... \otimes V_k$ is \textit{antisymmetric} iff $\TT^\sigma = \sgn(\sigma) \TT$ for all permutations $\sigma \in S_k$.
-\end{theorem}
-
-\begin{proof}
-    We must prove that $\TT^\pi = -\TT$ for all transpositions $\pi \in S_k$ $\iff$ $\TT^\sigma = \sgn(\sigma) \TT$ for all permutations $\sigma \in S_k$.
-
-    ($\implies$). Decompose $\sigma$ into a product of transpositions, $\sigma = \sigma_k \circ ... \circ \sigma_1$. We have $\TT^\sigma = ((\TT^{\sigma_1})^{\sigma_2}...)^{\sigma_k} = (-1)^k \TT = \sgn(\sigma) \TT$.
-
-    ($\impliedby$). If $\pi$ is a transposition, then $\sgn(\pi) = -1$ and we have $\TT^\pi = \sgn(\pi)\TT = -\TT$.
-\end{proof}
-
-Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors). This is important, as we haven't shown that antisymmetric tensors actually exist.
+Now, we generalize the pattern shown in the previous example to define a function that produces antisymmetric tensors from arbitrary tensors. This function will be crucial to our construction of the wedge product.
 
 \begin{defn}
     (Antisymmetrization of elements of tensor product spaces).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We define ${\alt:V_1 \otimes ... \otimes V_k \rightarrow V_1 \otimes ... \otimes V_k}$ on elementary tensors and extend linearly; for an elementary tensor $\TT \in V_1 \otimes ... \otimes V_k$, we define
+    Let $V$ be a vector space over the same field. We define ${\alt:V^{\otimes k} \rightarrow V^{\otimes k}}$ on elementary tensors and extend linearly; for an elementary tensor $\TT \in V^{\otimes k}$, we define
     
     \begin{align*}
         \alt(\TT) := \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma.
     \end{align*}
+
+    In the below, we give proof that $\alt(\TT)$ is antisymmetric for all $\TT \in V^{\otimes k}$.
     
-    When $\TT$ is antisymmetric, then the sum argument is $\sgn(\sigma) \TT^\sigma = \sgn(\sigma)^2 \TT = \TT$, and so the sum is $k! \TT$. Thus, the division by $k!$ ensures that $\alt(\TT) = \TT$ when $\TT$ is an antisymmetric tensor.
-    
-    How might you come up with this formula? Well, you first might start by noticing the case of $k = 2$, without the division by $2!$. That is, notice that when given an arbitrary tensor $\vv_1 \otimes \vv_2$, we can form the antisymmetric tensor $\vv \otimes \ww - \ww \otimes \vv$.
+    Note that $\TT$ is antisymmetric, then the sum argument is $\sgn(\sigma) \TT^\sigma = \sgn(\sigma)^2 \TT = \TT$, and so the sum is $k! \TT$. Thus, the division by $k!$ ensures that $\alt(\TT) = \TT$ when $\TT$ is an antisymmetric tensor.
 \end{defn}
 
 \begin{proof}
@@ -1272,7 +1358,7 @@ Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors
         \alt(\TT)^\pi &= \Big(\sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)\Big)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) (\TT^\sigma)^\pi = \sum_{\sigma \in S_k} \sgn(\sigma) \TT^{\pi \circ \sigma}.
     \end{align*}
             
-    Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\sigma \in S_k$ there is a $\tau \in S_k$ such that $\tau = \pi \circ \sigma \iff \sigma = \pi^{-1} \circ \tau$. So the sum becomes
+    Since $S_k$ is closed under taking the inverse of a permutation (recall, a permutation in $S_k$ is a bijection on $\{1, ..., k\}$), then for every $\sigma \in S_k$ there is a $\tau \in S_k$ such that $\tau = \pi \circ \sigma \iff \sigma = \pi^{-1} \circ \tau$). So the sum becomes
             
     \begin{align*}
         \sum_{\tau \in S_k} \sgn(\pi^{-1} \circ \tau) \TT^\tau &= \sgn(\pi^{-1}) \sum_{\tau \in S_k} \sgn(\tau) \TT^\tau = \sgn(\pi) \alt(\TT),
@@ -1281,10 +1367,16 @@ Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors
     as desired.
 \end{proof}
 
+\begin{remark}
+    (Alternating tensors exist).
+
+    Since $\alt(\TT)$ is antisymmetric for all tensors $\TT$, we can conclude that alternating tensors exist.
+\end{remark}
+
 \begin{defn}
     (Wedge product).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We define the \textit{wedge product} \\ ${\wedge: (V_1 \otimes ... \otimes V_k) \otimes (V_1 \otimes ... \otimes V_k) \rightarrow \alt((V_1 \otimes ... \otimes V_k) \otimes (V_1 \otimes ... \otimes V_k))}$ by $\TT \wedge \SS := \alt(\TT \otimes \SS)$.
+    Let $V_1, ..., V_k$ be vector spaces over the same field. We define the \textit{wedge product} ${\wedge: V^{\otimes k} \otimes V^{\otimes k} \rightarrow \alt(V^{\otimes k} \otimes V^{\otimes k}})$ by $\TT \wedge \SS := \alt(\TT \otimes \SS)$.
 \end{defn}
 
 \begin{remark}
@@ -1301,14 +1393,8 @@ Now, we provide a way to construct antisymmetric tensors (from arbitrary tensors
 \begin{lemma}
     (Lemma for associativity of wedge product). 
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field, and consider $\TT, \SS \in V_1 \otimes ... \otimes V_k$. If $\alt(\TT) = \mathbf{0}$, then $\TT \wedge \SS = \mathbf{0} = \SS \wedge \TT$.
+    Let $V$ be a vector space, and consider $\TT, \SS \in V^{\otimes k}$. If $\alt(\TT) = \mathbf{0}$, then $\TT \wedge \SS = \mathbf{0} = \SS \wedge \TT$.
 \end{lemma}
-
-Interestingly, it turns out that [...]
-
-\begin{theorem}
-    (Wedge product spaces are spaces of antisymmetric tensors).
-\end{theorem}
 
 \begin{proof}
     \newcommand{\pit}{[\pi]_\tau}
@@ -1348,7 +1434,7 @@ Interestingly, it turns out that [...]
 \label{ch::antisymmetry::thm::wedge_associativity}
     (Wedge product is associative). 
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. Then for all $\TT, \SS, \RR \in V_1 \otimes ... \otimes V_k$, we have $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR)$, and are therefore justified in denoting both as $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR) := \TT \wedge \SS \wedge \RR$.
+    Let $V$ be a vector space. For all $\TT, \SS, \RR \in V^{\otimes k}$, we have $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR)$, and are therefore justified in denoting both as $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR) := \TT \wedge \SS \wedge \RR$.
 \end{theorem}
 
 \begin{proof}
@@ -1371,157 +1457,13 @@ Interestingly, it turns out that [...]
 
 \begin{theorem}
     $\TT \wedge \SS := \alt(\TT \otimes \SS)$ satisfies the desired properties of the wedge product
-
-    as before, $V_1 \wedge ... \wedge V_k$ is defined to be the vector space of elements spanned by elements of the form $\vv_1 \wedge ... \wedge \vv_k$, where $\vv_1 \in V_1, ..., \vv_k \in V_k$.
 \end{theorem}
 
 \begin{proof}
+    \textbf{TO-DO: review this}
+
    Property (1) follows by checking the definition $\TT \wedge \SS := \alt(\TT \otimes \SS)$. Property (2) was proved in Theorem \ref{ch::antisymmetry::thm::wedge_associativity}. Property (3) follows from the definition of $\alt$. Conditions (3) and (4) are logically equivalent, and conditions (3) and (5) are logically equivalent. 
 \end{proof}
-
-In Remark \ref{ch::antisymmetry::rmk::want_antisymmetric_algebra}, we said that we wanted to find a function $\wedge:(V_1 \otimes ... \otimes V_k) \times (V_1 \otimes ... \otimes V_k) \rightarrow V_1 \otimes ... \otimes V_k$ for which the tuple $(\{\text{antisymmetric tensors in $V_1 \otimes ... \otimes V_k$}\}, K, \cdot, \wedge )$ is an algebra. We have done so by constructing the wedge product $\wedge$, and now formalize this result with the next definitions.
-
-\begin{theorem}
-    (Basis and dimension for wedge product spaces).
-    
-    Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \wedge ... \wedge V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
-    
-    \begin{align*}
-        \{ \ee_{1i_1} \wedge ... \wedge \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-   See the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
-\end{proof}
-
-%\begin{remark}
-%    Intuition of $k$-blades and volume
-%\end{remark}
-
-
-\begin{theorem}
-\label{ch::antisymmetry::thm::fundamental_isos_exterior_pwrs}
-    (Fundamental natural isomorphisms for exterior powers). 
-    
-    Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos} stated that there are natural isomorphisms
-    
-    \begin{align*}
-        \LLLL(V_1 \times ... \times V_k \rightarrow W) &\cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W) \\
-        \LLLL(V \rightarrow W) &\cong W \otimes V^* \\
-        (V \otimes W)^* &\cong V^* \otimes W^* \\
-        T_{p,q}(V) &\cong T_{q,p}(V^*)
-    \end{align*}
-    
-    Analogously, there are natural isomorphisms
-    
-    \begin{empheq}[box = \fbox]{align*}
-        (\alt \LLLL)(V_1 \times ... \times V_k \rightarrow W) &\cong (\alt \LLLL)(V_1 \wedge ... \wedge V_k \rightarrow W) \\
-        (\alt \LLLL)(V \rightarrow W) &\cong W \wedge V^* \\
-        (V \wedge W)^* &\cong V^* \wedge W^* \\
-        \Lambda^k(V)^* &\cong \Lambda^k(V^*)
-    \end{empheq}
-\end{theorem}
-
-\begin{proof}
-     To show the first equation in the box, show that the map sending an alternating bilinear function to its unique linear counterpart defined on wedge product spaces (which is guaranteed to exist by the universal property for exterior powers) is a linear isomorphism. (This is what we did when we proved the coorresponding fact for tensor product spaces; those steps can essentially be repeated for this proof. See Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}). This proves the first equation for the case $k = 2$. The general result follows by induction.  
-     
-    To prove the second line, use a similar isomorphism as was presented at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}, when we derived the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. That is, take an element $\ff \in (\alt \LLLL)(V \rightarrow W)$, decompose it into a linear combination of ``alternating elementary compositions'', and then send each alternating elementary composition $\ww \circ \phi \mapsto \ww \wedge \phi$. The formal check that this map is a linear isomorphism is essentially the same as the check described at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}.
-    
-    The third line in the box is proved similarly as was in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}; the only difference is that it is necessary to extend with antisymmetry and bilinearity rather than just bilinearity. The fourth line follows from the third line.
-    
-    %read \url{https://math.stackexchange.com/questions/18595/exterior-power-of-dual-space/18628#18628}. even better, ask Owen
-\end{proof}
-
-\section{Wedge products and the determinant}
-
-\begin{theorem}
-\label{ch::antisymmetry::rmk::top_pushforward_det}
-    (The pushforward on the top exterior power is multiplication by the determinant).
-    
-    Let $V$ and $W$ be $n$-dimensional vector spaces over a field $K$, let $\ff:V \rightarrow W$ be a linear function, and consider $\Lambda^n(V)$. We call $\Lambda^n(V)$ the \textit{top exterior power of $V$} because $n$ is the largest positive integer for which $\Lambda^k(V)$ is not a zero-dimensional vector space. Consequently, it is the exterior power of smallest dimension; $\dim(\Lambda^n(V)) = \binom{n}{n} = 1$.
-    
-    Now consider the pushforward $\Lambda^n \ff: \Lambda^n(V) \rightarrow \Lambda^n(W)$ on the top exterior power, which (recall Definition \ref{ch::antisymmetry::defn::pushforward_on_exterior_pwr}) is defined on elementary tensors by $\vv_1 \wedge ... \wedge \vv_n \mapsto \ff(\vv_1) \wedge ... \wedge \ff(\vv_n)$ and is extended with multilinearity. Defined this way, the pushforward $\Lambda^n \ff$ is a multilinear alternating map. This pushforward is also a map of 1-dimensional vector spaces, so it must be multiplication by a constant. We will determine what this constant is.
-    
-    Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and consider the action of the pushforward on the basis vectors of $E$,
-    
-    \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge \ff(\ee_n).
-    \end{align*}
-
-    \textbf{had to introduce this fact in a different form earlier to prove det product rule. so, maybe use this lemma to prove this theorem: Lemma \ref{ch::antisymmetry::lemma:det_as_scale_factor}.}
-    
-    Because $\Lambda^n(\ff)$ is multilinear and alternating, the wedge product is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n)) = \det([\ff(E)]_F) = \det(\ff)$. So, set $(a^i_j) = [\ff(E)]_F$, and then use essentially the same argument as was made to derive the permutation formula on the left side of the above. We obtain
-    
-    \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge 
-        \ff(\ee_n) 
-        &= \sum_{\sigma \in S_n} \Big( a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n \Big)
-        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
-        &= \det([\ff(E)]_F) (\ee_1 \wedge ... \wedge \ee_n)
-        = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
-    \end{align*}
-    
-   So, we have the statement on the basis $E$
-   
-   \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge 
-        \ff(\ee_n) = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
-   \end{align*}
-   
-   Using the seeming-multilinearity of $\wedge$, we can extend this fact to apply to any list of vectors in $V$:
-   
-   \begin{align*}
-       \boxed
-       {
-        \ff(\vv_1) \wedge ... \wedge \ff(\vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}
-       }
-   \end{align*}
-   
-   We can explicitly involve the pullback $\Lambda^n \ff$ and write the above as
-   
-   \begin{align*}
-       (\Lambda^n \ff)(\vv_1 \wedge ... \wedge \vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}.
-   \end{align*}
-   
-   Thus, $\Lambda^n(\ff)$ is multiplication by $\det(\ff)$.
-\end{theorem}
-
-\begin{theorem}
-\label{ch::antisymmetry::rmk::top_pullback_det}
-
-    (The pullback on the top exterior power is multiplication by the determinant).
-    
-    Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Consider additionally the dual $\ff^*:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then, applying the previous theorem and using that $\det(\ff) = \det(\ff^*)$, we see that the pullback $\Lambda^n \ff^*$ on the top exterior power satisfies
-    
-    \begin{align*}
-        (\Lambda^n \ff^*)(\ww_1 \wedge ... \wedge \ww_n) = \det(\ff) ( \ww_1 \wedge ... \wedge \ww_n ) \text{ for all $\ww_1, ..., \ww_n \in V$}.
-    \end{align*}
-    
-    That is,
-    
-    \begin{align*}
-        \boxed
-        {
-            \ff^*(\ww_1) \wedge ... \wedge \ff^*(\ww_n) = \det(\ff)(\ww_1 \wedge ... \wedge \ww_n)
-        }
-    \end{align*}
-\end{theorem}
-
-\section{Wedge products and orientation}
-
-We now show how the top exterior power of a vector space can be used to describe orientation. 
-
-\begin{theorem}
-\label{ch::antisymmetry::defn::orientation_with_top_degree_wedges}
-    (Orientation with top degree wedges).
-    
-    Let $V$ be a finite-dimensional vector space with an orientation $E = (\ee_1, ..., \ee_n)$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
-    
-    Notice, we can identify $E = (\ee_1, ..., \ee_n)$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of orthonormal ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
-    
-    Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::antisymmetry::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
-\end{theorem}
 
 \section{Pushforward and pullback}
 
@@ -1571,7 +1513,7 @@ We now show how the top exterior power of a vector space can be used to describe
 %\end{defn}
 
 %\begin{remark}
-%    Consider the title of the previous definition. In the previous definition, we describe a map $C:\Lambda^k(V) \times \Lambda^k(V^*) \rightarrow K$. Notice that because there is a natural isomorphism $\Lambda^k(V^*) \cong \Lambda^k(V)^*$ (recall Theorem \ref{ch::antisymmetry::thm::fundamental_isos_exterior_pwrs}), the map $C$ does induce a map $\widetilde{C}:\Lambda^k(V) \times \Lambda^k(V)^* \rightarrow K$, which is truly a contraction between ``dual exterior powers''. (In practice, we don't use $\widetilde{C}$, because we prefer to keep $\Lambda^k(V^*)$ ``as it is'').
+%    Consider the title of the previous definition. In the previous definition, we describe a function $C:\Lambda^k(V) \times \Lambda^k(V^*) \rightarrow K$. Notice that because there is a natural isomorphism $\Lambda^k(V^*) \cong \Lambda^k(V)^*$ (recall Theorem \ref{ch::antisymmetry::thm::fundamental_isos_exterior_pwrs}), the function $C$ does induce a function $\widetilde{C}:\Lambda^k(V) \times \Lambda^k(V)^* \rightarrow K$, which is truly a contraction between ``dual exterior powers''. (In practice, we don't use $\widetilde{C}$, because we prefer to keep $\Lambda^k(V^*)$ ``as it is'').
 %\end{remark}
 
 When we first encountered $(p, q)$ tensors, we learned that $(p, q)$ tensors can be identified with multilinear functions; we saw that $T_{p,q}(V) \cong \LLLL((V^*)^{\times p} \times V^{\times q} \rightarrow K)$ is a natural isomorphism when $V$ is a finite-dimensional vector space. When $V_1, ..., V_k$ are finite-dimensional vector spaces, we similarly\footnote{$V_1^* \otimes ... \otimes V_k^* \cong (V_1 \otimes ... \otimes V_k)^* = \LLLL(V_1 \otimes ... \otimes V_k \rightarrow K) \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)$.} have the natural isomorphism ${V_1^* \otimes ... \otimes V_k^* \cong \LLLL(V_1 \times ... \times V_k \rightarrow K)}$.
@@ -1682,7 +1624,7 @@ To achieve our goals, we first formalize some notation about the alternative int
 \end{theorem}
 
 \begin{proof}
-    To prove the first statement, send elementary tensors to elementary tensors via the linear map $\phi \twedge \psi \mapsto \phi \wedge \psi$, and extend this map with linearity and antisymmetry. The rest follows easily.
+    To prove the first statement, send elementary tensors to elementary tensors via the linear function $\phi \twedge \psi \mapsto \phi \wedge \psi$, and extend this function with linearity and antisymmetry. The rest follows easily.
 \end{proof}
 
 \begin{defn}
@@ -1812,7 +1754,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \vv_1 \otimes ... \otimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k).
     \end{align*}
     
-    The natural isomorphisms $T_{k,0}(V) \cong \tT_{k,0}(V)$ and $T_{k,0}(W) \cong \tT_{k,0}(W)$ induce a pushforward map ${\totimes_{k,0} \ff:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)}$ defined by
+    The natural isomorphisms $T_{k,0}(V) \cong \tT_{k,0}(V)$ and $T_{k,0}(W) \cong \tT_{k,0}(W)$ induce a pushforward function ${\totimes_{k,0} \ff:\tT_{k,0}(V) \rightarrow \tT_{k,0}(W)}$ defined by
     
     \begin{align*}
         \vv_1 \totimes ... \totimes \vv_k \overset{\totimes_{k,0} \ff}{\longmapsto} \ff(\vv_1) \totimes ... \totimes \ff(\vv_k).
@@ -1835,7 +1777,7 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
         \psi^1 \totimes ... \totimes \psi^k \overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k).
     \end{align*}
     
-    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback map ${\totimes_{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
+    The natural isomorphisms $T_{0,k}(W) \cong \tT_{0,k}(W)$ and $T_{0,k}(V) \cong \tT_{0,k}(V)$ induce a pullback function ${\totimes_{0,k} \ff^*:\tT_{0,k}(W) \rightarrow \tT_{0,k}(V)}$ defined by
     
     \begin{align*}
         \psi^1 \totimes ... \totimes \psi^k \overset{\totimes_{0,k} \ff^*}{\longmapsto} \ff^*(\psi^1) \totimes ... \totimes \ff^*(\psi^k) = (\psi^1 \circ \ff) \totimes ... \totimes (\psi^k \circ \ff)
@@ -1957,6 +1899,21 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
 \end{deriv}
 
 \newpage
+
+\section{Wedge products and orientation}
+
+We now show how the top exterior power of a vector space can be used to describe orientation. 
+
+\begin{theorem}
+\label{ch::antisymmetry::defn::orientation_with_top_degree_wedges}
+    (Orientation with top degree wedges).
+    
+    Let $V$ be a finite-dimensional vector space with an orientation $E = (\ee_1, ..., \ee_n)$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
+    
+    Notice, we can identify $E = (\ee_1, ..., \ee_n)$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of orthonormal ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
+    
+    Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::antisymmetry::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
+\end{theorem}
 
 \section{The cross product}
 \label{ch::antisymmetry::section::cross_product}

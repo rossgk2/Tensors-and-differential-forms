@@ -47,26 +47,26 @@ Elements of a vector space can be considered to be ``linear elements'' because t
     
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. The \textit{tensor product space} $V_1 \otimes ... \otimes V_k$ is defined to be the vector space over $K$ whose elements are from the set $V_1 \times ... \times V_k$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $V_1 \otimes ... \otimes V_k$ as $\vv_1 \otimes ... \otimes \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
     
-    The equivalence relation is defined by the condition that, for all $\vv_1, ..., \vv_k \in V$ and $c \in K$, we have:
+    The equivalence relation is defined by the condition that
     
     \begin{align*}
-        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{i1} \otimes \vv_{i + 1} ... \otimes \vv_k \\
+        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{i} \otimes \vv_{i + 1} ... \otimes \vv_k \\
         &+ \\
-        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{i2} \otimes \vv_{i + 1} ... \otimes \vv_k \\
+        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_{j} \otimes \vv_{i + 1} ... \otimes \vv_k \\
         &= \\
-        \vv_1 \otimes ... \otimes \vv_{i - 1} \otimes (\vv_{i1} &+ \vv_{i2}) \otimes \vv_{i + 1} ... \otimes \vv_k
+        \vv_1 \otimes ... \otimes \vv_{i - 1} \otimes (\vv_{i} &+ \vv_{j}) \otimes \vv_{i + 1} ... \otimes \vv_k
     \end{align*}
-    
-    and
+
+    for all $\vv_1, ..., \vv_k \in V$, and
     
     \begin{align*}
-        c (\vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes \vv_i \otimes \vv_{i + 1} ... \otimes \vv_k ) \\
+        c (\vv_1 \otimes ... &\otimes \vv_i \otimes ... \otimes \vv_k ) \\
         &= \\
-        \vv_1 \otimes ... \otimes \vv_{i - 1} &\otimes (c \vv_i) \otimes \vv_{i + 1} ... \otimes \vv_k.
+        \vv_1 \otimes ... &\otimes (c \vv_i) \otimes ... \otimes \vv_k
     \end{align*}
-    
-    These operations were contrived to be such that the ``comma in disguise'' $\otimes$ appears to be a multilinear function. We did this because we want elements of tensor product spaces to be ``multilinear elements''.
-    
+
+    for all $\vv_1, ..., \vv_k \in V$ and $c \in K$, so that $\otimes$ looks like it is a multilinear function.
+
     When the context is clear, we will refer to elements of tensor product spaces as ``tensors''.
 \end{defn}
 
@@ -83,6 +83,7 @@ Elements of a vector space can be considered to be ``linear elements'' because t
 \end{defn}
 
 \begin{theorem}
+    \label{ch::motivated_intro::thm::tensor_product_associative}
     (Associativity of tensor product). 
     
     Let $V_1, V_2, V_3$ be vector spaces. Then there are natural isomorphisms
@@ -141,7 +142,7 @@ The following theorem formalizes the notion that multilinear functions preserve 
 \end{theorem}
 
 \begin{proof}
-    First we send $(\vv_1, \vv_2) \overset{\gg}{\mapsto} \vv_1 \otimes \vv_2$ and then $\vv_1 \otimes \vv_2 \overset{\hh_\ff}{\mapsto} \ff(\vv_1, \vv_2)$, where we impose that $\hh_\ff$ be linear. (Note, requiring that $\hh_\ff$ is linear implies that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor, since defining how $\hh_\ff$ acts on elementary tensors is enough to determine how $\hh_\ff$ acts on any tensor). We have $\ff = \hh_\ff \circ \gg$ when we restrict both sides so that they only apply to ``elementary'' vectors $(\vv_1, \vv_2) \in V_1 \times V_2$. Using the bilinearity of $\ff$ and the seeming-bilinearity of $\otimes$, we can ``extend'' this statement to a statement that applies to any vector $(\vv_1, \vv_2) \in V_1 \times V_2$. Thus $\ff = \hh_\ff \circ \gg$. The composition map $\circ$ is well-defined, so $\hh_\ff = \ff \circ \gg$ is uniquely determined.
+    First we send $(\vv_1, \vv_2) \overset{\gg}{\mapsto} \vv_1 \otimes \vv_2$ and then $\vv_1 \otimes \vv_2 \overset{\hh_\ff}{\mapsto} \ff(\vv_1, \vv_2)$, where we impose that $\hh_\ff$ be linear. (Note, requiring that $\hh_\ff$ is linear implies that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor, since defining how $\hh_\ff$ acts on elementary tensors is enough to determine how $\hh_\ff$ acts on any tensor). We have $\ff = \hh_\ff \circ \gg$ when we restrict both sides so that they only apply to ``elementary'' vectors $(\vv_1, \vv_2) \in V_1 \times V_2$. Using the bilinearity of $\ff$ and the seeming-bilinearity of $\otimes$, we can ``extend'' this statement to a statement that applies to any vector $(\vv_1, \vv_2) \in V_1 \times V_2$. Thus $\ff = \hh_\ff \circ \gg$. The composition function $\circ$ is well-defined, so $\hh_\ff = \ff \circ \gg$ is uniquely determined.
     
     We have shown everything except for the fact that $\gg$ is invertible. Show this by proving that $\gg$ has a trivial kernel.
 \end{proof}
@@ -164,7 +165,7 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
     
     To construct a linear isomorphism $\LLLL(V_1 \times V_2 \rightarrow W) \mapsto \LLLL(V_1 \otimes V_2 \rightarrow W)$, we send \\ ${\ff \in \LLLL(V_1 \times V_2 \rightarrow W) \mapsto \hh_\ff = \ff \circ \gg^{-1}}$, where $\gg$ and $\hh_\ff$ are from the proof of Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}.
     
-    This map is linear because, given vector spaces $Y, Z, W$, the map $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). It is an injection because we know from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod} that $\hh_\ff$ is uniquely determined by $\ff$. Since the map is a linear injection between two vector spaces of the same dimension, it is a linear isomorphism.
+    This function is linear because, given vector spaces $Y, Z, W$, the function $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). It is an injection because we know from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod} that $\hh_\ff$ is uniquely determined by $\ff$. Since the function is a linear injection between two vector spaces of the same dimension, it is a linear isomorphism.
 \end{proof}
 
 \begin{remark}
@@ -498,7 +499,7 @@ Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor b
     
     Suppose we've chosen a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$, so that we have the induced dual basis ${E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}}$ for $V^*$. We can define a linear isomorphism $V \rightarrow V^*$ that is defined on basis vectors by $\ee_i \mapsto \phi^{\ee_i}$.
     
-    This isomorphism is \textit{not} natural (see Definition \ref{ch::lin_alg::defn::natural_iso}) because it depends on the basis $E$ for $V$. Additionally, the map $\ee_i \mapsto \phi^{\ee_i}$ is onto but not one-to-one when $V$ is finite-dimensional, because when $V$ is infinite-dimensional the cardinality of $V^*$ is strictly greater than the cardinality of $V$.    
+    This isomorphism is \textit{not} natural (see Definition \ref{ch::lin_alg::defn::natural_iso}) because it depends on the basis $E$ for $V$. Additionally, the function $\ee_i \mapsto \phi^{\ee_i}$ is onto but not one-to-one when $V$ is finite-dimensional, because when $V$ is infinite-dimensional the cardinality of $V^*$ is strictly greater than the cardinality of $V$.    
 \end{remark}
 
 \begin{remark}
@@ -754,7 +755,7 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \begin{proof}
     The first line in the first box is Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}, and the second line in the first box is Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}. We need to prove the third line in the first box; we need to prove that \textit{taking the dual distributes over the tensor product}.
     
-    We do so by defining an isomorphism in the ``reverse'' direction. We define this isomorphism on elementary tensors and extend linearly. Given $(\phi \otimes \psi) \in V^* \otimes W^*$, we produce the linear map $\ff_{\phi \otimes \psi} \in (V \otimes W)^*$, where $\ff_{\phi \otimes \psi}:V \otimes W \rightarrow K$ is defined by $\ff_{\phi \otimes \psi}(\vv \otimes \ww) = \phi(\vv) \psi(\ww)$. The explicit check that this is a linear isomorphism is left to the reader.
+    We do so by defining an isomorphism in the ``reverse'' direction. We define this isomorphism on elementary tensors and extend linearly. Given $(\phi \otimes \psi) \in V^* \otimes W^*$, we produce the linear function $\ff_{\phi \otimes \psi} \in (V \otimes W)^*$, where $\ff_{\phi \otimes \psi}:V \otimes W \rightarrow K$ is defined by $\ff_{\phi \otimes \psi}(\vv \otimes \ww) = \phi(\vv) \psi(\ww)$. The explicit check that this is a linear isomorphism is left to the reader.
 \end{proof}
 
 \begin{remark}
@@ -783,8 +784,8 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     
     \begin{itemize}
         \item (A physicist's definition of a tensor). Physicists and engineers most commonly define tensors to be ``multidimensional matrices'' that follow the ``the tensor transformation law'' (which is really a change of basis formula; we will derive this in Theorem \ref{ch::bilinear_forms_metric_tensors::thm::ricci}). This definition of tensor is clearly unmotivated, as it describes how tensors behave before explaining what they really are.
-        \item (The more ``concrete'' but less insightful mathematical definition of a tensor). Mathematicians often define a $(p, q)$ tensor to be a multilinear map $(V^*)^{\times p} \times V^{\times q} \rightarrow K$. This definition is equivalent to the one we have used (we see why in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}), but it is less preferable because it obscures the concept of a ``multilinear element'' that tensor product spaces so nicely capture.
-        \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``order-$n$ tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear map that sends an order-$(n - 1)$ tensor to a vector in $V$, where an order-$1$ tensor is defined to be a vector in $V$. Thus, an order-$2$ tensor is an element of $\LLLL(V \rightarrow V) \cong V \otimes V^*$, and an order-$3$ tensor is an element of $\LLLL(\LLLL(V \rightarrow V) \rightarrow V) \cong \LLLL(V \otimes V^* \rightarrow V) \cong V \otimes V^* \otimes V^*$. We can use induction to prove that an $n$-order tensor of this definition is identified with an element of $V \otimes (V^{*})^{n - 1} = T_{1, n - 1}(V)$.
+        \item (The more ``concrete'' but less insightful mathematical definition of a tensor). Mathematicians often define a $(p, q)$ tensor to be a multilinear function $(V^*)^{\times p} \times V^{\times q} \rightarrow K$. This definition is equivalent to the one we have used (we see why in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}), but it is less preferable because it obscures the concept of a ``multilinear element'' that tensor product spaces so nicely capture.
+        \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``order-$n$ tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear function that sends an order-$(n - 1)$ tensor to a vector in $V$, where an order-$1$ tensor is defined to be a vector in $V$. Thus, an order-$2$ tensor is an element of $\LLLL(V \rightarrow V) \cong V \otimes V^*$, and an order-$3$ tensor is an element of $\LLLL(\LLLL(V \rightarrow V) \rightarrow V) \cong \LLLL(V \otimes V^* \rightarrow V) \cong V \otimes V^* \otimes V^*$. We can use induction to prove that an $n$-order tensor of this definition is identified with an element of $V \otimes (V^{*})^{n - 1} = T_{1, n - 1}(V)$.
     \end{itemize}
 \end{remark}
 
