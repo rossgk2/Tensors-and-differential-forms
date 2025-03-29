@@ -1,18 +1,8 @@
 \chapter*{For the future}
 
 \begin{itemize}
-    \item change definition differential to be via matrix relative to bases. within that definition, note that an arg similar to the one of the previous deriv yields the following formula.
     \item vector fields should be denoted as $v$, not $\VV$, since a continuous map sending $\pp \mapsto v_\pp$ is a vector field
-    \item linear alg
-    \begin{itemize}
-        \item remove all uses of the explanation ``$[\ff(E)]_{\sE}$ is the primitive matrix of $\ff$ relative to $\sE$''. change to only using $\ff(E)$
-        \item in ``(Matrix of a linear function $V \rightarrow V$ relative to one basis)'', remove the discussion that only works when $V = K^n$, and just use the expression for $[\vv]_E$ that works in general; refer the reader to later deriv
-    \end{itemize}
-    \item move four fundamental isos to right after defn of (p, q) tensor
-    \item add remark about slanted indices after Defn 3.33, connect that to discussion before index lowering/raising theorem
-    \item prove that (k, l) contraction is basis-independent. follows because, under a change of basis the vector (coorresp. to k) transforms via a matrix A and the dual vector (corresp. to l) transforms via a matrix B, where A and B are inverses
-    \item fix uniqueness of adjoint remark: show that inner product condition implies that adjoint satisfies function composition condition
-    \item rewrite Ricci law to go from E and E* to F and F?
+    \item in ``coordinates of tensors'' section of ``bilinear forms'' chapter, make sure never see expressions like $([\FF]_E)^i_j$, only $([\FF]_E)^i{}_j$
 \end{itemize}
 
 \vspace{.5cm}
@@ -24,26 +14,11 @@ This is a list of items that must be completed before I consider this book truly
     \item When Hodge-dual is used to generalize vector calculus theorems, remind reader that Hodge-dual was introduced in cross product section. 
     
     Emphasize that Hodge-dual is basically a generalized cross product. This perspective implies the abstract definition of the Hodge-dual that involves orthogonal subspaces, which is often pulled out of thin air in other presentations. (So maybe prove that the Hodge-dual satisfies this condition involving orthogonal subspaces as a result of it satisfying cross-product like condition. Now that I think about it, this proof will be analogous to proving that $\vv \times \ww$ is perpendicular to $\vv$ and $\ww$ by using the defn of $\times$. This means that definition of Hodge dual will be in cross product section, so can remove definition near vector calculus stuff).
-    \item Add a proof that ``every orthogonal linear function on an $n$-dimensional inner product space with determinant 1 is a composition of $_{n}C_2$ many $2$-rotations'' to justify that the definition of $n$-rotation as a composition of $2$-rotations is ``correct''.
-    \item Finish the logic and proofs chapter.
-    \item Finish the commented-out systems of linear equations section in the linear algebra chapter.
     \item Add more explanatory text in-between definitions, lemmas, theorems where needed.
-    \item Flesh out the calculus review chapter.
-    \begin{itemize}
-        \item Actually define the various generalizations of derivative (and integral). See my own ``Multivariable Calculus 2019'' for this.
-        \item Fubini's theorem?
-        \item Add derivations of div and curl formulas; reference that guy's 2011 vector calculus notes (\url{http://www.supermath.info/CalculusIIIvectorcalculus2011.pdf}, p. 24 and 26).
-    \end{itemize}
     \item Figure out the unexplained step in Theorem \ref{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart}. Somehow, $d\xx \Big( \frac{\pd}{\pd \tx^i_{(V, \yy)}} \Big) = \frac{\pd \xx}{\pd \tx^i_{(V, \yy)}}$. 
     \item Finish the section in ``Manifolds'' on frames and coframes.
     \item Figure out why the ``mnemonic'' of the ``Manifolds'' chapter works.
     \item Add the divergence theorem and the less general Stokes' theorem (and Green's theorem) after the generalized Stokes' theorem.
-    \item Revise/rewrite the expositions at the beginning of each chapter. The exposition at the beginning of ``A motivated introduction to $\binom{p}{q}$'' tensors is of a different style than the other chapters in that it doesn't give a preemptive outline of the entire chapter, and is more of a teaser. Make all expositions a blend between this style and an outline.
     \item Potentially relocate the section about differential forms in $\tOmega^k(M)$ that act on tangent vectors. Potentially the presentation of  tensors/differential forms as actual (pointwise) multilinear functions.
-    \item Add ``Tensors in Engineering'' section.
-    \item Add section which details unconventional pedagogy in this book.
-    \item Finish the items in the ``to\_do.tex'' file. These are mostly very small technical fixes.
-    \item Add the ``Preview to differential forms'' chapter.
-    \item In Chapter \ref{ch::motivated_intro}, see this: ``(In the first equality above, we have used Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}, even though this theorem has not been proven yet. That theorem should be moved so that it precedes this theorem. Doing that will require checking to make sure no other things refer to that theorem as being from the later chapter).''
     \item Explain more explicitly how the cancellation in part 3 of the proof of \ref{ch::diff_forms::theorem::stokes_on_a_smooth_chart} occurs. (``all the internal boundaries in the sum $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C}$ cancel, since each boundary appears twice with opposite orientations'').
 \end{itemize}

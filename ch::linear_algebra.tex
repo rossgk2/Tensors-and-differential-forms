@@ -43,7 +43,7 @@ Linear algebra is the study of \textit{linear elements}- which are more commonly
 
 It is tempting to try to define either \textit{point} in terms of \textit{vector} or \textit{vector} in terms of \textit{point}, but this is actually impossible.
 
-\begin{remark}
+\begin{deriv}
     (Circularity in intuitive definitions of point and directed line segment).
         
     \begin{itemize}
@@ -57,7 +57,7 @@ It is tempting to try to define either \textit{point} in terms of \textit{vector
     \end{itemize}
     
     In addition to the logical circularities, also notice that these attempted definitions suggest that points and vectors are inextricably intertwined: the first attempted definition requires a correspondence between vectors and points, and the second attempted definition requires a notion of adding a point with a vector.
-\end{remark}
+\end{deriv}
 
 The above result forces us to define \textit{point} and \textit{vector} independently of each other; we have to define \textit{point} in terms of some more primitive mathematical object, and \textit{vector} in terms of another more primitive mathematical object. (We will actually use the same primitive mathematical object for both \textit{point} and \textit{vector}). Notice that even after we have done this, the above detailed intertwinedness and logical circularities will always persist on the intuitive level, for better or for worse.
 
@@ -2059,12 +2059,12 @@ The following is an important special case\footnote{Use the substitutions $E := 
     Let $V$ be a finite-dimensional vector space with bases $E$ and $F$. By the definition of $[\cdot]_E$, we have
     
     \begin{align*}
-        \ff_i = \sum_{j = 1}^n ([\ff_i]_E)_j \ee_j = \sum_{j = 1}^n ([\FF]_E)_{ji} \ee_j,
+        \ee_i = \sum_{j = 1}^n ([\ee_i]_F)_j \ff_j = \sum_{j = 1}^n ([\EE]_F)_{ji} \ff_j,
     \end{align*}
     
-    where $\FF$ is the matrix whose $i$th column is $\ff_i$.
+    where $\EE$ is the matrix whose $i$th column is $\ee_i$.
     
-    In the last equality, we have used that $[\ff_i]_E$ is the $i$th column of $[\FF]_E$.
+    In the last equality, we have used that $[\ee_i]_F$ is the $i$th column of $[\EE]_F$.
 \end{theorem}
 
 \begin{remark}

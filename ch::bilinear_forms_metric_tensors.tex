@@ -475,13 +475,13 @@ The second condition of the previous theorem describes bilinear forms that gener
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n} \}$ be the corresponding induced dual bases for $V^*$. We have
     
     \begin{empheq}[box = \fbox]{align*}
-        \ff_i &= \sum_{j = 1}^n ([\ff_i]_E)_j \ee_j = \sum_{j = 1}^n ([\FF]_E)^j_i \ee_j \\
-        \psi^{\ff_i} &= \sum_{j = 1}^n ([\psi^{\ff_i}]_{E^*})_j \phi^{\ee_j} = \sum_{j = 1}^n ([\FF]_E^{-\top})^j_i \phi^{\ee_j}
+        \ee_i &= \sum_{j = 1}^n ([\ee_i]_F)_j \ff_j = \sum_{j = 1}^n ([\EE]_F)^j{}_i \ff_j \\
+        \phi^{\ee_i} &= \sum_{j = 1}^n ([\phi^{\ee_i}]_{F^*})_j \psi^{\ff_j} = \sum_{j = 1}^n ([\EE]_F^{-\top})^j{}_i \psi^{\ff_j}
     \end{empheq}
 \end{theorem}
 
 \begin{proof}
-    The first line in the boxed equation follows directly from the definition of $[\cdot]_F$. (The first line is also Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors})). The second line in the boxed equation follows by applying the first line to the bases $F^*$ and $E^*$ for $V^*$. Specifically, the second equation in the second line follows because $\psi^{\ff_i} = \sum_{j = 1}^n ([\FF^*]_{E^*})^j_i \phi^{\ee_j}$, where we have $[\FF^*]_{E^*} = [\FF]_E^{-\top}$ due to the previous theorem.
+    The first line in the boxed equation follows directly from the definition of $[\cdot]_F$. (The first line is also Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors})). The second line in the boxed equation follows by applying the first line to the bases $E^*$ and $F^*$ for $V^*$. Specifically, the second equation in the second line follows because $\psi^{\ff_i} = \sum_{j = 1}^n ([\EE^*]_{F^*})^j_i \phi^{\ee_j}$, where we have $[\EE^*]_{F^*} = [\FF]_E^{-\top}$ due to the previous theorem.
 \end{proof}
 
 \begin{theorem}
@@ -491,46 +491,44 @@ The second condition of the previous theorem describes bilinear forms that gener
     
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n}\}$ be the corresponding induced dual bases for $V^*$.
     
-    We now derive how to change the coordinates of a $(p, q)$ tensor in $T_{p,q}(V)$. To do so, it is enough to relate the coordinates relative to $F$ and $F^*$ of the $(p, q)$ tensor
+    We now derive how to change the coordinates of a $(p, q)$ tensor. Consider $\TT \in T_{p,q}(V)$ expressed relative to the bases $E$ and $E^*$,
 
     \begin{align*}
        \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}}
-       T^{i_1 ... i_p}{}_{j_1 ... j_q} \ff_{i_1} \otimes ... \otimes \ff_{i_p} \otimes \psi^{\ff_{j_1}} \otimes ... \otimes \psi^{\ff_{j_q}}
-    \end{align*}
+       T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}
+    \end{align*}.
     
-    to the coordinates of $\TT$ relative to $E$ and $E^*$.
-    
-    To obtain this relation, we apply the previous theorem to each basis vector in $\TT$.
+    To express $\TT$ relative to the bases $F$ and $F^*$, apply the previous theorem to each basis vector in $\TT$:
     
     \begin{align*}
-        &\ff_{i_1} \otimes ... \otimes \ff_{i_p} \otimes \psi^{\ff_{j_1}} \otimes ... \otimes \psi^{\ff_{j_q}} \\
-        &= \Big(\sum_{j_1 = 1}^n ([\FF]_E)^{j_1}_{i_1} \ee_{j_1} \Big) \otimes ... \otimes \Big(\sum_{j_p = 1}^n ([\FF]_E)^{j_p}_{i_p} \ee_{j_p} \Big)
+        &\ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
+        &= \Big(\sum_{j_1 = 1}^n ([\EE]_F)^{j_1}{}_{i_1} \ff_{j_1} \Big) \otimes ... \otimes \Big(\sum_{j_p = 1}^n ([\EE]_F)^{j_p}{}_{i_p} \ff_{j_p} \Big)
         \otimes
-        \Big( \sum_{i_1 = 1}^n ([\FF_E]^{-1})^{j_1}_{i_1} \phi^{\ee_{i_1}} \Big) \otimes
-        ... \otimes \Big( \sum_{i_q = 1}^n ([\FF_E]^{-1})^{j_q}_{i_q} \phi^{\ee_{i_q}} \Big) \\
-        &= \sum_{j_1 = 1}^n ... \sum_{j_p}^n \sum_{i_1 = 1}^n ... \sum_{i_q = 1}^n \Big( ([\FF]_E)^{j_1}_{i_1} ... ([\FF]_E)^{j_p}_{i_p}
-        ([\FF_E]^{-1})^{j_1}_{i_1} ... ([\FF_E]^{-1})^{j_q}_{i_q} 
-        \ee_{j_1} \otimes ... \otimes \ee_{j_p} \otimes \phi^{\ee_{i_1}} \otimes ... \otimes \phi^{\ee_{i_q}} \Big).
+        \Big( \sum_{i_1 = 1}^n ([\EE]_F^{-1})^{j_1}{}_{i_1} \psi^{\ff_{i_1}} \Big) \otimes
+        ... \otimes \Big( \sum_{i_q = 1}^n ([\EE]_F^{-1})^{j_q}{}_{i_q} \psi^{\ff_{i_q}} \Big) \\
+        &= \sum_{j_1 = 1}^n ... \sum_{j_p}^n \sum_{i_1 = 1}^n ... \sum_{i_q = 1}^n \Big( ([\EE]_F)^{j_1}{}_{i_1} ... ([\EE]_F)^{j_p}{}_{i_p}
+        ([\EE]_F^{-1})^{j_1}{}_{i_1} ... ([\EE]_F^{-1})^{j_q}{}_{i_q} 
+        \ff_{j_1} \otimes ... \otimes \ff_{j_p} \otimes \psi^{\ff_{i_1}} \otimes ... \otimes \psi^{\ff_{i_q}} \Big).
     \end{align*}
     
     After substituting this expression back into the basis sum for $\TT$, we see that an arbitrary $(p, q)$ tensor with an $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $F$ and $F^*$ has a $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component relative to $E$ and $E^*$ of 
     
     \begin{align*}
-        &\sum_{k_1 = 1}^n ... \sum_{k_p}^n \sum_{\ell_1 = 1}^n ... \sum_{\ell_q = 1}^n \Big( ([\FF]_E)^{k_1}_{\ell_1} ... ([\FF]_E)^{k_p}_{\ell_p}
-        ([\FF_E]^{-1})^{k_1}_{\ell_1} ... ([\FF_E]^{-1})^{k_q}_{\ell_q} 
-        T^{k_1 ... k_p}_{\ell_1 ... \ell_q}\Big).
+        &\sum_{k_1 = 1}^n ... \sum_{k_p}^n \sum_{\ell_1 = 1}^n ... \sum_{\ell_q = 1}^n \Big( ([\EE]_F)^{k_1}{}_{\ell_1} ... ([\EE]_F)^{k_p}{}_{\ell_p}
+        ([\EE]_F^{-1})^{k_1}{}_{\ell_1} ... ([\EE]_F^{-1})^{k_q}{}_{\ell_q} 
+        T^{k_1 ... k_p}{}_{\ell_1 ... \ell_q}\Big).
     \end{align*}
     
-    (It is possible to ``simplify'' this expression by using the fact that $([\FF]_E)^i_j ([\FF]_E)^{-1})^i_j = \delta^i{}_j$. Let's not do that, because that would require introducing the $\max$ function to account for whether $p \geq q$ or $q < p$).
+    (It is possible to ``simplify'' this expression by using the fact that $([\FF]_E)^i{}_j ([\FF]_E)^{-1})^i{}_j = \delta^i{}_j$. Let's not do that, because that would require introducing the $\max$ function to account for whether $p \geq q$ or $q < p$).
     
     This change of basis formula is sometimes called the \textit{Ricci transformation law}, or the \textit{tensor transformation law}.
     
-    At this stage, it would be remiss not to mention what is called \textit{Einstein summation notation}. In Einstein summation notation, we assume that there is an ``implied summation'' over any index that appears in both a lower and upper index. We can use Einstein notation to write the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $\TT$ relative to $E$ and $E^*$ as
+    At this stage, it would be remiss not to mention what is called \textit{Einstein summation notation}. In Einstein summation notation, we assume that there is an ``implied summation'' over any index that appears in both a lower and upper index. We can use Einstein notation to write the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $\TT$ relative to $F$ and $F^*$ as
     
     \begin{align*}
-        ([\FF]_E)^{k_1}_{\ell_1} ... ([\FF]_E)^{k_p}_{\ell_p}
-        ([\FF_E]^{-1})^{k_1}_{\ell_1} ... ([\FF_E]^{-1})^{k_q}_{\ell_q} 
-        T^{k_1 ... k_p}_{\ell_1 ... \ell_q} \quad \text{(Einstein notation)}.
+        ([\EE]_F)^{k_1}{}_{\ell_1} ... ([\EE]_F)^{k_p}{}_{\ell_p}
+        ([\EE]_F^{-1})^{k_1}{}_{\ell_1} ... ([\EE]_F^{-1})^{k_q}{}_{\ell_q} 
+        T^{k_1 ... k_p}{}_{\ell_1 ... \ell_q} \quad \text{(Einstein notation)}.
     \end{align*}
 \end{theorem}
 
@@ -615,7 +613,7 @@ The second condition of the previous theorem describes bilinear forms that gener
         \\
         = &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} g_{i_k j_\ell} \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
         \\
-        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1 ..., \cancel{i_k}, ..., i_p \in \{1, ..., n\} \\ j_1, ..., \cancel{j_\ell}, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
+        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
         \\
         &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1 ..., \cancel{i_k}, ..., i_p \in \{1, ..., n\} \\ j_1, ..., \cancel{j_\ell}, ..., j_q \in \{1, ..., n\} \\ r \in \{1, ..., n\}}} T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell + 1} ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
     \end{align*}
