@@ -1,0 +1,144 @@
+\chapter*{For the future}
+
+This is a list of items that must be completed before I consider this book truly complete.
+
+\section*{Standardize theorem and proof style}
+
+\begin{itemize}
+    \item Statement of hypotheses
+    \begin{itemize}
+        \item “Let x have P(x), y have Q(y), and z have R(z). Then … S(x, y, z)”
+        \item “If x has P(x) and y has Q(y) then …”
+        \item “Q(x) for all x with P(x)”.
+        \item “Let V and W be vector spaces. If f is a linear function V -> W, then …”
+        \item “If f is a linear function V -> W, where V, W are vector spaces, then …”
+    \end{itemize}
+    \item Restatement of hypotheses in proofs
+    \begin{itemize}
+        \item shorthand: “If f has <most relevant property from theorem>, then blah blah blah…” 
+    \end{itemize}
+    \item Which equations are in the align environment and which are inline?
+\end{itemize}
+
+\section*{Add to GitHub readme}
+
+\begin{itemize}
+    \item There is a prevalent attitude in math and physics that certain topics are “just hard”, but you’ll get them eventually if you keep trying. Yes, math is indeed hard. But it shouldn’t be hard for the wrong reasons, though. Of course, if you bang your head against the wall again and again to instill the mechanical steps of a technique you don’t really understand into your brain, you will become adept at the technique. Math should never be hard in this sort of way. In situations where persistence is the most common recommendation, there is often a better explanation than the traditional one that makes things easier.
+    \item Add to remarks on uniqueness of pedagogy:
+    \begin{itemize}
+        \item Defines $g^ij$ as the coordinates of the induced metric tensor on the dual spaces. We see that use of superscripts in $g^ij$ is justified since the induced metric tensor is a (2, 0) tensor. The typical approach defined $g^ij$ to be such that the matrix $(g^ij)$ is the inverse of the matrix $(g_ij)$. This does explain why the indices in $g^ij$ are superscripts, but doesn’t explain that $g^ij$ are the coordinates of a $(2, 0)$ tensor.
+        \item [Note on how orientation is defined and isn't just lazily assumed to correspond to sign of determinant. Explain how that is circular pedagogy.]
+    \end{itemize}
+\end{itemize}
+
+\section*{Logic and proofs}
+
+\begin{itemize}
+    \item x in S the unique element of S satisfying P(x) <=> P(x) and P is 1-1
+    \item Check that don’t have redundancy in explanation of how to write proofs
+    \item Proof of $\forall x \spc x \in S P(x)$ is formally a proof by cases; we don’t write out the case $x \notin S$ because false hypothesis is obviously true
+    \item In proofs about all sets, have to check the case where the set is empty. Check proofs in chapter for this and make a remark on being careful about this
+    \item Remove $-$ as notation for set difference and use $\\$ instead. Add an explanation that $-$ isn’t used because $S - T$ is often defined to mean $\{ s - t | s \in S \text{ and } t \in T\}$
+\end{itemize}
+
+\section*{Misc.}
+
+\begin{itemize}
+    \item Use $()$ for bases instead of $\{\}$. Make a remark after definition of basis about $()$ vs. $\{\}$
+    \item vector fields should be denoted as $v$, not $\VV$, since a continuous map sending $\pp \mapsto v_\pp$ is a vector field
+    \item in ``coordinates of tensors'' section of ``bilinear forms'' chapter, make sure never see expressions like $([\FF]_E)^i_j$, only $([\FF]_E)^i{}_j$
+\end{itemize}
+
+\section*{Dot product}
+
+\begin{itemize}
+    \item Rewrite dot product section. My ||proj|| doesn’t work. Need to use sproj; projection must be signed, and $n$-dimensional angle approach isn’t actually easier for the beginner to understand; way more inductive proofs with complicated functions are required than I thought.
+    \item \textbf{After more thought, have determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask “why?”, since it’s clearly established that it is so.
+    \item Best approach will be to start in $\R^2$. Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
+\end{itemize}
+
+\subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}
+
+\begin{itemize}
+    \item More dot product edits
+    \item Check defn of vector projection and make sure “some $\vv_\perp$” is used instead of “the $\vv_\perp$”
+    \item Minimize amount of dot product facts used in the “prerequisites to understanding the dot product” section. The facts used are:
+    \begin{itemize}
+        \item Dot product is zero for perpendicular vectors
+        \item Handle geom => alg and alg => geom by starting with geometric formula, showing it’s equal to a formula involving a projection, and going from there.
+    \end{itemize}
+    \item Facts that should be in alg => geom section:
+    \begin{itemize}
+        \item $\vv, \vv_\perp$ is a basis for $\R^2$
+        \item orthogonal linear functions preserve dot product
+        \item rotated projection is projection involving rotated vectors
+    \end{itemize}
+    \item Facts that should be in geom => alg section:
+    \item Proof that geom dot product is linear
+    \item Might have proof about orthogonal linear functions preserving quantities elsewhere in book. Can reference it with a footnote
+\end{itemize}
+
+\section*{Orthogonal complements}
+
+ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
+
+\begin{itemize}
+    \item A \textit{hyperplane} is an orthogonal complement of a one-dimensional vector subspace.
+    \begin{itemize}
+        \item Important to have this so that can talk about visualizing linear equations as hyperplanes.
+    \end{itemize}
+\end{itemize}
+
+\section*{Systems of linear equations}
+
+\begin{itemize}
+    \item Since $\{\text{solns}\} = \ker(\AA) + \{\vv_p\}$ then it must be true that $\rref(\AA | \bb) = (\rref(\AA) | \vv_p)$. Must $\vv_p$ be unique? Yes. (Because there exists a product $\EE$ of elementary matrices such that $\rref(\AA) = \EE \AA$; we have $\vv_p = \EE \bb$. So, might be best to start chapter with solving equations with augmented matrices rather than the theoretical result solns = $\{\text{solns}\} = \ker(\AA) + \{\vv_p\}$, since the former result secretly includes the later.
+\end{itemize}
+
+\section*{Tensors}
+
+\begin{itemize}
+    \item choosing an inner product implies a choice of basis, because it implies a choice of orthonormal basis. revisit the remark on when unnatural isomorphism is natural
+    \item Replace $V \totimes W := \LLLL(V^* \times W^* \rightarrow K)$ with $V \totimes W := V^{**} \totimes W^{**} = L(^V* \times W^* \rightarrow K)$.
+\end{itemize}
+
+\section*{Antisymmetry chapters}
+
+\begin{itemize}
+    \item \textbf{Define $\wedge$ in terms of $\otimes$ differently; $\vv \wedge \ww := \vv \otimes \ww - \ww \otimes \vv$ instead of $\TT \wedge \SS := \alt(\TT \otimes \SS)$; defn of $\vv_1 \wedge ... \wedge \vv_k$ is recursive. Then can use natural isomorphisms to establish associativity of wedge.
+    \item Shift framing from “construction of wedge product” to “relationship between wedge and otimes”.}
+    \item Still need to show that every antisymmetric tensor is a wedge product to fully present relationship between wedge and otimes.
+    \item antisymmetric tensors only make sense for $V^{\otimes k}$, not $V_1 \otimes … \otimes V_k$
+    \begin{itemize}
+        \item search “alternating”
+        \item search “antisym”
+        \item search $V_1$ with case sensitivity to find places to fix
+        \item lots of edits in “as functions” section for this
+        \item find places where swap and permutation are mentioned and make them all consistent with this
+    \end{itemize}
+    \item add to determinants chapter
+\end{itemize}
+
+\subsection*{Orientation}
+
+\begin{itemize}
+    \item Remove definition that an “n rotation” is a composition of extensions to 2-rotations. Gives the idea that rotations about arbitrary axes are such compositions, which is true, but isn’t proven at the time of the definition, or even soon after. We don’t need to know that rotations about arbitrary axes are compositions of extensions to 2-rotations to benefit from how they help us formalize the idea of orientation.
+    \item Probably get rid of “extension of 2 rotation” and just say “2-rotation”
+    \item Could be of help: https://analyticphysics.com/Higher%20Dimensions/Rotations%20in%20Higher%20Dimensions.htm
+\end{itemize}
+
+\section*{Older}
+
+\begin{itemize}
+    \item Finish cross product section
+    \item When Hodge-dual is used to generalize vector calculus theorems, remind reader that Hodge-dual was introduced in cross product section. 
+    
+    Emphasize that Hodge-dual is basically a generalized cross product. This perspective implies the abstract definition of the Hodge-dual that involves orthogonal subspaces, which is often pulled out of thin air in other presentations. (So maybe prove that the Hodge-dual satisfies this condition involving orthogonal subspaces as a result of it satisfying cross-product like condition. Now that I think about it, this proof will be analogous to proving that $\vv \times \ww$ is perpendicular to $\vv$ and $\ww$ by using the defn of $\times$. This means that definition of Hodge dual will be in cross product section, so can remove definition near vector calculus stuff).
+    \item Add more explanatory text in-between definitions, lemmas, theorems where needed.
+    \item Figure out the unexplained step in Theorem \ref{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart}. Somehow, $d\xx \Big( \frac{\pd}{\pd \tx^i_{(V, \yy)}} \Big) = \frac{\pd \xx}{\pd \tx^i_{(V, \yy)}}$. 
+    \item Finish the section in ``Manifolds'' on frames and coframes.
+    \item Figure out why the ``mnemonic'' of the ``Manifolds'' chapter works.
+    \item Add the divergence theorem and the less general Stokes' theorem (and Green's theorem) after the generalized Stokes' theorem.
+    \item Potentially relocate the section about differential forms in $\tOmega^k(M)$ that act on tangent vectors. Potentially the presentation of  tensors/differential forms as actual (pointwise) multilinear functions.
+    \item Explain more explicitly how the cancellation in part 3 of the proof of \ref{ch::diff_forms::theorem::stokes_on_a_smooth_chart} occurs. (``all the internal boundaries in the sum $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C}$ cancel, since each boundary appears twice with opposite orientations'').
+\end{itemize}
