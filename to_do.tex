@@ -18,6 +18,7 @@ This is a list of items that must be completed before I consider this book truly
         \item shorthand: “If f has <most relevant property from theorem>, then blah blah blah…” 
     \end{itemize}
     \item Which equations are in the align environment and which are inline?
+    \item Add more explanatory text in-between definitions, lemmas, theorems where needed.
 \end{itemize}
 
 \section*{Add to GitHub readme}
@@ -60,7 +61,6 @@ This is a list of items that must be completed before I consider this book truly
 \subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}
 
 \begin{itemize}
-    \item More dot product edits
     \item Check defn of vector projection and make sure “some $\vv_\perp$” is used instead of “the $\vv_\perp$”
     \item Minimize amount of dot product facts used in the “prerequisites to understanding the dot product” section. The facts used are:
     \begin{itemize}
@@ -83,7 +83,7 @@ This is a list of items that must be completed before I consider this book truly
 ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 
 \begin{itemize}
-    \item A \textit{hyperplane} is an orthogonal complement of a one-dimensional vector subspace.
+    \item (Defn). A \textit{hyperplane} is an orthogonal complement of a one-dimensional vector subspace.
     \begin{itemize}
         \item Important to have this so that can talk about visualizing linear equations as hyperplanes.
     \end{itemize}
@@ -116,7 +116,14 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
         \item lots of edits in “as functions” section for this
         \item find places where swap and permutation are mentioned and make them all consistent with this
     \end{itemize}
-    \item add to determinants chapter
+\end{itemize}
+
+\subsubsection{Cross product}
+
+\begin{itemize}
+    \item When Hodge-dual is used to generalize vector calculus theorems, remind reader that Hodge-dual was introduced in cross product section. 
+    
+    Emphasize that Hodge-dual is basically a generalized cross product. This perspective implies the abstract definition of the Hodge-dual that involves orthogonal subspaces, which is often pulled out of thin air in other presentations. (So maybe prove that the Hodge-dual satisfies this condition involving orthogonal subspaces as a result of it satisfying cross-product like condition. Now that I think about it, this proof will be analogous to proving that $\vv \times \ww$ is perpendicular to $\vv$ and $\ww$ by using the defn of $\times$. This means that definition of Hodge dual will be in cross product section, so can remove definition snear vector calculus stuff).
 \end{itemize}
 
 \subsection*{Orientation}
@@ -127,14 +134,10 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
     \item Could be of help: https://analyticphysics.com/Higher%20Dimensions/Rotations%20in%20Higher%20Dimensions.htm
 \end{itemize}
 
-\section*{Older}
+\section*{Manifolds and differential forms}
 
 \begin{itemize}
-    \item Finish cross product section
-    \item When Hodge-dual is used to generalize vector calculus theorems, remind reader that Hodge-dual was introduced in cross product section. 
     
-    Emphasize that Hodge-dual is basically a generalized cross product. This perspective implies the abstract definition of the Hodge-dual that involves orthogonal subspaces, which is often pulled out of thin air in other presentations. (So maybe prove that the Hodge-dual satisfies this condition involving orthogonal subspaces as a result of it satisfying cross-product like condition. Now that I think about it, this proof will be analogous to proving that $\vv \times \ww$ is perpendicular to $\vv$ and $\ww$ by using the defn of $\times$. This means that definition of Hodge dual will be in cross product section, so can remove definition near vector calculus stuff).
-    \item Add more explanatory text in-between definitions, lemmas, theorems where needed.
     \item Figure out the unexplained step in Theorem \ref{ch::diff_forms::thm::integral_of_diff_form_actual_function_single_chart}. Somehow, $d\xx \Big( \frac{\pd}{\pd \tx^i_{(V, \yy)}} \Big) = \frac{\pd \xx}{\pd \tx^i_{(V, \yy)}}$. 
     \item Finish the section in ``Manifolds'' on frames and coframes.
     \item Figure out why the ``mnemonic'' of the ``Manifolds'' chapter works.
