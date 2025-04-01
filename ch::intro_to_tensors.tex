@@ -14,9 +14,9 @@ The second key idea in the theory of tensors is to think of linear functions as 
 \begin{defn}
     (Multilinear function).
     
-    Let $V_1, ..., V_k, W$ be vector spaces over a field $K$. We say a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is \textit{$k$-linear} iff for all $\vv_1 \in V_1, ..., \vv_i \in V_i, ..., \vv_k \in V_k$, the function $\ff_i:V_i \rightarrow W$ defined by $\ff_i(\vv_1, ..., \vv_i, ..., \vv_k) = \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is linear. In other words, $\ff$ is \textit{$k$-linear} iff it is ``linear in each argument''. 
+    Let $V_1, ..., V_k, W$ be vector spaces over a field $K$. We say a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is \textit{$k$-linear}, or \textit{multilinear}, iff for all $\vv_1 \in V_1, ..., \vv_i \in V_i, ..., \vv_k \in V_k$, the function $\ff_i:V_i \rightarrow W$ defined by $\ff_i(\vv_1, ..., \vv_i, ..., \vv_k) = \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is linear. In other words, $\ff$ is multilinear iff it is ``linear in each argument''. 
     
-    Note that a $1$-linear function is simply a linear function. A $2$-linear function is called a \textit{bilinear function}. When $k$ is not known, $k$-linear functions are usually referred to as \textit{multilinear functions}.
+    Note that a $1$-linear function is simply a linear function. A $2$-linear function is called a \textit{bilinear function}.
 \end{defn}
 
 \begin{example}
@@ -86,26 +86,13 @@ We will soon see that tensors truly are multilinear elements, as their decomposi
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces, and consider the tensor product space $V_1 \otimes ... \otimes V_k$. An element of $V_1 \otimes ... \otimes V_k$ that is of the form $\vv_1 \otimes ... \otimes \vv_k$ is called an \textit{elementary tensor}. Intuitively, an elementary tensor is a tensor that does not need to be expressed as linear combination of two or more other nonzero tensors. An element of $V_1 \otimes ... \otimes V_k$ that is not an elementary tensor is called a \textit{nonelementary tensor}.
 \end{defn}
 
-\begin{theorem}
-    \label{ch::motivated_intro::thm::tensor_product_associative}
-    (Associativity of tensor product). 
-    
-    Let $V_1, V_2, V_3$ be finite-dimensional vector spaces. Then there are natural isomorphisms
-    
-    \begin{align*}
-        (V_1 \otimes V_2) \otimes V_3 \cong V_1 \otimes V_2 \otimes V_3 \cong V_1 \otimes (V_2 \otimes V_3).
-    \end{align*}
-    
-    That is, these spaces are ``the same'', since an element of one can ``naturally'' be identified as an element of the other. (See Definition \ref{ch::lin_alg::defn::linear_iso} for a discussion of linear isomorphisms). These identifications are ``natural'' in the sense that they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
+\begin{defn}
+    (Extending with linearity).
 
-    Because of this isomorphism, we will always assume $\vv_1 \otimes (\vv_2 \otimes \vv_3) = \vv_1 \otimes \vv_2 \otimes \vv_3 = (\vv_1 \otimes \vv_2) \otimes \vv_3$ for all $\vv_1 \in V_1, \vv_2 \in V_2, \vv_3 \in V_3$.
-\end{theorem}
+    Let $V_1, ..., V_k, W$ be finite-dimensional vector spaces. When defining a multilinear function $V_1 \times ... \times V_k \rightarrow W$ or a linear function $V_1 \otimes ... \otimes V_k \rightarrow W$, 
+\end{defn}
 
-\begin{proof}
-    Since an isomorphism of vector spaces is a linear map, it is enough to define an isomorphism on elementary tensors and ``extend with linearity''. To construct the required isomorphisms, we will recall the definition of a tensor product space as a quotient space, so that elementary tensors of $(V_1 \otimes V_2) \otimes V_3$ are of the form $((\vv_1, \vv_2), \vv_3)$, elementary tensors of $V_1 \otimes V_2 \otimes V_3$ are of the form $(\vv_1, \vv_2, \vv_3)$, and elementary tensors of $V_1 \otimes (V_2 \otimes V_3)$ are of the form $(\vv_1, (\vv_2, \vv_3))$. For the first isomorphism, we send $((\vv_1, \vv_2), \vv_3) \mapsto (\vv_1, \vv_2, \vv_3)$, and for the inverse of the second isomorphism, we send $(\vv_1, (\vv_2, \vv_3)) \mapsto (\vv_1, \vv_2, \vv_3)$. We leave it to the reader to check that these maps are indeed linear and injective; surjectivity follows from fact that these maps ``extend with linearity''. When extending with linearity, it will be necessary to use the fact that $\otimes$ (that is, the outermost comma) appears to be a multilinear function.
-\end{proof}
-
-Now, we start investigating key properties of tensors. In following theorem, we see that every bilinear function accepting the tuple $(\vv_1, \vv_2)$ can be identified with a linear function accepting the tensor $\vv_1 \otimes \vv_2$.
+Now, we start investigating key properties of tensors.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::universal_prop_tensor_prod}
@@ -167,11 +154,9 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 \end{theorem}
 
 \begin{proof}
-    We prove the theorem for the case $k = 2$, and show $\LLLL(V_1 \times V_2 \rightarrow W) \cong \LLLL(V_1 \otimes V_2 \rightarrow W)$. The general result follows by using induction with the associativity of the Cartesian product $\times$ of sets and the tensor product $\otimes$ of vector spaces.
+    To construct a linear isomorphism $\FF:\LLLL(V_1 ... \times V_k \rightarrow W) \mapsto \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W)$, we define $\FF(\ff) = \hh_\ff$, where $\hh_\ff$ is from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}. We need to show that $\FF$ is a linear bijection. Currently, $\hh_\ff$ is defined implicitly; we will need to find a more explicit description of $\hh_\ff$ to approach this.
     
-    To construct a linear isomorphism $\FF:\LLLL(V_1 \times V_2 \rightarrow W) \mapsto \LLLL(V_1 \otimes V_2 \rightarrow W)$, we define $\FF(\ff) = \hh_\ff$, where $\hh_\ff$ is from the case $k = 2$ of Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}. We need to show that $\FF$ is a linear bijection. Currently, $\hh_\ff$ is defined implicitly; we will need to find a more explicit description of $\hh_\ff$ to approach this.
-    
-    The implicit description of $\hh_\ff$ which we already know is $\ff(\vv_1, \vv_2) = \hh_\ff(\vv_1 \otimes \vv_2)$. Rephrasing this, we have $\ff(\vv_1, \vv_2) = \hh_\ff(\gg(\vv_1, \vv_2))$, where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$ is defined by $\gg(\vv_1, \vv_2) := \vv_1 \otimes \vv_2$. Of course, this is equivalent to $\ff = \hh_\ff \circ \gg$. It is clear that $\gg$ has a trivial kernel. Thus $\gg$ is invertible and $\hh_\ff = \ff \circ \gg^{-1}$.
+    The implicit description of $\hh_\ff$ which we already know is $\ff(\vv_1, ..., \vv_k) = \hh_\ff(\vv_1 \otimes ... \otimes \vv_k)$. Rephrasing this, we have $\ff(\vv_1, .., \vv_k) = \hh_\ff(\gg(\vv_1 \otimes ... \otimes \vv_k))$, where $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$ is defined by $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$. Of course, this is equivalent to $\ff = \hh_\ff \circ \gg$. It is clear that $\gg$ has a trivial kernel. Thus $\gg$ is invertible and $\hh_\ff = \ff \circ \gg^{-1}$.
 
     Now, having an explicit expression for $\hh_\ff$, $\hh_\ff = \ff \circ \gg^{-1}$, we can show that $\FF$ is linear. The map is linear because, given vector spaces $Y, Z, W$, the function $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). 
     
@@ -190,12 +175,35 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
     \end{align*}
 \end{theorem}
 
+\begin{proof}      
+      To show that this set spans $V_1 \otimes ... \otimes V_k$, it suffices to show it spans the set of elementary tensors in $V_1 \otimes ... \otimes V_k$, since any tensor in $V_1 \otimes ... \otimes V_k$ is a linear combination of elementary tensors. For an elementary tensor $\vv_1 \otimes ... \otimes \vv_k \in V_1 \otimes ... \otimes V_k$, we have $\vv_1 \otimes ... \otimes \vv_k = \sum_{i_1, ..., i_k} ([\vv_1]_{E_1})^{i_1} ... ([\vv_k]_{E_k})^{i_k} \ee_{i_1} \otimes ... \otimes \ee_{i_k}$ by the seeming-multilinearity of $\otimes$.
+      
+      To show linear independence, assume that $\sum_{i_1, ..., i_k} T_{i_1 ... i_k} \ee_{i_1} \otimes ... \otimes \ee_{i_k} = \mathbf{0}$. We must show that $T_{i_1 ... i_k} = 0$ for all $i_1, ..., i_k$. Note that a tensor in $V_1 \otimes ... \otimes V_k$ is the zero tensor iff\footnote{($\implies$). We have $\vv_1 \otimes ... \otimes \vv_{i - 1} \otimes \mathbf{0} \otimes \vv_{i + 1} \otimes ... \otimes \vv_k = 0 \cdot (\vv_1 \otimes ... \otimes \vv_{i - 1} \otimes \mathbf{0} \otimes \vv_{i + 1} \otimes ... \otimes \vv_k) = \mathbf{0}$. ($\impliedby$). Suppose $\sum_{i_1, ..., i_k} T_{i_1 ... i_k} \ee_{i_1} \otimes ... \otimes \ee_{i_k}$ is the zero tensor. By the previous direction, $\vv_1 \otimes ... \otimes \vv_{i - 1} \otimes \mathbf{0} \otimes \vv_{i + 1} \otimes ... \otimes \vv_k$ is also the zero tensor. So the two are equal.} it is an elementary tensor of the form $\vv_1 \otimes ... \otimes \vv_{i - 1} \otimes \mathbf{0} \otimes \vv_{i + 1} \otimes ... \otimes \vv_k$ for some $i$. Due to the linear independence of the bases $E_1, ..., E_k$, it is impossible to obtain a $\mathbf{0}$ in any position of the tensor product unless all $T_{i_1 ... i_k}$ are $0$.
+\end{proof}
+
+\begin{theorem}
+    \label{ch::motivated_intro::thm::tensor_product_associative}
+    (Associativity of tensor product). 
+    
+    Let $V_1, V_2, V_3$ be finite-dimensional vector spaces. Then there are natural isomorphisms
+    
+    \begin{align*}
+        (V_1 \otimes V_2) \otimes V_3 \cong V_1 \otimes V_2 \otimes V_3 \cong V_1 \otimes (V_2 \otimes V_3).
+    \end{align*}
+    
+    That is, these spaces are ``the same'', since an element of one can ``naturally'' be identified as an element of the other. (See Definition \ref{ch::lin_alg::defn::linear_iso} for a discussion of linear isomorphisms). These identifications are ``natural'' in the sense that they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
+
+    Because of this isomorphism, we will always assume $\vv_1 \otimes (\vv_2 \otimes \vv_3) = \vv_1 \otimes \vv_2 \otimes \vv_3 = (\vv_1 \otimes \vv_2) \otimes \vv_3$ for all $\vv_1 \in V_1, \vv_2 \in V_2, \vv_3 \in V_3$.
+\end{theorem}
+
 \begin{proof}
-      It suffices to show that if $V$ and $W$ are finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, then $\{\ee_i \otimes \ff_j \mid i \in \{1, ..., n\}, j \in \{1, ..., m\} \}$ is a basis of $V \otimes W$. The general result follows by induction.
-      
-      To show that this set spans $V \otimes W$, it suffices to show it spans the set of elementary tensors in $V \otimes W$, since any tensor in $V \otimes W$ is a linear combination of elementary tensors. For an elementary tensor $\vv \otimes \ww \in V \otimes W$, we have $\vv \otimes \ww = \sum_{ij} ([\vv]_E)^i ([\ww]_F)^j \ee_i \otimes \ff_j$ by the seeming-bilinearity of $\otimes$.
-      
-      To show linear independence, assume that $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0}$. We must show that $T_{ij} = 0$ for all $i, j$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0} = \vv \otimes \mathbf{0}$ for any $\vv \in V$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$, where $\vv \in V$, or $\mathbf{0} \otimes \ww$, where $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{ij}$ are $0$.
+    We construct a linear isomorphism $\FF:V_1 \otimes V_2 \otimes V_3 \rightarrow (V_1 \otimes V_2) \otimes V_3 \rightarrow V_3$; construction of a linear isomorphism $V_1 \otimes V_2 \otimes V_3 \rightarrow V_1 \otimes (V_2 \otimes V_3)$ is similar.
+
+    We define $\FF$ on elementary tensors by $\vv_1 \otimes \vv_2 \otimes \vv_3 \overset{\FF}{\mapsto} (\vv_1 \otimes \vv_2) \otimes \vv_3$ and extend with linearity.
+    
+    $\FF$ is onto, as, since any ${\SS \in (V_1 \otimes V_2) \otimes V_3}$ is a linear combination of elementary tensors, $\SS = \sum_{i, j, k} T_{ijk} (\vv_i \otimes \vv_j) \otimes \vv_k$, then if $\TT := \sum_{i,j,k} T_{ijk} \vv_i \otimes \vv_j \otimes \vv_k$ we have $\FF(\TT) = \SS$.
+
+    Since $\FF$ is a linear and onto map between vector spaces of the same dimension, it is a linear isomorphism.    
 \end{proof}
 
 \newpage
