@@ -140,7 +140,7 @@ The following definition and theorem are the main reason for our excursion into 
 \label{ch::antisymmetry::defn::determinant}
     (The determinant).
     
-    Let $K$ be a field, and let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n$. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\cc_1, ..., \cc_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\cc_1, ..., \cc_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
+    Let $K$ be a field, and let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n$. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\vv_1, ..., \vv_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\vv_1, ..., \vv_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
     
     \begin{enumerate}
         \item $\det(\see_1, ..., \see_n) = 1$, since we want the unit $n$-cube to have an $n$-dimensional volume of $1$.
@@ -149,22 +149,22 @@ The following definition and theorem are the main reason for our excursion into 
             \item The volume of a parallelapiped that is the disjoint union of two smaller parallelapipeds should be the sum of the volumes of the smaller parallelapipeds.
             \item Scaling one of the sides of a parallelapiped by $c \in K$ should increase that paralellapiped's volume by a factor of $c$. 
         \end{itemize}
-        \item $\det(\cc_1, ..., \cc, ..., \cc, ..., \cc_n) = 0$ for all $\cc \in K^n$. This should hold because when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume is zero.
+        \item $\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$. This should hold because when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume is zero.
     \end{enumerate}
 \end{defn}
 
 \begin{deriv}
     (Alternatingness).
 
-    Let $\cc, \dd \in K^n$. By the third axiom of the determinant, we have $\det(\cc_1, ..., \cc, ..., \dd, ..., \cc_n) + \det(\cc_1, ..., \dd, ..., \cc, ..., \cc_n) = \det(\cc_1, ..., \cc + \dd, ..., \dd + \cc, ..., \cc_n) = 0$. Thus,
+    Let $\vv, \ww \in K^n$. By the third axiom of the determinant, we have $\det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n) + \det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) = \det(\vv_1, ..., \vv + \ww, ..., \ww + \vv, ..., \vv_n) = 0$. Thus,
 
     \begin{align*}
-        \det(\cc_1, ..., \cc, ..., \dd, ..., \cc_n) = -\det(\cc_1, ..., \dd, ..., \cc, ..., \cc_n) \text{ for all $\cc, \dd \in K^n$}.
+        \det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n) = -\det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) \text{ for all $\vv, \ww \in K^n$}.
     \end{align*}
 
     This condition is known as the \textit{alternatingness} property of the determinant. It is quick to show that alternatingness property not only follows from the third axiom of the determinant, but is equivalent to it.
 
-    Notice that the alternatingness property of the determinant implies that there exist $\cc_1, ..., \cc_n \in K^n$ with $\det(\cc_1, ..., \cc_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of orientation.
+    Notice that the alternatingness property of the determinant implies that there exist $\vv_1, ..., \vv_n \in K^n$ with $\det(\vv_1, ..., \vv_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of orientation.
 \end{deriv}
 
 We quickly define alternating functions to be functions that have this alternatingness property, as this definition allows for a succinct characterization of the determinant.
@@ -190,8 +190,8 @@ We now investigate more properties of the determinant that follow from this succ
     
     \begin{enumerate}
     \setcounter{enumi}{3}
-        \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\cc_1, ..., \cc_i, ..., \cc_n) = \det(\cc_1, ..., \cc_i + \sum_{j = 1, j \neq i}^n d_j \cc_j, ..., \cc_n)$ for all $i \in \{1, ..., n\}$.
-        \item $\det(\cc_1, ..., \cc_n) = 0$ iff $\{\cc_1, ..., \cc_n\}$ is a linearly dependent set.
+        \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\vv_1, ..., \vv_i, ..., \vv_n) = \det(\vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n)$ for all $i \in \{1, ..., n\}$.
+        \item $\det(\vv_1, ..., \vv_n) = 0$ iff $\{\vv_1, ..., \vv_n\}$ is a linearly dependent set.
     \end{enumerate}
 \end{theorem}
 
@@ -201,18 +201,18 @@ We now investigate more properties of the determinant that follow from this succ
     \setcounter{enumi}{4}
         \item 
         
-        Using the axiom ``$\det(\cc_1, ..., \cc, ..., \cc, ..., \cc_n) = 0$ for all $\cc \in K^n$'' together with the multilinearity of the determinant, we have
+        Using the axiom ``$\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$'' together with the multilinearity of the determinant, we have
         
         \begin{align*}
-            \det(\cc_1, ..., \cc_i, ..., \cc_n)
-            &= \det(\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n) + \sum_{j = 1, j \neq i}^n d_j \det(\cc_1, ..., \cc_{i - 1}, \cc_j, \cc_{i + 1}, ..., \cc_j, ..., \cc_n) \\
-            &= \det\Big( \cc_1, ..., \cc_i + \sum_{j = 1, j \neq i}^n d_j \cc_j, ..., \cc_n \Big).
+            \det(\vv_1, ..., \vv_i, ..., \vv_n)
+            &= \det(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n) + \sum_{j = 1, j \neq i}^n d_j \det(\vv_1, ..., \vv_{i - 1}, \vv_j, \vv_{i + 1}, ..., \vv_j, ..., \vv_n) \\
+            &= \det\Big( \vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n \Big).
         \end{align*}
         
         \item 
         \mbox{}
-        \\ \indent ($\det(\cc_1, ..., \cc_n) = 0 \implies \{\cc_1, ..., \cc_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
-        \\ \indent ($\det(\cc_1, ..., \cc_n) = 0 \impliedby \{\cc_1, ..., \cc_n\}$ is a linearly dependent set). Suppose for contradiction that the determinant of a set of $n$ linearly independent vectors is zero. These $n$ linearly independent vectors form a basis for $K^n$, so we have shown that the determinant of a basis set is zero. But then, using multilinearity together with the invariance of $\det$ under linearly combining some vectors into a different vector, we can show that $\det(\cc_1, ..., \cc_n) = 0$ for \textit{all} $\cc_1, ..., \cc_n \in K^n$. This contradicts the first axiom that specifies $\det(\see_1, ..., \see_n) = 1$.
+        \\ \indent ($\det(\vv_1, ..., \vv_n) = 0 \implies \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
+        \\ \indent ($\det(\vv_1, ..., \vv_n) = 0 \impliedby \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). Suppose for contradiction that the determinant of a set of $n$ linearly independent vectors is zero. These $n$ linearly independent vectors form a basis for $K^n$, so we have shown that the determinant of a basis set is zero. But then, using multilinearity together with the invariance of $\det$ under linearly combining some vectors into a different vector, we can show that $\det(\vv_1, ..., \vv_n) = 0$ for \textit{all} $\vv_1, ..., \vv_n \in K^n$. This contradicts the first axiom that specifies $\det(\see_1, ..., \see_n) = 1$.
     \end{enumerate}
 \end{proof}
 
@@ -230,10 +230,10 @@ Using the properties we have amassed, we can derive a formula for the determinan
     
     We now derive the \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::antisymmetry::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
     
-    Consider vectors $\cc_1, ..., \cc_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\cc_i]_\sE)^j$. Then...
+    Consider vectors $\vv_1, ..., \vv_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\vv_i]_\sE)^j$. Then...
     
     \begin{align*}
-        \det((a^i_j)) = \det(\cc_1, ..., \cc_n)
+        \det((a^i_j)) = \det(\vv_1, ..., \vv_n)
         &= \det \Big(\sum_{i_1 = 1}^n a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
         &= \sum_{i_1 = 1}^n \det \Big( a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
         &\vdots \\
@@ -253,11 +253,11 @@ Using the properties we have amassed, we can derive a formula for the determinan
     \begin{align*}
         \boxed
         {
-            \det(\cc_1, ..., \cc_n) = \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma)
+            \det(\vv_1, ..., \vv_n) = \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma)
         }
     \end{align*}
     
-    In this derivation, we have mostly used the multilinearity of the determinant. Though, the expression labeled with ``where $i_1, ..., i_n$ are distinct from each other'' results from the previous line due to the third axiom of the determinant, $\det(\cc_1, ..., \cc_i, ..., \cc_j, ..., \cc_n) = 0$ when $\cc_i = \cc_j$.
+    In this derivation, we have mostly used the multilinearity of the determinant. Though, the expression labeled with ``where $i_1, ..., i_n$ are distinct from each other'' results from the previous line due to the third axiom of the determinant, $\det(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n) = 0$ when $\vv_i = \vv_j$.
     
     There are four major steps in the derivation. The first step is to use the multilinearity of the determinant to turn the determinant of $(a^i_j)$ into a sum of the determinants of matrices that only have one nonzero entry in each column (see the line directly above the line labeled with ``where $i_1, ..., i_n$ are distinct from each other''). The second step is to disregard all determinants in this previous sum whose matrix arguments have two or more columns that have their nonzero entries in the same row (i.e. whose matrix arguments are matrices of linearly dependent columns). This leaves us with a sum of determinants of diagonal matrices whose columns have been shuffled (this corresponds to the line labeled with ``where $i_1, ..., i_n$ are distinct from each other'' and the line directly below it). The third step, which corresponds to the third to last line, is to use multilinearity to pull out all the constants. The fourth step is to use the alternatingness of the determinant so that every determinant argument in the sum is the identity matrix; this results in multiplying each term in the sum by $\sgn(\sigma)$.
 \end{deriv}
@@ -1209,8 +1209,10 @@ Now we define the wedge product, very similarly to how we defined the tensor pro
     Let $V$ be a vector space. Then there are natural isomorphisms
     
     \begin{align*}
-        (V \wedge V) \otimes V \cong V \wedge V \otimes V \cong V \otimes (V \otimes V).
+        (V \wedge V) \wedge V \cong V \wedge V \wedge V \cong V \otimes (V \wedge V).
     \end{align*}
+
+    Because of this isomorphism, we will always assume $(\vv_1 \wedge \vv_2) \wedge \vv_3 = \vv_1 \wedge \vv_2 \wedge \vv_3 = \vv_1 \wedge (\vv_2 \wedge \vv_3)$ for all $\vv_1, \vv_2, \vv_3 \in V$.
 \end{theorem}
 
 \begin{proof}
@@ -1222,11 +1224,15 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \begin{theorem}
     (Universal property for exterior powers).
     
-    Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V \times V \rightarrow W$ be an alternating bilinear function. Then there exists a linear function $\hh:V \wedge V \rightarrow W$ with $\ff = \hh \circ \gg$ where $\hh$ uniquely depends on $\ff$, and where $\gg:V \times V \rightarrow V \wedge V$.
+    Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V^{\times k} \rightarrow W$ be an alternating bilinear function.]
+    
+    Then there exists a linear function $\hh_\ff:V^{\wedge k} \rightarrow W$ such that $\ff(\vv_1, ..., \vv_k) = \hh_\ff(\vv_1 \wedge ... \wedge \vv_k)$.
+
+    Equivalently, there are linear functions $\hh_\ff:V^{\wedge k} \rightarrow W$ and $\gg:V^{\times k} \rightarrow V^{\wedge k}$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \wedge ... \wedge \vv_k$, such that $\ff = \hh_\ff \circ \gg$.
 \end{theorem}
 
 \begin{proof}
-    The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the maps we define in this proof are extended using antisymmetry and bilinearity, rather than just bilinearity.
+    The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the maps we define in this proof are extended using antisymmetry and multilinearity, rather than just multilinearity.
 \end{proof}
 
 \begin{lemma}
@@ -1248,22 +1254,34 @@ Already, we are able to see how wedge products allow us to represent multilinear
     Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. Then $\Lambda^k(V)$ is a $\binom{n}{k}$ dimensional vector space with basis
     
     \begin{align*}
-        \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid k \in \{1, ..., n\} \text{ and } (i_1, ..., i_k) \text{ is strictly increasing} \}.
+        \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid i_1, ..., i_k \in \{1, ..., n\} \text{ and } (i_1, ..., i_k) \text{ is strictly increasing} \}.
     \end{align*}
 \end{theorem}
 
 \begin{proof}
    To show that this set spans $\Lambda^k(V)$, use the seeming-multilinearity of $\wedge$ as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
    
-    We use induction to show that all size-$m$ subsets of the proposed basis are linearly independent for all $m \in \{1, ..., n\}$.
+    To the set is linearly independent, we show that for all $k$ it is linearly independent and contains $\binom{n}{k}$ many vectors. We do this by induction on $k$. 
 
-    (Base case: $m = 1$). The claim that a size-$1$ subset of the proposed basis is linearly independent is equivalent to the claim that $\ee_{i_1} \wedge ... \wedge \ee_{i_k}$ is linearly independent for all $i_1, ..., i_k$. This is the case because $\ee_{i_1} \wedge ... \wedge \ee_{i_k} \neq \mathbf{0}$.
+    (Base case: $k = 1$). If $V$ is one-dimensional and $\{\ee\}$ is a basis for $V$, then the proposed basis is equal to $\{\ee\}$. Thus the proposed basis is linearly independent.
 
-    (Inductive case: $m > 1$). Assume as the inductive hypothesis that $\ee_$
+    (Inductive case: $k > 1$). Assume as the inductive hypothesis the proposed basis for $\Lambda^k(V)$ is linearly independent and has $\binom{n}{k}$ many vectors. We need to show that the proposed basis for $\Lambda^{k + 1}(V)$ is also linearly independent and has $\binom{n}{k + 1}$ many vectors.
 
-    \vspace{.25cm}
+    The elements of the proposed basis for $\Lambda^{k + 1}(V)$ are
+
+    \begin{align*}
+        (\ee_{i_{11}} \wedge &... \wedge \ee_{i_{1k}}) \wedge \ee_{i_{1 \spc k + 1}}, \\
+        &\vdots \\
+        (\ee_{i_{m1}} \wedge &... \wedge \ee_{i_{mk}}) \wedge \ee_{i_{m \spc k + 1}},
+    \end{align*}
+
+    where $m = \binom{n}{k}$, and where $(i_{\ell 1}, ..., i_{\ell k})$ is strictly increasing for all $\ell \in \{1, ..., m\}$.
+
+    Indices are different across ``rows''
+    
+    Indices are different across the last ``column'' because the set only
+
    
-    The number of basis vectors is the number of strictly increasing $k$-sized subsets of $\{1, ..., n\}$, i.e., the number of distinct subsets of $\{1, ..., n\}$, which is $\binom{n}{k}$.
 \end{proof}
 
 \begin{theorem}
@@ -2036,7 +2054,7 @@ The second problem is that the ``right hand rule'' is never explicitly formalize
     
     Starting with the above definition is better than most non-explanations of the cross product, but is still problematic, as doing so begs the question, ``Why is it natural for some vector to satisfy these two conditions?''. A better way to introduce the cross product is to stumble across a vector that satisfies these two conditions, and then define that vector to be $\vv_1 \times \vv_2$. This is what we will do.
 
-    Consider the linear function $\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R$ defined by $\ff_{\vv_1,\vv_2}(\vv) = \det(\vv_1, \vv_2, \vv)$. Since ${\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R}$, then $\ff_{\vv_1,\vv_2}$ must be represented by a $1 \times 3$ matrix: $\ff_{\vv_1, \vv_2}(\vv) = \cc^\top \vv$ for some $\cc \in \R^3$. We define the \textit{cross product of $\vv_1$ and $\vv_2$} to be this $\cc$. That is, we define the cross product of $\vv_1, \vv_2 \in \R^3$ to be the unique vector $(\vv_1 \times \vv_2) \in \R^3$ such that
+    Consider the linear function $\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R$ defined by $\ff_{\vv_1,\vv_2}(\vv) = \det(\vv_1, \vv_2, \vv)$. Since ${\ff_{\vv_1,\vv_2}:\R^3 \rightarrow \R}$, then $\ff_{\vv_1,\vv_2}$ must be represented by a $1 \times 3$ matrix: $\ff_{\vv_1, \vv_2}(\vv) = \vv^\top \vv$ for some $\cc \in \R^3$. We define the \textit{cross product of $\vv_1$ and $\vv_2$} to be this $\cc$. That is, we define the cross product of $\vv_1, \vv_2 \in \R^3$ to be the unique vector $(\vv_1 \times \vv_2) \in \R^3$ such that
     
     \begin{align*}
         (\vv_1 \times \vv_2) \cdot \vv = \det(\vv_1, \vv_2, \vv) \text{ for all $\vv \in \R^3$}.

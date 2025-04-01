@@ -12,6 +12,7 @@ This is a list of items that must be completed before I consider this book truly
         \item “Q(x) for all x with P(x)”.
         \item “Let V and W be vector spaces. If f is a linear function V -> W, then …”
         \item “If f is a linear function V -> W, where V, W are vector spaces, then …”
+        \item For proofs of trivial kernel, always say ``Let $\ff(\vv) = \mathbf{0}$. We need to show $\vv = \mathbf{0}$.'' Make sure the ``We need to show $\vv = \mathbf{0}$'' part is never skipped.
     \end{itemize}
     \item Restatement of hypotheses in proofs
     \begin{itemize}
@@ -35,10 +36,7 @@ This is a list of items that must be completed before I consider this book truly
 \section*{Logic and proofs}
 
 \begin{itemize}
-    \item x in S the unique element of S satisfying P(x) <=> P(x) and P is 1-1
-    \item Check that don’t have redundancy in explanation of how to write proofs
-    \item Proof of $\forall x \spc x \in S P(x)$ is formally a proof by cases; we don’t write out the case $x \notin S$ because false hypothesis is obviously true
-    \item In proofs about all sets, have to check the case where the set is empty. Check proofs in chapter for this and make a remark on being careful about this
+    \item Proof of $\forall x \in S \spc P(x)$ is formally a proof by cases; we don’t write out the case $x \notin S$ because false hypothesis is obviously true
     \item Remove $-$ as notation for set difference and use $\\$ instead. Add an explanation that $-$ isn’t used because $S - T$ is often defined to mean $\{ s - t | s \in S \text{ and } t \in T\}$
 \end{itemize}
 
@@ -105,9 +103,22 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 \section*{Antisymmetry chapters}
 
 \begin{itemize}
-    \item \textbf{Define $\wedge$ in terms of $\otimes$ differently; $\vv \wedge \ww := \vv \otimes \ww - \ww \otimes \vv$ instead of $\TT \wedge \SS := \alt(\TT \otimes \SS)$; defn of $\vv_1 \wedge ... \wedge \vv_k$ is recursive. Then can use natural isomorphisms to establish associativity of wedge.
-    \item Shift framing from “construction of wedge product” to “relationship between wedge and otimes”.}
-    \item Still need to show that every antisymmetric tensor is a wedge product to fully present relationship between wedge and otimes.
+    \item \textbf{Define $\wedge$ in terms of $\otimes$ differently; $\vv \wedge \ww := \vv \otimes \ww - \ww \otimes \vv$ instead of $\TT \wedge \SS := \alt(\TT \otimes \SS)$; defn of $\vv_1 \wedge ... \wedge \vv_k$ is recursive. Then can use natural isomorphisms to establish associativity of $\wedge$.}
+    \begin{itemize}
+        \item This is what we did for $\otimes$. Now I have the question: in what sense is the natural isomorphism $V_1 \otimes (V_2 \otimes V_3) \cong (V_1 \otimes V_2) \otimes V_3$ "more natural" or "more valid" than $V_1 \otimes V_2 \cong V_2 \otimes V_1$? Both are natural isomorphisms.
+        \item The answer is that if we treat isomorphic associativity as strict associativity, we don't get any problems. But if we treat isomorphic commutativity as strict commutativity, then we do: we would have that $\vv_{i_1} \otimes ... \vv_{i_n}$ is the same tensor for all $i_1, ..., i_n \in \{1, ..., n\}$, which is an undesirable result, since then we would only be able to linearize linear functions for which $\ff(\vv_{i_1}, ..., \vv_{i_n}) = \ff(\vv_1, ..., \vv_n)$ for all $i_1, ..., i_n \in \{1, ..., n\}$. 
+    \end{itemize}
+    \item \textbf{Shift framing from “construction of wedge product” to “relationship between wedge and otimes”.}
+    \item Still need to show that (1) every wedge product can be identified with an antisymmetric tensor and (2) every antisymmetric tensor can be identified with a wedge product to fully present relationship between $\wedge$ and $\otimes$.
+    \begin{itemize}
+        \item Every wedge product can be identified with an antisymmetric tensor; yep, define a map on elementary wedges by $\vv_1 \wedge ... \wedge \vv_k \mapsto \alt(\vv_1 \otimes ... \otimes \vv_k)$
+        \item Every antisymmetric tensor can be identified with a wedge product; yep, just define a map $\FF$ on elementary tensors by $\vv_1 \otimes ... \otimes \vv_k \mapsto \vv_1 \wedge ... \wedge \vv_k$.
+        \begin{itemize}
+            \item Suppose $\TT = \sum_{i_1 ... i_k} T_{i_1 ... i_k} \vv_{i_1} \otimes ... \otimes \vv_{i_k}$ is antisymmetric. We have $\TT^\sigma = \sgn(\sigma)\TT$. The proposed isomorphism sends $\TT$ to $\FF(\TT) = \sum_{i_1 ... i_k} T_{i_1 ... i_k} \vv_{i_1} \wedge ... \wedge \vv_{i_k}$. We have $\FF(\TT)^\sigma = \sum_{i_1 ... i_k} T_{i_1 ... i_k} \vv_{\sigma(i_1)} \wedge ... \wedge \vv_{\sigma(i_k)}$. By seeming-alternatingness of $\wedge$, this is $\FF(\TT)^\sigma = \sum_{i_1 ... i_k} T_{i_1 ... i_k} \sgn(\sigma) \vv_{i_1} \wedge ... \wedge \vv_{i_k} = \sgn(\sigma) \sum_{i_1 ... i_k} T_{i_1 ... i_k} \vv_{i_1} \wedge ... \wedge \vv_{i_k} = \sgn(\sigma) \FF(\TT)$.
+
+            
+        \end{itemize}
+    \end{itemize}
     \item antisymmetric tensors only make sense for $V^{\otimes k}$, not $V_1 \otimes … \otimes V_k$
     \begin{itemize}
         \item search “alternating”

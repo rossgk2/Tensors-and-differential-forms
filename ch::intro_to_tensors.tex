@@ -16,19 +16,19 @@ The second key idea in the theory of tensors is to think of linear functions as 
     
     Let $V_1, ..., V_k, W$ be vector spaces over a field $K$. We say a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is \textit{$k$-linear} iff for all $\vv_1 \in V_1, ..., \vv_i \in V_i, ..., \vv_k \in V_k$, the function $\ff_i:V_i \rightarrow W$ defined by $\ff_i(\vv_1, ..., \vv_i, ..., \vv_k) = \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is linear. In other words, $\ff$ is \textit{$k$-linear} iff it is ``linear in each argument''. 
     
-    When $k$ is clear from the context, $k$-linear functions are called \textit{multilinear functions}. Note that a $1$-linear function is simply a linear function. A $2$-linear function is called a \textit{bilinear function}.
+    Note that a $1$-linear function is simply a linear function. A $2$-linear function is called a \textit{bilinear function}. When $k$ is not known, $k$-linear functions are usually referred to as \textit{multilinear functions}.
 \end{defn}
 
 \begin{example}
-    (Examples of multilinear functions). 
+    (Example of a multilinear function). 
     
-    The dot product on $\R^n$ is a bilinear function on $\R^n \times \R^n$. If you have encountered the determinant before, you might recall that it is a multilinear function.
+    The dot product on $\R^n$ is a bilinear function on $\R^n \times \R^n$.
 \end{example}
 
 \begin{defn}
     (Vector space of multilinear functions).
     
-    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ formed by the set of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling.
+    If $V_1, ..., V_k, W$ are vector spaces over a field $K$, then we use $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ to denote the vector space over $K$ of $k$-linear functions $V_1 \times ... \times V_k \rightarrow W$ under the operations of function addition and function scaling.
     
     Notice, the case $k = 1$ is consistent with our definition in Theorem \ref{ch::lin_alg::thm::vector_space_linear_functions} of $\LLLL(V_1 \rightarrow W)$ as being the set of linear functions $V_1 \rightarrow W$.
 \end{defn}
@@ -37,7 +37,9 @@ The second key idea in the theory of tensors is to think of linear functions as 
      The proof that $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ is indeed a vector space is left as an exercise.
 \end{proof}
 
-Elements of a vector space can be considered to be ``linear elements'' because their decompositions relative to a basis are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function_intuitive}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' We will see that elements of tensor product spaces are  ``multilinear elements''.
+We know from our studies in linear algebra that elements of a vector space are sometimes called ``linear elements'' because their decompositions are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function_intuitive}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' 
+
+The following definition gives the answer and formalizes this notion. ``Multilinear elements'' will be called \textit{tensors}.
 
 \newpage
 
@@ -65,95 +67,99 @@ Elements of a vector space can be considered to be ``linear elements'' because t
         \vv_1 \otimes ... &\otimes (c \vv_i) \otimes ... \otimes \vv_k
     \end{align*}
 
-    for all $\vv_1, ..., \vv_k \in V$ and $c \in K$, so that $\otimes$ looks like it is a multilinear function.
+    for all $\vv_1, ..., \vv_k \in V$ and $c \in K$. This is so that $\otimes$ looks like it is a multilinear function.
 
     When the context is clear, we will refer to elements of tensor product spaces as ``tensors''.
 \end{defn}
 
-\begin{remark}
-    (Tensor terminology). 
+% \begin{remark}
+%     (Tensor terminology). 
     
-    Some authors use the word ``tensor'' to mean ``$(p, q)$ tensor''. (We have not defined $(p, q)$ tensors yet, but we will in Definition \ref{ch::motivated_intro::defn::pq_tensor}). We will use the word ``tensor'' to either mean an element of a tensor product space or a $(p, q)$ tensor, but we only do this when the meaning is clear from context.
-\end{remark}
+%     Some authors use the word ``tensor'' to mean ``$(p, q)$ tensor''. (We have not defined $(p, q)$ tensors yet, but we will in Definition \ref{ch::motivated_intro::defn::pq_tensor}). We will use the word ``tensor'' to either mean an element of a tensor product space or a $(p, q)$ tensor, but we only do this when the meaning is clear from context.
+% \end{remark}
+
+We will soon see that tensors truly are multilinear elements, as their decompositions are respected by multilinear functions, but first we need to address some basics.
 
 \begin{defn}
     (Elementary tensor). 
     
-    Let $V_1, ..., V_k$ be vector spaces, and consider the tensor product space $V_1 \otimes ... \otimes V_k$. An element of $V_1 \otimes ... \otimes V_k$ that is of the form $\vv_1 \otimes ... \otimes \vv_k$ is called an \textit{elementary tensor}. Intuitively, an elementary tensor is an element that is \textit{not} a linear combination of two or more other nonzero tensors. An element of $V_1 \otimes ... \otimes V_k$ that is not an elementary tensor is called a \textit{nonelementary tensor}.
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces, and consider the tensor product space $V_1 \otimes ... \otimes V_k$. An element of $V_1 \otimes ... \otimes V_k$ that is of the form $\vv_1 \otimes ... \otimes \vv_k$ is called an \textit{elementary tensor}. Intuitively, an elementary tensor is a tensor that does not need to be expressed as linear combination of two or more other nonzero tensors. An element of $V_1 \otimes ... \otimes V_k$ that is not an elementary tensor is called a \textit{nonelementary tensor}.
 \end{defn}
 
 \begin{theorem}
     \label{ch::motivated_intro::thm::tensor_product_associative}
     (Associativity of tensor product). 
     
-    Let $V_1, V_2, V_3$ be vector spaces. Then there are natural isomorphisms
+    Let $V_1, V_2, V_3$ be finite-dimensional vector spaces. Then there are natural isomorphisms
     
     \begin{align*}
         (V_1 \otimes V_2) \otimes V_3 \cong V_1 \otimes V_2 \otimes V_3 \cong V_1 \otimes (V_2 \otimes V_3).
     \end{align*}
     
     That is, these spaces are ``the same'', since an element of one can ``naturally'' be identified as an element of the other. (See Definition \ref{ch::lin_alg::defn::linear_iso} for a discussion of linear isomorphisms). These identifications are ``natural'' in the sense that they do not depend on a choice of basis (see Definition \ref{ch::lin_alg::defn::natural_iso}).
+
+    Because of this isomorphism, we will always assume $\vv_1 \otimes (\vv_2 \otimes \vv_3) = \vv_1 \otimes \vv_2 \otimes \vv_3 = (\vv_1 \otimes \vv_2) \otimes \vv_3$ for all $\vv_1 \in V_1, \vv_2 \in V_2, \vv_3 \in V_3$.
 \end{theorem}
 
 \begin{proof}
-    Since an isomorphism of vector spaces is a linear map, it is enough to define an isomorphism on elementary tensors and ``extend with linearity''. To construct the required isomorphisms, we will recall the definition of a tensor product space as a quotient space, so that elementary tensors of $(V_1 \otimes V_2) \otimes V_3$ are of the form $((\vv_1, \vv_2), \vv_3)$, elementary tensors of $V_1 \otimes V_2 \otimes V_3$ are of the form $(\vv_1, \vv_2, \vv_3)$, and elementary tensors of $V_1 \otimes (V_2 \otimes V_3)$ are of the form $(\vv_1, (\vv_2, \vv_3))$. For the first isomorphism, we send $((\vv_1, \vv_2), \vv_3) \mapsto (\vv_1, \vv_2, \vv_3)$, and for (reverse of) the second isomorphism, we send $(\vv_1, (\vv_2, \vv_3)) \mapsto (\vv_1, \vv_2, \vv_3)$. We leave it to the reader to check that these maps are indeed linear and injective; surjectivity follows from fact that these maps ``extend with linearity''. When extending with linearity, it will be necessary to use the fact that $\otimes$ (that is, the outermost comma) appears to be a multilinear function.
+    Since an isomorphism of vector spaces is a linear map, it is enough to define an isomorphism on elementary tensors and ``extend with linearity''. To construct the required isomorphisms, we will recall the definition of a tensor product space as a quotient space, so that elementary tensors of $(V_1 \otimes V_2) \otimes V_3$ are of the form $((\vv_1, \vv_2), \vv_3)$, elementary tensors of $V_1 \otimes V_2 \otimes V_3$ are of the form $(\vv_1, \vv_2, \vv_3)$, and elementary tensors of $V_1 \otimes (V_2 \otimes V_3)$ are of the form $(\vv_1, (\vv_2, \vv_3))$. For the first isomorphism, we send $((\vv_1, \vv_2), \vv_3) \mapsto (\vv_1, \vv_2, \vv_3)$, and for the inverse of the second isomorphism, we send $(\vv_1, (\vv_2, \vv_3)) \mapsto (\vv_1, \vv_2, \vv_3)$. We leave it to the reader to check that these maps are indeed linear and injective; surjectivity follows from fact that these maps ``extend with linearity''. When extending with linearity, it will be necessary to use the fact that $\otimes$ (that is, the outermost comma) appears to be a multilinear function.
 \end{proof}
 
-\newpage
-
-\begin{theorem}
-\label{ch::motivated_intro::thm::basis_dim_tensor_product_space}
-    (Basis and dimension of a tensor product space). 
-    
-    Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \otimes ... \otimes V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
-    
-    \begin{align*}
-        \{ \ee_{1i_1} \otimes ... \otimes \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-      It suffices to show that if $V$ and $W$ are finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, then
-      
-      \begin{align*}
-          \{\ee_i \otimes \ff_j \mid i \in \{1, ..., n\}, j \in \{1, ..., m\} \}
-      \end{align*}
-      
-      is a basis of $V \otimes W$.
-      
-      To show that this set spans $V \otimes W$, it suffices to show it spans the set of elementary tensors in $V \otimes W$, since any tensor in $V \otimes W$ is a linear combination of elementary tensors. For an elementary tensor $\vv \otimes \ww \in V \otimes W$, we have
-      
-      \begin{align*}
-          \vv \otimes \ww = \sum_{i = 1}^n ([\vv]_E)^i ([\ww]_F)^j \ee_i \otimes \ff_j,
-      \end{align*}
-      
-      by the seeming-bilinearity of $\otimes$.
-      
-      To show linear independence, assume that $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j$ is the zero tensor. We must show that all of the $T_{i,j}$'s are $0$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{i, j} T_{i, j} \ee_i \otimes \ff_j = \mathbf{0} = \vv \otimes \mathbf{0}$ for any $\vv \in V$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$ for $\vv \in V$, or $\mathbf{0} \otimes \ww$ for $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{i,j}$ are $0$.
-\end{proof}
-
-The following theorem formalizes the notion that multilinear functions preserve the decomposition of multilinear elements. More precisely, it states that a multilinear function uniquely corresponds to a linear function on a tensor product space, which is a function that preserves the decomposition of an element of a tensor product space.
+Now, we start investigating key properties of tensors. In following theorem, we see that every bilinear function accepting the tuple $(\vv_1, \vv_2)$ can be identified with a linear function accepting the tensor $\vv_1 \otimes \vv_2$.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::universal_prop_tensor_prod}
     (Universal property of the tensor product).
 
-    Let $V_1, V_2, W$ be vector spaces, and let $\ff:V_1 \times V_2 \rightarrow W$ be a bilinear function. Then there exists a linear function $\hh_\ff:V_1 \otimes V_2 \rightarrow W$ with $\ff = \hh_\ff \circ \gg$ that uniquely depends on $\ff$, where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$ is invertible.
+    Let $V_1, ..., V_k, W$ be vector spaces, and let $\ff:V_1 \times ... \times V_k \rightarrow W$ be a multilinear function. 
+    
+    Then there exists a linear function $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ such that $\ff(\vv_1, ..., \vv_k) = \hh_\ff(\vv_1 \otimes ... \otimes \vv_k)$.
+
+    Equivalently, there are linear functions $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ and $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$, such that $\ff = \hh_\ff \circ \gg$.
 \end{theorem}
 
 \begin{proof}
-    First we send $(\vv_1, \vv_2) \overset{\gg}{\mapsto} \vv_1 \otimes \vv_2$ and then $\vv_1 \otimes \vv_2 \overset{\hh_\ff}{\mapsto} \ff(\vv_1, \vv_2)$, where we impose that $\hh_\ff$ be linear. (Note, requiring that $\hh_\ff$ is linear implies that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor, since defining how $\hh_\ff$ acts on elementary tensors is enough to determine how $\hh_\ff$ acts on any tensor). We have $\ff = \hh_\ff \circ \gg$ when we restrict both sides so that they only apply to ``elementary'' vectors $(\vv_1, \vv_2) \in V_1 \times V_2$. Using the bilinearity of $\ff$ and the seeming-bilinearity of $\otimes$, we can ``extend'' this statement to a statement that applies to any vector $(\vv_1, \vv_2) \in V_1 \times V_2$. Thus $\ff = \hh_\ff \circ \gg$. The composition function $\circ$ is well-defined, so $\hh_\ff = \ff \circ \gg$ is uniquely determined.
-    
-    We have shown everything except for the fact that $\gg$ is invertible. Show this by proving that $\gg$ has a trivial kernel.
+    We define $\hh_\ff(\vv_1 \otimes ... \otimes \vv_k) := \ff(\vv_1, ..., \vv_k)$, and impose that $\hh_\ff$ be linear to guarantee that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor. This works because defining how a linear function acts on elementary tensors (i.e. tensors of the form $\vv_1 \otimes ... \otimes \vv_k$) determines how it acts on any tensor.
 \end{proof}
 
-Using the previous theorem to define a natural isomorphism of vector spaces yields the following more general result.
+This result shows us that the decompositions of multilinear elements truly are respected by multilinear functions. 
+
+\begin{remark}
+    (The sense in which multilinear functions respect multilinear elements).
+        
+    Consider a linear combination of tuples subject to the equivalence relation given in the definition of tensor product spaces (recall Definition \ref{ch::motivated_intro::defn::tensor_product_space}),
+
+    \begin{align*}
+        \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k}),
+    \end{align*}
+
+    where $\ww_{i_1} \in V_1, ..., \ww_{i_k} \in V_k$ and $T_{i_1, ..., i_k} \in K$ for $i_1, ..., i_k \in \{1, ..., n\}$.
+
+    Now, let $W$ be another finite-dimensional vector space and suppose $\ff:V_1 \times ... \times V_k \rightarrow W$ is a multilinear function. The above theorem says that there are linear functions $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ and $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$, such that $\ff = \hh_\ff \circ \gg$. Therefore
+
+    \begin{align*}
+        \ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big) &= \hh_\ff\Big(\gg\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big)\Big) \\
+        &= \hh_\ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ww_{i_1} \otimes ... \otimes \ww_{i_k}\Big) \\
+        &= \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \hh_\ff(\ww_{i_1} \otimes ... \otimes \ww_{i_k}) \text{ since $\hh_\ff$ is linear} \\
+        &= \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ff(\ww_{i_1}, ..., \ww_{i_k}) \text{ since $\hh_\ff(\vv_1 \otimes ... \otimes \vv_k) = \ff(\vv_1, ..., \vv_k)$}
+    \end{align*}
+
+    Overall, we have
+
+    \begin{align*}
+        \ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big) = \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ff(\ww_{i_1}, ..., \ww_{i_k}).
+    \end{align*}
+
+     Thus, we see that if the tuple input of $\ff$ is decomposed in accordance to the tensor equivalence relation, then $\ff$ preserves this decomposition.
+\end{remark}
+
+Using the previous theorem to define a natural isomorphism of vector spaces yields the following result.
 
 \begin{theorem}
 \label{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}
     (Multilinear functions are naturally identified with linear functions on tensor product spaces).
     
-    Let $V_1, ..., V_k, W$ be vector spaces. Then the vector space of multilinear functions $V_1 \times ... \times V_k \rightarrow W$ is naturally isomorphic to the vector space of linear functions $V_1 \otimes ... \otimes V_k \rightarrow W$:
+    Let $V_1, ..., V_k, W$ be finite-dimensional vector spaces. Then the vector space of multilinear functions $V_1 \times ... \times V_k \rightarrow W$ is naturally isomorphic to the vector space of linear functions $V_1 \otimes ... \otimes V_k \rightarrow W$:
     
     \begin{align*}
         \LLLL(V_1 \times ... \times V_k \rightarrow W) \cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W).
@@ -163,25 +169,41 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 \begin{proof}
     We prove the theorem for the case $k = 2$, and show $\LLLL(V_1 \times V_2 \rightarrow W) \cong \LLLL(V_1 \otimes V_2 \rightarrow W)$. The general result follows by using induction with the associativity of the Cartesian product $\times$ of sets and the tensor product $\otimes$ of vector spaces.
     
-    To construct a linear isomorphism $\LLLL(V_1 \times V_2 \rightarrow W) \mapsto \LLLL(V_1 \otimes V_2 \rightarrow W)$, we send \\ ${\ff \in \LLLL(V_1 \times V_2 \rightarrow W) \mapsto \hh_\ff = \ff \circ \gg^{-1}}$, where $\gg$ and $\hh_\ff$ are from the proof of Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}.
+    To construct a linear isomorphism $\FF:\LLLL(V_1 \times V_2 \rightarrow W) \mapsto \LLLL(V_1 \otimes V_2 \rightarrow W)$, we define $\FF(\ff) = \hh_\ff$, where $\hh_\ff$ is from the case $k = 2$ of Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}. We need to show that $\FF$ is a linear bijection. Currently, $\hh_\ff$ is defined implicitly; we will need to find a more explicit description of $\hh_\ff$ to approach this.
     
-    This function is linear because, given vector spaces $Y, Z, W$, the function $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). It is an injection because we know from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod} that $\hh_\ff$ is uniquely determined by $\ff$. Since the function is a linear injection between two vector spaces of the same dimension, it is a linear isomorphism.
+    The implicit description of $\hh_\ff$ which we already know is $\ff(\vv_1, \vv_2) = \hh_\ff(\vv_1 \otimes \vv_2)$. Rephrasing this, we have $\ff(\vv_1, \vv_2) = \hh_\ff(\gg(\vv_1, \vv_2))$, where $\gg:V_1 \times V_2 \rightarrow V_1 \otimes V_2$ is defined by $\gg(\vv_1, \vv_2) := \vv_1 \otimes \vv_2$. Of course, this is equivalent to $\ff = \hh_\ff \circ \gg$. It is clear that $\gg$ has a trivial kernel. Thus $\gg$ is invertible and $\hh_\ff = \ff \circ \gg^{-1}$.
+
+    Now, having an explicit expression for $\hh_\ff$, $\hh_\ff = \ff \circ \gg^{-1}$, we can show that $\FF$ is linear. The map is linear because, given vector spaces $Y, Z, W$, the function $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). 
+    
+    To show $\FF$ is bijective, since it is a map between vector spaces of the same dimension, it suffices to show that it is one-to-one, i.e., that it has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}). This is clearly the case because if $\FF(\ff) = \hh_\ff = \mathbf{0}$, then $\ff = \hh_\ff \circ \gg = \mathbf{0} \circ \gg = \mathbf{0}$.
 \end{proof}
 
-\begin{remark}
-    (The sense in which multilinear functions respect multilinear elements).
+\begin{theorem}
+\label{ch::motivated_intro::thm::basis_dim_tensor_product_space}
+    (Basis and dimension of a tensor product space). 
     
-    We can use the previous theorem to formalize precisely how multilinear functions respect the decomposition of multilinear elements.
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces with bases $E_1, ..., E_k$, respectively, where $E_i = \{\ee_{i1}, ..., \ee_{in_i}\}$, and where $\dim(V_i) = n_i$. Then $V_1 \otimes ... \otimes V_k$ is a $n_1 n_2 ... n_k$ dimensional vector space with basis
     
-    We know linear functions respect the decomposition of their input, so the decomposition of $\vv_1 \otimes ... \otimes \vv_k$ is respected by any linear function that acts on it. The theorem tells us that the action of a linear function on the tensor $\vv_1 \otimes ... \otimes \vv_k$ can be identified with the action of a multilinear function on the tuple of vectors $(\vv_1, ..., \vv_k)$. Thus, the equivalence class $[\vv_1 \otimes ... \otimes \vv_k]_=$ given by the equivalence relation $=$ used to define tensor products space in Definition \ref{ch::motivated_intro::defn::tensor_product_space} is respected by that multilinear function as well. Every multilinear function can be identified with a linear function, so this reasoning applies to all multilinear functions.
-\end{remark}
+    \begin{align*}
+        \bigcup_{i = 1}^k \bigotimes_{\vv \in E_i} \vv = 
+        \{ \ee_{1i_1} \otimes ... \otimes \ee_{ki_k} \mid i_k \in \{1, ..., n_k\} \}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+      It suffices to show that if $V$ and $W$ are finite-dimensional vector spaces with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_m\}$, then $\{\ee_i \otimes \ff_j \mid i \in \{1, ..., n\}, j \in \{1, ..., m\} \}$ is a basis of $V \otimes W$. The general result follows by induction.
+      
+      To show that this set spans $V \otimes W$, it suffices to show it spans the set of elementary tensors in $V \otimes W$, since any tensor in $V \otimes W$ is a linear combination of elementary tensors. For an elementary tensor $\vv \otimes \ww \in V \otimes W$, we have $\vv \otimes \ww = \sum_{ij} ([\vv]_E)^i ([\ww]_F)^j \ee_i \otimes \ff_j$ by the seeming-bilinearity of $\otimes$.
+      
+      To show linear independence, assume that $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0}$. We must show that $T_{ij} = 0$ for all $i, j$. Note that a tensor in $V \otimes W$ is the zero tensor iff\footnote{($\implies$). We have $\vv \otimes \mathbf{0} = 0 \cdot (\vv \otimes \mathbf{0}) = \mathbf{0}$. ($\impliedby$). If $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0}$, then $\sum_{ij} T_{ij} \ee_i \otimes \ff_j = \mathbf{0} = \vv \otimes \mathbf{0}$ for any $\vv \in V$.} it is an elementary tensor of the form $\vv \otimes \mathbf{0}$, where $\vv \in V$, or $\mathbf{0} \otimes \ww$, where $\ww \in W$. Due to the linear independence of the bases $E$ and $F$, it is impossible to obtain a $\mathbf{0}$ in either position unless all $T_{ij}$ are $0$.
+\end{proof}
 
 \newpage
 
 \section{Introduction to $(p, q)$ tensors}
 \label{ch::motivated_intro::sec::motivated_intro}
 
-Now we will discover the theorem which generalizes the two key notions (thinking of linear functions as vectors and ``multilinear elements'') discussed at the beginning of the chapter. Since we now have familiarity with the first key idea, ``accidentally'' discovering and formalizing the second idea as we go is hopefully not too ambitious.
+Now we will derive the theorem which generalizes the two key notions (thinking of linear functions as vectors and ``multilinear elements'') discussed at the beginning of the chapter. Since we now have familiarity with the second key notion, then hopefully ``accidentally'' discovering how the first key notion is involved and formalizing it as we go is not too ambitious.
 
 The theorem we will discover is that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, where $V^*$ is the \textit{dual vector space} to $V$. We can see that the two key ideas (the first being thinking of linear functions as vectors and the second being ``multilinear elements'') are represented in this theorem with formal notation: the theorem includes a dual vector space $V^*$, which (we will see) indicates that thinking of linear functions as vectors is involved, and it also includes the tensor product $\otimes$, which indicates that multilinear structure is involved.
 
@@ -379,7 +401,7 @@ So, we have proved the following theorem.
     In order distill ``elementary compositions'' $\ww \circ \phi$ down into objects which express the key aspects of their bilinear structure, we used the seeming-bilinearity of $\otimes$ to think of these elementary compositions as ``multilinear elements'' (speficially, we thought of them as ``bilinear elements'').
 \end{remark}
 
-When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product}), we gave motivation for why inner products are called ``inner products'', and said that we would later explain the relevance of ``outer products''. Here is that explanation. 
+Here is a quick aside that isn't entirely relevant to our immediate study of tensors. When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product}), we gave motivation for why inner products are called ``inner products'', and said that we would later explain the relevance of ``outer products''. Here is that explanation. 
 
 \begin{defn}
 \label{ch::motivated_intro::rmk::outer_products}
@@ -393,14 +415,14 @@ When we defined inner products (Definition \ref{ch::lin_alg::defn::inner_product
 
     Note: there is no sort of fundamental duality between inner products (Definition \ref{ch::lin_alg::defn::inner_product}) and outer products. The two topics are relatively unrelated.
 
-    There is one last definition whose name sounds like it is related to inner products and outer products, and that is the \textit{exterior product of vectors}. We discuss this in Remark \ref{ch::exterior_pwrs::rmk::exterior_product}.
+    There is one last definition whose name sounds like it is related to inner products and outer products, and that is the \textit{exterior product of vectors}. We discuss this in Remark \ref{ch::antisymmetry::rmk::exterior_product}.
 \end{defn}
 
 \newpage
 
 \section{Dual vector spaces}
 
-Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor because they allow us to think of linear functions as vectors. We now restate the definition of a dual space and make some additional remarks.
+Dual vector spaces are crucial to the theorem $\LLLL(V \rightarrow W) \cong W \otimes V^*$ because they allow us to think of linear functions as vectors. We now restate the definition of a dual space and make some additional remarks.
 
 \begin{defn}
 \label{ch::motivated_intro::defn::dual_space_2}
@@ -462,7 +484,9 @@ Recall that dual vector spaces are crucial to the concept of a $(p, q)$ tensor b
 
     where $\phi^{\ee_i}(\vv) = \see_i^\top [\vv]_E$.
     
-    We see that any $\phi \in V^*$ is a linear combination of $\phi^{\ee_1}, ..., \phi^{\ee_n}$, so $\phi^{\ee_1}, ..., \phi^{\ee_n}$ span $V^*$. Since $\see_1^\top, ..., \see_n^\top$ are linearly independent, and as $\FF^{-1}$ is a linear isomorphism, then $\phi^{\ee_1}, ..., \phi^{\ee_n}$ are also linearly independent (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}). Thus, the set ${E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}}$ is a basis for $V^*$. Since $E^*$ depends on $E$, we call $E^*$ the \textit{dual basis for $V^*$ induced by $E$}.
+    We see that any $\phi \in V^*$ is a linear combination of $\phi^{\ee_1}, ..., \phi^{\ee_n}$, so $\phi^{\ee_1}, ..., \phi^{\ee_n}$ span $V^*$. Since $\see_1^\top, ..., \see_n^\top$ are linearly independent, and as $\FF^{-1}$ is a linear isomorphism, then $\phi^{\ee_1}, ..., \phi^{\ee_n}$ are also linearly independent (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}). Thus, the set ${E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}}$ is a basis for $V^*$.
+    
+    Since $E^*$ depends on $E$, we call $E^*$ the \textit{dual basis for $V^*$ induced by $E$}.
 \end{deriv}
 
 \begin{theorem}
@@ -521,7 +545,7 @@ The following theorem explains why $V^* = \LLLL(V \rightarrow K)$ is called the 
 \end{theorem}
 
 \begin{proof}
-    Define $\FF:V \rightarrow V^{**}$ by $\FF(\vv) = \Phi_\vv$. We need to show that $\FF$ is linear, one-to-one, and onto. Checking linearity is straightforward; $\FF$ is linear regardless of the dimensionality of $V$. As for showing that $\FF$ is one-to-one and onto, first recall from Theorem \ref{ch::motivated_intro::deriv::dim_dual_space} that since $V$ is finite-dimensional we have $\dim(V) = \dim(V^{**})$. Thus, to show that $\FF$ is an isomorphism it suffices to show that $\FF$ has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}).
+    Define $\FF:V \rightarrow V^{**}$ by $\FF(\vv) = \Phi_\vv$. We need to show that $\FF$ is linear, one-to-one, and onto. Checking linearity is straightforward; $\FF$ is linear regardless of the dimensionality of $V$. As for showing that $\FF$ is bijective, recall from Theorem \ref{ch::motivated_intro::deriv::dim_dual_space} that since $V$ is finite-dimensional we have $\dim(V) = \dim(V^{**})$. Thus, to show that $\FF$ is bijective it suffices, to show that $\FF$ has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}).
     
     We have the following: if $\FF(\vv) = \mathbf{0}$, then $\Phi_\vv$ is the zero function, and so $\Phi_\vv(\phi) = \phi(\vv) = 0$ for all $\phi \in V^*$. One would think that this most recent statement implies $\vv = \mathbf{0}$, and this is indeed the case, because the contrapositive of $((\forall \phi \in V^* \spc \phi(\vv) = 0) \implies \vv = \mathbf{0})$, which is $(\vv \neq \mathbf{0} \implies (\exists \phi \in V^* \spc \phi(\vv) \neq 0))$, is clearly true: if $\vv \neq \mathbf{0}$, then for any basis $E$ of $V$, some component $([\vv]_E)^i \neq 0$ of $\vv$ is nonzero, and thus the element of $V^*$ defined by $\vv \mapsto ([\vv]_E)^i$ sends $\vv$ to a nonzero scalar, as desired.
 \end{proof}
@@ -611,25 +635,23 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
 
 \section{$(p, q)$ tensors}
 
-Before our detour into the world of dual spaces, we derived Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}, and learned that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. One implication of this theorem is of particular interest: the vector space of linear maps $V \rightarrow V$ is naturally isomorphic to $V \otimes V^*$. The characterization of linear maps $V \rightarrow V$ as elements of $V \otimes V^*$ lends itself to generalization. We can generalize the notion of linear function by ``tensor-producting in'' more copies of $V$ and $V^*$! This is the idea behind the following definition.
+Before our detour into the world of dual spaces, we derived Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}, and learned that when $V$ and $W$ are finite-dimensional vector spaces, there is a natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. One implication of this theorem is of particular interest: the vector space of linear functions $V \rightarrow V$ is naturally isomorphic to $V \otimes V^*$. The characterization of linear maps $V \rightarrow V$ as elements of $V \otimes V^*$ lends itself to generalization; we can generalize the notion of linear function by ``tensor-producting in'' more copies of $V$ and $V^*$! This is the idea behind the following definition.
 
 \begin{defn}
 \label{ch::motivated_intro::defn::tensor_space_on_a_vector_space}
     (Tensor space on a vector space).
     
-    Let $V$ be a vector space. We define a \textit{tensor space on $V$}, or more colloquially to be a vector space of the form $V_1 \otimes ... \otimes V_k$, where each $V_i$ is either $V$ or $V^*$.
+    Let $V$ be a vector space. We define a \textit{tensor space on $V$} to be a vector space of the form $V_1 \otimes ... \otimes V_k$, where each $V_i$ is either $V$ or $V^*$.
     
-    The \textit{type} of a tensor space on $V$ is the sequence of positive integer superscripts and subscripts constructed in the pattern of the following examples\footnote{It is possible to give a formal definition of this notion of ``type'', but any such definition will be verbose and not particularly illustrative of the concept.}$^{,}$ \footnote{This convention goes against Definition \ref{ch::motivated_intro::defn::covariance_contravariance}, which sets the convention that vectors are associated with subscripts and covectors are associated with superscripts. This is necessary because we want the pattern of subscripts and superscripts in a tensor's type to mirror the pattern of subscripts and superscripts in a tensor's coordinates.}:
+    The \textit{type} of a tensor space on $V$ is the sequence of positive integer superscripts and subscripts constructed in the pattern of the following examples\footnote{It is possible to give a formal definition of this notion of ``type'', but any such definition will be verbose and not particularly illustrative of the concept.}$^{,}$ \footnote{This convention goes against Definition \ref{ch::motivated_intro::defn::covariance_contravariance}, which sets the convention that vectors are associated with subscripts and covectors are associated with superscripts. This is necessary because we want the pattern of subscripts and superscripts in a tensor's type to mirror the pattern of subscripts and superscripts in a tensor's coordinates.}, in which     superscripts correspond to $V$ and subscripts correspond to $V^*$:
     
     \begin{itemize}
         \item The type of $V \otimes V^* \otimes V$ as a tensor space on $V$ is $^1{}_1{}^1$.
         \item The type of $V^* \otimes (V)^{\otimes 3}$ as a tensor space on $V$ is $_1{}^3$.
         \item The type of the tensor space $(V)^{\otimes 2} \otimes V^* \otimes V$ as a tensor space on $V$ is $^2{}_1{}^1$.
     \end{itemize}
-
-    (Superscripts coorrespond to $V$ and subscripts coorrespond to $V^*$).
     
-    We additionally define a \textit{tensor on $V$}, or more colloquially, a \textit{tensor}, to be an element of a tensor space on $V$. The \textit{type} of a tensor on $V$ is the type of the tensor space on $V$ of which the tensor is a member.
+    The \textit{type} of a tensor on $V$ is the type of the tensor space on $V$ of which the tensor is a member.
 \end{defn}
 
 \begin{defn}
@@ -640,7 +662,7 @@ Before our detour into the world of dual spaces, we derived Theorem \ref{ch::mot
     
     \begin{itemize}
         \item $i_\ell$ is a superscript iff $V_\ell = V$ and $i_\ell$ is a subscript iff $V_\ell = V^*$.
-        \item When we omit subscripts and superscripts and denote the scalar indexed by $i_1, ..., i_k$ by $T(i_1, ..., i_k)$, we have 
+        \item When we write both subscripts and superscripts at the same notational height, and denote the scalar indexed by $i_1, ..., i_k$ by $T(i_1, ..., i_k)$, we have 
         
         \begin{align*}
             \TT = \sum_{i_1, ..., i_k \in \{1, ..., n\}} T(i_1, ..., i_k) \spc \ww(i_1) \otimes ... \otimes \ww(i_k),
@@ -659,7 +681,7 @@ Before our detour into the world of dual spaces, we derived Theorem \ref{ch::mot
     %     \TT = \sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \spc \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
     % \end{align*}
     
-    Each coordinate of a tensor can be thought of as occupying a position in a           ``multidimensional matrix'', where each $i_k$ is associated with an orthogonal axis. (E.g., if a tensor's type is $^1{}_1$ or $_1{}^1$, then that tensor's coordinates are stored in a two-dimensional matrix.
+    Each coordinate of a tensor can be thought of as occupying a position in a           ``multidimensional matrix'', where each $i_k$ is associated with an orthogonal axis. (E.g., if a tensor's type is $^1{}_1$ or $_1{}^1$, then that tensor's coordinates are stored in a two-dimensional matrix).
 \end{defn}
 
 \begin{defn}
@@ -681,10 +703,10 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \begin{theorem}
     (Coordinates of $(p, q)$ tensors).
 
-    Let $V$ be a vector space over a field $K$, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, and let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$. Since $(p, q)$ tensors are of type $^p{}_q$, then the coordinates of $\TT \in T_{p,q}(V)$ relative to $E$ and $E^*$ are of the form $T^{i_1 ... i_p}{}_{j_1 ... j_q} \in K$, with all of the superscripts occurring before all of the subscripts. Using the coordinates to express $\TT$, we have
+    Let $V$ be a vector space over a field $K$, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, and let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$. Since $(p, q)$ tensors are of type $^p{}_q$, then the coordinates of $\TT \in T_{p,q}(V)$ relative to $E$ and $E^*$ are of the form $T^{i_1 ... i_p}{}_{j_1 ... j_q} \in K$, with all of the superscripts occurring before all of the subscripts. Using coordinates to express $\TT$, we have
 
      \begin{align*}
-        \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., m\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
+        \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_k} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
     \end{align*}
 \end{theorem}
 
@@ -755,7 +777,11 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \begin{proof}
     The first line in the first box is Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}, and the second line in the first box is Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V}. We need to prove the third line in the first box; we need to prove that \textit{taking the dual distributes over the tensor product}.
     
-    We do so by defining an isomorphism in the ``reverse'' direction. We define this isomorphism on elementary tensors and extend linearly. Given $(\phi \otimes \psi) \in V^* \otimes W^*$, we produce the linear function $\ff_{\phi \otimes \psi} \in (V \otimes W)^*$, where $\ff_{\phi \otimes \psi}:V \otimes W \rightarrow K$ is defined by $\ff_{\phi \otimes \psi}(\vv \otimes \ww) = \phi(\vv) \psi(\ww)$. The explicit check that this is a linear isomorphism is left to the reader.
+    We do so by defining an isomorphism $\FF$ in the ``reverse'' direction. We define this isomorphism ${\FF:V^* \otimes W^* \rightarrow (V \otimes W)^*}$ on elementary tensors and extend linearly: $\FF(\phi \otimes \psi) := f_{\phi \otimes \psi} \in (V \otimes W)^*$, where $f_{\phi \otimes \psi}:V \otimes W \rightarrow K$ is defined by $f_{\phi \otimes \psi}(\vv \otimes \ww) = \phi(\vv) \psi(\ww)$.
+
+    It's simple to check that $\FF$ is linear. To see that $\FF$ is bijective, since it is a map between vector spaces of the same dimension, it suffices to show that it is one-to-one, i.e., that it has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}). So, assume $f_{\phi \otimes \psi} = 0$. We need to show $\phi \otimes \psi = \mathbf{0}$.
+    
+    We have $f_{\phi \otimes \psi}(\vv, \ww) = \phi(\vv) \psi(\ww) = \mathbf{0}$ for all $\vv \in V$ and $\ww \in W$. Note that in general, a map into a one-dimensional vector space is not the zero function iff it has a trivial kernel. Therefore, it cannot be be the case that both $\psi \neq 0$ and $\phi \neq 0$; if this were true, then both $\phi$ and $\psi$ would have trivial kernels, and $\phi(\vv) \psi(\ww)$ would be nonzero for all $(\vv, \ww) \neq (\mathbf{0}, \mathbf{0})$, which is a contradiction. So, at least one of $\phi$ and $\psi$ is the zero function. This means that we either have $\phi \otimes \psi = \mathbf{0} \otimes \psi = \mathbf{0}$ or $\phi \otimes \psi = \phi \otimes \mathbf{0} = \mathbf{0}$. We see $\phi \otimes \psi = \mathbf{0}$ in all cases, as desired.
 \end{proof}
 
 \begin{remark}
@@ -788,16 +814,3 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
         \item (Another physicist's definition of a tensor). Physicists also occasionally define an ``order-$n$ tensor'' on $V$ to be\footnote{See p. 7 and p. 19 of Chapter 2 in \cite{BonetWood} for a treatment of tensors in this way.} a linear function that sends an order-$(n - 1)$ tensor to a vector in $V$, where an order-$1$ tensor is defined to be a vector in $V$. Thus, an order-$2$ tensor is an element of $\LLLL(V \rightarrow V) \cong V \otimes V^*$, and an order-$3$ tensor is an element of $\LLLL(\LLLL(V \rightarrow V) \rightarrow V) \cong \LLLL(V \otimes V^* \rightarrow V) \cong V \otimes V^* \otimes V^*$. We can use induction to prove that an $n$-order tensor of this definition is identified with an element of $V \otimes (V^{*})^{n - 1} = T_{1, n - 1}(V)$.
     \end{itemize}
 \end{remark}
-
-\begin{theorem}
-    (Other useful natural isomorphisms for $(p, q)$ tensors).
-
-    Let $V$ and $W$ be (not necessarily finite-dimensional) vector spaces over $K$. Then we have natural isomorphisms
-
-     \begin{align*}
-         V \otimes K &\cong V \\
-         V \otimes W &\cong W \otimes V.
-     \end{align*}
-     
-     The proof of this theorem is left as an exercise.
-\end{theorem}

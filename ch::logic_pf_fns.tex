@@ -295,7 +295,45 @@ The negations of bounded quantifications are what you expect:
 
 Use the facts $\text{not}(P \implies Q) = (P \text{ and } (\text{not } Q))$ and $\text{not}(P \text{ and } Q) = (P \implies (\text{not } Q))$ from the ``Negation of an implication'' section to prove this.
 
-\newpage
+\subsubsection*{Proving ``for all'' statements}
+
+Suppose we suspect the following statement to be true:
+
+\begin{align*}
+    \forall x \in S \spc P(x).
+\end{align*}
+
+A proof of this statement can be written in a couple of ways. Sometimes, the reasoning can be stated straightforwardly enough that one can write a series of sentences that are ``for all'' statements:
+
+\begin{itemize}
+    \item ``For all $x \in S$ we have <insert some property of $x$>. Since <insert reasoning here>, then <some other property of $x$> for all $x \in S$. Thus, for all $x \in S$ we have $P(x)$, as desired.
+\end{itemize}
+
+Other times, the analysis of $x \in S$ is complicated enough that it is too verbose to contain in a sequence of such sentences. In such cases, we use a phrase such as ``Let $x \in S$'', ``Assume $x \in S$'', or ``Fix $x \in S$'' at the beginning of a proof to allude to the syntax ``$\forall x \in S$''. For example:
+
+\begin{itemize}
+    \item ``Let $x \in S$. <Insert very long, elaborate reasoning, which probably takes up a paragraph or so, here>. Therefore $P(x)$, as desired.''
+\end{itemize}
+
+The statement
+
+\begin{align*}
+    \forall x \in S \spc P(x) \implies Q(x)
+\end{align*}
+
+can be proved in similar ways. If the reasoning is relatively straightforward, then a proof like the following, in which each sentence is a ``for all'' statement, can be used:
+
+\begin{itemize}
+    \item ``If $P(x)$, then <insert some property of $x$> for all $x \in S$. Since <insert reasoning here>, then <some other property of $x$> for all $x \in S$. Therefore $Q(x)$ for all $x \in S$.''
+\end{itemize}
+
+Otherwise, when analysis of $x \in S$ with $P(x)$ is too verbose, we allude to the syntax ``$\forall x \in S \spc P(x) \implies$'' by using a phrase such as ``Let $x \in S$ and $P(x)$'', ``Assume $x \in S$ and $P(x)$'', or ``Fix $x \in S$ and $P(x)$'':
+
+\begin{itemize}
+    \item ``Let $x \in S$ and assume $P(x)$. <Insert very long, elaborate reasoning, which probably takes up a paragraph or so, here>. Therefore $Q(x)$, as desired.
+\end{itemize}
+
+When reading proofs of the implication $\forall x \in S \spc P(x) \implies Q(x)$, note that the author may not explicitly restate every single hypothesis at the beginning of their proof. For instance, the author may not start their proof with either of ``If $x \in S$ and $P(x)$'' or ``Assume $x \in S$ and $P(x)$'', opting instead to start it with ``If $P(x)$'' or ``Assume $P(x)$''.
 
 \subsection*{More about implications}
 
@@ -402,48 +440,6 @@ A neat fact is that $=$ and $\iff$ are the same operator. One way to verify this
 Let $P$ and $Q$ be predicates, and consider the proposition $\forall x \spc P(x) \implies Q(x)$. Due to the reasoning ``if $P$ happened then $Q$ must have happened'', $Q$ is said to be a \textit{necessary condition} for $P$. Similarly, due to the reasoning ``one of ways to make $Q$ happen is to make $P$ happen'', $P$ is said to be a \textit{sufficient} condition for $Q$. 
 
 Notice that when $\forall x \spc P(x) \iff Q(x)$ iff $P$ and $Q$ are both necessary and sufficient conditions for each other (i.e. $P$ is a necessary and sufficient for $Q$ and $Q$ is a necessary and sufficent condition for $P$).
-
-\subsection*{Types of proofs}
-
-Consider the statement
-
-\begin{align*}
-    \forall x \in S \spc P(x).
-\end{align*}
-
-A proof of this statement can be written in a couple of ways. Sometimes, the reasoning can be stated straightforwardly enough that one can write a series of sentences that are ``for all'' statements:
-
-\begin{itemize}
-    \item ``For all $x \in S$ we have <insert some property of $x$>. Since <insert reasoning here>, then <some other property of $x$> for all $x \in S$. Thus, for all $x \in S$ we have $P(x)$, as desired.
-\end{itemize}
-
-Other times, the analysis of $x \in S$ is complicated enough that it is too verbose to contain in a sequence of such sentences. In such cases, we use a phrase such as ``Let $x \in S$'', ``Assume $x \in S$'', or ``Fix $x \in S$'' at the beginning of a proof to allude to the syntax ``$\forall x \in S$''. For example:
-
-\begin{itemize}
-    \item ``Let $x \in S$. <Insert very long, elaborate reasoning, which probably takes up a paragraph or so, here>. Therefore $P(x)$, as desired.''
-\end{itemize}
-
-The statement
-
-\begin{align*}
-    \forall x \in S \spc P(x) \implies Q(x)
-\end{align*}
-
-can be proved in similar ways. If the reasoning is relatively straightforward, then a proof like the following, in which each sentence is a ``for all'' statement, can be used:
-
-\begin{itemize}
-    \item ``If $P(x)$, then <insert some property of $x$> for all $x \in S$. Since <insert reasoning here>, then <some other property of $x$> for all $x \in S$. Therefore $Q(x)$ for all $x \in S$.''
-\end{itemize}
-
-Otherwise, when analysis of $x \in S$ with $P(x)$ is too verbose, we allude to the syntax ``$\forall x \in S \spc P(x) \implies$'' by using a phrase such as ``Let $x \in S$ and $P(x)$'', ``Assume $x \in S$ and $P(x)$'', or ``Fix $x \in S$ and $P(x)$'':
-
-\begin{itemize}
-    \item ``Let $x \in S$ and assume $P(x)$. <Insert very long, elaborate reasoning, which probably takes up a paragraph or so, here>. Therefore $Q(x)$, as desired.
-\end{itemize}
-
-When reading proofs of the implication $\forall x \in S \spc P(x) \implies Q(x)$, note that the author may not explicitly restate every single hypothesis at the beginning of their proof. For instance, the author may not start their proof with either of ``If $x \in S$ and $P(x)$'' or ``Assume $x \in S$ and $P(x)$'', opting instead to start it with ``If $P(x)$'' or ``Assume $P(x)$''.
-
-\newpage
 
 \section{Sets}
 
