@@ -37,7 +37,7 @@ The second key idea in the theory of tensors is to think of linear functions as 
      The proof that $\LLLL(V_1 \times ... \times V_k \rightarrow W)$ is indeed a vector space is left as an exercise.
 \end{proof}
 
-We know from our studies in linear algebra that elements of a vector space are sometimes called ``linear elements'' because their decompositions are respected by linear functions (see Definition \ref{ch::lin_alg::defn::linear_function_intuitive}). We have just been introduced to the notion of a multilinear function. A natural question is then, ``what is a reasonable definition of `multilinear element'?'' 
+We know from our study of linear algebra that the decomposition of vectors is respected by linear functions (see Remark \ref{ch::lin_alg::rmk::linear_means_vector}). Now, having just been introduced to the notion of a \textit{multilinear} function. Natural questions are then: ``What objects do multilinear functions respect? Could these be thought of as 'multilinear elements'?`` 
 
 The following definition gives the answer and formalizes this notion. ``Multilinear elements'' will be called \textit{tensors}.
 
@@ -68,8 +68,8 @@ The following definition gives the answer and formalizes this notion. ``Multilin
     \end{align*}
 
     for all $\vv_1, ..., \vv_k \in V$ and $c \in K$. This is so that $\otimes$ looks like it is a multilinear function.
-
-    When the context is clear, we will refer to elements of tensor product spaces as ``tensors''.
+    
+    Elements of tensor product spaces are called ``tensors''.
 \end{defn}
 
 % \begin{remark}
@@ -91,10 +91,10 @@ We will soon see that tensors truly are multilinear elements, as their decomposi
 
     Let $V_1, ..., V_k, W$ be finite-dimensional vector spaces. Suppose we define a function $\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ on elementary tensors, and suppose we desire a linear function $\gg$ that agrees with $\ff$ on elementary tensors. There does indeed exist\footnote{For an idea on how to prove this, revisit Theorem \ref{ch::lin_alg::thm::basis_sent_to_any_ordered_list}.} a unique such $\gg$.
     
-    Because of this, we can say things such as ``we \textit{impose} that $\ff$ be linear'', or ``we \textit{extend} the definition of $\ff$ \textit{with linearity}'', to indicate that $\ff(\TT)$ is secretly $\gg(\TT)$ when $\TT$ is a nonelementary tensor.
+    Because of this, we can say things such as ``we \textit{impose} that $\ff$ be linear'', or ``we \textit{extend} the definition of $\ff$ \textit{with linearity}'', to indicate the definition ``$\ff(\TT) := \gg(\TT)$ when $\TT$ is a nonelementary tensor''.
 \end{remark}
 
-Now, we start investigating key properties of tensors.
+Now we present the property of tensors that motivated their definition.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::universal_prop_tensor_prod}
@@ -102,44 +102,19 @@ Now, we start investigating key properties of tensors.
 
     Let $V_1, ..., V_k, W$ be vector spaces, and let $\ff:V_1 \times ... \times V_k \rightarrow W$ be a multilinear function. 
     
-    There exists a linear function $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ such that $\ff(\vv_1, ..., \vv_k) = \hh_\ff(\vv_1 \otimes ... \otimes \vv_k)$.
+    There exists a linear function $\widetilde{\ff}:V_1 \otimes ... \otimes V_k \rightarrow W$ uniquely corresponding to $\ff$ such that $\ff(\vv_1, ..., \vv_k) = \widetilde{\ff}(\vv_1 \otimes ... \otimes \vv_k)$.
 
-    Equivalently, there are linear functions $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ and $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$, such that $\ff = \hh_\ff \circ \gg$.
+    Equivalently, there are linear functions $\widetilde{\ff}:V_1 \otimes ... \otimes V_k \rightarrow W$ and $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$, and with $\widetilde{\ff}$ uniquely corresponding to $\ff$, such that $\ff = \widetilde{\ff} \circ \gg$.
 \end{theorem}
 
 \begin{proof}
-    We define $\hh_\ff(\vv_1 \otimes ... \otimes \vv_k) := \ff(\vv_1, ..., \vv_k)$, and impose that $\hh_\ff$ be linear to guarantee that $\hh_\ff(\TT)$ is indeed defined when $\TT$ is a nonelementary tensor.
+    We define $\widetilde{\ff}$ on elementary tensors by $\widetilde{\ff}(\vv_1 \otimes ... \otimes \vv_k) := \ff(\vv_1, ..., \vv_k)$ and extend with linearity.
 \end{proof}
-
-This result shows us that the decompositions of multilinear elements truly are respected by multilinear functions. 
 
 \begin{remark}
     (The sense in which multilinear functions respect multilinear elements).
         
-    Consider a linear combination of tuples subject to the equivalence relation given in the definition of tensor product spaces (recall Definition \ref{ch::motivated_intro::defn::tensor_product_space}),
-
-    \begin{align*}
-        \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k}),
-    \end{align*}
-
-    where $\ww_{i_1} \in V_1, ..., \ww_{i_k} \in V_k$ and $T_{i_1, ..., i_k} \in K$ for $i_1, ..., i_k \in \{1, ..., n\}$.
-
-    Now, let $W$ be another finite-dimensional vector space and suppose $\ff:V_1 \times ... \times V_k \rightarrow W$ is a multilinear function. The above theorem says that there are linear functions $\hh_\ff:V_1 \otimes ... \otimes V_k \rightarrow W$ and $\gg:V_1 \times ... \times V_k \rightarrow V_1 \otimes ... \otimes V_k$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \otimes ... \otimes \vv_k$, such that $\ff = \hh_\ff \circ \gg$. Therefore
-
-    \begin{align*}
-        \ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big) &= \hh_\ff\Big(\gg\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big)\Big) \\
-        &= \hh_\ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ww_{i_1} \otimes ... \otimes \ww_{i_k}\Big) \\
-        &= \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \hh_\ff(\ww_{i_1} \otimes ... \otimes \ww_{i_k}) \text{ since $\hh_\ff$ is linear} \\
-        &= \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ff(\ww_{i_1}, ..., \ww_{i_k}) \text{ since $\hh_\ff(\vv_1 \otimes ... \otimes \vv_k) = \ff(\vv_1, ..., \vv_k)$}
-    \end{align*}
-
-    Overall, we have
-
-    \begin{align*}
-        \ff\Big(\sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} (\ww_{i_1}, ..., \ww_{i_k})\Big) = \sum_{i_1, ..., i_k \in \{1, ..., n\}} T_{i_1 ... i_k} \ff(\ww_{i_1}, ..., \ww_{i_k}).
-    \end{align*}
-
-     Thus, we see that if the tuple input of $\ff$ is decomposed in accordance to the tensor equivalence relation, then $\ff$ preserves this decomposition.
+   This theorem tells us how multilinear elements are respected by multilinear functions: if $\ff$ is a multilinear function and $\TT = \sum_{i_1, ..., i_k} T_{i_1 ... i_k} \vv_{i_1} \otimes ... \otimes \vv_{i_k}$ is a multilinear element (a tensor), then, since $\widetilde{\ff}$ is linear, it respects the decomposition of $\TT$. So, if we squint, we can imagine that the multilinear function $\ff$ is acting on $\TT$ and preserving its decomposition by means of the linear function $\widetilde{\ff}$.
 \end{remark}
 
 Using the previous theorem to define a natural isomorphism of vector spaces yields the following result.
@@ -148,7 +123,7 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 \label{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}
     (Multilinear functions are naturally identified with linear functions on tensor product spaces).
     
-    Let $V_1, ..., V_k, W$ be finite-dimensional vector spaces. Then the vector space of multilinear functions $V_1 \times ... \times V_k \rightarrow W$ is naturally isomorphic to the vector space of linear functions $V_1 \otimes ... \otimes V_k \rightarrow W$:
+    Let $V_1, ..., V_k, W$ be finite-dimensional vector spaces. Then the vector space of multilinear functions ${V_1 \times ... \times V_k \rightarrow W}$ is naturally isomorphic to the vector space of linear functions ${V_1 \otimes ... \otimes V_k \rightarrow W}$:
     
     \begin{align*}
         \LLLL(V_1 \times ... \times V_k \rightarrow W) \cong \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W).
@@ -156,13 +131,13 @@ Using the previous theorem to define a natural isomorphism of vector spaces yiel
 \end{theorem}
 
 \begin{proof}
-    To construct a linear isomorphism $\FF:\LLLL(V_1 ... \times V_k \rightarrow W) \mapsto \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W)$, we define $\FF(\ff) = \hh_\ff$, where $\hh_\ff$ is from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}. We need to show that $\FF$ is a linear bijection. 
+    To construct a linear isomorphism $\FF:\LLLL(V_1 ... \times V_k \rightarrow W) \mapsto \LLLL(V_1 \otimes ... \otimes V_k \rightarrow W)$, we define $\FF(\ff) = \widetilde{\ff}$, where $\widetilde{\ff}$ is from Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}. We need to show that $\FF$ is a linear bijection. 
     
-    First, we find an explicit expression for $\hh_\ff$. Since $\ff = \hh_\ff \circ \gg$ and since $\gg$ has a trivial kernel, then $\gg$ is invertible and $\hh_\ff = \ff \circ \gg^{-1}$.
+    First, we find an explicit expression for $\widetilde{\ff}$. Since $\ff = \widetilde{\ff} \circ \gg$ and since $\gg$ has a trivial kernel, then $\gg$ is invertible and $\widetilde{\ff} = \ff \circ \gg^{-1}$.
 
     Now we can show that $\FF$ is linear. The map is linear because, given vector spaces $Y, Z, W$, the function $\circ$ which composes linear functions, ${\circ:\LLLL(Y \rightarrow Z) \times \LLLL(Z \rightarrow W) \rightarrow \LLLL(Y \rightarrow W)}$, is a bilinear map. (Check this fact for yourself. Other consequences of this are explored in Derivation \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}). 
     
-    To show $\FF$ is bijective, since it is a map between vector spaces of the same dimension, it suffices to show that it is one-to-one, i.e., that it has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}). This is clearly the case because if $\FF(\ff) = \hh_\ff = \mathbf{0}$, then $\ff = \hh_\ff \circ \gg = \mathbf{0} \circ \gg = \mathbf{0}$.
+    To show $\FF$ is bijective, since it is a map between vector spaces of the same dimension, it suffices to show that it is one-to-one, i.e., that it has a trivial kernel (recall Theorem \ref{ch::lin_alg::thm::linear_fn_1-1_iff_onto}). This is clearly the case because if $\FF(\ff) = \widetilde{\ff} = \mathbf{0}$, then $\ff = \widetilde{\ff} \circ \gg = \mathbf{0} \circ \gg = \mathbf{0}$.
 \end{proof}
 
 \begin{theorem}
