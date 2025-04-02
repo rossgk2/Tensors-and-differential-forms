@@ -1155,7 +1155,7 @@ Now we define the wedge product, very similarly to how we defined the tensor pro
 \begin{defn}
     (Wedge product and exterior powers).
     
-    Let $V$ be a finite-dimensional vector space over a field $K$. The \textit{$k$th exterior power of $V$} $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$ is defined to be the vector space over $K$ whose elements are from the set $\underbrace{V \times ... \times V}_{\text{$k$ times}} = V^{\wedge k} = V^{\times k}$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$ as $\vv_1 \wedge ... \wedge \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
+    Let $V$ be a finite-dimensional vector space over a field $K$. The \textit{$k$th exterior power of $V$}, $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$, is defined to be the vector space over $K$ whose elements are from the set $\underbrace{V \times ... \times V}_{\text{$k$ times}} = V^{\times k}$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $\underbrace{V \wedge ... \wedge V}_{\text{$k$ times}} = V^{\wedge k}$ as $\vv_1 \wedge ... \wedge \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
     
     The equivalence relation is defined by by the following conditions:
     
@@ -1192,32 +1192,10 @@ Now we define the wedge product, very similarly to how we defined the tensor pro
 \end{defn}
 
 \begin{remark}
-    (Existence of wedge product).
-
-    We have not yet shown that a mathematical object satisfying the wedge product properties actually exists. We show how to contruct the wedge product $\wedge$ from the tensor product $\otimes$ in the next section.
-\end{remark}
-
-\begin{remark}
     (Bivectors, trivectors, blades).
 
     Elementary wedge products of the form $\vv_1 \wedge \vv_2$ are sometimes called ``bivectors'', elementary wedge products of the form $\vv_1 \wedge \vv_2 \wedge \vv_3$ are sometimes called ``trivectors'', and elementary wedge products of the form $\vv_1 \wedge ... \wedge \vv_k$ are sometimes called ``blades''.
 \end{remark}
-
-\begin{theorem}
-    (Associativity of wedge product). 
-    
-    Let $V$ be a vector space. Then there are natural isomorphisms
-    
-    \begin{align*}
-        (V \wedge V) \wedge V \cong V \wedge V \wedge V \cong V \otimes (V \wedge V).
-    \end{align*}
-
-    Because of this isomorphism, we will always assume $(\vv_1 \wedge \vv_2) \wedge \vv_3 = \vv_1 \wedge \vv_2 \wedge \vv_3 = \vv_1 \wedge (\vv_2 \wedge \vv_3)$ for all $\vv_1, \vv_2, \vv_3 \in V$.
-\end{theorem}
-
-\begin{proof}
-    Replacing the symbol $\otimes$ with $\wedge$ in the proof of the associativity of the tensor product $\otimes$ from Theorem \ref{ch::motivated_intro::thm::tensor_product_associative} gives a proof of this theorem. 
-\end{proof}
 
 Already, we are able to see how wedge products allow us to represent multilinear alternating functions as linear functions.
 
@@ -1226,7 +1204,7 @@ Already, we are able to see how wedge products allow us to represent multilinear
     
     Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V^{\times k} \rightarrow W$ be an alternating bilinear function.]
     
-    There exists a linear function $\widetilde{\ff}:V^{\wedge k} \rightarrow W$ uniquely coorresponding to $\ff$ such that $\ff(\vv_1, ..., \vv_k) = \widetilde{\ff}(\vv_1 \wedge ... \wedge \vv_k)$.
+    There exists a linear function $\widetilde{\ff}:V^{\wedge k} \rightarrow W$ uniquely corresponding to $\ff$ such that $\ff(\vv_1, ..., \vv_k) = \widetilde{\ff}(\vv_1 \wedge ... \wedge \vv_k)$.
 
     Equivalently, there are linear functions $\widetilde{\ff}:V^{\wedge k} \rightarrow W$ and $\gg:V^{\times k} \rightarrow V^{\wedge k}$, with $\gg$ defined on elementary tuples as $\gg(\vv_1, ..., \vv_k) := \vv_1 \wedge ... \wedge \vv_k$, and with $\widetilde{\ff}$ uniquely corresponding to $\ff$, such that $\ff = \widetilde{\ff} \circ \gg$.
 \end{theorem}
@@ -1249,40 +1227,95 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \end{lemma}
 
 \begin{theorem}
-    (Basis and dimension of exterior powers).
+    (Associativity of wedge product). 
     
-    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. Then $\Lambda^k(V)$ is a $\binom{n}{k}$ dimensional vector space with basis
+    Let $V$ be a vector space. Then there are natural isomorphisms
     
     \begin{align*}
-        \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid i_1, ..., i_k \in \{1, ..., n\} \text{ and } (i_1, ..., i_k) \text{ is strictly increasing} \}.
+        (V \wedge V) \wedge V \cong V \wedge V \wedge V \cong V \wedge (V \wedge V).
     \end{align*}
+
+    Because of this isomorphism, we will always assume $(\vv_1 \wedge \vv_2) \wedge \vv_3 = \vv_1 \wedge \vv_2 \wedge \vv_3 = \vv_1 \wedge (\vv_2 \wedge \vv_3)$ for all $\vv_1, \vv_2, \vv_3 \in V$.
 \end{theorem}
 
 \begin{proof}
-   To show that this set spans $\Lambda^k(V)$, use the seeming-multilinearity of $\wedge$ as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}.
-   
-    To the set is linearly independent, we show that for all $k$ it is linearly independent and contains $\binom{n}{k}$ many vectors. We do this by induction on $k$. 
+    Replacing the symbol $\otimes$ with $\wedge$ in the proof of the associativity of the tensor product $\otimes$ from Theorem \ref{ch::motivated_intro::thm::tensor_product_associative} gives a proof of this theorem. 
+\end{proof}
 
-    (Base case: $k = 1$). If $V$ is one-dimensional and $\{\ee\}$ is a basis for $V$, then the proposed basis is equal to $\{\ee\}$. Thus the proposed basis is linearly independent.
-
-    (Inductive case: $k > 1$). Assume as the inductive hypothesis the proposed basis for $\Lambda^k(V)$ is linearly independent and has $\binom{n}{k}$ many vectors. We need to show that the proposed basis for $\Lambda^{k + 1}(V)$ is also linearly independent and has $\binom{n}{k + 1}$ many vectors.
-
-    The elements of the proposed basis for $\Lambda^{k + 1}(V)$ are
-
+\begin{theorem}
+    (Basis and dimension of exterior powers).
+    
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. When $k \leq n$, then $\Lambda^k(V)$ is a $\binom{n}{k}$ dimensional vector space with basis
+    
     \begin{align*}
-        (\ee_{i_{11}} \wedge &... \wedge \ee_{i_{1k}}) \wedge \ee_{i_{1 \spc k + 1}}, \\
-        &\vdots \\
-        (\ee_{i_{m1}} \wedge &... \wedge \ee_{i_{mk}}) \wedge \ee_{i_{m \spc k + 1}},
+        \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid i_1, ..., i_k \in \{1, ..., n\} \text{ and } i_1 < ... < i_k \}.
     \end{align*}
 
-    where $m = \binom{n}{k}$, and where $(i_{\ell 1}, ..., i_{\ell k})$ is strictly increasing for all $\ell \in \{1, ..., m\}$.
+    When $k > n$, then $\Lambda^k(V) = \{\mathbf{0}\}$.
+\end{theorem}
 
-    Indices are different across ``rows''
-    
-    Indices are different across the last ``column'' because the set only
-
+\begin{proof}
+     Use the seeming-multilinearity of $\wedge$, as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}, to show the proposed basis spans $\Lambda^k(V)$ for all $k$.
    
+    To show the set is linearly independent, consider the following cases.
+
+    (Case: $k > n$). When $k > n$, then every basis element is a wedge product in which at least one vector is repeated. Since a wedge product with a repeated vector is the zero wedge product, then when $k > n$ all vectors in the proposed basis are the zero wedge product, and the proposed basis is $\{\mathbf{0}\}$, which is not linearly independent. So the proposed basis is not a basis when $k < n$. The proposed basis still spans $\Lambda^k(V)$, though, so we can conclude that $\Lambda^k(V) = \{\mathbf{0}\}$.
+
+    (Case: $k = n$). If $i_1 < ... < i_n$ and $i_1, ..., i_n \in \{1, ..., n\}$, then we must have $i_1 = 1, ..., i_n = n$. Therefore, the proposed basis is $\{\ee_1 \wedge ... \wedge \ee_n\}$. Since a singleton set is linearly independent iff it is not $\{\mathbf{0}\}$, then the proposed basis is linearly independent.
+
+    (Case: $k \leq n$). Suppose that 
+
+    \begin{align*}
+        \sum_{i_1 < ... < i_k} T_{i_1 ... i_k} \ee_{i_1} \wedge ... \wedge \ee_{i_k} = \mathbf{0}.
+    \end{align*}
+
+    We must show that $T_{i_1 ... i_k} = 0$ for all $i_1, ..., i_k \in \{1, ..., n\}$.
+
+    To do so, note that in general, if $\TT_1, \TT_2 \in \Lambda^k(V)$ and $\ww \in V - \{\mathbf{0}\}$, then we have ${\TT_1 = \TT_2 \iff \TT_1 \wedge \ww = \TT_2 \wedge \ww}$. Therefore, if we select some $\ee_{i_j}$ from one of the wedge products appearing in the sum, then we can obtain an equivalent equation by applying the map $\TT \mapsto \TT \wedge \ee_{i_j}$ to both sides of the above:
+
+    \begin{align*}
+        \sum_{i_1 < ... < i_k} T_{i_1 ... i_k} (\ee_{i_1} \wedge ... \wedge \ee_{i_k}) \wedge \ee_{i_j} = \mathbf{0}.
+    \end{align*}
+
+    Since there are terms in the above sum containing $\ee_{i_j}$ in their wedge products
+
+    
+
+    
+    There is some $i_j$ such that some wedge product in the sum does not contain $\ee_{i_j}$ and some other wedge product in the sum does. 
+    
+    Take the exterior product of the sum with $\ee_{i_j}$ to obtain a linear dependence relation among a smaller number of elementary wedge products in $\Lambda^{k + 1}(V)$. By repeating this argument over and over we obtain a linear dependence relation between elementary wedge products in $\Lambda^n(V)$.
 \end{proof}
+
+\begin{comment}
+\begin{proof}
+    (Sergei Winitzki's approach).
+
+    (Lemma, p. 52). For all $\phi \in V^*$, there exists a basis $E = \{\ee_1, ..., \ee_n\}$ of $V$ such that $\phi(\ee_1) = 1$ and $\phi(\ee_i) = 0$ for all $i \geq 2$.
+
+    Proof idea: interpret $\phi$ as $\epsilon^1$, where $E^* = \{\epsilon^1, ..., \epsilon^n\}$ is the dual basis for $V$ induced by some basis $E$ of $V$. Compute $E = F^{**}$.
+
+    Proof of linear independence. Assume for contradiction that a linear combination of elements from the proposed basis is nontrivially zero:
+
+    \begin{align*}
+        \sum_{\ell = 1}^{\binom{n}{k}} c_\ell \ee_{i_{\ell 1}} \wedge &... \wedge \ee_{i_{\ell k}} = \mathbf{0},
+    \end{align*}
+
+     where not all of $c_1, ..., c_{\binom{n}{k}}$ are $0$. Let $\phi \in V^*$ and apply the interior product $\iota_\phi$ to the sum to obtain
+
+     \begin{align*}
+         \sum_{\ell = 1}^{\binom{n}{k}} \sum_{\sigma \in S_k} \sgn(\sigma) \phi(\ee_{i_{\ell \sigma(1)}}) \ee_{i_{\ell 2}} \wedge ... \wedge \ee_{i_{\ell r}} &= \mathbf{0}
+     \end{align*}
+
+     Without loss of generality, we can assume $c_1 \neq 0$. We also know from the lemma that there exists $\phi \in V^*$ such that $\phi(\ee_{i_{\ell 1}}) = 1$, with $\phi(\ee_j) = 0$ for all $j \neq i_{\ell 1}$. Using this $\phi$, we see
+
+     \begin{align*}
+         \sum_{\sigma \in S_k} \ee_{i_{\ell 2}} \wedge ... \wedge \ee_{i_{\ell r}} = \mathbf{0}.
+     \end{align*}
+
+     This contradicts the inductive hypothesis.
+\end{proof}
+\end{comment}
 
 \begin{theorem}
 \label{ch::antisymmetry::thm::fundamental_isos_exterior_pwrs}
