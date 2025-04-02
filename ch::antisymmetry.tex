@@ -1245,46 +1245,43 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \begin{theorem}
     (Basis and dimension of exterior powers).
     
-    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. When $k \leq n$, then $\Lambda^k(V)$ is a $\binom{n}{k}$ dimensional vector space with basis
+    Let $V$ be an $n$-dimensional vector space with basis $E = \{\ee_1, ..., \ee_n\}$. When $k \leq n$, then $\Lambda^k(V)$ is a vector space with basis
     
     \begin{align*}
         \{ \ee_{i_1} \wedge ... \wedge \ee_{i_k} \mid i_1, ..., i_k \in \{1, ..., n\} \text{ and } i_1 < ... < i_k \}.
     \end{align*}
 
+    The number of basis elements here is equal to the number of length-$k$ strictly increasing subsequences of $(1, ..., n)$, which is $\binom{n}{k}$. Thus, when $V$ is $n$-dimensional and $k \leq n$, we have $\dim(\Lambda^k(V)) = \binom{n}{k}$.
+
     When $k > n$, then $\Lambda^k(V) = \{\mathbf{0}\}$.
 \end{theorem}
 
 \begin{proof}
-     Use the seeming-multilinearity of $\wedge$, as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}, to show the proposed basis spans $\Lambda^k(V)$ for all $k$.
-   
-    To show the set is linearly independent, consider the following cases.
+    Use the seeming-multilinearity of $\wedge$, as was done for $\otimes$ in the proof of Theorem \ref{ch::motivated_intro::thm::basis_dim_tensor_product_space}, to show the proposed basis spans $\Lambda^k(V)$ for all $k$. It remains to show that $\Lambda^k(V) = \{\mathbf{0}\}$ when $k > n$ and that the proposed basis is linearly independent when $k \leq n$.
 
-    (Case: $k > n$). When $k > n$, then every basis element is a wedge product in which at least one vector is repeated. Since a wedge product with a repeated vector is the zero wedge product, then when $k > n$ all vectors in the proposed basis are the zero wedge product, and the proposed basis is $\{\mathbf{0}\}$, which is not linearly independent. So the proposed basis is not a basis when $k < n$. The proposed basis still spans $\Lambda^k(V)$, though, so we can conclude that $\Lambda^k(V) = \{\mathbf{0}\}$.
+    (Case: $k > n$). When $k > n$, then every basis element is a wedge product in which at least one vector is repeated. Since a wedge product with a repeated vector is the zero wedge product, then when $k > n$ all vectors in the proposed basis are the zero wedge product, and the proposed basis is $\{\mathbf{0}\}$, which is not linearly independent. The proposed basis, $\{\mathbf{0}\}$, still spans $\Lambda^k(V)$, though, so we can conclude that $\Lambda^k(V) = \{\mathbf{0}\}$.
 
-    (Case: $k = n$). If $i_1 < ... < i_n$ and $i_1, ..., i_n \in \{1, ..., n\}$, then we must have $i_1 = 1, ..., i_n = n$. Therefore, the proposed basis is $\{\ee_1 \wedge ... \wedge \ee_n\}$. Since a singleton set is linearly independent iff it is not $\{\mathbf{0}\}$, then the proposed basis is linearly independent.
-
-    (Case: $k \leq n$). Suppose that 
+    (Case: $k \leq n$). Suppose 
 
     \begin{align*}
-        \sum_{i_1 < ... < i_k} T_{i_1 ... i_k} \ee_{i_1} \wedge ... \wedge \ee_{i_k} = \mathbf{0}.
+        \sum_{i_1 < ... < i_k} T^{i_1 ... i_k} \ee_{i_1} \wedge ... \wedge \ee_{i_k} = \mathbf{0}.
     \end{align*}
 
-    We must show that $T_{i_1 ... i_k} = 0$ for all $i_1, ..., i_k \in \{1, ..., n\}$.
+    Consider $T^{j_1 ... j_k}$, where $j_1, ..., j_k \in \{1, ..., n\}$ are arbitrary. In order for the wedge products in the above sum to be linearly independent, we must show $T^{j_1 ... j_k} = 0$.
 
-    To do so, note that in general, if $\TT_1, \TT_2 \in \Lambda^k(V)$ and $\ww \in V - \{\mathbf{0}\}$, then we have ${\TT_1 = \TT_2 \iff \TT_1 \wedge \ww = \TT_2 \wedge \ww}$. Therefore, if we select some $\ee_{i_j}$ from one of the wedge products appearing in the sum, then we can obtain an equivalent equation by applying the map $\TT \mapsto \TT \wedge \ee_{i_j}$ to both sides of the above:
+    Let $j_{k + 1}, ..., j_n \in \{1, ..., n\}$ be ``complementary'' to $j_1, ..., j_k$, so that $\{j_1, ..., j_k, j_{k + 1}, ..., j_n\} = \{1, ..., n\}$. Taking the wedge product of the ``corresponding complementary wedge product'', $\ee_{j_{k + 1}} \wedge ... \wedge \ee_{j_n}$, with both sides of the previous equation and distributing, we have
 
     \begin{align*}
-        \sum_{i_1 < ... < i_k} T_{i_1 ... i_k} (\ee_{i_1} \wedge ... \wedge \ee_{i_k}) \wedge \ee_{i_j} = \mathbf{0}.
+        \sum_{i_1 < \ldots < i_k} T^{i_1 \ldots i_k} \, \ee_{i_1} \wedge \ldots \wedge \ee_{i_k} \wedge \ee_{j_{k + 1}} \wedge \ldots \wedge \ee_{j_n} = \mathbf{0}.
     \end{align*}
 
-    Since there are terms in the above sum containing $\ee_{i_j}$ in their wedge products
+    Any wedge product in the sum that contains duplicate vectors is the zero wedge product. The only wedge product that does not contain any duplicate vectors is the one in which $(i_1, ..., i_k) = (j_1, ..., j_k)$. Thus, we have
 
-    
+    \begin{align*}
+        T^{j_1 ... j_k} \ee_{j_1} \wedge ... \wedge \ee_{j_k} \wedge \ee_{j_{k + 1}} \wedge ... \wedge \ee_{j_n} = \mathbf{0}.
+    \end{align*}
 
-    
-    There is some $i_j$ such that some wedge product in the sum does not contain $\ee_{i_j}$ and some other wedge product in the sum does. 
-    
-    Take the exterior product of the sum with $\ee_{i_j}$ to obtain a linear dependence relation among a smaller number of elementary wedge products in $\Lambda^{k + 1}(V)$. By repeating this argument over and over we obtain a linear dependence relation between elementary wedge products in $\Lambda^n(V)$.
+    Since $E$ is linearly independent, then the above wedge product is nonzero (recall Theorem [will have a previous theorem about how wedge of vectors is zero iff the vectors are linearly dependent]). This forces $T^{j_1 ... j_k} = 0$, as desired. 
 \end{proof}
 
 \begin{comment}
