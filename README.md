@@ -18,6 +18,7 @@ The significant pedagogical changes are in the below topics (tensors and antisym
 * Tensors are presented in a linear algebra context before moving to the manifold context. Trying to learn tensors all at once in the manifold context is too much, in my opinion; there is plenty that needs investigation in the simpler setting of vector spaces. Most books on tensors take the approach that is "too much".
 * The fundamental properties of tensor product spaces are made clear because we use an abstract implementation of the tensor product $\otimes$ that straightforwardly fulfills said properties. Most books that do address tensors in the linear algebra context get lost in implementation details. For instance, many books use the definition of a tensor product space in which $(\phi \otimes \psi)(\mathbf{v}\_1, \mathbf{v}\_2) = \phi(\mathbf{v}\_1) \psi(\mathbf{v}\_2)$. Readers can easily get distracted by this implementation detail and be led astray from realizing what is really important, which is the fact that the tensor product $\otimes$ appears to be a bilinear function.
 * We explain tensor product spaces and dual spaces in the context of the key fact $\mathcal{L}(V \rightarrow V) \cong V \otimes V^{\*}$, which motivates using these concepts to define $(p, q)$ tensors. Typically, no such explanation about why tensor product spaces and dual spaces must be invented and involved is given. Most books also state the key fact *after* the definition of $(p, q)$ tensors and fail to emphasize its fundamental importance.
+* When $g$ is a metric tensor on a vector space, we define $g^{ij}$, with upper indices, to be the coordinates of the induced metric tensor on the dual space. Since the induced metric tensor is a $(2, 0)$ tensor, use of upper indices is justified. The typical approach defines $g^{ij}$ to be such that the matrix $(g^{ij})$ is the inverse of the matrix $(g_{ij})$ and does not explain why the indices are upper.
 * Using an abstract implementation of the tensor product also has the advantage of making the definitions of the various pushforward and pullback maps obvious. (The equivalence between the abstract tensor product space and the more common definition is also given, and the pushforward and pullback operations in this later space are deduced from the more understandable and  pushforward and pullback.)
 * Change of basis theorems for tensors and tangent vectors are easily understable because they can leverage the results of the earlier linear algebra chapter, which are stated using the intuitive notation $\[\mathbf{f}(E)\]_F$.
 
@@ -27,10 +28,13 @@ The significant pedagogical changes are in the below topics (tensors and antisym
 * We derive the permutation formula from the determinant from intuitive axioms pertaining to $n$-dimensional volume.
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the permutation formula.
 
-  ### Orientation
+### Orientation
 * We fully explain the concept of orientation by building it up from the ground up. We define orientation *without* the determinant, and then develop a series of theorems that formalize intuition and show how orientation corresponds to the sign of the determinant. We do *not* just define the sign of the determinant to correspond to orientation with little motivation, as most books do.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
+ 
+## Manifolds
+* The differential $d\mathbf{F}$ of a map $\mathbf{F}:U \subseteq M \rightarrow V \subseteq N$ between smooth charts on smooth manifolds is not simply defined, without motivation, to be $d\mathbf{F}_\mathbf{p}(v_\mathbf{p})(f) = v_\mathbf{p}(f \circ \mathbf{F})$. Instead, we define $d\mathbf{F}$ to be the function $T_\mathbf{p}(U) \rightarrow T_{\mathbf{F}(\mathbf{p})}(V)$ whose matrix relative to the charts' coordinate bases is the Jacobian matrix of the coordinate representation of $\FF$ at every point.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
 
 # Table of contents
