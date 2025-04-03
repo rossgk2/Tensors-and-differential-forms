@@ -23,7 +23,7 @@ The significant pedagogical changes are in the below topics (tensors and antisym
 
  ## Antisymmetric objects
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the more elementary characterization of the determinant as the unique multilinear alternating function $K^n \rightarrow K$, where $K$ is a field.
-* The concept of orientation is properly built up from the ground up. The fact that the determinant of a set of column vectors gives the set's orientation is the culmination of theorems about definitions which formalize intuition, *not* a half-motivated definition. 
+* We fully explain the concept of orientation by building it up from the ground up. We define orientation *without* the determinant, and then develop a series of theorems that formalize intuition and show how orientation corresponds to the sign of the determinant. We do *not* just define the sign of the determinant to correspond to orientation with little motivation, as most books do.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
 * The uncommon geometric definition of the exterior derivative involving flux through a parallelapiped is used and the most common algebraic definition is shown to be a consequence of this.
