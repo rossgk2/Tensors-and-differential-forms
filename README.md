@@ -12,7 +12,7 @@ The reason is because the pedagogy in this book is superior, at least from the p
     * $\mathcal{L}(V_1 \times ... \times V_k \rightarrow W) \cong \mathcal{L}(V_1 \otimes ... \otimes V_k \rightarrow W)$
     * $\mathcal{L}(V \rightarrow W) \cong W \otimes V^*$
     * $(V \otimes W)^* \cong V^* \otimes W^*$
-    * $T_{p,q}(V) \cong (T_{p,q}(V))^{**} = (V^{\otimes p} \otimes (V^*)^{\otimes q})^{**}$ $\cong ((V^{\*})^{\otimes p} \otimes V^{\otimes q})^{\*}$ $= \mathcal{L}((V^{\*})^{\otimes p} \otimes V^{\otimes q} \rightarrow K) \cong$
+    * $T_{p,q}(V) \cong (T_{p,q}(V))^{\*\*} = (V^{\otimes p} \otimes (V^*)^{\otimes q})^{**}$ $\cong ((V^{\*})^{\otimes p} \otimes V^{\otimes q})^{\*}$ $= \mathcal{L}((V^{\*})^{\otimes p} \otimes V^{\otimes q} \rightarrow K) \cong$
         \mathcal{L}((V^*)^{\times p} \times V^{\times q} \rightarrow K)
  For some reason, these isomorphisms are scattered throughout other books and not organized together.
 * When $g$ is a metric tensor on a vector space, we define $g^{ij}$, with upper indices, to be the coordinates of the induced metric tensor on the dual space. Since the induced metric tensor is a $(2, 0)$ tensor, use of upper indices is justified. The typical approach just defines $g^{ij}$ to be such that the matrix $(g^{ij})$ is the inverse of the matrix $(g_{ij})$ and does not explain why the indices are upper.
