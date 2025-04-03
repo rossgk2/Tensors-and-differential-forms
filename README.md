@@ -22,7 +22,12 @@ The significant pedagogical changes are in the below topics (tensors and antisym
 * Change of basis theorems for tensors and tangent vectors are easily understable because they can leverage the results of the earlier linear algebra chapter, which are stated using the intuitive notation $\[\mathbf{f}(E)\]_F$.
 
  ## Antisymmetric objects
-* The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the more elementary characterization of the determinant as the unique multilinear alternating function $K^n \rightarrow K$, where $K$ is a field.
+
+ ### The determinant
+* We derive the permutation formula from the determinant from intuitive axioms pertaining to $n$-dimensional volume.
+* The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the permutation formula.
+
+  ### Orientation
 * We fully explain the concept of orientation by building it up from the ground up. We define orientation *without* the determinant, and then develop a series of theorems that formalize intuition and show how orientation corresponds to the sign of the determinant. We do *not* just define the sign of the determinant to correspond to orientation with little motivation, as most books do.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
