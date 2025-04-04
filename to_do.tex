@@ -111,13 +111,13 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 
 \begin{itemize}
     \item \textbf{Shift framing from “construction of wedge product” to “relationship between wedge and otimes”.}
-    \item Still need to show that (1) every wedge product can be identified with an antisymmetric tensor and (2) every antisymmetric tensor can be identified with a wedge product to fully present relationship between $\wedge$ and $\otimes$.
+    \item (Theorem). There is a natural isomorphism $\Lambda^k(V) \cong \alt(V^{\otimes k}$). That is, every wedge product can be identified with an antisymmetric tensor.
     \begin{itemize}
         \item Lemma. Every antisymmetric tensor $\TT$ is of the form $\TT = \alt(\TT)$.
 
-        Proof. For one containment: we've seen that $\alt(\TT)$ is antisymmetric for all $\TT$. For the other: we've also seen that $\TT$ is alternating then $\TT = \alt(\TT)$.
+        Proof of lemma. For one containment: we've seen that $\alt(\TT)$ is antisymmetric for all $\TT$. For the other: we've also seen that $\TT$ is alternating then $\TT = \alt(\TT)$.
 
-        \item Proof. $\vv_1 \wedge ... \vv_k \mapsto \alt(\vv_1 \otimes ... \otimes \vv_k)$ defines an isomorphism $\Lambda^k(V) \rightarrow \alt(V^{\otimes k})$ on elementary wedge products. Extend it with seeming-linearity and seeming-alternatingness. 
+        \item Proof of theorem. $\vv_1 \wedge ... \vv_k \mapsto \alt(\vv_1 \otimes ... \otimes \vv_k)$ defines an isomorphism $\Lambda^k(V) \rightarrow \alt(V^{\otimes k})$ on elementary wedge products. Extend it with seeming-the linearity and seeming-alternatingness of $\wedge$. 
     \end{itemize}
 
     \item antisymmetric tensors only make sense for $V^{\otimes k}$, not $V_1 \otimes … \otimes V_k$
@@ -128,6 +128,7 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
         \item lots of edits in “as functions” section for this
         \item find places where swap and permutation are mentioned and make them all consistent with this
     \end{itemize}
+    \item Add a footnote somewhere that we can't define $\wedge$ before $\det$ because we have to know that volume should be oriented before we get the idea for ``the oriented volume parallelopiped spanned by $\vv_1, ..., \vv_k$''. And to know volume should be oriented, we first have to explore the determinant and orientation.
 \end{itemize}
 
 \subsubsection{Cross product}
