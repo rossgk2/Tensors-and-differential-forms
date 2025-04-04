@@ -3677,8 +3677,6 @@ misc.
 
 \section{The determinant and orientation}
 
-\section{The determinant and orientation}
-
 \subsection*{Permutations}
 
 \begin{defn}
@@ -3810,8 +3808,6 @@ The following definition and theorem are the main reason for our excursion into 
 
 \subsection*{The determinant}
 
-\label{ch::lin_alg::determinant}
-
 \begin{defn}
 \label{ch::lin_alg::defn::determinant}
     (The determinant).
@@ -3820,14 +3816,25 @@ The following definition and theorem are the main reason for our excursion into 
     
     \begin{enumerate}
         \item $\det(\see_1, ..., \see_n) = 1$, since we want the unit $n$-cube to have an $n$-dimensional volume of $1$.
-        \item $\det$ is multilinear, because...
-        \begin{itemize}
-            \item The volume of a parallelapiped that is the disjoint union of two smaller parallelapipeds should be the sum of the volumes of the smaller parallelapipeds.
-            \item Scaling one of the sides of a parallelapiped by $c \in K$ should increase that paralellapiped's volume by a factor of $c$. 
-        \end{itemize}
+        \item
+        \begin{enumerate}
+            \item[2.1.]
+            $\det(\vv_1, ..., \vv, ..., \vv_n) + \det(\vv_1, ..., \ww, ..., \vv_n) = \det(\vv_1, ..., \vv + \ww, ..., \vv_n)$ for all $\vv, \ww \in K^n$, since the volume of a parallelapiped that is the disjoint union of two smaller parallelapipeds should be the sum of the volumes of the smaller parallelapipeds.
+            \item[2.2.] $\det(\vv_1, ..., c\vv, ..., \vv_n) = c\det(\vv_1, ..., \vv, ..., \vv_n)$ for all $c \in K$ and $\vv \in K^n$, since scaling one of the sides of a parallelapiped by $c \in K$ should increase that paralellapiped's volume by a factor of $c$. 
+        \end{enumerate}
         \item $\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$. This should hold because when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume is zero.
     \end{enumerate}
 \end{defn}
+
+The second axiom of the determinant is equivalent to assumption that the determinant is a multilinear function, the definition of which we spell out now.
+
+\begin{defn}
+    (Multilinear function).
+
+    If $V_1, ..., V_k, W$ are vector spaces and $\ff:V \rightarrow W$ is a linear function, then $\ff$ is said to be \textit{multilinear} iff $\vv_i \mapsto \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is a linear function for all $i \in \{1, ..., k\}$.
+\end{defn}
+
+After some investigation, which we do in the following derivation, the third axiom of the determinant can also be stated more succinctly.
 
 \begin{deriv}
     (Alternatingness).
@@ -3843,7 +3850,7 @@ The following definition and theorem are the main reason for our excursion into 
     Notice that the alternatingness property of the determinant implies that there exist $\vv_1, ..., \vv_n \in K^n$ with $\det(\vv_1, ..., \vv_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of orientation.
 \end{deriv}
 
-We quickly define alternating functions to be functions that have this alternatingness property, as this definition allows for a succinct characterization of the determinant.
+We quickly define alternating functions to be functions that have this alternatingness property.
 
 \begin{defn}
     (Alternating function).
@@ -3852,13 +3859,15 @@ We quickly define alternating functions to be functions that have this alternati
     ${\ff(\vv_{\sigma(1)}, ..., \vv_{\sigma(k)}) = \sgn(\sigma) \ff(\vv_1, ..., \vv_k)}$ for all $\vv_1, ..., \vv_k \in V$ and $\sigma \in S_k$.
 \end{defn}
 
+Now, we have the promised succint characterization of the determinant.
+
 \begin{theorem}
     (Succinct characterization of the determinant).
 
-    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \label{ch::exterior_powers::deriv::permutation_formula_for_determinant}.} alternating linear $k$-form sending $\sE \mapsto 1$. (Recall Definition \ref{ch::bilinear_forms_metric_tensors::defn::linear_k_form}).
+    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \label{ch::exterior_powers::deriv::permutation_formula_for_determinant}.} multilinear altermating function $K^n \rightarrow K$ sending $\sE \mapsto 1$.
 \end{theorem}
 
-We now investigate more properties of the determinant that follow from this succint characterization.
+We now investigate more properties of the determinant that follow from the axioms.
 
 \begin{theorem}
 \label{ch::lin_alg::thm::consequent_det_props}
@@ -4025,7 +4034,7 @@ Using the properties we have amassed, we can derive a formula for the determinan
 \label{ch::lin_alg::lemma:det_as_scale_factor}
     (Determinant as scale factor).
 
-    Let $V$ and $W$ be vector spaces over the same field. Let $h$ be an alternating linear $k$-form. If $\ff:V \rightarrow W$ is a linear function, then $h(\vv_1, ..., \vv_k) = \det(\ff) h(\ff(\vv_1), ..., \ff(\vv_k))$.
+    Let $V$ and $W$ be finite-dimensional vector spaces with $\dim(V) = n$, and let $h$ be a multilinear alternating function $V^{\times n} \rightarrow K$. If $\ff:V \rightarrow W$ is a linear function, then $h(\vv_1, ..., \vv_k) = \det(\ff) h(\ff(\vv_1), ..., \ff(\vv_k))$.
 \end{lemma}
 
 \begin{proof}
@@ -4033,11 +4042,11 @@ Using the properties we have amassed, we can derive a formula for the determinan
     
     \begin{align*}
         h(\ff(\ee_1), ...,
-        \ff(\ee_k)) 
-        &= \sum_{\sigma \in S_k} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) h(\ee_1, ..., \ee_k)
-        = \Big( \sum_{\sigma \in S_k} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) h(\ee_1, ..., \ee_k) \\
-        &= \det([\ff(E)]_F) h(\ee_1, ..., \ee_k)
-        = \det(\ff) h(\ee_1, ..., \ee_k).
+        \ff(\ee_n)) 
+        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) h(\ee_1, ..., \ee_n)
+        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) h(\ee_1, ..., \ee_n) \\
+        &= \det([\ff(E)]_F) h(\ee_1, ..., \ee_n)
+        = \det(\ff) h(\ee_1, ..., \ee_n).
     \end{align*}
     
    So, we have the statement on the basis $E$
@@ -4057,7 +4066,7 @@ Using the properties we have amassed, we can derive a formula for the determinan
 \end{theorem}
 
 \begin{proof}
-   Set $n := \dim(V) = \dim(W) = \dim(Z)$, and let $h$ be an alternating linear $k$-form. By the lemma, $\det(\gg \circ \ff)$ satisfies
+   Set $n := \dim(V) = \dim(W) = \dim(Z)$, and let $h$ be a multilinear alternating function $V^{\times n} \rightarrow K$. By the lemma, $\det(\gg \circ \ff)$ satisfies
    
    \begin{align*}
        h((\gg \circ \ff)(\vv_1), ..., (\gg \circ \ff)(\vv_n)) = \det(\gg \circ \ff) h(\vv_1, ..., \vv_n) \text{ for all $\vv_1, ..., \vv_n \in V$}.
