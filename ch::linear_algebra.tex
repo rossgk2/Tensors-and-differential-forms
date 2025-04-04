@@ -2194,7 +2194,7 @@ All of this mess is alleviated in this section. We start by investigating a rigo
 
 \vspace{.5cm}
 
-The \textit{cross product} also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_pwrs} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_pwrs} because understanding cross products requires understanding determinants).
+The \textit{cross product} also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_powers} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_powers} because understanding cross products requires understanding determinants).
 
 \newpage
 
@@ -3806,13 +3806,15 @@ The following definition and theorem are the main reason for our excursion into 
     $\sigma$ is a composition of $k$ transpositions for some $k$, and $\pi$ is a composition of $\ell$ transpositions for some $\ell$. Notice that the theorem is equivalent to the statement ``the parity of $k + \ell$ is even iff $k$ and $\ell$ have the same parity and odd iff $k$ and $\ell$ have different parity''. This statement is an elementary fact about integers, so the theorem is true.
 \end{proof}
 
+\newpage
+
 \subsection*{The determinant}
 
 \begin{defn}
 \label{ch::lin_alg::defn::determinant}
     (The determinant).
     
-    Let $K$ be a field, and let $\sE = \{\see_1, ..., \see_n\}$ be the standard basis of $K^n$. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\vv_1, ..., \vv_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\vv_1, ..., \vv_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
+    Let $K$ be a field. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\vv_1, ..., \vv_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\vv_1, ..., \vv_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
     
     \begin{enumerate}
         \item $\det(\see_1, ..., \see_n) = 1$, since we want the unit $n$-cube to have an $n$-dimensional volume of $1$.
@@ -3822,30 +3824,41 @@ The following definition and theorem are the main reason for our excursion into 
             $\det(\vv_1, ..., \vv, ..., \vv_n) + \det(\vv_1, ..., \ww, ..., \vv_n) = \det(\vv_1, ..., \vv + \ww, ..., \vv_n)$ for all $\vv, \ww \in K^n$, since the volume of a parallelapiped that is the disjoint union of two smaller parallelapipeds should be the sum of the volumes of the smaller parallelapipeds.
             \item[2.2.] $\det(\vv_1, ..., c\vv, ..., \vv_n) = c\det(\vv_1, ..., \vv, ..., \vv_n)$ for all $c \in K$ and $\vv \in K^n$, since scaling one of the sides of a parallelapiped by $c \in K$ should increase that paralellapiped's volume by a factor of $c$. 
         \end{enumerate}
-        \item $\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$. This should hold because when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume is zero.
+        \item $\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$, since when two sides of a parallelapiped coincide, its \textit{$n$-dimensional} volume should be zero.
     \end{enumerate}
 \end{defn}
 
-The second axiom of the determinant is equivalent to assumption that the determinant is a multilinear function, the definition of which we spell out now.
+The second axiom of the determinant is equivalent to assumption that the determinant is linear in every argument. Quickly, we define vocabulary for such functions.
 
 \begin{defn}
     (Multilinear function).
 
-    If $V_1, ..., V_k, W$ are vector spaces and $\ff:V \rightarrow W$ is a linear function, then $\ff$ is said to be \textit{multilinear} iff $\vv_i \mapsto \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is a linear function for all $i \in \{1, ..., k\}$.
+    If $V_1, ..., V_k, W$ are vector spaces, then a function $\ff:V_1 \times ... \times V_k \rightarrow W$ is said to be \textit{multilinear} iff $\vv_i \mapsto \ff(\vv_1, ..., \vv_i, ..., \vv_k)$ is a linear function for all $i \in \{1, ..., k\}$.
 \end{defn}
 
-After some investigation, which we do in the following derivation, the third axiom of the determinant can also be stated more succinctly.
+The third axiom of the determinant can also be stated more succinctly after the investigation of the following derivation.
 
 \begin{deriv}
-    (Alternatingness).
+    (Alternatingness of the determinant).
 
-    Let $\vv, \ww \in K^n$. By the third axiom of the determinant, we have $\det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n) + \det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) = \det(\vv_1, ..., \vv + \ww, ..., \ww + \vv, ..., \vv_n) = 0$. Thus,
+    Let $\vv, \ww \in K^n$. By the third axiom of the determinant, we have 
+
+    \begin{align*}
+        0 &= \det(\vv_1, ..., \vv + \ww, ..., \vv + \ww, ..., ..., \vv_n) \\
+        &= \det(\vv_1, ..., \vv + \ww, ..., \vv, ..., \vv_n) \\
+        &+ \det(\vv_1, ..., \vv + \ww, ..., \ww, ..., \vv_n) \\
+        &= \det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) + \det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) \\
+        &+ \det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n)+ \det(\vv_1, ..., \ww, ..., \ww, ..., \vv_n) \\
+        &= \det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) + \det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n).
+    \end{align*}
+    
+    Thus,
 
     \begin{align*}
         \det(\vv_1, ..., \vv, ..., \ww, ..., \vv_n) = -\det(\vv_1, ..., \ww, ..., \vv, ..., \vv_n) \text{ for all $\vv, \ww \in K^n$}.
     \end{align*}
 
-    This condition is known as the \textit{alternatingness} property of the determinant. It is quick to show that alternatingness property not only follows from the third axiom of the determinant, but is equivalent to it.
+    This condition is known as the \textit{alternatingness} property of the determinant. It is quick to show that the alternatingness property not only follows from the third axiom of the determinant, but is equivalent to it\footnote{Alternatingness only implies the third determinant axiom if $|K| \neq 2$, so that division by $2$ is defined.}. 
 
     Notice that the alternatingness property of the determinant implies that there exist $\vv_1, ..., \vv_n \in K^n$ with $\det(\vv_1, ..., \vv_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of orientation.
 \end{deriv}
@@ -3864,7 +3877,7 @@ Now, we have the promised succint characterization of the determinant.
 \begin{theorem}
     (Succinct characterization of the determinant).
 
-    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \label{ch::exterior_powers::deriv::permutation_formula_for_determinant}.} multilinear altermating function $K^n \rightarrow K$ sending $\sE \mapsto 1$.
+    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \label{ch::lin_alg::deriv::permutation_formula_for_determinant}.} multilinear altermating function $K^n \rightarrow K$ sending $\sE \mapsto 1$.
 \end{theorem}
 
 We now investigate more properties of the determinant that follow from the axioms.
@@ -3901,7 +3914,7 @@ We now investigate more properties of the determinant that follow from the axiom
     \end{enumerate}
 \end{proof}
 
-Using the properties we have amassed, we can derive a formula for the determinant.
+Using the properties of the determinant we have amassed, we can derive a formula for the determinant.
 
 \begin{defn}
     (Determinant of a square matrix). 
@@ -3909,11 +3922,13 @@ Using the properties we have amassed, we can derive a formula for the determinan
     We define the \textit{determinant of a square matrix} to be the result of applying $\det$ to the column vectors of that matrix.
 \end{defn}
 
+We now derive the \textit{permutation formula} for the determinant.
+
 \begin{deriv}
 \label{ch::lin_alg::deriv::permutation_formula_for_determinant}
     (Permutation formula for the determinant).
     
-    We now derive the \textit{permutation formula} for the determinant. The formula we obtain shows that the function $\det$ specified in Definition \ref{ch::lin_alg::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
+    The formula we will obtain in this derivation shows that the function $\det$ specified in Definition \ref{ch::lin_alg::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
     
     Consider vectors $\vv_1, ..., \vv_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\vv_i]_\sE)^j$. Then...
     
@@ -3923,7 +3938,8 @@ Using the properties we have amassed, we can derive a formula for the determinan
         &= \sum_{i_1 = 1}^n \det \Big( a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
         &\vdots \\
         &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
-        &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}), \text{ where $i_1, ..., i_n$ are distinct from each other} \\
+        &= \sum_{i_1, ..., i_n \in \{1, ..., n\}} \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
+        &= \sum_{\substack{i_1, ..., i_n \in \{1, ..., n\} \\ \text{where $i_1, ..., i_n$ are distinct}}} \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
         &= \sum_{\sigma \in S_n}
         \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}) \\
         &= \sum_{\sigma \in S_n}
@@ -3958,10 +3974,25 @@ Using the properties we have amassed, we can derive a formula for the determinan
         \sum_{\sigma \in S_n}
         \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}).
     \end{align*}
-    
-    Now, notice that a shuffled diagonal matrix that has been shuffled in accordance to a permutation $\sigma$ can be converted to a diagonal matrix via application of $\sigma^{-1}$, transposed (the transpose of a diagonal matrix $\DD$ is $\DD$), and then re-shuffled via application of $\sigma$. Doing this does not change the determinant, since the $\sgn(\sigma^{-1})$ introduced by the shuffle is canceled by the $\sgn(\sigma)$ factor introduced by the re-shuffle.
 
-    When this is done to every matrix in the sum, then the sum is what we would obtain if we were to compute $\det(\AA^\top)$ by repeating the derivation of the permutation formula for the determinant. Therefore
+    In general, if we have a diagonal matrix with permuted columns, $\DD^\sigma = \begin{pmatrix} \dd_{\sigma(1)} & \hdots & \dd_{\sigma(n)} \end{pmatrix}$, then unshuffling the columns, transposing the result, and then reshuffling the result of that gives us back $\DD^\sigma$: $\DD^\sigma = ((\DD^{\sigma^{-1}})^\top)^\sigma$.
+
+    We apply this fact to every matrix in the above sum:
+
+    \begin{align*}
+        \sum_{\sigma \in S_n}
+        \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)})
+        &=
+        \sum_{\sigma \in S_n}
+        \det\Big( \Big(\Big[\Big(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}\Big)^{\sigma^{-1}}\Big]^\top\Big)^\sigma \Big) \\
+        &= \sum_{\sigma \in S_n} \det\Big(\Big(\Big[ a^1_1 \see_1, ..., a^n_n \see_n \Big]^\top \Big)^\sigma\Big) \\
+        &= \sum_{\sigma \in S_n} \det\Big(\Big( b^1_1 \see_1, ..., b^n_n \see_n\Big)^\sigma\Big), \text{ where $b^i_j := (a^i_j)^\top$} \\
+        &= \sum_{\sigma \in S_n}
+        \det(b^1_{\sigma(1)} \see_{\sigma(1)}, ..., b^n_{\sigma(n)} \see_{\sigma(n)}) \\
+        &= \det((b^i_j)) = \det((a^i_j)^\top) = \det(\AA^\top).
+    \end{align*}
+    
+    Therefore
     
     \begin{align*}
         \det(\AA) = \det(\AA^\top).
