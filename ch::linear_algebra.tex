@@ -3958,9 +3958,7 @@ We now derive the \textit{permutation formula} for the determinant.
         }
     \end{align*}
     
-    In this derivation, we have mostly used the multilinearity of the determinant. Though, the expression labeled with ``where $i_1, ..., i_n$ are distinct from each other'' results from the previous line due to the third axiom of the determinant, $\det(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n) = 0$ when $\vv_i = \vv_j$.
-    
-    There are four major steps in the derivation. The first step is to use the multilinearity of the determinant to turn the determinant of $(a^i_j)$ into a sum of the determinants of matrices that only have one nonzero entry in each column (see the line directly above the line labeled with ``where $i_1, ..., i_n$ are distinct from each other''). The second step is to disregard all determinants in this previous sum whose matrix arguments have two or more columns that have their nonzero entries in the same row (i.e. whose matrix arguments are matrices of linearly dependent columns). This leaves us with a sum of determinants of diagonal matrices whose columns have been shuffled (this corresponds to the line labeled with ``where $i_1, ..., i_n$ are distinct from each other'' and the line directly below it). The third step, which corresponds to the third to last line, is to use multilinearity to pull out all the constants. The fourth step is to use the alternatingness of the determinant so that every determinant argument in the sum is the identity matrix; this results in multiplying each term in the sum by $\sgn(\sigma)$.
+    The most difficult step in the derivation is the one that transitions from the sum over $i_1, ..., i_n \in \{1, ..., n\}$ to the sum over $i_1, ..., i_n \in \{1, ..., n\}$, where $i_1, ..., i_n$ are distinct from each other. This step is valid because any sum term for which some $i_k$ and $i_j$ are equal is the determinant of a matrix whose columns are linearly dependent; i.e., is zero.
 \end{deriv}
 
 \begin{deriv}

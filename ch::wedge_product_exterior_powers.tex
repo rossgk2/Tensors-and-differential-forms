@@ -1144,3 +1144,60 @@ We can actually define the Hodge dual in a more general context.
     Therefore, the Hodge dual is basis-independent and thus well-defined.
 \end{theorem}
 
+
+\newpage
+
+\section{Levi-Civita and generalized Kronecker delta symbols}
+
+In this section, we define notation that facilitate analysis of wedge products via their coordinates.
+
+\begin{defn}
+    (Levi-Civita symbol).
+
+    The \textit{Levi-Civita symbol} is 
+    
+    \begin{align*}
+        \epsilon_{i_1 ... i_n} :=
+        \begin{cases}
+            \sgn((i_1, ..., i_n)) & i_1, ..., i_n \text{ are distinct} \\
+            0 & \text{else}
+        \end{cases}
+    \end{align*}
+    
+    The Levi-Civita symbol is relevant because $\det(a^i_j) = \epsilon_{i_1 ... i_n} a^{i_1}_1 ... a^{i_n}_n$ and $(\phi^{\huu_{i_1}} \twedge ... \twedge \phi^{\huu_{i_k}})(\huu_{i_1}, ..., \huu_{i_k}) = \det(...) = \epsilon_{i_1 ... i_k}$ when $\hU$ is an orthonormal basis.
+\end{defn}
+
+\begin{defn}
+    The \textit{generalized Kronecker delta symbol} is
+    
+    \begin{align*}
+        \delta^{i_1 ... i_k}_{j_1 ... j_k} :=
+        \begin{cases}
+            \sgn(\sigma) & \exists \sigma \in S_k \spc (j_1, ..., j_k) = \sigma((i_1, ..., i_k)) \\
+                0 & \text{else}
+        \end{cases}.
+    \end{align*}
+    
+    The generalized Kronecker delta symbol is relevant because the $j_1 ... j_k$ component of $\huu_{i_1} \twedge ... \twedge \huu_{i_k}$, where $k \leq \dim(V)$, is $\delta^{i_1 ... i_k}_{j_1 ... j_k}$.
+\end{defn}
+
+\subsection*{Identities}
+
+\begin{itemize}
+    \item $\epsilon_{i_1 ... i_k} \epsilon_{j_1 ... j_k} = \delta^{i_1 ... i_k}_{j_1 ... j_k}$ when $i_1, ..., i_k, j_1, ..., j_k \in \{1, ... n\}$.
+    \item $\delta^{i_1 ... i_k}_{j_1 ... j_k} = \det(\delta^{i_r}_{j_s})$, where $(\delta^{i_r}_{j_s})$ is the matrix with $rs$ entry $\delta^{i_r}_{j_s}$.
+\end{itemize}
+
+More
+
+\begin{itemize}
+    \item $\epsilon_{i_1 ... i_k \spc i_{k + 1} ... i_n} \epsilon_{i_1 ... i_k \spc j_{k + 1} ... j_n} = \delta^{i_1 ... i_k \spc i_{k + 1} ... i_n}_{i_k ... i_k \spc j_{k + 1} ... j_n} = \det(...) = k! \delta^{j_{k + 1} ... j_n}_{i_{k + 1} ... i_n}$
+    \item $\epsilon_{j_1 ... j_n} \det(a^i_j) = \epsilon_{i_1 ... i_n} a^{i_1}_{j_1} ... a^{i_n}_{j_n}$.
+    \begin{itemize}
+        \item Is true because $\det(a^i_j) = \sgn(\tau) \det(a^i_{\tau(j)})$ for any $\tau \in S_n$.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Upper and lower indices}
+
+When one considers a sum such as $\epsilon_{i_1 ... i_k \spc i_{k + 1} ... i_n} \epsilon_{i_1 ... i_k \spc j_{k + 1} ... j_n}$, we write the second Levi-Civita symbol as $\epsilon^{i_1 ... i_k \spc j_{k + 1} ... j_n}$ so that the sum follows the convention that each summed-over index appears as both an upper and lower index. That is, we define $\epsilon^{i_1 ... i_k \spc j_{k + 1} ... j_n} := \epsilon_{i_1 ... i_k \spc j_{k + 1} ... j_n}$. People even refer to such sums as ``contraction of the Levi-Civita symbol''- but this is misleading, because the Levi-Civita symbol is not a tensor, and thus cannot be tensor-contracted.
