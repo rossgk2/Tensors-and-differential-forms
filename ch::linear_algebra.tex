@@ -3723,7 +3723,9 @@ Now, we prove an intuitive theorem.
         \item We also have $\sigma^{-1}((\sigma(1), ..., \sigma(n))) = (\sigma^{-1}(\sigma(1)), ..., \sigma^{-1}(\sigma(n)) = (1, ..., n)$.
     \end{itemize} 
     
-    Thus, $\text{sort}_\sigma = \sigma^{-1}$. Since there are many ways to describe $\text{sort}_\sigma$ as a composition of transpositions\footnote{See Definition \ref{ch::appendix::defn::bubble_sort} in the appendix for a description of one such description, the \textit{bubble sort algorithm}.}, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are transpositions. The inverse of a transposition is a transposition, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are transpositions. So, we have shown that $\sigma$ decomposes into a composition of transpositions. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
+    Thus, $\text{sort}_\sigma = \sigma^{-1}$. 
+    
+    Since there are many ways to describe $\text{sort}_\sigma$ as a composition of transpositions\footnote{See Definition \ref{ch::appendix::defn::bubble_sort} in the appendix for a description of one such description, the \textit{bubble sort algorithm}.}, we have $\text{sort}_\sigma = \sigma^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1 \circ ... \circ \sigma_k$ are transpositions. The inverse of a transposition is a transposition, so we have $\sigma = \sigma_1^{-1} \circ ... \circ \sigma_k^{-1}$, where $\sigma_1^{-1}, ..., \sigma_k^{-1}$ are transpositions. So, we have shown that $\sigma$ decomposes into a composition of transpositions. This decomposition is not unique, as it depends on which sorting algorithm is used to compute $\text{sort}_\sigma = \sigma^{-1}$.
     
     % (Case: $X \neq S_n$ for all $n$). Take any bijection $f:X \rightarrow \{1, ..., |X|\}$. Since $f \circ \sigma \circ f^{-1} \in S_{|X|}$, then applying the previous case implies $f \circ \sigma \circ f^{-1} = \sigma_k \circ ... \circ \sigma_1$, where $\sigma_1, ..., \sigma_k \in S_{|X|}$ are transpositions. Solving for $\sigma$, we have $\sigma = f^{-1} \circ (\sigma_k \circ ... \circ ... \sigma_1) \circ f = (f^{-1} \circ \sigma_k \circ f) \circ (f^{-1} \circ \sigma_{k - 1} \circ f) \circ ... \circ (f^{-1} \circ \sigma_1 \circ f)$. Each $f^{-1} \circ \sigma_i \circ f$ is a permutation on $X$, so we have shown that $\sigma$ is a composition of permutations on $X$, as desired.
 \end{proof}
@@ -3739,7 +3741,7 @@ The following definition and theorem are the main reason for our excursion into 
 \begin{theorem}
     (The parity of a permutation is unique).
 
-    A permutation in $S_n$ has a unique parity. That is, no permutation is both even and odd.
+    Every permutation in $S_n$ has a unique parity. That is, no permutation is both even and odd.
 \end{theorem}
 
 \begin{proof}
@@ -3757,7 +3759,7 @@ The following definition and theorem are the main reason for our excursion into 
     
     \fullindent
     {
-        (Case: $\tau_r$ and $\tau_{r - 1}$ are disjoint). If $\tau_r$ and $\tau_{r - 1}$ are disjoint, then $\tau_r \circ \tau_{r - 1} = \tau_{r - 1} \circ \tau_r = \tau_{r - 1} \circ \transp{i}{j}$.
+        (Case: $\tau_r$ and $\tau_{r - 1}$ are disjoint). If $\tau_r$ and $\tau_{r - 1}$ are disjoint, then $\tau_r \circ \tau_{r - 1} = \tau_{r - 1} \circ \tau_r = \tau_{r - 1} \circ \transp{i}{j}$, where we note that $\tau_{r - 1}$ fixes $i$.
     
         (Case: $\tau_r$ and $\tau_{r - 1}$ share one element).
     
@@ -3777,7 +3779,9 @@ The following definition and theorem are the main reason for our excursion into 
 
     \newcommand{\tttau}{\widetilde{\tau}}
             
-    To summarize the above, in all of the possible cases, we have $\tau_r \circ \tau_{r - 1} = \transp{i}{j} \circ \tau_{r - 1} = \tttau_r \circ \transp{i}{a_1}$ for some $a_1 \in \{1, ..., n\} - \{i\}$ and some transposition $\tttau_r$ that fixes $a_1$. Thus, $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ \transp{i}{a_1} \circ \tau_{r - 2} \circ ... \circ \tau_1$, where $\tttau_r$ fixes $i$. Repeating this process, we see $\id = \tau_r \circ \tau_{r - 1} \circ \transp{i}{a_2} \circ ... \circ \tau_1$. It follows from induction that there exist $a \in \{1, ..., n\} - \{i\}$ and transpositions $\tttau_2, ..., \tttau_r$ such that $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ ... \circ \tttau_2 \circ \transp{i}{a}$, where all of $\tttau_2, ..., \tttau_r$ fix $i$. Thus $\id(i) = a \neq i$. This is a contradiction, since the identity fixes every element of $\{1, ..., n\}$.
+    To summarize the above, in all of the possible cases, we have $\tau_r \circ \tau_{r - 1} = \tttau_r \circ \transp{i}{a_1}$ for some transposition $\tttau_r$ that fixes $i$ and some $a_1 \in \{1, ..., n\} - \{i\}$. Thus, $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ \transp{i}{a_1} \circ \tau_{r - 2} \circ ... \circ \tau_1$, where $\tttau_r$ fixes $i$.
+    
+    Repeating this process, we see there exist a transposition $\tttau_{r - 1}$ that fixes $i$ and $a_2 \in \{1, ..., n\} - \{i\}$ such that $\id = \tttau_r \circ \tttau_{r - 1} \circ \transp{i}{a_2} \circ ... \circ \tau_1$. It follows from induction that there exist transpositions $\tttau_2, ..., \tttau_r$ fixing $i$ and $a \in \{1, ..., n\} - \{i\}$ such that $\id = \tau_r \circ ... \circ \tau_1 = \tttau_r \circ ... \circ \tttau_2 \circ \transp{i}{a}$. Thus $\id(i) = a \neq i$. This is a contradiction, since the identity fixes every element of $\{1, ..., n\}$.
 \end{proof}
 
 \begin{defn}
@@ -3803,7 +3807,7 @@ The following definition and theorem are the main reason for our excursion into 
 \end{theorem}
 
 \begin{proof}
-    $\sigma$ is a composition of $k$ transpositions for some $k$, and $\pi$ is a composition of $\ell$ transpositions for some $\ell$. Notice that the theorem is equivalent to the statement ``the parity of $k + \ell$ is even iff $k$ and $\ell$ have the same parity and odd iff $k$ and $\ell$ have different parity''. This statement is an elementary fact about integers, so the theorem is true.
+    $\sigma$ is a composition of $k$ transpositions for some $k$, and $\pi$ is a composition of $\ell$ transpositions for some $\ell$. The theorem is equivalent to the statement ``the parity of $k + \ell$ is even iff $k$ and $\ell$ have the same parity and odd iff $k$ and $\ell$ have different parity''. This statement is an elementary fact about integers, so the theorem is true.
 \end{proof}
 
 \newpage
@@ -3814,7 +3818,7 @@ The following definition and theorem are the main reason for our excursion into 
 \label{ch::lin_alg::defn::determinant}
     (The determinant).
     
-    Let $K$ be a field. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\vv_1, ..., \vv_n \in K^n$, returns the $n$-dimensional volume of the parallelapiped spanned by $\vv_1, ..., \vv_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
+    Let $K$ be a field. We want to define a function $(K^n)^{\times n} \rightarrow K$ which, given $\vv_1, ..., \vv_n \in K^n$, returns the $n$-dimensional volume of the $n$-dimensional parallelapiped spanned by $\vv_1, ..., \vv_n$. We will denote this function by $\det:(K^n)^{\times n} \rightarrow K$. We require that $\det$ satisfy the following axioms:
     
     \begin{enumerate}
         \item $\det(\see_1, ..., \see_n) = 1$, since we want the unit $n$-cube to have an $n$-dimensional volume of $1$.
@@ -4141,11 +4145,13 @@ We now derive the \textit{permutation formula} for the determinant.
 
 \textit{Orientation} is the mathematical formalization of the notions of ``clockwise'' and ``counterclockwise''; it is the notion which distinguishes different ``rotational configurations'' from each other.
 
-Our discussion of orientation will be as follows. First, we define an \textit{orientation on a vector space} to be a choice of an orthonormal ordered basis. (We heavily rely on inner product spaces for their inner-product-induced orthonormality). This definition of orientation will only allow us to check the orientation of permutations of the chosen orthonormal basis, however. In order to give orientation to arbitrary ordered bases, we introduce rotations in $n$-dimensions, so that an arbitrary ordered basis can be given the orientation of a ``close-by'' permuted ordered basis.
+Formally, an \textit{orientation} for an $n$-dimensional inner product space\footnote{We need to use inner product spaces so that we can speak of orthonormal ordered bases.} will be an orthonormal ordered basis for that space, subject to an equivalence relation, so that rotations are considered equivalent iff one of them can be ($n$-dimensionally) rotated into the other. We will say that equivalent orthonormal ordered bases are ``rotationally equivalent''.
 
-After we finish the definition of orientation for inner product spaces, we end the subsection on oriented inner product spaces by presenting the fact that the determinant ``tracks'' orientation. This fact allows us to generalize the notion of orientation to finite dimensional vector spaces that may or may not have an inner product. Lastly, we show how the top exterior power of a finite-dimensional vector space can be used for the purposes of orientation.
+In the intuitive case of $n = 2$, we will see that the rotational equivalence notion leads to the key \textit{antisymmetry} property of orthonormal ordered bases. We will also see that- even in $n$-dimensions- an arbitrary orthonormal ordered basis is rotationally equivalent to to one of two orientations. When an arbitrary orthonormal ordered basis is rotationally equivalent to the one, it is said to be ``positively oriented''; when it is rotationally equivalent to the other, it is said to be ``negatively oriented''.
 
-[TO-DO: fix the terminology of the above]
+After the above is established, the remainder of this section is devoted to computing the orientation of arbitrary orthonormal ordered bases relative to a chosen orientation. Relying on antisymmetry alone, we are able to compute orientations of orthonormal ordered bases that are permutations of the chosen orientation. To compute the orientation of other orthonormal bases, we have to engage a bit with the notion of rotation in $n$-dimensions, since this is, after all, the fundamental concept behind rotational equivalence. The idea is that the orientation of an arbitrary orthonormal ordered basis is equal to the orientation of a ``close-by'' permuted ordered orthonormal basis.
+
+The culminating fact of this section is that the determinant ``tracks'' orientation, and that the determinant of an ordered orthonormal basis for $K^n$ gives the orientation of that basis.
 
 \subsection*{First notions of orientation}
 
@@ -4158,8 +4164,6 @@ After we finish the definition of orientation for inner product spaces, we end t
     
     For example, if $V$ is a 2-dimensional vector space and has basis $E = \{\ee_1, \ee_2\}$, then $(\ee_1, \ee_2)$ and $(\ee_2, \ee_1)$ are both ordered bases of $V$. We have $(\ee_1, \ee_2) \neq (\ee_2, \ee_1)$.
 \end{defn}
-
-We now discover a consequence of imposing that the bases under consideration be ordered.
 
 \begin{deriv}
 \label{ch::lin_alg::deriv::ordered_bases_antisymmetry_intuition}
@@ -4400,9 +4404,13 @@ This fundamental result leads to the following [...].
     \begin{itemize}
         \item $\hU \sim \hU^\sigma \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
         \begin{itemize}
-            \item (Proof). We show the contrapositive, $\sgn(\sigma) = -1 \implies \hU \nsim \hU^\sigma$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $\hU \nsim \hU^\sigma$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$.
+            \item We show the contrapositive, $\sgn(\sigma) = -1 \implies \hU \nsim \hU^\sigma$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $\hU \nsim \hU^\sigma$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$.
 
-            \textbf{Show $(\huu_1, \huu_2) \nsim (-\huu_1, \huu_2)$, and then that $(\huu_1, \huu_2, ..., \huu_n) \nsim (-\huu_1, \huu_2, ..., \huu_n)$ by induction.}
+            Since $\sgn(\transp{1}{2}) = -1$, we will show that $\hU \nsim \hU^{(1 \spc 2)}$.
+            
+            Suppose for contradiction that $\hU = (\huu_1, \huu_2, \huu_3 ..., \huu_n) \sim \hU^{(1 \spc 2)} = (\huu_2, \huu_1, \huu_3 ..., \huu_n)$. Then there exists $\theta \in [0, 2\pi)$ such that ${\RR_\theta(\hU) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2), \RR_\theta(\huu_3), ..., \RR_\theta(\huu_n)) = (\huu_2, \huu_1, \huu_3, ..., \huu_n) = \hU^{(1 \spc 2)}}$. From the first two entries of these tuples, we have $[\RR_\theta(\huu_1)]_{\hU} = [\huu_2]_{\hU} = (0, 1)^\top$ and $[\RR_\theta(\huu_2)]_{\hU} = [\huu_1]_{\hU} = (1, 0)^\top$.
+            
+            Since $[\RR_\theta(\huu_1)]_{\hU} = (\cos(\theta), \sin(\theta))^\top$ and ${[\RR_\theta(\huu_2)]_{\hU} = (-\sin(\theta), \cos(\theta))^\top}$, then this is equivalent to $((\cos(\theta), \sin(\theta))^\top = (0, 1)^\top \text{ and } (-\sin(\theta), \cos(\theta))^\top = (1, 0)^\top)$, which further implies $\sin(\theta) = 1$ and $\sin(\theta) = -1$. Since $\sin$ is a well-defined function, this is a contradiction.
         \end{itemize}
     \end{itemize}
 
