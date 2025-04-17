@@ -848,10 +848,10 @@ We now quickly present an slightly alternative characterization of linear functi
    Left as exercise.
 \end{proof}
 
-This characterization of linear functions quickly generalizes to the following fact.
+The definition of a linear functions also easily generalizes to the following fact.
 
 \begin{theorem}
-    (Generalization of the most common characterization of linear functions).
+    (Linear function).
     
     Let $V$ and $W$ be vector spaces over a field $K$. A function $\ff:V \rightarrow W$ is linear iff
     
@@ -864,31 +864,28 @@ This characterization of linear functions quickly generalizes to the following f
     Left as exercise.
 \end{proof}
 
-\begin{theorem}
-    \label{ch::lin_alg::thm::linear_functions_have_zero_in_image}
-    (Every linear function includes $\mathbf{0}$ in its image).
-    
-    Every linear function includes $\mathbf{0}$ in its image because $\ff(0 \cdot \vv) = 0 \cdot \ff(\vv) = \mathbf{0}$ for linear function $\ff$ and any vector $\vv$.
-    
-    This means that only lines that pass through the origin can be images of linear functions.
-\end{theorem}
+\newpage
+
+Now that we are familiar with theoretical characterizations of linear functions, we will investigate linear functions from a geometric perspective.
 
 \begin{theorem}
-\label{ch::lin_alg::thm::basis_sent_to_any_ordered_list}
-    (Any basis can get sent to any list of vectors by some linear function).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces and let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$. For all ${\ww_1, ..., \ww_n \in W}$, there exists a linear function sending $\ee_i \mapsto \ww_i$.
+    (Linear functions send $\mathbf{0}$ to $\mathbf{0}$).
+
+    If $V$ and $W$ are vector spaces and $\ff:V \rightarrow W$ is a linear function, then $\ff(\mathbf{0}) = \mathbf{0}$.
 \end{theorem}
 
 \begin{proof}
-    For any linear function $\ff$, we have $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. We want to construct a linear function $\gg$ with $\gg(\ee_i) = \ww_i$. Thinking about replacing the $\ff(\ee_i)$ in the previous sum with $\ww_i$ gives us the idea to define $\gg(\vv) := \sum_{i = 1}^n ([\vv]_E)_i \ww_i$. 
-    
-    We now check that $\gg(\ee_i) = \ww_i$. We have $\gg(\ee_i) = \sum_{j = 1}^n ([\ee_i]_E)_j \ww_j = \sum_{j = 1}^n \delta_{ij} \ww_j = \ww_i$, as desired. 
-    
-    Lastly, we have to check that $\gg$ is linear. This is straightforward and left as an exercise.
+    We have $\ff(\mathbf{0}) = \ff(0 \cdot \mathbf{0}) = 0 \cdot \ff(\mathbf{0}) = 0 \cdot \mathbf{0} = \mathbf{0}$.
 \end{proof}
 
-Now that we are familiar with theoretical characterizations of linear functions, we will investigate linear functions from a geometric perspective.
+\begin{theorem}
+    Linear functions $\R^n \rightarrow \R^m$ send $\mathbf{0}$ to $\mathbf{0}$ and send parallel lines to parallel lines.
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    We already know that all linear functions send $\mathbf{0}$ to $\mathbf{0}$, so we only need show that linear functions $\R^n \rightarrow \R^m$ send parallel lines to parallel lines. So, consider two parallel lines $\eell_1$ and $\eell_2$ in $\R^n$ described by $\eell_1(t) = \vv_0 + t\vv$ and $\eell_2(t) = \ww_0 + t\vv$, where $\vv_0, \ww_0, \vv \in \R^n$. If $\ff:\R^n \rightarrow \R^m$ is linear, then we have $\ff(\eell_1(t)) = \ff(\vv_0) + t \ff(\vv)$ and $\ff(\eell_2(t)) = \ff(\ww_0) + t \ff(\vv)$. These transformed lines are parallel because they have the same direction vector, $\ff(\vv) \in \R^m$. Thus $\ff$ sends parallel lines to parallel lines, as desired.
+\end{proof}
 
 \begin{remark}
     (Examples of linear functions $\R^2 \rightarrow \R^2$).
@@ -901,20 +898,8 @@ Now that we are familiar with theoretical characterizations of linear functions,
         \item projection onto a line through the origin
     \end{itemize}
     
-    In order to convince yourself that the above functions are linear, convince yourself that each above function $\ff$ satisfies $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c \vv) = c \vv$. (For example, if $\ff$ is a rotation about the origin, then $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ is intuitively true because rotating the sum $\vv + \ww$ intuitively produces the same result as summing the rotated vectors $\ff(\vv)$ and $\ff(\ww)$).  
+    In order to convince yourself that the above functions are linear, convince yourself that each above function $\ff$ satisfies $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ and $\ff(c \vv) = c \vv$. (For example, if $\ff$ is a rotation about the origin, then $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ is intuitively true because rotating the sum $\vv + \ww$ intuitively produces the same result as summing the rotated vectors $\ff(\vv)$ and $\ff(\ww)$).
 \end{remark}
-
-The following theorem gives further geometric intuition for how linear functions behave.
-
-\begin{theorem}
-    Linear functions $\R^n \rightarrow \R^n$ fix the origin and keep parallel lines parallel.
-\end{theorem}
-
-\begin{proof}
-   Let $\ff$ be a linear function $\R^n \rightarrow \R^n$. Theorem \ref{ch::lin_alg::thm::linear_functions_have_zero_in_image} showed that $\ff(\mathbf{0}) = \mathbf{0}$, so it remains to show that $\ff$ sends parallel lines to parallel lines. 
-   
-   Consider two parallel lines in $\R^n$ described by $\eell_1(t) = \vv_0 + t\vv$ and $\eell_2(t) = \ww_0 + t\vv$. We have $\ff(\eell_1(t)) = \ff(\vv_0) + t \ff(\vv)$ and $\ff(\eell_2(t)) = \ff(\ww_0) + t \ff(\vv)$. These transformed lines are parallel because they have the same direction vector, $\ff(\vv)$.
-\end{proof}
 
 Now that we are somewhat familiar with linear functions, we present a more abstract result, which formalizes the way in which we can think of linear functions as themselves being vectors.
 
@@ -940,6 +925,23 @@ Now that we are somewhat familiar with linear functions, we present a more abstr
             \item[2.] We have $(c\ff)(d\vv) = c\ff(d\vv) = cd\ff(\vv) = c(d\ff(\vv)) = c(d\ff)(\vv)$.
         \end{enumerate}
     \end{itemize}
+\end{proof}
+
+The following formalizes a result that one would intuitively suspect to be true. We will need this result later.
+
+\begin{theorem}
+\label{ch::lin_alg::thm::basis_sent_to_any_ordered_list}
+    (Any basis can get sent to any list of vectors by some linear function).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces and let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$. For all ${\ww_1, ..., \ww_n \in W}$, there exists a linear function sending $\ee_i \mapsto \ww_i$.
+\end{theorem}
+
+\begin{proof} \mbox{} \\ \indent
+    For any linear function $\ff$, we have $\ff(\vv) = \sum_{i = 1}^n ([\vv]_E)_i \ff(\ee_i)$. We want to construct a linear function $\gg$ with $\gg(\ee_i) = \ww_i$. Thinking about replacing the $\ff(\ee_i)$ in the previous sum with $\ww_i$ gives us the idea to define $\gg(\vv) := \sum_{i = 1}^n ([\vv]_E)_i \ww_i$. 
+    
+    We now check that $\gg(\ee_i) = \ww_i$. We have $\gg(\ee_i) = \sum_{j = 1}^n ([\ee_i]_E)_j \ww_j = \sum_{j = 1}^n \delta_{ij} \ww_j = \ww_i$, as desired. 
+    
+    Lastly, we have to check that $\gg$ is linear. This is straightforward and left as an exercise.
 \end{proof}
 
 \newpage
@@ -1124,7 +1126,7 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \end{theorem}
 
 \begin{proof}
-    Linear isomorphisms are one-to-one, so they preserve the linear independence of vectors. Thus $\ff(E)$ is a linearly independent set of $\dim(V)$ many vectors. Since $\ff$ is an isomorphism, then $\dim(V) = \dim(W)$, so $\ff(E)$ is a linearly independent set of $\dim(W)$ many vectors. Recall from Lemma \ref{ch::lin_alg::lemma::n_lin_indep_vectors_span_n_dim_space} that a linearly independent set of $n$ vectors from an $n$-dimensional vector space span that space. This makes $\ff(E)$ is a basis for $W$.
+    Linear isomorphisms are one-to-one, so they preserve the linear independence of vectors. Thus $\ff(E)$ is a linearly independent set of $\dim(V)$ many vectors. Since $\ff$ is an isomorphism, then $\dim(V) = \dim(W)$, so $\ff(E)$ is a linearly independent set of $\dim(W)$ many vectors. Recall from Lemma \ref{ch::lin_alg::lemma::n_lin_indep_vectors_span_n_dim_space} that a linearly independent set of $n$ vectors from an $n$-dimensional vector space span that space. This makes $\ff(E)$ a basis for $W$.
 \end{proof}
 
 \begin{defn}
@@ -4145,13 +4147,13 @@ We now derive the \textit{permutation formula} for the determinant.
 
 \textit{Orientation} is the mathematical formalization of the notions of ``clockwise'' and ``counterclockwise''; it is the notion which distinguishes different ``rotational configurations'' from each other.
 
-Formally, an \textit{orientation} for an $n$-dimensional inner product space\footnote{We need to use inner product spaces so that we can speak of orthonormal ordered bases.} will be an orthonormal ordered basis for that space, subject to an equivalence relation, so that rotations are considered equivalent iff one of them can be ($n$-dimensionally) rotated into the other. We will say that equivalent orthonormal ordered bases are ``rotationally equivalent''.
+Formally, an \textit{orientation} for an $n$-dimensional inner product space\footnote{We need to use inner product spaces so that we can speak of orthonormal ordered bases.} will be an orthonormal ordered basis for that space, subject to an equivalence relation, so that orientations are considered equivalent iff one of them can be ($n$-dimensionally) rotated into the other. We will say that equivalent orthonormal ordered bases are ``rotationally equivalent''.
 
 In the intuitive case of $n = 2$, we will see that the rotational equivalence notion leads to the key \textit{antisymmetry} property of orthonormal ordered bases. We will also see that- even in $n$-dimensions- an arbitrary orthonormal ordered basis is rotationally equivalent to to one of two orientations. When an arbitrary orthonormal ordered basis is rotationally equivalent to the one, it is said to be ``positively oriented''; when it is rotationally equivalent to the other, it is said to be ``negatively oriented''.
 
 After the above is established, the remainder of this section is devoted to computing the orientation of arbitrary orthonormal ordered bases relative to a chosen orientation. Relying on antisymmetry alone, we are able to compute orientations of orthonormal ordered bases that are permutations of the chosen orientation. To compute the orientation of other orthonormal bases, we have to engage a bit with the notion of rotation in $n$-dimensions, since this is, after all, the fundamental concept behind rotational equivalence. The idea is that the orientation of an arbitrary orthonormal ordered basis is equal to the orientation of a ``close-by'' permuted ordered orthonormal basis.
 
-The culminating fact of this section is that the determinant ``tracks'' orientation, and that the determinant of an ordered orthonormal basis for $K^n$ gives the orientation of that basis.
+The culminating fact of this section is that the determinant ``tracks'' orientation: the determinant of an ordered orthonormal basis for $K^n$ gives the orientation of that basis.
 
 \subsection*{First notions of orientation}
 
@@ -4164,17 +4166,6 @@ The culminating fact of this section is that the determinant ``tracks'' orientat
     
     For example, if $V$ is a 2-dimensional vector space and has basis $E = \{\ee_1, \ee_2\}$, then $(\ee_1, \ee_2)$ and $(\ee_2, \ee_1)$ are both ordered bases of $V$. We have $(\ee_1, \ee_2) \neq (\ee_2, \ee_1)$.
 \end{defn}
-
-\begin{deriv}
-\label{ch::lin_alg::deriv::ordered_bases_antisymmetry_intuition}
-    (Intuition for the antisymmetry of ordered bases).
-    
-    Consider the plane $\R^2$, and consider also two permutations of the standard ordered basis $\sE = (\see_1, \see_2)$ for $\R^2$: $(\see_1, \see_2)$ and $(\see_1, -\see_2)$. (Draw these ordered bases out on paper). Notice that no matter how you rotate the entire second ordered basis (rotate each vector in the second ordered basis by the same amount), it is impossible to make all vectors from the second ordered basis simultaneously align with their counterparts from the first ordered basis. This is also impossible for the ordered bases $(\see_1, \see_2)$ and $(\see_2, \see_1)$. Finally, consider the ordered bases $(\see_1, \see_2)$ and $(-\see_2, \see_1)$ of $\R^2$. It \textit{is} possible to make each vector from the first ordered basis with its counterpart from the second ordered basis by rotating either the entire first ordered basis or the entire second ordered basis.
-    
-    What we have discovered is that \textit{swapping adjacent vectors in an ordered basis of two vectors produces an ordered basis that is} equivalent under rotation \textit{to the ordered basis obtained from the original by negating one of the vectors that have been swapped}. We refer to this fact as the \textit{antisymmetry of orthonormal ordered bases}.
-\end{deriv}
-
-We would now like to work towards a more precise statement of the antisymmetry of orthonormal ordered bases. The notion of \textit{rotational equivalence} is what will facilitate this formalization. Before we define rotational equivalence, however, we must formalize what a ``rotation'' is. The following definition accomplishes this.
 
 \begin{defn}
 \label{ch::lin_alg::defn::2-rotation}
@@ -4200,12 +4191,14 @@ We would now like to work towards a more precise statement of the antisymmetry o
     Note, this notion of rotational equivalence $\sim$ is an equivalence relation.
 \end{defn}
 
+We now see how rotational equivalence leads to the key property- antisymmetry- of orthonormal ordered bases.
+
 \begin{theorem}
     \label{ch::lin_alg::thm::antisymmetry_ordered_bases_2_dimensions}
 
     (Antisymmetry of orthonormal ordered bases for a $2$-dimensional inner product space).
     
-    Now we see how the notion of rotational equivalence for $2$-dimensional inner product spaces formalizes the antisymmetry of orthonormal ordered bases. Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2} \}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
+    Let $\hU = (\huu_1, \huu_2)$ be an orthonormal ordered basis of a $2$-dimensional inner product space. When $\theta \in \{\frac{\pi}{2}, \frac{3\pi}{2} \}$, the matrix of $\RR_\theta$ relative to $\hU$ and $\hU$ is
     
     \begin{align*}
         \pm
@@ -4221,8 +4214,6 @@ We would now like to work towards a more precise statement of the antisymmetry o
         (\huu_2, \huu_1 ) &\sim (-\huu_1, \huu_2) \sim (\huu_1, - \huu_2) \\
         (\huu_1, \huu_2) &\sim (-\huu_2, \huu_1) \sim (\huu_2, -\huu_1)
     \end{align*}
-
-    This is what we noticed in the informal discussion of Derivation \ref{ch::lin_alg::deriv::ordered_bases_antisymmetry_intuition}.
 \end{theorem}
 
 \subsubsection*{First notions of orientation in $n$ dimensions}
@@ -4348,10 +4339,15 @@ This fundamental result leads to the following [...].
     So far, we've shown $\hU^\pi \sim \hW$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::lin_alg::thm::permutations_preserve_rotational_equivalence}), we may apply the permutation $\tau$ to each side of the rotational equivalence $\hU^\pi \sim \hW$ to obtain $(\hU^\pi)^\tau = \hU^{\tau \circ \pi}  = \hU^\sigma \sim \hW^\tau$.
 
     We now compute the right side of this rotational equivalence, $\hW^\tau$.
-    
-    \indent \indent (Case: $\tau$ swaps $1$ with some $\ell > 1$). By studying the example $(\huu_\ell, -\huu_1) \sim (\huu_1, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (\huu_1, ..., \huu_n) = \hU$.
-    
-    \indent \indent (Case: $\tau$ swaps $k \neq 1$ with some $\ell > k$). By studying the example $(\huu_\ell, \huu_k) \sim (-\huu_k, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (-\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ..., \huu_n)$. In this last orthonormal ordered basis, the number of basis vectors with a coefficient of $-1$ is even. It follows from the previous theorem that this last orthonormal ordered basis is rotationally equivalent to $\hU$.
+
+    \fullindent
+    {
+        (Case: $\tau$ swaps $1$ with some $\ell > 1$). By studying the example $(\huu_\ell, -\huu_1) \sim (\huu_1, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (\huu_1, ..., \huu_n) = \hU$.
+    }
+    \fullindent
+    {
+        (Case: $\tau$ swaps $k \neq 1$ with some $\ell > k$). By studying the example $(\huu_\ell, \huu_k) \sim (-\huu_k, \huu_\ell)$, we see $\hW^\tau = (-\huu_1, ..., \huu_n)^\tau \sim (-\huu_1, ..., \huu_{k - 1}, -\huu_k, \huu_{k + 1}, ..., \huu_n)$. In this last orthonormal ordered basis, the number of basis vectors with a coefficient of $-1$ is even. It follows from the previous theorem that this last orthonormal ordered basis is rotationally equivalent to $\hU$.
+    }
 
     We've shown that $\hW^\tau = \hU$ for all $\tau \in S_n$. Therefore, we have $\hU^\sigma \sim \hW^\tau \sim \hU$, as desired.
     
@@ -4403,15 +4399,14 @@ This fundamental result leads to the following [...].
 
     \begin{itemize}
         \item $\hU \sim \hU^\sigma \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
-        \begin{itemize}
-            \item We show the contrapositive, $\sgn(\sigma) = -1 \implies \hU \nsim \hU^\sigma$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $\hU \nsim \hU^\sigma$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$.
 
-            Since $\sgn(\transp{1}{2}) = -1$, we will show that $\hU \nsim \hU^{(1 \spc 2)}$.
+        We show the contrapositive, $\sgn(\sigma) = -1 \implies \hU \nsim \hU^\sigma$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $\hU \nsim \hU^\sigma$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$.
+
+        Since $\sgn(\transp{1}{2}) = -1$, we will show that $\hU \nsim \hU^{(1 \spc 2)}$.
             
-            Suppose for contradiction that $\hU = (\huu_1, \huu_2, \huu_3 ..., \huu_n) \sim \hU^{(1 \spc 2)} = (\huu_2, \huu_1, \huu_3 ..., \huu_n)$. Then there exists $\theta \in [0, 2\pi)$ such that ${\RR_\theta(\hU) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2), \RR_\theta(\huu_3), ..., \RR_\theta(\huu_n)) = (\huu_2, \huu_1, \huu_3, ..., \huu_n) = \hU^{(1 \spc 2)}}$. From the first two entries of these tuples, we have $[\RR_\theta(\huu_1)]_{\hU} = [\huu_2]_{\hU} = (0, 1)^\top$ and $[\RR_\theta(\huu_2)]_{\hU} = [\huu_1]_{\hU} = (1, 0)^\top$.
+        Suppose for contradiction that $\hU = (\huu_1, \huu_2, \huu_3 ..., \huu_n) \sim \hU^{(1 \spc 2)} = (\huu_2, \huu_1, \huu_3 ..., \huu_n)$. Then there exists $\theta \in [0, 2\pi)$ such that ${\RR_\theta(\hU) = (\RR_\theta(\huu_1), \RR_\theta(\huu_2), \RR_\theta(\huu_3), ..., \RR_\theta(\huu_n)) = (\huu_2, \huu_1, \huu_3, ..., \huu_n) = \hU^{(1 \spc 2)}}$. From the first two entries of these tuples, we have $[\RR_\theta(\huu_1)]_{\hU} = [\huu_2]_{\hU} = (0, 1)^\top$ and $[\RR_\theta(\huu_2)]_{\hU} = [\huu_1]_{\hU} = (1, 0)^\top$.
             
-            Since $[\RR_\theta(\huu_1)]_{\hU} = (\cos(\theta), \sin(\theta))^\top$ and ${[\RR_\theta(\huu_2)]_{\hU} = (-\sin(\theta), \cos(\theta))^\top}$, then this is equivalent to $((\cos(\theta), \sin(\theta))^\top = (0, 1)^\top \text{ and } (-\sin(\theta), \cos(\theta))^\top = (1, 0)^\top)$, which further implies $\sin(\theta) = 1$ and $\sin(\theta) = -1$. Since $\sin$ is a well-defined function, this is a contradiction.
-        \end{itemize}
+        Since $[\RR_\theta(\huu_1)]_{\hU} = (\cos(\theta), \sin(\theta))^\top$ and ${[\RR_\theta(\huu_2)]_{\hU} = (-\sin(\theta), \cos(\theta))^\top}$, then this is equivalent to $((\cos(\theta), \sin(\theta))^\top = (0, 1)^\top \text{ and } (-\sin(\theta), \cos(\theta))^\top = (1, 0)^\top)$, which further implies $\sin(\theta) = 1$ and $\sin(\theta) = -1$. Since $\sin$ is a well-defined function, this is a contradiction.
     \end{itemize}
 
     Now we prove (3) and (4).
@@ -4529,7 +4524,7 @@ At this point, we need some definitions and facts about $n$-rotations before we 
         (\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww,
     \end{align*}
 
-    then the Euler rotation $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, the lemma is proven.
+    then the Euler rotation $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, and the lemma is proven.
 
     \vspace{.5cm}
 

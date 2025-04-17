@@ -2,11 +2,6 @@
 
 \label{ch::bilinear_forms_metric_tensors}
 
-The goal of this chapter is to present results regarding the coordinates of $(p, q)$ tensors relative to bases. This is accomplished in the second part of this chapter. The first subsection of the second part, ``Coordinates with a metric tensor'', is the most important part of this entire chapter. Particularly important is Theorem \ref{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector},
-which describes how vectors and dual vectors can act on each other to produce each other's coordinates. The subsequent subsections of the second part of this chapter are less important, but still interesting. In these, we show how to change the bases of a $(p, q)$ tensor and how composition of linear functions generalizes to \textit{tensor contraction}. Of least (direct) importance is the discussion of the convention of \textit{slanted indices}; we have included this because it is handy to know of when exploring literature on tensors.
-
-We build up to these ideas about coordinates by investigating \textit{bilinear forms} in the first part of the chapter. A special type of bilinear form with which the reader may be familiar is an \textit{inner product}; we will define and investigate various facts about these.
-
 \section{Bilinear forms}
 
 \begin{defn}
@@ -154,8 +149,6 @@ The second condition of the previous theorem describes bilinear forms that gener
     \end{enumerate}
 \end{proof}
 
-\newpage
-
 \subsection*{Metric tensors}
 
 \begin{defn}
@@ -176,112 +169,37 @@ The second condition of the previous theorem describes bilinear forms that gener
     When $V$ is a finite-dimensional vector space and there is a metric tensor $g$ on $V$, then the musical isomorphisms ${\flat_1:V \rightarrow V^*}$ and ${\flat_2:V \rightarrow V^*}$ induced by $g$ are the same because $g$ is symmetric. In this scenario, we define $\flat := \flat_1 = \flat_2$ and $\sharp := \sharp_1 = \flat_1^{-1} = \sharp_2 = \flat_2^{-1}$.
 \end{defn}
 
-\subsubsection*{Self-duality}
+\subsubsection*{Misc.}
+
+\begin{defn}
+    (Reciprocal bases).
+
+    Bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$ for a vector space with a nondegenerate bilinear form $B$ are said to be \textit{reciprocal} iff $B(\ee_i, \ff_j) = \delta^i{}_j$.
+
+    Recall that if $B$ is an inner product, then a basis $E = \{\ee_1, ..., \ee_n\}$ is said to be \textit{orthonormal} iff $B(\ee_i, \ee_j) = \delta^i{}_j$. In other words, $E$ is orthonormal iff it is reciprocal with itself.
+\end{defn}
 
 \begin{theorem}
-     (Self-dual $\iff B(\ee_i, \ee_j) = \delta^i{}_j$).
-     
-     Let $V$ be a finite-dimensional vector space with a nondegenerate bilinear form $B$ and a basis $E = \{\ee_1, ..., \ee_n\}$. Let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the induced dual basis for $V^*$. The musical isomorphism $\flat$ induced by $B$ sends basis vectors to induced dual basis vectors, $\ee_i \mapsto \phi^{\ee_i}$, iff $B(\ee_i, 
-     \ee_j) = \delta^i_j$ for all $i, j$. 
-     
-     In the special case when $B$ is an inner product, $B = \langle \cdot, \cdot \rangle$, this means that $\flat$ sends basis vectors from $E$ to induced dual basis vectors iff $E$ is orthonormal with respect to the inner product.
+    Two bases of a vector space with a nondegenerate bilinear form are reciprocal iff $\flat_1$ and $\flat_2$ send basis vectors of one basis to dual basis vectors of the other.
 \end{theorem}
 
 \begin{proof}
-    We have: $\ee_i^\flat = \phi^{\ee_i} \iff \ee_i^\flat(\vv) = \phi^{\ee_i}(\vv) \text{ for all $\vv \in V$} \iff \ee_i^\flat(\ee_j) = \phi^{\ee_i}(\ee_j) \iff B(\ee_i, \ee_j) = \phi^{\ee_i}(\ee_j) \iff B(\ee_i, \ee_j) = \delta^i{}_j$.
+    We have: $B(\ee_i, \ff_j) = \delta^i{}_j \iff B(\ee_i, \ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\vv) = \psi^{\ff_i}(\vv) \text{ for all $\vv \in V$} \iff \ee_i^{\flat_1} = \psi^{\ff_i}$. Overall, we have $B(\ee_i, \ff_j) = \delta^i{}_j \iff \ee_i^{\flat_1} = \psi^{\ff_i}$. A similar argument shows $B(\ee_i, \ff_j) = \delta^i{}_j \iff \ff_i^{\flat_2} = \phi^{\ee_i}$.
 \end{proof}
 
 \begin{remark}
 \label{ch::bilinear_forms_metric_tensors::thm::musical_iso_unique_self_dual_iso}
     (Naturality of self-duality).
 
-    The above theorem shows that the ``unnatural'' isomorphism $V \rightarrow V^*$ sending $\ee_i \mapsto \phi^{\ee_i}$ that was discussed earlier in Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*} actually becomes natural exactly whenever we have a bilinear form $B$ on $V$ and $B(\ee_i, \ee_j) = \delta^i_j$.
+    The above theorem shows that the ``unnatural'' isomorphism $V \rightarrow V^*$ sending $\ee_i \mapsto \phi^{\ee_i}$ that was discussed earlier in Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*} actually becomes natural exactly whenever we have a nondegenerate bilinear form $B$ on $V$ with $B(\ee_i, \ee_j) = \delta^i{}_j$.
 \end{remark}
 
 \newpage
 
-\section{Coordinates of $(p, q)$ tensors}
 
-\label{ch::bilinear_forms_metric_tensors::coords_of_pq_tensors}
+\newpage
 
-\begin{theorem}
-\label{ch::bilinear_forms_metric_tensors::thm::coords_vector_dual_vector}
-    (Coordinates of vectors and dual vectors).
-
-    Let $V$ be a finite-dimensional vector space, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ be the basis for $V^*$ induced by $E$.
-    
-    We have
-
-    \begin{empheq}[box = \fbox]{align*}
-        ([\vv]_E)^i &= \phi^{\ee_i}(\vv) = \Phi_\vv(\phi^{\ee_i}) = ([\Phi_\vv]_{E^{**}})^i \\
-        ([\phi]_{E^*})_i &= \phi(\ee_i)
-    \end{empheq}
-
-    Recall from Theorem \ref{ch::motivated_intro::thm::V_iso_double_dual} that $\vv$ is naturally identified with $\Phi_\vv \in V^{**}$ defined by $\Phi_\vv(\phi) = \phi(\vv)$.
-    
-    When trying to remember this theorem, it may help to involve the contraction map $C:V \times V^* \rightarrow K$ defined by $C(\vv, \phi) = \phi(\vv)$, since we have the following:
-    
-    \begin{align*}
-        ([\vv]_E)^i &= C(\vv, \phi^{\ee_i}) \\
-        ([\phi]_{E^*})_i &= C(\ee_i, \phi).
-    \end{align*}
-    
-    In other words, we take the $i$th coordinate of a vector by contracting that vector with the relevant dual basis vector, and we take the $i$th coordinate of a dual vector by contracting that dual vector with the relevant ``regular'' basis vector.
-\end{theorem}
-
-\begin{proof}
-    To prove the first equation in the first line, $([\vv]_E)^i = \phi^{\ee_i}(\vv)$, we decompose $\vv$ in the basis $E$:
-    
-    \begin{align*}
-        \phi^{\ee_i}(\vv) = \phi^{\ee_i}\Big( \sum_{j = 1}^n ([\vv]_E)^j \ee_i \Big) = \sum_{j = 1}^n \Big( ([\vv]_E)^j \phi^{\ee_i}(\ee_j) \Big) = \sum_{j = 1}^n ([\vv]_E)^j \delta^i{}_j = ([\vv]_E)^i.
-    \end{align*}
-    
-    To prove the second line, we decompose $\phi$ in the basis $E^*$:
-    
-    \begin{align*}
-        \phi(\ee_i) = \Big( \sum_{j = 1}^n ([\phi]_{E^*})_j \phi^{\ee_j} \Big)(\ee_i) = \sum_{j = 1}^n \Big( ([\phi]_{E^*})_j \phi^{\ee_j}(\ee_i)\Big) = \sum_{j = 1}^n ([\phi]_{E^*})_j \delta^j{}_i = ([\phi]_{E^*})_i.
-    \end{align*}
-    
-    Now we prove the second equality of the first line. Recall from Theorem \ref{ch::motivated_intro::thm::V_iso_double_dual} that $\Phi_\vv$ is defined as $\Phi_\vv(\phi) := \phi(\vv)$. Therefore $\phi^{\ee_i}(\vv) = \Phi_\vv(\phi^{\ee_i})$. By applying the second line, we then have $\Phi_\vv(\phi^{\ee_i}) = ([\Phi_\vv]_{E^{**}})^i$.
-\end{proof}
-
-\begin{theorem}
-    \label{ch::bilinear_forms_metric_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}
-    
-    (Matrix of dual vector as transposed coordinates).
-    
-    Let $V$ be a finite-dimensional vector space, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, let $\sE$ be the standard basis for $K^n$, and consider an element $\phi \in V^*$. Then the matrix $\phi(E)$ of $\phi$ relative to $E$ and $\sE$ (see Remark \ref{ch::lin_alg::rmk::primitive_matrix_as_matrix_wrt_bases}) is $\phi(E) = [\phi]_{E^*}^\top$.
-\end{theorem}
-
-\begin{proof}
-    The matrix of $\phi$ relative to $E$ and $\sE$ is
-    
-    \begin{align*}
-        \phi(E) 
-        = 
-        \begin{pmatrix} 
-            \phi(\ee_1) & \hdots & \phi(\ee_n)
-        \end{pmatrix}
-    \end{align*}.
-
-    On the other hand, the previous theorem tells us that coordinates of $\phi$ relative to $E^*$ are
-    
-    \begin{align*}
-        [\phi]_{E^*}
-        =
-        \begin{pmatrix} 
-            ([\phi]_{E^*})_1 \\ \vdots \\ ([\phi]_{E^*})_n
-        \end{pmatrix}
-        =
-        \begin{pmatrix} 
-            \phi(\ee_1) \\ \vdots \\ \phi(\ee_n)
-        \end{pmatrix}.
-    \end{align*}
-    
-    Inspecting the two above results shows that $\phi(E) = [\phi]_{E^*}^\top$.
-\end{proof}
-
-\subsection*{Coordinates with nondegenerate bilinear form}
+\section*{Coordinates with a nondegenerate bilinear form}
 
 \begin{theorem}
 \label{ch::bilinear_forms_metric_tensors::thm::vectors_dual_vectors_metric_tensor}
@@ -402,7 +320,7 @@ The second condition of the previous theorem describes bilinear forms that gener
     
     If the form of $V_1 \otimes ... \otimes V_k$ were set in stone for our purposes, e.g., $V_1 \otimes ... \otimes V_k = V \otimes W^* \otimes V^* \otimes W^{\otimes 2}$, then we would have a natural way to distinguish between indices that are lowered or raised as a result of applying $\flat_1$ or $\sharp_1$ and indices that are lowered or raised as a result of applying $\flat_2$ or $\sharp_2$: if an index corresponds to $V$ or $W^*$, then $\flat_1$ and $\sharp_1$ are applicable, and if an index corresponds to $W$ or $V^*$, then $\flat_2$ and $\sharp_2$ are applicable.
 
-    If the form of $V_1 \otimes ... \otimes V_k$ weren't set in stone, however- perhaps because we wanted to investigate with as much generality as possible- then things would be much uglier. We would have to distinguish between index operations from resulting from $\flat_1$ and $\sharp_1$ and index operations resulting from $\flat_2$ and $\sharp_2$.    This could be achieved by putting primes $'$ or tildes $\sim$ on indices that are raised or lowered with $\flat_2$ or $\sharp_2$, and leaving indices that are raised or lowered with $\flat_1$ or $\sharp_1$ alone. But as you can see, that is quite cumbersome.
+    If the form of $V_1 \otimes ... \otimes V_k$ weren't set in stone, however- perhaps because we wanted to investigate with as much generality as possible- then things would be much uglier. We would have to distinguish between index operations from resulting from $\flat_1$ and $\sharp_1$ and index operations resulting from $\flat_2$ and $\sharp_2$.    This could be achieved by putting primes $'$ or tildes $\sim$ on indices that are raised or lowered with $\flat_2$ or $\sharp_2$, and leaving indices that are raised or lowered with $\flat_1$ or $\sharp_1$ alone. But as you can imagine, that is quite cumbersome.
 
     % Here is a derivation of the above remark. Consider the equations of the previous theorem,
 
@@ -427,240 +345,3 @@ The second condition of the previous theorem describes bilinear forms that gener
     %     \item applying $\sharp_2$ necessitates using expression for $[\ww]_F$, which is found in the top right equation of the previous theorem. since this equation involves matrix multiplication by $\BB^{-\top}$, multiplication by $B^{r j_k}$ appears in the end result. this would be an index-raising operation.
     % \end{itemize}
 \end{remark}
-
-\subsection*{Change of basis for $(p, q)$ tensors}
-
-\begin{theorem}
-    (Change of basis for vectors and dual vectors).
-    
-    Let $V$ be a finite-dimensional vector space with bases $E$ and $F$, and let $E^*$ and $F^*$ be the corresponding induced dual bases for $V^*$. Then
-    
-    \begin{empheq}[box = \fbox]{align*}
-        [\vv]_F &= [\EE]_F [\vv]_E = [\FF]_E^{-1} [\vv]_E \\
-        [\phi]_{F^*} &= [\EE]_F^{-\top} [\phi]_{E^*} = [\FF]_E^\top [\phi]_{E^*} \\
-        [\EE]_F &= [\EE^*]_{F^*} = [\FF]_E^{-1}
-    \end{empheq}
-    
-    where $\vv \in V$ and $\phi \in V^*$.
-\end{theorem}
-
-\begin{proof}
-    The first line of the boxed equation is Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}, and the equation $[\EE]_F = [\FF]_E^{-1}$ from the third line is Theorem \ref{ch::lin_alg::thm::I_EF}. 
-    
-    The equation $[\EE]_F = [\EE^*]_{F^*}$ from the third line is true because  if $\GG:V \rightarrow V^*$ is the isomorphism sending basis vectors to induced dual basis vectors, then we have $[\vv]_E = [\GG(\vv)]_{E^*}$ for any $\vv \in V$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::thm:vv_E_eq_phi_vv_Estar}).
-    
-    The second line follows by noticing that the first line implies $[\phi]_{F^*} = [\EE^*]_{F^*} [\vv]_{E^*}$, and then applying the equation $[\EE]_F = [\EE^*]_{F^*}$ of the third line.
-\end{proof}
-
-\begin{remark}
-\label{ch::bilinear_forms_metric_tensors::rmk::covar_contarvar_real_meaning}
-
-    (What ``covariance'' and ``contravariance'' refer to).
-
-    The first two equations of the previous theorem can be restated as
-    
-    \begin{align*}
-        [\vv]_F &= [\FF]_E^{-1} [\vv]_E \\
-        [\phi]_{F^*}^\top &= [\phi]_{E^*}^\top [\FF]_E.
-    \end{align*}
-    
-    (We have simply copied the first equation from the previous theorem. The second equation has been obtained by applying the matrix transpose to its counterpart from the previous theorem).
-    
-    Paying close attention to the second above equation, we see that when we treat the coordinates of dual vectors taken relative to the $E^*$ basis as row vectors (i.e. as transposed column vectors), then these row vectors transform over to the $F^*$ basis with use of $[\FF]_E$. On the other hand, the first equation states that the coordinates of vectors relative to $E$ (when treated as column vectors, as usual) transform over to the $F$ basis with use of $[\FF]_E^{-1}$. Thus, dual vectors ``co-vary'' \textit{with} $[\FF]_E$ when changing basis from $E$ to $E^*$, and vectors ``contra-vary'' \textit{against} $[\FF]_E$ when changing basis from $F$ to $F^*$.
-\end{remark}
-
-\begin{theorem}
-    (Change of basis for vectors and dual vectors in terms of basis vectors and basis dual vectors).
-    
-    Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n} \}$ be the corresponding induced dual bases for $V^*$. We have
-    
-    \begin{empheq}[box = \fbox]{align*}
-        \ee_i &= \sum_{j = 1}^n ([\ee_i]_F)_j \ff_j = \sum_{j = 1}^n ([\EE]_F)^j{}_i \ff_j \\
-        \phi^{\ee_i} &= \sum_{j = 1}^n ([\phi^{\ee_i}]_{F^*})_j \psi^{\ff_j} = \sum_{j = 1}^n ([\EE]_F^{-\top})^j{}_i \psi^{\ff_j}
-    \end{empheq}
-\end{theorem}
-
-\begin{proof}
-    The first line in the boxed equation follows directly from the definition of $[\cdot]_F$. (The first line is also Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors})). The second line in the boxed equation follows by applying the first line to the bases $E^*$ and $F^*$ for $V^*$. Specifically, the second equation in the second line follows because $\psi^{\ff_i} = \sum_{j = 1}^n ([\EE^*]_{F^*})^j_i \phi^{\ee_j}$, where we have $[\EE^*]_{F^*} = [\FF]_E^{-\top}$ due to the previous theorem.
-\end{proof}
-
-\begin{theorem}
-\label{ch::bilinear_forms_metric_tensors::thm::ricci}
-
-    (Change of basis for a $(p, q)$ tensor). 
-    
-    Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n}\}$ be the corresponding induced dual bases for $V^*$.
-    
-    We now derive how to change the coordinates of a $(p, q)$ tensor. Consider $\TT \in T_{p,q}(V)$ expressed relative to the bases $E$ and $E^*$,
-
-    \begin{align*}
-       \TT = \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}}
-       T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}}
-    \end{align*}.
-    
-    To express $\TT$ relative to the bases $F$ and $F^*$, apply the previous theorem to each basis vector in $\TT$:
-    
-    \begin{align*}
-        &\ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \phi^{\ee_{j_1}} \otimes ... \otimes \phi^{\ee_{j_q}} \\
-        &= \Big(\sum_{j_1 = 1}^n ([\EE]_F)^{j_1}{}_{i_1} \ff_{j_1} \Big) \otimes ... \otimes \Big(\sum_{j_p = 1}^n ([\EE]_F)^{j_p}{}_{i_p} \ff_{j_p} \Big)
-        \otimes
-        \Big( \sum_{i_1 = 1}^n ([\EE]_F^{-1})^{j_1}{}_{i_1} \psi^{\ff_{i_1}} \Big) \otimes
-        ... \otimes \Big( \sum_{i_q = 1}^n ([\EE]_F^{-1})^{j_q}{}_{i_q} \psi^{\ff_{i_q}} \Big) \\
-        &= \sum_{j_1 = 1}^n ... \sum_{j_p}^n \sum_{i_1 = 1}^n ... \sum_{i_q = 1}^n \Big( ([\EE]_F)^{j_1}{}_{i_1} ... ([\EE]_F)^{j_p}{}_{i_p}
-        ([\EE]_F^{-1})^{j_1}{}_{i_1} ... ([\EE]_F^{-1})^{j_q}{}_{i_q} 
-        \ff_{j_1} \otimes ... \otimes \ff_{j_p} \otimes \psi^{\ff_{i_1}} \otimes ... \otimes \psi^{\ff_{i_q}} \Big).
-    \end{align*}
-    
-    After substituting this expression back into the basis sum for $\TT$, we see that an arbitrary $(p, q)$ tensor with an $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $F$ and $F^*$ has a $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component relative to $E$ and $E^*$ of 
-    
-    \begin{align*}
-        &\sum_{k_1 = 1}^n ... \sum_{k_p}^n \sum_{\ell_1 = 1}^n ... \sum_{\ell_q = 1}^n \Big( ([\EE]_F)^{k_1}{}_{\ell_1} ... ([\EE]_F)^{k_p}{}_{\ell_p}
-        ([\EE]_F^{-1})^{k_1}{}_{\ell_1} ... ([\EE]_F^{-1})^{k_q}{}_{\ell_q} 
-        T^{k_1 ... k_p}{}_{\ell_1 ... \ell_q}\Big).
-    \end{align*}
-    
-    (It is possible to ``simplify'' this expression by using the fact that $([\FF]_E)^i{}_j ([\FF]_E)^{-1})^i{}_j = \delta^i{}_j$. Let's not do that, because that would require introducing the $\max$ function to account for whether $p \geq q$ or $q < p$).
-    
-    This change of basis formula is sometimes called the \textit{Ricci transformation law}, or the \textit{tensor transformation law}.
-    
-    At this stage, it would be remiss not to mention what is called \textit{Einstein summation notation}. In Einstein summation notation, we assume that there is an ``implied summation'' over any index that appears in both a lower and upper index. We can use Einstein notation to write the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $\TT$ relative to $F$ and $F^*$ as
-    
-    \begin{align*}
-        ([\EE]_F)^{k_1}{}_{\ell_1} ... ([\EE]_F)^{k_p}{}_{\ell_p}
-        ([\EE]_F^{-1})^{k_1}{}_{\ell_1} ... ([\EE]_F^{-1})^{k_q}{}_{\ell_q} 
-        T^{k_1 ... k_p}{}_{\ell_1 ... \ell_q} \quad \text{(Einstein notation)}.
-    \end{align*}
-\end{theorem}
-
-\begin{remark}
-    (Tensors as ``multidimensional matrices'' that ``transform like tensors''). 
-    
-    As was mentioned in Remark \ref{ch::motivated_intro::rmk::many_defs_tensor}, physicists often define tensors to be ``multidimensional matrices'' that follow the change of basis formula of the previous theorem.
-\end{remark}
-
-\subsection*{Tensor contraction}
-
-\begin{deriv}
-\label{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}
-    (Composition of linear functions with contraction). 
-    
-    Let $V, W$ and $Z$ be vector spaces over a field $K$. Notice that the map $\circ$ which composes linear a function $V \rightarrow W$ with a linear function $W \rightarrow Z$ is itself a bilinear map $\LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z) \overset{\circ}{\rightarrow} \LLLL(V, Z)$. (Check this as an exercise!). Also recall from Section \ref{ch::motivated_intro::sec::motivated_intro} that every element of $\LLLL(V \rightarrow W)$ and $\LLLL(W \rightarrow Z)$ is a linear combination of rank-1 compositions of linear functions, i.e., of ``elementary compositions''. Thus, we can understand the composition map $\circ$ more deeply by looking at how it acts on such elementary compositions. 
-    
-    Lastly, recall the convention of Section \ref{ch::motivated_intro::sec::motivated_intro} which, for $\ww \in W$, uses the same symbol $\ww$ to denote the linear map $\ww \in \LLLL(K \rightarrow W)$ defined by $\ww(c) = c\ww$. Then, under the composition map, ${(\zz \circ \phi, \ww \circ \phi) \in \LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z)}$ is sent to
-    
-    \begin{align*}
-        (\ww \circ \phi, \zz \circ \psi) \overset{\circ}{\longrightarrow} (\zz \circ \psi) \circ (\ww \circ \phi) = \zz \circ (\psi \circ \ww) \circ \phi.
-    \end{align*}
-    
-    Now, notice that $\phi \circ \ww$ is the linear map $K \rightarrow K$ sending $c \mapsto c\psi(\ww)$. If we extend the above notation (that uses $\ww$ and $\zz$ to denote linear maps) to elements of $K$, and denote the linear map $K \rightarrow K$ sending $c \mapsto c\psi(\ww)$ by $\psi(\ww)$, then we have 
-    \begin{align*}
-        (\ww \circ \phi, \zz \circ \psi) \overset{\circ}{\longrightarrow} \zz \circ \psi(\ww) \circ \phi = \psi(\ww) \circ \zz \circ \phi = \zz \circ \phi \circ \psi(\ww)
-    \end{align*}
-    
-    (In the last three equalities, we were able to commute $\psi(\ww)$ because it is a linear map $K \rightarrow K$).
-    
-    In general, the action of $\psi \in W^*$ on $\ww \in W$ is said to be the result of evaluating the \textit{natural pairing map on $W$ and $W^*$}, or, equivalently, the result of \textit{contracting $W$ against $W^*$}. Therefore, we see that the composition of linear maps, when we restrict the linear maps to be elementary compositions, involves \textit{contraction}. These notions are formalized in the next definition.
-\end{deriv}
-
-\begin{defn}
-\label{ch::bilinear_forms_metric_tensors::defn::tensor_contraction}
-    (Tensor contraction).
-    
-    Let $V$ be a vector space, and consider also its dual space $V^*$. There is a natural bilinear form $C$ on $V$ and $V^*$, often called the \textit{natural pairing (of $V$ and $V^*$)}, that is defined by $C(\vv, \phi) = \phi(\vv)$.
-    
-    In a slight generalization of the natural pairing map, we define the \textit{$(k, \ell)$ contraction} on elementary $(p, q)$ tensors, and extend with multilinearity. The $(k, \ell)$ contraction of an elementary tensor is defined as follows:
-
-    \begin{align*}
-        \vv_1 \otimes ... \otimes &\vv_p \otimes \phi^1 \otimes ... \otimes \phi^q \\
-        \overset{\text{$(k, \ell)$ contraction}}&{\longmapsto} \\
-        C(\vv_k, \phi^\ell) (\vv_1 \otimes ... \otimes \cancel{\vv_k} &\otimes ... \vv_p \otimes \phi^1 \otimes ... \otimes \cancel{\phi^\ell} \otimes ... \otimes \phi^q) \\
-        &= \\
-        \phi^\ell(\vv_k) (\vv_1 \otimes ... \otimes \cancel{\vv_k} &\otimes ... \vv_p \otimes \phi^1 \otimes ... \otimes \cancel{\phi^\ell} \otimes ... \otimes \phi^q).
-    \end{align*}
-\end{defn}
-
-\begin{remark}
-    (Contraction with upper and lower indices).
-    
-    Vectors can only ever get contracted against dual vectors, and dual vectors can only ever get contracted against vectors. Vectors cannot get contracted against vectors, and dual vectors cannot get contracted against dual vectors.
-    
-    Since the convention we laid out in \ref{ch::motivated_intro::defn::covariance_contravariance} requires that lower indices (e.g. those which appear in $\vv_k$) be used on vectors and that upper indices (e.g. those which appear in $\phi^\ell$) be used on vectors, then it follows that lower indices can only be contracted against upper indices, and that upper indices can only be contracted against lower indices.
-\end{remark}
-
-\begin{remark}
-    (Composition of linear functions with tensor contraction, revisited). 
-    
-    The map $\circ$ which composes linear functions is itself a bilinear map ${\LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z) \overset{\circ}{\rightarrow} \LLLL(V, Z)}$. Due to Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}, we have the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, so $\circ$ can be identified with a linear map $\widetilde{\circ}:(W \otimes V^*) \otimes (Z^* \otimes W) \rightarrow Z \otimes V^*$. Following a similar argument as was presented in Derivaton \ref{ch::bilinear_forms_metric_tensors::deriv::compos_linear_map_with_contract}, we see that $\widetilde{\circ}$ acts on elementary tensors by $(\ww \otimes \phi) \otimes (\zz \circ \psi) \overset{\widetilde{\circ}}{\mapsto} C(\ww, \psi) (\zz \otimes \phi) = \psi(\ww) (\zz \otimes \phi)$.
-\end{remark}
-
-\begin{theorem}
-    (Coordinates of a contracted tensor).
-
-    Let $V$ be an $n$-dimensional vector space, let $E$ be a basis for $V$, let $g$ be a metric tensor on $V$, and let $E^*$ be the induced dual basis for $V^*$. Consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$. If the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ coordinate of $\TT$ relative to $E$ and $E^*$ is $T^{i_1 ... i_p}{}_{j_1 ... j_q}$, then the $\Big( ^{i_1 ... i_{p - 1}}{}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ relative to $E$ and $E^*$ is \textbf{come back here} $\sum_{r = 1}^n T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}}$.
-\end{theorem}
-
-\begin{proof}
-     Let $E = \{\ee_1, ..., \ee_n\}$ and $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$. Assume $\TT$ has a $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$, so
-     
-    \begin{align*}
-        \TT = \sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
-    \end{align*}
-     
-    Using that $\phi^{\ee_{j_\ell}}(\ee_{i_k}) = \ee_{j_\ell}^\flat(\ee_{i_k}) = g(\ee_{j_\ell}, \ee_{i_k}) = g_{j_\ell i_k} = g_{i_k j_\ell}$, we see that the $(k, \ell)$ contraction of $\TT$ is
-    
-    \begin{align*}
-        &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} \phi^{\ee_{j_\ell}}(\ee_{i_k}) \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
-        \\
-        = &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} g_{i_k j_\ell} \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
-        \\
-        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
-        \\
-        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1 ..., \cancel{i_k}, ..., i_p \in \{1, ..., n\} \\ j_1, ..., \cancel{j_\ell}, ..., j_q \in \{1, ..., n\} \\ r \in \{1, ..., n\}}} T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell + 1} ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
-    \end{align*}
-        
-    So, we can see that
-    
-    \begin{align*}
-        \text{The $\Big( {}^{i_1 ... \cancel{i_k} ... i_p}{}_{j_1 ... \cancel{j_\ell} ... j_p} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_{i_k, j_\ell} g_{i_k j_\ell} \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell + 1} ... j_q}.
-    \end{align*}
-
-    Equivalently, after shifting the indices $i_{k + 1}, ..., i_p$ down by one (this is valid because the indices $i_k$ and $j_\ell$ are no longer ``occupied''), we see
-        
-    \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_{i_k, j_\ell} g_{i_k j_\ell} \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}}.
-    \end{align*}
-    
-    Additionally, when $E$ is an orthonormal basis, we have $g_{i_k j_\ell} = \delta_{i_k j_\ell}$ and thus
-    
-    \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when the basis for $V$ is orthonormal}.
-    \end{align*}
-    
-    In Einstein notation, this is stated as
-    
-    \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when the basis for $V$ is orthonormal}.
-    \end{align*}
-\end{proof}
-
-\begin{theorem}
-    Taking any $(k, \ell)$ contraction is basis-independent.
-\end{theorem}
-
-\begin{proof}
-    Recall that the definition of tensor contraction was phrased entirely in terms of tensor products of vectors and dual vectors; no bases were involved.
-\end{proof}
-
-\begin{theorem}
-    (The trace is the $(1, 1)$ contraction of a $(1, 1)$ tensor).
-    
-    Let $V$ be a finite-dimensional vector space over a field $K$.
-    
-    The \textit{trace} of a square matrix $(a^i{}_j)$ with entries in $K$ is defined to be the sum of the matrix's diagonal entries: $\tr(a^i{}_j) := \sum_{i = 1}^n a^i_i$. We have that $\tr(a^i{}_j)$ is the $(1, 1)$ contraction of the $(1, 1)$ tensor corresponding to $(a^i{}_j)$.
-    
-    Thus, we see the trace is a special case of tensor contraction.
-\end{theorem}
-
-\begin{proof}
-    Let $\ff:K^n \rightarrow K^n$ be the linear function satisfying $[\ff(\sE)]_\sE = (a^i{}_j)$, where $\sE = \{\see_1, ..., \see_n\}$ is the standard basis for $K^n$. Recall from Theorem \ref{ch::motivated_intro::thm::lin_V_W_iso_W_otimes_V} that if $V$ is a vector space, then there is a natural isomorphism $\LLLL(V \rightarrow V) \cong V \otimes V^*$. Using $V = K^n$, we see that $(a^i{}_j)$ can be identified with the $(1, 1)$ tensor $\sum_{ij} a^i{}_j \see^i \otimes \phi^{\see_j}$, where $E^* = \{\phi^{\see_1}, ..., \phi^{\see_n}\}$ is the basis for $(K^n)^*$ induced by the standard basis $\sE = \{\see_1, ..., \see_n\}$ for $K^n$. The $(1, 1)$ contraction of this $(1, 1)$ tensor is $\sum_{ij} a^i{}_j \phi^{\see_j}(\see^i) = \sum_{ij} a^i{}_j \delta^i{}_j = \sum_i a^i_i = \tr(a^i{}_j)$. 
-\end{proof}
