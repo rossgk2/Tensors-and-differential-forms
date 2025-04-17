@@ -858,44 +858,6 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     Now we prove the second equality of the first line. Recall from Theorem \ref{ch::motivated_intro::thm::V_iso_double_dual} that $\Phi_\vv$ is defined as $\Phi_\vv(\phi) := \phi(\vv)$. Therefore $\phi^{\ee_i}(\vv) = \Phi_\vv(\phi^{\ee_i})$. By applying the second line, we then have $\Phi_\vv(\phi^{\ee_i}) = ([\Phi_\vv]_{E^{**}})^i$.
 \end{proof}
 
-\begin{theorem}
-    \label{ch::intro_to_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}
-    
-    (Matrix of dual vector as transposed coordinates).
-    
-    Let $V$ be a finite-dimensional vector space, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$, let $\sE$ be the standard basis for $K^n$, and consider an element $\phi \in V^*$. Then the matrix $\phi(E)$ is $\phi(E) = [\phi]_{E^*}^\top$.
-\end{theorem}
-
-\begin{proof}
-    We have
-    
-    \begin{align*}
-        \phi(E) 
-        = 
-        \begin{pmatrix} 
-            \phi(\ee_1) & \hdots & \phi(\ee_n)
-        \end{pmatrix}.
-    \end{align*}
-
-    On the other hand, the previous theorem tells us that coordinates of $\phi$ relative to $E^*$ are
-    
-    \begin{align*}
-        [\phi]_{E^*}
-        =
-        \begin{pmatrix} 
-            ([\phi]_{E^*})_1 \\ \vdots \\ ([\phi]_{E^*})_n
-        \end{pmatrix}
-        =
-        \begin{pmatrix} 
-            \phi(\ee_1) \\ \vdots \\ \phi(\ee_n)
-        \end{pmatrix}.
-    \end{align*}
-    
-    Comparing the two above results shows that $\phi(E) = [\phi]_{E^*}^\top$.
-\end{proof}
-
-\newpage
-
 \subsection*{Change of basis for $(p, q)$ tensors}
 
 \begin{theorem}
@@ -913,19 +875,21 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \end{theorem}
 
 \begin{proof} \mbox{} \\ \indent
-    \begin{enumerate}
-        \item The first equation in the box is just Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}.
-        
-        \item The $^i{}_j$ entry of $[\EE]_F$ is $([\ee_j]_F)^i$. Applying Theorem \ref{ch::intro_to_tensors::thm::coords_vector_dual_vector}, we have $([\ee_j]_F)^i = \psi^{\ff_i}(\ee_j)$. Expanding $\psi^{\ff_i}$ relative to $E^*$ basis, we have $\psi^{\ff_i}(\ee_j) = \Big(\sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k} \Big)(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k}(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \delta^k{}_j = ([\psi^{\ff_i}]_{E^*})_j = (\text{$^j{}_i$ entry of $[\FF^*]_{E^*}$})$. So, we have $([\EE]_F)^i{}_j = ([\FF]_{E^*})^j{}_i$, i.e. $[\EE]_F = [\FF]_E^\top$. Recalling Theorem \ref{ch::lin_alg::thm::I_EF}, we have $[\FF]_E^\top = [\EE]_F^{-\top}$. Thus $[\EE^*]_{F^*} = [\EE]_F^{-\top}$; this is the second equation in the box.
+    We prove the first, second, and third equation in the box one-by-one.
 
-        \item The first equation in the box implies $[\phi]_{F^*} = [\EE^*]_{F^*} [\phi]_{E^*}$. Applying the second equation $[\EE^*]_{F^*} = [\EE]_F^{-\top}$ from the box to this yields the third line.
+    \begin{enumerate}
+        \item This is just Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}.
+        
+        \item The $^i{}_j$ entry of $[\EE]_F$ is $([\ee_j]_F)^i$. Applying Theorem \ref{ch::intro_to_tensors::thm::coords_vector_dual_vector}, we have $([\ee_j]_F)^i = \psi^{\ff_i}(\ee_j)$. Expanding $\psi^{\ff_i}$ relative to $E^*$ basis, we have $\psi^{\ff_i}(\ee_j) = \Big(\sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k} \Big)(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k}(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \delta^k{}_j = ([\psi^{\ff_i}]_{E^*})_j = (\text{$^j{}_i$ entry of $[\FF^*]_{E^*}$})$. So, we have $([\EE]_F)^i{}_j = ([\FF]_{E^*})^j{}_i$, i.e. $[\EE]_F = [\FF]_E^\top$. Recalling Theorem \ref{ch::lin_alg::thm::I_EF}, we have $[\FF]_E^\top = [\EE]_F^{-\top}$. Thus $[\EE^*]_{F^*} = [\EE]_F^{-\top}$, as desired.
+
+        \item (1) implies $[\phi]_{F^*} = [\EE^*]_{F^*} [\phi]_{E^*}$. Applying (2) to this equation yields $[\phi]_{F^*} = [\EE]_F^{-\top} [\phi]_{E^*}$, as desired.
     \end{enumerate}
 \end{proof}
 
 \begin{remark}
 \label{ch::intro_to_tensors::rmk::covar_contarvar_real_meaning}
 
-    (What ``covariance'' and ``contravariance'' refer to).
+    (The meaning of ``covariance'' and ``contravariance'').
 
     The first two equations of the previous theorem can be restated as
     
@@ -936,7 +900,7 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     
     (We have simply copied the first equation from the previous theorem. The second equation has been obtained by applying the matrix transpose to its counterpart from the previous theorem).
     
-    Paying close attention to the second above equation, we see that when we treat the coordinates of dual vectors taken relative to the $E^*$ basis as row vectors (i.e. as transposed column vectors), then these row vectors transform over to the $F^*$ basis with use of $[\FF]_E$. On the other hand, the first equation states that the coordinates of vectors relative to $E$ (when treated as column vectors, as usual) transform over to the $F$ basis with use of $[\FF]_E^{-1}$. Thus, dual vectors ``co-vary'' \textit{with} $[\FF]_E$ when changing basis from $E$ to $E^*$, and vectors ``contra-vary'' \textit{against} $[\FF]_E$ when changing basis from $F$ to $F^*$.
+    Paying close attention to the second above equation, we see that when we treat the coordinates of dual vectors taken relative to the $E^*$ basis as row vectors (i.e. as transposed column vectors), then these row vectors transform over to the $F^*$ basis with use of $[\FF]_E$. On the other hand, the first equation states that the coordinates of vectors relative to $E$ (when treated as column vectors, as usual) transform over to the $F$ basis with use of $[\FF]_E^{-1}$. Thus, it is reasonable to say that dual vectors ``co-vary'' \textit{with} $[\FF]_E$ when changing basis from $E$ to $E^*$, and vectors ``contra-vary'' \textit{against} $[\FF]_E$ when changing basis from $F$ to $F^*$.
 \end{remark}
 
 \begin{theorem}
@@ -945,7 +909,7 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     Let $V$ be a finite-dimensional vector space with bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$, and let $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$ and $F^* = \{\psi^{\ff_1}, ..., \psi^{\ff_n} \}$ be the corresponding induced dual bases for $V^*$. We have
     
     \begin{empheq}[box = \fbox]{align*}
-        \ee_i &= \sum_{j = 1}^n ([\ee_i]_F)_j \ff_j = \sum_{j = 1}^n ([\EE]_F)^j{}_i \ff_j \\
+        \ee_i &= \sum_{j = 1}^n ([\ee_i]_F)^j \ff_j = \sum_{j = 1}^n ([\EE]_F)^j{}_i \ff_j \\
         \phi^{\ee_i} &= \sum_{j = 1}^n ([\phi^{\ee_i}]_{F^*})_j \psi^{\ff_j} = \sum_{j = 1}^n ([\EE]_F^{-\top})^j{}_i \psi^{\ff_j}
     \end{empheq}
 \end{theorem}
@@ -1008,6 +972,8 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     As was mentioned in Remark \ref{ch::motivated_intro::rmk::many_defs_tensor}, physicists often define tensors to be ``multidimensional matrices'' that follow the change of basis formula of the previous theorem.
 \end{remark}
 
+\newpage
+
 \subsection*{Tensor contraction}
 
 \begin{deriv}
@@ -1060,13 +1026,15 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \begin{remark}
     (Composition of linear functions with tensor contraction, revisited). 
     
-    The map $\circ$ which composes linear functions is itself a bilinear map ${\LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z) \overset{\circ}{\rightarrow} \LLLL(V, Z)}$. Due to Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}, we have the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, so $\circ$ can be identified with a linear map $\widetilde{\circ}:(W \otimes V^*) \otimes (Z^* \otimes W) \rightarrow Z \otimes V^*$. Following a similar argument as was presented in Derivaton \ref{ch::intro_to_tensors::deriv::compos_linear_map_with_contract}, we see that $\widetilde{\circ}$ acts on elementary tensors by $(\ww \otimes \phi) \otimes (\zz \circ \psi) \overset{\widetilde{\circ}}{\mapsto} C(\ww, \psi) (\zz \otimes \phi) = \psi(\ww) (\zz \otimes \phi)$.
+    The map $\circ$ which composes linear functions is itself a bilinear map ${\LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z) \overset{\circ}{\rightarrow} \LLLL(V, Z)}$. Due to Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}, we have the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, so $\circ$ can be identified with a linear map $\widetilde{\circ}:(W \otimes V^*) \otimes (Z^* \otimes W) \rightarrow Z \otimes V^*$. Following a similar argument as was presented in Derivation \ref{ch::intro_to_tensors::deriv::compos_linear_map_with_contract}, we see that $\widetilde{\circ}$ acts on elementary tensors by $(\ww \otimes \phi) \otimes (\zz \circ \psi) \overset{\widetilde{\circ}}{\mapsto} C(\ww, \psi) (\zz \otimes \phi) = \psi(\ww) (\zz \otimes \phi)$.
 \end{remark}
 
 \begin{theorem}
     (Coordinates of a contracted tensor).
 
     Let $V$ be an $n$-dimensional vector space, let $E$ be a basis for $V$, let $g$ be a metric tensor on $V$, and let $E^*$ be the induced dual basis for $V^*$. Consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$. If the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ coordinate of $\TT$ relative to $E$ and $E^*$ is $T^{i_1 ... i_p}{}_{j_1 ... j_q}$, then the $\Big( ^{i_1 ... i_{p - 1}}{}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ relative to $E$ and $E^*$ is \textbf{come back here} $\sum_{r = 1}^n T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}}$.
+
+    \textbf{this theorem should not need to involve a metric}
 \end{theorem}
 
 \begin{proof}
@@ -1076,7 +1044,7 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
         \TT = \sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
     \end{align*}
      
-    Using that $\phi^{\ee_{j_\ell}}(\ee_{i_k}) = \ee_{j_\ell}^\flat(\ee_{i_k}) = g(\ee_{j_\ell}, \ee_{i_k}) = g_{j_\ell i_k} = g_{i_k j_\ell}$, we see that the $(k, \ell)$ contraction of $\TT$ is
+    Using that $\phi^{\ee_{j_\ell}}(\ee_{i_k}) = \ee_{j_\ell}^\flat(\ee_{i_k}) = g(\ee_{j_\ell}, \ee_{i_k}) = g_{j_\ell i_k} = g_{i_k j_\ell}$, \textbf{here we have assumed that $\phi^{\ee_{j_\ell}} = \ee_{j_\ell}^\flat$, which is equivalent to assuming that $E$ is orthonormal.} we see that the $(k, \ell)$ contraction of $\TT$ is
     
     \begin{align*}
         &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} \phi^{\ee_{j_\ell}}(\ee_{i_k}) \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 

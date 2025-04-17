@@ -89,9 +89,7 @@ The second condition of the previous theorem describes bilinear forms that gener
     for all $\vv \in V$, $\ww \in W$, $\phi \in V^*$, and $\psi \in W^*$.
 \end{lemma}
 
-\begin{proof}
-    %We first show the first equation of the first line. We have $B(\vv, \ww) = \vv^{\flat_1}(\ww)$, and the $1 \times m$ matrix $\vv^{\flat_1}(F)$ of $\vv^{\flat_1}:W \rightarrow K$ relative to $F$ is $\vv^{\flat_1}(F) = [\vv^{\flat_1}]_{F^*}^\top$ (recall Theorem \ref{ch::bilinear_forms_metric_tensors::thm::matrix_of_dual_vector_as_trtransposed_coords}), so applying the characterizing property of [...] matrices (see Derivation [...]) gives $B(\vv, \ww) = \vv^{\flat_1}(\ww) = \vv^{\flat_1}(F) [\ww]_F = [\vv^{\flat_1}]_{F^*}^\top [\ww]_F$. We know $[\vv^{\flat_1}]_{F^*} = \BB [\vv]_E$ from the fourth equation of Theorem \ref{ch::bilinear_forms_metric_tensors::thm::vectors_dual_vectors_metric_tensor}, and so obtain $B(\vv, \ww) = (\BB [\vv]_E)^\top [\ww]_F = [\vv]_E^\top \BB [\ww]_F$, as desired.
-  
+\begin{proof}  
     To show the first equation of the first line, we follow a derivation similar in spirit to that of a matrix relative to bases of a linear function between vector spaces. 
     
     We first consider the special case in which the vector spaces are $V = K^n$ and $W = K^m$ and where the bases are the standard bases for $K^n$ and $K^n$, $E = \sE$ and $F = \sF$. In this special case, we have $B(\vv, \ww) = \sum_{ij} ([\vv]_\sE)^i ([\ww]_\sE)^j B_{ij} = \sum_i ([\vv]_\sE)^i \sum_j B_{ij} ([\ww]_\sE)^j = \sum_i ([\vv]_\sE)^i ([\BB \ww]_\sF)^i = [\vv]_\sE \cdot [\BB \ww]_\sF = [\vv]_\sE^\top \BB [\ww]_\sF$, so the special case is proven. 
