@@ -904,22 +904,21 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     Let $V$ be a finite-dimensional vector space with bases $E$ and $F$, and let $E^*$ and $F^*$ be the corresponding induced dual bases for $V^*$. Then
     
     \begin{empheq}[box = \fbox]{align*}
-        [\vv]_F &= [\EE]_F [\vv]_E = [\FF]_E^{-1} [\vv]_E \\
-        [\phi]_{F^*} &= [\EE]_F^{-\top} [\phi]_{E^*} = [\FF]_E^\top [\phi]_{E^*} \\
-        [\EE]_F &= [\EE^*]_{F^*} = [\FF]_E^{-1}
+        &[\vv]_F = [\EE]_F [\vv]_E \\
+        &[\EE^*]_{F^*} = [\EE]_F^{-\top} \\
+        &[\phi]_{F^*} = [\EE]_F^{-\top} [\phi]_{E^*}
     \end{empheq}
     
     where $\vv \in V$ and $\phi \in V^*$.
 \end{theorem}
 
-\begin{proof}
-    We prove the first line, then the third, then the second.
-
+\begin{proof} \mbox{} \\ \indent
     \begin{enumerate}
-        \item The first line of the boxed equation is Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}, and the equation $[\EE]_F = [\FF]_E^{-1}$ from the third line is Theorem \ref{ch::lin_alg::thm::I_EF}.
-        \item The $^i{}_j$ entry of $[\EE]_F$ is $([\ee_j]_F)^i$. Applying Theorem \ref{ch::intro_to_tensors::thm::coords_vector_dual_vector}, we have $([\ee_j]_F)^i = \psi^{\ff_i}(\ee_j)$. 
+        \item The first equation in the box is just Theorem \ref{ch::lin_alg::thm::change_of_basis_for_vectors}.
+        
+        \item The $^i{}_j$ entry of $[\EE]_F$ is $([\ee_j]_F)^i$. Applying Theorem \ref{ch::intro_to_tensors::thm::coords_vector_dual_vector}, we have $([\ee_j]_F)^i = \psi^{\ff_i}(\ee_j)$. Expanding $\psi^{\ff_i}$ relative to $E^*$ basis, we have $\psi^{\ff_i}(\ee_j) = \Big(\sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k} \Big)(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \phi^{\ee_k}(\ee_j) = \sum_{k = 1}^n ([\psi^{\ff_i}]_{E^*})_k \delta^k{}_j = ([\psi^{\ff_i}]_{E^*})_j = (\text{$^j{}_i$ entry of $[\FF^*]_{E^*}$})$. So, we have $([\EE]_F)^i{}_j = ([\FF]_{E^*})^j{}_i$, i.e. $[\EE]_F = [\FF]_E^\top$. Recalling Theorem \ref{ch::lin_alg::thm::I_EF}, we have $[\FF]_E^\top = [\EE]_F^{-\top}$. Thus $[\EE^*]_{F^*} = [\EE]_F^{-\top}$; this is the second equation in the box.
 
-        \item The second line follows by noticing that the first line implies $[\phi]_{F^*} = [\EE^*]_{F^*} [\phi]_{E^*}$, and then applying the equation $[\EE]_F = [\EE^*]_{F^*}$ of the third line.
+        \item The first equation in the box implies $[\phi]_{F^*} = [\EE^*]_{F^*} [\phi]_{E^*}$. Applying the second equation $[\EE^*]_{F^*} = [\EE]_F^{-\top}$ from the box to this yields the third line.
     \end{enumerate}
 \end{proof}
 
