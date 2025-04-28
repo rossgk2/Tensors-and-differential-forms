@@ -167,29 +167,33 @@ The second condition of the previous theorem describes bilinear forms that gener
     When $V$ is a finite-dimensional vector space and there is a metric tensor $g$ on $V$, then the musical isomorphisms ${\flat_1:V \rightarrow V^*}$ and ${\flat_2:V \rightarrow V^*}$ induced by $g$ are the same because $g$ is symmetric. In this scenario, we define $\flat := \flat_1 = \flat_2$ and $\sharp := \sharp_1 = \flat_1^{-1} = \sharp_2 = \flat_2^{-1}$.
 \end{defn}
 
-\subsubsection*{Misc.}
+\subsubsection*{Misc. (might not be relevant enough to keep)}
 
 \begin{defn}
     (Reciprocal bases).
 
-    Bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$ for a vector space with a nondegenerate bilinear form $B$ are said to be \textit{reciprocal} iff $B(\ee_i, \ff_j) = \delta^i{}_j$.
+    Bases $E = \{\ee_1, ..., \ee_n\}$ and $F = \{\ff_1, ..., \ff_n\}$ for a finite-dimensional vector space with a nondegenerate bilinear form $B$ are said to be \textit{reciprocal} iff $B(\ee_i, \ff_j) = \delta^i{}_j$.
 
     Recall that if $B$ is an inner product, then a basis $E = \{\ee_1, ..., \ee_n\}$ is said to be \textit{orthonormal} iff $B(\ee_i, \ee_j) = \delta^i{}_j$. In other words, $E$ is orthonormal iff it is reciprocal with itself.
 \end{defn}
 
 \begin{theorem}
-    Two bases of a vector space with a nondegenerate bilinear form are reciprocal iff $\flat_1$ and $\flat_2$ send basis vectors of one basis to dual basis vectors of the other.
+    (Reciprocity and the musical isomorphisms).
+    
+    Two bases $E$ and $F$ of a finite-dimensional vector space with a nondegenerate bilinear form are reciprocal iff the dual bases $E^*$ and $F^*$ induced by $E$ and $F$ are given by $F^* = \flat_1(E)$ and $E^* = \flat_2(F)$. 
 \end{theorem}
 
 \begin{proof}
-    We have: $B(\ee_i, \ff_j) = \delta^i{}_j \iff B(\ee_i, \ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\vv) = \psi^{\ff_i}(\vv) \text{ for all $\vv \in V$} \iff \ee_i^{\flat_1} = \psi^{\ff_i}$. Overall, we have $B(\ee_i, \ff_j) = \delta^i{}_j \iff \ee_i^{\flat_1} = \psi^{\ff_i}$. A similar argument shows $B(\ee_i, \ff_j) = \delta^i{}_j \iff \ff_i^{\flat_2} = \phi^{\ee_i}$.
+    We have: $B(\ee_i, \ff_j) = \delta^i{}_j \iff B(\ee_i, \ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\ff_j) = \psi^{\ff_i}(\ff_j) \iff \ee_i^{\flat_1}(\vv) = \psi^{\ff_i}(\vv) \text{ for all $\vv \in V$} \iff \ee_i^{\flat_1} = \psi^{\ff_i} \iff \flat_1(E) = F^*$. Overall, we have $B(\ee_i, \ff_j) = \delta^i{}_j \iff \flat_1(E) = F^*$. A similar argument shows $B(\ee_i, \ff_j) = \delta^i{}_j \iff \flat_2(F) = E^*$.
 \end{proof}
 
 \begin{remark}
 \label{ch::bilinear_forms_metric_tensors::thm::musical_iso_unique_self_dual_iso}
-    (Naturality of self-duality).
+    (Naturality of the isomorphism between a basis and its induced basis).
 
-    The above theorem shows that the ``unnatural'' isomorphism $V \rightarrow V^*$ sending $\ee_i \mapsto \phi^{\ee_i}$ that was discussed earlier in Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*} actually becomes natural exactly whenever we have a nondegenerate bilinear form $B$ on $V$ with $B(\ee_i, \ee_j) = \delta^i{}_j$.
+    It follows as a corollary of the above theorem that a basis $E$ of a finite-dimensional inner product space is orthonormal iff the induced dual basis $E^*$ is given by $E^* = \flat(E)$.
+        
+    Thus, the ``unnatural'' isomorphism $V \rightarrow V^*$ sending $\ee_i \mapsto \phi^{\ee_i}$ that was discussed earlier in Remark \ref{ch::motivated_intro::rmk::unnatural_iso_V_V*} actually becomes natural exactly whenever we have a nondegenerate bilinear form $B$ on $V$ with $B(\ee_i, \ee_j) = \delta^i{}_j$.
 \end{remark}
 
 \newpage

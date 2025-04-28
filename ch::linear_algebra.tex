@@ -2975,7 +2975,7 @@ This section generalizes the notion of the dot product, which we only know to be
          \item $\ee_i$ and $\ee_j$ are orthogonal to each other when $i \neq j$
      \end{itemize}
      
-     That is, $E$ is an orthonormal basis iff $\langle \ee_i, \ee_j \rangle = \delta^i{}_j$ for all $i, j$.
+     That is, $E$ is an orthonormal basis iff $\langle \ee_i, \ee_j \rangle = \delta_{ij}$ for all $i, j$.
 \end{defn}
 
 \begin{theorem}
@@ -3866,7 +3866,7 @@ The third axiom of the determinant can also be stated more succinctly after the 
 
     This condition is known as the \textit{alternatingness} property of the determinant. It is quick to show that the alternatingness property not only follows from the third axiom of the determinant, but is equivalent to it\footnote{Alternatingness only implies the third determinant axiom if $|K| \neq 2$, so that division by $2$ is defined.}. 
 
-    Notice that the alternatingness property of the determinant implies that there exist $\vv_1, ..., \vv_n \in K^n$ with $\det(\vv_1, ..., \vv_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of orientation.
+    Notice that the alternatingness property of the determinant implies that there exist $\vv_1, ..., \vv_n \in K^n$ with $\det(\vv_1, ..., \vv_n) < 0$. So, we see our intuitive assumptions about volume require that volume be \textit{signed}. In Theorem [...] we will see how signed volume corresponds to the concept of \textit{orientation}.
 \end{deriv}
 
 We quickly define alternating functions to be functions that have this alternatingness property.
@@ -3883,7 +3883,7 @@ Now, we have the promised succint characterization of the determinant.
 \begin{theorem}
     (Succinct characterization of the determinant).
 
-    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so at the beginning of Derivation \label{ch::lin_alg::deriv::permutation_formula_for_determinant}.} multilinear altermating function $K^n \rightarrow K$ sending $\sE \mapsto 1$.
+    The determinant is the unique\footnote{We have not yet explained why a function satisfying the determinant axioms is unique. We do so in Remark \ref{ch::lin_alg::rmk::det_existence_uniqueness}.} multilinear altermating function $K^n \rightarrow K$ sending $\sE \mapsto 1$.
 \end{theorem}
 
 We now investigate more properties of the determinant that follow from the axioms.
@@ -3893,7 +3893,6 @@ We now investigate more properties of the determinant that follow from the axiom
     (Consequent properties of the determinant). 
     
     \begin{enumerate}
-    \setcounter{enumi}{3}
         \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\vv_1, ..., \vv_i, ..., \vv_n) = \det(\vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n)$ for all $i \in \{1, ..., n\}$.
         \item $\det(\vv_1, ..., \vv_n) = 0$ iff $\{\vv_1, ..., \vv_n\}$ is a linearly dependent set.
     \end{enumerate}
@@ -3902,7 +3901,6 @@ We now investigate more properties of the determinant that follow from the axiom
 \begin{proof}
     \mbox{} \\
     \begin{enumerate}
-    \setcounter{enumi}{4}
         \item 
         
         Using the axiom ``$\det(\vv_1, ..., \vv, ..., \vv, ..., \vv_n) = 0$ for all $\vv \in K^n$'' together with the multilinearity of the determinant, we have
@@ -3913,9 +3911,7 @@ We now investigate more properties of the determinant that follow from the axiom
             &= \det\Big( \vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n \Big).
         \end{align*}
         
-        \item 
-        \mbox{}
-        \\ \indent ($\det(\vv_1, ..., \vv_n) = 0 \implies \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
+        \item \indent ($\det(\vv_1, ..., \vv_n) = 0 \implies \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
         \\ \indent ($\det(\vv_1, ..., \vv_n) = 0 \impliedby \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). Suppose for contradiction that the determinant of a set of $n$ linearly independent vectors is zero. These $n$ linearly independent vectors form a basis for $K^n$, so we have shown that the determinant of a basis set is zero. But then, using multilinearity together with the invariance of $\det$ under linearly combining some vectors into a different vector, we can show that $\det(\vv_1, ..., \vv_n) = 0$ for \textit{all} $\vv_1, ..., \vv_n \in K^n$. This contradicts the first axiom that specifies $\det(\see_1, ..., \see_n) = 1$.
     \end{enumerate}
 \end{proof}
@@ -3933,26 +3929,23 @@ We now derive the \textit{permutation formula} for the determinant.
 \begin{deriv}
 \label{ch::lin_alg::deriv::permutation_formula_for_determinant}
     (Permutation formula for the determinant).
-    
-    The formula we will obtain in this derivation shows that the function $\det$ specified in Definition \ref{ch::lin_alg::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
-    
-    Consider vectors $\vv_1, ..., \vv_n \in K^n$, and\footnote{There is no hidden meaning behind the upper and lower indices on $a^i_j$ here; we only want to consider an arbitrary $n \times n$ matrix of scalars in $K$, and prefer to think of this matrix as storing the coordinates of a $(1, 1)$ tensor rather those of a $(2, 0)$ or $(0, 2)$ tensor.} set $(a^i_j) := ([\vv_i]_\sE)^j$. Then...
+        
+    Let $K$ be a field and consider a square matrix $(a_{ij}) = \begin{pmatrix} \aa_1 & \hdots & \aa_n \end{pmatrix}$ with entries in $K$. We have
     
     \begin{align*}
-        \det((a^i_j)) = \det(\vv_1, ..., \vv_n)
-        &= \det \Big(\sum_{i_1 = 1}^n a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
-        &= \sum_{i_1 = 1}^n \det \Big( a^1_{i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a^n_{i_n} \see_{i_n} \Big) \\
+        \det((a_{ij})) = \det(\aa_1, ..., \aa_n) &= \det \Big(\sum_{i_1 = 1}^n a_{1 \spc i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a_{n \spc i_n} \see_{i_n} \Big) \\
+        &= \sum_{i_1 = 1}^n \det \Big( a_{1 \spc i_1} \see_{i_1}, ..., \sum_{i_n = 1}^n a_{n \spc i_n} \see_{i_n} \Big) \\
         &\vdots \\
-        &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
-        &= \sum_{i_1, ..., i_n \in \{1, ..., n\}} \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
-        &= \sum_{\substack{i_1, ..., i_n \in \{1, ..., n\} \\ \text{where $i_1, ..., i_n$ are distinct}}} \det(a^1_{i_1} \see_{i_1}, ..., a^n_{i_n} \see_{i_n}) \\
+        &= \sum_{i_1 = 1}^n ... \sum_{i_n = 1}^n \det(a_{1 \spc i_1} \see_{i_1}, ..., a_{n \spc i_n} \see_{i_n}) \\
+        &= \sum_{i_1, ..., i_n \in \{1, ..., n\}} \det(a_{1 \spc i_1} \see_{i_1}, ..., a_{n \spc i_n} \see_{i_n}) \\
+        &= \sum_{\substack{i_1, ..., i_n \in \{1, ..., n\} \\ \text{where $i_1, ..., i_n$ are distinct}}} \det(a_{1 \spc i_1} \see_{i_1}, ..., a_{n \spc i_n} \see_{i_n}) \\
         &= \sum_{\sigma \in S_n}
-        \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}) \\
+        \det(a_{1 \spc \sigma(1)} \see_{\sigma(1)}, ..., a_{n \spc \sigma(n)} \see_{\sigma(n)}) \\
         &= \sum_{\sigma \in S_n}
-        a^1_{\sigma(1)} ... a^n_{\sigma(n)} \det(\see_{\sigma(1)}, ..., \see_{\sigma(n)}) \\
-        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \text{sgn}(\sigma)
+        a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \det(\see_{\sigma(1)}, ..., \see_{\sigma(n)}) \\
+        &= \sum_{\sigma \in S_n} a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \text{sgn}(\sigma)
         \det(\see_1, ..., \see_n) \\
-        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \text{sgn}(\sigma)
+        &= \sum_{\sigma \in S_n} a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \text{sgn}(\sigma)
     \end{align*}
     
     Therefore, we have
@@ -3960,40 +3953,47 @@ We now derive the \textit{permutation formula} for the determinant.
     \begin{align*}
         \boxed
         {
-            \det(\vv_1, ..., \vv_n) = \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma)
+            \det((a_{ij})) = \sum_{\sigma \in S_n} a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \sgn(\sigma)
         }
     \end{align*}
     
-    The most difficult step in the derivation is the one that transitions from the sum over $i_1, ..., i_n \in \{1, ..., n\}$ to the sum over $i_1, ..., i_n \in \{1, ..., n\}$, where $i_1, ..., i_n$ are distinct from each other. This step is valid because any sum term for which some $i_k$ and $i_j$ are equal is the determinant of a matrix whose columns are linearly dependent; i.e., is zero.
+    The most conceptually difficult step in the derivation is the one that transitions from the sum over $i_1, ..., i_n \in \{1, ..., n\}$ to the sum over $i_1, ..., i_n \in \{1, ..., n\}$, where $i_1, ..., i_n$ are distinct from each other. This step is valid because any sum term for which some $i_k$ and $i_j$ are equal is the determinant of a matrix whose columns are linearly dependent; i.e., is zero.
 \end{deriv}
+
+\begin{remark}
+\label{ch::lin_alg::rmk::det_existence_uniqueness}
+    (Existence and uniqueness of the determinant).
+
+    The previous derivation shows that the function $\det$ specified in Definition \ref{ch::lin_alg::defn::determinant} exists; since the right side of the formula is a well-defined function, the determinant is the unique function satisfying the axioms.
+\end{remark}
 
 \begin{deriv}
 \label{ch::lin_alg::thm::det_transpose_invariant}    
     (Determinant of a matrix is transpose-invariant).
     
-    Let $\AA$ be a square matrix with entries in $K$. Recall from the discussion after the statement of the permutation formula for the determinant that the determinant of a matrix is a sum of determinants of diagonal matrices whose columns have each been shuffled by a different permutation $\sigma$:
+    Let $\AA$ be a square matrix with entries in $K$. From the derivation of the permutation formula for the determinant, we have
     
     \begin{align*}
         \det(\AA) = 
         \sum_{\sigma \in S_n}
-        \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}).
+        \det(a_{1 \spc \sigma(1)} \see_{\sigma(1)}, ..., a_{n \spc \sigma(n)} \see_{\sigma(n)}).
     \end{align*}
 
-    In general, if we have a diagonal matrix with permuted columns, $\DD^\sigma = \begin{pmatrix} \dd_{\sigma(1)} & \hdots & \dd_{\sigma(n)} \end{pmatrix}$, then unshuffling the columns, transposing the result, and then reshuffling the result of that gives us back $\DD^\sigma$: $\DD^\sigma = ((\DD^{\sigma^{-1}})^\top)^\sigma$.
+    In general, if we have a diagonal matrix $\DD$ so that $\DD^\sigma = \begin{pmatrix} \dd_{\sigma(1)} & \hdots & \dd_{\sigma(n)} \end{pmatrix}$ is a permutation of $\DD$, then, unshuffling the columns of $\DD^\sigma$, transposing the result, and then reshuffling the result of that gives us back $\DD^\sigma$: $\DD^\sigma = ((\DD^{\sigma^{-1}})^\top)^\sigma$.
 
     We apply this fact to every matrix in the above sum:
 
     \begin{align*}
         \sum_{\sigma \in S_n}
-        \det(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)})
+        \det(a_{1 \spc \sigma(1)} \see_{\sigma(1)}, ..., a_{n \spc \sigma(n)} \see_{\sigma(n)})
         &=
         \sum_{\sigma \in S_n}
-        \det\Big( \Big(\Big[\Big(a^1_{\sigma(1)} \see_{\sigma(1)}, ..., a^n_{\sigma(n)} \see_{\sigma(n)}\Big)^{\sigma^{-1}}\Big]^\top\Big)^\sigma \Big) \\
-        &= \sum_{\sigma \in S_n} \det\Big(\Big(\Big[ a^1_1 \see_1, ..., a^n_n \see_n \Big]^\top \Big)^\sigma\Big) \\
-        &= \sum_{\sigma \in S_n} \det\Big(\Big( b^1_1 \see_1, ..., b^n_n \see_n\Big)^\sigma\Big), \text{ where $b^i_j := (a^i_j)^\top$} \\
+        \det\Big( \Big(\Big[\Big(a_{1 \spc \sigma(1)} \see_{\sigma(1)}, ..., a_{n \spc \sigma(n)} \see_{\sigma(n)}\Big)^{\sigma^{-1}}\Big]^\top\Big)^\sigma \Big) \\
+        &= \sum_{\sigma \in S_n} \det\Big(\Big(\Big[ a_{11} \see_1, ..., a_{nn} \see_n \Big]^\top \Big)^\sigma\Big) \\
+        &= \sum_{\sigma \in S_n} \det\Big(\Big( b_{11} \see_1, ..., b_{nn} \see_n\Big)^\sigma\Big), \text{ where $(b_{ij}) := (a_{ij})^\top$} \\
         &= \sum_{\sigma \in S_n}
-        \det(b^1_{\sigma(1)} \see_{\sigma(1)}, ..., b^n_{\sigma(n)} \see_{\sigma(n)}) \\
-        &= \det((b^i_j)) = \det((a^i_j)^\top) = \det(\AA^\top).
+        \det(b_{1 \spc \sigma(1)} \see_{\sigma(1)}, ..., b_{n \spc \sigma(n)} \see_{\sigma(n)}) \\
+        &= \det((b_{ij})) = \det((a_{ij})^\top) = \det(\AA^\top).
     \end{align*}
     
     Therefore
@@ -4004,13 +4004,24 @@ We now derive the \textit{permutation formula} for the determinant.
 \end{deriv}
 
 \begin{theorem}
+\label{ch::lin_alg::rmk::det_dual_invariant}
+    (Determinant is dual-invariant).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Consider also the dual $\ff:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then $\det(\ff^*) = \det(\ff)$.
+\end{theorem}
+
+\begin{proof}
+    Recall from\footnote{Technically, the equivalent conditions of the definition we reference only apply to linear functions $V \rightarrow V$. This is not an issue because $V$ and $W$ have the same dimension; if we want to be very formal, we can use the linear function $\widetilde{\ff}:V \rightarrow V$ that is obtained from $\ff$ by identifying $W \cong V$ with the identification that sends basis vectors of $W$ to basis vectors of $V$.} condition (3) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn} that if $\AA$ is the matrix of $\ff$ relative to orthonormal bases $\hU_1$ and $\hU_2$, then the matrix of $\ff^*$ relative to the induced dual bases $\hU_2^*$ and $\hU_1^*$ is $\AA^\top$. Since the determinant of a matrix is transpose-invariant (recall Theorem \ref{ch::lin_alg::thm::det_transpose_invariant},) we have $\det(\ff) = \det(\AA) = \det(\AA^\top) = \det(\ff^*)$.
+\end{proof}
+
+\begin{theorem}
     (Laplace expansion for the determinant).
     
-    Consider an $n \times n$ matrix $\AA = (a^i_j)$, and let $\AA^i_j$ denote the so-called \textit{$ij$ minor matrix} obtained by erasing the $i$th row and $j$th column of $\AA$. We have
+    Consider an $n \times n$ matrix $\AA = (a_{ij})$, and let $\AA_{ij}$ denote the so-called \textit{$ij$ minor matrix} obtained by erasing the $i$th row and $j$th column of $\AA$. We have
     
     \begin{align*}
-        \det(\AA) = \sum_{i = 1}^{n} a^i_j \det(\AA^i_j) \text{ for all $i \in \{1, ..., n\}$} \\
-        \det(\AA) = \sum_{j = 1}^{n} a^i_j \det(\AA^i_j) \text{ for all $j \in \{1, ..., n\}$}
+        \det(\AA) = \sum_{i = 1}^{n} a_{ij} \det(\AA_{ij}) \text{ for all $i \in \{1, ..., n\}$} \\
+        \det(\AA) = \sum_{j = 1}^{n} a_{ij} \det(\AA_{ij}) \text{ for all $j \in \{1, ..., n\}$}
     \end{align*}
     
     The first equation is called the \textit{Laplace expansion for the determinant along the $i$th row}, and the second equation is called the \textit{Laplace expansion for the determinant along the $j$th column}. Note that each equation implies the other because $\det(\AA) = \det(\AA^\top)$.
@@ -4019,21 +4030,21 @@ We now derive the \textit{permutation formula} for the determinant.
 \begin{proof}
     We prove the second equation of the theorem.
     
-    Consider all terms in the permutation formula's sum for $\det(\AA)$ that have the factor $a^i_j$. Let $\BB$ denote the shuffled diagonal matrix that corresponds to one of these terms. We can view $\det(\BB)$ as $\det(\BB) = \pm a^i_j \det(\BB^i_j)$, where $\BB^i_j$ is the determinant of the matrix obtained by removing the $i$th column and $j$th row from $\BB$. The $\pm$ sign is a result of the fact that the matrices $\BB$ and $\BB^i_j$ may have different inversion counts.
+    Consider all terms in the permutation formula's sum for $\det(\AA)$ that have the factor $a_{ij}$. Let $\BB$ denote the shuffled diagonal matrix that corresponds to one of these terms. We can view $\det(\BB)$ as $\det(\BB) = \pm a_{ij} \det(\BB_{ij})$, where $\BB_{ij}$ is the determinant of the matrix obtained by removing the $i$th column and $j$th row from $\BB$. The $\pm$ sign is a result of the fact that the matrices $\BB$ and $\BB_{ij}$ may have different inversion counts.
 
-    The main effort of this proof is to determine the $\pm$ sign and specify how the inversion counts of $\BB$ and $\BB^i_j$ differ.
+    The main effort of this proof is to determine the $\pm$ sign and specify how the inversion counts of $\BB$ and $\BB_{ij}$ differ.
     
-    As a first step, note that the difference in the inversion count between $\BB$ and $\BB^i_j$ is the number of inversions that involve $a^i_j$. Thus, our problem reduces to determining an expression for the number of inversions that involve $a^i_j$. So, divide the matrix $\BB$ into quadrants that are centered on $a^i_j$. Let $k_1, k_2, k_3, k_4$ be the number of inversions in the upper left, upper right, lower left, and bottom right corners of $\AA$, respectively. The number of inversions involving $a^i_j$ is $k_2 + k_3$. Since we know $k_1 + k_2 + 1 = i$ and $k_1 + k_3 + 1 = j$, we have $k_2 + k_3 = i + j - 2 - 2k_1 = i + j - 2(k_1 + 1)$. (We also know $k_1 + k_2 + k_3 + k_4 = n$, but this is not that helpful). Thus, if $\sigma$ is the permutation corresponding to $\BB$ and $\pi$ is the permutation corresponding to $\BB^i_j$, then $\sgn(\sigma) = \sgn(\pi)(-1)^{i + j - 2(k_1 + 1)} = \sgn(\pi)(-1)^{i + j}$. Thus $\sgn(\sigma) = (-1)^{i + j}\sgn(\pi) \iff \sgn(\pi) = (-1)^{i + j}\sgn(\sigma)$. 
+    As a first step, note that the difference in the inversion count between $\BB$ and $\BB_{ij}$ is the number of inversions that involve $a_{ij}$. Thus, our problem reduces to determining an expression for the number of inversions that involve $a_{ij}$. So, divide the matrix $\BB$ into quadrants that are centered on $a_{ij}$. Let $k_1, k_2, k_3, k_4$ be the number of inversions in the upper left, upper right, lower left, and bottom right corners of $\AA$, respectively. The number of inversions involving $a_{ij}$ is $k_2 + k_3$. Since we know $k_1 + k_2 + 1 = i$ and $k_1 + k_3 + 1 = j$, we have $k_2 + k_3 = i + j - 2 - 2k_1 = i + j - 2(k_1 + 1)$. (We also know $k_1 + k_2 + k_3 + k_4 = n$, but this is not that helpful). Thus, if $\sigma$ is the permutation corresponding to $\BB$ and $\pi$ is the permutation corresponding to $\BB_{ij}$, then $\sgn(\sigma) = \sgn(\pi)(-1)^{i + j - 2(k_1 + 1)} = \sgn(\pi)(-1)^{i + j}$. Thus $\sgn(\sigma) = (-1)^{i + j}\sgn(\pi) \iff \sgn(\pi) = (-1)^{i + j}\sgn(\sigma)$. 
     
     So,
     
     \begin{align*}
-        a^i_j \det(\BB^i_j) &= a^i_j \sum_{\pi \in S_n} a^{\pi(1)}_1 ... \cancel{a^{\pi(i)}_j} ..., a^{\pi(n)}_n \sgn(\pi) \\
-        &= a^i_j \sum_{\sigma \in S_n} a^{\pi(1)}_1 ... \cancel{a^{\pi(i)}_j} ..., a^{\pi(n)}_n (-1)^{i + j} \sgn(\sigma) \\
-        &= (-1)^{i + j} a^i_j \det(\BB)
+        a_{ij} \det(\BB_{ij}) &= a_{ij} \sum_{\pi \in S_n} a_{\pi(1) \spc 1} ... \cancel{a_{\pi(i) \spc i}} ..., a_{\pi(n) \spc n} \sgn(\pi) \\
+        &= a_{ij} \sum_{\sigma \in S_n} a_{\pi(1) \spc 1} ... \cancel{a_{\pi(i) \spc i}} ..., a_{\pi(n) \spc n} (-1)^{i + j} \sgn(\sigma) \\
+        &= (-1)^{i + j} a_{ij} \det(\BB).
     \end{align*}
     
-    Thus $a^i_j \det(\BB^i_j) = (-1)^{i + j} a^i_j \det(\BB) \iff \det(\BB) = (-1)^{i + j} a^i_j \det(\BB^i_j)$. Now sum all of the $\BB$'s (the diagonal shuffled matrices) to get $\det(\AA) = \sum_{j = 1}^{n} a^i_j \det(\AA^i_j)$.
+    Thus $a_{ij} \det(\BB_{ij}) = (-1)^{i + j} a_{ij} \det(\BB) \iff \det(\BB) = (-1)^{i + j} a_{ij} \det(\BB_{ij})$. Now sum all of the $\BB$'s (the diagonal shuffled matrices) to get $\det(\AA) = \sum_{j = 1}^{n} a_{ij} \det(\AA_{ij})$.
 \end{proof}
     
 %\begin{theorem}
@@ -4044,42 +4055,25 @@ We now derive the \textit{permutation formula} for the determinant.
 %    (Adjoint and Cramer's rule).
 %\end{theorem}
 
-\begin{defn}
-    (Determinant of a linear function).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces \textit{of the same dimension}, and let $E$ and $F$ be be bases for $V$ and $W$. We define the \textit{determinant of a linear function $\ff:V \rightarrow W$} to be the determinant of the matrix of $\ff$ relative to $E$ and $F$, $\det(\ff) := \det([\ff(E)]_F)$.
-\end{defn}
-
 \begin{remark}
-    We have not yet shown that the determinant of a linear function $V \rightarrow V$ is well-defined; we have not shown that it doesn't on the basis chosen for $V$. We will see that this is the case soon.
+    We have not yet shown that the determinant of a linear function $V \rightarrow W$ is well-defined; we have not shown that it doesn't depend on the bases chosen for $V$ and $W$ . We will see that this is the case in Theorem \ref{ch::lin_alg::rmk::det_well_defined}.
 \end{remark}
-
-\begin{theorem}
-\label{ch::lin_alg::rmk::det_dual_invariant}
-    (Determinant of a matrix is dual-invariant).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Consider also the dual $\ff:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then $\det(\ff^*) = \det(\ff)$.
-\end{theorem}
-
-\begin{proof}
-    Recall from\footnote{Technically, the equivalent conditions of the definition we reference only apply to linear functions $V \rightarrow V$. This is not an issue because $V$ and $W$ have the same dimension; if we want to be very formal, we can use the linear function $\widetilde{\ff}:V \rightarrow V$ that is obtained from $\ff$ by identifying $W \cong V$ with the identification that sends basis vectors of $W$ to basis vectors of $V$.} condition (3) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn} that if $\AA$ is the matrix of $\ff$ relative to orthonormal bases $\hU_1$ and $\hU_2$, then the matrix of $\ff^*$ relative to the induced dual bases $\hU_2^*$ and $\hU_1^*$ is $\AA^\top$. Since the determinant of a matrix is transpose-invariant (recall Theorem \ref{ch::lin_alg::thm::det_transpose_invariant},) we have $\det(\ff) = \det(\AA) = \det(\AA^\top) = \det(\ff^*)$.
-\end{proof}
 
 \begin{lemma}
 \label{ch::lin_alg::lemma:det_as_scale_factor}
     (Determinant as scale factor).
 
-    Let $V$ and $W$ be finite-dimensional vector spaces with $\dim(V) = n$, and let $h$ be a multilinear alternating function $V^{\times n} \rightarrow K$. If $\ff:V \rightarrow W$ is a linear function, then $h(\vv_1, ..., \vv_k) = \det(\ff) h(\ff(\vv_1), ..., \ff(\vv_k))$.
+    Let $V$ and $W$ be $n$-dimensional vector spaces and let $h$ be a multilinear alternating function $V^{\times n} \rightarrow K$. If $\ff:V \rightarrow W$ is a linear function, then $h(\ff(\vv_1), ..., \ff(\vv_k)) = \det(\ff) h(\vv_1, ..., \vv_k)$ for all $\vv_1, ..., \vv_k \in V$.
 \end{lemma}
 
 \begin{proof}
-     Because $h$ is multilinear and alternating, it is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n)) = \det([\ff(E)]_F) = \det(\ff)$. So, set $(a^i_j) = [\ff(E)]_F$, and then use essentially the same argument as was made to derive the permutation formula on the left side of the above. We obtain
+     Because $h$ is multilinear and alternating, $h(\ff(\ee_1), ..., \ff(\ee_n))$ is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n))$. So, set $(a_{ij}) = [\ff(E)]_F$, consider the expression $h(\ff(\ee_1), ..., \ff(\ee_n))$, and use essentially the same argument as was made to derive the permutation formula of the determinant. We obtain
     
     \begin{align*}
         h(\ff(\ee_1), ...,
         \ff(\ee_n)) 
-        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) h(\ee_1, ..., \ee_n)
-        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) h(\ee_1, ..., \ee_n) \\
+        &= \sum_{\sigma \in S_n} a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \sgn(\sigma) h(\ee_1, ..., \ee_n)
+        = \Big( \sum_{\sigma \in S_n} a_{1 \spc \sigma(1)} ... a_{n \spc \sigma(n)} \sgn(\sigma) \Big) h(\ee_1, ..., \ee_n) \\
         &= \det([\ff(E)]_F) h(\ee_1, ..., \ee_n)
         = \det(\ff) h(\ee_1, ..., \ee_n).
     \end{align*}
@@ -4131,6 +4125,35 @@ We now derive the \textit{permutation formula} for the determinant.
 
 \begin{proof}
    We have $\det(\ff \circ \ff^{-1}) = \det(\II) = 1$, and $\det(\ff \circ \ff^{-1}) = \det(\ff) \det(\ff^{-1})$ by the previous theorem, so $\det(\ff) \det(\ff^{-1}) = 1$.
+\end{proof}
+
+Now, we can show that the determinant of a linear function $\ff$ does not depend on the bases $E$ and $F$ in the definition $\det(\ff) := \det([\ff(E)]_F)$. 
+
+\begin{theorem}
+\label{ch::lin_alg::rmk::det_well_defined}
+    The determinant of a linear function is well-defined.
+\end{theorem}
+
+\begin{proof}
+    We need to show that if $V$ and $W$ are vector spaces of the same dimension with bases $E, G$ and $F, H$, then $\det([\ff(E)]_F) = \det([\ff(G)]_H)$.
+
+    Recall from Theorem \ref{ch::lin_alg::deriv::matrix_relative_to_bases} that $[\ff(E)]_F = \ff_{E,F}(\sE)$, where $\ff_{E,F} = [\cdot]_F \circ \ff \circ [\cdot]_E^{-1}$. Solving for $\ff$, we have $\ff = [\cdot]_F^{-1} \circ \ff_{E,F} \circ [\cdot]_E$, and thus $\ff_{G,H} = [\cdot]_H \circ \ff \circ [\cdot]_G^{-1} = [\cdot]_H \circ [\cdot]_F^{-1} \circ \ff_{E,F} \circ [\cdot]_E \circ [\cdot]_G^{-1}$. Applying both sides of this equation to $\sE$, we obtain $[\ff(G)]_H = ([\cdot]_H \circ [\cdot]_F^{-1})(\sE) \spc [\ff(E)]_F \spc ([\cdot]_E \circ [\cdot]_G^{-1})(\sE)$.
+
+    Now, consider the following cases.
+
+    \fullindent
+    {
+        (Special case: $V = W$, $E = F$, $G = H$). In this case, the previous equation can be written as $[\ff(G)]_G = [\cdot]_G(\sE) [\cdot]_E^{-1}(\sE) \spc [\ff(E)]_E \spc [\cdot]_E(\sE) [\cdot]_G^{-1}(\sE)$. Taking the determinant of both sides and using the determinant product rule produces the factors $\det([\cdot]_G(\sE))$, $\det([\cdot]_G(\sE))^{-1} = 1/(\det([\cdot]_G(\sE))$ and $\det([\cdot]_E(\sE))$, $\det([\cdot]_E(\sE))^{-1} = 1/(\det([\cdot]_E(\sE))$, which cancel. This yields $[\ff(G)]_G = [\ff(E)]_E$, as desired. 
+    }
+
+    \fullindent
+    {
+        (General case). From above, we have the equation $[\ff(G)]_H = ([\cdot]_H \circ [\cdot]_F^{-1})(\sE) \spc [\ff(E)]_F \spc ([\cdot]_E \circ [\cdot]_G^{-1})(\sE)$. 
+
+        Notice that we have $[\cdot]_H \circ [\cdot]_F^{-1} = [\cdot]_H \circ \II_W \circ [\cdot]_F^{-1} = (\II_W)_{F,H}$ and $[\cdot]_E \circ [\cdot]_G^{-1} = [\cdot]_E \circ \II_V \circ [\cdot]_G^{-1} = (\II_V)_{E,G}$, where $\II_V:V \rightarrow V$ and $\II_W:W \rightarrow W$ are the identities on $V$ and $W$. So $[\ff(G)]_H = (\II_W)_{F,H}(\sE) \spc [\ff(E)]_F \spc (\II_V)_{E,G}(\sE) = [\II_W(F)]_H [\ff(E)]_F [\II_V(E)]_G$.
+
+        From the special case, we know that $\det([\II_W(F)]_H) = \det([\II_W(\widetilde{F})]_{\widetilde{H}})$ for any choice of $\widetilde{F}, \widetilde{H}$. We have $[\II_W(F)]_F = \II$, so using $\widetilde{F} = F$ and $\widetilde{H} = F$ shows that $\det([\II_W(F)]_H) = 1$. Similarly, $\det([\II_V(E)]_G) = 1$. Thus, we have $[\ff(G)]_H = [\ff(E)]_F$, as desired.
+    }
 \end{proof}
 
 \newpage

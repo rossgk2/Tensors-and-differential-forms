@@ -967,6 +967,26 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
 \end{theorem}
 
 \begin{remark}
+    (Change of basis with tensors in physics).
+    
+    Physicists use the definitions $v^i := ([\vv]_E)^i$, $\phi_i := [\phi]_{E^*}^i$, $v^i{}’ := [\vv]_F^i$, $\phi_i’ := [\phi]_{F^*}^i$, $(a^i{}_j) := [\EE]_F$, $(b^i{}_j) := (a^i{}_j)^{-1}$, along with the Einstein summation convention, to state the change of basis laws we’ve seen more succinctly.
+
+    In this notation, the change of basis for vectors and dual vectors are 
+
+    \begin{align*}
+        v^i{}’ &= a^i_j v^j \quad \text{(Einstein notation)} \\
+        \phi_i{}’ &= b^j_i \phi^j \quad \text{(Einstein notation)}.
+    \end{align*}
+
+    Using $T^{i_1 ... i_p}{}_{j_1 ... j_q}{}'$ to denote the coordinates of $\TT$ relative to $F$ and $F^*$, the tensor transformation law is
+
+    \begin{align*}
+        T^{i_1 ... i_p}{}_{j_1 ... j_q}{}' = a^{k_1}{}_{\ell_1} ... a^{k_p}{}_{\ell_p} b^{\ell_1}{}_{k_1} ... b^{\ell_1}{}_{k_1} T^{k_1 ... k_p}{}_{\ell_1 ... \ell_q} \quad \text{(Einstein notation)}.
+    \end{align*}
+
+\end{remark}
+
+\begin{remark}
     (Tensors as ``multidimensional matrices'' that ``transform like tensors''). 
     
     As was mentioned in Remark \ref{ch::motivated_intro::rmk::many_defs_tensor}, physicists often define tensors to be ``multidimensional matrices'' that follow the change of basis formula of the previous theorem.
@@ -1029,57 +1049,59 @@ Recall, the below theorem is what motivated our definition of tensors in the fir
     The map $\circ$ which composes linear functions is itself a bilinear map ${\LLLL(V \rightarrow W) \times \LLLL(W \rightarrow Z) \overset{\circ}{\rightarrow} \LLLL(V, Z)}$. Due to Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}, we have the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$, so $\circ$ can be identified with a linear map $\widetilde{\circ}:(W \otimes V^*) \otimes (Z^* \otimes W) \rightarrow Z \otimes V^*$. Following a similar argument as was presented in Derivation \ref{ch::intro_to_tensors::deriv::compos_linear_map_with_contract}, we see that $\widetilde{\circ}$ acts on elementary tensors by $(\ww \otimes \phi) \otimes (\zz \circ \psi) \overset{\widetilde{\circ}}{\mapsto} C(\ww, \psi) (\zz \otimes \phi) = \psi(\ww) (\zz \otimes \phi)$.
 \end{remark}
 
-\begin{theorem}
+\begin{deriv}
     (Coordinates of a contracted tensor).
 
-    Let $V$ be an $n$-dimensional vector space, let $E$ be a basis for $V$, let $g$ be a metric tensor on $V$, and let $E^*$ be the induced dual basis for $V^*$. Consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$. If the $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ coordinate of $\TT$ relative to $E$ and $E^*$ is $T^{i_1 ... i_p}{}_{j_1 ... j_q}$, then the $\Big( ^{i_1 ... i_{p - 1}}{}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ relative to $E$ and $E^*$ is \textbf{come back here} $\sum_{r = 1}^n T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}}$.
-
-    \textbf{this theorem should not need to involve a metric}
-\end{theorem}
-
-\begin{proof}
-     Let $E = \{\ee_1, ..., \ee_n\}$ and $E^* = \{\phi^{\ee_1}, ..., \phi^{\ee_n}\}$. Assume $\TT$ has a $\Big( {}^{i_1 ... i_p}{}_{j_1 ... j_q} \Big)$ component of $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$, so
+    Let $V$ be an $n$-dimensional vector space, let $E = \{\ee_1, ..., \ee_n\}$ be a basis for $V$ and let $E^* = \{\epsilon^1, ..., \epsilon^n\}$ be a basis for $V^*$. Consider a $(p, q)$ tensor $\TT \in T_{p,q}(V)$ with coordinates $T^{i_1 ... i_p}{}_{j_1 ... j_q}$ relative to $E$ and $E^*$,
      
     \begin{align*}
         \TT = \sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \epsilon^{j_q}.
     \end{align*}
-     
-    Using that $\phi^{\ee_{j_\ell}}(\ee_{i_k}) = \ee_{j_\ell}^\flat(\ee_{i_k}) = g(\ee_{j_\ell}, \ee_{i_k}) = g_{j_\ell i_k} = g_{i_k j_\ell}$, \textbf{here we have assumed that $\phi^{\ee_{j_\ell}} = \ee_{j_\ell}^\flat$, which is equivalent to assuming that $E$ is orthonormal.} we see that the $(k, \ell)$ contraction of $\TT$ is
+
+    We will derive the coordinates of the $(k, \ell)$ contraction of $\TT$ relative to $E$ and $E^*$. Applying the $(k, \ell)$ to the above expression for $\TT$, we have
     
     \begin{align*}
-        &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} \phi^{\ee_{j_\ell}}(\ee_{i_k}) \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
+        &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} \epsilon^{j_\ell}(\ee_{i_k}) \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
         \\
-        = &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} g_{i_k j_\ell} \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
+        = &\sum_{\substack{i_1 ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} \epsilon^{j_\ell}(\ee_{i_k}) \spc T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
         \\
-        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1, ..., i_p \in \{1, ..., n\} \\ j_1, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
-        \\
-        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} g_{i_k j_\ell} \sum_{\substack{i_1 ..., \cancel{i_k}, ..., i_p \in \{1, ..., n\} \\ j_1, ..., \cancel{j_\ell}, ..., j_q \in \{1, ..., n\} \\ r \in \{1, ..., n\}}} T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell + 1} ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
+        &= \sum_{i_k, j_\ell \in \{1, ..., n\}} \epsilon^{j_\ell}(\ee_{i_k}) \sum_{\substack{i_1 ..., \cancel{i_k}, ..., i_p \in \{1, ..., n\} \\ j_1, ..., \cancel{j_\ell}, ..., j_q \in \{1, ..., n\}}} T^{i_1 ... i_p}{}_{j_1 ... j_q} \ee_{i_1} \otimes ... \otimes \cancel{\ee_{i_k}} \otimes ... \otimes \ee_{i_p} \otimes \epsilon^{j_1} \otimes ... \otimes \cancel{\epsilon^{j_\ell}} \otimes... \otimes \epsilon^{j_q} 
     \end{align*}
         
     So, we can see that
     
     \begin{align*}
-        \text{The $\Big( {}^{i_1 ... \cancel{i_k} ... i_p}{}_{j_1 ... \cancel{j_\ell} ... j_p} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_{i_k, j_\ell} g_{i_k j_\ell} \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell + 1} ... j_q}.
+        \text{The $\Big( {}^{i_1 ... \cancel{i_k} ... i_p}{}_{j_1 ... \cancel{j_\ell} ... j_q} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_{r, s} \epsilon^{j_s}(\ee_{i_r}) \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_{k + 1} ... i_p}{}_{j_1 ... j_{\ell - 1} \spc s \spc j_{\ell + 1} ... j_q}.
     \end{align*}
 
-    Equivalently, after shifting the indices $i_{k + 1}, ..., i_p$ down by one (this is valid because the indices $i_k$ and $j_\ell$ are no longer ``occupied''), we see
-        
-    \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_{i_k, j_\ell} g_{i_k j_\ell} \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}}.
-    \end{align*}
+    Equivalently, after shifting the indices $i_{k + 1}, ..., i_p$ and $j_{\ell + 1}, ..., j_q$ down by one (this is valid because the indices $i_k$ and $j_\ell$ are no longer occupied), we obtain that
+
+    \textbf{what can we do here???}
+\end{deriv}
+
+\begin{remark}
+    (Coordinates of a contracted tensor taken relative to dual bases).
+
+    \textbf{do we really use an $r$ in both indices?}
+
+    Continuing on with the above, when $E^*$ is the dual basis to $E$, then we have $\epsilon^{j_\ell}(\ee_{i_k}) = \delta^{j_\ell}_{i_k}$ and thus
     
-    Additionally, when $E$ is an orthonormal basis, we have $g_{i_k j_\ell} = \delta_{i_k j_\ell}$ and thus
-    
     \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when the basis for $V$ is orthonormal}.
+        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } \sum_r T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when $\TT$ is expressed relative to a basis and its induced dual basis}.
     \end{align*}
     
     In Einstein notation, this is stated as
     
     \begin{align*}
-        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when the basis for $V$ is orthonormal}.
+        \text{The $\Big( {}^{i_1 ... i_{p - 1}} {}_{j_1 ... j_{q - 1}} \Big)$ component of the $(k, \ell)$ contraction of $\TT$ is } T^{i_1 ... i_{k - 1} \spc r \spc i_k ... i_{p - 1}}{}_{j_1 ... j_{\ell - 1} \spc r \spc j_{\ell} ... j_{q - 1}} \\ \text{when $\TT$ is expressed relative to a basis and its induced dual basis}.
     \end{align*}
-\end{proof}
+\end{remark}
+
+\begin{remark}
+    (Contraction and implicit sums).
+    
+    Some authors refer to the indices being summed over in implicit sums (e.g. $v_i w_i$) as ``being contracted''. This is misleading. While tensor contraction can be expressed in coordinates with implicit sums, it’s not very helpful to think of every implicit sums as the result of a tensor contraction.
+\end{remark}
 
 \begin{theorem}
     Taking any $(k, \ell)$ contraction is basis-independent.

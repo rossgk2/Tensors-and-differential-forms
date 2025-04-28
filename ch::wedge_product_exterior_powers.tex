@@ -81,15 +81,58 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \end{theorem}
 
 \begin{proof}
-    The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the maps we define in this proof are extended using antisymmetry and multilinearity, rather than just multilinearity.
+    The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the functions we define in this proof are extended using antisymmetry and multilinearity, rather than just multilinearity.
 \end{proof}
+
+[Segway...] [The following is a much cleaner version of a previous lemma (Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}).]
+
+\begin{theorem}
+\label{ch::exterior_powers::thm::det_as_scale_factor}
+    (Determinant as scale factor).
+    
+    Let $V$ and $W$ be $n$-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then $\ff(\vv_1) \wedge ... \wedge \ff(\vv_k) = \det(\ff) \vv_1 \wedge ... \wedge \vv_k$ for all $\vv_1, ..., \vv_k \in V$.
+\end{theorem}
+
+\begin{proof}
+    The proof is very similar to that of Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}. Seeing it ``again'' with the new language of the wedge product $\wedge$ may help understanding.
+
+    Because $\wedge$ looks as if it is a multilinear alternating function, $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n))$ is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n))$. So, set $(a^i_j) = [\ff(E)]_F$, consider the expression $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n)$, and use essentially the same argument as was made to derive the permutation formula of the determinant. We obtain
+    
+    \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge
+        \ff(\ee_n) 
+        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n
+        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
+        &= \det([\ff(E)]_F) \ee_1 \wedge ... \wedge \ee_n
+        = \det(\ff) \ee_1 \wedge ... \wedge \ee_n.
+    \end{align*}
+    
+   So, we have the statement on the basis $E$
+   
+   \begin{align*}
+        \ff(\ee_1) \wedge ... \wedge
+        \ff(\ee_n) = \det(\ff) \ee_1 \wedge ... \wedge \ee_n.
+   \end{align*}
+
+    Since $\wedge$ looks like it is a multilinear function, we can extend this fact to apply to any list of vectors in $V$. This gives the theorem.
+\end{proof}
+
+As a result of this relationship between the wedge product and determinant, the wedge product ``inherits'' several properties of the determinant.
+
+\begin{theorem}
+    (Consequent properties of the wedge product).
+
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+
+    show that $\wedge$ has similar properties to ``consequent properties of det'' here
+\end{theorem}
 
 \begin{lemma}
     TO-DO:
     
     \begin{itemize}
-        \item move proof of $\vv_1 \wedge ... \wedge \vv_k = \det(\ff) \ff(\vv_1) \wedge ... \wedge \ff(\vv_k)$ here
-        \item show that $\wedge$ has similar properties to ``consequent properties of det'' underneath
         \item put a restatement of first bullet point in pushforward and pullback section
         \item this leaves one theorem from current ``wedge products and determinant'' section that should also be moved to pushforward and pullback section; it should go right below restatement of first bullet point in that section
     \end{itemize}

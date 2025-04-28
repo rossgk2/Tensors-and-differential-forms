@@ -22,8 +22,9 @@ This is a list of items that must be completed before I consider this book truly
     \end{itemize}
     \item Restatement of hypotheses in proofs
     \begin{itemize}
-        \item shorthand: “If f has <most relevant property from theorem>, then blah blah blah…” 
+        \item shorthand: “If $f$ has <most relevant hypothesis from theorem statement>, then blah blah blah…” 
     \end{itemize}
+    \item Go through the book and use \\fullindent
     \item Which equations should be in the align environment and which should be inline?
     \item Which align environment equations should have ``for all $x$'' inside them, like
 
@@ -60,8 +61,9 @@ This is a list of items that must be completed before I consider this book truly
 
 \begin{itemize}
     \item Rewrite dot product section. My ||proj|| doesn’t work. Need to use sproj; projection must be signed, and $n$-dimensional angle approach isn’t actually easier for the beginner to understand; way more inductive proofs with complicated functions are required than I thought.
-    \item \textbf{After more thought, have determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask “why?”, since it’s clearly established that it is so.
-    \item Best approach will be to start in $\R^2$. Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
+    \item \textbf{After more thought, have determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t quickly give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask “why?”, since it’s clearly established that it is so.}
+    \item \textbf{Best approach will be to start in $\R^2$. Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
+    \item One thing to get right is that we must have $\theta \geq 0$, since it is the output of $\arccos$, and $\theta \leq \pi$, since it is the angle of the shorter arc between two vectors.
 \end{itemize}
 
 \subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}
@@ -158,4 +160,8 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
     \item Add the divergence theorem and the less general Stokes' theorem (and Green's theorem) after the generalized Stokes' theorem.
     \item Potentially relocate the section about differential forms in $\tOmega^k(M)$ that act on tangent vectors. Potentially the presentation of  tensors/differential forms as actual (pointwise) multilinear functions.
     \item Explain more explicitly how the cancellation in part 3 of the proof of \ref{ch::diff_forms::theorem::stokes_on_a_smooth_chart} occurs. (``all the internal boundaries in the sum $\sum_{C \in D_N(\cl(\H^k))} \int_{\pd C}$ cancel, since each boundary appears twice with opposite orientations'').
+    \item Read \textit{Vector and Tensor Analysis with Applications} by A.I. Borisenko and I.E. Tarapov to learn about the simple ideas behind things like the covariant derivative.
+    \begin{itemize}
+        \item Q. This book assumes that all changes of bases in $\R^n$ (let's say the bases are $E$ and $F$) can be specified by knowing the dot products $\ee_i \cdot \ff_j$. This leads to the question: in a finite-dimensional vector space $V$ with nondegenerate bilinear form $B$, which changes of basis can be specified by knowing $B(\ee_i, \ff_j)$ for all $i$ and $j$?
+    \end{itemize}
 \end{itemize}
