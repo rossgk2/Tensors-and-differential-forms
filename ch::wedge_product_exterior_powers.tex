@@ -73,7 +73,7 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \begin{theorem}
     (Universal property for exterior powers).
     
-    Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V^{\times k} \rightarrow W$ be an alternating bilinear function.]
+    Let $V$ and $W$ be vector spaces over the same field, and let $\ff:V^{\times k} \rightarrow W$ be an alternating bilinear function.
     
     There exists a linear function $\widetilde{\ff}:V^{\wedge k} \rightarrow W$ uniquely corresponding to $\ff$ such that $\ff(\vv_1, ..., \vv_k) = \widetilde{\ff}(\vv_1 \wedge ... \wedge \vv_k)$.
 
@@ -83,62 +83,27 @@ Already, we are able to see how wedge products allow us to represent multilinear
 \begin{proof}
     The proof is similar to the proof of the universal property of tensor product spaces (Theorem \ref{ch::lin_alg::thm::universal_prop_tensor_prod}). The only difference is that the functions we define in this proof are extended using antisymmetry and multilinearity, rather than just multilinearity.
 \end{proof}
-
-[Segway...] [The following is a much cleaner version of a previous lemma (Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}).]
+ 
+Because the wedge product, which looks like a multilinear alternating function behaves so similarly to the determinant, which is a multilinear alternating function, it is possible to retrace proofs written for the determinant to obtain analogous properties of the wedge product. We present these properties in the next theorem.
 
 \begin{theorem}
-\label{ch::exterior_powers::thm::det_as_scale_factor}
-    (Determinant as scale factor).
+    \label{ch::exterior_powers::thm::consequent_wedge_product_props}
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then $\ff(\vv_1) \wedge ... \wedge \ff(\vv_k) = \det(\ff) \vv_1 \wedge ... \wedge \vv_k$ for all $\vv_1, ..., \vv_k \in V$.
+    (Consequent properties of the wedge product).
+
+    Let $V$ be an $n$-dimensional vector space over a field $K$.
+
+    \begin{enumerate}
+        \item $\wedge$ is invariant under linearly combining input vectors into a different input vector. That is, \\ $\vv_1 \wedge ... \wedge \vv_i \wedge ... \wedge \vv_n = \vv_1 \wedge ... \wedge \Big(\vv_i + \sum_{j = 1, j \neq i}^k d_j \vv_j\Big) \wedge ... \wedge \vv_n$ for all $d_1, ..., d_k \in K$, $\vv_1, ..., \vv_n \in V$, and $i \in \{1, ..., n\}$.
+        \item For all $\vv_1, ..., \vv_n \in V$, we have $\vv_1 \wedge ... \wedge \vv_n = \mathbf{0}$ iff $\{\vv_1, ..., \vv_n\}$ is a linearly dependent set.
+    \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-    The proof is very similar to that of Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}. Seeing it ``again'' with the new language of the wedge product $\wedge$ may help understanding.
-
-    Because $\wedge$ looks as if it is a multilinear alternating function, $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n))$ is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n))$. So, set $(a^i_j) = [\ff(E)]_F$, consider the expression $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n)$, and use essentially the same argument as was made to derive the permutation formula of the determinant. We obtain
-    
-    \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge
-        \ff(\ee_n) 
-        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n
-        = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
-        &= \det([\ff(E)]_F) \ee_1 \wedge ... \wedge \ee_n
-        = \det(\ff) \ee_1 \wedge ... \wedge \ee_n.
-    \end{align*}
-    
-   So, we have the statement on the basis $E$
-   
-   \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge
-        \ff(\ee_n) = \det(\ff) \ee_1 \wedge ... \wedge \ee_n.
-   \end{align*}
-
-    Since $\wedge$ looks like it is a multilinear function, we can extend this fact to apply to any list of vectors in $V$. This gives the theorem.
+    Retrace the proof of Theorem \ref{ch::lin_alg::thm::consequent_det_props}, replacing all determinants with wedge products.
 \end{proof}
 
-As a result of this relationship between the wedge product and determinant, the wedge product ``inherits'' several properties of the determinant.
-
-\begin{theorem}
-    (Consequent properties of the wedge product).
-
-    \begin{enumerate}
-        \item 
-    \end{enumerate}
-
-    show that $\wedge$ has similar properties to ``consequent properties of det'' here
-\end{theorem}
-
-\begin{lemma}
-    TO-DO:
-    
-    \begin{itemize}
-        \item put a restatement of first bullet point in pushforward and pullback section
-        \item this leaves one theorem from current ``wedge products and determinant'' section that should also be moved to pushforward and pullback section; it should go right below restatement of first bullet point in that section
-    \end{itemize}
-
-    also, maybe pushforward and pullback can go after ext powers as vector spaces of functions?
-\end{lemma}
+We now establish a last few basic facts about wedge products.
 
 \begin{theorem}
     (Associativity of wedge product). 
@@ -195,7 +160,7 @@ As a result of this relationship between the wedge product and determinant, the 
         T^{j_1 ... j_k} \ee_{j_1} \wedge ... \wedge \ee_{j_k} \wedge \ee_{j_{k + 1}} \wedge ... \wedge \ee_{j_n} = \mathbf{0}.
     \end{align*}
 
-    Since $E$ is linearly independent, then the above wedge product is nonzero (recall Theorem [will have a previous theorem about how wedge of vectors is zero iff the vectors are linearly dependent]). This forces $T^{j_1 ... j_k} = 0$, as desired. 
+    Since $E$ is linearly independent, then the above wedge product is nonzero (recall item 2 of Theorem \ref{ch::exterior_powers::thm::consequent_wedge_product_props}). This forces $T^{j_1 ... j_k} = 0$, as desired. 
 \end{proof}
 
 \begin{comment}
@@ -430,40 +395,6 @@ Now, we generalize the pattern shown in the previous example to define a functio
 
    Property (1) follows by checking the definition $\TT \wedge \SS := \alt(\TT \otimes \SS)$. Property (2) was proved in Theorem \ref{ch::exterior_powers::thm::wedge_associativity}. Property (3) follows from the definition of $\alt$. Conditions (3) and (4) are logically equivalent, and conditions (3) and (5) are logically equivalent. 
 \end{proof}
-
-\section{Pushforward and pullback}
-
-[segway]
-
-\begin{defn}
-\label{ch::exterior_powers::defn::pushforward_pullback}
-    (Pushforwards and pullbacks).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual ${\ff^*:W^* \rightarrow V^*}$. We define the following \textit{pushforward} and \textit{pullback} maps on ${T_{k,0}(V) = V^{\otimes k}}$ and ${T_{0,k}(W) = (W^*)^{\otimes k}}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
-    
-    \begin{align*}
-        \vv_1 \otimes ... \otimes \vv_k \in T_{k,0}(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T_{k,0}(W) \quad \text{(``pushforward on $T_{k,0}(V)$'')} \\
-        \psi_1 \otimes ... \otimes \psi_k \in T_{0,k}(W) &\overset{\otimes_{0, k} \ff^*}{\longmapsto} \ff^*(\psi_1) \otimes ... \otimes \ff^*(\psi_k) \in T_{0,k}(V) \quad \text{(``pullback on $T_{0,k}(W)$'')}.
-    \end{align*}
-    
-    We also define the following \textit{pushforward} and \textit{pullback} maps on $\Lambda^k(V) = V^{\wedge k}$ and $\Lambda^k(W^*) = (W^*)^{\wedge k}$, respectively, extending each with the seeming-multilinearity and antisymmetry of $\wedge$, for $k \leq n$:
-    
-    \begin{align*}
-        \vv_1 \wedge ... \wedge \vv_k \in \Lambda^k(V) &\overset{\Lambda^k \ff}{\longmapsto} \ff(\vv_1) \wedge ... \wedge \ff(\vv_k) \in \Lambda^k(W) \quad \text{(``pushforward on $\Lambda^k(V)$'')} \\
-        \psi^1 \wedge ... \wedge \psi^k \in \Lambda^k(W^*) &\overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^k) \in \Lambda^k(V^*) \quad \text{(``pullback on $\Lambda^k(W^*)$'')}.
-    \end{align*}
-\end{defn}
-
-\begin{remark}
-\label{ch::exterior_powers::rmk::star_notation_pushforward_pullback}
-    (Star notation for pushforward and pullback).
-    
-    The above notation of using $\otimes_{0, k} \ff:T_{k,0}(V) \rightarrow T_{k,0}(W)$ and $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ for the pushforwards and using $\otimes_{k, 0} \ff^*$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pushforwards by ${\ff_*:T_{k,0}(V) \rightarrow T_{k,0}(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$ and the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
-    
-    Once the above definitions of pushforward and pullback are understood, this ``star notation'' can be useful. But it can be difficult to understand what the various pushforwards and pullbacks are if this notation is used from the start, due to the potential for confusing the dual $\ff^*:W^* \rightarrow V^*$ with either of the pullbacks ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}, {\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
-    
-    We will use the star notation after we define a pullback of a differential form in Chapter \ref{ch::diff_forms}. Until then, we do not use the star notation.
-\end{remark}
 
 \section{Exterior powers as vector spaces of functions}
 
@@ -864,59 +795,84 @@ So, we have shown how a $k$-wedge of elements from $V^*$, when treated as a func
     In appearance, it seems that $(\tLambda^k \ff^*)(\TT)$ acts on $\vv_1, ..., \vv_k$ exactly as does $\totimes_{0,k} \ff^*$, since $\totimes_{0,k} \ff^*(\vv_1, ..., \vv_k) = \TT(\ff(\vv_1), ..., \ff(\vv_k))$. The distinction between the two definitions is that $\tLambda^k \ff^*$ acts on multilinear alternating functions $\TT$, while $\totimes_{0,k} \ff^*$ acts on multilinear (not necessarily alternating) functions $\TT$.
 \end{deriv}
 
-\newpage
 
-\section{Wedge products and the determinant}
+\section{Pushforward and pullback}
 
-Given that the determinant is a multilinear alternating function, and the wedge product looks like a multilinear alternating function, there must be some fundamental connection between the two concepts. We present that connection now.
+[segway]
 
-\begin{deriv}
+\begin{defn}
+\label{ch::exterior_powers::defn::pushforward_pullback}
+    (Pushforwards and pullbacks).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$ and its dual ${\ff^*:W^* \rightarrow V^*}$. We define the following \textit{pushforward} and \textit{pullback} maps on ${T_{k,0}(V) = V^{\otimes k}}$ and ${T_{0,k}(W) = (W^*)^{\otimes k}}$, respectively, extending each with the seeming-multilinearity of $\otimes$:
+    
+    \begin{align*}
+        \vv_1 \otimes ... \otimes \vv_k \in T_{k,0}(V) &\overset{\otimes_{k, 0} \ff}{\longmapsto} \ff(\vv_1) \otimes ... \otimes \ff(\vv_k) \in T_{k,0}(W) \quad \text{(``pushforward on $T_{k,0}(V)$'')} \\
+        \psi_1 \otimes ... \otimes \psi_k \in T_{0,k}(W) &\overset{\otimes_{0, k} \ff^*}{\longmapsto} \ff^*(\psi_1) \otimes ... \otimes \ff^*(\psi_k) \in T_{0,k}(V) \quad \text{(``pullback on $T_{0,k}(W)$'')}.
+    \end{align*}
+    
+    We also define the following \textit{pushforward} and \textit{pullback} maps on $\Lambda^k(V) = V^{\wedge k}$ and $\Lambda^k(W^*) = (W^*)^{\wedge k}$, respectively, extending each with the seeming-multilinearity and antisymmetry of $\wedge$, for $k \leq n$:
+    
+    \begin{align*}
+        \vv_1 \wedge ... \wedge \vv_k \in \Lambda^k(V) &\overset{\Lambda^k \ff}{\longmapsto} \ff(\vv_1) \wedge ... \wedge \ff(\vv_k) \in \Lambda^k(W) \quad \text{(``pushforward on $\Lambda^k(V)$'')} \\
+        \psi^1 \wedge ... \wedge \psi^k \in \Lambda^k(W^*) &\overset{\Lambda^k \ff^*}{\longmapsto} \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^k) \in \Lambda^k(V^*) \quad \text{(``pullback on $\Lambda^k(W^*)$'')}.
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+\label{ch::exterior_powers::rmk::star_notation_pushforward_pullback}
+    (Star notation for pushforward and pullback).
+    
+    The above notation of using $\otimes_{0, k} \ff:T_{k,0}(V) \rightarrow T_{k,0}(W)$ and $\Lambda^k \ff:\Lambda^k(V) \rightarrow \Lambda^k(W)$ for the pushforwards and using $\otimes_{k, 0} \ff^*$ and $\Lambda^k \ff^*$ for the pullbacks is nonstandard. It is more common to denote the pushforwards by ${\ff_*:T_{k,0}(V) \rightarrow T_{k,0}(W)}$ and ${\ff_*:\Lambda^k(V) \rightarrow \Lambda^k(W)}$ and the pullbacks by ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}$ and ${\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
+    
+    Once the above definitions of pushforward and pullback are understood, this ``star notation'' can be useful. But it can be difficult to understand what the various pushforwards and pullbacks are if this notation is used from the start, due to the potential for confusing the dual $\ff^*:W^* \rightarrow V^*$ with either of the pullbacks ${\ff^*:T_{0,k}(W) \rightarrow T_{0,k}(V)}, {\ff^*:\Lambda^k(W) \rightarrow \Lambda^k(V)}$.
+    
+    We will use the star notation after we define a pullback of a differential form in Chapter \ref{ch::diff_forms}. Until then, we do not use the star notation.
+\end{remark}
+
+\begin{theorem}
 \label{ch::exterior_powers::rmk::top_pushforward_det}
     (The pushforward on the top exterior power is multiplication by the determinant).
     
-    Let $V$ and $W$ be $n$-dimensional vector spaces over a field $K$, let $\ff:V \rightarrow W$ be a linear function, and consider $\Lambda^n(V)$.
-    
-    We follow an argument similar to that given in the proof of Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}\footnote{Unfortunately, we can't directly use the result of said lemma to avoid writing what is a bit of a redundant derivation because doing so requires machinery we yet have.}. Let $E = \{\ee_1, ..., \ee_n\}$ be a basis of $V$, and consider
-    
+    Let $V$ and $W$ be $n$-dimensional vector spaces. If $\ff:V \rightarrow W$ is a linear function, then 
+
     \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge \ff(\ee_n).
+        (\Lambda^n \ff)(\vv_1 \wedge ... \wedge \vv_n) = \det(\ff) \spc \vv_1 \wedge ... \wedge \vv_n \text{ for all $\vv_1, ..., \vv_n \in V$}
     \end{align*}
-    
-    Because $\Lambda^n(\ff)$ is multilinear and alternating, the wedge product is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n)) = \det([\ff(E)]_F) = \det(\ff)$. So, set $(a^i_j) = [\ff(E)]_F$, and then use essentially the same argument as was made to derive the permutation formula on the left side of the above. We obtain
+
+    That is,
+
+    \begin{align*}
+        \boxed
+        {
+            \ff(\vv_1) \wedge ... \wedge \ff(\vv_n) = \det(\ff) \spc \vv_1 \wedge ... \wedge \vv_n \text{ for all $\vv_1, ..., \vv_n \in V$}
+        }
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    The proof is very similar to that of Lemma \ref{ch::lin_alg::lemma:det_as_scale_factor}. Seeing what is essentially the same proof ``again'' with the new language of the wedge product $\wedge$ may even give greater understanding of that lemma.
+
+    Because $\wedge$ looks as if it is a multilinear alternating function, the wedge product $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n)$ is analogous to the determinant $\det(\ff(\ee_1), ..., \ff(\ee_n))$. So, set $(a^i_j) = [\ff(E)]_F$, consider the expression $\ff(\ee_1) \wedge ... \wedge \ff(\ee_n)$, and use essentially the same argument as was made to derive the permutation formula of the determinant. We obtain
     
     \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge 
+        \ff(\ee_1) \wedge ... \wedge
         \ff(\ee_n) 
-        &= \sum_{\sigma \in S_n} \Big( a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n \Big)
+        &= \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \ee_1 \wedge ... \wedge \ee_n
         = \Big( \sum_{\sigma \in S_n} a^1_{\sigma(1)} ... a^n_{\sigma(n)} \sgn(\sigma) \Big) \ee_1 \wedge ... \wedge \ee_n \\
-        &= \det([\ff(E)]_F) (\ee_1 \wedge ... \wedge \ee_n)
-        = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+        &= \det([\ff(E)]_F) \spc \ee_1 \wedge ... \wedge \ee_n
+        = \det(\ff) \spc \ee_1 \wedge ... \wedge \ee_n.
     \end{align*}
     
    So, we have the statement on the basis $E$
    
    \begin{align*}
-        \ff(\ee_1) \wedge ... \wedge 
-        \ff(\ee_n) = \det(\ff) (\ee_1 \wedge ... \wedge \ee_n).
+        \ff(\ee_1) \wedge ... \wedge
+        \ff(\ee_n) = \det(\ff) \spc \ee_1 \wedge ... \wedge \ee_n.
    \end{align*}
-   
-   Using the seeming-multilinearity of $\wedge$, we can extend this fact to apply to any list of vectors in $V$:
-   
-   \begin{align*}
-       \boxed
-       {
-        \ff(\vv_1) \wedge ... \wedge \ff(\vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}
-       }
-   \end{align*}
-   
-   We can explicitly involve the pullback $\Lambda^n \ff$ and write the above as
-   
-   \begin{align*}
-       (\Lambda^n \ff)(\vv_1 \wedge ... \wedge \vv_n) = \det(\ff) ( \vv_1 \wedge ... \wedge \vv_n ) \text{ for all $\vv_1, ..., \vv_n \in V$}.
-   \end{align*}
-   
-   Thus, $\Lambda^n(\ff)$ is multiplication by $\det(\ff)$.
-\end{deriv}
+
+    Since $\wedge$ looks like it is a multilinear function, we can extend this fact to apply to any list of vectors in $V$. This gives the theorem.
+\end{proof}
 
 \begin{theorem}
 \label{ch::exterior_powers::rmk::top_pullback_det}
@@ -926,16 +882,13 @@ Given that the determinant is a multilinear alternating function, and the wedge 
     Let $V$ and $W$ be $n$-dimensional vector spaces, and consider a linear function $\ff:V \rightarrow W$. Consider additionally the dual $\ff^*:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then, applying the previous theorem and using that $\det(\ff) = \det(\ff^*)$, we see that the pullback $\Lambda^n \ff^*$ on the top exterior power satisfies
     
     \begin{align*}
-        (\Lambda^n \ff^*)(\ww_1 \wedge ... \wedge \ww_n) = \det(\ff) ( \ww_1 \wedge ... \wedge \ww_n ) \text{ for all $\ww_1, ..., \ww_n \in V$}.
+        (\Lambda^n \ff^*)(\psi^1 \wedge ... \wedge \psi^n) = \det(\ff) \spc \psi^1 \wedge ... \wedge \psi^n \text{ for all $\psi^1, ..., \psi^n \in W^*$}.
     \end{align*}
     
     That is,
     
     \begin{align*}
-        \boxed
-        {
-            \ff^*(\ww_1) \wedge ... \wedge \ff^*(\ww_n) = \det(\ff)(\ww_1 \wedge ... \wedge \ww_n)
-        }
+        \ff^*(\psi^1) \wedge ... \wedge \ff^*(\psi^n) = \det(\ff) \spc \psi^1 \wedge ... \wedge \psi^n \text{ for all $\psi^1, ..., \psi^n \in W^*$}.
     \end{align*}
 \end{theorem}
 
@@ -949,10 +902,12 @@ We now show how the top exterior power of a vector space can be used to describe
     
     Let $V$ be a finite-dimensional vector space with an orientation $E = (\ee_1, ..., \ee_n)$. All positively oriented bases of $V$ are scalar multiples of $E$, and all negatively oriented bases of $V$ are scalar multiples of $-E$, where $-E = E^\sigma$ for some $\sigma$ with $\sgn(\sigma) < 0$.
     
-    Notice, we can identify $E = (\ee_1, ..., \ee_n)$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of orthonormal ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. Once one has noticed this, it is a natural next step to check that the union of the sets of positively oriented and negatively oriented ordered bases, when considered under the operations of ``basis addition'' and multiplication by a scalar, is a vector space that is isomorphic to $\Lambda^n(V)$.
+    Notice, we can identify $E = (\ee_1, ..., \ee_n) \in V^{\times n}$ with $\ee_1 \wedge ... \wedge \ee_n \in \Lambda^n(V)$, because the antisymmetry of orthonormal ordered bases is manifested in elements of $\Lambda^n(V)$ due to the antisymmetry of $\wedge$. This gives a natural linear isomorphism between the vector space $V^{\times n}$, subject to the equivalence relation of rotational equivalence, of course, and $\Lambda^n(V)$.
     
-    Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_powers::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
+    Therefore, another way to give an orientation to a finite-dimensional vector space is to choose an element of $\Lambda^n(V)$. The fact that the pushforward on the top exterior power is multiplication by the determinant (recall Theorem \ref{ch::exterior_powers::rmk::top_pushforward_det}) plays nicely into this interpretation: once an orientation $\ee_1 \wedge ... \wedge \ee_n$ of $V$ has been chosen, then we have $\ff_1 \wedge ... \wedge \ff_n = \det(\ff) \spc \ee_1 \wedge ... \wedge \ee_n$, where $\ff$ is the linear function $V \rightarrow V$ sending $\ee_i \mapsto \ff_i$.
 \end{theorem}
+
+\newpage
 
 \section{The cross product}
 \label{ch::exterior_powers::section::cross_product}

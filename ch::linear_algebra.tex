@@ -2186,7 +2186,7 @@ We briefly outline the analysis of angle in $\R^2$.
 
 Immediately after defining the angle between vectors in $\R^2$, we stumble across a fundamental concept that underlies both length and angle- the \textit{dot product} of vectors in $\R^2$. The dot product is a subtle concept that requires careful explanation. Unfortunately, all texts I have seen have some sort of major error in their presentation of this important concept.
 
-Most authors define the dot product using the ``algebraic characterization'' ${\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i}$, and then use the law of cosines to show that this definition implies the ``geometric characterization'', ${\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta)}$, where $\theta$ is the angle between $\vv$ and $\ww$. This approach is incorrect because using the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is less intuitive than geometry done via linear algebra (to me, at least).}, and because there is typically no motivation given for the algebraic characterization; it just ``pops out of nowhere''.
+Most authors define the dot product using the ``algebraic characterization'' ${\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i}$, and then use the law of cosines to show that this definition implies the ``geometric characterization'', ${\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta)}$, where $\theta$ is the angle between $\vv$ and $\ww$. This approach is incorrect because using the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is less intuitive than geometry done via linear algebra (to me, at least).}, and because there is typically no motivation given for the algebraic characterization; it just pops out of nowhere.
 
 Some authors try to provide more motivation for the dot product by starting with the geometric characterization, $\vv \cdot \ww := ||\vv|| \spc ||\ww|| \cos(\theta)$, as the definition, explaining that this characterization is a natural idea\footnote{The motivation goes like this. If a box is pushed with a force $\FF \in \R^2$ along a floor through a displacement $\xx$, then $||\FF|| \cos(\theta)$ is the amount of force exerted in the direction of the displacement $\xx$, and thus $||\xx||(||\FF|| \cos(\theta)) = ||\FF|| \spc ||\xx|| \cos(\theta)$ is the product of the amount of force aligned with the displacement with the magnitude of the displacement.}, and then showing that the algebraic characterization follows. This is an improvement over starting abruptly with the algebraic characterization, to be sure, but unfortunately, I have always seen that authors use the law of cosines to show the algebraic characterization follows from the geometric characterization. As mentioned before, the law of cosines gives no intuition.
 
@@ -2340,7 +2340,7 @@ The \textit{cross product} also comes with two common pedagogical problems. The 
         \theta(\vv, \ww) = \frac{s(\xx, \vv, \ww)}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d\xx(t)}{dt} \Big|\Big| dt, \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
     \end{align*}
     
-    We have $||\frac{d\xx(t)}{dt}|| = r$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, so $\theta(\vv, \ww) = t_2 - t_1$. Since, $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, then
+    We have $||\frac{d\xx(t)}{dt}|| = r$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, so $\theta(\vv, \ww) = t_2 - t_1$. Since $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, then
 
     \begin{align*}
         {r \cos(\pm t_1) = (r[\hvv]_\sE)_1} &\text{ and } {r \cos(\pm t_2) = (r[\hww]_\sE)_1},
@@ -3891,10 +3891,12 @@ We now investigate more properties of the determinant that follow from the axiom
 \begin{theorem}
 \label{ch::lin_alg::thm::consequent_det_props}
     (Consequent properties of the determinant). 
+
+    Let $V$ be an $n$-dimensional vector space over a field $K$.
     
     \begin{enumerate}
-        \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\vv_1, ..., \vv_i, ..., \vv_n) = \det(\vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n)$ for all $i \in \{1, ..., n\}$.
-        \item $\det(\vv_1, ..., \vv_n) = 0$ iff $\{\vv_1, ..., \vv_n\}$ is a linearly dependent set.
+        \item $\det$ is invariant under linearly combining input vectors into a different input vector. That is, $\det(\vv_1, ..., \vv_i, ..., \vv_n) = \det(\vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^k d_j \vv_j, ..., \vv_n)$ for all $d_1, ..., d_k \in K$, $\vv_1, ..., \vv_n \in V$, and $i \in \{1, ..., n\}$.
+        \item For all $\vv_1, ..., \vv_n \in V$, we have $\det(\vv_1, ..., \vv_n) = 0$ iff $\{\vv_1, ..., \vv_n\}$ is a linearly dependent set.
     \end{enumerate}
 \end{theorem}
 
@@ -3907,8 +3909,8 @@ We now investigate more properties of the determinant that follow from the axiom
         
         \begin{align*}
             \det(\vv_1, ..., \vv_i, ..., \vv_n)
-            &= \det(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n) + \sum_{j = 1, j \neq i}^n d_j \det(\vv_1, ..., \vv_{i - 1}, \vv_j, \vv_{i + 1}, ..., \vv_j, ..., \vv_n) \\
-            &= \det\Big( \vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^n d_j \vv_j, ..., \vv_n \Big).
+            &= \det(\vv_1, ..., \vv_i, ..., \vv_j, ..., \vv_n) + \sum_{j = 1, j \neq i}^k d_j \det(\vv_1, ..., \vv_{i - 1}, \vv_j, \vv_{i + 1}, ..., \vv_j, ..., \vv_n) \\
+            &= \det\Big( \vv_1, ..., \vv_i + \sum_{j = 1, j \neq i}^k d_j \vv_j, ..., \vv_n \Big).
         \end{align*}
         
         \item \indent ($\det(\vv_1, ..., \vv_n) = 0 \implies \{\vv_1, ..., \vv_n\}$ is a linearly dependent set). If the input vectors are linearly dependent, we can use the invariance of $\det$ under linearly combining some columns into others (which we just proved) to produce an equal determinant in which two columns are the same. By the third axiom, this determinant is zero.
@@ -4120,7 +4122,7 @@ We now derive the \textit{permutation formula} for the determinant.
 \begin{theorem}
     (Determinant of an inverse function).
     
-    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Then $\det(\ff^{-1}) = \frac{1}{\det(\ff)}$.
+    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Then $\det(\ff^{-1}) = 1/\det(\ff)$.
 \end{theorem}
 
 \begin{proof}
@@ -4131,7 +4133,7 @@ Now, we can show that the determinant of a linear function $\ff$ does not depend
 
 \begin{theorem}
 \label{ch::lin_alg::rmk::det_well_defined}
-    The determinant of a linear function is well-defined.
+    The determinant of every linear function is well-defined.
 \end{theorem}
 
 \begin{proof}
@@ -4143,7 +4145,7 @@ Now, we can show that the determinant of a linear function $\ff$ does not depend
 
     \fullindent
     {
-        (Special case: $V = W$, $E = F$, $G = H$). In this case, the previous equation can be written as $[\ff(G)]_G = [\cdot]_G(\sE) [\cdot]_E^{-1}(\sE) \spc [\ff(E)]_E \spc [\cdot]_E(\sE) [\cdot]_G^{-1}(\sE)$. Taking the determinant of both sides and using the determinant product rule produces the factors $\det([\cdot]_G(\sE))$, $\det([\cdot]_G(\sE))^{-1} = 1/(\det([\cdot]_G(\sE))$ and $\det([\cdot]_E(\sE))$, $\det([\cdot]_E(\sE))^{-1} = 1/(\det([\cdot]_E(\sE))$, which cancel. This yields $[\ff(G)]_G = [\ff(E)]_E$, as desired. 
+        (Special case: $V = W$, $E = F$, $G = H$). In this case, the previous equation can be written as $[\ff(G)]_G = [\cdot]_G(\sE) [\cdot]_E^{-1}(\sE) \spc [\ff(E)]_E \spc [\cdot]_E(\sE) [\cdot]_G^{-1}(\sE)$. Taking the determinant of both sides\footnote{This is valid because, even though we don't yet know the determinant of a linear function is well-defined, we know the determinant of a matrix is well-defined.} and using the determinant product rule produces the factors $\det([\cdot]_G(\sE))$, $\det([\cdot]_G(\sE))^{-1} = 1/(\det([\cdot]_G(\sE))$ and $\det([\cdot]_E(\sE))$, $\det([\cdot]_E(\sE))^{-1} = 1/(\det([\cdot]_E(\sE))$, which cancel. This yields $[\ff(G)]_G = [\ff(E)]_E$, as desired. 
     }
 
     \fullindent
