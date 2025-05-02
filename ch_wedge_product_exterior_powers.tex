@@ -63,6 +63,17 @@ Now we define the wedge product, very similarly to how we defined the tensor pro
 \end{defn}
 
 \begin{remark}
+\label{ch::exterior_powers::rmk::exterior_product}
+    (``Exterior product'').
+
+    The wedge product is sometimes called the \textit{exterior product}. One may notice that this sounds thematically similar to ``outer product''.
+
+    Recall that in Remark \ref{ch::motivated_intro::rmk::outer_products}, we explained that the relationship between the suggestive terms ``inner product'' and ``outer product'' is more coincidental than fundamental. The situation is much the same between ``outer product'' and ``exterior product'', as the only real connection between ``exterior product'' and ``outer product'' is that since the exterior product involves a tensor product of vectors, which can be identified with an outer product of vectors.
+    
+    In general, the terms ``inner product'', ``outer product'', and ``exterior product'' are more connected by coincidence than by a fundamental relationship.
+\end{remark}
+
+\begin{remark}
     (Bivectors, trivectors, blades).
 
     Elementary wedge products of the form $\vv_1 \wedge \vv_2$ are sometimes called ``bivectors'', elementary wedge products of the form $\vv_1 \wedge \vv_2 \wedge \vv_3$ are sometimes called ``trivectors'', and elementary wedge products of the form $\vv_1 \wedge ... \wedge \vv_k$ are sometimes called ``blades''.
@@ -224,12 +235,12 @@ We now establish a last few basic facts about wedge products.
     The third line in the box is proved similarly as was in Theorem \ref{ch::motivated_intro::thm::four_fundamental_isos}; the only difference is that it is necessary to extend with antisymmetry and bilinearity rather than just bilinearity. The fourth line follows from the third line.
 \end{proof}
 
-\section*{Construction of the wedge product}
+\section*{Relationship between wedge and tensor products}
 
 \begin{defn}
     (Permutation of a tensor).
     
-    Let $V_1, ..., V_k$ be vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V^{\otimes k}$, we define the function $(\cdot)^\sigma:V^{\otimes k} \rightarrow V^{\otimes k}$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces over the same field. Given a permutation $\sigma \in S_k$ and a tensor $\TT \in V^{\otimes k}$, we define the function $(\cdot)^\sigma:V^{\otimes k} \rightarrow V^{\otimes k}$ sending $\TT \mapsto \TT^\sigma$ by specifying its action on elementary tensors and extending linearly. We define
     
     \begin{align*}
         (\vv_1 \otimes ... \otimes \vv_k)^\sigma := \vv_{\sigma(1)} \otimes ... \otimes \vv_{\sigma(k)}.
@@ -240,19 +251,29 @@ We now establish a last few basic facts about wedge products.
 \label{ch::exterior_powers::defn::antisymmetric_tensor}
     (Antisymmetric tensor).
     
-    Let $V$ be a vector space. A tensor $\TT \in V^{\otimes k}$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
+    Let $V$ be a finite-dimensional vector space. A tensor $\TT \in V^{\otimes k}$ is \textit{antisymmetric} iff  $\TT^\sigma = -\TT$ for all transpositions $\sigma$.
 \end{defn}
 
 \begin{example}
     (Antisymmetric tensor of order $2$).
 
-    Let $V_1$ and $V_2$ are vector spaces and $\vv_1, \vv_2 \in V$. The tensor $\TT = \vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1$ in $V^{\otimes 2}$ is antisymmetric, since for all $\sigma \in S_2 = \{\text{id}, (1 \spc 2)\}$ we have $\TT^\sigma = \sgn(\sigma) \TT$:
+    Let $V_1$ and $V_2$ be finite-dimensional vector spaces and $\vv_1, \vv_2 \in V$. The tensor $\TT = \vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1$ in $V^{\otimes 2}$ is antisymmetric, since for all $\sigma \in S_2 = \{\text{id}, (1 \spc 2)\}$ we have $\TT^\sigma = \sgn(\sigma) \TT$:
 
     \begin{align*}
         \TT^\id &= (\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1)^{\id} = \vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1 = \TT = \sgn(\id) \TT, \\
         \TT^{(1 \spc 2)} &= (\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1)^{(1 \spc 2)} = \vv_2 \otimes \vv_1 - \vv_1 \otimes \vv_2 = -(\vv_1 \otimes \vv_2 - \vv_2 \otimes \vv_1) = -\TT = \sgn((1 \spc 2)) \TT.
     \end{align*}
 \end{example}
+
+\begin{theorem}
+    (Antisymmetric tensors are a vector space).
+
+    Let $V$ be a finite-dimensional vector space. The set of alternating tensors in $V^{\otimes k}$ is a vector subspace of $V^{\otimes k}$.
+\end{theorem}
+
+\begin{proof}
+    We need to show that (1) if $\TT$ and $\SS$ are antisymmetric, then $\TT + \SS$ is antisymmetric, and that (2) if $\TT$ is antisymmetric, then $c\TT$ is also antisymmetric. This all follows because the function $\TT \mapsto \TT^\sigma$ is linear.
+\end{proof}
 
 \begin{remark}
 \label{ch::exterior_powers::rmk::alternating_antisymmetric}
@@ -266,12 +287,12 @@ We now establish a last few basic facts about wedge products.
     We have not defined what the exterior algebra is (and won't), but it is good to know this context.
 \end{remark}
 
-Now, we generalize the pattern shown in the previous example to define a function that produces antisymmetric tensors from arbitrary tensors. This function will be crucial to our construction of the wedge product.
+Now, we generalize the pattern shown in the previous example to define a function that produces antisymmetric tensors from arbitrary tensors. This function is at the heart of the relationship between the wedge product and tensor product.
 
 \begin{defn}
-    (Antisymmetrization of elements of tensor product spaces).
-    
-    Let $V$ be a vector space over the same field. We define ${\alt:V^{\otimes k} \rightarrow V^{\otimes k}}$ on elementary tensors and extend linearly; for an elementary tensor $\TT \in V^{\otimes k}$, we define
+    (Antisymmetrization of a tensor).
+
+    Let $V$ be a finite-dimensional vector space. We define ${\alt:V^{\otimes k} \rightarrow V^{\otimes k}}$ on elementary tensors and extend linearly; for an elementary tensor $\TT \in V^{\otimes k}$, we define
     
     \begin{align*}
         \alt(\TT) := \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma.
@@ -304,96 +325,43 @@ Now, we generalize the pattern shown in the previous example to define a functio
     Since $\alt(\TT)$ is antisymmetric for all tensors $\TT$, we can conclude that alternating tensors exist.
 \end{remark}
 
-\begin{defn}
-    (Wedge product).
-    
-    Let $V_1, ..., V_k$ be vector spaces over the same field. We define the \textit{wedge product} ${\wedge: V^{\otimes k} \otimes V^{\otimes k} \rightarrow \alt(V^{\otimes k} \otimes V^{\otimes k}})$ by $\TT \wedge \SS := \alt(\TT \otimes \SS)$.
-\end{defn}
+\begin{theorem}
+    (Antisymmetrization is linear).
 
-\begin{remark}
-\label{ch::exterior_powers::rmk::exterior_product}
-    (``Exterior product'').
+    Let $V$ be a finite-dimensional vector space, and consider the tensor product space $V^{\otimes k}$. The antisymmetrization function $\alt:V^{\times k} \rightarrow V^{\times k}$ is linear.
+\end{theorem}
 
-    The wedge product is sometimes called the \textit{exterior product}. One may notice that this sounds thematically similar to ``outer product''.
+\begin{proof}
+    This follows from the fact that the function $\TT \mapsto \TT^\sigma$ is linear.
+\end{proof}
 
-    Recall that in Remark \ref{ch::motivated_intro::rmk::outer_products}, we explained that the relationship between the suggestive terms ``inner product'' and ``outer product'' is more coincidental than fundamental. The situation is much the same between ``outer product'' and ``exterior product'', as the only real connection between ``exterior product'' and ``outer product'' is that since the exterior product involves a tensor product of vectors, which can be identified with an outer product of vectors.
-    
-    In general, the terms ``inner product'', ``outer product'', and ``exterior product'' are more connected by coincidence than by a fundamental relationship.
-\end{remark}
+[The properties of the alternization function can be restated in the following significant way.] 
 
 \begin{lemma}
-    (Lemma for associativity of wedge product). 
-    
-    Let $V$ be a vector space, and consider $\TT, \SS \in V^{\otimes k}$. If $\alt(\TT) = \mathbf{0}$, then $\TT \wedge \SS = \mathbf{0} = \SS \wedge \TT$.
+    (The antisymmetric tensors are the antisymmetrized tensors).
+
+    Let $V_1, ..., V_k$ be finite-dimensional vector spaces. Every antisymmetric tensor $\TT \in V_1 \otimes ... \otimes V_k$ is of the form $\TT = \alt(\TT)$.
 \end{lemma}
 
 \begin{proof}
-    \newcommand{\pit}{[\pi]_\tau}
+    We need to show that $\{\text{antisymmetric tensors in } V_1 \otimes ... \otimes V_k\} = \{\TT \in V_1 \otimes ... \otimes V_k \mid \TT = \alt(\TT)\}$.
 
-    (This proof requires some abstract algebra. Understanding this proof is not really necessary to understand exterior powers, so you can take this theorem as an axiom if you want).
+    ($\subseteq$). It was explained in the definition of $\alt$ that when $\TT$ is antisymmetric we have $\alt(\TT) = \TT$. 
 
-    Assume $\alt(\TT) = \mathbf{0}$. Let $\TT = \vv_{i_1} \otimes ... \otimes \vv_{i_{k}}$ and $\SS = \vv_{j_1} \otimes ... \otimes \vv_{j_k}$. We must show $\alt(\TT \otimes \SS) = \mathbf{0}$. 
-    
-    To do so, let $H$ be the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_k$, and consider the cosets ${\{H \sigma \mid \sigma \in S_{2k}\}}$ of $H$ in $S_{2k}$. Since these cosets partition $S_{2k}$, then
-    
-    \begin{align*}
-        \alt(\TT \otimes \SS) &= \sum_{\pit \sigma \in \{\text{cosets}\}} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} = \sum_{\sigma \in S_{2k}} \sum_{\pit \in H} \text{sgn}({\pit \sigma}) (\TT \otimes \SS)^{\pit \sigma} \\
-        &= \sum_{\sigma \in S_{2k}} \Big(\sum_{\pit \in H} \text{sgn}({\pit}) (\TT \otimes \SS)^{\pit} \Big)^{\sigma}.
-    \end{align*}
-    
-    Since $\pit \in H$, where $H$ is the subgroup of $S_{2k}$ whose elements fix all of $j_1, ..., j_{\ell}$, then $(\TT \otimes \SS)^{\pit} = \TT^{\pit} \otimes \SS$. With this, the innermost sum becomes
-    
-    \begin{align*}
-        \sum_{\pit \in H} \text{sgn}({\pit}) (\TT \otimes \SS)^{\pit} 
-        = \sum_{\pit \in H} \text{\sgn}({\pit}) \TT^{\pit} \otimes \SS
-        = \Big(\sum_{\pit \in H} \text{sgn}({\pit}) \TT^{\pit}\Big) \otimes \SS.
-    \end{align*}
-    
-    Now define $\pi \in S_{k}$ by $\pi = \tau^{-1} \pit \tau$, where $\tau = (i_1, ..., i_{k})$ (i.e. $\tau(i) = j_i$). Then the above is
-    
-    \begin{align*}
-        \Big(\sum_{\pi S_{k}} \text{sgn}({\pi}) \TT^{\pi}\Big) \otimes \SS 
-        = \alt(\TT) \otimes \SS 
-        = \mathbf{0} \otimes \SS
-        = \mathbf{0}.
-    \end{align*}
-    
-    The last equality follows by the seeming-multilinearity of $\otimes$. 
+    ($\supseteq$). We showed above that $\alt(\TT)$ is antisymmetric for all $\TT \in V_1 \otimes ... \otimes V_k$.
 \end{proof}
 
 \begin{theorem}
-\label{ch::exterior_powers::thm::wedge_associativity}
-    (Wedge product is associative). 
+    ($\Lambda^k(V) \cong \alt(V^{\otimes k})$).
     
-    Let $V$ be a vector space. For all $\TT, \SS, \RR \in V^{\otimes k}$, we have $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR)$, and are therefore justified in denoting both as $(\TT \wedge \SS) \wedge \RR = \TT \wedge (\SS \wedge \RR) := \TT \wedge \SS \wedge \RR$.
+    Let $V$ be a finite-dimensional vector space. There is a natural isomorphism $\Lambda^k(V) \cong \alt(V^{\otimes k}$). That is, every wedge product can be identified with an antisymmetric tensor.
 \end{theorem}
 
 \begin{proof}
-    We will show $(\TT \wedge \SS) \wedge \RR = \alt(\TT \otimes \SS \otimes \RR)$; a similar argument shows $\TT \wedge (\SS \wedge \RR) = \alt(\TT \otimes \SS \otimes \RR)$.
-    
-    First, we have by definition of $\wedge$ that 
-    
-    \begin{align*}
-        (\TT \wedge \SS) \wedge \RR = \alt((\TT \wedge \SS) \otimes \RR).
-    \end{align*}
-    
-    Subtracting $\alt(\TT \otimes \SS \otimes \RR)$ from both sides and using linearity of $\alt$, we get that
-    
-    \begin{align*}
-        (\TT \wedge \SS) \wedge \RR - \alt(\TT \otimes \SS \otimes \RR) = \alt((\TT \wedge \SS - \TT \otimes \SS) \otimes \RR) = (\TT \wedge \SS - \TT \otimes \SS) \wedge \RR.
-    \end{align*}
-    
-    If we show $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$, then our claim is true. By the previous lemma, it suffices to show that $\alt(\TT \wedge \SS - \TT \otimes \SS) = \mathbf{0}$, since if this is true then $(\TT \wedge \SS - \TT \otimes \SS) \wedge \RR = \mathbf{0}$. And this the case: $\alt(\TT \wedge \SS - \TT \otimes \SS) = \alt(\TT \wedge \SS) - \alt(\TT \otimes \SS) = \TT \wedge \SS - \TT \wedge \SS = \mathbf{0}$, by linearity of $\alt$ and with use of the fact that $\TT \wedge \SS$ is antisymmetric.
-\end{proof}
+    Define a function $\FF$ on elementary wedge products by $\vv_1 \wedge ... \vv_k \overset{\FF}{\mapsto} \alt(\vv_1 \otimes ... \otimes \vv_k)$, and extend it with the seeming multilinearity and seeming-alternatingness of $\wedge$. We claim that the function $\GG$, defined on antisymmetrizations of elementary tensors by $\alt(\vv_1 \otimes ... \otimes \vv_k)
+    \overset{\GG}{\mapsto} \vv_1 \wedge ... \wedge \vv_k$, and extended\footnote{This defnition of $\GG$ is extended via the seeming multilinearity of $\otimes$, the seeming-alternatingness of $\otimes$, and the linearity of $\alt$.} to antisymmetrizations of arbitrary tensors, is the inverse of $\FF$.
 
-\begin{theorem}
-    $\TT \wedge \SS := \alt(\TT \otimes \SS)$ satisfies the desired properties of the wedge product
-\end{theorem}
-
-\begin{proof}
-    \textbf{TO-DO: review this}
-
-   Property (1) follows by checking the definition $\TT \wedge \SS := \alt(\TT \otimes \SS)$. Property (2) was proved in Theorem \ref{ch::exterior_powers::thm::wedge_associativity}. Property (3) follows from the definition of $\alt$. Conditions (3) and (4) are logically equivalent, and conditions (3) and (5) are logically equivalent. 
+    [TO-DO]
 \end{proof}
 
 \section{Exterior powers as vector spaces of functions}

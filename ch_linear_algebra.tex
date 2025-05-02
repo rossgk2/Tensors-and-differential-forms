@@ -988,30 +988,37 @@ This section focuses on two important vector subspaces that come with every line
     \end{itemize}
 \end{proof}
 
+\begin{theorem}
+\label{ch::lin_alg::thm::recursive_preimage_char}
+    (Recursive preimage characterization).
+
+    Let $V$ and $W$ be vector spaces and consider a linear function $\ff:V \rightarrow W$ and $\ww \in W$. If $\ff^{-1}(\{\ww\})$ is nonempty, then 
+
+    \begin{align*}
+        \ff^{-1}(\{\ww\}) = \{\vv + \vv_0 \mid \vv_0 \in \ff^{-1}(\{\mathbf{0}\}) \text{ for all $\vv \in \ff^{-1}(\{\ww\})$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof} \mbox{} \\ \indent
+   ($\subseteq$). Let $\uu \in \ff^{-1}(\{\ww\}) \iff \ff(\uu) = \ww$. If $\vv \in \ff^{-1}(\{\ww\})$ then $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ff^{-1}(\{\mathbf{0}\})$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$, so $\uu$ is in the first set.
+   
+   ($\supseteq$). Suppose $\uu = \vv + \vv_0$ for some $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$, so $\uu \in \ff^{-1}(\{\ww\})$.
+\end{proof}
+
 \begin{defn}
-    (Trivial kernel).
+    (Minimal kernel).
     
-    Since $\{\mathbf{0}\}$ is the smallest (in the sense of set-containment) kernel possible for a linear function, we say that the kernel of a linear function is \textit{trivial} iff it is equal to $\{\mathbf{0}\}$.
+    Since $\{\mathbf{0}\}$ is the smallest (in the sense of set-containment) kernel possible for a linear function, we say that the kernel of a linear function is \textit{minimal} iff it is equal to $\{\mathbf{0}\}$.
 \end{defn}
 
 \begin{theorem}
-\label{ch::lin_alg::thm::linear_fn_1-1_trivial_kernel}
-    (One-to-one linear functions are the linear functions that have trivial kernels). 
-    
-    Let $V$ and $W$ be vector spaces. A linear function $\ff:V \rightarrow W$ is one-to-one iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$. That is, a linear function is one-to-one iff it has a trivial kernel.
+\label{ch::lin_alg::thm::linear_fn_1-1_minimal_kernel}
+    Let $V$ and $W$ be vector spaces. A linear function $\ff:V \rightarrow W$ is one-to-one iff it has a minimal kernel.
 \end{theorem}
 
 \begin{proof}
-    We use the contrapositive and prove that $\ff$ has a nontrivial kernel iff it is not one-to-one.
-    
-    ($\implies$). $\ff$ has a nontrivial kernel $\iff$ there is a nonzero $\vv \in V$ for which $\ff(\vv) = \mathbf{0} \implies$ for any $\vv_1 \in V$ we have $\ff(\vv_1 + \vv) = \ff(\vv_1) + \ff(\vv) = \ff(\vv_1) + \mathbf{0} = \ff(\vv_1) \implies \ff$ is not one-to-one.
-    
-    ($\impliedby$). $\ff$ is not one-to-one $\iff$ for some $\vv_1, \vv_2 \in V$ with $\vv_1 \neq \vv_2$ we have $\ff(\vv_1) = \ff(\vv_2) \implies \ff(\vv_1) - \ff(\vv_2) = \ff(\vv_1 - \vv_2) = \mathbf{0}$. Since $\vv_1 \neq \vv_2$, we know $\vv_1 - \vv_2 \neq \mathbf{0}$, and so $\ff$ has a nontrivial kernel.
+    $\ff$ is one-to-one iff for all $\ww \in W$ the preimage $\ff^{-1}(\{\ww\})$ is a singleton. It is easy to see via the previous theorem that the preimages are singletons iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$.
 \end{proof}
-
-\begin{remark}
-    The idea in the above proof is that vectors in the preimage of every $\ww \in W$ ``differ by an element of the kernel''. You could prove the following fact to formalize this further: $\vv_1, \vv_2 \in \ff^{-1}(\ww)$ for some $\ww \in \ff(V)$ if and only if $\vv_2 = \vv_1 + \vv$, where $\vv_1 \in V$ and $\vv \in \ff^{-1}(\{\mathbf{0}\})$.
-\end{remark}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}
@@ -1029,9 +1036,9 @@ This section focuses on two important vector subspaces that come with every line
 
 \begin{proof}
     \mbox{} \\
-    \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a trivial kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(\vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent, as claimed.
+    \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a minimal kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(\vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent, as claimed.
     
-    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a trivial kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
+    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a minimal kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
     
     Since $V$ is finite-dimensional, there is a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$. Expressing $\vv$ relative to $E$, we have $\ff(\vv) = \ff\Big(\sum_{i = 1}^k ([\vv]_E)_i \ee_i\Big) = \sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. The hypothesis implies that $\ff(\ee_1), ..., \ff(\ee_n)$ are linearly independent, so $([\vv]_E)_i = 0$ for all $i$ is the only solution to $\sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. Thus $([\vv]_E)_i = 0$ for all $i$, i.e., $\vv = \mathbf{0}$.
 \end{proof}
@@ -1101,7 +1108,7 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 \begin{proof}
     We use the contrapositive to show that, assuming the hypotheses, $\ff$ is not one-to-one iff it is not onto.
     
-    $\ff$ is not one-to-one if and only if it has a nontrivial kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this condition is equivalent to $\dim(V) > \dim(\ff(V))$. Since we assumed $\dim(V) = \dim(W)$, this most recent condition is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y_1$ and $Y_2$ are subspaces of the same finite-dimensional vector space, then $\dim(Y_1) > \dim(Y_2)$ iff $Y_1 \supsetneq Y_2$. Using $Y_1 = W$ and $Y_2 = \ff(V)$, we obtain the equivalent condition $W \supsetneq \ff(V)$. This is equivalent to $\ff$ not being onto.
+    $\ff$ is not one-to-one if and only if it has a nonminimal kernel, i.e., iff $\dim(\ff^{-1}(\{\mathbf{0}\})) > 0$. By the main dimension theorem, this condition is equivalent to $\dim(V) > \dim(\ff(V))$. Since we assumed $\dim(V) = \dim(W)$, this most recent condition is the same as $\dim(W) > \dim(\ff(V))$. One can check that if $Y_1$ and $Y_2$ are subspaces of the same finite-dimensional vector space, then $\dim(Y_1) > \dim(Y_2)$ iff $Y_1 \supsetneq Y_2$. Using $Y_1 = W$ and $Y_2 = \ff(V)$, we obtain the equivalent condition $W \supsetneq \ff(V)$. This is equivalent to $\ff$ not being onto.
 \end{proof}
 
 \begin{theorem}
@@ -1113,7 +1120,7 @@ The following theorem tells us that the inverse of a linear isomorphism is also 
 
 \begin{proof}
     \mbox{} \\ \indent
-    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then it has a trivial kernel. The main dimension theorem then implies that $\dim(W) = \dim(V) - \dim(\ff^{-1}(\{\mathbf{0}\})) = \dim(V) - 0 = \dim(V)$.
+    ($\implies$). If $\ff:V \rightarrow W$ is a linear isomorphism, then it has a minimal kernel. The main dimension theorem then implies that $\dim(W) = \dim(V) - \dim(\ff^{-1}(\{\mathbf{0}\})) = \dim(V) - 0 = \dim(V)$.
     
     ($\impliedby$). It suffices to show that every $n$-dimensional vector space is isomorphic to $K^n$. So, let $V$ be an $n$-dimensional vector space, and let $E$ be a basis for $V$. In Definition \ref{ch::lin_alg::defn::coordinates_relative_to_basis} we will define the linear function $[\cdot]_E:V \rightarrow K^n$; Theorem \ref{ch::lin_alg::thm::[]E_invertible} will show that $[\cdot]_E$ is a linear isomorphism.
 \end{proof}
@@ -1212,7 +1219,7 @@ Of more practical importance than the above is the following fact.
     
     Since $[\cdot]_E$ sends basis vectors to basis vectors, it preserves linear independence, and is therefore one-to-one (recall Theorem \ref{ch::lin_alg::thm::one_to_one_linear_fns_are_the_linear_fns_preserving_linear_independence}). Since $[\cdot]_E$ is a one-to-one linear function between vector spaces of the same dimension, it must also be onto. Thus $[\cdot]_E$ is a linear isomorphism.
 
-    %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a trivial kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
+    %Alternatively, one can see that $[\cdot]_E$ is linear by checking that it has a minimal kernel: if $[\cdot]_E(\vv) = \mathbf{0}$, then the coordinates of $\vv$ relative to $E$ are all zero, so $\vv = \mathbf{0}$.
 \end{proof}
 
 \newpage
@@ -3032,8 +3039,8 @@ We first present a recursive characterization of solutions to linear equations. 
         \ff(\vv) = \ww \text{ for all $\vv \in V$}.
     \end{align*}
     
-    When the set of solutions $\{\text{solns}\}$ is nonempty, it can be described in terms of any particular solution:
-
+    The set of solutions $\{\text{solns}\}$ is defined to be the preimage of $\{\ww\}$ under $\ff$. Recall from Theorem [...] that when it is nonempty, it can be described in recursively:
+    
     \begin{align*}
         \{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}.
     \end{align*}
@@ -3651,10 +3658,10 @@ We address this now. In order to solve a linear equation, we will transform it i
 
 \textbf{(F) Finding $\ker(\AA)$}
 \begin{enumerate}    
-    \item $\AA$ is invertible (and thus has a trivial kernel) iff $\rref(\AA) = \II$
+    \item $\AA$ is invertible (and thus has a minimal kernel) iff $\rref(\AA) = \II$
     \begin{itemize}
         \item    
-        ($\implies$). We prove the contrapositive, $\rref(\AA) \neq \II \implies \text{$\AA$ is not invertible}$. Suppose $\rref(\AA) \neq \II$, and consider the augmented matrix $(\rref(\AA) \mid \mathbf{0})$. Since $\rref(\AA) \neq \II$, then for some $i$ the set $\{j \mid \text{$j$ is a free column in the $i$th row of $\rref((\AA \mid \mathbf{0}))$}\}$ is nonempty. The $i$th row of $(\rref(\AA) \mid \mathbf{0})$ then corresponds to the equation $v_i + \sum_j c_j w_j = 0$. Since the $w_j$ are linearly independent [???], then $v_i = -\sum_j w_j \neq 0$. This means that the solution $\vv \in K^n$ to $\AA \vv = \mathbf{0}$ has a nonzero $i$th component, and is thus itself nonzero; $\vv \neq \mathbf{0}$. The kernel of $\AA$ is therefore nontrivial, so $\AA$ is not invertible. 
+        ($\implies$). We prove the contrapositive, $\rref(\AA) \neq \II \implies \text{$\AA$ is not invertible}$. Suppose $\rref(\AA) \neq \II$, and consider the augmented matrix $(\rref(\AA) \mid \mathbf{0})$. Since $\rref(\AA) \neq \II$, then for some $i$ the set $\{j \mid \text{$j$ is a free column in the $i$th row of $\rref((\AA \mid \mathbf{0}))$}\}$ is nonempty. The $i$th row of $(\rref(\AA) \mid \mathbf{0})$ then corresponds to the equation $v_i + \sum_j c_j w_j = 0$. Since the $w_j$ are linearly independent [???], then $v_i = -\sum_j w_j \neq 0$. This means that the solution $\vv \in K^n$ to $\AA \vv = \mathbf{0}$ has a nonzero $i$th component, and is thus itself nonzero; $\vv \neq \mathbf{0}$. The kernel of $\AA$ is therefore nonminimal, so $\AA$ is not invertible. 
 
         ($\impliedby$). If $\rref(\AA) = \II$ then $\EE_k ... \EE_1 \AA = \II$ and thus $\AA^{-1} = \EE_1^{-1} ... \EE_k^{-1}$.
     \end{itemize}
@@ -3671,7 +3678,7 @@ We address this now. In order to solve a linear equation, we will transform it i
 
 misc.
 \begin{itemize}
-    \item test for linear independence: $\vv_1, ..., \vv_k$ linearly independent iff the kernel of $\begin{pmatrix} \vv_1 & \hdots & \vv_k \end{pmatrix}$ is trivial. i.e. if its RREF is $\II$
+    \item test for linear independence: $\vv_1, ..., \vv_k$ linearly independent iff the kernel of $\begin{pmatrix} \vv_1 & \hdots & \vv_k \end{pmatrix}$ is minimal. i.e. if its RREF is $\II$
     \item row operations don't change the kernel and column operations don't change the image
 \end{itemize}
 
@@ -4890,7 +4897,7 @@ As a last sidenote, the following theorem gives some justification as to why our
 \end{theorem}
 
 \begin{proof}
-   Consider the contrapositive. Some nonzero eigenvector $\vv$ has $0$ as its eigenvalue iff $\ff$ has a nontrivial kernel, which is equivalent to $\ff$ not being invertible.
+   Consider the contrapositive. Some nonzero eigenvector $\vv$ has $0$ as its eigenvalue iff $\ff$ has a nonminimal kernel, which is equivalent to $\ff$ not being invertible.
 \end{proof}
 
 \begin{remark}
