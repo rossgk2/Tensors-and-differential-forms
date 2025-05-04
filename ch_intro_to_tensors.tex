@@ -45,7 +45,7 @@ The following definition gives the answer and formalizes this notion. ``Multilin
 
 \begin{defn}
 \label{ch::motivated_intro::defn::tensor_product_space}
-    \smallcite{book::SM}{307} (Tensor product space).
+    \smallcite{book_SM}{307} (Tensor product space).
     
     Let $V_1, ..., V_k$ be finite-dimensional vector spaces over a field $K$. The \textit{tensor product space} $V_1 \otimes ... \otimes V_k$ is defined to be the vector space over $K$ whose elements are from the set $V_1 \times ... \times V_k$, where the elements are also subject to an equivalence relation $=$, which will be specified soon. We also denote a typical element of $V_1 \otimes ... \otimes V_k$ as $\vv_1 \otimes ... \otimes \vv_k$, rather than as $(\vv_1, ..., \vv_k)$. 
     
@@ -597,6 +597,8 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
     The \textit{dual transformation of $\ff$}, also called the \textit{transpose of $\ff$}, is the linear function $\ff^*:W^* \rightarrow V^*$ defined by $\ff^*(\psi) = \psi \circ \ff$.
 \end{defn}
 
+The following theorem reveals why the dual transformation is sometimes referred to as the transpose.
+
 \begin{theorem}
     (Dual transformation is represented by transpose matrix).
 
@@ -608,12 +610,6 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
     
     The $j$th column of $[\ff^*(F^*)]_{E^*}$ is $[\ff^*(\delta^j)]_{E^*}$. The $i$th entry of this column is $([\ff^*(\delta^j)]_{E^*})_i$. By Theorem \ref{ch::intro_to_tensors::thm::coords_vector_dual_vector}, we have $([\ff^*(\delta^j)]_{E^*})_i = \ff^*(\delta^j)(\ee_i)$. We have $\ff^*(\delta^j)(\ee_i) = (\delta^j \circ \ff)(\ee_i) = \delta^j(\ff(\ee_i)) = ([\ff(\ee_i)]_F)_j$, which is the $ji$ entry of $[\ff(E)]_F$, i.e., the $ij$ entry of $[\ff(E)]_F^\top$.
 \end{proof}
-
-\begin{remark}
-    (Motivations for defining the dual transformation).
-    
-    The previous theorem reveals a new way to motivate the definition of the dual transformation. The first motivated definition, which we have already seen in Definition \ref{ch::motivated_intro::defn::dual_transf}, is ``given a linear function $\ff:V \rightarrow W$, the dual transformation is the natural linear function $W^* \rightarrow V^*$''. The second motivated definition, which is informed by the previous theorem, is ``if $\AA$ is the matrix of $\ff$ with respect to some bases, what linear transformation does $\AA^\top$ correspond to?''.
-\end{remark}
 
 \begin{theorem}
      (Dual of a composition).
@@ -627,7 +623,21 @@ For more on this theory of duality, see Derivation \ref{ch::appendix::deriv::fun
     For all $\psi \in Y^*$ we have $(\gg \circ \ff)^*(\psi) = \psi \circ (\gg \circ \ff) = (\psi \circ \gg) \circ \ff = \gg^*(\psi) \circ \ff$, where $\gg^*(\psi) \in V^*$. Then for all $\psi \in Y^*$ we have $\gg^*(\psi) \circ \ff = \ff^*(\gg^*(\psi)) = (\ff^* \circ \gg^*)(\psi)$.
 \end{proof}
 
-\newpage
+\begin{theorem}
+\label{ch::lin_alg::rmk::det_dual_invariant}
+    (Determinant is dual-invariant).
+    
+    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Consider also the dual $\ff:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then $\det(\ff^*) = \det(\ff)$.
+\end{theorem}
+
+\begin{proof}
+    Recall from\footnotemark condition (3) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn} that if $\AA$ is the matrix of $\ff$ relative to orthonormal bases $\hU_1$ and $\hU_2$, then the matrix of $\ff^*$ relative to the induced dual bases $\hU_2^*$ and $\hU_1^*$ is $\AA^\top$. Since the determinant of a matrix is transpose-invariant (recall Theorem \ref{ch::lin_alg::thm::det_transpose_invariant},) we have $\det(\ff) = \det(\AA) = \det(\AA^\top) = \det(\ff^*)$.
+
+    \footnotetext
+    {
+        Technically, the equivalent conditions of the definition we reference only apply to linear functions $V \rightarrow V$. This is not an issue because $V$ and $W$ have the same dimension; if we want to be very formal, we can use the linear function $\widetilde{\ff}:V \rightarrow V$ that is obtained from $\ff$ by identifying $W \cong V$ with the identification that sends basis vectors of $W$ to basis vectors of $V$.
+    }
+\end{proof}
 
 \section{$(p, q)$ tensors}
 

@@ -5,7 +5,7 @@ This chapter is divided into three parts. First, we introduce basic notions of \
 
 \section{Discrete differental geometry}
 
-In this section, we follow Section 4.8 of \cite{book::DDG}, and translate concepts from ``regular'' differential geometry over to their discrete counterparts. To begin our translation of concepts, we recall that the ``regular'' differential forms of the previous chapter lived on smooth manifolds WWBOC. \textit{Discrete differential forms} will live on \textit{simplicial complexes}, or \textit{meshes}, that are built out of \textit{simplices}.
+In this section, we follow Section 4.8 of \cite{book_DDG}, and translate concepts from ``regular'' differential geometry over to their discrete counterparts. To begin our translation of concepts, we recall that the ``regular'' differential forms of the previous chapter lived on smooth manifolds WWBOC. \textit{Discrete differential forms} will live on \textit{simplicial complexes}, or \textit{meshes}, that are built out of \textit{simplices}.
 
 \begin{defn}
     (Oriented $k$-simplex in $\R^n$).
@@ -168,7 +168,7 @@ where $M$ is a smooth $2$-manifold embedded in $\R^3$, $\FF:M \rightarrow \R^3$ 
 
 Here, the $\Delta$ on the right side of this definition is the Laplacian operator on scalar-valued functions, $\Delta = \div \circ \grad$.
 
-It can be shown that $\Delta \FF = 2H\hat{\nn}$, where $H$ is the mean curvature\footnote{There are various ways to measure the curvature of a surface at a point. The mean curvature is one of these ways.} and $\hat{\nn}$ is the unit normal (see \cite[p. 114]{book::DDG}). Thus $\FF$ satisfies the above PDE iff, one can stay on the surface by going in the direction of the normal at a point, with strength proportional to the mean curvature at that point. More briefly, solving the above PDE is a formal way to ``smooth out'' the surface $M$ parameterized by $\FF$.
+It can be shown that $\Delta \FF = 2H\hat{\nn}$, where $H$ is the mean curvature\footnote{There are various ways to measure the curvature of a surface at a point. The mean curvature is one of these ways.} and $\hat{\nn}$ is the unit normal (see \cite[p. 114]{book_DDG}). Thus $\FF$ satisfies the above PDE iff, one can stay on the surface by going in the direction of the normal at a point, with strength proportional to the mean curvature at that point. More briefly, solving the above PDE is a formal way to ``smooth out'' the surface $M$ parameterized by $\FF$.
 
 In order to solve the PDE $\frac{\pd \FF}{\pd t} = \Delta \FF$, we will set $\GG := \Delta \FF$ and consider the more abstract problem of
 
@@ -319,7 +319,7 @@ So it remains to compute $\langle \hnabla \phi_{\pp_j}, \hnabla \phi_{\pp_i} \ra
     \begin{figure}[H]
         \centering
         \includegraphics{images/fem_cotan_lemma1.PNG}
-        \caption{\cite[p. 105]{book::DDG}}
+        \caption{\cite[p. 105]{book_DDG}}
     \end{figure}
 \end{lemma}
 
@@ -343,7 +343,7 @@ So it remains to compute $\langle \hnabla \phi_{\pp_j}, \hnabla \phi_{\pp_i} \ra
     \begin{figure}[H]
         \centering
         \includegraphics{images/fem_cotan_lemma2.PNG}
-        \caption{\cite[p. 106]{book::DDG}}
+        \caption{\cite[p. 106]{book_DDG}}
     \end{figure}
 \end{lemma}
 
@@ -466,7 +466,7 @@ So it remains to compute $\langle \hnabla \phi_{\pp_j}, \hnabla \phi_{\pp_i} \ra
     \begin{figure}[H]
         \centering
         \includegraphics{images/fem_cotan_lemma3.PNG}
-        \caption{\cite[p. 106]{book::DDG}}
+        \caption{\cite[p. 106]{book_DDG}}
     \end{figure}
 \end{lemma}
 
@@ -509,7 +509,7 @@ So it remains to compute $\langle \hnabla \phi_{\pp_j}, \hnabla \phi_{\pp_i} \ra
     \begin{figure}[H]
         \centering
         \includegraphics{images/fem_cotan_lemma4.PNG}
-        \caption{\cite[p. 106]{book::DDG}}
+        \caption{\cite[p. 106]{book_DDG}}
     \end{figure}
 \end{lemma}
 
@@ -648,7 +648,7 @@ We only need one more lemma to complete our discretization of the Laplacian with
     \begin{figure}[H]
         \centering
         \includegraphics{images/DEC_cotan_formula.PNG}
-        \caption{The diagram, which is from \cite[p. 110]{book::DDG}, uses $e$ and $e^*$ to denote $e_{ij}$ and $e_{ij}^*$.}
+        \caption{The diagram, which is from \cite[p. 110]{book_DDG}, uses $e$ and $e^*$ to denote $e_{ij}$ and $e_{ij}^*$.}
     \end{figure}
     
     Since Lemma \ref{ch::ddg:lemma::cotan_w_h_lemma} shows that the width-height ratio $\frac{2|e_{ij}^*|}{|e_{ij}|}$ is $\frac{2|e_{ij}^*|}{|e_{ij}|} = \cot(\alpha_j) + \cot(\beta_j)$, then
@@ -1001,13 +1001,13 @@ Finally, we are ready to present an expression for square of the normed residual
 
 Recall that $||*dz - idz||$ measures how much a map $z$ fails to be angle-preserving. We want to minimize $||*dz - idz||$, i.e., minimize $||*dz - idz||^2$, to produce charts which are as close as possible to being perfectly angle-preserving.
 
-According to \cite[p. 126]{book::DDG}, the trick to solving this minimization problem is to pick appropriate constraints. We don't want to pick constraints that are too loose, and we don't want to pick constraints that are too rigid. An example of a constraint that is too rigid is that of fixing the boundary of $M$. Why is this constraint ``too rigid''? Well, since $d\cj{z} \wedge dz = d(\cj{z} dz)$, we can use Stokes' theorem to express $A(z)$ as an integral over the boundary:
+According to \cite[p. 126]{book_DDG}, the trick to solving this minimization problem is to pick appropriate constraints. We don't want to pick constraints that are too loose, and we don't want to pick constraints that are too rigid. An example of a constraint that is too rigid is that of fixing the boundary of $M$. Why is this constraint ``too rigid''? Well, since $d\cj{z} \wedge dz = d(\cj{z} dz)$, we can use Stokes' theorem to express $A(z)$ as an integral over the boundary:
 
 \begin{align*}
     A(z) = -\frac{i}{2} \int_M d \cj{z} \wedge dz = -\frac{i}{2} \int_M d(\cj{z} dz) = -\frac{i}{2} \int_{\pd M} \cj{z} dz.
 \end{align*}
 
-If the boundary is fixed, then $A(z)$ is a constant, so minimizing $||*dz - idz||^2 = 2\dlangle \Delta z, z \drangle - 4A(z)$ is the same as minimizing $\dlangle \Delta z, z \drangle$. But $\dlangle \Delta z, z \drangle$ is positive and quadratic, so the minimum of $\dlangle \Delta z, z \drangle$ occurs when $\nabla z = \mathbf{0}$, i.e., when $\Delta z = \div(\nabla z) = 0$. The fix proposed by \cite{book::DDG} is to solve the following minimization problem:
+If the boundary is fixed, then $A(z)$ is a constant, so minimizing $||*dz - idz||^2 = 2\dlangle \Delta z, z \drangle - 4A(z)$ is the same as minimizing $\dlangle \Delta z, z \drangle$. But $\dlangle \Delta z, z \drangle$ is positive and quadratic, so the minimum of $\dlangle \Delta z, z \drangle$ occurs when $\nabla z = \mathbf{0}$, i.e., when $\Delta z = \div(\nabla z) = 0$. The fix proposed by \cite{book_DDG} is to solve the following minimization problem:
 
 \begin{align*}
     \min_z & ||*dz - idz|| \\

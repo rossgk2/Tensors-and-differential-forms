@@ -1,7 +1,7 @@
 \chapter{Manifolds}
 \label{ch::manifolds}
 
-This chapter follows various parts of \cite{book::SM} and sets the stage for differential forms. Differential forms will live on and be integrated over \textit{smooth manifolds}, which can be thought of as ``multidimensional surfaces''. We begin the chapter by working simply with \textit{manifolds}, then introduce the notions of \textit{boundary} and \textit{corners} on a manifold.
+This chapter follows various parts of \cite{book_SM} and sets the stage for differential forms. Differential forms will live on and be integrated over \textit{smooth manifolds}, which can be thought of as ``multidimensional surfaces''. We begin the chapter by working simply with \textit{manifolds}, then introduce the notions of \textit{boundary} and \textit{corners} on a manifold.
 
 We will discuss the \textit{tangent space} at a point on a manifold, and use the machinery of \textit{tangent vectors} to set up a coordinate-free method of differentiation on smooth manifolds, called the \textit{differential}. In Theorems \ref{ch::manifolds::thm::induced_bases_in_a_chart} and \ref{ch::manifolds::thm::coords_tangent_vectors_cotangent_vectors}, we see a duality between coordiantes of tangent vectors and \textit{tangent covectors} that is reminiscent of the duality between coordinates of vectors and covectors. Lastly, we discuss orientations of manifolds in preparation for the integration of the next chapter.
 \section{Introduction to manifolds}
@@ -9,7 +9,7 @@ We will discuss the \textit{tangent space} at a point on a manifold, and use the
 \begin{defn}
     \label{ch::manifolds::defn::manifold}
     
-    \smallcite{book::SM}{2} (Manifold). 
+    \smallcite{book_SM}{2} (Manifold). 
     
     An \textit{$n$-manifold} is a topological space $M$ that is...
     
@@ -21,13 +21,13 @@ We will discuss the \textit{tangent space} at a point on a manifold, and use the
 \end{defn}
 
 \begin{theorem}
-    \smallcite{book::SM}{3} (Topological invariance of dimension).
+    \smallcite{book_SM}{3} (Topological invariance of dimension).
     
-    A nonempty $n$-manifold is homeomorphic to an $m$-dimensional manifold if and only if $n = m$. (See \cite{book::SM} for proof).
+    A nonempty $n$-manifold is homeomorphic to an $m$-dimensional manifold if and only if $n = m$. (See \cite{book_SM} for proof).
 \end{theorem}
 
 \begin{defn}
-    \smallcite{book::SM}{25} (Closed $n$-dimensional upper half-space). 
+    \smallcite{book_SM}{25} (Closed $n$-dimensional upper half-space). 
     
     Consider $\R^n$ with the standard topology. We define the \textit{closed $n$-dimensional half space} to be the topology
     
@@ -50,7 +50,7 @@ We will discuss the \textit{tangent space} at a point on a manifold, and use the
 Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$ containing a point $\pp \in U$, there is a homeomorphism $\xx:U \subseteq M \rightarrow \R^n$, where $\xx(\pp) = (x^1(\pp), ..., x^{n - 1}(\pp), 0)$ is in $\pd \H^n$. Then, in analogy to the notion of ``locally Eulidean'' introduced in the definition of a manifold, we can say that the open subset $U \subseteq M$ ``looks like a piece of the boundary of $\H^n$'', or that ``$M$ locally (near $\pp$) looks like a piece of the boundary of $\H^n$''. This motivates the following definition.
 
 \begin{defn}
-    \smallcite{book::SM}{25} (Manifold with boundary). 
+    \smallcite{book_SM}{25} (Manifold with boundary). 
     
     An \textit{$n$-manifold with boundary} is a topological space $M$ that is...
     
@@ -63,7 +63,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{defn}
 
 \begin{remark}
-    \smallcite{book::SM}{26} (Topological interior and boundary vs. manifold interior and boundary).
+    \smallcite{book_SM}{26} (Topological interior and boundary vs. manifold interior and boundary).
         
     Let $M$ be an $n$-manifold with boundary. We can obtain the \textit{topological} interior and \textit{topological} boundary of $M$ by regarding $M$ as a topological space and taking $\iint(M), \pd M$ in the usual topological senses of interior and boundary (see Section \ref{ch::topology::section::int_cl_bdy} of Chapter \ref{ch::topology}). In general, the topological interior and topological boundary are \textit{not} the same as the manifold interior and manifold boundary.
         
@@ -79,7 +79,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{remark}
 
 \begin{defn}
-    \smallcite{book::SM}{25} (Manifold interior and boundary).
+    \smallcite{book_SM}{25} (Manifold interior and boundary).
     
     The \textit{(manifold) interior of $M$} is the set of interior points in $M$, and is denoted $\iint(M)$. The \textit{(manifold) boundary of $M$} is set of all boundary points in $M$, and is denoted $\pd M$.
 \end{defn}
@@ -90,7 +90,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 
 \begin{defn}
 \label{ch::manifolds::defn::chart}
-    \smallcite{book::SM}{4} (Chart). 
+    \smallcite{book_SM}{4} (Chart). 
     
     Let $M$ be an $n$-manifold. A \textit{(coordinate) chart} on $M$ is a pair $(U, \xx)$, where $\xx:U \rightarrow V \subseteq \R^n$ is a function from an open subset $U \subseteq M$, which is called the \textit{domain} of the chart, to an open subset $V \subseteq \R^n$. Since $\xx(\pp) = \begin{pmatrix} x^1(\pp) \\ \vdots \\ x^n(\pp) \end{pmatrix}$, we often refer to the component functions $\{x^i\}_{i = 1}^n$ as \textit{(local) coordinates}. The component functions are local in the sense that their domain is $U$, rather than all of $M$.
     
@@ -98,14 +98,14 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{defn}
 
 \begin{defn}
-    \smallcite{book::SM}{13} (Atlas).
+    \smallcite{book_SM}{13} (Atlas).
     
     Let $M$ be an $n$-manifold with or without corners. An \textit{atlas} for $M$ is a collection of charts $\{(U_\alpha, \xx_\alpha)\}$ whose domains cover $M$, $M = \cup_\alpha U_\alpha$.
 \end{defn}
 
 \begin{defn}
 \label{ch::manifolds::defn::coord_representation_of_fn_on_manifold}
-    \smallcite{book::SM}{33} (Coordinate representations of functions on manifolds).
+    \smallcite{book_SM}{33} (Coordinate representations of functions on manifolds).
 
     Let $M$ and $N$ be manifolds, and consider a function $\FF:M \rightarrow N$. Let $(U, \xx)$ be a chart on $M$ about $\pp \in M$ and let $(V, \yy)$ be a chart on $N$ about $\FF(\pp) \in N$. The \textit{coordinate representation of $\FF:U \subseteq M \rightarrow V \subseteq N$ relative to the charts $(U, \xx)$ and $(V, \yy)$} is the function $\tFF_{(U, \xx), (V, \yy)} = \yy \circ \FF \circ \xx^{-1}:\R^n \rightarrow \R^m$.
     
@@ -117,7 +117,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \section{Smooth manifolds}
 
 \begin{defn}
-    \smallcite{book::SM}{11} (Differentiability classes, smooth functions, and diffeomorphisms).
+    \smallcite{book_SM}{11} (Differentiability classes, smooth functions, and diffeomorphisms).
 
     A function $f:\R^n \rightarrow \R$ is said to be of \textit{differentiability class $C^k$} iff $f$'s partial derivatives of orders $0, 1, ..., k$ are all continuous. In particular, $C^0$ functions are real-valued continuous functions on $M$, and $C^1$ functions are real-valued continuous functions on $M$ whose first partial derivatives are also continuous. A function $f:M \rightarrow \R$ has \textit{differentiability class $C^\infty$} iff $f \in C^k(M)$ for all $k \in \{0, 1, ...\}$.
     
@@ -131,7 +131,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \subsection*{Smooth manifolds with or without boundary}
 
 \begin{deriv}
-    \smallcite{book::SM}{27, 28} (Smooth manifold with or without boundary).
+    \smallcite{book_SM}{27, 28} (Smooth manifold with or without boundary).
     
     Let $M$ be an $n$-manifold with or without boundary. We say that a function $\FF:M \rightarrow \R^k$ is \textit{smooth relative to a chart $(U, \xx)$} of $M$ iff the coordinate representation $\tFF_{(U, \xx)} = \FF \circ \xx^{-1}:\xx(U) \subseteq \R^n \rightarrow \R^k$ is a smooth function.
     
@@ -147,7 +147,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
     
     Since smoothness \textit{is} preserved by composing with a diffeomorphism, we define two charts to be \textit{smoothly compatible} iff the transition map between them is a diffeomorphism, and define a \textit{smooth atlas} for $M$ to be one in which any two charts are smoothly compatible\footnote{Note, the empty function is a diffeomorphism, so this definition covers the case in which $U \cap V = \emptyset$ and the transition map is the empty function.}. A chart that is an element of a smooth atlas is called a \textit{smooth chart}.
     
-    %As is noted in \cite{book::SM}, there are in general ``many possible atlases that give the `same' smooth structure, in that they all determine the same collection of smooth functions on $M$''. So that we can deal with a concrete choice of atlas, we use the maximal smooth atlas: the union of all smooth atlases. No generality is lost when we take our atlas on $M$ to be the maximal one, since all other atlases are contained in the maximal atlas.
+    %As is noted in \cite{book_SM}, there are in general ``many possible atlases that give the `same' smooth structure, in that they all determine the same collection of smooth functions on $M$''. So that we can deal with a concrete choice of atlas, we use the maximal smooth atlas: the union of all smooth atlases. No generality is lost when we take our atlas on $M$ to be the maximal one, since all other atlases are contained in the maximal atlas.
 \end{deriv}
 
 \begin{defn}
@@ -163,20 +163,20 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{defn}
 
 \begin{example}
-    \smallcite{book::SM}{20} Graphs of smooth functions into $\R^k$ are smooth manifolds.
+    \smallcite{book_SM}{20} Graphs of smooth functions into $\R^k$ are smooth manifolds.
     
     %From Lee: ``Suppose that $U \subseteq \R^n$ is an open subset and that $\FF:U \rightarrow \R^k$ is a smooth function. We have already seen in [...] that the graph of $\FF$ is a topological $n$-manifold in the subspace topology. Since $\text{graph}(\FF)$ is covered by the single graph coordinate chart $\xx:\text{graph}(\FF) \rightarrow U$ (the restriction of $\ppi_1$), we can put a canonical smooth structure on $\text{graph}(\FF)$ by declaring the graph coordinate chart $(\text{graph}(\FF), \xx$) to be a smooth chart''.
 \end{example}
 
 
 %\begin{example}
-%    \smallcite{book::SM}{5} (Graphs of continuous functions into $\R^k$ are manifolds).
+%    \smallcite{book_SM}{5} (Graphs of continuous functions into $\R^k$ are manifolds).
     
-%     Let $U \subseteq \R^n$ be open. The \textit{graph} of a function $f:U \rightarrow \R^k$ is the subset $\text{graph}(f) := U \times f(U)$ of $\R^n \times \R^k$. The graph of a continuous function is a manifold. (See \cite{book::SM} for proof).
+%     Let $U \subseteq \R^n$ be open. The \textit{graph} of a function $f:U \rightarrow \R^k$ is the subset $\text{graph}(f) := U \times f(U)$ of $\R^n \times \R^k$. The graph of a continuous function is a manifold. (See \cite{book_SM} for proof).
 %\end{example}
 
 %\begin{example}
-%    \smallcite{book::SM}{20}
+%    \smallcite{book_SM}{20}
     
 %    Level sets are also smooth manifolds.
 %\end{example}
@@ -184,7 +184,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \subsection*{Manifolds with or without boundary or corners}
 
 \begin{defn}
-    \smallcite{book::SM}{415} (Manifold with or without boundary or corners).
+    \smallcite{book_SM}{415} (Manifold with or without boundary or corners).
         
     Just as we used $\H^n$ to construct a notion of ``manifold boundary'', we will use the topological closure of $\H^n$ to construct a notion of ``corners on a manifold''. Observe that the closure of $\H^n$ is
         
@@ -203,19 +203,19 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{defn}
 
 \begin{remark}
-    \smallcite{book::SM}{27} (Empty boundary and no corners).
+    \smallcite{book_SM}{27} (Empty boundary and no corners).
     
     Every smooth manifold is a smooth manifold with boundary, where the manifold boundary is empty. Every smooth manifold with boundary is a smooth manifold with corners, where the set of corner points is empty.
 \end{remark}
 
 \begin{theorem}
-    \smallcite{book::SM}{26} \smallcite{book::SM}{416} (Topological invariance of interior, boundary, and corner points).
+    \smallcite{book_SM}{26} \smallcite{book_SM}{416} (Topological invariance of interior, boundary, and corner points).
         
-    If $\pp \in M$ is an interior, boundary, or corner point in some chart, then it is an interior, boundary, or corner point, respectively, in all charts. Furthermore, every interior point is neither a boundary point nor a corner point. (See \cite{book::SM} for the proofs).
+    If $\pp \in M$ is an interior, boundary, or corner point in some chart, then it is an interior, boundary, or corner point, respectively, in all charts. Furthermore, every interior point is neither a boundary point nor a corner point. (See \cite{book_SM} for the proofs).
 \end{theorem}
 
 \begin{defn}
-    \smallcite{book::SM}{4} \smallcite{book::SM}{415} (Classification of charts and points).
+    \smallcite{book_SM}{4} \smallcite{book_SM}{415} (Classification of charts and points).
     
     We classify a chart $(U, \xx)$ on $M$ as follows. $(U, \xx)$ is a/an...
     
@@ -235,7 +235,7 @@ Now let $M$ be a manifold, and suppose that for some open subset $U \subseteq M$
 \end{defn}
 
 \begin{remark}
-    \smallcite{book::SM}{415} (Manifolds with corners are \textit{topologically} the same as manifolds with boundary).
+    \smallcite{book_SM}{415} (Manifolds with corners are \textit{topologically} the same as manifolds with boundary).
     
     The title of this remark is true because $\cl(\H^n)$ is homeomorphic to $\H^n$. \textit{Smooth} manifolds with corners are different than \textit{smooth} manifolds with boundary because the ``smoothly compatible'' criterion for charts with corners is different from the analagous criterion for boundary charts.
 \end{remark}
@@ -251,7 +251,7 @@ In multivariable calculus, one can consider tangent vectors that reside in the t
 To start, we formalize the notion of what it means to consider a vector that is anchored at a point.
 
 \begin{defn}
-    \smallcite{book::SM}{51} (Vectors ``anchored'' at a point).
+    \smallcite{book_SM}{51} (Vectors ``anchored'' at a point).
     
     Let $M$ be a $n$-manifold. Given $\pp \in M$, we define $\R^n_\pp$ to be the vector space $\R^n \times \{\pp\}$. We use the notation $\vv_\pp := (\vv, \pp)$ to denote a typical element of $\R^n_\pp$. Elements of $\R^n_\pp$ are often called ``geometric tangent vectors''.
 \end{defn}
@@ -270,7 +270,7 @@ With the previous notion formalized, we now discover, strangely enough, that geo
 \end{theorem}
 
 \begin{proof}
-    First, recall from calculus that $\frac{\pd}{\pd \vv}\Big|_\pp$ is linear with respect to $\vv$ (see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}). From this it follows that $\Big\{ \frac{\pd}{\pd \see_1}\Big|_\pp, ..., \frac{\pd}{\pd \see_n}\Big|_\pp \Big\}$ is a basis for $\Big\{ \frac{\pd}{\pd \vv}\Big|_\pp \mid \vv \in \R^n \Big\}$, the space of directional derivative functions at $\pp$. Thus, the vector space of directional derivative functions at $\pp$ is $n$-dimensional. Since $\R^n_\pp$ and the space of directional derivative functions at $\pp$ have the same dimension, we can show that $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is an isomorphism by proving that it has a trivial kernel\footnote{We adapt the argument from \cite[p. 53]{book::SM} (which is intended for a slightly different purpose in that book).}.
+    First, recall from calculus that $\frac{\pd}{\pd \vv}\Big|_\pp$ is linear with respect to $\vv$ (see Remark \ref{ch::calc::rmk::directional_deriv_linear_wrt_v}). From this it follows that $\Big\{ \frac{\pd}{\pd \see_1}\Big|_\pp, ..., \frac{\pd}{\pd \see_n}\Big|_\pp \Big\}$ is a basis for $\Big\{ \frac{\pd}{\pd \vv}\Big|_\pp \mid \vv \in \R^n \Big\}$, the space of directional derivative functions at $\pp$. Thus, the vector space of directional derivative functions at $\pp$ is $n$-dimensional. Since $\R^n_\pp$ and the space of directional derivative functions at $\pp$ have the same dimension, we can show that $\vv_\pp \mapsto \frac{\pd}{\pd \vv}\Big|_\pp$ is an isomorphism by proving that it has a trivial kernel\footnote{We adapt the argument from \cite[p. 53]{book_SM} (which is intended for a slightly different purpose in that book).}.
     
     So, assume $\vv_\pp$ is sent to the zero function. We need to show that this implies $\vv_\pp = \mathbf{0}_\pp$. 
         
@@ -299,7 +299,7 @@ Now, we investigate the vector space of ``directional derivative functions'' at 
 Specifically, one can quickly check that if a function satisfies the below condition of being a \textit{derivation}, then it is a directional derivative function. 
 
 \begin{defn}
-    \smallcite{book::SM}{52} (Derivation at $\pp \in \R^n$).
+    \smallcite{book_SM}{52} (Derivation at $\pp \in \R^n$).
     
     A \textit{derivation at $\pp \in \R^n$} is a linear function $v_\pp:C^\infty(\R^n \rightarrow \R) \rightarrow \R$ which satisfies a resemblance of the product rule,
     
@@ -312,7 +312,7 @@ It is relatively quick to check that every ``directional derivative function'' i
 
 \begin{lemma}
 \label{ch::manifolds::lemma::properties_of_derivations_Rn}
-    \smallcite{book::SM}{53} (Properties of derivations at $\pp \in \R^n$). 
+    \smallcite{book_SM}{53} (Properties of derivations at $\pp \in \R^n$). 
     
     Consider $\pp \in \R^n$ and let $v_\pp$ be a derivation at $\pp$. For any $f, g \in C^\infty(\R^n \rightarrow \R)$, we have the following:
     
@@ -347,13 +347,13 @@ It is relatively quick to check that every ``directional derivative function'' i
    \mbox{}
    \\ \indent ($\subseteq$). Showing that every directional derivative function at $\pp \in \R^n$ is a derivation at $\pp$ follows straightforwardly from the definition of ``derivation at $\pp \in \R^n$''.
     
-    ($\supseteq$). This direction of the proof is adapted from \cite[p. 53]{book::SM}. Let $\pp \in \R^n$ and let $v_\pp:C^\infty(\R^n \rightarrow \R) \rightarrow \R$ be a derivation. We must show that $v_\pp$ is a directional derivative function at $\pp$; we must find a vector $\vv_\pp \in \R^n_\pp$ for which $v_\pp = \frac{\pd}{\pd \vv}\Big|_\pp$. So, we will find a $\vv_\pp \in \R^n_\pp$ for which 
+    ($\supseteq$). This direction of the proof is adapted from \cite[p. 53]{book_SM}. Let $\pp \in \R^n$ and let $v_\pp:C^\infty(\R^n \rightarrow \R) \rightarrow \R$ be a derivation. We must show that $v_\pp$ is a directional derivative function at $\pp$; we must find a vector $\vv_\pp \in \R^n_\pp$ for which $v_\pp = \frac{\pd}{\pd \vv}\Big|_\pp$. So, we will find a $\vv_\pp \in \R^n_\pp$ for which 
     
     \begin{align*}
         v_\pp(f) = \Big(\frac{\pd}{\pd \vv}\Big|_\pp\Big)(f) \text{ for all $f \in C^\infty(\R^n \rightarrow \R)$.}
     \end{align*}
     
-    We use Taylor's theorem (see \cite[p. 53]{book::SM}) to write $f \in C^\infty(\R^n \rightarrow \R)$ as
+    We use Taylor's theorem (see \cite[p. 53]{book_SM}) to write $f \in C^\infty(\R^n \rightarrow \R)$ as
     
     \begin{align*}
         f(\xx) = f(\pp) 
@@ -423,7 +423,7 @@ Thus, we see that we can identify elements of $\R^n_\pp$ with the coordinate-ind
 
 \begin{theorem}
 \label{ch::manifolds::thm::basis_of_TpRn}
-    \smallcite{book::SM}{54} (A basis of $T_\pp(\R^n)$).
+    \smallcite{book_SM}{54} (A basis of $T_\pp(\R^n)$).
     
     The directional derivative functions $\Big\{ \frac{\pd}{\pd x^i}\Big|_\pp \Big\}_{i = 1}^n = \Big\{ \frac{\pd}{\pd \see^i}\Big|_\pp \Big\}_{i = 1}^n$ form a basis for $T_\pp(\R^n)$.
 \end{theorem}
@@ -439,7 +439,7 @@ Thus, we see that we can identify elements of $\R^n_\pp$ with the coordinate-ind
 Since the notion ``tangent vector to $\pp \in \R^n$'' does not rely upon coordinates, we can extend the notion to smooth manifolds.
 
 \begin{defn}
-    \smallcite{book::SM}{54} (Tangent space to a manifold at a point). 
+    \smallcite{book_SM}{54} (Tangent space to a manifold at a point). 
     
     Let $M$ be a smooth $n$-manifold. A \textit{derivation at $\pp \in M$} is a linear function $v_\pp:C^\infty(M \rightarrow \R) \rightarrow \R$ that satisfies the following product rule:
     
@@ -459,7 +459,7 @@ Since the notion ``tangent vector to $\pp \in \R^n$'' does not rely upon coordin
 \end{remark}
 
 \begin{theorem}
-    \smallcite{book::SM}{54} (Properties of derivations at $\pp \in M$).
+    \smallcite{book_SM}{54} (Properties of derivations at $\pp \in M$).
     
     Let $M$ be a smooth $n$-manifold, let $\pp \in \R^n$, $v_\pp \in T_\pp(\R^n)$ be a tangent vector at $\pp$, and $f, g \in C^\infty(\R^n \rightarrow \R)$. Then
     
@@ -663,7 +663,7 @@ This characterization of the differential is coordinate-free, and therefore prov
 \end{theorem}
 
 \begin{theorem}
-    \smallcite{book::SM}{55} (Properties of differentials). Let $M, N$, and $P$ be smooth manifolds, let $\FF:M \rightarrow N$ and $\GG:N \rightarrow P$ be smooth functions, and let $\pp \in M$. We have the following:
+    \smallcite{book_SM}{55} (Properties of differentials). Let $M, N$, and $P$ be smooth manifolds, let $\FF:M \rightarrow N$ and $\GG:N \rightarrow P$ be smooth functions, and let $\pp \in M$. We have the following:
     
     \begin{itemize}
         \item (Chain rule). $d(\GG \circ \FF)_\pp = d\GG_{\FF(\pp)} \circ d\FF_\pp:T_\pp(M) \rightarrow T_{(\GG \circ \FF)(\pp)}(P)$.
@@ -673,12 +673,12 @@ This characterization of the differential is coordinate-free, and therefore prov
 \end{theorem}
 
 \begin{proof}
-    See \cite{book::SM} for the proof.
+    See \cite{book_SM} for the proof.
 \end{proof}
 
 \begin{theorem}
 \label{ch::manifolds::thm::differential_smooth_map_M_R}
-    \smallcite{book::SM}{281} (Differential of a smooth function $M \rightarrow \R$).
+    \smallcite{book_SM}{281} (Differential of a smooth function $M \rightarrow \R$).
     
     What happens when we take the differential of a smooth function $f:M \rightarrow \R$? Well, by definition of the differential of a smooth function $M \rightarrow N$, we have
     
@@ -725,7 +725,7 @@ This characterization of the differential is coordinate-free, and therefore prov
 
 \begin{theorem}
 \label{ch::manifolds::thm::differential_smooth_function_coords}
-    \smallcite{book::SM}{281} (Differential of a smooth function $M \rightarrow \R$ in a smooth chart).
+    \smallcite{book_SM}{281} (Differential of a smooth function $M \rightarrow \R$ in a smooth chart).
 
     Let $M$ be a smooth $n$-manifold and let $(U, \xx)$ be a smooth chart on $M$. The differential of a smooth function $f:M \rightarrow \R$ obtained by identifying $T_{f(\pp)}(\R) \cong \R$ (see the previous theorem) is given by
     
@@ -893,7 +893,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{remark}
 
 \begin{theorem}
-    \smallcite{book::SM}{64} (Change of coordinates for tangent vectors in terms of basis vectors of $T_\pp(M)$).
+    \smallcite{book_SM}{64} (Change of coordinates for tangent vectors in terms of basis vectors of $T_\pp(M)$).
 
     Theorem \ref{ch::lin_alg::thm::change_of_basis_with_basis_vectors} stated that if $V$ is a finite-dimensional vector space with bases $E$ and $F$, then
 
@@ -946,13 +946,13 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \subsection*{The tangent, cotangent, and tensor bundles}
 
 \begin{defn}
-    \smallcite{book::SM}{65} (Tangent bundle).
+    \smallcite{book_SM}{65} (Tangent bundle).
     
     Let $M$ be a smooth $n$-manifold. The \textit{tangent bundle} of $M$ is the set $T(M) := \bigsqcup_{\pp \in M} T_\pp(M)$, where $\bigsqcup$ denotes a disjoint\footnote{Note that a disjoint union is \textit{not} a ``pairwise disjoint union''. We say $A = \bigsqcup_\alpha A_\alpha$ iff $A = \bigsqcup_\alpha A_\alpha$ and $\cap_\alpha A_\alpha = \emptyset$.} union.
 \end{defn}
 
 \begin{theorem}
-    \smallcite{book::SM}{66} (The tangent bundle is a smooth $2n$-manifold).
+    \smallcite{book_SM}{66} (The tangent bundle is a smooth $2n$-manifold).
     
     For any smooth $n$-manifold $M$; the tangent bundle $T(M)$ has a natural topology and smooth structure that make it into a $2n$-dimensional smooth manifold.
 \end{theorem}
@@ -966,19 +966,19 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{proof}
 
 \begin{defn}
-    \smallcite{book::SM}{276} (Cotangent bundle).
+    \smallcite{book_SM}{276} (Cotangent bundle).
     
     Let $M$ be a smooth $n$-manifold. The \textit{cotangent bundle} of $M$ is the set $T^*(M) := \bigsqcup_{\pp \in M} T_\pp^*(M)$, where $\bigsqcup$ again denotes a disjoint union. Just as was the case with the tangent bundle, the cotangent bundle has a natural topology and smooth structure that make it into a $2n$-dimensional smooth manifold.
 \end{defn}
 
 \begin{defn}
-    \smallcite{book::SM}{316, 317} (Tensor bundle).
+    \smallcite{book_SM}{316, 317} (Tensor bundle).
     
     Let $M$ be a smooth $n$-manifold. The \textit{$(p, q)$ tensor bundle} of $M$ is the set $T_{p, q}(T(M)) := \bigsqcup_{\pp \in M} T_{p, q}(T_\pp(M))$. The tensor bundle has a natural topology and smooth structure that make it into a smooth manifold.
 \end{defn}
 
 \begin{remark}
-    \smallcite{book::SM}{316, 317} (Tangent bundle and cotangent bundle special cases of the tensor bundle).
+    \smallcite{book_SM}{316, 317} (Tangent bundle and cotangent bundle special cases of the tensor bundle).
     
     We have $T^p_0(T(M)) = \bigsqcup_{\pp \in M} (T_\pp(M))^{\otimes p}$ and $T^0_q(T(M)) = \bigsqcup_{\pp \in M} (T_\pp^*(M))^{\otimes p}$. So in particular, $T^1_0(T(M)) = T(M)$, $T^0_1(T(M)) = T^*(M)$.
     
@@ -986,7 +986,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{remark}
 
 \begin{defn}
-    \smallcite{book::SM}{174, 276, 316, 317} (Vector fields, covector fields, and $(p, q)$ tensor fields).
+    \smallcite{book_SM}{174, 276, 316, 317} (Vector fields, covector fields, and $(p, q)$ tensor fields).
     
     Let $M$ be a smooth $n$-manifold and let $A \subseteq M$. A \textit{vector field on $A$} is a continuous function $A \subseteq M \rightarrow T(M)$, a \textit{covector field on $A$} is a continuous function $A \subseteq M \rightarrow T^*(M)$, and a \textit{$(p, q)$ tensor field on $A$} is a continuous function $A \subseteq M \rightarrow T_{p, q}(T(M))$. \textit{Smooth vector fields}, \textit{smooth covector fields}, and \textit{smooth tensor fields} are smooth such functions.
 \end{defn}
@@ -994,7 +994,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \subsection*{Frames and coframes}
 
 \begin{defn}
-    \smallcite{book::SM}{178, 278} (Frames and coframes).
+    \smallcite{book_SM}{178, 278} (Frames and coframes).
     
     Let $M$ be a smooth $n$-manifold and let $(U, \xx)$ be a smooth chart on $M$.
     
@@ -1004,7 +1004,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{defn}
 
 \begin{defn}
-    \smallcite{book::SM}{176, 278} (Coordinate vector fields and coordinate covector fields).
+    \smallcite{book_SM}{176, 278} (Coordinate vector fields and coordinate covector fields).
     
     Let $M$ be a smooth $n$-manifold and let  $(U, \xx)$ be a smooth chart on $M$.
     
@@ -1015,7 +1015,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 
 \begin{defn}
 \label{ch::manifolds::defn::coordinate_frames_coframes}
-    \smallcite{book::SM}{178, 278} (Coordinate frames and coordinate coframes).
+    \smallcite{book_SM}{178, 278} (Coordinate frames and coordinate coframes).
     
     Let $M$ be a smooth manifold and let $(U, \xx)$ be a smooth chart on $M$.
     
@@ -1025,7 +1025,7 @@ If we continue to accept the mnemnoic of the previous theorem, we obtain the fol
 \end{defn}
 
 \begin{defn}
-    \smallcite{book::SM}{278} (Duality of frames and coframes).
+    \smallcite{book_SM}{278} (Duality of frames and coframes).
 
     Let $M$ be a smooth $n$-manifold and let $(U, \xx)$ be a smooth chart on $M$.
     
@@ -1091,7 +1091,7 @@ At this point we are able to formalize the idea of taking the ratio of different
     
 %    Basically slightly generalize ``coordinates of tangent vectors and dual vectors''
     
-%    ``The components of a covector field $\phi$ at $\pp$ relative to $\{\lambda_1, ..., \lambda_n\}$ are the covector fields $([\phi]_{\{\lambda_1, ..., \lambda_n\}})_i$ defined by $([\phi]_{\{\lambda_1, ..., \lambda_n\}})_i|_\pp = \phi_\pp\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)$ \smallcite{book::SM}{277}''
+%    ``The components of a covector field $\phi$ at $\pp$ relative to $\{\lambda_1, ..., \lambda_n\}$ are the covector fields $([\phi]_{\{\lambda_1, ..., \lambda_n\}})_i$ defined by $([\phi]_{\{\lambda_1, ..., \lambda_n\}})_i|_\pp = \phi_\pp\Big(\frac{\pd}{\pd x^i}\Big|_\pp\Big)$ \smallcite{book_SM}{277}''
 %\end{theorem}
 
 %\begin{theorem}
@@ -1104,7 +1104,7 @@ At this point we are able to formalize the idea of taking the ratio of different
 %        \frac{\pd}{\pd y^i} = \sum_{j = 1}^n \frac{\pd x^j}{\pd y^i} \frac{\pd}{\pd x^j}
 %    \end{align*}
     
-%    \smallcite{book::SM}{275}
+%    \smallcite{book_SM}{275}
 
 %\end{theorem}
 
@@ -1122,7 +1122,7 @@ At this point we are able to formalize the idea of taking the ratio of different
     
 %    where $d$ is the differential after identifying $T_{f(\pp)}(\R^n) \cong \R^n$.
     
-%    Given a smooth chart $(U, \xx)$ on $M$, the differential of a smooth function $f:M \rightarrow \R$ is a smooth covector field. \smallcite{book::SM}{281}. 
+%    Given a smooth chart $(U, \xx)$ on $M$, the differential of a smooth function $f:M \rightarrow \R$ is a smooth covector field. \smallcite{book_SM}{281}. 
 %\end{theorem}
 
 \newpage
@@ -1132,7 +1132,7 @@ At this point we are able to formalize the idea of taking the ratio of different
 In Section \ref{ch::antisymmetry::section::orientation}, we defined what it means to orient a finite-dimensional vector space. The key result we motivated was Definition \ref{ch::antisymmetry::defn::orientation_finite_dim_vector_space}, which said: if a basis $E$ of a finite-dimensional vector space $V$ is fixed, than another ordered basis $F$ of $V$ is said to be \textit{positively oriented (relative to $E$)} iff $\det([\FF]_E) > 0$ and \textit{negatively oriented (relative to $E$)} otherwise. Given this definition, we showed in Theorem \ref{ch::antisymmetry::defn::orientation_with_top_degree_wedges} that choosing an element of $\Lambda^{\dim(V)}(V)$ determines an orientation on $V$. We now extend the idea of orientation to manifolds.
 
 \begin{defn}
-    \smallcite{book::SM}{380} (Oriented manifolds).
+    \smallcite{book_SM}{380} (Oriented manifolds).
     
     Let $M$ be an $n$-manifold. We define the notion of orientation on $M$ in the following steps:
     
@@ -1146,7 +1146,7 @@ In Section \ref{ch::antisymmetry::section::orientation}, we defined what it mean
 
 \begin{defn}
 \label{ch::manifolds::defn::orientation_smooth_chart}
-    \smallcite{book::SM}{381, 382} (Orientation of a smooth chart on an oriented manifold).
+    \smallcite{book_SM}{381, 382} (Orientation of a smooth chart on an oriented manifold).
     
     A smooth chart $(U, \xx)$ on an oriented smooth $n$-manifold is said to be \textit{positively oriented} iff the coordiante frame $\{\frac{\pd}{\pd x^i}\}_{i = 1}^n$ is positively oriented, and is said to be \textit{negatively oriented} otherwise.
 \end{defn}
@@ -1162,7 +1162,7 @@ We now present the natural way in which the boundary of a manifold inherits orie
 To describe the inherited orientation on a boundary, we need to define what it means for tangent vectors to be ``inward-pointing'' or ``outward-pointing''.
 
 \begin{defn}
-    \smallcite{book::SM}{118} (Inward- and outward- pointing tangent vectors).
+    \smallcite{book_SM}{118} (Inward- and outward- pointing tangent vectors).
     
     Let $M$ be a smooth $n$-dimensional manifold and let $(U, \xx)$ be a smooth chart on $\pd M$ with $\pp \in U$. We classify tangent vectors in $T_\pp(M)$ as follows.
     
@@ -1180,7 +1180,7 @@ To describe the inherited orientation on a boundary, we need to define what it m
 %\end{example}
 
 \begin{lemma}
-    \smallcite{book::SM}{200, problem 8-4} (Existence of inward- and outward-pointing vector fields on $M$).
+    \smallcite{book_SM}{200, problem 8-4} (Existence of inward- and outward-pointing vector fields on $M$).
     
     There exists a global smooth vector field on $M$ whose restriction to $\pd M$ is everywhere inward-pointing, and one whose restriction to $\pd M$ is everywhere outward-pointing.
 \end{lemma}
@@ -1189,16 +1189,16 @@ Now we can describe the induced orientation on the boundary.
 
 \begin{theorem}
 \label{ch::manifolds::induced_orientation_form_on_bdy}
-    \smallcite{book::SM}{385, 386} (Induced orientation form on the boundary).
+    \smallcite{book_SM}{385, 386} (Induced orientation form on the boundary).
 
-    Let $\omega_M$ be an orientation form on $M$. The previous lemma shows that there exists a vector field $\NN$ nowhere tangent to $\partial M$. Thus, there is an induced orientation form $\omega_{\pd M}$ on the boundary (due to interior multiplication\footnote{We could have put $\NN_\pp$ in any of $\omega_M$'s $n$ argument slots, but we chose to use the first. This choice corresponds to the operation called \textit{interior multiplication}, which you can read about in \cite{book::SM}. See p. 358 and Corollary 14.21 on p. 362.}) defined by $\omega_{\pd M}(v_1|_\pp, ..., v_{n - 1}|_\pp) = \omega_M(\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp)$. The orientation on $\pd M$ induced by $\omega_{\pd M}$ does not depend on the vector field $\NN$ that is nowhere tangent to $\partial M$. 
+    Let $\omega_M$ be an orientation form on $M$. The previous lemma shows that there exists a vector field $\NN$ nowhere tangent to $\partial M$. Thus, there is an induced orientation form $\omega_{\pd M}$ on the boundary (due to interior multiplication\footnote{We could have put $\NN_\pp$ in any of $\omega_M$'s $n$ argument slots, but we chose to use the first. This choice corresponds to the operation called \textit{interior multiplication}, which you can read about in \cite{book_SM}. See p. 358 and Corollary 14.21 on p. 362.}) defined by $\omega_{\pd M}(v_1|_\pp, ..., v_{n - 1}|_\pp) = \omega_M(\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp)$. The orientation on $\pd M$ induced by $\omega_{\pd M}$ does not depend on the vector field $\NN$ that is nowhere tangent to $\partial M$. 
 \end{theorem}
 
 \begin{proof}
     We need to show (1) that $\omega_{\pd M}$ is indeed an orientation form on $\partial M$ and (2) that the orientation induced by $\omega_{\pd M}$ is independent of the choice of the nowhere tangent vector field $\NN$.
         
     \begin{enumerate}
-        \item We need to show that $\omega_{\pd M}$ never vanishes. Note that if $\{e_1|_\pp, ..., e_{n - 1}|_\pp\}$ is a basis for $T_\pp(\pd M)$, then, since $\NN$ is nowhere tangent to $T_\pp(\pd M)$, the set $\{\NN_\pp, e_1|_\pp, ..., e_{n - 1}|_\pp\}$ is a basis for $T_\pp(M)$. Because of this, and as $\omega_M$ is nonvanishing on $M$, then $\omega_{\pd M}$ is also nonvanishing. See \cite[p. 385]{book::SM} for the more precise details.
+        \item We need to show that $\omega_{\pd M}$ never vanishes. Note that if $\{e_1|_\pp, ..., e_{n - 1}|_\pp\}$ is a basis for $T_\pp(\pd M)$, then, since $\NN$ is nowhere tangent to $T_\pp(\pd M)$, the set $\{\NN_\pp, e_1|_\pp, ..., e_{n - 1}|_\pp\}$ is a basis for $T_\pp(M)$. Because of this, and as $\omega_M$ is nonvanishing on $M$, then $\omega_{\pd M}$ is also nonvanishing. See \cite[p. 385]{book_SM} for the more precise details.
     
         \item Let $\NN$ and $\NN'$ be two vector fields that are both nowhere tangent to $\pd M$. We need to show that the ordered bases $E = \{\NN_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp\}$ and $F = \{\NN'|_\pp, v_1|_\pp, ..., v_{n - 1}|_\pp\}$ have the same orientation. To do so, we prove that the determinant of the change of basis matrix between the two ordered bases is positive.
             
@@ -1219,7 +1219,7 @@ As $k$-paralellapiped can be be given the structure of an oriented smooth subman
 \begin{theorem}
 \label{ch::manifolds::thm::oriented_bdy_parallelapiped}
 
-    \smallcite{book::Hubbard}{542 - 544} (Oriented boundary of an $n$-parallelapiped).
+    \smallcite{book_Hubbard}{542 - 544} (Oriented boundary of an $n$-parallelapiped).
     
     Let $M$ be an $n$-manifold, let $\pp \in M$, and consider vectors $v_1|_\pp, ..., v_n|_\pp \in T_\pp(M)$. Let $P_\pp(v_1, ..., v_n)$ denote the $n$-parallelapiped anchored at $\pp$ that is spanned by $v_1|_\pp, ..., v_n|_\pp$. The orientation of the boundary $\pd P_\pp(v_1, ..., v_n)$ is given by 
     

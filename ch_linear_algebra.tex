@@ -995,12 +995,12 @@ This section focuses on two important vector subspaces that come with every line
     Let $V$ and $W$ be vector spaces and consider a linear function $\ff:V \rightarrow W$ and $\ww \in W$. If $\ff^{-1}(\{\ww\})$ is nonempty, then 
 
     \begin{align*}
-        \ff^{-1}(\{\ww\}) = \{\vv + \vv_0 \mid \vv_0 \in \ff^{-1}(\{\mathbf{0}\}) \text{ for all $\vv \in \ff^{-1}(\{\ww\})$}.
+        \ff^{-1}(\{\ww\}) = \{\vv + \vv_0 \mid \vv_0 \in \ff^{-1}(\{\mathbf{0}\})\} \text{ for all $\vv \in \ff^{-1}(\{\ww\})$}.
     \end{align*}
 \end{theorem}
 
 \begin{proof} \mbox{} \\ \indent
-   ($\subseteq$). Let $\uu \in \ff^{-1}(\{\ww\}) \iff \ff(\uu) = \ww$. If $\vv \in \ff^{-1}(\{\ww\})$ then $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ff^{-1}(\{\mathbf{0}\})$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$, so $\uu$ is in the first set.
+   ($\subseteq$). Let $\uu \in \ff^{-1}(\{\ww\})$. For all $\vv \in \ff^{-1}(\{\ww\})$, we have $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $(\uu - \vv) \in \ff^{-1}(\{\mathbf{0}\})$. That is, for all $\vv \in \ff^{-1}(\{\ww\})$ there is a $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$ such that $\uu - \vv = \vv_0$. We conclude that for all $\vv \in \ff^{-1}(\{\ww\})$ there is a $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$ such that $\uu = \vv + \vv_0$; for all $\vv \in \ff^{-1}(\{\ww\})$, we have $\uu \in \{\vv + \vv_0 \mid \vv_0 \in \ff^{-1}(\{\mathbf{0}\})\}$. 
    
    ($\supseteq$). Suppose $\uu = \vv + \vv_0$ for some $\vv_0 \in \ff^{-1}(\{\mathbf{0}\})$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$, so $\uu \in \ff^{-1}(\{\ww\})$.
 \end{proof}
@@ -1017,7 +1017,7 @@ This section focuses on two important vector subspaces that come with every line
 \end{theorem}
 
 \begin{proof}
-    $\ff$ is one-to-one iff for all $\ww \in W$ the preimage $\ff^{-1}(\{\ww\})$ is a singleton. It is easy to see via the previous theorem that the preimages are singletons iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$.
+    $\ff$ is one-to-one iff for all $\ww \in W$ the preimage $\ff^{-1}(\{\ww\})$ is either empty or a singleton. It is easy to see via the previous theorem that the nonempty preimages are singletons iff $\ff^{-1}(\{\mathbf{0}\}) = \{\mathbf{0}\}$.
 \end{proof}
 
 \begin{theorem}
@@ -1038,7 +1038,7 @@ This section focuses on two important vector subspaces that come with every line
     \mbox{} \\
     \indent ($\impliedby$). Suppose that $\ff$ is one-to-one and that $\vv_1, ..., \vv_k$ are linearly independent. Since $\ff$ is one-to-one, it has a minimal kernel, and thus for any $c_1, ..., c_k \in K$ we have that $\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$. Since $\vv_1, ..., \vv_k$ are linearly independent, $c_1 \vv_1 + ... + c_k \vv_k = \mathbf{0}$ implies that the $c_i$'s are all $0$. In all, we have that ``$\ff(c_1 \vv_1 + ... + c_k \vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Since $\ff$ is linear, this statement becomes  ``$c_1 \ff(\vv_1) + ... + c_k \ff(\vv_k) = \mathbf{0}$ implies the $c_i$'s are all $0$''. Thus $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent, as claimed.
     
-    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a minimal kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\})$, so $\ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
+    ($\implies$). Suppose that if $\vv_1, ..., \vv_k$ are linearly independent, then $\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent. We need to show $\ff$ is one-to-one; it suffices to show that $\ff$ has a minimal kernel. Let $\vv \in \ff^{-1}(\{\mathbf{0}\}) \iff \ff(\vv) = \mathbf{0}$. We want to show $\vv = \mathbf{0}$. 
     
     Since $V$ is finite-dimensional, there is a basis $E = \{\ee_1, ..., \ee_n\}$ for $V$. Expressing $\vv$ relative to $E$, we have $\ff(\vv) = \ff\Big(\sum_{i = 1}^k ([\vv]_E)_i \ee_i\Big) = \sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. The hypothesis implies that $\ff(\ee_1), ..., \ff(\ee_n)$ are linearly independent, so $([\vv]_E)_i = 0$ for all $i$ is the only solution to $\sum_{i = 1}^k ([\vv]_E)_i \ff(\ee_i) = \mathbf{0}$. Thus $([\vv]_E)_i = 0$ for all $i$, i.e., $\vv = \mathbf{0}$.
 \end{proof}
@@ -3039,7 +3039,7 @@ We first present a recursive characterization of solutions to linear equations. 
         \ff(\vv) = \ww \text{ for all $\vv \in V$}.
     \end{align*}
     
-    The set of solutions $\{\text{solns}\}$ is defined to be the preimage of $\{\ww\}$ under $\ff$. Recall from Theorem [...] that when it is nonempty, it can be described in recursively:
+    The set of solutions $\{\text{solns}\}$ is the preimage $\{\text{solns}\} := \ff^{-1}(\{\ww\})$. Recall from Theorem \ref{ch::lin_alg::thm::recursive_preimage_char} that when it is nonempty, this preimage can be described in recursively:
     
     \begin{align*}
         \{\text{solns}\} = \{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} \text{ for any $\vv \in \{\text{solns}\}$}.
@@ -3048,23 +3048,7 @@ We first present a recursive characterization of solutions to linear equations. 
     This theorem is very useful when in the case when $\ff$ is not invertible, as it says that we can obtain the entire solution set by finding a \textit{single} solution to the equation, finding the kernel of $\ff$, and then combining these two pieces of information in a simple way.
 \end{theorem}
 
-\begin{proof}
-    \mbox{} \\
-
-    Since the theorem assumes solutions to the linear equation exist, we know there is some $\vv \in \{\text{solns}\}$.
-    
-    \indent (Case: $\ff$ is invertible). In this case, $\ker(\ff) = \{\mathbf{0}\}$ and $\vv = \ff^{-1}(\ww)$, so $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{ \vv \} = \{\ff^{-1}(\ww)\}$. Since $\ff$ is invertible, the solution to the linear equation is unique, and $\{\text{solns}\} = \{\ff^{-1}(\ww)\}$. Thus $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff) \} = \{\ff^{-1}(\ww)\} = \{\text{solns}\}$.
-
-    (Case: $\ff$ is not invertible). We need to show $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \subseteq \{\text{solns}\}$ and $\{ \vv + \vv_0 \mid \vv_0 \in \ker(\ff)\} \supseteq \{\text{solns}\}$.
-
-    \indent \indent ($\subseteq$). Let $\uu$ be in the first set, so $\uu = \vv + \vv_0$ for some $\vv_0 \in \ker(\ff)$. We have $\ff(\uu) = \ff(\vv + \vv_0) = \ff(\vv) + \ff(\vv_0) = \ff(\vv) + \mathbf{0} = \ff(\vv) = \ww$. Overall, we have $\ff(\uu) = \ww$, so $\uu$ is in the second set.
-
-    \indent \indent ($\supseteq$). Let $\uu$ be in the second set, so $\ff(\uu) = \ww$. We have $\ff(\uu - \vv) = \ff(\uu) - \ff(\vv) = \ww - \ww = \mathbf{0}$, so $\uu - \vv \in \ker(\ff)$. That is, $\uu - \vv = \vv_0$, where $\vv_0 \in \ker(\ff)$. We conclude that $\uu = \vv + \vv_0$, where $\vv_0 \in \ker(\ff)$, so $\uu$ is in the first set.
-\end{proof}
-
 The above characterization implies the following theorem.
-
-\newpage
 
 \begin{theorem}
     (Number of solutions to a linear equation).
@@ -3075,13 +3059,22 @@ The above characterization implies the following theorem.
 \begin{proof}
     Let $V$ and $W$ be finite-dimensional vector spaces, let $\ff:V \rightarrow W$ be a linear function, and let $\ww \in W$. Consider the linear equation $\ff(\vv) = \ww$.
 
-    (Case: there are no solutions).
+    (Case: there are no solutions). There are zero solutions in this case.
 
-    (Case: there are solutions). There are zero solutions in this case. 
+    \fullindent
+    {
+        (Case: there are solutions).
     
-    \indent \indent (Case: $\ff$ is invertible). We saw in the previous proof that the solution set is $\{\ff^{-1}(\ww)\}$ in this case. There is one solution in this case.
-
-    \indent \indent (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
+        \fullindent
+        {
+            (Case: $\ff$ is invertible). We saw in the previous proof that the solution set is $\{\ff^{-1}(\ww)\}$ in this case, so, there is one solution in this case.
+        }
+    
+        \fullindent
+        {
+            (Case: $\ff$ is not invertible). In general, the solution set is $\{\vv + \vv_0 \mid \vv_0 \in \ker(\ff)\}$. Since $\ff$ is not invertible, then $\ker(\ff)$ has dimension at least $1$, and so the solution set is a vector-space\footnote{Check for yourself that when $\ker(\ff)$ has dimension of at least one, the solution set is a vector space with dimension equal to that of $\ker(\ff)$.} of dimension at least $1$. Vector spaces of dimension at least $1$ contain infinitely many elements, so the solution set is infinite when $\ff$ is not invertible.
+        }
+    }
 \end{proof}
 
 The first theorem in this chapter recursively characterizes the problem of solving linear equations, telling us that in order to solve $(\ff(\vv) = \ww \text{ for all $\vv \in V$})$, we have to solve another linear equation, $(\ff(\vv) = \mathbf{0} \text{ for all $\vv \in V$})$. We haven't yet discussed a method for actually solving either of these linear equations, though!
@@ -4011,17 +4004,6 @@ We now derive the \textit{permutation formula} for the determinant.
         \det(\AA) = \det(\AA^\top).
     \end{align*}
 \end{deriv}
-
-\begin{theorem}
-\label{ch::lin_alg::rmk::det_dual_invariant}
-    (Determinant is dual-invariant).
-    
-    Let $V$ and $W$ be finite-dimensional vector spaces of the same dimension, and consider a linear function $\ff:V \rightarrow W$. Consider also the dual $\ff:W^* \rightarrow V^*$ (recall Definition \ref{ch::appendix::defn::dual_transf_after_id}). Then $\det(\ff^*) = \det(\ff)$.
-\end{theorem}
-
-\begin{proof}
-    Recall from\footnote{Technically, the equivalent conditions of the definition we reference only apply to linear functions $V \rightarrow V$. This is not an issue because $V$ and $W$ have the same dimension; if we want to be very formal, we can use the linear function $\widetilde{\ff}:V \rightarrow V$ that is obtained from $\ff$ by identifying $W \cong V$ with the identification that sends basis vectors of $W$ to basis vectors of $V$.} condition (3) of Definition \ref{ch::bilinear_forms_metric_tensors::defn::symmetric_linear_fn} that if $\AA$ is the matrix of $\ff$ relative to orthonormal bases $\hU_1$ and $\hU_2$, then the matrix of $\ff^*$ relative to the induced dual bases $\hU_2^*$ and $\hU_1^*$ is $\AA^\top$. Since the determinant of a matrix is transpose-invariant (recall Theorem \ref{ch::lin_alg::thm::det_transpose_invariant},) we have $\det(\ff) = \det(\AA) = \det(\AA^\top) = \det(\ff^*)$.
-\end{proof}
 
 \begin{theorem}
     (Laplace expansion for the determinant).

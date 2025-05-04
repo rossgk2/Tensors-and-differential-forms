@@ -1,0 +1,107 @@
+\chapter{Temporary: investigation of differential forms}
+
+\section*{Motivation for differential forms}
+
+Let $N$ be a surface in $\R^m$ and consider the integral
+
+\begin{align*}
+    \int_N f \spc dx_1 ... dx_k.
+\end{align*}
+
+To give meaning to the symbols $dx_1, ..., dx_k$, look at the change of variables theorem:
+
+\begin{align*}
+    &\text{If $M$ is a surface in $\R^n$ and $\FF:M \rightarrow N$ is smooth, then} \\
+    &\int_N f \spc dx_1 ... dx_n =
+    \pm \int_M (f \circ \FF) \det(d\FF) dx_1 ... dx_n.
+\end{align*}
+
+Write the \textit{wedge product} symbol $\wedge$ between the $dx_i$ to indicate that we are thinking of $dx_1 ... dx_n$ as being some sort of algebraic symbol produced from the individual symbolds $dx_1, ..., dx_k$:
+
+\begin{align*}
+    \int_N f \spc dx_1 ... dx_n =
+    \pm \int_M (f \circ \FF) \det\Big( \frac{\pd F^i}{\pd x^j} \Big) dx_1 \wedge ... \wedge dx_n.
+\end{align*}
+
+Since the determinant is multilinear and antisymmetric, this wedge product $\wedge$ must also look like it is multilinear and antisymmetric:
+
+\begin{enumerate}
+    \item
+        \begin{align*}
+            c_1 \spc dx_1 \wedge ... \wedge dx_{i - 1} &\wedge dx_{i} \wedge dx_{i + 1} ... \wedge dx_k \\
+            &+ \\
+            d \spc dx_1 \wedge ... \wedge dx_{i - 1} &\wedge dx_{j} \wedge dx_{i + 1} ... \wedge dx_k \\
+            &= \\
+            dx_1 \wedge ... \wedge dx_{i - 1} \wedge (c_1 dx_{i} &+ c_2 dx_{j}) \wedge dx_{i + 1} ... \wedge dx_k
+        \end{align*}
+        for all $c_1, c_2 \in \R$.
+    \item
+        \begin{align*}
+            dx_1 \wedge ... \wedge dx_i \wedge &... \wedge dx_j \wedge ... \wedge dx_k \\
+            &= \\
+            -dx_1 \wedge ... \wedge dx_j \wedge &... \wedge dx_i \wedge ... \wedge dx_k.
+        \end{align*}
+\end{enumerate}
+
+These new objects, that is, objects of the form
+
+\begin{align*}
+    f \spc dx_1 \wedge ... \wedge dx_k,
+\end{align*}
+
+where $\wedge$ looks like it is multilinear and antisymmetric, are called \textit{differential forms}.
+
+At this point it still isn't really clear what the $dx_1, ..., dx_k$ appearing in-between the wedge product $\wedge$ are. We investigate this now.
+
+
+It seems natural to interpret $dx_i$ to be $d(x^i)$, where $x^i:M \rightarrow \R$ is the $i$th coordinate function on the surface $M$ and $d$ is some sort of derivative operation. The question becomes: what sort of derivative operation is $d$? Clearly, $d$ accepts smooth functions $M \rightarrow \R$ as input. To figure out what $d$ is, we can consider what $df$ means for an arbitrary smooth $f:M \rightarrow \R$. It seems reasonable that $df_\pp(\hvv_\pp)$ should be\footnote{We can even generalize this; there should be a version of $d$ that accepts smooth functions $\FF:M \rightarrow N$ (not just functions $M \rightarrow \R$) as input, such that $d\FF_\pp(\hvv_\pp)$ is the infinitesimal change on $N$ (i.e. the infinitesimal change in $\FF$) that results from changing the input of $\FF$ by an infinitesimal amount in the direction of $\hvv$.} the infinitesimal change in $f$ that results from changing the input of $f$ by an infinitesimal amount in the direction of $\hvv$. This means we must have $df_\pp(...) = $ [$df_\pp$ must be represented by transpose of gradient in coordinate basis]
+
+\subsubsection*{Aside on tangent vectors}
+
+Well, a tangent vector at a point is any vector that is from a curve on the manifold going through that point. It can be shown that the set of tangent vectors at a given point is a vector space. In a manifold that is embedded in $\R^3$ as the graph of $f:\R^2 \rightarrow \R$, this vector space is spanned by $(1, 0, \pd f/\pd x)$ and $(0, 1, \pd f/\pd y)$. The plane corresponding to this vector space can be computed by finding its normal vector, which is the normalized cross product of $(1, 0, \pd f/\pd x)$ and $(0, 1, \pd f/\pd y)$.
+
+It can be shown that the vector space of tangent vectors at a point is isomorphic to the vector space of directional derivative functions at that point (since both spaces are isomorphic to $\R_\pp^n$, which is equal to the vector space of derivations at that point. There are advantages to representing tangent vectors as derivations. Lee says that the advantage of this approach over the more geometric approach is that ``it is relatively concrete (tangent vectors are actual derivations of $C^\infty(M \rightarrow \R)$, with no equivalence classes involved); it makes the vector space structure on $T_\pp(M)$ obvious; and it leads to straightforward
+coordinate-independent definitions of differentials, velocities, and many of the other geometric objects we will be studying.''
+
+\subsection*{End aside}
+
+We've seen that $df_\pp$ is a function sending tangent vectors to real numbers, so $df_\pp$ is a covector, and $df = (\pp \mapsto df_\pp)$ is a covector field. In in particular, the $dx^i$ are covector fields. This means that differential forms, which are linear combinations of wedges of the $dx_i$, are wedge products of covector fields.
+
+If we define $\GG(f dx_1 \wedge ... \wedge dx_n) := (f \circ \FF) \det(\frac{\pd F^i}{\pd x^j}) dx_1 \wedge ... \wedge dx_k$ on elementary wedges then one can derive that $\GG$ is, pointwise, what we know from before as the pullback on the $k$th exterior power of the cotangent space by $d\FF^*$. [Write out this derivation.]
+
+\subsection*{When differential forms are treated as being pointwise elements of $\Lambda\TT_\pp^*(M)$}
+
+\begin{align*}
+    \int_N \tomega = \pm \int_M \Omega \FF^*(\tomega),
+\end{align*}
+
+where
+
+\begin{align*}
+    \Omega` \FF^*(\tomega)(v_1|_\pp, ..., v_n|_\pp)) = \tomega_{\FF(\pp)}(d\FF_\pp(v_1|_\pp) ..., d\FF_\pp(v_n|_\pp) \quad \text{$\tomega$ is a differential $k$-form on $V$, $k \geq 1$}
+\end{align*}
+
+\section*{Notes}
+
+\begin{itemize}
+    \item The defn of a pullback of a diff form talks about pulling back from $\Lambda^k(T_{\FF(\pp)}(N)$ to $\Lambda^k(T_\pp(M))$, thus incorrectly using tangent spaces and not cotangent spaces. it's obvious this is incorrect from two perspectives
+    \begin{itemize}
+        \item when you consider the expression $\ff^*(dy^i|_{\FF(\pp)}) = dy^i|_{\FF(\pp)} \circ \ff$ that appears in this defn, the composition on the right side is only defined when $dy^i|_{\FF(\pp)}$ is a function (namely, a covector)
+        \item there is no obvious way to pull back from a vector space; you can only pull back from the dual of a vector space, such as the cotangent space
+    \end{itemize}
+    \item I'm noticing that the presentation of the interaction between the pullback and differential forms in Lee's book relies on algebraic properties on the function (i.e. covector) level rather than the input (i.e. tangent vector) level. Lee also states and proves $\Omega^k \FF^*(f \spc dy^1 \wedge ... \wedge dy^n) = \det(d\FF) \spc (f \circ \FF) \spc dx^1 \wedge ... \wedge dx^n$; so, he does show the high-level "function" view of the pullback.
+    \item Lee proves that the pullback commutes with $d$ on p. 285. Here's an exercise from Lee on p. 361. If $\FF(u, v) = (u, v, u^2 - v^2)$ and $\omega = y \spc dx \wedge dz + x \spc dy \wedge dz$ is a differential $2$-form on $\R^3$ then the pullback $\Omega^3 \FF^*(\omega)$ is 
+
+    \begin{align*}
+        &(y \circ \FF) \spc \Omega^k \FF^*(dx) \wedge \Omega^k \FF^*(dz) + (x \circ \FF) \spc \Omega^k \FF^*(dy) \wedge \Omega^k \FF^*(dz) \\
+        = \spc &v \spc d(\Omega^k \FF^*(x)) \wedge d(\Omega^k \FF^*(z)) + u \spc d(\Omega^k \FF^*(y)) \wedge d(\Omega^k \FF^*(z)) \text{ since $\Omega^k\FF^*$ and $d$ commute} \\
+        = \spc &v \spc d(x \circ \FF) \wedge d(z \circ \FF) + u \spc d(y \circ \FF) \wedge d(z \circ \FF) \\
+        = \spc &v \spc du \wedge d(u^2 - v^2) + u \spc dv \wedge d(u^2 - v^2) \\
+        = \spc &(v \spc du + u \spc dv) \wedge d(u^2 - v^2) \\
+        = \spc &(v \spc du + u \spc dv) \wedge (2u \spc du - 2v \spc dv) \text{ since for a function $f:M \rightarrow \R$ we have $df = \sum_i \frac{df}{dx_i} dx_i$}
+        = ...
+    \end{align*}
+
+    In the calculation, $x, y, z$ and $u, v, w$ are understood to be the coordinate functions $(x, y, z) \mapsto x$, $(x, y, z) \mapsto y$, $(x, y, z) \mapsto z$ and $(u, v, w) \mapsto u$, $(u, v, w) \mapsto v$, $(u, v, w) \mapsto w$.
+
+\end{itemize}
