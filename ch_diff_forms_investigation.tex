@@ -54,7 +54,15 @@ where $\wedge$ looks like it is multilinear and antisymmetric, are called \texti
 At this point it still isn't really clear what the $dx_1, ..., dx_k$ appearing in-between the wedge product $\wedge$ are. We investigate this now.
 
 
-It seems natural to interpret $dx_i$ to be $d(x^i)$, where $x^i:M \rightarrow \R$ is the $i$th coordinate function on the surface $M$ and $d$ is some sort of derivative operation. The question becomes: what sort of derivative operation is $d$? Clearly, $d$ accepts smooth functions $M \rightarrow \R$ as input. To figure out what $d$ is, we can consider what $df$ means for an arbitrary smooth $f:M \rightarrow \R$. It seems reasonable that $df_\pp(\hvv_\pp)$ should be\footnote{We can even generalize this; there should be a version of $d$ that accepts smooth functions $\FF:M \rightarrow N$ (not just functions $M \rightarrow \R$) as input, such that $d\FF_\pp(\hvv_\pp)$ is the infinitesimal change on $N$ (i.e. the infinitesimal change in $\FF$) that results from changing the input of $\FF$ by an infinitesimal amount in the direction of $\hvv$.} the infinitesimal change in $f$ that results from changing the input of $f$ by an infinitesimal amount in the direction of $\hvv$. This means we must have $df_\pp(...) = $ [$df_\pp$ must be represented by transpose of gradient in coordinate basis]
+It seems natural to interpret $dx_i$ to be $d(x^i)$, where $x^i:M \rightarrow \R$ is the $i$th coordinate function on the surface $M$ and $d$ is some sort of derivative operation. The question becomes: what sort of derivative operation is $d$? Clearly, $d$ accepts smooth functions $M \rightarrow \R$ as input. To figure out what $d$ is, we can consider what $df$ means for an arbitrary smooth $f:M \rightarrow \R$. It seems reasonable\footnote{We can even generalize this; there should be a version of $d$ that accepts smooth functions $\FF:M \rightarrow N$ (not just functions $M \rightarrow \R$) as input, such that $d\FF_\pp(\hvv_\pp)$ is the infinitesimal change on $N$ (i.e. the infinitesimal change in $\FF$) that results from changing the input of $\FF$ by an infinitesimal amount in the direction of $\hvv$.} that
+
+\begin{align*}
+    \text{$df_\pp(\hvv_\pp)$ should be the infinitesimal change in $f$ that results from changing the input of $f$ by an infinitesimal amount in the direction of $\hvv$}.
+\end{align*}
+
+We know that this description of $df_\pp$ implies ... when
+
+To figure out how to express this idea more formally, we have to further investigate tangent vectors on surfaces, since [...]
 
 \subsubsection*{Aside on tangent vectors}
 

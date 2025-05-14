@@ -2178,37 +2178,9 @@ The following special case of the above theorem follows immediately.
 
 \newpage
 
-\section{Length and angle}
-\label{ch::lin_alg::section::dot_product}
+\section{Geometry in $\R^2$}
 
-In this section, we develop the notions of the \textit{length of a vector} and the \textit{angle between two vectors} for vectors from a finite-dimensional vector space over $\R$. 
-
-We approach this by first defining notions of length and angle in $\R^2$, generalizing these notions to $\R^n$, and then generalizing again to finite-dimensional vector spaces over $\R$.
-
-It is easy to understand length in $\R^2$, and easy to generalize length in $\R^2$ to length in $\R^n$. All of the nuance in this section arises in the analysis of angle in $\R^2$. Once angle in $\R^2$ is understood, it too is easily generalized to $\R^n$.
-
-\vspace{.5cm}
-
-We briefly outline the analysis of angle in $\R^2$.
-
-Immediately after defining the angle between vectors in $\R^2$, we stumble across a fundamental concept that underlies both length and angle- the \textit{dot product} of vectors in $\R^2$. The dot product is a subtle concept that requires careful explanation. Unfortunately, all texts I have seen have some sort of major error in their presentation of this important concept.
-
-Most authors define the dot product using the ``algebraic characterization'' ${\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i}$, and then use the law of cosines to show that this definition implies the ``geometric characterization'', ${\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta)}$, where $\theta$ is the angle between $\vv$ and $\ww$. This approach is incorrect because using the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because the validity of the law of cosines is established via Euclidean geometry, which is less intuitive than geometry done via linear algebra (to me, at least).}, and because there is typically no motivation given for the algebraic characterization; it just pops out of nowhere.
-
-Some authors try to provide more motivation for the dot product by starting with the geometric characterization, $\vv \cdot \ww := ||\vv|| \spc ||\ww|| \cos(\theta)$, as the definition, explaining that this characterization is a natural idea\footnote{The motivation goes like this. If a box is pushed with a force $\FF \in \R^2$ along a floor through a displacement $\xx$, then $||\FF|| \cos(\theta)$ is the amount of force exerted in the direction of the displacement $\xx$, and thus $||\xx||(||\FF|| \cos(\theta)) = ||\FF|| \spc ||\xx|| \cos(\theta)$ is the product of the amount of force aligned with the displacement with the magnitude of the displacement.}, and then showing that the algebraic characterization follows. This is an improvement over starting abruptly with the algebraic characterization, to be sure, but unfortunately, I have always seen that authors use the law of cosines to show the algebraic characterization follows from the geometric characterization. As mentioned before, the law of cosines gives no intuition.
-
-\textit{Both} of the typical approaches to $(\text{algebraic characterization}) \implies (\text{geometric characterization})$ and $(\text{geometric characterization}) \implies (\text{algebraic characterization})$ share a major failing not yet mentioned: they don't engage with a satisfactory definition of angle. Either angle is implicitly- because of the use of the law of cosines- taken to be as given in the cumbersome and imprecise definition from Euclidean geometry, or, when the algebraic characterization of the dot product is used as the definition, a rigorous but unmotivated definition\footnote{The rigorous but unmotivated definition is $\theta(\vv, \ww) := \arccos(\hvv \cdot \hww)$, where the notation $\hvv$ and $\hww$ is defined in Definition \ref{ch::lin_alg::defn::unit_vector_hat_notation}.} of angle is given, and the equivalence of this definition to the (cumbersome and imprecise) one relied upon by the law of cosines is not explained.
-
-All of this mess is alleviated in this section. We start by investigating a rigorous definition of angle between vectors in $\R^2$. Our investigations of angle cause us to stumble upon the algebraic characterization of the dot product. The geometric characterization immediately follows, though it follows logically- not quite intuitively. To provide the missing intuition, we present proofs of $(\text{geometric characterization}) \implies (\text{algebraic characterization})$ and $(\text{algebraic characterization}) \implies (\text{geometric characterization})$ that do not rely on the law of cosines. Lastly, we are able to use our knowledge of the dot product to provide a useful formula for computing vector projections, and, most satisfyingly, to prove the law of cosines.
-
-\vspace{.5cm}
-
-The \textit{cross product} also comes with two common pedagogical problems. The last section of Chapter \ref{ch::exterior_powers} describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in Chapter \ref{ch::exterior_powers} because understanding cross products requires understanding determinants).
-
-\newpage
-
-\subsection*{Length in $\R^n$}
-\label{ch::lin_alg::subsection::mag_and_angle_Rn}
+\subsection*{Length}
 
 \begin{defn}
 \label{ch::lin_alg::defn::length_in_R2}
@@ -2218,271 +2190,263 @@ The \textit{cross product} also comes with two common pedagogical problems. The 
 \end{defn}
 
 \begin{defn}
-\label{ch::lin_alg::defn::length_in_Rn}
-    (Length of a vector in $\R^n$). 
-
-    When $n > 2$ and we have a vector $\vv_n \in \R^n$, we consider $\vv_n$ in the form $\vv_n = \vv_{n - 1} + ([\vv]_\sE)_n \see_n$, where $\vv_{n - 1} \in \R^{n - 1}$, and define the \textit{length} (or \textit{magnitude}) $||\vv_n||$ of $\vv_n$ to be
-
-    \begin{align*}
-        ||\vv_n|| = \sqrt{||\vv_{n - 1}||^2 + ([\vv]_\sE)_n^2} \text{ when $n > 2$}.
-    \end{align*}
-\end{defn}
-
-\begin{theorem}
-    (Length of a vector in $\R^n$).
-
-    For all $\vv \in \R^n$ and all $n$, the length of $\vv$ is
-
-    \begin{align*}
-        ||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}\spc.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    We prove the theorem by induction.
-
-    (Base case). The definition of the length of a vector in $\R^2$ establishes the base case.
-
-    (Inductive case). Let $\vv_n \in \R^n$. Assume as the inductive hypothesis that the claim is true for $n$; we need to show the claim is true for $n + 1$.
-
-    By the definition the length of a vector in $\R^{n + 1}$ (Definition \ref{ch::lin_alg::thm::length_in_Rn}), for $\vv_{n + 1} \in \R^{n + 1}$ we have \\ ${||\vv_{n + 1}|| = \sqrt{||\vv_n||^2 + ([\vv]_\sE)_{n + 1}^2}}$. By the inductive hypothesis, $||\vv_n|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}^2$, so
-
-    \begin{align*}
-        ||\vv_{n + 1}|| = \sqrt{\sqrt{\sum_{i = 1}^n \Big(([\vv]_\sE)_i^2\Big)}^2 + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^n \Big([\vv]_\sE)_i^2\Big) + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^{n + 1} ([\vv]_\sE)_i^2}.
-    \end{align*}
-
-    This proves the claim for $n + 1$.
-\end{proof}
-
-\begin{defn}
 \label{ch::lin_alg::defn::unit_vector_hat_notation}
     (Unit vector hat notation). 
     
-    For $\vv \in \R^n$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^n$.
+    For $\vv \in \R^2$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^2$.
 \end{defn}
 
-\subsection*{Angle in $\R^2$}
+\begin{lemma}
+    If $||\vv|| = 0$ then $\vv = \mathbf{0}$.
+\end{lemma}
+
+\subsection*{Isometries}
+
+\begin{defn}
+    (Isometry). A function $\ff:\R^n \rightarrow \R^n$ is called an \textit{isometry (on $\R^n$)} iff it preserves length.
+\end{defn}
+
+\begin{theorem}
+    The kernel of every isometry is trivial.
+\end{theorem}
+
+\begin{proof}
+    Suppose for contradiction that $\ff$ is an isometry with a nontrivial kernel, so there exists a nonzero $\vv \in \R^n$ such that $\ff(\vv) = \mathbf{0}$. We have $||\vv|| \neq 0$ (by the lemma) and $||\ff(\vv)|| = ||\mathbf{0}|| = 0$, so $||\vv|| \neq ||\ff(\vv)||$, contradicting the fact that $\ff$ is an isometry.
+\end{proof}
+        
+\begin{lemma}
+    Let $\ff:\R^n \rightarrow \R^n$ be an isometry.
+        
+    \begin{enumerate}
+        \item If $\ff$ fixes the origin then $\vv \in \R^n$ then $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
+
+        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    Let $\ff:\R^n \rightarrow \R^n$ be an isometry.
+        
+    \begin{enumerate}
+        \item If $\ff$ fixes the origin then $\vv \in \R^n$ then $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
+
+        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
+    \end{enumerate}
+\end{proof} 
+
+\begin{theorem}
+    Every isometry on $\R^n$ that fixes the origin is linear\footnote{From \url{https://www.sfu.ca/~mdevos/notes/geom-sym/18_isometries.pdf}.}.
+\end{theorem}
+
+\begin{proof}
+    We need to show that $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$ and $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$.
+    
+    ($\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$).
+    \fullindent
+    {
+        \fullindent
+        {
+            (Case: $c = 0$). Then $\ff(c\vv) = \ff(0\vv) = 0\ff(\vv) = \mathbf{0} = 0\ff(\vv) = c\ff(\vv)$.
+        }
+        \fullindent
+        {
+            (Case: $c \neq 0$). Notice that $c\vv \in \spann(\{\vv\})$ satisfies
+
+            \begin{align*}
+                \begin{cases}
+                    \text{dist}(c\vv, \mathbf{0}) = ||c\vv|| \\
+                    \text{dist}(c\vv, \vv) = ||(c - 1)\vv||
+                \end{cases}
+            \end{align*}
+
+            Similarly, $\ff(\vv) \in \spann(\{\ff(\vv)\})$ satisfies
+
+            \begin{align*}
+                \begin{cases}
+                    \text{dist}(c\ff(\vv), \mathbf{0}) = ||c\ff(\vv)|| = ||c\vv|| \\
+                    \text{dist}(c\ff(\vv), \ff(\vv)) = ||(c - 1)\ff(\vv)|| = ||(c - 1)\vv||
+                \end{cases}
+            \end{align*}
+
+            We know from the lemma that $\spann(\{\vv\}) = \spann(\{\ff(\vv)\})$. Therefore $\ff(c\vv)$ and $c\ff(\vv)$ are two vectors in the same $1$-dimensional vector space satisfying the same distance constraints. To complete the proof of this case, it suffices to show that for all $d_1, d_2 \in \R$ there is a unique $\ww \in \spann(\{\vv\})$ such that $\text{dist}(\ww, \mathbf{0}) = d_1$ and $\text{dist}(\ww, \mathbf{v}) = d_2$.
+
+            TO-DO
+        }
+    }
+    
+    ($\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$).
+    \fullindent
+    {
+        We know $\ff$ maps midpoints to midpoints: $\ff\left(\frac{1}{2}(\vv + \ww)\right) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Since $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$ then the left side of the previous equation is equal to $\frac{1}{2}\ff(\vv + \ww)$, and we obtain $\frac{1}{2}\ff(\vv + \ww) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Multiply both sides of this equation by $2$ to obtain $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$, as desired.
+    }
+\end{proof}
+
+\subsection*{Angle}
+
+\begin{defn}
+    (Counterclockwise and clockwise parameterizations of the unit circle).
+
+    There are at least two unit-speed parameterizations of the unit circle:
+    
+    \begin{itemize}
+        \item a parameterization $\cc:\R \rightarrow \R^2$ in which the motion is ``counterclockwise'' ($Q_1 = \{(x, y) \mid x, y > 0\}$ is the first quadrant visited and $Q_4 = \{(x, y) \mid x, y < 0\}$ is the last quadrant visited)
+        \item a parameterization $\widetilde{\cc}:\R \rightarrow \R^2$ in which the motion is ``clockwise'' ($Q_4$ is the first quadrant visited and $Q_1$ is the last quadrant visited
+    \end{itemize}
+\end{defn}
+
+Convention dictates that we interpret motion along the counterclockwise parameterization as corresponding to positive contributions to angle and the clockwise parameterization as corresponding to negative contributions to angle.
 
 \begin{defn}
 \label{ch::lin_alg::defn::angle_in_R2}
-    (Angle between vectors in $\R^2$).
+    (Signed counterclockwise angle between vectors in $\R^2$).
     
     Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and consider the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. Let $s(\xx, \vv, \ww)$ be the length traversed on the path $\xx:\R \rightarrow \R^2$ from $\vv$ to $\ww$:
 
     \begin{align*}
-        s(\xx, \vv, \ww) :=  \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, 
-        \text{where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
+        &s(\xx, \vv, \ww) :=  \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, 
+        \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
     \end{align*}
 
-    Now let $\cc:\R \rightarrow \R^2$ be the traditional parameterization of the circle of radius $r$ with center $\mathbf{0}$, and $\widetilde{\cc}$ be the reverse parameterization:
+    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := (s(\cc, \vv, \ww)/r) \bmod 2\pi$.
+
+    Notice that $\theta(\vv, \ww) = \theta(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
 
     \begin{align*}
-        \cc(t) := r
-        \begin{pmatrix}
-            \cos(t) \\
-            \sin(t)
-        \end{pmatrix}
-        \text{ and }
-        \widetilde{\cc}(t) := \cc(-t).
+        &\theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \bmod 2\pi.
     \end{align*}
-    
-    \textbf{find and replace ``unsigned''.}
-    \textbf{$t \in [0, 2\pi)$ should probably be $t \in [0, \pi]$}
-
-    We define the \textit{angle $\theta(\vv, \ww)$ between $\vv$ and $\ww$} to be the ratio of the shortest path between $\vv$ and $\ww$ on the circle to the radius of the circle:
-    
-    \begin{align*}
-        \theta(\vv, \ww) := \frac{\min(s(\cc, \vv, \ww), s(\widetilde{\cc}, \vv, \ww))}{r}.
-    \end{align*}
-    
-    When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(r_0\hvv, r_0\hww)$, where $r_0 > 0$ is any positive real number.
 \end{defn}
 
 \begin{remark}
-    (Well-definedness of angle between two vectors).
+    (Moduli of negative integers).
+    
+    Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then $(-a) \bmod n \neq -(a \bmod n)$ for all $a$ with $a \bmod n \neq 0$.
 
-    Since $\theta(\vv, \ww)$ depends on the radius $r$ of the circle whose center coincides with the initial points of $\vv$ and $\ww$, it isn't yet clear that $\theta:\R^2 \times \R^2 \rightarrow \R$ is well-defined.
+    How do we compute $-a \bmod n$ when $a \in \Z$ is positive? Recall that for \textit{any} $a \in Z$, the remainder $a \bmod n$ is defined to be the unique $r \in \Z$ such that $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
+
+    \begin{align*}
+        a \bmod n = (\text{greatest integer multiple of $n$ that is less than $a$}) - a.
+    \end{align*}
+
+    Even more explicitly,
+
+    \begin{align*}
+        a \bmod n = 
+        \begin{cases}
+            (\text{greatest integer multiple of $n$ that is less than $a$}) - |a| & a \geq 0 \\
+            (\text{greatest integer multiple of $n$ that is less than $a$}) + |a| & a < 0
+        \end{cases}
+    \end{align*}
+
+    When $a > 0$, the greatest integer multiple of $n$ that is less than $a$ is closer to $0$ than $a$, and when $a < 0$, this same multiple is further from $0$ than $a$. So you might say that computing $a \bmod n$ involves undershooting when $a > 0$ and overshooting when $a < 0$.
+
+    It is fairly easy\footnote{See Lemma \ref{ch::appendix::lemma::modular_arithmetic_lemma} of the appendix.} to show that in the special case when $a \in \Z \cap (0, n]$ we have $-a \bmod n = n - a \bmod 2\pi$. For our situation of modulus $2\pi$, this gives us the familiar relationship
+
+    \begin{align*}
+        (-\theta) \bmod 2\pi = (2\pi - \theta) \bmod 2\pi.
+    \end{align*}
+
+    An example of this relationship is $-\frac{\pi}{2} \bmod 2\pi = \frac{3\pi}{2} \bmod 2\pi$ and $-\frac{3\pi}{2} \bmod 2\pi = \frac{\pi}{2} \bmod 2\pi$.    
 \end{remark}
 
+Fortunately, there is a more convenient way to compute the signed counterclockwise angle that, by virtue of the fact that it produces a result in $[-2\pi, 2\pi]$, doesn't involve the $\bmod$ operator.
+
 \begin{theorem}
-    (Properties of $\theta$).
-    
-    \begin{enumerate}
-        \item $\theta(\vv, \ww) \geq 0$ for all $\vv, \ww \in \R^2$.
-        \item $\theta(\vv, \ww) = \theta(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
-    \end{enumerate}
+    (Signed counterclockwise angle as a minimum).
+
+    \begin{align*}
+        \theta_s(\vv, \ww) = \pm \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)),
+    \end{align*}
+
+    where $\pm$ is $+$ when the minimum is $s(\cc, \vv, \ww)$ and is $-$ when the minimum is $s(\widetilde{\cc}, \vv, \ww)$.
+\end{theorem}
+
+\begin{defn}
+    (Unsigned angle between vectors in $\R^2$).
+
+    The \textit{unsigned angle $\theta_u(\vv, \ww)$ between $\vv$ and $\ww$} is defined to be $\theta_u(\vv, \ww) := |\theta_s(\vv, \ww)|$. Because of the previous theorem, we have
+
+    \begin{align*}
+        \theta_u(\vv, \ww) = \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)).
+    \end{align*}
+\end{defn}
+
+\begin{remark}
+    (Well-definedness of unsigned angle between two vectors).
+
+    [currently looks like it depends on $r$]
+
+\end{remark}
+
+A reminder is in order...
+
+\begin{defn}
+    ($\cos$ and $\sin$).
+
+    We define $(\cos(t), \sin(t))^\top := \cc(t)$. That is, $\cos(t)$ and $\sin(t)$ are such that $(\cos(t), \sin(t))^\top$ is the point obtained by traveling an arclength of $t$ along the counterclockwise parameterization of the unit circle.
+\end{defn}
+
+\begin{theorem}
+    $\theta\left(\see_1, \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}\right) = t$
 \end{theorem}
 
 \begin{proof}
-    \mbox{} \\
-    \begin{enumerate}
-        \item We have $s(\xx, \vv, \ww) \geq 0$ for all $\xx \in \{\cc, \widetilde{\cc}\}$ because the integrand in $s(\xx, \vv, \ww)$ is nonnegative for all $\xx \in \{\cc, \widetilde{\cc}\}$ and $t_1 \leq t_2$.
-
-        Since $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r}$ for some $\yy \in \{\cc, \widetilde{\cc}\}$, then because $s(\yy, \vv, \ww) \geq 0$ and $r > 0$, we have $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r} \geq 0$. 
-        \item We have $s(\xx, \vv, \ww) = s(\xx, \ww, \vv)$ for all $\vv, \ww \in \R^2$ and $\xx \in \{\cc, \widetilde{\cc}\}$ because the length of a path is equal to the length of the reverse path. 
-        
-        Since $\theta(\vv, \ww) = \frac{s(\yy, \vv, \ww)}{r}$ for some $\yy \in \{\cc, \widetilde{\cc}\}$, then $\theta(\yy, \vv, \ww) = \frac{s(\yy, \vv, \ww)}{r} = \frac{s(\yy, \ww, \vv)}{r} = \theta(\yy, \ww, \vv)}$ for all $\vv, \ww \in \R^2$.
-    \end{enumerate}
+    We have $\see_1 = \cc(t_1)$ and $(\cos(t), \sin(t))^\top = \cc(t_2)$, where $t_1 = 0$ and $t_2 = t$. The angle between these vectors is $\int_{t_1}^{t_2} ||\frac{d\cc(t)}{dt}||dt = \int_0^t dt = t$. 
 \end{proof}
+
+\begin{theorem}
+    ($\cos$ and $\sin$ as ratios of lengths of sides of triangles).
+\end{theorem}
+    
+\begin{theorem}
+    $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$
+
+    $-\theta_s(\vv, \ww) = 2\pi - \theta_s(\vv, \ww) \text{ mod $2\pi$}$
+\end{theorem}
+
+\begin{proof}
+    We have $s(\xx, \vv, \ww) = s(\xx, \ww, \vv)$ for all $\vv, \ww \in \R^2$ and $\xx \in \{\cc, \widetilde{\cc}\}$ because the length of a path is equal to the length of the reverse path. 
+        
+    If $\theta(\vv, \ww) = \frac{s(\cc, \vv, \ww)}{r}$ then 
+
+    FIX THIS
+\end{proof}
+
+\begin{lemma}
+    $\cos(\theta_s(\vv, \ww)) = \cos(\theta_u(\vv, \ww))$ when $\theta_s \in [0, \pi]$.
+\end{lemma}
 
 \begin{defn}
     (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\theta(\vv, \ww) = \frac{\pi}{2}$.
 \end{defn}
 
+\subsection*{Rotations}
+
+\begin{defn}
+    (Rotation).
+    
+    An isometry $\ff:\R^2 \rightarrow \R^2$ is called the \textit{counterclockwise rotation (by $t$)} iff there exists $t \in [-2\pi, 2\pi]$ such that $\theta_s(\vv, \ff(\vv)) = t$ for all $\vv \in \R^2$.
+\end{defn}
+
 \begin{theorem}
-\label{ch::lin_alg::thm::unsigned_angle_Rn}
-    (Angle formula in $\R^2$).
+     The standard matrix of the counterclockwise rotation by $t$ is
+
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(t) & -\sin(t) \\
+            \sin(t) & \cos(t)
+        \end{pmatrix}
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    We have $\RR_t(\hvv) =(\cos(\theta(\RR_t(\hvv), \see_1)), \sin(\theta(\RR_t(\hvv), \see_1)))^\top$ or $\RR_t(\hvv) = (\cos(-\theta(\RR_t(\hvv), \see_1)), \sin(-\theta(\RR_t(\hvv), \see_1)))^\top$ for all $\hvv \in \R^2$.
         
-    \begin{align*}
-        \theta(\vv, \ww) = \text{arccos}\Big( \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i \Big) \text{ for all $\vv, \ww \in \R^2$}.
-    \end{align*}
-
-    Note, since $\arccos:[-1, 1] \rightarrow [0, \pi]$, we have $\theta(\vv, \ww) \in [0, \pi]$ for all $\vv, \ww \in \R^2$.
-\end{theorem}
-
-\begin{proof}
-    We prove the theorem in the case when $||\vv|| = ||\ww|| = r$; the general case follows from this immediately. For some $\xx \in \{\cc, \widetilde{\cc}\}$, we have
-
-    \begin{align*}
-        \theta(\vv, \ww) = \frac{s(\xx, \vv, \ww)}{r} = \frac{1}{r} \int_{t_1}^{t_2} \Big|\Big| \frac{d\xx(t)}{dt} \Big|\Big| dt, \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
-    \end{align*}
+    When $\hvv = \see_1$, then since $\theta(\RR_t(\see_1), \see_1) = t$ by the definition of a rotation, we have $\RR_t(\see_1) = (\cos(t), \sin(t))^\top$. 
     
-    We have $||\frac{d\xx(t)}{dt}|| = r$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, so $\theta(\vv, \ww) = t_2 - t_1$. Since $\xx(t_1) = r \hvv$ and $\xx(t_2) = r \hww$ for all $\xx \in \{\cc, \widetilde{\cc}\}$, then
-
-    \begin{align*}
-        {r \cos(\pm t_1) = (r[\hvv]_\sE)_1} &\text{ and } {r \cos(\pm t_2) = (r[\hww]_\sE)_1},
-    \end{align*}
-
-    where the $\pm$ signs are both $+$ when $\xx = \cc$ and are both $-$ when $\xx = \widetilde{\cc}$. Thus
-   
-   \begin{align*}
-       \theta(\vv, \ww) = t_2 - t_1 &= \pm \text{arccos}\Big(([\hww]_\sE)_1\Big) \mp \text{arccos}\Big(([\hvv]_\sE)_1\Big),
-   \end{align*}
-
-   where the $+, -$ case occurs when $\xx = \cc$ and the $-, +$ case occurs when $\xx = \widetilde{\cc}$.
-   
-   The cosine angle difference identity $\cos(\alpha - \beta) = \cos(\alpha) \cos(\beta) + \sin(\alpha) \sin(\beta)$ implies\footnote{To obtain the second identity, write the first identity in terms of $\gamma, \delta$ by making the substitutions ${\gamma := \cos(\alpha) \iff \alpha = \arccos(\gamma)}$ and ${\delta = \cos(\beta) \iff \beta = \arccos(\delta)}$, and take $\arccos$ of both sides.} the identity \\ ${\text{arccos}(\gamma) - \text{arccos}(\delta) = \text{arccos}(\gamma \delta + \sqrt{1 - \gamma^2}\sqrt{1 - \delta^2})}$. In the $+, -$ case of the above, this identity gives
-   
-    \begin{align*}
-       \theta(\vv, \ww) &= \text{arccos}\Bigg(([\hww]_\sE)_1 ([\hvv]_\sE)_1 + \sqrt{1 -([\hww]_\sE)_1^2} \sqrt{1 - ([\hvv]_\sE)_1^2} \Bigg) \\
-       &= \text{arccos}\Bigg(([\hww]_\sE)_1 ([\hvv]_\sE)_1 + ([\hww]_\sE)_2 ([\hvv]_\sE)_2 \Bigg).
-   \end{align*}
-   
-   In the $-, +$ case, applying the identity yields an analogous (and ultimately equivalent) result.
+    When $\hvv = \see_2$, then\footnotemark since $\theta(\RR_t(\see_2), \see_1) = \theta(\RR_t(\see_2), \see_2) + \theta(\see_2, \see_1) = t + \frac{\pi}{2}$, we have\footnote{Recall that $\cos(s) = \sin(\pi/2 - s)$ and $\sin(s) = \cos(\pi/2 -s)$.} $\RR_t(\see_2) = (\cos(t + \pi/2), \sin(t + \pi/2))^\top = (\sin(-t), \cos(-t))^\top = (-\sin(t), \cos(t))^\top$.
 \end{proof}
 
-\begin{theorem}
-    (Angle between two vectors is well-defined).
-
-    The formula for $\theta(\vv, \ww)$ given by the previous theorem does not depend on the radius $r$ of the circle whose center coincides with the initial points of $\vv$ and $\ww$, so we now know that $\theta(\vv, \ww)$ is well-defined.
-\end{theorem}
-
-\begin{defn}
-    (The dot product of unit vectors).
-
-    Let $\vv, \ww \in \R^2$. The expression that appears inside $\arccos$ in the formula for $\theta(\vv, \ww)$,
-
-    \begin{align*}
-        \sum_{i = 1}^2 ([\hvv]_\sE)_i  ([\hww]_\sE)_i,
-    \end{align*}
-    
-    is denoted $\hvv \cdot \hww$ and is called the \textit{dot product of $\hvv$ and $\hww$}. 
-\end{defn}
-
-With this new definition, the formula for angle in $\R^2$ suddenly has a new, more compact form.
-
-\begin{theorem}
-    (Angle formula in $\R^2$).
-
-    \begin{align*}
-        \theta(\vv, \ww) = \arccos(\hvv \cdot \hww) \text{ for all $\vv, \ww \in \R^2$}.
-    \end{align*}
-\end{theorem}
-
-The formula from the previous definition can also be used to define a dot product of non-unit vectors.
-
-\begin{defn}
-    (The dot product in $\R^2$). 
-
-    The \textit{dot product $\vv \cdot \ww$ of $\vv, \ww \in \R^2$} is
-    
-    \begin{align*}
-        \vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i  ([\ww]_\sE)_i.
-    \end{align*}    
-\end{defn}
-
-\begin{theorem}
-    (Length in $\R^2$ in terms of dot product in $\R^2$).
-
-    \begin{align*}
-        ||\vv|| = \sqrt{\vv \cdot \vv} \text{ for all $\vv \in \R^2$}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    We have $\vv \cdot \vv = ([\vv]_\sE)_1^2 + ([\vv]_\sE)_2^2$. Take the square root of of both sides to obtain the result.
-\end{proof}
-
-\begin{theorem}
-    (The dot product in $\R^2$ is bilinear).
-
-    The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
-\end{theorem}
-
-\begin{proof}
-    The dot product in $\R^2$ is symmetric, so it suffices to show that it is linear in either argument; it suffices to show that $\vv \mapsto \vv \cdot \ww$ is a linear function. That is, it suffices to show that for all $\vv_1, \vv_2, \ww \in \R^2$ we have $(\vv_1 + \vv_2) \cdot \ww = \vv_1 \cdot \ww + \vv_2 \cdot \ww$ and for all $\vv, \ww \in \R^2$ and $c \in \R$ we have $(c\vv) \cdot \ww = c(\vv \cdot \ww)$.
-    
-    Note that because $[\cdot]_\sE$ is linear we have $([\vv_1 + \vv_2]_\sE)_i = ([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i$ and $([c\vv]_\sE)_i = c([\vv]_\sE)_i$ for all $i$. Using this fact, we see
-
-    \begin{align*}
-        (\vv_1 + \vv_2) \cdot \ww
-        &= \sum_{i = 1}^2 ([\vv_1 + \vv_2]_\sE)_i ([\ww]_\sE)_i
-        = \sum_{i = 1}^2 \Big(([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i\Big) ([\ww]_\sE)_i \\
-        &= \sum_{i = 1}^2 \Big( ([\vv_1]_\sE)_i ([\ww]_\sE)_i + ([\vv_2]_\sE)_i ([\ww]_\sE)_i \Big)
-        = \sum_{i = 1}^2 ([\vv_1]_\sE)_i ([\ww]_\sE)_i + \sum_{i = 1}^2 ([\vv_2]_\sE)_i ([\ww]_\sE)_i \\
-        &= \vv_1 \cdot \ww + \vv_2 \cdot \ww
-    \end{align*}
-
-    and
-
-    \begin{align*}
-        (c\vv) \cdot \ww
-        = \sum_{i = 1}^2 ([c\vv]_\sE)_i ([\ww]_\sE)_i
-        = \sum_{i = 1}^2 c([\vv]_\sE)_i ([\ww]_\sE)_i
-        = c \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
-        = c(\vv \cdot \ww),
-    \end{align*}
-
-    as claimed.    
-\end{proof}
-
-With this expanded definition of the dot product, it's possible to express the dot product of $\vv$ and $\ww$ in terms of the angle between $\vv$ and $\ww$.
-
-\begin{theorem}
-    (Dot product in $\R^2$ in terms of angle in $\R^2$).
-
-    \begin{align*}
-        \vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww)) \text{ for all $\vv, \ww \in \R^2$}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    From the previous theorem, we have $\theta(\vv, \ww) = \arccos\Big( \frac{\vv}{||\vv||} \cdot \frac{\ww}{||\ww||} \Big)$. Since the dot product is bilinear, we have $\frac{\vv}{||\vv||} \cdot \frac{\ww}{||\ww||} = \frac{1}{||\vv||}\Big(\vv \cdot \frac{\ww}{||\ww||}\Big) = \frac{1}{||\vv||\spc||\ww||}(\vv \cdot \ww) = \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||}$. Thus $\theta(\vv, \ww) = \arccos\Big(\frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||}\Big)$. Take $\cos$ of both sides and then multiply both sides by $||\vv|| \spc ||\ww||$ to obtain the result.
-\end{proof}
-
-\begin{remark}
-    (The dot product of perpendicular vectors in $\R^2$ is zero).
-
-    It follows immediately from the previous theorem that $\vv, \ww \in \R^2$ are perpendicular iff $\vv \cdot \ww = 0$.
-\end{remark}
-
-At this point, we've seen that the ``algebraic'' characterization of the dot product, $\vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i$, and the ``geometric'' characterization of the dot product, $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww))$, are true (with the algebraic characterization being true by definition), but don't yet understand their connection. We now discover how each characterization follows from the other.
-
-\newpage
-
-\subsection*{Prerequisites for understanding the dot product}
-
-\subsubsection*{Vector projection}
+\subsection*{Projections}
 
 \begin{lemma}
     (Orthogonal basis of $\R^2$).
@@ -2528,6 +2492,267 @@ At this point, we've seen that the ``algebraic'' characterization of the dot pro
 \begin{proof}
     (1) follows from the definition of $\proj(\vv \rightarrow \ww)$. (2) is obtained by taking the magnitude of each side of (1).
 \end{proof}
+
+\begin{lemma}
+    \label{ch::lin_alg::lemma::rotated_projection}
+    (Rotated projection is projection of rotated vectors). 
+    
+    Let $\vv, \ww \in \R^2$. For any $\theta \in [0, 2\pi)$, we have $\RR_\theta(\proj(\vv \rightarrow \ww) = \proj(\RR_\theta(\vv) \rightarrow \RR_\theta(\ww))$.
+\end{lemma}
+
+\begin{proof}
+    We have $\vv = v_{||} \hvv + v_\perp \hvv_\perp$, so $\RR_\theta(\vv) = v_{||} \ff(\hvv) + v_\perp \RR_\theta \hvv_\perp$. The claim follows if we show (1) that $\RR_\theta(\hww) = \widehat{\RR_\theta(\hww)}$ and (2) that $\RR_\theta(\hww_\perp) = \widehat{\RR_\theta(\ww)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\ww$ to $\ww_\perp$, because rotations commute with each other, and because rotations are length-preserving.
+\end{proof}
+
+\subsection*{The dot product}
+
+Most explanations of the dot product engage in at least one of two pedagogically problematic approaches. The most common of these approaches is: first, define the dot product between $\vv = (v_1, v_2)^\top \in \R^2$ and $\ww = (w_1, w_2)^\top \in \R^2$ via the \textit{algebraic formula} $\vv \cdot \ww := \sum_{i = 1}^2 v_i w_i$;
+second, show that this initial definition implies the \textit{geometric formula} $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww))$ by using the law of cosines. This is the wrong way of doing things for two reasons. Firstly, there is much more motivation (such as further investigation of vector projections or the physical concept of work) for starting with the geometric formula and then proving that the algebraic formula follows. Secondly, the law of cosines gives no intuition\footnote{When used as a starting point, the law of cosines is unintuitive because its validity is established via Euclidean geometry, which is unintuitive (to me, at least)}; there is a much better way to prove that algebraic formula implies the geometric formula, which we present.
+
+The second problematic approach arises when an author does decide to start with the geometric formula, $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \cos(\theta(\vv, \ww))$. Authors will prove that the algebraic formula follows as a result of the law of cosines. Again, using the law of cosines gives no intuition. Instead, the algebraic formula should be proved by showing and then using the bilinearity of the dot product. The law of cosines should never
+be used in proving the equivalence of the two dot product formulas. When the equivalence between these two formulas is shown correctly, the law of cosines can be shown as a consequence.
+
+\vspace{.25cm}
+
+The \textit{cross product} also comes with two common pedagogical problems. [section later in this chapter] describes these problems and presents a satisfying explanation of the cross product. (The cross product is addressed in [later in this chapter ] because understanding cross products requires understanding determinants and orientation).
+
+\begin{defn}
+    (Dot product).
+    
+    \begin{align*}
+        \vv \cdot \ww := ||\ww|| \spc \sproj(\vv \rightarrow \ww)
+    \end{align*}
+
+    ... $\sproj(\vv \rightarrow \ww) = ||\vv|| \cos(\theta(\vv, \ww))$ [think about $\theta_s$ vs. $\theta_u$], so $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \sproj(\vv \rightarrow \ww)$.
+\end{defn}
+
+\subsubsection*{Geometric $\implies$ algebraic}
+
+\begin{lemma}
+    (Signed projection onto a vector in $\R^2$ is a linear function).
+    
+    Let $\vv_1, \vv_2 \in \R^2$. The map $\vv_1 \mapsto \sproj(\vv_1 \rightarrow \vv_2)$ is linear.
+\end{lemma}
+
+\begin{proof}
+    Let $\vv_1, \vv_2, \ww \in \R^2$, and define $\ff:\R^2 \rightarrow \R$ by $\ff(\vv) = \sproj(\vv \rightarrow \ww)$. We need to show that $\ff(\vv_1 + \vv_2) = \ff(\vv_1) + \ff(\vv_2)$ and that $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$. 
+    
+    We have
+    
+    \begin{align*}
+        \ff(\vv_1 + \vv_2) &= \ff\Big(\Big((v_1)_{||}\hat{\ww} + (v_1)_{\perp}\hat{\ww}_\perp \Big) + \Big((v_2)_{||}\hat{\ww} + (v_2)_\perp \hat{\ww}_\perp \Big) \Big), \text{ where $(v_i)_{||} = \sproj(\vv_i \rightarrow \ww)$ for $i \in \{1, 2\}$} \\
+        &= \ff \Big(\Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp) \Big) \hat{\ww}_\perp \Big) \\
+        &= \sproj\Big(\Big[ \Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp \Big) \hat{\ww}_\perp \Big] \rightarrow \ww \Big) \\
+        &= (v_1)_{||} + (v_2)_{||} 
+        = \sproj(\vv_1 \rightarrow \ww) + \sproj(\vv_2 \rightarrow \ww) = \ff(\vv_1) + \ff(\vv_2).
+    \end{align*}
+
+    And we have
+    
+    \begin{align*}
+        \ff(c \vv) &= 
+        \ff \Big(c \Big(v_{||}\hat{\ww} + v_{\perp}\hat{\ww}_\perp \Big) \Big), \text{ where $v_{||} = \sproj(\vv \rightarrow \ww)$} \\
+        &= \ff\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big)
+        = \sproj\Big(\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big) \rightarrow \ww \Big) \\
+        &= c v_{||} \hat{\ww} = c \sproj(\vv \rightarrow \ww) = c \ff(\vv).
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::geom_dot_product_bilinear}
+    (The dot product in $\R^2$ is a bilinear function).
+    
+    The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
+\end{theorem}
+
+\begin{proof}
+    The dot product in $\R^2$ is symmetric, so it suffices to show that it is a linear function in either argument; it suffices to show that $\ff:\R^2 \rightarrow \R$ defined by $\ff(\vv) = \vv \cdot \ww$ is a linear function. Well, ${\ff(\vv) = ||\ww||\sproj(\vv \rightarrow \ww)}$, and we know that $\vv \mapsto \sproj(\vv \rightarrow \ww)$ is linear. Since $\ff$ is the result of scaling a linear function by $||\ww||$, it too is a linear function.
+\end{proof}
+
+\begin{lemma}
+    Let $\sE = \{\see_1, \see_2 \}$ be the standard basis for $\R^2$. We have
+    
+    \begin{align*}
+        \see_i \cdot \see_j = 
+        \begin{cases}
+            1 & i = j \\
+            0 & i \neq j
+        \end{cases}
+        = \delta_{ij}
+    \end{align*}
+
+    for all $i, j \in \{1, 2\}$.
+\end{lemma}
+
+\begin{proof}
+   The lemma is equivalent to the statement $\sproj(\see_i \rightarrow \see_j) = \delta_{ij}$, which is easily proved.
+\end{proof}
+
+\begin{deriv}
+    (Dot product in $\R^2$). 
+    
+    We can now derive the algebraic characterization of the dot product by using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
+    
+    We will make use of the following general fact about bilinear functions\footnote{If $V_1, V_2$, and $W$ are vector spaces over a field $K$, then $\ff:V_1 \times V_2 \rightarrow W$ is a \textit{bilinear} function iff $\vv \mapsto \ff(\vv, \ww)$ and $\ww \mapsto \ff(\vv, \ww)$ are both linear functions.}. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
+    
+    \begin{align*}
+        B(\vv, \ww) &= B\Big(\sum_{i = 1}^n ([\vv]_E)_i \ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n ([\vv]_E)_i B\Big(\ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
+        &= \sum_{i = 1}^n \sum_{j = 1}^n ([\vv]_E)_i ([\ww]_E)_i B(\ee_i, \ee_j).
+    \end{align*}
+    
+    In the above, we've written $\vv$ and $\ww$ as sums of basis vectors and then used the linearity of $B$ in each argument.
+    
+    The dot product is a bilinear function $\cdot:\R^2 \times \R^2 \rightarrow \R$, so the above fact can be applied to the dot product. We know from the previous lemma that $B(\see_i, \see_j) = \delta_{ij}$, so we have
+    
+    \begin{align*}
+        \vv \cdot \ww = \sum_{i = 1}^2 \sum_{j = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i \delta_{ij} = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i.
+    \end{align*}
+    
+    Therefore
+    
+    \begin{align*}
+        \boxed
+        {
+            \vv \cdot \ww = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
+        }
+    \end{align*}
+\end{deriv}
+
+\subsubsection*{Algebraic $\implies$ geometric}
+
+\begin{deriv}
+    (Algebraic characterization $\implies$ geometric characterization).
+    
+    If
+
+    \begin{align*}
+        \vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
+    \end{align*}
+
+    then
+    
+    \begin{align*}
+        \vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww|| \text{ for all $\vv, \ww \in \R^2$}.
+    \end{align*}
+\end{deriv}
+
+\begin{proof}
+    Let $\vv, \ww \in \R^2$ and consider $\vv \cdot \ww$. We can\footnote{Use $\theta = \arccos(||\vv||)$.} choose $\theta \in [0, 2\pi)$ so that $\RR_\theta(\hvv) = \see_1$, i.e., so that $\RR_\theta(\vv) = ||\vv||\see_1$. With this choice of $\theta$, we have
+    
+    \begin{align*}
+        \vv \cdot \ww 
+        = \RR_\theta(\vv) \cdot \RR_\theta(\ww) 
+        = ||\vv|| \see_1 \cdot \RR_\theta(\ww)
+        = 
+        \begin{pmatrix} ||\vv|| \\ 0 \end{pmatrix}
+        \cdot 
+        \begin{pmatrix} ([\RR_\theta(\ww)]_\sE)_1 \\ ([\RR_\theta(\ww)]_\sE)_2 \end{pmatrix} 
+        = 
+        ||\vv|| ([\RR_\theta(\ww)]_\sE)_1.
+    \end{align*}
+    
+    We have
+    
+    \begin{align*}
+        ([\RR_\theta(\ww)]_\sE)_1
+        &= \proj(\RR_\theta(\ww) \rightarrow \see_1) 
+        = \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\hvv))
+        = \proj(\RR_\theta(\ww) \rightarrow \widehat{\RR_\theta(\vv)}) \\
+        &= \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\vv)) 
+        = \proj(\ww \rightarrow \vv),
+    \end{align*}
+    
+    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv \cdot \ww = ||\proj(\ww \rightarrow \vv)|| \spc ||\vv||$. Since the dot product is symmetric, we can swap $\vv$ and $\ww$; this gives the desired result.
+\end{proof}
+
+\begin{comment}
+    \begin{theorem}
+        (The dot product in $\R^2$ is bilinear).
+    
+        The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
+    \end{theorem}
+    
+    \begin{proof}
+        The dot product in $\R^2$ is symmetric, so it suffices to show that it is linear in either argument; it suffices to show that $\vv \mapsto \vv \cdot \ww$ is a linear function. That is, it suffices to show that for all $\vv_1, \vv_2, \ww \in \R^2$ we have $(\vv_1 + \vv_2) \cdot \ww = \vv_1 \cdot \ww + \vv_2 \cdot \ww$ and for all $\vv, \ww \in \R^2$ and $c \in \R$ we have $(c\vv) \cdot \ww = c(\vv \cdot \ww)$.
+        
+        Note that because $[\cdot]_\sE$ is linear we have $([\vv_1 + \vv_2]_\sE)_i = ([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i$ and $([c\vv]_\sE)_i = c([\vv]_\sE)_i$ for all $i$. Using this fact, we see
+    
+        \begin{align*}
+            (\vv_1 + \vv_2) \cdot \ww
+            &= \sum_{i = 1}^2 ([\vv_1 + \vv_2]_\sE)_i ([\ww]_\sE)_i
+            = \sum_{i = 1}^2 \Big(([\vv_1]_\sE)_i + ([\vv_2]_\sE)_i\Big) ([\ww]_\sE)_i \\
+            &= \sum_{i = 1}^2 \Big( ([\vv_1]_\sE)_i ([\ww]_\sE)_i + ([\vv_2]_\sE)_i ([\ww]_\sE)_i \Big)
+            = \sum_{i = 1}^2 ([\vv_1]_\sE)_i ([\ww]_\sE)_i + \sum_{i = 1}^2 ([\vv_2]_\sE)_i ([\ww]_\sE)_i \\
+            &= \vv_1 \cdot \ww + \vv_2 \cdot \ww
+        \end{align*}
+    
+        and
+    
+        \begin{align*}
+            (c\vv) \cdot \ww
+            = \sum_{i = 1}^2 ([c\vv]_\sE)_i ([\ww]_\sE)_i
+            = \sum_{i = 1}^2 c([\vv]_\sE)_i ([\ww]_\sE)_i
+            = c \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
+            = c(\vv \cdot \ww),
+        \end{align*}
+    
+        as claimed.    
+    \end{proof}
+\end{comment}
+
+\section{Geometry in $\R^n$}
+
+\subsection*{Length}
+
+\begin{defn}
+\label{ch::lin_alg::defn::length_in_Rn}
+    (Length of a vector in $\R^n$). 
+
+    When $n > 2$ and we have a vector $\vv_n \in \R^n$, we consider $\vv_n$ in the form $\vv_n = \vv_{n - 1} + ([\vv]_\sE)_n \see_n$, where $\vv_{n - 1} \in \R^{n - 1}$, and define the \textit{length} (or \textit{magnitude}) $||\vv_n||$ of $\vv_n$ to be
+
+    \begin{align*}
+        ||\vv_n|| = \sqrt{||\vv_{n - 1}||^2 + ([\vv]_\sE)_n^2} \text{ when $n > 2$}.
+    \end{align*}
+\end{defn}
+
+\begin{defn}
+\label{ch::lin_alg::defn::unit_vector_hat_notation}
+    (Unit vector hat notation). 
+    
+    As we did in $\R^2$, we define for $\vv \in \R^n$ notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^2$.
+\end{defn}
+
+\begin{theorem}
+    (Length of a vector in $\R^n$).
+
+    For all $\vv \in \R^n$ and all $n$, the length of $\vv$ is
+
+    \begin{align*}
+        ||\vv|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}\spc.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    We prove the theorem by induction.
+
+    (Base case). The definition of the length of a vector in $\R^2$ establishes the base case.
+
+    (Inductive case). Let $\vv_n \in \R^n$. Assume as the inductive hypothesis that the claim is true for $n$; we need to show the claim is true for $n + 1$.
+
+    By the definition the length of a vector in $\R^{n + 1}$ (Definition \ref{ch::lin_alg::thm::length_in_Rn}), for $\vv_{n + 1} \in \R^{n + 1}$ we have \\ ${||\vv_{n + 1}|| = \sqrt{||\vv_n||^2 + ([\vv]_\sE)_{n + 1}^2}}$. By the inductive hypothesis, $||\vv_n|| = \sqrt{\sum_{i = 1}^n ([\vv]_\sE)_i^2}^2$, so
+
+    \begin{align*}
+        ||\vv_{n + 1}|| = \sqrt{\sqrt{\sum_{i = 1}^n \Big(([\vv]_\sE)_i^2\Big)}^2 + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^n \Big([\vv]_\sE)_i^2\Big) + ([\vv]_\sE)_{n + 1}^2} = \sqrt{\sum_{i = 1}^{n + 1} ([\vv]_\sE)_i^2}.
+    \end{align*}
+
+    This proves the claim for $n + 1$.
+\end{proof}
+
+\section{Length and angle [deprecated]}
+
+
+\subsection*{Prerequisites for understanding the dot product}
 
 \subsubsection*{Orthogonal linear functions}
 
@@ -2579,61 +2804,6 @@ At this point, we've seen that the ``algebraic'' characterization of the dot pro
 
 \subsubsection*{Rotation}
 
-\begin{defn}
-    (Rotation in $\R^2$).
-
-    We define the \textit{rotation $\RR_\theta$ by $\theta \in [0, 2\pi)$} to be the linear function $\RR_\theta:\R^2 \rightarrow \R^2$ that sends $\see_1$ to $(\cos(\theta), \sin(\theta))^\top$ and $\see_2$ to $(-\sin(\theta), \cos(\theta))$.
-\end{defn}
-
-Drawing a picture and using trigonometry confirms that this definition agrees with our intuition on rotation.
-
-\begin{theorem}
-    (Rotation in $\R^2$).
-
-    We have
-
-    \begin{align*}
-        \RR_\theta(\vv) =
-        \begin{pmatrix}
-            \cos(\theta) & -\sin(\theta) \\
-            \sin(\theta) & \cos(\theta)
-        \end{pmatrix}
-        \vv
-        \text{ for all $\vv \in \R^2$}.
-    \end{align*}
-\end{theorem}
-
-\begin{theorem}
-    (A rotation by $\phi$ changes angle by $\phi$). We have $\cos(\theta(\vv, \RR_\phi(\ww))) = \cos(\theta(\vv, \ww) + \phi)$ for all $\phi \in [0, 2\pi)$.
-\end{theorem}
-
-\begin{proof}
-    \begin{align*}
-        \begin{pmatrix}
-            \cos(\theta) & -\sin(\theta) \\
-            \sin(\theta) & \cos(\theta)
-        \end{pmatrix}
-    \end{align*}
-\end{proof}
-
-\begin{proof}
-    Let $\cc$ and $\widetilde{\cc}$ be the parameterizations of the circle of radius $r$ with center $\mathbf{0}$ from Definition \ref{ch::lin_alg::defn::angle_in_R2}.
-    
-    We have
-
-    \begin{align*}
-        \theta(\vv, \RR_s(\ww)) =
-        \frac{\min(s(\cc, \vv, \RR_\phi(\ww)), s(\widetilde{\cc}, \vv, \RR_\phi(\ww)))}{r}
-        =
-        \begin{cases}
-            \theta(\vv, \ww) + \phi & \theta(\vv, \ww) + \phi \leq \pi \\
-            2\pi - (\theta(\vv, \ww) + \phi) & \theta(\vv, \ww) + \phi > \pi
-        \end{cases}.
-    \end{align*}
-
-    Take $\cos$ of both sides to obtain the result.
-\end{proof}
-
 \begin{theorem}
     Rotations in $\R^2$ are orthogonal linear functions.
 \end{theorem}
@@ -2652,158 +2822,6 @@ Drawing a picture and using trigonometry confirms that this definition agrees wi
     
 \end{proof}
 
-\begin{lemma}
-    \label{ch::lin_alg::lemma::rotated_projection}
-    (Rotated projection is projection of rotated vectors). 
-    
-    Let $\vv, \ww \in \R^2$. For any $\theta \in [0, 2\pi)$, we have $\RR_\theta(\proj(\vv \rightarrow \ww) = \proj(\RR_\theta(\vv) \rightarrow \RR_\theta(\ww))$.
-\end{lemma}
-
-\begin{proof}
-    We have $\vv = v_{||} \hvv + v_\perp \hvv_\perp$, so $\RR_\theta(\vv) = v_{||} \ff(\hvv) + v_\perp \RR_\theta \hvv_\perp$. The claim follows if we show (1) that $\RR_\theta(\hww) = \widehat{\RR_\theta(\hww)}$ and (2) that $\RR_\theta(\hww_\perp) = \widehat{\RR_\theta(\ww)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\ww$ to $\ww_\perp$, because rotations commute with each other, and because rotations are length-preserving.
-\end{proof}
-
-\subsection*{Geometric characterization $\implies$ algebraic characterization}
-
-\begin{lemma}
-    (Signed projection onto a vector in $\R^2$ is a linear function).
-    
-    Let $\vv_1, \vv_2 \in \R^2$. The map $\vv_1 \mapsto \sproj(\vv_1 \rightarrow \vv_2)$ is linear.
-\end{lemma}
-
-\begin{proof}
-    Let $\vv_1, \vv_2, \ww \in \R^2$, and define $\ff:\R^2 \rightarrow \R$ by $\ff(\vv) = \proj(\vv \rightarrow \ww)$. We need to show that $\ff(\vv_1 + \vv_2) = \ff(\vv_1) + \ff(\vv_2)$ and that $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$. 
-    
-    We have
-    
-    \begin{align*}
-        \ff(\vv_1 + \vv_2) &= \ff\Big(\Big((v_1)_{||}\hat{\ww} + (v_1)_{\perp}\hat{\ww}_\perp \Big) + \Big((v_2)_{||}\hat{\ww} + (v_2)_\perp \hat{\ww}_\perp \Big) \Big), \text{ where $(v_i)_{||} = \sproj(\vv_i \rightarrow \ww)$ for $i \in \{1, 2\}$} \\
-        &= \ff \Big(\Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp) \Big) \hat{\ww}_\perp \Big) \\
-        &= \sproj\Big(\Big[ \Big((v_1)_{||} + (v_2)_{||} \Big) \hat{\ww} + \Big((v_1)_\perp + (v_2)_\perp \Big) \hat{\ww}_\perp \Big] \rightarrow \ww \Big) \\
-        &= (v_1)_{||} + (v_2)_{||} 
-        = \sproj(\vv_1 \rightarrow \ww) + \sproj(\vv_2 \rightarrow \ww) = \ff(\vv_1) + \ff(\vv_2).
-    \end{align*}
-
-    And we have
-    
-    \begin{align*}
-        \ff(c \vv) &= 
-        \ff \Big(c \Big(v_{||}\hat{\ww} + v_{\perp}\hat{\ww}_\perp \Big) \Big), \text{ where $v_{||} = \sproj(\vv \rightarrow \ww)$} \\
-        &= \ff\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big)
-        = \sproj\Big(\Big(cv_{||}\hat{\ww} + cv_{\perp}\hat{\ww}_\perp \Big) \rightarrow \ww \Big) \\
-        &= c v_{||} \hat{\ww} = c \sproj(\vv \rightarrow \ww) = c \ff(\vv).
-    \end{align*}
-\end{proof}
-
-\begin{theorem}
-\label{ch::lin_alg::thm::geom_dot_product_bilinear}
-    (The dot product in $\R^2$ is a bilinear function).
-    
-    The dot product in $\R^2$ is a bilinear function. That is, both $\vv \mapsto \vv \cdot \ww$ and $\ww \mapsto \vv \cdot \ww$ are linear functions.
-\end{theorem}
-
-\begin{proof}
-    The dot product in $\R^2$ is symmetric, so it suffices to show that it is a linear function in either argument; it suffices to show that $\ff:\R^2 \rightarrow \R$ defined by $\ff(\vv) = \vv \cdot \ww$ is a linear function. Well, ${\ff(\vv) = ||\ww||\sproj(\vv \rightarrow \ww)}$, and we know that $\vv \mapsto \sproj(\vv \rightarrow \ww)$ is linear. Since $\ff$ is the result of scaling a linear function by $||\ww||$, it too is a linear function.
-\end{proof}
-
-Knowing that the dot product is bilinear allows us to derive an alternate ``algebraic'' (as opposed to ``geometric'') expression for the dot product of two vectors in $\R^2$. Before we derive this alternate expression, though, we will need to note the following basic fact.
-
-\begin{lemma}
-    Let $\sE = \{\see_1, \see_2 \}$ be the standard basis for $\R^2$. We have
-    
-    \begin{align*}
-        \see_i \cdot \see_j = 
-        \begin{cases}
-            1 & i = j \\
-            0 & i \neq j
-        \end{cases}
-        = \delta_{ij}
-    \end{align*}
-
-    for all $i, j \in \{1, 2\}$.
-\end{lemma}
-
-\begin{proof}
-   The lemma is equivalent to the statement $\sproj(\see_i \rightarrow \see_j) = \delta_{ij}$, which is easily proved.
-\end{proof}
-
-\begin{deriv}
-    (Algebraic dot product in $\R^2$). 
-    
-    We can now derive the algebraic characterization of the dot product by using its bilinearity (Theorem \ref{ch::lin_alg::thm::geom_dot_product_bilinear}) together with the previous lemma.
-    
-    We will make use of the following general fact about bilinear functions\footnote{If $V_1, V_2$, and $W$ are vector spaces over a field $K$, then $\ff:V_1 \times V_2 \rightarrow W$ is a \textit{bilinear} function iff $\vv \mapsto \ff(\vv, \ww)$ and $\ww \mapsto \ff(\vv, \ww)$ are both linear functions.}. If $V$ is a finite-dimensional vector space over a field $K$ with a basis $E = \{\ee_i\}_{i = 1}^n$, then a bilinear function $B:V \times V \rightarrow K$ satisfies
-    
-    \begin{align*}
-        B(\vv, \ww) &= B\Big(\sum_{i = 1}^n ([\vv]_E)_i \ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
-        &= \sum_{i = 1}^n ([\vv]_E)_i B\Big(\ee_i, \sum_{i = 1}^n ([\vv]_E)_j \ee_j\Big) \\
-        &= \sum_{i = 1}^n \sum_{j = 1}^n ([\vv]_E)_i ([\ww]_E)_i B(\ee_i, \ee_j).
-    \end{align*}
-    
-    In the above, we've written $\vv$ and $\ww$ as sums of basis vectors and then used the linearity of $B$ in each argument.
-    
-    The dot product is a bilinear function $\cdot:\R^2 \times \R^2 \rightarrow \R$, so the above fact can be applied to the dot product. We know from the previous lemma that $B(\see_i, \see_j) = \delta_{ij}$, so we have
-    
-    \begin{align*}
-        \vv \cdot \ww = \sum_{i = 1}^2 \sum_{j = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i \delta_{ij} = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i.
-    \end{align*}
-    
-    Therefore
-    
-    \begin{align*}
-        \boxed
-        {
-            \vv \cdot \ww = \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
-        }
-    \end{align*}
-\end{deriv}
-
-\subsection*{Algebraic characterization $\implies$ geometric characterization}
-
-\begin{deriv}
-    (Algebraic characterization $\implies$ geometric characterization).
-    
-    If
-
-    \begin{align*}
-        \vv \cdot \ww := \sum_{i = 1}^2 ([\vv]_\sE)_i ([\ww]_\sE)_i
-    \end{align*}
-
-    then
-    
-    \begin{align*}
-        \vv \cdot \ww := \sproj(\vv \rightarrow \ww) \spc ||\ww|| \text{ for all $\vv, \ww \in \R^2$}.
-    \end{align*}
-\end{deriv}
-
-\begin{proof}
-    Let $\vv, \ww \in \R^2$ and consider $\vv \cdot \ww$. We can\footnote{Use $\theta = \arccos(||\vv||)$.} choose $\theta \in [0, 2\pi)$ so that $\RR_\theta(\hvv) = \see_1$, i.e., so that $\RR_\theta(\vv) = ||\vv||\see_1$. With this choice of $\theta$, we have
-    
-    \begin{align*}
-        \vv \cdot \ww 
-        = \RR_\theta(\vv) \cdot \RR_\theta(\ww) 
-        = ||\vv|| \see_1 \cdot \RR_\theta(\ww)
-        = 
-        \begin{pmatrix} ||\vv|| \\ 0 \end{pmatrix}
-        \cdot 
-        \begin{pmatrix} ([\RR_\theta(\ww)]_\sE)_1 \\ ([\RR_\theta(\ww)]_\sE)_2 \end{pmatrix} 
-        = 
-        ||\vv|| ([\RR_\theta(\ww)]_\sE)_1.
-    \end{align*}
-    
-    We have
-    
-    \begin{align*}
-        ([\RR_\theta(\ww)]_\sE)_1
-        &= \proj(\RR_\theta(\ww) \rightarrow \see_1) 
-        = \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\hvv))
-        = \proj(\RR_\theta(\ww) \rightarrow \widehat{\RR_\theta(\vv)}) \\
-        &= \proj(\RR_\theta(\ww) \rightarrow \RR_\theta(\vv)) 
-        = \proj(\ww \rightarrow \vv),
-    \end{align*}
-    
-    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv \cdot \ww = ||\proj(\ww \rightarrow \vv)|| \spc ||\vv||$. Since the dot product is symmetric, we can swap $\vv$ and $\ww$; this gives the desired result.
-\end{proof}
 
 \subsection*{Length and angle in $\R^n$}
 

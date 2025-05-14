@@ -53,7 +53,7 @@ This is a list of items that must be completed before I consider this book truly
 \section*{Misc.}
 
 \begin{itemize}
-    \item Use $()$ for bases instead of $\{\}$. Make a remark after definition of basis about $()$ vs. $\{\}$
+    \item Use $()$ for bases instead of $\{\}$. Make a remark after definition of basis about $()$ vs. $\{\}$ (or maybe this should be obvious given discussion about in logic and proofs chapter)
     \item vector fields should be denoted as $v$, not $\VV$, since a continuous map sending $\pp \mapsto v_\pp$ is a vector field
     \item in ``coordinates of tensors'' section of ``bilinear forms'' chapter, make sure never see expressions like $([\FF]_E)^i_j$, only $([\FF]_E)^i{}_j$
 \end{itemize}
@@ -63,8 +63,8 @@ This is a list of items that must be completed before I consider this book truly
 \begin{itemize}
     \item Rewrite dot product section. My ||proj|| doesn’t work. Need to use sproj; projection must be signed, and $n$-dimensional angle approach isn’t actually easier for the beginner to understand; way more inductive proofs with complicated functions are required than I thought.
     \item \textbf{After more thought, have determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t quickly give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask “why?”, since it’s clearly established that it is so.}
-    \item \textbf{Best approach will be to start in $\R^2$. Define angle between two vectors to be the minimum Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
-    \item One thing to get right is that we must have $\theta \geq 0$, since it is the output of $\arccos$, and $\theta \leq \pi$, since it is the angle of the shorter arc between two vectors.
+    \item \textbf{Best approach will be to start in $\R^2$. Define angle between two vectors to be the minimum ratio of arc length to radius on the arc of the circle between the corresponding unit vectors. This implies that $\theta(\vv, \ww) \in [0, \pi]$ for all $\vv, \ww \in \R^2$. Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
+    \item Will need to define rotations so that can show algebraic => geometric. So work on rotation section.
 \end{itemize}
 
 \subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}

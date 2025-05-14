@@ -1,5 +1,20 @@
 \chapter{Appendix}
 
+\section*{Modular arithmetic}
+
+\begin{remark}
+\label{ch::appendix::lemma::modular_arithmetic_lemma}
+    (Modular arithmetic lemma).
+    
+    If $m > 0$ then $-m \bmod n$ = $(\text{least integer multiple of $n$ that's greater than $m$}) - m$.
+
+    If $m > 0$ and $m \in (0, n]$ then $(\text{least integer multiple of $n$ that's greater than $m$}) = n$, so $-m \bmod n = n - m$.
+\end{remark}
+
+\begin{proof}
+    The first statement follows since $(\text{greatest integer multiple of $n$ that's less than $-m$}) = -(\text{least integer multiple of $n$ that's greater than $m$})$.
+\end{proof}
+
 \section*{Function-input duality}
 
 \begin{deriv}
