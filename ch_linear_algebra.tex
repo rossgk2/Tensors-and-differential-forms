@@ -2250,7 +2250,7 @@ The following special case of the above theorem follows immediately.
         }
         \fullindent
         {
-            (Case: $c \neq 0$). Notice that $c\vv \in \spann(\{\vv\})$ satisfies
+            (Case: $c \neq 0$). Define $\text{dist}:\R^n \times \R^n \rightarrow \R$ by $\text{dist}(\vv, \ww) := ||\ww - \vv||$. Notice that $c\vv \in \spann(\{\vv\})$ satisfies
 
             \begin{align*}
                 \begin{cases}
@@ -2307,14 +2307,22 @@ Convention dictates that we interpret motion along the counterclockwise paramete
         \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
     \end{align*}
 
-    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := (s(\cc, \vv, \ww)/r) \bmod 2\pi$.
-
-    Notice that $\theta(\vv, \ww) = \theta(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta(\vv, \ww) := \theta(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
+    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := (s(\cc, \vv, \ww)/r) \bmod 2\pi$. 
+    
+    Notice that $\theta_s(\vv, \ww) = \theta_s(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta_s(\vv, \ww) := \theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
 
     \begin{align*}
         &\theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \bmod 2\pi.
     \end{align*}
 \end{defn}
+
+\begin{theorem}
+    (Signedness of signed counterclockwise angle). $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+\end{theorem}
+
+\begin{proof}
+    TO-DO
+\end{proof}
 
 \begin{remark}
     (Moduli of negative integers).
@@ -2348,17 +2356,19 @@ Convention dictates that we interpret motion along the counterclockwise paramete
     An example of this relationship is $-\frac{\pi}{2} \bmod 2\pi = \frac{3\pi}{2} \bmod 2\pi$ and $-\frac{3\pi}{2} \bmod 2\pi = \frac{\pi}{2} \bmod 2\pi$.    
 \end{remark}
 
-Fortunately, there is a more convenient way to compute the signed counterclockwise angle that, by virtue of the fact that it produces a result in $[-2\pi, 2\pi]$, doesn't involve the $\bmod$ operator.
-
 \begin{theorem}
     (Signed counterclockwise angle as a minimum).
 
     \begin{align*}
-        \theta_s(\vv, \ww) = \pm \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)),
+        \theta_s(\vv, \ww) = \pm \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)) \bmod 2\pi,
     \end{align*}
 
     where $\pm$ is $+$ when the minimum is $s(\cc, \vv, \ww)$ and is $-$ when the minimum is $s(\widetilde{\cc}, \vv, \ww)$.
 \end{theorem}
+
+\begin{proof}
+    TO-DO
+\end{proof}
 
 \begin{defn}
     (Unsigned angle between vectors in $\R^2$).
@@ -2369,6 +2379,10 @@ Fortunately, there is a more convenient way to compute the signed counterclockwi
         \theta_u(\vv, \ww) = \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)).
     \end{align*}
 \end{defn}
+
+\begin{proof}
+    TO-DO: show how the $\bmod 2\pi$ disappears
+\end{proof}
 
 \begin{remark}
     (Well-definedness of unsigned angle between two vectors).
@@ -2382,7 +2396,16 @@ A reminder is in order...
 \begin{defn}
     ($\cos$ and $\sin$).
 
-    We define $(\cos(t), \sin(t))^\top := \cc(t)$. That is, $\cos(t)$ and $\sin(t)$ are such that $(\cos(t), \sin(t))^\top$ is the point obtained by traveling an arclength of $t$ along the counterclockwise parameterization of the unit circle.
+    We define functions $\cos:\R \rightarrow \R$ and $\sin:\R \rightarrow \R$ by imposing that they be periodic functions of period $2\pi$ such that $(\cos(t), \sin(t))^\top$ is the point obtained by traveling an arclength of $t$ along the counterclockwise parameterization of the unit circle when $t \in [0, 2\pi]$. Succinctly,
+
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(t) \\
+            \sin(t)
+        \end{pmatrix}
+        =
+        \cc(t \bmod 2\pi) \text{ for all $t \in \R$}.
+    \end{align*}
 \end{defn}
 
 \begin{theorem}
@@ -2396,24 +2419,10 @@ A reminder is in order...
 \begin{theorem}
     ($\cos$ and $\sin$ as ratios of lengths of sides of triangles).
 \end{theorem}
-    
-\begin{theorem}
-    $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$
-
-    $-\theta_s(\vv, \ww) = 2\pi - \theta_s(\vv, \ww) \text{ mod $2\pi$}$
-\end{theorem}
 
 \begin{proof}
-    We have $s(\xx, \vv, \ww) = s(\xx, \ww, \vv)$ for all $\vv, \ww \in \R^2$ and $\xx \in \{\cc, \widetilde{\cc}\}$ because the length of a path is equal to the length of the reverse path. 
-        
-    If $\theta(\vv, \ww) = \frac{s(\cc, \vv, \ww)}{r}$ then 
-
-    FIX THIS
+    TO-DO
 \end{proof}
-
-\begin{lemma}
-    $\cos(\theta_s(\vv, \ww)) = \cos(\theta_u(\vv, \ww))$ when $\theta_s \in [0, \pi]$.
-\end{lemma}
 
 \begin{defn}
     (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\theta(\vv, \ww) = \frac{\pi}{2}$.
@@ -2621,6 +2630,46 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
 
 \subsubsection*{Algebraic $\implies$ geometric}
 
+\begin{theorem}
+\label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
+    (Preserved quantities).
+    
+    If $\ff:\R^2 \rightarrow \R^2$ is an isometry, then $\ff$ must also be linear, and  
+
+    \begin{enumerate}
+        \item ($\ff$ preserves dot product). $\vv \cdot \ww = \ff(\vv) \cdot \ff(\ww)$ for all $\vv, \ww \in \R^2$.
+        \item ($\ff$ preserves length and angle). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$ and $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    \begin{itemize}
+        \item (Isometry $\implies$ (2)). Suppose $\ff$ preserves length. If we showed that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$ (on lengths), it would follow that $\ff$ preserves dot product. This is what we will do.
+
+        We need to show that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv + \ww||^2 = (\vv + \ww) \cdot (\vv + \ww) = \vv \cdot \vv + 2 \vv \cdot \ww + \ww \cdot \ww = ||\vv||^2 + 2 \vv \cdot \ww + ||\ww||^2$. Solve for $\vv \cdot \ww$ to see that $\vv \cdot \ww$ does indeed depend on $||\vv||$ and $||\ww||$:
+        
+       \begin{align*}
+            \vv \cdot \ww = \frac{1}{2}\Big(||\vv + \ww||^2 - (||\vv||^2 + ||\ww||^2) \Big).
+        \end{align*}
+        
+        (Isometry $\impliedby$ (2)). If $\ff$ preserves dot product, then $||\ff(\vv)|| = \sqrt{\ff(\vv) \cdot \ff(\vv)} = \sqrt{\vv \cdot \vv} = ||\vv||$, so $\ff$ preserves length.
+        
+        \item \mbox{} \\
+        ((2) $\implies$ (3)). If $\ff$ preserves length, then, since angle is a function of quantities that are preserved by $\ff$ (dot product and length), $\theta(\vv, \ww) = \arccos\Big( \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||} \Big)$, it too is preserved by $\ff$. \\
+        
+        ((2) $\impliedby$ (3)). Suppose $\ff$ preserves angle: $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$. Then $\ff(\vv) \cdot \ff(\ww) = ||\ff(\vv)|| \spc ||\ff(\ww)|| \cos(\theta(\ff(\vv), \ff(\ww)))$
+    \end{itemize}
+\end{proof}
+
+\begin{remark}
+    (Orthogonal linear functions).
+
+    Linear isometries are more often referred to as ``orthogonal linear functions''. [maybe say more about this]
+    
+    ``Orthogonal linear function'' is a somewhat misleading name. It's true that certain facts about orthogonal linear functions involve orthogonal \textit{vectors}, but orthogonal linear functions aren't ``perpendicular'' to other orthogonal linear functions in some sense.
+\end{remark}
+
 \begin{deriv}
     (Algebraic characterization $\implies$ geometric characterization).
     
@@ -2749,79 +2798,7 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
     This proves the claim for $n + 1$.
 \end{proof}
 
-\section{Length and angle [deprecated]}
-
-
-\subsection*{Prerequisites for understanding the dot product}
-
-\subsubsection*{Orthogonal linear functions}
-
-\begin{theorem}
-\label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
-    (Preserved quantities and linear functions).
-    
-    If $\ff:\R^2 \rightarrow \R^2$ is a linear function, then the following statements are equivalent:
-
-    \begin{enumerate}
-        \item ($\ff$ preserves length). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$.
-        \item ($\ff$ preserves dot product). $\vv \cdot \ww = \ff(\vv) \cdot \ff(\ww)$ for all $\vv, \ww \in \R^2$.
-        \item ($\ff$ preserves length and angle). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$ and $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-    \mbox{} \\
-    \begin{itemize}
-        \item ((1) $\implies$ (2)). Suppose $\ff$ preserves length. If we showed that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$ (on lengths), it would follow that $\ff$ preserves dot product. This is what we will do.
-
-        We need to show that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv + \ww||^2 = (\vv + \ww) \cdot (\vv + \ww) = \vv \cdot \vv + 2 \vv \cdot \ww + \ww \cdot \ww = ||\vv||^2 + 2 \vv \cdot \ww + ||\ww||^2$. Solve for $\vv \cdot \ww$ to see that $\vv \cdot \ww$ does indeed depend on $||\vv||$ and $||\ww||$:
-        
-       \begin{align*}
-            \vv \cdot \ww = \frac{1}{2}\Big(||\vv + \ww||^2 - (||\vv||^2 + ||\ww||^2) \Big).
-        \end{align*}
-        
-        ((1) $\impliedby$ (2)). If $\ff$ preserves dot product, then $||\ff(\vv)|| = \sqrt{\ff(\vv) \cdot \ff(\vv)} = \sqrt{\vv \cdot \vv} = ||\vv||$, so $\ff$ preserves length.
-        
-        \item \mbox{} \\
-        ((2) $\implies$ (3)). If $\ff$ preserves length, then, since angle is a function of quantities that are preserved by $\ff$ (dot product and length), $\theta(\vv, \ww) = \arccos\Big( \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||} \Big)$, it too is preserved by $\ff$. \\
-        
-        ((2) $\impliedby$ (3)). Suppose $\ff$ preserves angle: $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$. Then $\ff(\vv) \cdot \ff(\ww) = ||\ff(\vv)|| \spc ||\ff(\ww)|| \cos(\theta(\ff(\vv), \ff(\ww)))$
-    \end{itemize}
-\end{proof}
-
-\begin{defn}
-\label{ch::lin_alg::defn::orthogonal_linear_fn_Rn}
-    (Orthogonal linear function).
-    
-    We say that a linear function $\ff:\R^n \rightarrow \R^n$ is \textit{orthogonal} iff it preserves dot product.
-\end{defn}
-
-\begin{remark}
-    (Orthogonal linear function).
-    
-    ``Orthogonal linear function'' is a somewhat misleading name. It's true that certain facts about orthogonal linear functions involve orthogonal \textit{vectors}, but orthogonal linear functions aren't ``perpendicular'' to other orthogonal linear functions in some sense.
-\end{remark}
-
-\subsubsection*{Rotation}
-
-\begin{theorem}
-    Rotations in $\R^2$ are orthogonal linear functions.
-\end{theorem}
-
-\begin{proof}
-    It suffices to show that rotations preserve length. So, for $\vv \in \R^2$, consider $||\vv||$ and $||\RR_\theta(\vv)||$. 
-    
-    We have $\RR_\phi(\vv) = \RR_\phi(||\vv|| \hvv) = ||\vv|| \RR_\phi(\hvv)$. Since ${\hvv = (\cos(\theta), \sin(\theta))^\top}$ for some $\theta \in [0, 2\pi)$, ...
-\end{proof}
-
-\begin{theorem}
-    $\RR_\theta(\hvv) = \widehat{\RR_\theta(\vv)}$
-\end{theorem}
-
-\begin{proof}
-    
-\end{proof}
-
+\section{Length and angle [relocate the below to new updated sections above]}
 
 \subsection*{Length and angle in $\R^n$}
 
