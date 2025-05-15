@@ -79,14 +79,26 @@ More things about this book that are original that I should call attention to:
     \item Will need to define rotations so that can show algebraic => geometric. So work on rotation section.
 \end{itemize}
 
-\subsubsection*{Rotations}
+\subsubsection*{Angle and rotations}
+
+Angle
 
 \begin{itemize}
-    \item overall goal: prove that rotation matrix of ccw rotation by t is the expected thing with cos(t) and sin(t). have this theorem properly backed up by a correct notion of angle in which $-\pi/2 \sim 3\pi/2$
-    \item figure out what the angle is in the dot product formula. when written with arccos, it must be unsigned; when written with cos, it can probably be signed or unsigned
-    \item need to know that rotations are isometries, i.e., orthogonal linear functions (this is done since rotations are defined to be certain isometries), and that orthogonal linear functions preserve algebraic dot product so can prove algebraic => geometric. this is mostly outlined.
-    \item need to prove facts about projections for geometric => algebraic, and for the very last part of algebraic => geometric I think. this seems mostly done but go over it to check.
+    \item overall goal: figure out what the angle is in the dot product formula.
+    \begin{itemize}
+        \item seems to go like this. first, prove that $\sproj(\vv \rightarrow \ww) = ||\vv||\cos(\theta_s(\vv, \ww)) = ||\vv||\cos(\theta_u(\vv, \ww))$. since $\cos$ is even and $\theta_u(\vv, \ww) = \pm \theta_s(\vv, \ww)$ then $\cos(\theta_u(\vv, \ww)) = \cos(\pm \theta_s(\vv, \ww)) = \cos(\theta_s(\vv, \ww))$.
+
+        once we have defined the dot product, we have $\hvv \cdot \hww = \cos(\theta_s(\vv, \ww) = \cos(\theta_u(\vv, \ww))$. obviously then $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww) = \theta_u(\hvv, \hww)$. how can we have $\theta_s(\vv, \ww) = \theta_u(\vv, \ww)$ here? [has something to do with identifications mod $2\pi$]
+    \end{itemize}
 \end{itemize}
+
+Rotations- three overall goals-
+
+\begin{enumerate}
+    \item prove that rotation matrix of CCW rotation by $t$ is $\begin{pmatrix} \cos(t) & -\sin(t) \\ \sin(t) & \cos(t) \end{pmatrix}$. have this theorem properly backed up by a correct notion of angle in which $-\pi/2 \sim 3\pi/2$. we need this for the orientation section; we use $t = \pi/2$ to prove the antisymmetry of ordered bases. 
+    \item establish that rotations are isometries, i.e., orthogonal linear functions, and that orthogonal linear functions preserve algebraic dot product. we need this so we can prove algebraic => geometric. this is mostly outlined.
+    \item we also need to prove facts about projections for geometric => algebraic, and for the very last part of algebraic => geometric I think. this seems mostly done but go over it to check.
+\end{enumerate}
 
 \subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}
 
@@ -132,8 +144,8 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
     \item Then, add a remark about how one can more formally construct tensor and wedge product spaces by using $F(V \times W)/\sim$ for various $\sim$. See Warner for how to do this, and add a section on quotient vector spaces and $F(V \times W)/\sim$ to the appendix. 
     \item Check if remark on covariance and contravariance is correct in light of the fact that I’ve shown vectors transform with $[\EE]_F$ and covectors transform with its transpose inverse. Aren’t covectors supposed to be the ones that transform with the matrix that isn’t a transpose inverse? Maybe the answer is that the change of basis matrix is considered to be the one containing the vectors from the new basis taken relative to the old basis, i.e. $[\FF]_E$.
     \item Why is it necessary that covector components be indexed oppositely to covectors? Same question goes for vector components and vectors.
-    \item New: the metric tensor can have its coordinates changed
     \item After Ricci law: example of changing basis for a purely covariant tensor, a purely contravariant tensor, and a not too complicated mixed tensor
+    \item Also, the metric tensor can have its coordinates changed!
     \item Remark: summary of physicist notation. Include the previous remark and the one about the physicist notation regarding the metric tensor.
 \end{itemize}
 
@@ -175,7 +187,7 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 \subsubsection{Cross product}
 
 \begin{itemize}
-    \item In the linear algebra chapter, after determinants and orientation, introduce the cross product as a natural object that comes out of thinking about the oriented volume of parallelepiped: $(\vv \times \ww)^\top$ is the matrix of the linear function $\uu \mapsto \det(\uu, \vv, \ww)$. That is $(\vv \times \ww) \cdot \uu = \det(\uu, \vv, \ww)$.
+    \item Do \textit{not} introduce the cross product as the vector with a magnitude equal to the area of the spanned parallelogram and direction perpendicular and positively oriented. This is very contrived. Instead, in the linear algebra chapter, after determinants and orientation, introduce the cross product as a natural object that comes out of thinking about the oriented volume of parallelepiped: $(\vv \times \ww)^\top$ is the matrix of the linear function $\uu \mapsto \det(\uu, \vv, \ww)$. That is $(\vv \times \ww) \cdot \uu = \det(\uu, \vv, \ww)$. 
 \end{itemize}
 
 \subsubsection{Hodge dual}
