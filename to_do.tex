@@ -79,15 +79,37 @@ More things about this book that are original that I should call attention to:
     \item Will need to define rotations so that can show algebraic => geometric. So work on rotation section.
 \end{itemize}
 
-\subsubsection*{Angle and rotations}
-
-Angle
-
+Etc.
 \begin{itemize}
-    \item overall goal: figure out what the angle $\theta$ is in the dot product formula. is it signed or unsigned? is it somehow both, because it's in a domain that, $\bmod 2\pi$, is both? or is it only one? how does the one-to-one restriction of cosine come into play?
+    \item Check defn of vector projection and make sure “some $\vv_\perp$” is used instead of “the $\vv_\perp$”
 \end{itemize}
 
-Rotations- three overall goals-
+\subsubsection*{Angle}
+
+Overall goal: figure out what the angle $\theta$ is in the dot product formula. is it signed or unsigned? is it somehow both, because it's in a domain that, $\bmod 2\pi$, is both? or is it only one? how does the one-to-one restriction of cosine come into play?
+
+How it all works:
+
+\begin{itemize}
+    \item We have $\cos(\theta_u(\vv, \ww)) = \cos(\pm \theta_s(\vv, \ww)) = \cos(\theta_s(\vv, \ww))$, where $\theta_s(\vv, \ww) \in [0, \pi]$. Since $\theta_s(\vv, \ww)$ ranges over the exact set which $\arccos$ maps into, then $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$.
+    \begin{itemize}
+        \item The situation: we have a function $f:X \rightarrow Y$ and a one-to-one restriction $g$ of $f$ to $X_1$; $f = \cos$ and $g^{-1} = \arccos$). If $x \in X_1$ then $g^{-1}(f(x)) = x$. But if $x \in X - X_1$ then not necessarily true that $g^{-1}(f(x)) = x$.
+        \item This is not the case for $\theta_u(\vv, \ww)$. $\arccos(\cos(\theta_s(\vv, \ww)) = \pm \theta_u(\vv, \ww)$, and there’s no way to predict whether $\pm$ is $+$ or $-$
+        \item Remark. There’s no natural way to choose which of the counterclockwise and clockwise angles between $\vv$ and $\ww$ is meant by “the angle between $\vv$ and $\ww$”. Therefore, a natural notion of angle between $\vv$ and $\ww$ must be unsigned.
+        \item ALSO. The domain of unsigned angle must be both in the nonnegative real numbers and also of length $2\pi/2$. Any more than $2\pi/2$ and there are some unsigned angles that have additive inverses mod $2\pi$. \textbf{elaborate more}
+    \end{itemize}
+    \item Why do we need to talk about signed CCW and CW angles then? Because in order for $(\cos(t), \sin(t))$ to be a unique point, we can’t say “it makes an unsigned angle of $t$ with $(1, 0)$”- there are two vectors that achieve that. One is obtained with a CCW parameterization and one is obtained with a CW parameterization. We have to pick which of these two we mean by $(\cos(t), \sin(t))$.
+    \item Section on signed CCW and CW angles can be improved:
+    \begin{itemize}
+        \item Defn. Signed clockwise angle, $\widetilde{\theta}_s$
+        \item Thm. $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww$. Since $-\theta \bmod 2\pi = 2\pi - \theta \bmod 2\pi$ [this is evident from distributivity of mod over addition- might not even need fact in appendix. would need to give a footnote about distributivity though] it follows that $-\theta_s(\vv, \ww) \bmod 2\pi = \widetilde{\theta}_s(\vv, \ww) \bmod 2\pi$.
+        \item ``It is convention to use counterclockwise angle'' remark should go after the above
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Rotations}
+
+Three overall goals:
 
 \begin{enumerate}
     \item prove that rotation matrix of CCW rotation by $t$ is $\begin{pmatrix} \cos(t) & -\sin(t) \\ \sin(t) & \cos(t) \end{pmatrix}$. have this theorem properly backed up by a correct notion of angle in which $-\pi/2 \sim 3\pi/2$. we need this for the orientation section; we use $t = \pi/2$ to prove the antisymmetry of ordered bases. 
@@ -95,25 +117,9 @@ Rotations- three overall goals-
     \item we also need to prove facts about projections for geometric => algebraic, and for the very last part of algebraic => geometric I think. this seems mostly done but go over it to check.
 \end{enumerate}
 
-\subsection*{More dot product edits (may or may not be relevant given outline for new approach above)}
+\subsubsection*{Review on the two types of angle}
 
-\begin{itemize}
-    \item Check defn of vector projection and make sure “some $\vv_\perp$” is used instead of “the $\vv_\perp$”
-    \item Minimize amount of dot product facts used in the “prerequisites to understanding the dot product” section. The facts used are:
-    \begin{itemize}
-        \item Dot product is zero for perpendicular vectors
-        \item Handle geom => alg and alg => geom by starting with geometric formula, showing it’s equal to a formula involving a projection, and going from there.
-    \end{itemize}
-    \item Facts that should be in alg => geom section:
-    \begin{itemize}
-        \item $\vv, \vv_\perp$ is a basis for $\R^2$
-        \item orthogonal linear functions preserve dot product
-        \item rotated projection is projection involving rotated vectors
-    \end{itemize}
-    \item Facts that should be in geom => alg section:
-    \item Proof that geom dot product is linear
-    \item Might have proof about orthogonal linear functions preserving quantities elsewhere in book. Can reference it with a footnote
-\end{itemize}
+There are two vectors that make a given unsigned angle with any other vector. (So, an unsigned angles is a natural answer to the question: ``what is the angle between these two vectors''?) There is only one vector that makes a given CCW signed angle with any other vector. (So, signed angles are useful for describing a unique position on the unit circle instead of a set of two positions).
 
 \section*{Orthogonal complements}
 
