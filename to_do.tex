@@ -86,25 +86,29 @@ Etc.
 
 \subsubsection*{Angle}
 
-Overall goal: figure out what the angle $\theta$ is in the dot product formula. is it signed or unsigned? is it somehow both, because it's in a domain that, $\bmod 2\pi$, is both? or is it only one? how does the one-to-one restriction of cosine come into play?
-
-How it all works:
-
 \begin{itemize}
-    \item We have $\cos(\theta_u(\vv, \ww)) = \cos(\pm \theta_s(\vv, \ww)) = \cos(\theta_s(\vv, \ww))$, where $\theta_s(\vv, \ww) \in [0, \pi]$. Since $\theta_s(\vv, \ww)$ ranges over the exact set which $\arccos$ maps into, then $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$.
+    \item (Subsection intro). You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for good understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\widetilde{\theta}_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
+
+    Signed angle is useful for specifying positions on circles, since for every angle $t$ there is a unique vector that makes a counterclockwise or clockwise signed angle of $t$ with $\see_1$. (Unsigned angle does not work for this purpose, since for every angle $t$, there are \textit{two} vectors that make an angle of $t$ with $\see_1$).
+    
+    Unsigned angle is useful for computing the angle between two vectors, since if ``the angle $\theta$ between $\vv \in \R^2$ and $\ww \in \R^2$'' is a sensible notion, it must satisfy $\theta(\vv, \ww) = \theta(\ww, \vv)$, and we indeed have $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$. (Signed angle does not work for this purpose, since $\theta_s(\vv, \ww) \neq \theta_s(\ww, \vv)$).
+    
+    \item definition: signed CCW and CW angles
     \begin{itemize}
-        \item The situation: we have a function $f:X \rightarrow Y$ and a one-to-one restriction $g$ of $f$ to $X_1$; $f = \cos$ and $g^{-1} = \arccos$). If $x \in X_1$ then $g^{-1}(f(x)) = x$. But if $x \in X - X_1$ then not necessarily true that $g^{-1}(f(x)) = x$.
-        \item This is not the case for $\theta_u(\vv, \ww)$. $\arccos(\cos(\theta_s(\vv, \ww)) = \pm \theta_u(\vv, \ww)$, and there’s no way to predict whether $\pm$ is $+$ or $-$
-        \item Remark. There’s no natural way to choose which of the counterclockwise and clockwise angles between $\vv$ and $\ww$ is meant by “the angle between $\vv$ and $\ww$”. Therefore, a natural notion of angle between $\vv$ and $\ww$ must be unsigned.
-        \item ALSO. The domain of unsigned angle must be both in the nonnegative real numbers and also of length $2\pi/2$. Any more than $2\pi/2$ and there are some unsigned angles that have additive inverses mod $2\pi$. \textbf{elaborate more}
+        \item Use $\widetilde{\theta}_s$ for signed CW angle
     \end{itemize}
-    \item Why do we need to talk about signed CCW and CW angles then? Because in order for $(\cos(t), \sin(t))$ to be a unique point, we can’t say “it makes an unsigned angle of $t$ with $(1, 0)$”- there are two vectors that achieve that. One is obtained with a CCW parameterization and one is obtained with a CW parameterization. We have to pick which of these two we mean by $(\cos(t), \sin(t))$.
-    \item Section on signed CCW and CW angles can be improved:
-    \begin{itemize}
-        \item Defn. Signed clockwise angle, $\widetilde{\theta}_s$
-        \item Thm. $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww$. Since $-\theta \bmod 2\pi = 2\pi - \theta \bmod 2\pi$ [this is evident from distributivity of mod over addition- might not even need fact in appendix. would need to give a footnote about distributivity though] it follows that $-\theta_s(\vv, \ww) \bmod 2\pi = \widetilde{\theta}_s(\vv, \ww) \bmod 2\pi$.
-        \item ``It is convention to use counterclockwise angle'' remark should go after the above
-    \end{itemize}
+    \item theorem: $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww$. Since $-\theta \bmod 2\pi = 2\pi - \theta \bmod 2\pi$ [this is evident from distributivity of mod over addition- might not even need fact in appendix. would need to give a footnote about distributivity though] it follows that $-\theta_s(\vv, \ww) \bmod 2\pi = \widetilde{\theta}_s(\vv, \ww) \bmod 2\pi$.
+    \item remark: ``It is convention to use counterclockwise angle''
+     \item definition: $\cos(t)$ and $\sin(t)$ as coordinates of vector that makes signed counterclockwise angle of $t$ with $\see_1$
+    \item definition: $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
+    \item definition: unsigned angle
+    \item ...
+    \item definition: $\vv \cdot \ww := ||\ww|| \sproj(\vv \rightarrow \ww)$
+    \item lemma: $\sproj(v -> w) = ||\vv|| \cos(\theta_s(\vv, \ww))$
+    \item lemma: $\cos(\theta_s(\vv, \ww)) = \cos(\theta_u(\vv, \ww))$
+    \item theorem: $\vv \cdot \ww = ||\vv|| ||\ww|| \cos(\theta_s(\vv, \ww)) = ||\vv|| ||\ww|| \cos(\theta_u(\vv, \ww))$
+    \item now we derive an expression for angle in terms of lengths and the dot product. [this expression would amount to a tautology if we didn't know the algebraic formula for the dot product].
+    \item derivation. recall that $\arccos$ is the inverse of the restriction of cos to $I := [0, \pi]$. The set which $\theta_u(\vv, \ww)$ ranges over is exactly $I$, while the set $\theta_s(\vv, \ww)$ ranges over is a proper superset of $I$. Therefore, we have $\arccos(\cos(\theta_u(\vv, \ww)) = \theta_u(\vv, \ww)$ but do not always have $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$. consequently, we have $\theta_u(\vv, \ww) = \arccos(\hvv \cdot \hww)$ but do not have $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww)$.
 \end{itemize}
 
 \subsubsection*{Rotations}
@@ -116,10 +120,6 @@ Three overall goals:
     \item establish that rotations are isometries, i.e., orthogonal linear functions, and that orthogonal linear functions preserve algebraic dot product. we need this so we can prove algebraic => geometric. this is mostly outlined.
     \item we also need to prove facts about projections for geometric => algebraic, and for the very last part of algebraic => geometric I think. this seems mostly done but go over it to check.
 \end{enumerate}
-
-\subsubsection*{Review on the two types of angle}
-
-There are two vectors that make a given unsigned angle with any other vector. (So, an unsigned angles is a natural answer to the question: ``what is the angle between these two vectors''?) There is only one vector that makes a given CCW signed angle with any other vector. (So, signed angles are useful for describing a unique position on the unit circle instead of a set of two positions).
 
 \section*{Orthogonal complements}
 

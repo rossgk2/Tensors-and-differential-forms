@@ -2312,7 +2312,7 @@ Convention dictates that we interpret motion along the counterclockwise paramete
     Notice that $\theta_s(\vv, \ww) = \theta_s(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta_s(\vv, \ww) := \theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
 
     \begin{align*}
-        &\theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \bmod 2\pi.
+        &\theta_s(\vv, \ww) = s(\cc, \hvv, \hww) \bmod 2\pi.
     \end{align*}
 \end{defn}
 
@@ -2327,9 +2327,9 @@ Convention dictates that we interpret motion along the counterclockwise paramete
 \begin{remark}
     (Moduli of negative integers).
     
-    Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then $(-a) \bmod n \neq -(a \bmod n)$ for all $a$ with $a \bmod n \neq 0$.
+    Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then usually\footnote{Specifically, this holds for all $a$ with $a \bmod n \neq 0$.} $(-a) \bmod n \neq -(a \bmod n)$.
 
-    How do we compute $-a \bmod n$ when $a \in \Z$ is positive? Recall that for \textit{any} $a \in Z$, the remainder $a \bmod n$ is defined to be the unique $r \in \Z$ such that $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
+    So how do we compute $-a \bmod n$ when $a \in \Z$ is positive? Recall that for \textit{any} $a \in Z$, the remainder $a \bmod n$ is defined to be the unique $r \in \Z$ such that $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
 
     \begin{align*}
         a \bmod n = (\text{greatest integer multiple of $n$ that is less than $a$}) - a.
