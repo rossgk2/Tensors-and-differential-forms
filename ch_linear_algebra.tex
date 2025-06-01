@@ -2283,6 +2283,14 @@ The following special case of the above theorem follows immediately.
 
 \subsection*{Angle}
 
+You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for good understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\widetilde{\theta}_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
+
+Signed angle is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$).
+
+Unsigned angle is the natural notion of ``the angle between two vectors'', since $\theta_u(\vv, \ww) = \theta(\ww, \vv)$, which is in accordance to the fact that ``the angle between two vectors'' shouldn't have any antisymmetry that distinguishes the two vectors from each other. (Signed angle does not work for this purpose, since $\theta_s(\vv, \ww) \neq \theta_s(\ww, \vv)$).
+
+\subsubsection*{Counterclockwise and clockwise signed angle}
+
 \begin{defn}
     (Counterclockwise and clockwise parameterizations of the unit circle).
 
@@ -2307,7 +2315,7 @@ Convention dictates that we interpret motion along the counterclockwise paramete
         \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
     \end{align*}
 
-    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := (s(\cc, \vv, \ww)/r) \bmod 2\pi$. 
+    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := \frac{s(\cc, \vv, \ww)}{r} \bmod 2\pi$. 
     
     Notice that $\theta_s(\vv, \ww) = \theta_s(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta_s(\vv, \ww) := \theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
 
@@ -2316,20 +2324,22 @@ Convention dictates that we interpret motion along the counterclockwise paramete
     \end{align*}
 \end{defn}
 
-\begin{theorem}
-    (Signedness of signed counterclockwise angle). $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
-\end{theorem}
+\subsubsection*{Signedness of signed angle}
 
-\begin{proof}
-    TO-DO
-\end{proof}
+[have to know about mod before going further]
+
+\begin{defn}
+    (Modulus).
+
+    [idea for $\bmod T$ for $T \in \R$. when $a, n \in \Z$ can write $a/n = q + r/n$ for integers $q$ and $r$, where $r \in [0, n)$. sim., when $a, T \in \R$ can write $a/T = q + r/T$ for integer $q$ and real $r \in [0, T)$.]
+\end{defn}
 
 \begin{remark}
     (Moduli of negative integers).
     
     Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then usually\footnote{Specifically, this holds for all $a$ with $a \bmod n \neq 0$.} $(-a) \bmod n \neq -(a \bmod n)$.
 
-    So how do we compute $-a \bmod n$ when $a \in \Z$ is positive? Recall that for \textit{any} $a \in Z$, the remainder $a \bmod n$ is defined to be the unique $r \in \Z$ such that $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
+    [Let's think about $-a \bmod n$ for positive $a \in \Z$.] From above, we have $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
 
     \begin{align*}
         a \bmod n = (\text{greatest integer multiple of $n$ that is less than $a$}) - a.
@@ -2355,6 +2365,67 @@ Convention dictates that we interpret motion along the counterclockwise paramete
 
     An example of this relationship is $-\frac{\pi}{2} \bmod 2\pi = \frac{3\pi}{2} \bmod 2\pi$ and $-\frac{3\pi}{2} \bmod 2\pi = \frac{\pi}{2} \bmod 2\pi$.    
 \end{remark}
+
+\begin{theorem}
+    (Signedness of signed counterclockwise angle). $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+\end{theorem}
+
+\begin{proof}
+    TO-DO
+\end{proof}
+
+\subsubsection*{Signed clockwise angle}
+
+\begin{defn}
+    (Signed clockwise angle between vectors in $\R^2$).
+\end{defn}
+
+\begin{theorem}
+    $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww \in \R^2$.
+\end{theorem}
+
+\begin{proof}
+    The theorem follows from the fact that $(x + y) \bmod T = x \bmod T + y \bmod T$. A proof of this fact is given in the appendix. [TO-DO]
+\end{proof}
+
+\subsubsection*{Trigonometry}
+
+A reminder is in order...
+
+\begin{defn}
+    ($\cos$ and $\sin$).
+
+    We define functions $\cos:\R \rightarrow \R$ and $\sin:\R \rightarrow \R$ by imposing that they be periodic functions of period $2\pi$ such that $(\cos(t), \sin(t))^\top$ is the point obtained by traveling an arclength of $t$ along the counterclockwise parameterization of the unit circle when $t \in [0, 2\pi]$. Succinctly,
+
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(t) \\
+            \sin(t)
+        \end{pmatrix}
+        :=
+        \cc(t \bmod 2\pi) \text{ for all $t \in \R$}.
+    \end{align*}
+\end{defn}
+
+\begin{theorem}
+    $\theta\left(\see_1, \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}\right) = t$
+\end{theorem}
+
+\begin{proof}
+    We have $\see_1 = \cc(t_1)$ and $(\cos(t), \sin(t))^\top = \cc(t_2)$, where $t_1 = 0$ and $t_2 = t$. The angle between these vectors is $\int_{t_1}^{t_2} ||\frac{d\cc(t)}{dt}||dt = \int_0^t dt = t$. 
+\end{proof}
+
+\begin{theorem}
+    ($\cos$ and $\sin$ as ratios of lengths of sides of triangles).
+\end{theorem}
+
+\begin{defn}
+    (Inverse trigonometric functions).
+
+    $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$
+\end{defn}
+
+\subsubsection*{Unsigned angle}
 
 \begin{theorem}
     (Signed counterclockwise angle as a minimum).
@@ -2384,49 +2455,35 @@ Convention dictates that we interpret motion along the counterclockwise paramete
     TO-DO: show how the $\bmod 2\pi$ disappears
 \end{proof}
 
-\begin{remark}
-    (Well-definedness of unsigned angle between two vectors).
-
-    [currently looks like it depends on $r$]
-
-\end{remark}
-
-A reminder is in order...
-
-\begin{defn}
-    ($\cos$ and $\sin$).
-
-    We define functions $\cos:\R \rightarrow \R$ and $\sin:\R \rightarrow \R$ by imposing that they be periodic functions of period $2\pi$ such that $(\cos(t), \sin(t))^\top$ is the point obtained by traveling an arclength of $t$ along the counterclockwise parameterization of the unit circle when $t \in [0, 2\pi]$. Succinctly,
-
-    \begin{align*}
-        \begin{pmatrix}
-            \cos(t) \\
-            \sin(t)
-        \end{pmatrix}
-        =
-        \cc(t \bmod 2\pi) \text{ for all $t \in \R$}.
-    \end{align*}
-\end{defn}
-
 \begin{theorem}
-    $\theta\left(\see_1, \begin{pmatrix} \cos(t) \\ \sin(t) \end{pmatrix}\right) = t$
+    (Unsigned angle is symmetric).
+
+    $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
-    We have $\see_1 = \cc(t_1)$ and $(\cos(t), \sin(t))^\top = \cc(t_2)$, where $t_1 = 0$ and $t_2 = t$. The angle between these vectors is $\int_{t_1}^{t_2} ||\frac{d\cc(t)}{dt}||dt = \int_0^t dt = t$. 
+    
 \end{proof}
 
-\begin{theorem}
-    ($\cos$ and $\sin$ as ratios of lengths of sides of triangles).
-\end{theorem}
+The above fact $\theta_u$ the natural notion of angle between vectors. [expand, copying from intro]
 
-\begin{proof}
-    TO-DO
-\end{proof}
+\subsubsection*{Perpendicularity}
 
 \begin{defn}
     (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$.
 \end{defn}
+
+\subsubsection*{For dot product section}
+
+Make sure this discussion on angle is given in dot product section:
+\begin{itemize}
+    \item definition: $\vv \cdot \ww := ||\ww|| \sproj(\vv \rightarrow \ww)$
+    \item lemma: $\sproj(\vv \rightarrow \ww) = ||\vv|| \cos(\theta_s(\vv, \ww))$
+    \item lemma: $\cos(\theta_s(\vv, \ww)) = \cos(\theta_u(\vv, \ww))$
+    \item theorem: $\vv \cdot \ww = ||\vv|| ||\ww|| \cos(\theta_s(\vv, \ww)) = ||\vv|| ||\ww|| \cos(\theta_u(\vv, \ww))$
+    \item now we derive an expression for angle in terms of lengths and the dot product. [this expression would amount to a tautology if we didn't know the algebraic formula for the dot product].
+    \item derivation. recall that $\arccos$ is the inverse of the restriction of cos to $I := [0, \pi]$. The set which $\theta_u(\vv, \ww)$ ranges over is exactly $I$, while the set $\theta_s(\vv, \ww)$ ranges over is a proper superset of $I$. Therefore, we have $\arccos(\cos(\theta_u(\vv, \ww)) = \theta_u(\vv, \ww)$ but do not always have $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$. consequently, we have $\theta_u(\vv, \ww) = \arccos(\hvv \cdot \hww)$ but do not have $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww)$.
+\end{itemize}
 
 \subsection*{Rotations}
 

@@ -81,52 +81,9 @@ More things about this book that are original that I should call attention to:
 
 \subsubsection*{Angle}
 
-You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for good understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\widetilde{\theta}_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
-
-Signed angle is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$).
-
-Unsigned angle is the natural notion of ``the angle between two vectors'', since $\theta_u(\vv, \ww) = \theta(\ww, \vv)$, which is in accordance to the fact that ``the angle between two vectors'' shouldn't have any antisymmetry that distinguishes the two vectors from each other. (Signed angle does not work for this purpose, since $\theta_s(\vv, \ww) \neq \theta_s(\ww, \vv)$).
-
-\textbf{CCW and CW angle}
 \begin{itemize}
-    \item definition: signed CCW angle $\theta_s$
-    \item signedness of CCW signed angle
-    \begin{itemize}
-        \item definition: $\bmod n$ for $n \in \Z \cap [0, \infty)$, $\bmod T$ for $T \in [0, \infty)$
-        \begin{itemize}
-            \item idea for $\bmod T$. when $a, n \in \Z$ can write $a/n = q + r/n$ for integers $q$ and $r$, where $r \in [0, n)$. sim., when $a, T \in \R$ can write $a/T = q + r/T$ for integer $q$ and real $r \in [0, T)$.
-        \end{itemize}
-        \item remark: moduli of negative integers
-        \item theorem: $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$
-    \end{itemize}
-    \item definition: signed CW angle $\widetilde{\theta}_s$
-    \item theorem: $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww$. Since $-\theta \bmod 2\pi = 2\pi - \theta \bmod 2\pi$ [this is evident from distributivity of mod over addition- might not even need fact in appendix. would need to give a footnote about distributivity though] it follows that $-\theta_s(\vv, \ww) \bmod 2\pi = \widetilde{\theta}_s(\vv, \ww) \bmod 2\pi$.
-    \item remark: ``It is convention to use counterclockwise angle''
-\end{itemize}
-
-\textbf{trigonometry}
-\begin{itemize}
-    \item definition: $(\cos(t), \sin(t))^\top := \cc(t)$
-    \item theorem: $\theta_s(\see_1, \cc(t)) = \theta_s(\see_1, (\cos(t), \sin(t))^\top) = t$
-    \item theorem: $\cos$ and $\sin$ as ratios of lengths sides of triangles
-    \item definition: $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$.
-\end{itemize}
-
-\textbf{unsigned angle}
-\begin{itemize}
-    \item theorem: signed CCW angle as a minimum
-    \item definition: unsigned angle
-    \item $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$; reminder of how this makes $\theta_u$ the natural notion of angle between vectors
-\end{itemize}
-
-\textbf{make sure this discussion on angle is given in dot product section}
-\begin{itemize}
-    \item definition: $\vv \cdot \ww := ||\ww|| \sproj(\vv \rightarrow \ww)$
-    \item lemma: $\sproj(\vv \rightarrow \ww) = ||\vv|| \cos(\theta_s(\vv, \ww))$
-    \item lemma: $\cos(\theta_s(\vv, \ww)) = \cos(\theta_u(\vv, \ww))$
-    \item theorem: $\vv \cdot \ww = ||\vv|| ||\ww|| \cos(\theta_s(\vv, \ww)) = ||\vv|| ||\ww|| \cos(\theta_u(\vv, \ww))$
-    \item now we derive an expression for angle in terms of lengths and the dot product. [this expression would amount to a tautology if we didn't know the algebraic formula for the dot product].
-    \item derivation. recall that $\arccos$ is the inverse of the restriction of cos to $I := [0, \pi]$. The set which $\theta_u(\vv, \ww)$ ranges over is exactly $I$, while the set $\theta_s(\vv, \ww)$ ranges over is a proper superset of $I$. Therefore, we have $\arccos(\cos(\theta_u(\vv, \ww)) = \theta_u(\vv, \ww)$ but do not always have $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$. consequently, we have $\theta_u(\vv, \ww) = \arccos(\hvv \cdot \hww)$ but do not have $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww)$.
+    \item Check that $\bmod 2\pi$ appears where it should and doesn't where it shouldn't
+    \item Check that correct intervals are used for angles: $[0, 2\pi)$ for signed (not $(-\pi, \pi]$), $[0, \pi]$ for unsigned
 \end{itemize}
 
 \subsubsection*{Rotations}
