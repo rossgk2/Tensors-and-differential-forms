@@ -2283,7 +2283,7 @@ The following special case of the above theorem follows immediately.
 
 \subsection*{Angle}
 
-You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for good understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\widetilde{\theta}_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
+You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\tttheta_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
 
 Signed angle is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$).
 
@@ -2301,34 +2301,34 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
         \item a parameterization $\widetilde{\cc}:\R \rightarrow \R^2$ in which the motion is ``clockwise'' ($Q_4$ is the first quadrant visited and $Q_1$ is the last quadrant visited
     \end{itemize}
 
-    One example of a counterclockwise parameterization is given by $\cc(t) := (t, \sqrt{1 - t^2})$ when $t \in [-1, 1]$ and $\cc(t) := (t - 1, -\sqrt{1 - (t - 1)^2})$ when $t \in ([-1, 1] + 2) = [1, 3]$. For any counterclockwise parameterization with domain $[t_1, t_2]$, a clockwise parameterization is given by $\widetilde{\cc}(t) := \cc(t_1 + t_2 - t)$.
+    One example of a counterclockwise parameterization is given by $\cc(t) := (t, \sqrt{1 - t^2})$ when $t \in [-1, 1]$ and $\cc(t) := (t - 1, -\sqrt{1 - (t - 1)^2})$ when $t \in [1, 3]$. For any counterclockwise parameterization $\cc$ with domain $[t_1, t_2]$, a clockwise parameterization $\widetilde{\cc}$ is given by $\widetilde{\cc}(t) := \cc(t_1 + t_2 - t)$.
+\end{defn}
+
+\begin{defn}
+    (Arclength on a curve).
+
+    Let $\xx:\R \rightarrow \R^2$ be a curve in $\R^2$, and suppose $\vv = \xx(t_1)$ and $\ww = \xx(t_2)$ are points on $\xx$ with $t_1 \leq t_2$. We define the \textit{arclength $\ss(\xx, \vv, \ww)$ traversed on $\xx$ between $\vv$ and $\ww$} to be
+    
+    \begin{align*}
+        s(\xx, \vv, \ww) :=  \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt.
+    \end{align*}
 \end{defn}
 
 \begin{defn}
 \label{ch::lin_alg::defn::angle_in_R2}
-    (Signed counterclockwise angle between vectors in $\R^2$).
+    (Signed angle between vectors in $\R^2$).
     
-    Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and consider the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. Let $s(\xx, \vv, \ww)$ be the length traversed on the path $\xx:\R \rightarrow \R^2$ from $\vv$ to $\ww$:
+    Let vectors $\vv, \ww \in \R^2$ have the same length $r = ||\vv|| = ||\ww||$, suppose the initial points of $\vv$ and $\ww$ coincide, and consider the circle of radius $r$ that has the coinciding initial points of $\vv$ and $\ww$ as its center. We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := \frac{s(\cc, \vv, \ww)}{r}$, and the \textit{signed clockwise angle
+    $\tttheta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\tttheta_s(\vv, \ww) := \frac{s(\widetilde{\cc}, \vv, \ww)}{r}$. 
+    
+    Notice that $\theta_s(\vv, \ww) = \theta_s(\hvv, \hww)$ and $\tttheta_s(\vv, \ww) = \tttheta_s(\hvv, \hww)$. This allows us to generalize: when $\vv$ and $\ww$ don't have the same length, we define $\theta_s(\vv, \ww) := \theta_s(\hvv, \hww) = s(\cc, \hvv, \hww)$ and $\tttheta_s(\vv, \ww) := \tttheta_s(\hvv, \hww) = s(\widetilde{\cc}, \hvv, \hww)$. Therefore, we have
 
     \begin{align*}
-        &s(\xx, \vv, \ww) :=  \int_{t_1}^{t_2} \Big|\Big|\frac{d\xx(t)}{dt}\Big|\Big| dt, 
-        \text{ where $\xx(t_1) = \vv$, $\xx(t_2) = \ww$}, t_1 \leq t_2.
-    \end{align*}
-
-    We define the \textit{signed counterclockwise angle $\theta_s(\vv, \ww)$ between $\vv$ and $\ww$} to be $\theta_s(\vv, \ww) := \frac{s(\cc, \vv, \ww)}{r} \bmod 2\pi$. 
-    
-    Notice that $\theta_s(\vv, \ww) = \theta_s(\hvv, \hww)$. When $\vv$ and $\ww$ don't have the same length, we define $\theta_s(\vv, \ww) := \theta_s(\hvv, \hww) = s(\cc, \hvv, \hww) \text{ mod } 2\pi$. Therefore, in general, we have
-
-    \begin{align*}
-        &\theta_s(\vv, \ww) = s(\cc, \hvv, \hww) \bmod 2\pi.
+        \theta_s(\vv, \ww) = s(\cc, \hvv, \hww) \text{ and }
+        \tttheta_s(\vv, \ww) = s(\widetilde{\cc}, \hvv, \hww) \text{ for all $\vv, \ww \in \R^2$}.
     \end{align*}
 \end{defn}
 
-\begin{defn}
-    (Signed clockwise angle between vectors in $\R^2$).
-
-    $\widetilde{\theta}_s$
-\end{defn}
 
 We investigate counterclockwise motion first to get our bearings.
 
@@ -2337,9 +2337,9 @@ We investigate counterclockwise motion first to get our bearings.
 [review facts about mod in appendix]
 
 \begin{theorem}
-    (Signedness of signed counterclockwise angle).
+    (Signedness of signed angle).
     
-    We have $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ and $\widetilde{\theta}_s(\vv, \ww) = -\widetilde{\theta}_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+    We have $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ and $\tttheta_s(\vv, \ww) = -\tttheta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
@@ -2351,13 +2351,13 @@ As you might have suspected, signed clockwise angle is the additive inverse of s
 \begin{theorem}
     (Relationship between signed counterclockwise and clockwise angles).
     
-    $-\theta_s(\vv, \ww) \bmod 2\pi =  \widetilde{\theta}_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$.
+    We have $-\theta_s(\vv, \ww) \bmod 2\pi =  \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
-    For all $\vv, \ww \in \R^2$, the unit circle is partitioned into the counterclockwise path from $\hvv$ to $\hww$ (which is $\cc([t_1, t_2])$, where $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$) and the clockwise path from $\hvv$ to $\hww$ (which is $\widetilde{\cc}([\widetilde{t}_1, \widetilde{t}_2])$, where $\widetilde{\cc}(\widetilde{t}_1) = \hvv$ and $\widetilde{\cc}(\widetilde{t}_2) = \hww$). The arclength of the unit circle, $2\pi$, is therefore the sum of the arclengths of these parameterizations. Thus $s(\cc, \hvv, \hww) + s(\widetilde{\cc}, \hvv, \hww) = 2\pi$ for all $\vv, \ww \in \R^2$. That is, $\theta_s(\vv, \ww) + \widetilde{\theta}_s(\vv, \ww) = 2\pi$ for all $\vv, \ww \in \R^2$.
+    For all $\vv, \ww \in \R^2$, the unit circle is partitioned into the counterclockwise path from $\hvv$ to $\hww$ (which is $\cc([t_1, t_2])$, where $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$) and the clockwise path from $\hvv$ to $\hww$ (which is $\widetilde{\cc}([\widetilde{t}_1, \widetilde{t}_2])$, where $\widetilde{\cc}(\widetilde{t}_1) = \hvv$ and $\widetilde{\cc}(\widetilde{t}_2) = \hww$). The arclength of the unit circle, $2\pi$, is therefore the sum of the arclengths of these parameterizations. Thus $s(\cc, \hvv, \hww) + s(\widetilde{\cc}, \hvv, \hww) = 2\pi$ for all $\vv, \ww \in \R^2$. That is, $\theta_s(\vv, \ww) + \tttheta_s(\vv, \ww) = 2\pi$ for all $\vv, \ww \in \R^2$.
 
-    Rearranging, we have $\widetilde{\theta}_s(\vv, \ww) = 2\pi - \theta_s(\vv, \ww)$; applying the map $\theta \mapsto \theta \bmod 2\pi$ to each side of this equation and using the general fact that modulus distributes over addition\footnote{See \ref{ch::appendix::thm::modulus_distributes_over_addition}.}, we have $\widetilde{\theta}_s(\vv, \ww) \bmod 2\pi = 2\pi \bmod 2\pi - \theta_s(\vv, \ww) \bmod 2\pi = -\theta_s(\vv, \ww) \bmod 2\pi$ for all $\vv, \ww \in \R^2$. So $\widetilde{\theta}_s(\vv, \ww) \bmod 2\pi = -\theta_s(\vv, \ww) \bmod 2\pi$ for all $\vv, \ww \in \R^2$. Since $\widetilde{\theta}_s(\vv, \ww) \in [0, 2\pi)$, then $\widetilde{\theta}_s(\vv, \ww) \bmod 2\pi = \widetilde{\theta}_s(\vv, \ww)$. Therefore $\widetilde{\theta}_s(\vv, \ww) = -\theta_s(\vv, \ww) \bmod 2\pi$, as desired. 
+    Rearranging, we have $\tttheta_s(\vv, \ww) = 2\pi - \theta_s(\vv, \ww)$; applying the map $\theta \mapsto \theta \bmod 2\pi$ to each side of this equation and using the general fact that modulus distributes over addition\footnote{See \ref{ch::appendix::thm::modulus_distributes_over_addition}.}, we have $\tttheta_s(\vv, \ww) \bmod 2\pi = 2\pi \bmod 2\pi - \theta_s(\vv, \ww) \bmod 2\pi = -\theta_s(\vv, \ww) \bmod 2\pi$ for all $\vv, \ww \in \R^2$. So $\tttheta_s(\vv, \ww) \bmod 2\pi = -\theta_s(\vv, \ww) \bmod 2\pi$ for all $\vv, \ww \in \R^2$. Since $\tttheta_s(\vv, \ww) \in [0, 2\pi)$, then $\tttheta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$. Therefore $\tttheta_s(\vv, \ww) = -\theta_s(\vv, \ww) \bmod 2\pi$, as desired. 
 \end{proof}
 
 \subsubsection*{Trigonometry}
@@ -2367,7 +2367,7 @@ As you might have suspected, signed clockwise angle is the additive inverse of s
 
     The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then the map $\hww \mapsto s(\cc, \vv, \ww)$ defined on unit vectors is invertible as well. This means that for every $t$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
 
-    Knowing this, then for every $t \in [0, 2\pi)$ we can $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $(\cos(t), \sin(t))^\top$ is the unique unit vector such that
+    Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $(\cos(t), \sin(t))^\top$ such that
 
     \begin{align*}
         \theta_s\left(\ee_1, \begin{pmatrix}
@@ -2383,6 +2383,8 @@ As you might have suspected, signed clockwise angle is the additive inverse of s
     Suppose $\vv, \ww \in Q_1 = \{(x, y) \mid x, y > 0\}$.
 
     [TO-DO]
+
+    [make sure to define for $Q_2, Q_3, Q_4$]
 
 \end{theorem}
 

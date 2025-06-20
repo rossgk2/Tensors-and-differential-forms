@@ -55,6 +55,8 @@ More things about this book that are original that I should call attention to:
 \section*{Logic and proofs}
 
 \begin{itemize}
+    \item Superset notation
+    \item Need a defn of $S^{\times n}$ since $V^{\times n}$ is used in the tensors section. Note that $S^n$ is alternative notation for $S^{\times n}$
     \item Explanation of how to write a proof of the form $\forall x \spc P(x) \implies (Q(x) \implies R(x))$. For example, $\forall \spc \text{linear functions $\ff$}: \spc \text{$\ff$ is one-to-one} \implies (\text{$\vv_1, ..., \vv_k$ are linearly independent} \implies \text{$\ff(\vv_1), ..., \ff(\vv_k)$ are linearly independent})$.
     \item Maybe put subsection on := vs. = somewhere else. Maybe write a subsection about definitions and theorems and put it there.
     \item Add remark that ``iff'' is shorthand for ``if and only if''.
@@ -81,10 +83,30 @@ More things about this book that are original that I should call attention to:
 
 \subsubsection*{Angle}
 
+Content
+
 \begin{itemize}
+    \item Add uses of two types of angles from intro of angle section to within angle section
+    \item Minimize mention of modulus. Here’s the path for doing so:
+    \begin{itemize}
+        \item Lemma. $\theta_s(\vv, \ww) + \tttheta_s(\vv, \ww) = 2\pi$
+        \item Lemma. If $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$
+        \item Theorem. $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$
+        \begin{itemize}
+            \item Proof. We have $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$ by the previous lemma. This is equal to $\tttheta_s(\vv, \ww)$ by the lemma before the previous lemma.
+        \end{itemize}
+        \item Theorem. $\theta_s(\vv, \ww) = \pm \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|) \bmod 2\pi$
+    \end{itemize}
+    \item Revisit defn of unsigned angle, and show that it is equal to both $|\theta(\vv, \ww)|$ and $|\tttheta(\vv, \ww)|$
+        \item Add theorem that $(\vv, \ww)$ is positively oriented iff $|\theta_s(\vv, \ww)| < |\tttheta_s(\vv, \ww)|$ iff $|\theta_s(\vv, \ww)| \leq \pi$
+\end{itemize}
+
+Cleanup
+
+\begin{itemize}
+    \item Check that $\bmod 2\pi$ appears where it should and doesn't where it shouldn't
     \item Check that correct intervals are used for angles: $[0, 2\pi)$ for signed (not $(-\pi, \pi]$), $[0, \pi]$ for unsigned
     \item Remove all mention of unit speed curves; redid defn of trig so don't need unit speed curves for that anymore
-    \item Check that $\bmod 2\pi$ appears where it should and doesn't where it shouldn't
 \end{itemize}
 
 \subsubsection*{Rotations}

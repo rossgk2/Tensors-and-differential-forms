@@ -2,18 +2,38 @@
 
 \section*{Modular arithmetic}
 
-\begin{defn}
-    (Modulus).
+\begin{theorem}
+    (Division).
 
-    [idea for $\bmod T$ for $T \in \R$. when $a, n \in \Z$ can write $a/n = q + r/n$ for integers $q$ and $r$, where $r \in [0, n)$. sim., when $a, T \in \R$ can write $a/T = q + r/T$ for integer $q$ and real $r \in [0, T)$.]
-\end{defn}
+    For all $a, n \in \Z$ with $a > n$ there exist $q \in \Z$ and $r \in \Z \cap [0, q)$ such that $\frac{a}{n} = q + \frac{r}{n}$. The number $q$ is called the \textit{quotient}, and the number $r$ is called the \textit{remainder}. The remainder involved in the division of $a$ by $n$ is also called \textit{$a$ modulo $n$}, and is denoted $a \bmod n$. Therefore $\frac{a}{n} = q + \frac{a \bmod n}{n}$.
+\end{theorem}
+
+\begin{proof}    
+    [reference some standard textbook]
+\end{proof}
+
+\begin{example}
+    (Modulo cycles).
+
+    \begin{align*}
+        0 \bmod 4 = 0 \\
+        1 \bmod 4 = 1 \\
+        2 \bmod 4 = 2 \\
+        3 \bmod 4 = 3 \\
+        4 \bmod 4 = 0 \\
+        5 \bmod 4 = 1 \\
+        6 \bmod 4 = 2 \\
+        7 \bmod 4 = 3 \\
+        8 \bmod 4 = 0
+    \end{align*}
+\end{example}
 
 \begin{remark}
     (Moduli of negative integers).
     
     Let $n \in \Z$ be a positive integer. Take care to remember that computing the modulus of a negative integer relative to $n$ may seem counterintuitive, since for $a, n \in \Z$ with $a > 0$ then usually\footnote{Specifically, this holds for all $a$ with $a \bmod n \neq 0$.} $(-a) \bmod n \neq -(a \bmod n)$.
 
-    [Let's think about $-a \bmod n$ for positive $a \in \Z$.] From above, we have $a/n = q + r/n$. That is, $a = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. So, $a \bmod n = nq - a$; that is,
+    Let's think about $-a \bmod n$ for positive $a \in \Z$. From above, we have $\frac{a}{n} = q + \frac{a \bmod n}{n}$. That is, $a = nq + r = nq + a \bmod n$. From this expression, we can clearly see that $nq$ is the greatest integer multiple of $n$ that is less than $a$. Since $a \bmod n = nq - a$, we have
 
     \begin{align*}
         a \bmod n = (\text{greatest integer multiple of $n$ that is less than $a$}) - a.
@@ -26,23 +46,29 @@
         \begin{cases}
             (\text{greatest integer multiple of $n$ that is less than $a$}) - |a| & a \geq 0 \\
             (\text{greatest integer multiple of $n$ that is less than $a$}) + |a| & a < 0
-        \end{cases}
+        \end{cases}.
     \end{align*}
 
     When $a > 0$, the greatest integer multiple of $n$ that is less than $a$ is closer to $0$ than $a$, and when $a < 0$, this same multiple is further from $0$ than $a$. So you might say that computing $a \bmod n$ involves undershooting when $a > 0$ and overshooting when $a < 0$.
-
-    It is fairly easy\footnote{See Lemma \ref{ch::appendix::lemma::modular_arithmetic_lemma} of the appendix.} to show that in the special case when $a \in \Z \cap (0, n]$ we have $-a \bmod n = n - a \bmod 2\pi$. For our situation of modulus $2\pi$, this gives us the familiar relationship
-
-    \begin{align*}
-        (-\theta) \bmod 2\pi = (2\pi - \theta) \bmod 2\pi.
-    \end{align*}
-
-    An example of this relationship is $-\frac{\pi}{2} \bmod 2\pi = \frac{3\pi}{2} \bmod 2\pi$ and $-\frac{3\pi}{2} \bmod 2\pi = \frac{\pi}{2} \bmod 2\pi$.    
 \end{remark}
+
+The division theorem, and therefore the modulo concept, can be extended to the case when the numbers being divided are both real numbers.
+
+\begin{theorem}
+    (Extended division).
+
+    For all $x, T \in \R$ with $x > T$ there exist $q \in Z$ and $x \bmod T \in [0, q)$ such that $\frac{x}{T} = q + \frac{x \bmod T}{T}$. As before, $q$ is called the \textit{quotient}, and $x \bmod T$, which is read as \textit{$x$ modulo $T$}, is called the \textit{remainder}.
+\end{theorem}
+
+\begin{proof}
+    [TO-DO]
+\end{proof}
 
 \begin{theorem}
 \label{ch::appendix::thm::modulus_distributes_over_addition}
-    (Modulus distributes over addition).
+    (Modulo distributes over addition).
+
+    
 \end{theorem}
 
 \section*{Function-input duality}
