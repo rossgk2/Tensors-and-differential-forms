@@ -9,7 +9,7 @@
 \end{theorem}
 
 \begin{proof}    
-    [reference some standard textbook]
+    ...reference some standard textbook...
 \end{proof}
 
 \begin{example}
@@ -60,16 +60,18 @@ The division theorem, and therefore the modulo concept, can be extended to the c
     For all $x, T \in \R$ with $x > T$ there exist $q \in Z$ and $x \bmod T \in [0, q)$ such that $\frac{x}{T} = q + \frac{x \bmod T}{T}$. As before, $q$ is called the \textit{quotient}, and $x \bmod T$, which is read as \textit{$x$ modulo $T$}, is called the \textit{remainder}.
 \end{theorem}
 
-\begin{proof}
-    [TO-DO]
-\end{proof}
+The following theorem making use of a modulus obtained from extended division comes in useful in Chapter \ref{ch::lin_alg} when investigating angle.
 
 \begin{theorem}
-\label{ch::appendix::thm::modulus_distributes_over_addition}
-    (Modulo distributes over addition).
+\label{ch::appendix::thm::negation_of_angle}
+    (Negation of an angle).
 
-    
+    If $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$.
 \end{theorem}
+
+\begin{proof}
+    If $t \in [0, 2\pi)$ then $-t \in (-2\pi, 0]$ and so the greatest integer multiple of $2\pi$ less than $-t$ is $-2\pi$. The modulus $-t \bmod 2\pi$ is the difference between $-t$ and this multiple, i.e. $-t - (-2\pi) = 2\pi - t$.
+\end{proof}
 
 \section*{Function-input duality}
 
