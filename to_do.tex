@@ -87,18 +87,7 @@ Content
 
 \begin{itemize}
     \item Add uses of two types of angles from intro of angle section to within angle section
-    \item Minimize mention of modulus. Here’s the path for doing so. (\textit{Have implemented the below items- still need to check that mention of modulus is actually minimized.})
-    \begin{itemize}
-        \item Lemma. $\theta_s(\vv, \ww) + \tttheta_s(\vv, \ww) = 2\pi$
-        \item Lemma. If $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$
-        \item Theorem. $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$
-        \begin{itemize}
-            \item Proof. We have $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$ by the previous lemma. This is equal to $\tttheta_s(\vv, \ww)$ by the lemma before the previous lemma.
-        \end{itemize}
-        \item Theorem. $\theta_s(\vv, \ww) = \pm \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|) \bmod 2\pi$
-    \end{itemize}
     \item Revisit defn of unsigned angle, and show that it is equal to both $|\theta(\vv, \ww)|$ and $|\tttheta(\vv, \ww)|$
-        \item Add theorem that $(\vv, \ww)$ is positively oriented iff $|\theta_s(\vv, \ww)| < |\tttheta_s(\vv, \ww)|$ iff $|\theta_s(\vv, \ww)| \leq \pi$
 \end{itemize}
 
 Cleanup
@@ -117,7 +106,7 @@ Three overall goals:
     \item prove that rotation matrix of CCW rotation by $t$ has a first column of $\cc(t) = (\cos(t), \sin(t))^\top$ and second column of $(-\sin(t), \cos(t))^\top$.
     
     have this theorem properly backed up by a correct notion of angle in which $-\pi/2 \sim 3\pi/2$. we need this for the orientation section; we use $t = \pi/2$ to prove the antisymmetry of ordered bases. 
-    \item establish that rotations are isometries, i.e., orthogonal linear functions, and that orthogonal linear functions preserve algebraic dot product. we need this so we can prove algebraic => geometric. this is mostly outlined.
+    \item establish that rotations are isometries, i.e., orthogonal linear functions, and that orthogonal linear functions preserve algebraic dot product. (specifically, the set of rotations is the set of isometries fixing the origin). we need this so we can prove algebraic => geometric. this is mostly outlined.
     \item we also need to prove facts about projections for geometric => algebraic, and for the very last part of algebraic => geometric I think. this seems mostly done but go over it to check.
 \end{enumerate}
 
@@ -201,6 +190,7 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 
 \begin{itemize}
     \item Add intro to orientation section describing what orientation intuitively is and how it connects to notions of clockwise and counterclockwise. (Orientation is a mapping of axes in a diagram to axes in “actual” space. For some reason rotations don’t change orientation.)
+    \item Add theorem that an ordered basis $(\vv, \ww)$ is positively oriented iff $|\theta_s(\vv, \ww)| < |\tttheta_s(\vv, \ww)|$ iff $|\theta_s(\vv, \ww)| < \pi$
     \item Show that two ordered bases are rotationally equivalent $\iff$ there is a CCW rotation taking one to the other $\iff$ there is a CW rotation taking one to the other
 \end{itemize}
 

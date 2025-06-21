@@ -2218,19 +2218,19 @@ The following special case of the above theorem follows immediately.
     Let $\ff:\R^n \rightarrow \R^n$ be an isometry.
         
     \begin{enumerate}
-        \item If $\ff$ fixes the origin then $\vv \in \R^n$ then $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
+        \item If $\ff$ fixes the origin then for all $\vv \in \R^n$ we have $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
 
         \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
     \end{enumerate}
 \end{lemma}
 
 \begin{proof}
-    Let $\ff:\R^n \rightarrow \R^n$ be an isometry.
-        
+    TO-DO
+    
     \begin{enumerate}
-        \item If $\ff$ fixes the origin then $\vv \in \R^n$ then $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
+        \item ...
 
-        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
+        \item ...
     \end{enumerate}
 \end{proof} 
 
@@ -2327,13 +2327,36 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
         \theta_s(\vv, \ww) = s(\cc, \hvv, \hww) \text{ and }
         \tttheta_s(\vv, \ww) = s(\widetilde{\cc}, \hvv, \hww) \text{ for all $\vv, \ww \in \R^2$}.
     \end{align*}
-
-    [the maximum arclength between $\vv$ and $\ww$ is the arclength of the entire parameterization. that arclength approaches $2\pi$ but never attains it, since if it were $2\pi$ then $\hvv = \hww$]. Therefore, we also have
-
-    \begin{align*}
-        \theta_s(\vv, \ww), \tttheta_s(\vv, \ww) \in [0, 2\pi) \text{ for all $\vv, \ww \in \R^2$}.
-    \end{align*} 
 \end{defn}
+
+\begin{theorem}
+    (Domain of angle).
+
+    We have $\theta_s(\vv, \ww), \tttheta_s(\vv, \ww) \in [0, 2\pi)$ for all $\vv, \ww \in \R^2$. Furthermore, $\theta_s$ and $\tttheta_s$ are onto when considered to be functions mapping into $[0, 2\pi)$.
+\end{theorem}
+
+\begin{proof}
+    We give the proof for $\theta_s$; the proof for $\tttheta_s$ is similar.
+
+    We first show $\theta_s(\vv, \ww) \in [0, 2\pi)$ for all $\vv, \ww \in \R^2$.
+
+    \fullindent
+    {
+        (Case: $\vv = \ww$). We have $\theta_s(\vv, \ww) = \theta_s(\vv, \vv) = s(\cc, \hvv, \hvv) = \int_t^t ||\frac{d\cc(t)}{dt}|| dt = 0 \in [0, 2\pi]$.
+    }
+
+    \fullindent
+    {
+        (Case: $\vv \neq \ww$). Since $\hvv \neq \hww$, the path from $\hvv$ to $\hww$ is a proper subset of the unit circle, and the arclength traversed on the path is strictly less than the circumference of the unit circle. By the definition of $\pi$, the circumference of the unit circle is $2\pi$, so we have $s(\cc, \hvv, \hww) = \theta_s(\vv, \ww) < 2\pi$.
+    }
+
+    Now we show $\theta_s:\R^2 \times \R^2 \rightarrow [0, 2\pi)$ is onto.
+
+    \fullindent
+    {
+        Let $\vv \in \R^2$ and suppose for contradiction that there exists $t_0 \in [0, 2\pi)$ for which there does not exist $\ww \in \R^2$ such that $\theta_s(\vv, \ww) = t_0$. Equivalently, there does not exist $\hww \in \R^2$ such that $s(\cc, \hvv, \hww) = t_0$. Since arclength is continuous, then there also does not exist $\hww \in \R^2$ such that $s(\cc, \hvv, \hww) = t$ for all $t > t_0$. Thus $\max_{\hww \in \R^2} s(\cc, \hvv, \hww) = t_0$. But the circumference of the unit circle is also $\max_{\hww \in \R^2} s(\cc, \hvv, \hww)$, so the circumference of the unit circle is $t_0$. This is a contradiction, since $t_0 < 2\pi$, and as we know that $2\pi$ is the actual circumfrence of the unit circle.
+    }
+\end{proof}
 
 \begin{theorem}
     (Clockwise and counterclockwise signed angles sum to $2\pi$).
@@ -2352,12 +2375,8 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{theorem}
 
 \begin{proof}
-    In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; it is also explained in the appendix in Theorem \ref{ch::appendix::thm::negation_of_angle}). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$, as desired.
+    In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; if not, see Theorem \ref{ch::appendix::thm::negation_of_angle} of the appendix). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$, as desired.
 \end{proof}
-
-We investigate counterclockwise motion first to get our bearings.
-
-\subsubsection*{Signedness of signed angle}
 
 \begin{theorem}
     (Signedness of signed angle).
@@ -2374,7 +2393,7 @@ We investigate counterclockwise motion first to get our bearings.
 \begin{deriv}
     (Cosine and sine).
 
-    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then the map $\hww \mapsto s(\cc, \vv, \ww)$ defined on unit vectors is invertible as well. This means that for every $t$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
+    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
 
     Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $(\cos(t), \sin(t))^\top$ such that
 
@@ -2389,7 +2408,7 @@ We investigate counterclockwise motion first to get our bearings.
 \begin{theorem}
     (Cosine and sine as ratios of lengths of sides of right triangles).
 
-    Suppose $\vv, \ww \in Q_1 = \{(x, y) \mid x, y > 0\}$.
+    Suppose $\vv, \ww \in Q_1 = \{(x, y)^\top \mid x, y > 0\}$.
 
     [TO-DO]
 
@@ -2425,19 +2444,13 @@ The following theorem is an immediate consequence.
     (Signed counterclockwise angle as a minimum).
 
     \begin{align*}
-        \theta_s(\vv, \ww) = \pm \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|) \bmod 2\pi,
+        \theta_s(\vv, \ww) = \pm \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|),
     \end{align*}
 
     where $\pm$ is $+$ when the minimum is $|\theta_s(\vv, \ww)|$ and is $-$ when the minimum is $|\tttheta_s(\vv, \ww)|$.
 \end{theorem}
 
 \begin{proof}
-    Since $\theta_c(\vv, \ww) = s(\cc, \hvv, \hww)$ and $\tttheta_s(\vv, \ww) = s(\widetilde{\cc}, \hvv, \hww)$, the claim is equivalent to
-
-    \begin{align*}
-        \theta_s(\vv, \ww) = \pm \min(s(\cc, \hvv, \hww), s(\widetilde{\cc}, \hvv, \hww)) \bmod 2\pi.
-    \end{align*}
-
     TO-DO
 \end{proof}
 
@@ -2447,13 +2460,9 @@ The following theorem is an immediate consequence.
     The \textit{unsigned angle $\theta_u(\vv, \ww)$ between $\vv$ and $\ww$} is defined to be $\theta_u(\vv, \ww) := |\theta_s(\vv, \ww)|$. Because of the previous theorem, we have
 
     \begin{align*}
-        \theta_s(\vv, \ww) = \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|) \bmod 2\pi,
+        \theta_s(\vv, \ww) = \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|).
     \end{align*}
 \end{defn}
-
-\begin{proof}
-    TO-DO: show how the $\bmod 2\pi$ disappears
-\end{proof}
 
 \begin{theorem}
     (Unsigned angle is symmetric).
@@ -2490,7 +2499,7 @@ Make sure this discussion on angle is given in dot product section:
 \begin{defn}
     (Rotation).
     
-    An isometry $\ff:\R^2 \rightarrow \R^2$ is called the \textit{counterclockwise rotation (by $t$)} iff there exists $t \in [-2\pi, 2\pi]$ such that $\theta_s(\vv, \ff(\vv)) = t$ for all $\vv \in \R^2$.
+    An isometry $\ff:\R^2 \rightarrow \R^2$ is called the \textit{counterclockwise rotation (by $t$)} iff there exists $t \in [0, 2\pi)$ such that $\theta_s(\vv, \ff(\vv)) = t$ for all $\vv \in \R^2$.
 \end{defn}
 
 \begin{theorem}
