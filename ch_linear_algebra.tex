@@ -2330,6 +2330,18 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{defn}
 
 \begin{theorem}
+    (Signedness of signed angle).
+    
+    We have $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ and $\tttheta_s(\vv, \ww) = -\tttheta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+\end{theorem}
+
+\begin{proof}
+    We prove the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
+
+    Let $t_1, t_2 \in [0, 2\pi)$ be such that $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$. We have $\theta_s(\vv, \ww) = s(\cc, \hvv, \hww) = \int_{t_1}^{t_2} ||\frac{d\cc(t)}{dt}|| dt = -\int_{t_2}^{t_1} ||\frac{d\cc(t)}{dt}|| dt = -s(\cc, \hww, \hvv) = -\theta_s(\hww, \hvv)$.
+\end{proof}
+
+\begin{theorem}
     (Domain of angle).
 
     We have $\theta_s(\vv, \ww), \tttheta_s(\vv, \ww) \in [0, 2\pi)$ for all $\vv, \ww \in \R^2$. Furthermore, $\theta_s$ and $\tttheta_s$ are onto when considered to be functions mapping into $[0, 2\pi)$.
@@ -2342,7 +2354,7 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 
     \fullindent
     {
-        (Case: $\vv = \ww$). We have $\theta_s(\vv, \ww) = \theta_s(\vv, \vv) = s(\cc, \hvv, \hvv) = \int_t^t ||\frac{d\cc(t)}{dt}|| dt = 0 \in [0, 2\pi]$.
+        (Case: $\vv = \ww$). Let $t \in [0, 2\pi)$ be such that $\cc(t) = \hvv$. We have $\theta_s(\vv, \ww) = \theta_s(\vv, \vv) = s(\cc, \hvv, \hvv) = \int_t^t ||\frac{d\cc(t)}{dt}|| dt = 0 \in [0, 2\pi]$.
     }
 
     \fullindent
@@ -2369,23 +2381,16 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{proof}
 
 \begin{theorem}
+\label{ch::lin_alg::thm::negation_of_angle}
     (Negation of an angle $\text{mod } 2\pi$).
 
-    We have $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$.
+    We have $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$ and $-\tttheta_s(\vv, \ww) \bmod 2\pi = \theta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
-    In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; if not, see Theorem \ref{ch::appendix::thm::negation_of_angle} of the appendix). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$, as desired.
-\end{proof}
-
-\begin{theorem}
-    (Signedness of signed angle).
+    We prove the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
     
-    We have $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ and $\tttheta_s(\vv, \ww) = -\tttheta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
-\end{theorem}
-
-\begin{proof}
-    TO-DO
+    In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; if not, see Theorem \ref{ch::appendix::thm::negation_of_angle} of the appendix). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$, as desired.
 \end{proof}
 
 \subsubsection*{Trigonometry}
@@ -2424,7 +2429,7 @@ The following theorem is an immediate consequence.
     For all $\vv \in \R^2$ we have
 
     \begin{align*}
-        \vv = ||\vv|
+        \vv = ||\vv||
         \begin{pmatrix}
             \cos(\theta_s(\ee_1, \vv)) \\
             \sin(\theta_s(\ee_1, \vv))
@@ -2444,24 +2449,32 @@ The following theorem is an immediate consequence.
     (Signed counterclockwise angle as a minimum).
 
     \begin{align*}
-        \theta_s(\vv, \ww) = \pm \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|),
+        \theta_s(\vv, \ww) = \Big(\pm \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww))\Big) \bmod 2\pi,
     \end{align*}
 
-    where $\pm$ is $+$ when the minimum is $|\theta_s(\vv, \ww)|$ and is $-$ when the minimum is $|\tttheta_s(\vv, \ww)|$.
+    where $\pm$ is $+$ when the minimum is $\theta_s(\vv, \ww)$ and is $-$ when the minimum is $\tttheta_s(\vv, \ww)$.
 \end{theorem}
 
 \begin{proof}
-    TO-DO
+    We will show that for every possible value of the minimum, the right side is equal to the left side. 
+    
+    (Case: the minimum is $\theta_s(\vv, \ww)$). In this case, the expression on the right side is $\theta_s(\vv, \ww) \bmod 2\pi$. Since $\theta_s(\vv, \ww) \in [0, 2\pi)$ then $\theta_s(\vv, \ww) \bmod 2\pi = \theta_s(\vv, \ww)$.
+
+    (Case: the minimum is $\tttheta_s(\vv, \ww)$). In this case, the expression on the right side is $(-\tttheta_s(\vv, \ww)) \bmod 2\pi$. We know from Theorem \ref{ch::lin_alg::thm::negation_of_angle} that this is $\theta_s(\vv, \ww)$.
 \end{proof}
+
+The above inspires the following definition of unsigned angle.
 
 \begin{defn}
     (Unsigned angle between vectors in $\R^2$).
 
-    The \textit{unsigned angle $\theta_u(\vv, \ww)$ between $\vv$ and $\ww$} is defined to be $\theta_u(\vv, \ww) := |\theta_s(\vv, \ww)|$. Because of the previous theorem, we have
+    The \textit{unsigned angle $\theta_u(\vv, \ww)$ between $\vv$ and $\ww$} is defined to be
 
     \begin{align*}
-        \theta_s(\vv, \ww) = \min(|\theta_s(\vv, \ww)|, |\tttheta_s(\vv, \ww)|).
+        \theta_u(\vv, \ww) := \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww)) \bmod 2\pi
     \end{align*}
+
+    \textbf{so the abs comes before the mod, meaning it isn't the abs of the mod; it isn't $|\theta_s(v, w)|$. edit intro to reflect this.}
 \end{defn}
 
 \begin{theorem}
