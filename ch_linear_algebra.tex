@@ -2400,42 +2400,54 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 
     The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
 
-    Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $(\cos(t), \sin(t))^\top$ such that
-
-    \begin{align*}
-        \theta_s\left(\ee_1, \begin{pmatrix}
-            \cos(t) \\
-            \sin(t)
-        \end{pmatrix}\right) = t.
-    \end{align*}
+    Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
 \end{deriv}
-
-\begin{theorem}
-    (Cosine and sine as ratios of lengths of sides of right triangles).
-
-    Suppose $\vv, \ww \in Q_1 = \{(x, y)^\top \mid x, y > 0\}$.
-
-    [TO-DO]
-
-    [make sure to define for $Q_2, Q_3, Q_4$]
-
-\end{theorem}
-
-The following theorem is an immediate consequence.
 
 \begin{theorem}
     (Polar form of vectors).
 
-    For all $\vv \in \R^2$ we have
-
+    We have
+    
     \begin{align*}
-        \vv = ||\vv||
+        \vv =
+        ||\vv||
         \begin{pmatrix}
-            \cos(\theta_s(\ee_1, \vv)) \\
-            \sin(\theta_s(\ee_1, \vv))
-        \end{pmatrix}.
+            \cos(\theta_s(\see_1, \vv)) \\
+            \sin(\theta_s(\see_1, \vv))
+        \end{pmatrix} \text{ for all $\vv \in \R^2$}.
     \end{align*}
 \end{theorem}
+
+\begin{proof}
+    Let $\vv \in \R^2$. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$. By the previous derivation, we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
+\end{proof}
+
+\begin{deriv}
+    (Cosine and sine as ratios of lengths of sides of right triangles).
+
+    \newcommand{\thh}{\widetilde{\hh}}
+
+    consider an arbitrary right triangle $T$ with non-hypotenuse sides $\ss_1$ and $\ss_2$. the hypotenuse $\hh$ is $\hh = \ss_1 \pm \ss_2$. designate either $\theta_u(\ss_1, \hh)$ or $\theta_u(\ss_2, \hh)$ as the ``angle of importance''. for concreteness, let's say the former is the angle of importance.
+
+    since $\ss_1$ is involved in the angle of importance, we call it the \textit{adjacent side}; since $\ss_2$ is not, we call it the \textit{opposite side}.
+
+    let $\ff$ be an length-preserving and signed-angle-preserving function that takes the arbitrary right triangle $T$ to a congruent right triangle $\ff(T) = \tT \subseteq Q_1$ in the first quadrant with hypotenuse $\thh = \ff(\hh)$, a horizontal side $\ss_h = \ff(\ss_1)$ that lies on the $x$-axis, and a vertical side $\ss_v = \ff(\ss_2)$. 
+
+    note, since $\ff$ preserves angles, the angle of importance $\theta_u(\ss_2, \hh)$ is equal to $\theta_u(\ff(\ss_2), \ff(\hh)) = \theta_u(\ss_h, \thh)$, and\footnote{since $\ss_h$ is involved in the angle of importance $\theta_u(\ss_h, \thh)$, it is the adjacent side; since $\ss_v$ is not, it is the opposite side} $\ff$ maps adjacent side to adjacent side and opposite side to opposite side.
+
+    \textbf{since $\ff$ is linear (justify why)} then since $\hh = \ss_1 \pm \ss_2$ we have $\ff(\hh) = \ff(\ss_1) \pm \ff(\ss_2) \iff \thh = \ss_h \pm \ss_v$. since $\thh \in Q_1$, the $\pm$ sign must be $+$, and we have $\thh = \ss_h + \ss_v = ||\ss_h||\see_1 + ||\ss_v|| \see_2 = (||\ss_h||, ||\ss_v||)^\top$. also, by the previous theorem we have $\thh = ||\thh||(\cos(t), \sin(t))^\top = (||\thh||\cos(t), ||\thh||\sin(t))^\top$, where $t = \theta_s(\see_1, \thh) = \theta_s(\ss_h, \thh)$.
+
+    comparing the results of the previous two sentences we see $\ss_h = (||\thh||\cos(t), 0) = ||\thh||\cos(t)\see_1$ and $\ss_v = (0, ||\thh||\sin(t)) = ||\thh||\sin(t)\see_2$.
+
+    with this information, we can obtain expressions for $\cos(t)$ and $\sin(t)$ as functions of the side lengths of $\tT \cong T$:
+
+    \begin{align*}
+        \frac{||\ss_1||}{||\hh||} = \frac{||\ff(\ss_1)||}{||\ff(\hh)||} = \frac{||\ss_h||}{||\thh|| \cos(t)} = \frac{||\thh||}{||\thh||} = \cos(t) \\
+        \frac{||\ss_2||}{||\hh||} = \frac{||\ff(\ss_2)||}{||\ff(\hh)||} = \frac{||\ss_v||}{||\thh|| \sin(t)} = \frac{||\thh||}{||\thh||} = \sin(t)
+    \end{align*}
+    
+    [make sure to define for $Q_2, Q_3, Q_4$]
+\end{deriv}
 
 \begin{defn}
     (Inverse trigonometric functions).
