@@ -2315,6 +2315,7 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \subsubsection*{Trigonometry}
 
 \begin{deriv}
+\label{ch::lin_alg::deriv::cosine_sine}
     (Cosine and sine).
 
     The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
@@ -2481,7 +2482,7 @@ Make sure this discussion on angle is given in dot product section:
 \begin{defn}
     (Rotation).
     
-    A function $\RR:\R^2 \rightarrow \R^2$ is a \textit{rotation on $\R^2$} iff
+    A function $\RR:\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff
 
     \begin{enumerate}
         \item ($\RR$ preserves length). $||\vv|| = ||\RR(\vv)||$ for all $\vv \in \R^2$.
@@ -2571,47 +2572,14 @@ Make sure this discussion on angle is given in dot product section:
     }
 \end{proof}
 
-The following theorem is immediate.
+The next theorem is an immediate consequence of the previous one.
 
 \begin{theorem}
     All rotations on $\R^2$ are linear functions.
 \end{theorem}
 
-\begin{lemma}
-\label{ch::lin_alg::thm::rotations_on_R2_rotate_vectors_by_same_angle}
-    (Rotations on $\R^2$ rotate all vectors by the samge angle).
-
-    If $\ff$ is a length-preserving function on $\R^2$ that fixes the origin, then $\ff$ is a rotation on $\R^2$ iff there exists $t \in [0, 2\pi)$ such that $\theta_s(\vv, \ff(\vv)) = t$.  
-\end{lemma}
-
-\begin{proof}
-    [TO-DO]
-
-    \textbf{hard part: show that $\theta_s(\see_1, \ff(\see_1)) = \theta_s(\see_2, \ff(\see_2))$}
-
-    We have $\theta_s(\see_1, \see_2) + \theta_s(\see_2, \ff(\see_2)) = \theta_s(\see_1, \ff(\see_2))$, so $\theta_s(\see_2, \ff(\see_2)) = \theta_s(\see_1, \ff(\see_2)) - \theta_s(\see_1, \see_2) = \theta_s(\see_1, \ff(\see_2)) - \pi/2$.
-
-    It remains to determine $\theta_s(\see_1, \ff(\see_2))$. We have $\theta_s(\see_1, \ff(\see_2)) = \theta_s(\see_1, \ff(\see_1)) + \theta_s(\ff(\see_1), \ff(\see_2)) = t + \theta_s(\see_1, \see_2) = t + \pi/2$.
-
-    So $\theta_s(\see_1, \ff(\see_2)) = (t + \frac{\pi}{2}) - \pi/2$.
-
-    \textbf{easy part:}
-    
-    Take any non-zero vector $v$. Consider the triangle formed by vectors $0$, $v$, and $e_1$. Under rotation $\ff$, this maps to the triangle formed by $0$, $\ff(v)$, and $\ff(e_1)$.
-    
-    Since $\ff$ preserves all angles and lengths:
-    - The angle at the origin between $v$ and $e_1$ is preserved: $\theta(v, e_1) = \theta(\ff(v), \ff(e_1))$
-    - We know $\theta(e_1, \ff(e_1)) = t$
-    
-    By the angle addition property and the fact that $\ff$ preserves the angular structure completely, we must have $\theta(v, \ff(v)) = t$.
-\end{proof}
-
-\begin{remark}
-    The forward implication of the previous lemma fails for more rotations on $\R^n$ (which we have not yet defined).
-\end{remark}
-
 \begin{theorem}
-     (Standard matrix of a rotation).
+    (Standard matrix of a rotation).
      
     The standard matrix of a rotation is
 
@@ -2655,13 +2623,18 @@ The following theorem is immediate.
         \text{ where $t = \theta(\see_1, \RR(\see_1))$}.
     \end{align*}
 
-    When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_angle}) gives us $\theta_s(\RR(\see_2), \see_1) = \theta_s(\RR(\see_2), \see_2) + \theta_s(\see_2, \see_1)$. We have $\theta_s(\RR(\see_2), \see_2) = t$ by Lemma \ref{ch::lin_alg::thm::rotations_on_R2_rotate_vectors_by_same_angle}, and $\theta_s(\see_2, \see_1) = \frac{3\pi}{2}$, so we have\footnote{Recall that $\cos(s) = \sin(\pi/2 - s)$ and $\sin(s) = \cos(\pi/2 - s)$.}
+    When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_angle}) gives us $\theta_s(\see_1, \RR(\see_2)) = \theta_s(\see_1, \RR(\see_1)) + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\see_1, \see_2) = t + \frac{\pi}{2}$. Thus
 
     \begin{align*}
         \RR(\see_2) =
         \begin{pmatrix}
-            \cos\left(t + \frac{3\pi}{2}\right) \\
-            \sin\left(t + \frac{3\pi}{2}\right)
+            \cos(\theta_s(\see_1, \RR(\see_2)) \\
+            \sin(\theta_s(\see_1, \RR(\see_2))
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \cos(t + \frac{\pi}{2}) \\
+            \sin(t + \frac{\pi}{2})
         \end{pmatrix}
         =
         \begin{pmatrix}
