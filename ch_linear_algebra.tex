@@ -2197,89 +2197,8 @@ The following special case of the above theorem follows immediately.
 \end{defn}
 
 \begin{lemma}
-    If $||\vv|| = 0$ then $\vv = \mathbf{0}$.
+    $\vv = \mathbf{0} \iff ||\vv|| = 0$ for all $\vv \in \R^2$.
 \end{lemma}
-
-\subsection*{Isometries}
-
-\begin{defn}
-    (Isometry). A function $\ff:\R^n \rightarrow \R^n$ is called an \textit{isometry (on $\R^n$)} iff it preserves length.
-\end{defn}
-
-\begin{theorem}
-    The kernel of every isometry is trivial.
-\end{theorem}
-
-\begin{proof}
-    Suppose for contradiction that $\ff$ is an isometry with a nontrivial kernel, so there exists a nonzero $\vv \in \R^n$ such that $\ff(\vv) = \mathbf{0}$. We have $||\vv|| \neq 0$ (by the lemma) and $||\ff(\vv)|| = ||\mathbf{0}|| = 0$, so $||\vv|| \neq ||\ff(\vv)||$, contradicting the fact that $\ff$ is an isometry.
-\end{proof}
-        
-\begin{lemma}
-    Let $\ff:\R^n \rightarrow \R^n$ be an isometry.
-        
-    \begin{enumerate}
-        \item If $\ff$ fixes the origin then for all $\vv \in \R^n$ we have $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
-
-        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
-    \end{enumerate}
-\end{lemma}
-
-\begin{proof}
-    TO-DO
-    
-    \begin{enumerate}
-        \item ...
-
-        \item ...
-    \end{enumerate}
-\end{proof} 
-
-\begin{theorem}
-    Every isometry on $\R^n$ that fixes the origin is linear\footnote{From \url{https://www.sfu.ca/~mdevos/notes/geom-sym/18_isometries.pdf}.}.
-\end{theorem}
-
-\begin{proof}
-    We need to show that $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$ and $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$.
-    
-    ($\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$).
-    \fullindent
-    {
-        \fullindent
-        {
-            (Case: $c = 0$). Then $\ff(c\vv) = \ff(0\vv) = 0\ff(\vv) = \mathbf{0} = 0\ff(\vv) = c\ff(\vv)$.
-        }
-        \fullindent
-        {
-            (Case: $c \neq 0$). Define $\text{dist}:\R^n \times \R^n \rightarrow \R$ by $\text{dist}(\vv, \ww) := ||\ww - \vv||$. Notice that $c\vv \in \spann(\{\vv\})$ satisfies
-
-            \begin{align*}
-                \begin{cases}
-                    \text{dist}(c\vv, \mathbf{0}) = ||c\vv|| \\
-                    \text{dist}(c\vv, \vv) = ||(c - 1)\vv||
-                \end{cases}
-            \end{align*}
-
-            Similarly, $\ff(\vv) \in \spann(\{\ff(\vv)\})$ satisfies
-
-            \begin{align*}
-                \begin{cases}
-                    \text{dist}(c\ff(\vv), \mathbf{0}) = ||c\ff(\vv)|| = ||c\vv|| \\
-                    \text{dist}(c\ff(\vv), \ff(\vv)) = ||(c - 1)\ff(\vv)|| = ||(c - 1)\vv||
-                \end{cases}
-            \end{align*}
-
-            We know from the lemma that $\spann(\{\vv\}) = \spann(\{\ff(\vv)\})$. Therefore $\ff(c\vv)$ and $c\ff(\vv)$ are two vectors in the same $1$-dimensional vector space satisfying the same distance constraints. To complete the proof of this case, it suffices to show that for all $d_1, d_2 \in \R$ there is a unique $\ww \in \spann(\{\vv\})$ such that $\text{dist}(\ww, \mathbf{0}) = d_1$ and $\text{dist}(\ww, \mathbf{v}) = d_2$.
-
-            TO-DO
-        }
-    }
-    
-    ($\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$).
-    \fullindent
-    {
-        We know $\ff$ maps midpoints to midpoints: $\ff\left(\frac{1}{2}(\vv + \ww)\right) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Since $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$ then the left side of the previous equation is equal to $\frac{1}{2}\ff(\vv + \ww)$, and we obtain $\frac{1}{2}\ff(\vv + \ww) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Multiply both sides of this equation by $2$ to obtain $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$, as desired.
-    }
-\end{proof}
 
 \subsection*{Angle}
 
@@ -2393,6 +2312,15 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
     In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; if not, see Theorem \ref{ch::appendix::thm::negation_of_angle} of the appendix). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$, as desired.
 \end{proof}
 
+\begin{theorem}
+\label{ch::lin_alg::thm::transitivity_of_signed_angle}
+    (Transitivity of signed angle).
+
+    We have $\theta_s(\vv, \uu) + \theta_s(\uu, \ww) = \theta_s(\vv, \ww)$ for all $\vv, \uu, \ww \in \R^2$.
+
+    check: does this not work for unsigned angle too?
+\end{theorem}
+
 \subsubsection*{Trigonometry}
 
 \begin{deriv}
@@ -2404,6 +2332,7 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{deriv}
 
 \begin{theorem}
+    \label{ch::lin_alg::thm::vector_polar_form}
     (Polar form of vectors).
 
     We have
@@ -2521,16 +2450,112 @@ Make sure this discussion on angle is given in dot product section:
     \item derivation. recall that $\arccos$ is the inverse of the restriction of cos to $I := [0, \pi]$. The set which $\theta_u(\vv, \ww)$ ranges over is exactly $I$, while the set $\theta_s(\vv, \ww)$ ranges over is a proper superset of $I$. Therefore, we have $\arccos(\cos(\theta_u(\vv, \ww)) = \theta_u(\vv, \ww)$ but do not always have $\arccos(\cos(\theta_s(\vv, \ww)) = \theta_s(\vv, \ww)$. consequently, we have $\theta_u(\vv, \ww) = \arccos(\hvv \cdot \hww)$ but do not have $\theta_s(\vv, \ww) = \arccos(\hvv \cdot \hww)$.
 \end{itemize}
 
+
 \subsection*{Rotations}
 
 \begin{defn}
     (Rotation).
     
-    An isometry $\ff:\R^2 \rightarrow \R^2$ is called the \textit{counterclockwise rotation (by $t$)} iff there exists $t \in [0, 2\pi)$ such that $\theta_s(\vv, \ff(\vv)) = t$ for all $\vv \in \R^2$.
+    A function $\ff:\R^2 \rightarrow \R^2$ is a \textit{rotation} iff
+
+    \begin{enumerate}
+        \item ($\ff$ preserves length). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$.
+        \item ($\ff$ preserves signed angle). $\theta_s(\vv, \ww) = \theta_s(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$.
+        \item ($\ff$ fixes the origin). $\ff(\mathbf{0}) = \mathbf{0}$.
+    \end{enumerate}
 \end{defn}
 
+\begin{remark}
+    (Common alternative rotation terminology).
+    
+    Other texts define \textit{general rotations} to be length preserving functions that preserve length, \textit{un}signed angle, and fix the origin. When using this convention, \textit{proper rotations} are general rotations that preserve signed angle and \textit{improper rotations} are general rotations that negate signed angle.
+\end{remark}
+
+\begin{lemma}
+    The kernel of every length-preserving function is trivial.
+\end{lemma}
+
+\begin{proof}
+    Suppose for contradiction that $\ff$ preserves length and has a nontrivial kernel. Then there exists a nonzero $\vv \in \R^n$ such that $\ff(\vv) = \mathbf{0}$. We have $||\vv|| \neq 0$ (by the lemma) and $||\ff(\vv)|| = ||\mathbf{0}|| = 0$, so $||\vv|| \neq ||\ff(\vv)||$, contradicting the fact that $\ff$ is an isometry.
+\end{proof}
+        
+\begin{lemma}
+    Let $\ff:\R^n \rightarrow \R^n$ be a length-preserving function.
+        
+    \begin{enumerate}
+        \item If $\ff$ fixes the origin then for all $\vv \in \R^n$ we have $\ff(\spann(\{\vv\})) = \spann(\{\ff(\vv)\})$.
+
+        \item $\ff$ maps the midpoint $\frac{1}{2}(\vv + \ww)$ of $\vv, \ww \in \R^n$ to the midpoint $\frac{1}{2}(\ff(\vv) + \ff(\ww))$ of $\ff(\vv), \ff(\ww)$.
+    \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+    TO-DO
+    
+    \begin{enumerate}
+        \item ...
+
+        \item ...
+    \end{enumerate}
+\end{proof} 
+
 \begin{theorem}
-     The standard matrix of the counterclockwise rotation by $t$ is
+    Every length-preserving function on $\R^n$ that fixes the origin is linear\footnote{From \url{https://www.sfu.ca/~mdevos/notes/geom-sym/18_isometries.pdf}.}.
+\end{theorem}
+
+\begin{proof}
+    We need to show that $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$ and $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$.
+    
+    ($\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$).
+    \fullindent
+    {
+        \fullindent
+        {
+            (Case: $c = 0$). Then $\ff(c\vv) = \ff(0\vv) = 0\ff(\vv) = \mathbf{0} = 0\ff(\vv) = c\ff(\vv)$.
+        }
+        \fullindent
+        {
+            (Case: $c \neq 0$). Define $\text{dist}:\R^n \times \R^n \rightarrow \R$ by $\text{dist}(\vv, \ww) := ||\ww - \vv||$. Notice that $c\vv \in \spann(\{\vv\})$ satisfies
+
+            \begin{align*}
+                \begin{cases}
+                    \text{dist}(c\vv, \mathbf{0}) = ||c\vv|| \\
+                    \text{dist}(c\vv, \vv) = ||(c - 1)\vv||
+                \end{cases}
+            \end{align*}
+
+            Similarly, $\ff(\vv) \in \spann(\{\ff(\vv)\})$ satisfies
+
+            \begin{align*}
+                \begin{cases}
+                    \text{dist}(c\ff(\vv), \mathbf{0}) = ||c\ff(\vv)|| = ||c\vv|| \\
+                    \text{dist}(c\ff(\vv), \ff(\vv)) = ||(c - 1)\ff(\vv)|| = ||(c - 1)\vv||
+                \end{cases}
+            \end{align*}
+
+            We know from the lemma that $\spann(\{\vv\}) = \spann(\{\ff(\vv)\})$. Therefore $\ff(c\vv)$ and $c\ff(\vv)$ are two vectors in the same $1$-dimensional vector space satisfying the same distance constraints. To complete the proof of this case, it suffices to show that for all $d_1, d_2 \in \R$ there is a unique $\ww \in \spann(\{\vv\})$ such that $\text{dist}(\ww, \mathbf{0}) = d_1$ and $\text{dist}(\ww, \mathbf{v}) = d_2$.
+
+            TO-DO
+        }
+    }
+    
+    ($\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$).
+    \fullindent
+    {
+        We know $\ff$ maps midpoints to midpoints: $\ff\left(\frac{1}{2}(\vv + \ww)\right) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Since $\ff(c\vv) = c\ff(\vv)$ for all $c \in \R$ and $\vv \in \R^n$ then the left side of the previous equation is equal to $\frac{1}{2}\ff(\vv + \ww)$, and we obtain $\frac{1}{2}\ff(\vv + \ww) = \frac{1}{2}(\ff(\vv) + \ff(\ww))$ for all $\vv, \ww \in \R^n$. Multiply both sides of this equation by $2$ to obtain $\ff(\vv + \ww) = \ff(\vv) + \ff(\ww)$ for all $\vv, \ww \in \R^n$, as desired.
+    }
+\end{proof}
+
+The following theorem is immediate.
+
+\begin{theorem}
+    All rotations are linear functions.
+\end{theorem}
+
+\begin{theorem}
+     (Standard matrix of a rotation).
+     
+    The standard matrix of a rotation is
 
     \begin{align*}
         \begin{pmatrix}
@@ -2538,14 +2563,61 @@ Make sure this discussion on angle is given in dot product section:
             \sin(t) & \cos(t)
         \end{pmatrix}
     \end{align*}
+
+    for some $t \in [0, 2\pi)$. [We use $\RR_t$ to denote the rotation with above matrix.]
 \end{theorem}
 
 \begin{proof}
-    We have $\RR_t(\hvv) =(\cos(\theta(\RR_t(\hvv), \see_1)), \sin(\theta(\RR_t(\hvv), \see_1)))^\top$ or $\RR_t(\hvv) = (\cos(-\theta(\RR_t(\hvv), \see_1)), \sin(-\theta(\RR_t(\hvv), \see_1)))^\top$ for all $\hvv \in \R^2$.
+    Let $\RR$ be a rotation. We know from Theorem \ref{ch::lin_alg::thm::vector_polar_form} that 
+
+    \begin{align*}
+        \RR(\vv) =
+        ||\RR(\vv)||
+        \begin{pmatrix}
+            \cos(\theta(\see_1, \RR(\vv)) \\
+            \sin(\theta(\see_1, \RR(\vv))
+        \end{pmatrix}
+        =
+        ||\vv||
+        \begin{pmatrix}
+            \cos(\theta(\see_1, \RR(\vv)) \\
+            \sin(\theta(\see_1, \RR(\vv))
+        \end{pmatrix}
+        \text{ for all $\vv \in \R^2$.}
+    \end{align*}
         
-    When $\hvv = \see_1$, then since $\theta(\RR_t(\see_1), \see_1) = t$ by the definition of a rotation, we have $\RR_t(\see_1) = (\cos(t), \sin(t))^\top$. 
+    When $\vv = \see_1$, then
+
+    \begin{align*}
+        \RR(\see_1) =
+        \begin{pmatrix}
+            \cos(t) \\
+            \sin(t)
+        \end{pmatrix},
+        \text{ where $t = \theta(\see_1, \RR(\see_1))$}.
+    \end{align*}
+
     
-    When $\hvv = \see_2$, then\footnotemark since $\theta(\RR_t(\see_2), \see_1) = \theta(\RR_t(\see_2), \see_2) + \theta(\see_2, \see_1) = t + \frac{\pi}{2}$, we have\footnote{Recall that $\cos(s) = \sin(\pi/2 - s)$ and $\sin(s) = \cos(\pi/2 -s)$.} $\RR_t(\see_2) = (\cos(t + \pi/2), \sin(t + \pi/2))^\top = (\sin(-t), \cos(-t))^\top = (-\sin(t), \cos(t))^\top$.
+    
+    When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_signed_angle}) gives us $\theta_s(\RR(\see_2), \see_1) = \theta_s(\RR(\see_2), \see_2) + \theta_s(\see_2, \see_1)$. \textbf{by a lemma (which claims that if $\RR$ preserves angle then $\theta_s(\vv, \RR(\vv))$ is a constant)} this is equal to $t + \frac{\pi}{2}$, so we have\footnote{Recall that $\cos(s) = \sin(\pi/2 - s)$ and $\sin(s) = \cos(\pi/2 -s)$.}
+
+    \begin{align*}
+        \RR(\see_2) =
+        \begin{pmatrix}
+            \cos\left(t + \frac{\pi}{2}\right) \\
+            \sin\left(t + \frac{\pi}{2}\right)
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            \sin(-t) \\
+            \cos(-t)
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -\sin(t) \\
+            \cos(t)
+        \end{pmatrix}.
+    \end{align*}
 \end{proof}
 
 \subsection*{Projections}

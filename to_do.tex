@@ -101,32 +101,7 @@ Cleanup
 \subsubsection*{Rotations}
 
 \begin{itemize}
-    \item A function is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin.
-    \item Rmk. Other texts define \textit{general rotations} to be length preserving functions that preserve length, unsigned angle, and fix the origin. Then \textit{proper rotations} are general rotations that preserve signed angle, and \textit{improper rotations} are general rotations that negate signed angle.
-    \item Thm. If a function preserves length and fixes the origin then it is linear.
-    \item Thm. All rotations are linear functions.
-    \item Thm. The matrix of a rotation is either
-
-    \begin{align*}
-        \begin{pmatrix}
-            \cos(t) & -\sin(t) \\
-            \sin(t) & \cos(t)
-        \end{pmatrix}
-        \text{ or }
-        \begin{pmatrix}
-            \cos(t) &  ... \\
-            -\sin(t) & ...
-        \end{pmatrix}
-    \end{align*}
-
-    for some $t \in [0, 2\pi)$. Have this theorem properly backed up by a correct notion of angle in which $-\pi/2 \sim 3\pi/2$. We need this for the orientation section; we use $t = \pi/2$ to prove the antisymmetry of ordered bases. 
-    
-    \item Thm. The following are equivalent
-    \begin{itemize}
-        \item $\ff$ preserves length and fixes the origin
-        \item $\ff$ is linear and preserves algebraic dot product
-        \item $\ff$ is linear and preserves length and unsigned angle
-    \end{itemize}
+    \item prove that if $\ff$ preserves angles (and lengths, if necessary for the conclusion) then $\theta_s(\vv, \ff(\vv))$ is a constant for all $\vv$. this will complete the proof about the standard matrix of a rotation
 \end{itemize}
 
 Things to establish before moving on to dot product:
