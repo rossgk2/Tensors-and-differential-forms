@@ -103,6 +103,35 @@ Cleanup
 
 Three overall goals:
 
+\begin{itemize}
+    \item A function is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin.
+    \item Rmk. This type of rotation is sometimes called a proper rotation, as opposed to an improper rotation, which is a function that preserves length, negates signed angle, and fixes the origin.
+    \item Thm. If f preserves length and fixes the origin then it is linear.
+    \item Thm. All rotations are linear functions.
+    \item Thm. The matrix of a rotation is either
+
+    \begin{align*}
+        \begin{pmatrix}
+            \cos(t) & -\sin(t) \\
+            \sin(t) & \cos(t)
+        \end{pmatrix}
+        \text{ or }
+        \begin{pmatrix}
+            \cos(t) &  ... \\
+            -\sin(t) & ...
+        \end{pmatrix}
+    \end{align*}
+
+    for some $t \in [0, 2\pi)$.
+    
+    \item Thm. The following are equivalent
+    \begin{itemize}
+        \item $\ff$ preserves length and fixes the origin
+        \item $\ff$ is linear and preserves dot product
+        \item $\ff$ is linear and preserves length and unsigned angle
+    \end{itemize}
+\end{itemize}
+
 \begin{enumerate}
     \item prove that rotation matrix of CCW rotation by $t$ has a first column of $\cc(t) = (\cos(t), \sin(t))^\top$ and second column of $(-\sin(t), \cos(t))^\top$.
     
