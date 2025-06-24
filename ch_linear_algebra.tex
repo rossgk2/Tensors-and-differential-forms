@@ -2249,18 +2249,6 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{defn}
 
 \begin{theorem}
-    (Signedness of signed angle).
-    
-    We have $\theta_s(\vv, \ww) = -\theta_s(\ww, \vv)$ and $\tttheta_s(\vv, \ww) = -\tttheta_s(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
-\end{theorem}
-
-\begin{proof}
-    We prove the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
-
-    Let $t_1, t_2 \in [0, 2\pi)$ be such that $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$. We have $\theta_s(\vv, \ww) = s(\cc, \hvv, \hww) = \int_{t_1}^{t_2} ||\frac{d\cc(t)}{dt}|| dt = -\int_{t_2}^{t_1} ||\frac{d\cc(t)}{dt}|| dt = -s(\cc, \hww, \hvv) = -\theta_s(\hww, \hvv)$.
-\end{proof}
-
-\begin{theorem}
     (Domain of angle).
 
     We have $\theta_s(\vv, \ww), \tttheta_s(\vv, \ww) \in [0, 2\pi)$ for all $\vv, \ww \in \R^2$. Furthermore, $\theta_s$ and $\tttheta_s$ are onto when considered to be functions mapping into $[0, 2\pi)$.
@@ -2303,13 +2291,39 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \label{ch::lin_alg::thm::negation_of_angle}
     (Negation of an angle $\text{mod } 2\pi$).
 
-    We have $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$ and $-\tttheta_s(\vv, \ww) \bmod 2\pi = \theta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$.
+    We have 
+
+    \begin{align*}
+        -\theta_s(\vv, \ww) \bmod 2\pi &= 2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww), \\
+        -\tttheta_s(\vv, \ww) \bmod 2\pi &= 2\pi - \tttheta_s(\vv, \ww) = \theta_s(\vv, \ww)
+    \end{align*}
+
+    for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
     We prove the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
     
     In general, if $t \in [0, 2\pi)$ then $-t \bmod 2\pi = 2\pi - t$. (Hopefully this is intuitive; if not, see Theorem \ref{ch::appendix::thm::negation_of_angle} of the appendix). Therefore $-\theta_s(\vv, \ww) \bmod 2\pi = 2\pi - \theta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. Of course, we have $2\pi - \theta_s(\vv, \ww) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$ by the previous theorem, so $-\theta_s(\vv, \ww) \bmod 2\pi = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$, as desired.
+\end{proof}
+
+\begin{theorem}
+    (Signedness of signed angle).
+    
+    We have 
+    
+    \begin{align*}
+        \theta_s(\vv, \ww) &= -\theta_s(\ww, \vv) \bmod 2\pi, \\
+        \tttheta_s(\vv, \ww) &= -\tttheta_s(\ww, \vv) \bmod 2\pi
+    \end{align*}
+
+    for all $\vv, \ww \in \R^2$.
+\end{theorem}
+
+\begin{proof}
+    We show the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
+
+    For all $\vv, \ww \in \R^2$, the counterclockwise path on the unit circle from $\hvv$ to $\hww$ (which is $\cc([t_1, t_2])$, where $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$) is equal to the clockwise path on the unit circle from $\hww$ to $\hvv$ (which is $\widetilde{\cc}([\widetilde{t}_1, \widetilde{t}_2])$, where $\cc(\widetilde{t}_1) = \hww$ and $\cc(\widetilde{t}_2) = \hvv$). Thus $s(\cc, \hww, \hvv) = s(\widetilde{\cc}, \hvv, \hww)$ for all $\vv, \ww \in \R^2$. That is, $\theta_s(\ww, \vv) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. We have $\tttheta_s(\vv, \ww) = -\theta_s(\ww, \vv) \bmod 2\pi$ by the previous theorem. This proves the theorem.
 \end{proof}
 
 \subsubsection*{Trigonometry}
@@ -2335,12 +2349,23 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
         \begin{pmatrix}
             \cos(\theta_s(\see_1, \vv)) \\
             \sin(\theta_s(\see_1, \vv))
-        \end{pmatrix} \text{ for all $\vv \in \R^2$}.
+        \end{pmatrix}
+        =
+        ||\vv||
+        \begin{pmatrix}
+            \cos(\tttheta_s(\see_1, \vv)) \\
+            -\sin(\tttheta_s(\see_1, \vv))
+        \end{pmatrix}
+        \text{ for all $\vv \in \R^2$}.
     \end{align*}
 \end{theorem}
 
 \begin{proof}
-    Let $\vv \in \R^2$. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$. By the previous derivation, we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
+    Let $\vv \in \R^2$. 
+    
+    First, we prove $\vv$ is equal to the first expression. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$. By the previous derivation, we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
+
+    To derive the second expression for $\vv$, use the that $\theta_s(\see_1, \vv) = 2\pi - \tttheta_s(\see_1, \hvv)$.
 \end{proof}
 
 \begin{deriv}
@@ -2419,7 +2444,11 @@ The above inspires the following definition of unsigned angle.
 \end{theorem}
 
 \begin{proof}
-    TO-DO
+    We have $\theta_u(\vv, \ww) := \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww)) \bmod 2\pi$. Consider the following cases.
+    
+    (Case: the minimum is $\theta_s(\vv, \ww)$). since $\theta_s(\ww, \vv) = -\theta_s(\vv, \ww)$
+
+    (Case: the minimum is $\tttheta_s(\vv, \ww)$).
 \end{proof}
 
 The above fact $\theta_u$ the natural notion of angle between vectors. [expand, copying from intro]
@@ -2590,7 +2619,7 @@ The next theorem is an immediate consequence of the previous one.
         \end{pmatrix}
     \end{align*}
 
-    for some $t \in [0, 2\pi)$. [We use $\RR_t$ to denote the rotation whose standard matrix is the above.]
+    for some $t \in [0, 2\pi)$. The rotation whose standard matrix is the above is called the \textit{counterclockwise rotation by $t$} and is denoted $\RR_t$. The \textit{clockwise rotation by $t$} is denoted $\widetilde{\RR}_t$
 \end{theorem}
 
 \begin{proof}
@@ -2600,14 +2629,14 @@ The next theorem is an immediate consequence of the previous one.
         \RR(\vv) =
         ||\RR(\vv)||
         \begin{pmatrix}
-            \cos(\theta(\see_1, \RR(\vv)) \\
-            \sin(\theta(\see_1, \RR(\vv))
+            \cos(\theta_s(\see_1, \RR(\vv)) \\
+            \sin(\theta_s(\see_1, \RR(\vv))
         \end{pmatrix}
         =
         ||\vv||
         \begin{pmatrix}
-            \cos(\theta(\see_1, \RR(\vv)) \\
-            \sin(\theta(\see_1, \RR(\vv))
+            \cos(\theta_s(\see_1, \RR(\vv)) \\
+            \sin(\theta_s(\see_1, \RR(\vv))
         \end{pmatrix}
         \text{ for all $\vv \in \R^2$.}
     \end{align*}
@@ -2620,7 +2649,7 @@ The next theorem is an immediate consequence of the previous one.
             \cos(t) \\
             \sin(t)
         \end{pmatrix},
-        \text{ where $t = \theta(\see_1, \RR(\see_1))$}.
+        \text{ where $t = \theta_s(\see_1, \RR(\see_1))$}.
     \end{align*}
 
     When $\vv = \see_2$, the transitivity of signed angle (recall Theorem \ref{ch::lin_alg::thm::transitivity_of_angle}) gives us $\theta_s(\see_1, \RR(\see_2)) = \theta_s(\see_1, \RR(\see_1)) + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\RR(\see_1), \RR(\see_2)) = t + \theta_s(\see_1, \see_2) = t + \frac{\pi}{2}$. Thus
@@ -2647,6 +2676,8 @@ The next theorem is an immediate consequence of the previous one.
             \cos(t)
         \end{pmatrix}.
     \end{align*}
+
+    The standard matrix $\RR(\sE)$ of $\RR$ has $\RR(\see_1)$ as its first column and $\RR(\see_2)$ as its second column, so we have shown the theorem.
 \end{proof}
 
 \subsection*{Projections}
