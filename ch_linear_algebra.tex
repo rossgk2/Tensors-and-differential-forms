@@ -2202,7 +2202,7 @@ The following special case of the above theorem follows immediately.
 
 \subsection*{Angle}
 
-You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\tttheta_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the absolute value of the signed counterclockwise angle.
+You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\tttheta_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the length of the shortest arc between the two vectors; it has no sign attached describing whether that shortest arc happens to be counterclockwise or clockwise.
 
 Signed angle is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$).
 
@@ -2434,7 +2434,7 @@ The above inspires the following definition of unsigned angle.
         \theta_u(\vv, \ww) := \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww)) \bmod 2\pi
     \end{align*}
 
-    \textbf{so the abs comes before the mod, meaning it isn't the abs of the mod; it isn't $|\theta_s(v, w)|$. edit intro to reflect this.}
+    \textbf{so the abs comes before the mod, meaning it isn't the abs of the mod}
 \end{defn}
 
 \begin{theorem}
@@ -2444,11 +2444,15 @@ The above inspires the following definition of unsigned angle.
 \end{theorem}
 
 \begin{proof}
-    We have $\theta_u(\vv, \ww) := \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww)) \bmod 2\pi$. Consider the following cases.
-    
-    (Case: the minimum is $\theta_s(\vv, \ww)$). since $\theta_s(\ww, \vv) = -\theta_s(\vv, \ww)$
+    We have
 
-    (Case: the minimum is $\tttheta_s(\vv, \ww)$).
+    \begin{align*}
+        \theta_u(\vv, \ww) &= \min(\theta_s(\vv, \ww), \tttheta_s(\vv, \ww)) \bmod 2\pi \\
+        &= \min(-\theta_s(\ww, \vv) \bmod 2\pi, -\tttheta_s(\ww, \vv) \bmod 2\pi) \bmod 2\pi \\
+        &= \min(\tttheta_s(\ww, \vv), \theta_s(\ww, \vv)) \bmod 2\pi \\
+        &= \min(\theta_s(\ww, \vv), \tttheta_s(\ww, \vv)) \bmod 2\pi \\
+        &= \theta_u(\ww, \vv).
+    \end{align*}
 \end{proof}
 
 The above fact $\theta_u$ the natural notion of angle between vectors. [expand, copying from intro]
