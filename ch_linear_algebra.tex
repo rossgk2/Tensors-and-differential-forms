@@ -2326,83 +2326,6 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
     For all $\vv, \ww \in \R^2$, the counterclockwise path on the unit circle from $\hvv$ to $\hww$ (which is $\cc([t_1, t_2])$, where $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$) is equal to the clockwise path on the unit circle from $\hww$ to $\hvv$ (which is $\widetilde{\cc}([\widetilde{t}_1, \widetilde{t}_2])$, where $\cc(\widetilde{t}_1) = \hww$ and $\cc(\widetilde{t}_2) = \hvv$). Thus $s(\cc, \hww, \hvv) = s(\widetilde{\cc}, \hvv, \hww)$ for all $\vv, \ww \in \R^2$. That is, $\theta_s(\ww, \vv) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. We have $\tttheta_s(\vv, \ww) = -\theta_s(\ww, \vv) \bmod 2\pi$ by the previous theorem. This proves the theorem.
 \end{proof}
 
-\subsubsection*{Trigonometry}
-
-\begin{deriv}
-\label{ch::lin_alg::deriv::cosine_sine}
-    (Cosine and sine).
-
-    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
-
-    Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
-\end{deriv}
-
-\begin{theorem}
-    \label{ch::lin_alg::thm::vector_polar_form}
-    (Polar form of vectors).
-
-    We have
-    
-    \begin{align*}
-        \vv =
-        ||\vv||
-        \begin{pmatrix}
-            \cos(\theta_s(\see_1, \vv)) \\
-            \sin(\theta_s(\see_1, \vv))
-        \end{pmatrix}
-        =
-        ||\vv||
-        \begin{pmatrix}
-            \cos(\tttheta_s(\see_1, \vv)) \\
-            -\sin(\tttheta_s(\see_1, \vv))
-        \end{pmatrix}
-        \text{ for all $\vv \in \R^2$}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    Let $\vv \in \R^2$. 
-    
-    First, we prove $\vv$ is equal to the first expression. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$. By the previous derivation, we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
-
-    To derive the second expression for $\vv$, use the that $\theta_s(\see_1, \vv) = 2\pi - \tttheta_s(\see_1, \hvv)$.
-\end{proof}
-
-\begin{deriv}
-    (Cosine and sine as ratios of lengths of sides of right triangles).
-
-    \newcommand{\thh}{\widetilde{\hh}}
-
-    Consider an arbitrary right triangle $T$ with non-hypotenuse sides $\ss_1$ and $\ss_2$. Note, the hypotenuse $\hh$ is $\hh = \ss_1 \pm \ss_2$.
-
-    For $i \in \{1, 2\}$, the $\ss_i$ which appears in the angle $\theta_u(\ss_i, \hh)$ is called the \textit{side adjacent to $\theta_u(\ss_i, \hh)$}; and the side $\ss_j$ which does not appear in that angle is called \textit{side opposite to $\theta_u(\ss_i, \hh)$}. Thus $\ss_1$ is the side adjacent to $\theta_u(\ss_1, \hh)$ and is also the side opposite to $\theta_u(\ss_2, \hh)$; $\ss_2$ is the side adjacent to $\theta_u(\ss_2, \hh)$ and is also the side opposite to $\theta_u(\ss_1, \hh)$.
-
-    let $\ff$ be an length-preserving and signed-angle-preserving function that takes the arbitrary right triangle $T$ to a congruent right triangle $\ff(T) = \tT \subseteq Q_1$ in the first quadrant with hypotenuse $\thh = \ff(\hh)$, a horizontal side $\ss_h = \ff(\ss_1)$ that lies on the $x$-axis, and a vertical side $\ss_v = \ff(\ss_2)$. \textbf{justify why such $\ff$ exists}
-
-    note, since $\ff$ preserves angles, then $\ff$ also preserves the adjacentness and oppositeness of triangle sides\footnote{If $\ss_i$ is the side adjacent to $\theta(\ss_i, \hh)$ then $\ff(\ss_i) = \ss_h$ is the side adjacent to $\theta(\ff(\ss_i), \ff(\hh))$; the analogous statement for opposite sides also holds.}
-
-    \textbf{since $\ff$ is linear (justify why)} then since $\hh = \ss_1 \pm \ss_2$ we have $\ff(\hh) = \ff(\ss_1) \pm \ff(\ss_2) \iff \thh = \ss_h \pm \ss_v$. since $\thh \in Q_1$, the $\pm$ sign must be $+$, and we have $\thh = \ss_h + \ss_v = ||\ss_h||\widehat{\ss}_h + ||\ss_v|| \widehat{\ss}_v = (||\ss_h||, ||\ss_v||)^\top$. also, by the previous theorem we have $\thh = ||\thh||(\cos(t), \sin(t))^\top = (||\thh||\cos(t), ||\thh||\sin(t))^\top$, where $t = \theta_s(\see_1, \thh) = \theta_s(\ss_h, \thh)$. comparing the results of the previous two sentences we see $\ss_h = (||\thh||\cos(t), 0) = ||\thh||\cos(t)\see_1$ and $\ss_v = (0, ||\thh||\sin(t)) = ||\thh||\sin(t)\see_2$.
-
-    with this information, we can obtain expressions for $\cos(t)$ and $\sin(t)$ as functions of the side lengths of $\tT \cong T$:
-
-    \begin{align*}
-        \frac{||\ss_1||}{||\hh||} = \frac{||\ff(\ss_1)||}{||\ff(\hh)||} = \frac{||\ss_h||}{||\thh||} = \frac{||\thh||\cos(t)}{||\thh||} = \cos(t), \\
-        \frac{||\ss_2||}{||\hh||} = \frac{||\ff(\ss_2)||}{||\ff(\hh)||} = \frac{||\ss_v||}{||\thh||} = \frac{||\thh||\sin(t)}{||\thh||} = \sin(t).
-    \end{align*}
-    
-    This shows that if we have a right triangle and $t$ is one of the non-right angles, then, using $\text{adj}$ to denote the length of the side adjacent to $t$ by $\text{adj}$, $\text{opp}$ to denote the length of the side opposite to $t$, and $\text{hyp}$ to denote the length of the hypotenuse, we have
-
-    \begin{align*}
-        \cos(t) = \frac{\text{adj}}{\text{hyp}} \text{ and } \sin(t) = \frac{\text{opp}}{\text{hyp}}.
-    \end{align*}
-\end{deriv}
-
-\begin{defn}
-    (Inverse trigonometric functions).
-
-    $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$
-\end{defn}
-
 \subsubsection*{Unsigned angle}
 
 \begin{theorem}
@@ -2456,15 +2379,6 @@ The above inspires the following definition of unsigned angle.
 \end{proof}
 
 The above fact $\theta_u$ the natural notion of angle between vectors. [expand, copying from intro]
-
-\subsubsection*{Perpendicularity}
-
-\begin{defn}
-    (Perpendicular vectors in $\R^2$). We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$.
-\end{defn}
-
-\subsubsection*{Misc.}
-
 
 \begin{theorem}
 \label{ch::lin_alg::thm::transitivity_of_angle}
@@ -2611,6 +2525,83 @@ The next theorem is an immediate consequence of the previous one.
     All rotations on $\R^2$ are linear functions.
 \end{theorem}
 
+\subsubsection*{Trigonometry}
+
+\begin{deriv}
+\label{ch::lin_alg::deriv::cosine_sine}
+    (Cosine and sine).
+
+    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
+
+    Knowing this, then for every $t \in [0, 2\pi)$ we can define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
+\end{deriv}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::vector_polar_form}
+    (Polar form of vectors).
+
+    We have
+    
+    \begin{align*}
+        \vv =
+        ||\vv||
+        \begin{pmatrix}
+            \cos(\theta_s(\see_1, \vv)) \\
+            \sin(\theta_s(\see_1, \vv))
+        \end{pmatrix}
+        =
+        ||\vv||
+        \begin{pmatrix}
+            \cos(\tttheta_s(\see_1, \vv)) \\
+            -\sin(\tttheta_s(\see_1, \vv))
+        \end{pmatrix}
+        \text{ for all $\vv \in \R^2$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    Let $\vv \in \R^2$. 
+    
+    First, we prove $\vv$ is equal to the first expression. We have $\theta_s(\see_1, \vv) = t$ for some $t \in [0, 2\pi)$. By the previous derivation, we have $\hvv = \vv/||\vv|| = (\cos(t), \sin(t))^\top = (\cos(\theta_s(\see_1, \vv)), \sin(\theta_s(\see_1, \vv)))^\top$. Multiply both sides of this equation by $||\vv||$ to obtain the desired result.
+
+    To derive the second expression for $\vv$, use the that $\theta_s(\see_1, \vv) = 2\pi - \tttheta_s(\see_1, \hvv)$.
+\end{proof}
+
+\begin{deriv}
+    (Cosine and sine as ratios of lengths of sides of right triangles).
+
+    \newcommand{\thh}{\widetilde{\hh}}
+
+    Consider an arbitrary right triangle $T$ with non-hypotenuse sides $\ss_1$ and $\ss_2$. Note, the hypotenuse $\hh$ is $\hh = \ss_1 \pm \ss_2$.
+
+    For $i \in \{1, 2\}$, the $\ss_i$ which appears in the angle $\theta_u(\ss_i, \hh)$ is called the \textit{side adjacent to $\theta_u(\ss_i, \hh)$}; and the side $\ss_j$ which does not appear in that angle is called \textit{side opposite to $\theta_u(\ss_i, \hh)$}. Thus $\ss_1$ is the side adjacent to $\theta_u(\ss_1, \hh)$ and is also the side opposite to $\theta_u(\ss_2, \hh)$; $\ss_2$ is the side adjacent to $\theta_u(\ss_2, \hh)$ and is also the side opposite to $\theta_u(\ss_1, \hh)$.
+
+    let $\ff$ be an length-preserving and signed-angle-preserving function that takes the arbitrary right triangle $T$ to a congruent right triangle $\ff(T) = \tT \subseteq Q_1$ in the first quadrant with hypotenuse $\thh = \ff(\hh)$, a horizontal side $\ss_h = \ff(\ss_1)$ that lies on the $x$-axis, and a vertical side $\ss_v = \ff(\ss_2)$. \textbf{justify why such $\ff$ exists}
+
+    note, since $\ff$ preserves angles, then $\ff$ also preserves the adjacentness and oppositeness of triangle sides\footnote{If $\ss_i$ is the side adjacent to $\theta(\ss_i, \hh)$ then $\ff(\ss_i) = \ss_h$ is the side adjacent to $\theta(\ff(\ss_i), \ff(\hh))$; the analogous statement for opposite sides also holds.}
+
+    \textbf{since $\ff$ is linear (justify why)} then since $\hh = \ss_1 \pm \ss_2$ we have $\ff(\hh) = \ff(\ss_1) \pm \ff(\ss_2) \iff \thh = \ss_h \pm \ss_v$. since $\thh \in Q_1$, the $\pm$ sign must be $+$, and we have $\thh = \ss_h + \ss_v = ||\ss_h||\widehat{\ss}_h + ||\ss_v|| \widehat{\ss}_v = (||\ss_h||, ||\ss_v||)^\top$. also, by the previous theorem we have $\thh = ||\thh||(\cos(t), \sin(t))^\top = (||\thh||\cos(t), ||\thh||\sin(t))^\top$, where $t = \theta_s(\see_1, \thh) = \theta_s(\ss_h, \thh)$. comparing the results of the previous two sentences we see $\ss_h = (||\thh||\cos(t), 0) = ||\thh||\cos(t)\see_1$ and $\ss_v = (0, ||\thh||\sin(t)) = ||\thh||\sin(t)\see_2$.
+
+    with this information, we can obtain expressions for $\cos(t)$ and $\sin(t)$ as functions of the side lengths of $\tT \cong T$:
+
+    \begin{align*}
+        \frac{||\ss_1||}{||\hh||} = \frac{||\ff(\ss_1)||}{||\ff(\hh)||} = \frac{||\ss_h||}{||\thh||} = \frac{||\thh||\cos(t)}{||\thh||} = \cos(t), \\
+        \frac{||\ss_2||}{||\hh||} = \frac{||\ff(\ss_2)||}{||\ff(\hh)||} = \frac{||\ss_v||}{||\thh||} = \frac{||\thh||\sin(t)}{||\thh||} = \sin(t).
+    \end{align*}
+    
+    This shows that if we have a right triangle and $t$ is one of the non-right angles, then, using $\text{adj}$ to denote the length of the side adjacent to $t$ by $\text{adj}$, $\text{opp}$ to denote the length of the side opposite to $t$, and $\text{hyp}$ to denote the length of the hypotenuse, we have
+
+    \begin{align*}
+        \cos(t) = \frac{\text{adj}}{\text{hyp}} \text{ and } \sin(t) = \frac{\text{opp}}{\text{hyp}}.
+    \end{align*}
+\end{deriv}
+
+\begin{defn}
+    (Inverse trigonometric functions).
+
+    $\arccos$ and $\arcsin$ as inverses of one-to-one restrictions of $\cos$ to $[0, \pi]$ and $\sin$ to $[-\frac{\pi}{2}, \frac{\pi}{2}]$
+\end{defn}
+
 \begin{theorem}
     (Standard matrix of a rotation).
      
@@ -2686,6 +2677,12 @@ The next theorem is an immediate consequence of the previous one.
 
 \subsection*{Projections}
 
+\begin{defn}
+    (Perpendicular vectors in $\R^2$).
+    
+    We say that $\vv, \ww \in \R^2$ are \textit{perpendicular}, or \textit{orthogonal}, iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$. \textbf{this is circular...}
+\end{defn}
+
 \begin{lemma}
     (Orthogonal basis of $\R^2$).
 
@@ -2735,7 +2732,7 @@ The next theorem is an immediate consequence of the previous one.
     \label{ch::lin_alg::lemma::rotated_projection}
     (Rotated projection is projection of rotated vectors). 
     
-    Let $\vv, \ww \in \R^2$. For any $t \in [0, 2\pi)$, we have $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
+    Let $\vv, \ww \in \R^2$. For any $t \in [0, 2\pi)$ we have $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. It immediately follows that for any $t \in [0, 2\pi)$ we have $\RR_t(\sproj(\vv \rightarrow \ww)) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
 \end{lemma}
 
 \begin{proof}
@@ -2745,7 +2742,7 @@ The next theorem is an immediate consequence of the previous one.
         \RR_t(\vv) = v_{||} \RR_t(\hww) + v_\perp \RR_t(\hww_\perp) = v_{||} \widehat{\RR_t(\hww)} + v_\perp \widehat{\RR_t(\ww)}_\perp
     \end{align*}
 
-    Notice that $\RR_t(\proj(\vv \rightarrow \ww)) = \RR_t(v_{||} \hww) = v_{||} \RR_t(\hww)$. Also, since $v_{||}\widehat{\RR_t(\hww)}$ is the parallel term in the orthogonal decomposition of $\RR_t(\vv)$ onto $\RR_t(\ww)$, it must be $\proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. So, we have
+    Of course, $v_{||} \RR_t(\hww) = \RR_t(v_{||} \hww) = \RR_t(\proj(\vv \rightarrow \ww))$. Also, since $v_{||}\widehat{\RR_t(\hww)}$ is the parallel term in the orthogonal decomposition of $\RR_t(\vv)$ onto $\RR_t(\ww)$, it must be $\proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Rewriting both sides in terms of these projections, we have
 
     \begin{align*}
         \RR_t(\proj(\vv \rightarrow \ww)) + v_\perp \RR_t(\hww_\perp) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww)) + v_\perp \widehat{\RR_t(\ww)}_\perp.
@@ -2753,6 +2750,8 @@ The next theorem is an immediate consequence of the previous one.
 
     Using again the fact that $\RR_t(\hww_\perp) = \widehat{\RR_t(\hww)}_\perp$, we obtain $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$, as desired. 
 \end{proof}
+
+\newpage
 
 \subsection*{The dot product}
 
@@ -2772,8 +2771,6 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
     \begin{align*}
         \vv \cdot \ww := ||\ww|| \spc \sproj(\vv \rightarrow \ww)
     \end{align*}
-
-    ... $\sproj(\vv \rightarrow \ww) = ||\vv|| \cos(\theta(\vv, \ww))$ [think about $\theta_s$ vs. $\theta_u$], so $\vv \cdot \ww = ||\vv|| \spc ||\ww|| \sproj(\vv \rightarrow \ww)$.
 \end{defn}
 
 \subsubsection*{Geometric $\implies$ algebraic}
@@ -2874,19 +2871,21 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
 \begin{theorem}
 \label{ch::lin_alg::lemma::orthogonal_linear_fns_preserve_alg_dot_product}
     (Preserved quantities).
-    
-    If $\ff:\R^2 \rightarrow \R^2$ is an isometry, then $\ff$ must also be linear, and  
+
+    Let $\ff:\R^2 \rightarrow \R^2$. The following are equivalent.
 
     \begin{enumerate}
-        \item ($\ff$ preserves dot product). $\vv \cdot \ww = \ff(\vv) \cdot \ff(\ww)$ for all $\vv, \ww \in \R^2$.
-        \item ($\ff$ preserves length and angle). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$ and $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$.
+        \item ($\ff$ is length-preserving and fixes the origin). $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$ and $\ff(\mathbf{0}) = \mathbf{0}$.
+        \item ($\ff$ is linear and preserves algebraic dot product). $\ff$ is linear and $\vv \cdot \ww = \ff(\vv) \cdot \ff(\ww)$ for all $\vv, \ww \in \R^2$.
+        \item ($\ff$ is linear, length-preserving, and angle-preserving). $\ff$ is linear, $||\vv|| = ||\ff(\vv)||$ for all $\vv \in \R^2$, and $\theta(\vv, \ww) = \theta(\ff(\vv), \ff(\ww))$ for all $\vv, \ww \in \R^2$. 
+    \textbf{figure out if $\ff$ should be preserving of signed or unsigned angle}
     \end{enumerate}
 \end{theorem}
 
 \begin{proof}
     \mbox{} \\
     \begin{itemize}
-        \item (Isometry $\implies$ (2)). Suppose $\ff$ preserves length. If we showed that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$ (on lengths), it would follow that $\ff$ preserves dot product. This is what we will do.
+        \item ((1) $\implies$ (2)). Suppose $\ff$ is length-preserving and fixes the origin. Then $\ff$ is also linear, so it remains to show that $\ff$ preserves algebraic dot product. If we show that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$ (on lengths), then since $\ff$ preserves lengths, it follows that $\ff$ preserves algebraic dot product. This is what we will do.
 
         We need to show that $\vv \cdot \ww$ depends on $||\vv||$ and $||\ww||$. Note that $||\vv||^2 = \vv \cdot \vv$ for $\vv \in \R^n$. So \\ $||\vv + \ww||^2 = (\vv + \ww) \cdot (\vv + \ww) = \vv \cdot \vv + 2 \vv \cdot \ww + \ww \cdot \ww = ||\vv||^2 + 2 \vv \cdot \ww + ||\ww||^2$. Solve for $\vv \cdot \ww$ to see that $\vv \cdot \ww$ does indeed depend on $||\vv||$ and $||\ww||$:
         
@@ -2894,7 +2893,7 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
             \vv \cdot \ww = \frac{1}{2}\Big(||\vv + \ww||^2 - (||\vv||^2 + ||\ww||^2) \Big).
         \end{align*}
         
-        (Isometry $\impliedby$ (2)). If $\ff$ preserves dot product, then $||\ff(\vv)|| = \sqrt{\ff(\vv) \cdot \ff(\vv)} = \sqrt{\vv \cdot \vv} = ||\vv||$, so $\ff$ preserves length.
+        ((1) $\impliedby$ (2)). If $\ff$ is linear and preserves dot product, then $||\ff(\vv)|| = \sqrt{\ff(\vv) \cdot \ff(\vv)} = \sqrt{\vv \cdot \vv} = ||\vv||$, so $\ff$ preserves length. Since $\ff$ is linear, it also fixes the origin. Therefore $\ff$ is length-preserving and fixes the origin, as desired.
         
         \item \mbox{} \\
         ((2) $\implies$ (3)). If $\ff$ preserves length, then, since angle is a function of quantities that are preserved by $\ff$ (dot product and length), $\theta(\vv, \ww) = \arccos\Big( \frac{\vv \cdot \ww}{||\vv|| \spc ||\ww||} \Big)$, it too is preserved by $\ff$. \\
@@ -2953,7 +2952,7 @@ The \textit{cross product} also comes with two common pedagogical problems. [sec
         = \proj(\ww \rightarrow \vv),
     \end{align*}
     
-    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection_length}. \\ Therefore $\vv \cdot \ww = ||\proj(\ww \rightarrow \vv)|| \spc ||\vv||$. Since the dot product is symmetric, we can swap $\vv$ and $\ww$; this gives the desired result.
+    where the last equality is by Lemma \ref{ch::lin_alg::lemma::rotated_projection}. \\ Therefore $\vv \cdot \ww = ||\proj(\ww \rightarrow \vv)|| \spc ||\vv||$. Since the dot product is symmetric, we can swap $\vv$ and $\ww$; this gives the desired result.
 \end{proof}
 
 \begin{comment}
