@@ -2308,7 +2308,7 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
 \end{proof}
 
 \begin{theorem}
-    (Signedness of signed angle).
+    (Signed angle is antisymmetric).
     
     We have 
     
@@ -2440,7 +2440,7 @@ The above inspires the following definition of unsigned angle.
 \begin{theorem}
     (Unsigned angle is symmetric).
 
-    $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
+    We have $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$ for all $\vv, \ww \in \R^2$.
 \end{theorem}
 
 \begin{proof}
@@ -2735,11 +2735,23 @@ The next theorem is an immediate consequence of the previous one.
     \label{ch::lin_alg::lemma::rotated_projection}
     (Rotated projection is projection of rotated vectors). 
     
-    Let $\vv, \ww \in \R^2$. For any $\theta \in [0, 2\pi)$, we have $\RR_\theta(\proj(\vv \rightarrow \ww) = \proj(\RR_\theta(\vv) \rightarrow \RR_\theta(\ww))$.
+    Let $\vv, \ww \in \R^2$. For any $t \in [0, 2\pi)$, we have $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
 \end{lemma}
 
 \begin{proof}
-    We have $\vv = v_{||} \hvv + v_\perp \hvv_\perp$, so $\RR_\theta(\vv) = v_{||} \ff(\hvv) + v_\perp \RR_\theta \hvv_\perp$. The claim follows if we show (1) that $\RR_\theta(\hww) = \widehat{\RR_\theta(\hww)}$ and (2) that $\RR_\theta(\hww_\perp) = \widehat{\RR_\theta(\ww)}_\perp$. (1) is true because rotations are length-preserving. (2) is true because there exists a rotation that sends $\ww$ to $\ww_\perp$, because rotations commute with each other, and because rotations are length-preserving.
+    Let $\vv = v_{||} \hww + v_\perp \hww_\perp$. Then $\RR_t(\vv) = v_{||} \RR_t(\hww) + v_\perp \RR_t(\hww_\perp)$. Since rotations are length-preserving, we have $\RR_t(\hww) = \widehat{\RR_t(\hww)}$. Because there exists a rotation that sends $\ww$ to $\ww_\perp$, because rotations commute with each other, and because rotations are length-preserving, we have $\RR_t(\hww_\perp) = \widehat{\RR_t(\ww)}_\perp$. Therefore
+
+    \begin{align*}
+        \RR_t(\vv) = v_{||} \RR_t(\hww) + v_\perp \RR_t(\hww_\perp) = v_{||} \widehat{\RR_t(\hww)} + v_\perp \widehat{\RR_t(\ww)}_\perp
+    \end{align*}
+
+    Notice that $\RR_t(\proj(\vv \rightarrow \ww)) = \RR_t(v_{||} \hww) = v_{||} \RR_t(\hww)$. Also, since $v_{||}\widehat{\RR_t(\hww)}$ is the parallel term in the orthogonal decomposition of $\RR_t(\vv)$ onto $\RR_t(\ww)$, it must be $\proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. So, we have
+
+    \begin{align*}
+        \RR_t(\proj(\vv \rightarrow \ww)) + v_\perp \RR_t(\hww_\perp) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww)) + v_\perp \widehat{\RR_t(\ww)}_\perp.
+    \end{align*}
+
+    Using again the fact that $\RR_t(\hww_\perp) = \widehat{\RR_t(\hww)}_\perp$, we obtain $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$, as desired. 
 \end{proof}
 
 \subsection*{The dot product}
