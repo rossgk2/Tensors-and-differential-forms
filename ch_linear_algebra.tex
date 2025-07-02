@@ -2196,6 +2196,13 @@ The following special case of the above theorem follows immediately.
     For $\vv \in \R^2$, we define the notation $\hat{\vv} := \frac{\vv}{||\vv||}$. We have $||\hat{\vv}|| = 1$ for all $\vv \in \R^2$.
 \end{defn}
 
+\begin{remark}
+\label{ch::lin_alg::rmk::direction_vectors}
+    (Direction vectors).
+    
+    Since the length of a unit vector is in some sense uninteresting, unit vectors can be considered to be specifying only direction and not magnitude; they can be considered to be ``direction vectors''.
+\end{remark}
+
 \begin{lemma}
     $\vv = \mathbf{0} \iff ||\vv|| = 0$ for all $\vv \in \R^2$.
 \end{lemma}
@@ -2204,9 +2211,9 @@ The following special case of the above theorem follows immediately.
 
 You may be familiar with how the \textit{angle} between two vectors $\vv, \ww \in \R^2$ of the same length $r$ is defined by placing the tails of the vectors at the center of a circle of radius $r$, and then computing the ratio of arclength on the circle between the tips to the radius of the circle; $\text{angle} = \frac{\text{arclength}}{\text{radius}}$. Less commonly discussed, though still crucial for understanding, is the distinction between the two types of angle, which are \textit{signed} and \textit{unsigned}. We will see that the \textit{signed counterclockwise angle} $\theta_s(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ accounts for whether the shorter of the two arcs between the vectors is achieved by counterclockwise motion (in this case, the \textit{sign} is positive) or by clockwise motion (in this case, the \textit{sign} is negative). (There is a similar definition for \textit{signed clockwise angle} $\tttheta_s(\vv, \ww)$ that uses the opposite signed convention, in which clockwise motion is positive and counterclockwise motion is negative). The \textit{unsigned angle} $\theta_u(\vv, \ww)$ between vectors $\vv, \ww \in \R^2$ is simply the length of the shortest arc between the two vectors; it has no sign attached describing whether that shortest arc happens to be counterclockwise or clockwise.
 
-Signed angle is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$).
+Signed angle $\theta_s$ is useful for computing the vector that makes a specified signed angle with another vector, since for every vector $\vv \in \R^2$ and angle $t$ there is a unique vector that makes a signed counterclockwise angle of $t$ with $\vv$. (Unsigned angle does not work for this purpose, since for every vector $\vv$ and angle $t$, there are \textit{two} vectors that make an unsigned angle of $t$ with $\vv$). This lays the groundwork for the familiar computations of trigonometry.
 
-Unsigned angle is the natural notion of ``the angle between two vectors'', since $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$, which is in accordance to the fact that ``the angle between two vectors'' shouldn't have any antisymmetry that distinguishes the two vectors from each other. (Signed angle does not work for this purpose, since $\theta_s(\vv, \ww) \neq \theta_s(\ww, \vv)$).
+Unsigned angle $\theta_u$ is the natural notion of ``the angle between two arbitrary vectors'', since $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$, which is in accordance to the fact that two arbitrary vectors do not come with an ordering. (Signed angle does not work for this purpose, since $\theta_s(\vv, \ww) \neq \theta_s(\ww, \vv)$).
 
 \subsubsection*{Counterclockwise and clockwise signed angle}
 
@@ -2326,6 +2333,25 @@ Unsigned angle is the natural notion of ``the angle between two vectors'', since
     For all $\vv, \ww \in \R^2$, the counterclockwise path on the unit circle from $\hvv$ to $\hww$ (which is $\cc([t_1, t_2])$, where $\cc(t_1) = \hvv$ and $\cc(t_2) = \hww$) is equal to the clockwise path on the unit circle from $\hww$ to $\hvv$ (which is $\widetilde{\cc}([\widetilde{t}_1, \widetilde{t}_2])$, where $\cc(\widetilde{t}_1) = \hww$ and $\cc(\widetilde{t}_2) = \hvv$). Thus $s(\cc, \hww, \hvv) = s(\widetilde{\cc}, \hvv, \hww)$ for all $\vv, \ww \in \R^2$. That is, $\theta_s(\ww, \vv) = \tttheta_s(\vv, \ww)$ for all $\vv, \ww \in \R^2$. We have $\tttheta_s(\vv, \ww) = -\theta_s(\ww, \vv) \bmod 2\pi$ by the previous theorem. This proves the theorem.
 \end{proof}
 
+\begin{theorem}
+\label{ch::lin_alg::lemma::vector_from_vector_and_angle}
+    (Specifying a vector with a vector and an signed angle difference).
+    
+    For every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww_1 \in \R^2$ such that $\theta_s(\hvv, \hww_1) = t$ and a unique $\hww_2 \in \R^2$ such that $\tttheta_s(\hvv, \hww_2) = t$.
+\end{theorem}
+
+\begin{proof}
+    We show the theorem for $\theta_s$; the proof for $\tttheta_s$ is similar.
+    
+    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww_1 \in \R^2$ is of the form $\hww_1 = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww_1 \mapsto s(\cc, \hvv, \hww_1)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww_1 \in \R^2$ such that $\theta_s(\vv, \hww_1) = t$.
+\end{proof}
+
+\begin{remark}
+    (The basis for trigonometry).
+
+    The above theorem makes signed angle $\theta_s$ quite useful for computations involving positions on circles. Specifically, we will later use this theorem to define functions $\cos$ and $\sin$ to be such that for every $t \in [0, 2\pi)$ the vector $(\cos(t), \sin(t))^\top \in \R^2$ is the unique unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$. After this, we can derive the familiar characterization of $\cos$ and $\sin$ as ratios between lengths of sides of right triangles. This familiar characterization is of course where the name \textit{trigonometry} comes from. 
+\end{remark}
+
 \subsubsection*{Unsigned angle}
 
 \begin{theorem}
@@ -2378,7 +2404,17 @@ The above inspires the following definition of unsigned angle.
     \end{align*}
 \end{proof}
 
-The above fact $\theta_u$ the natural notion of angle between vectors. [expand, copying from intro]
+\begin{remark}
+    (Unsigned angle is the natural notion of angle between arbitrary vectors).
+
+    Since any two arbitrary vectors $\vv, \ww \in \R^2$ do not come with a natural ordering, a sensible notion of the angle $\theta$ between them cannot depend on the order in which $\vv, \ww$ are specified; we must have $\theta(\vv, \ww) = \theta(\ww, \vv)$. We've just seen that unsigned angle $\theta_u$ has the desired property $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$. Thus, unsigned angle is the natural notion of the angle between two vectors. 
+\end{remark}
+
+\begin{remark}
+    (Unsigned angle as a difference between arbitrary directions).
+
+    Since unsigned angle is the appropriate tool for measuring the angle between arbitrary unit vectors, and as unit vectors correspond to directions (recall Remark \ref{ch::lin_alg::rmk::direction_vectors}), we can view unsigned angle as a means to quantify the difference between arbitrary directions.
+\end{remark}
 
 \begin{theorem}
 \label{ch::lin_alg::thm::transitivity_of_angle}
@@ -2527,25 +2563,11 @@ The next theorem is an immediate consequence of the previous one.
 
 \subsubsection*{Trigonometry}
 
-\begin{lemma}
-\label{ch::lin_alg::lemma::vector_from_vector_and_angle}
-
-    (Specifying a vector with a vector and an angle difference).
-    
-    For every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
-\end{lemma}
-
-\begin{proof}
-    The map $t \mapsto s(\cc, \vv, \cc(t))$ measures the arclength accumulated along the counterclockwise parameterization of the unit circle, and is therefore is strictly increasing, i.e., it is one-to-one, i.e., it is invertible. Since every $\hww \in \R^2$ is of the form $\hww = \cc(t)$ for some $t \in \R$ [come back and ensure consistency of angle intervals], then for all $\hvv \in \R^2$ the map $\hww \mapsto s(\cc, \hvv, \hww)$ defined on unit vectors is invertible as well. This means that for every $\hvv \in \R^2$ and $t \in [0, 2\pi)$ there is a unique $\hww \in \R^2$ such that $\theta_s(\vv, \hww) = t$.
-\end{proof}
-
-The previous lemma justifies the following definition.
-
 \begin{defn}
 \label{ch::lin_alg::deriv::cosine_sine}
     (Cosine and sine).
 
-    For every $t \in [0, 2\pi)$ we define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
+    For every $t \in [0, 2\pi)$ we define $\cos(t)$ and $\sin(t)$ to be the coordinates of the unique\footnote{We know such a unique unit vector exists because of Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle}.} unit vector $\hvv$ such that $\theta_s(\see_1, \hvv) = t$.
 \end{defn}
 
 \begin{theorem}
@@ -2699,7 +2721,7 @@ The previous lemma justifies the following definition.
     \begin{enumerate}
         \item Looking at the proof of the previous theorem, we see that the angle $t$ in the definition of $\RR_t$ is $t = \theta_s(\see_1, \RR_t(\vv))$ [might have to do trigonometric computation]
         
-        \item By (1), we have $\theta_s(\hvv, \RR_{\theta_s(\hvv, \hww)}(\hvv)) = \theta_s(\hvv, \hww)$. We know from Lemma \ref{ch::lin_alg::lemma::vector_from_vector_and_angle} that the vector $\huu \in \R^2$ for which $\theta_s(\hvv, \huu) = \theta_s(\hvv, \hww)$ is unique. Therefore $\huu = \RR_{\theta_s(\hvv, \hww)}(\vv) = \hww$, so $\RR_{\theta_s(\hvv, \hww)}$ takes $\hvv$ to $\hww$.        
+        \item By (1), we have $\theta_s(\hvv, \RR_{\theta_s(\hvv, \hww)}(\hvv)) = \theta_s(\hvv, \hww)$. We know from Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle} that the vector $\huu \in \R^2$ for which $\theta_s(\hvv, \huu) = \theta_s(\hvv, \hww)$ is unique. Therefore $\huu = \RR_{\theta_s(\hvv, \hww)}(\vv) = \hww$, so $\RR_{\theta_s(\hvv, \hww)}$ takes $\hvv$ to $\hww$.        
     \end{enumerate}
 \end{proof}
 
