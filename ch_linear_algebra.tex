@@ -2410,12 +2410,6 @@ The above inspires the following definition of unsigned angle.
     Since any two arbitrary vectors $\vv, \ww \in \R^2$ do not come with a natural ordering, a sensible notion of the angle $\theta$ between them cannot depend on the order in which $\vv, \ww$ are specified; we must have $\theta(\vv, \ww) = \theta(\ww, \vv)$. We've just seen that unsigned angle $\theta_u$ has the desired property $\theta_u(\vv, \ww) = \theta_u(\ww, \vv)$. Thus, unsigned angle is the natural notion of the angle between two vectors. 
 \end{remark}
 
-\begin{remark}
-    (Unsigned angle as a difference between arbitrary directions).
-
-    Since unsigned angle is the appropriate tool for measuring the angle between arbitrary unit vectors, and as unit vectors correspond to directions (recall Remark \ref{ch::lin_alg::rmk::direction_vectors}), we can view unsigned angle as a means to quantify the difference between arbitrary directions.
-\end{remark}
-
 \begin{theorem}
 \label{ch::lin_alg::thm::transitivity_of_angle}
     (Transitivity of angle).
@@ -2561,7 +2555,7 @@ The next theorem is an immediate consequence of the previous one.
     All rotations on $\R^2$ are linear functions.
 \end{theorem}
 
-\subsubsection*{Trigonometry}
+\subsection*{Trigonometry}
 
 \begin{defn}
 \label{ch::lin_alg::deriv::cosine_sine}
@@ -2719,8 +2713,60 @@ The next theorem is an immediate consequence of the previous one.
 \begin{proof}
     \mbox{} \\
     \begin{enumerate}
-        \item Looking at the proof of the previous theorem, we see that the angle $t$ in the definition of $\RR_t$ is $t = \theta_s(\see_1, \RR_t(\vv))$ [might have to do trigonometric computation]
-        
+        \item Using Theorem \ref{ch::lin_alg::thm::vector_polar_form}, we have $\vv = ||\vv||(\cos(\theta), \sin(\theta))^\top$, where $\theta = \theta_s(\see_1, \vv)$. Thus
+
+        \begin{align*}
+            \RR_t(\vv) =
+            \begin{pmatrix}
+                \cos(t) & -\sin(t) \\
+                \sin(t) & \cos(t)
+            \end{pmatrix}
+            \left(
+            ||\vv||
+            \begin{pmatrix}
+                \cos(\theta) \\ \sin(\theta)
+            \end{pmatrix}
+            \right)
+            =
+            ||\vv||
+            \begin{pmatrix}
+                \cos(\theta) \cos(t) - \sin(\theta) \sin(t) \\
+                \cos(\theta) \sin(t) + \sin(\theta) \cos(t))
+            \end{pmatrix}
+            =
+            ||\vv||
+            \begin{pmatrix}
+                \cos(\theta + t) \\
+                \sin(\theta + t)
+            \end{pmatrix}.
+        \end{align*}
+
+        Then $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)})$, where $\xx:[0, 2\pi) \rightarrow \R^2$ is defined by $\xx(t) = (\cos(t), \sin(t))^\top$, which is
+
+        \begin{align*}
+            s(\xx, \hvv, \widehat{\RR_t(\vv)}) =
+            \theta_s
+            \left(
+                \begin{pmatrix} \cos(\theta) \\ \sin(\theta) \end{pmatrix},
+                \begin{pmatrix} \cos(\theta + t) \\ \sin(\theta + t) \end{pmatrix}
+            \right)
+            =
+            \int_{\theta}^{\theta + t}
+            \Big|\Big|
+            \frac{d}{dt}
+            \begin{pmatrix}
+                \cos(t) \\
+                \sin(t)
+            \end{pmatrix}
+            \Big|\Big|
+            dt
+            =
+            \int_{\theta}^{\theta + t} dt
+            = (\theta + t) - \theta = t.
+        \end{align*}
+
+        That is, $\theta_s(\vv, \RR_t(\vv)) = s(\xx, \hvv, \widehat{\RR_t(\vv)}) = t$, as desired.
+                
         \item By (1), we have $\theta_s(\hvv, \RR_{\theta_s(\hvv, \hww)}(\hvv)) = \theta_s(\hvv, \hww)$. We know from Theorem \ref{ch::lin_alg::lemma::vector_from_vector_and_angle} that the vector $\huu \in \R^2$ for which $\theta_s(\hvv, \huu) = \theta_s(\hvv, \hww)$ is unique. Therefore $\huu = \RR_{\theta_s(\hvv, \hww)}(\vv) = \hww$, so $\RR_{\theta_s(\hvv, \hww)}$ takes $\hvv$ to $\hww$.        
     \end{enumerate}
 \end{proof}
@@ -2733,22 +2779,22 @@ The next theorem is an immediate consequence of the previous one.
     
     Outline:
     \begin{itemize}
-        \item Defn. Vectors $\vv, \ww \in \R^2$ are said to be \textit{perpendicular}, or \textit{orthogonal}, iff there exists a rotation taking $\hvv$ to $\see_1$ and $\hww$ to $\pm \see_2$.
+        \item Defn. The \textit{unsigned angle between a vector $\vv \in \R^2$ and a line in $\R^2$ through the origin equal to $\spann(\ww)$ for some $\ww \in \R^2$} is defined to be $\min_{\tww \in \spann(\ww)} \theta_u(\vv, \tww)$. Because [...] this is equal to $\min(\theta_u(\vv, \tww), \theta_u(\vv, -\tww))$.
+        \item Thm. This notion of unsigned angle is symmetric.
+        \item Defn. Two vectors in $\R^2$ are said to be \textit{orthogonal}, or \textit{perpendicular}, if the direction vector of one is as different from the ``direction line''  of the other as possible, i.e. if the unsigned angle between $\vv$ and $\spann(\ww)$ is maximized.
         \begin{itemize}
-            \item Why? If $\ww$ and $\uu$ are linearly independent then they form a basis of $\R^2$, and we have $\vv = v_{||} \hww + v_u \huu$ for some $v_{||}, v_u \in \R$. Define $\proj_{\uu}(\vv \rightarrow \ww) := v_{||} \hww$. 
-            
-            Notice that $\proj_{\uu}(\vv \rightarrow \ww)$ is nonzero for $\vv$ such that $\theta_u(\hvv, \uu) \neq \frac{\pi}{2}$. We might as well have this nonzero arc of vectors that sweeps out $\frac{\pi}{2}$ line up with the ``standard'' arc of vectors that sweeps out $\frac{\pi}{2}$, which are the unit vectors in the first quadrant.
             \item Find where orthonormal bases are defined for $n$-dimensional inner product spaces, and change that definition so it is in terms of rotations. Then prove that all orthonormal bases satisfy the usual condition $\langle \huu_i, \huu_j \rangle = \delta_{ij}$.
         \end{itemize}
-        \item Thm. For every $\vv \in \R^2$ there exists $\vv_\perp \in \R^2$ that is perpendicular to $\vv$.
+        \item If $\vv \in \R^2$ and $\vv_\perp$ is orthogonal to $\vv$ then $\hvv_\perp = \widehat{\vv_\perp}$.
+        \item Remark. (Orthogonality is symmetric). Note that $\vv$ is orthogonal to $\ww$ iff $\ww$ is orthogonal to $\vv$.
+        \item Thm. For every $\vv \in \R^2$ there exists $\vv_\perp \in \R^2$ that is orthogonal to $\vv$.
         \begin{itemize}
-            \item Proof. Let $t$ be such that $\RR_t(\see_1) = \vv$. Then $\RR^{-1}$ is a rotation taking $\see_1$ to $\hvv$ and taking $\RR(\see_2)$ to $\see_2$. Thus $\vv_\perp = \RR(\see_2)$ is perpendicular to $\vv$.
+            \item Proof. Let $t$ be such that $\RR_t(\see_1) = \vv$. Then $\RR^{-1}$ is a rotation taking $\see_1$ to $\hvv$ and taking $\RR(\see_2)$ to $\see_2$. Thus $\vv_\perp = \RR(\see_2)$ is orthogonal to $\vv$.
         \end{itemize}
-        \item Thm. If $\vv, \vv_\perp \in \R^2$ and $\vv_\perp$ is perpendicular to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis for $\R^2$.
+        \item Thm. If $\vv, \vv_\perp \in \R^2$ and $\vv_\perp$ is orthogonal to $\vv$, then $\{\vv, \vv_\perp\}$ is a basis for $\R^2$.
         \begin{itemize}
             \item Proof. See older versions of this book for the proof.
         \end{itemize}
-        \item $\hvv_\perp = \widehat{\vv_\perp}$
         \item Let $\vv, \ww, \ww_\perp \in \R^2$, where $\ww_\perp$ is orthogonal to $\ww$. Since $\{\ww, \ww_\perp\}$ is a basis for $\R^2$ we have $\vv = v_{||} \hww + v_\perp \hww_\perp$ for some $v_{||}, v_\perp \in \R$. We define the \textit{(orthogonal) projection} $\proj(\vv \rightarrow \ww)$ \textit{ of $\vv$ onto $\ww$} to be $\proj(\vv \rightarrow \ww) := v_{||} \hww$, and define the the \textit{signed magnitude of the vector projection $\sproj(\vv \rightarrow \ww)$ of $\vv$ onto $\ww$} to be $\sproj(\vv \rightarrow \ww) := v_{||}$.
         \item Thm. $\vv, \ww \in \R^2$ are orthogonal iff $\theta_u(\vv, \ww) = \frac{\pi}{2}$ iff $\proj(\vv \rightarrow \ww) = \mathbf{0}$.
     \end{itemize}
