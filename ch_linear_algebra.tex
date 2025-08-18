@@ -2640,7 +2640,11 @@ The next theorem is an immediate consequence of the previous one.
         \end{pmatrix}
     \end{align*}
 
-    for some $t \in [0, 2\pi)$. The rotation whose standard matrix is the above is called the \textit{counterclockwise rotation by $t$} and is denoted $\RR_t$. The \textit{clockwise rotation by $t$} is denoted $\widetilde{\RR}_t$.
+    for some $t \in [0, 2\pi)$.
+    
+    Since multiplying this matrix by $\see_1$ gives $(\cos(t), \sin(t))^\top = \cc(t)$, the rotation whose standard matrix is the above is called the \textit{counterclockwise rotation by $t$} and is denoted $\RR_t$. Similarly, since $\RR_{2\pi - t}(\see_1) = \widetilde{\cc}(t)$, the rotation $\widetilde{\RR}_t := \RR_{2\pi - t}$ is called the \textit{clockwise rotation by $t$}.
+
+    Clearly, every rotation is both a counterclockwise rotation by some amount and a clockwise rotation by some amount.
 \end{theorem}
 
 \begin{proof}
@@ -5064,7 +5068,7 @@ The previous lemma can easily be generalized so that it holds for all dimensions
 
 \begin{theorem}
 \label{ch::lin_alg::thm::n_rot_acts_on_orthonormal_basis}
-     (Any ordered basis is ``rotationally close'' to a permuted orthonormal basis).
+     (Any ordered basis is an Euler rotation of a permuted orthonormal basis).
      
      Let $V$ be an finite-dimensional inner product space. If $\hW = (\hww_1, ..., \hww_k)$ and $\hU = (\huu_1, ..., \huu_k)$ are orthonormal ordered bases of subspaces of $V$, then there is an Euler rotation taking $\hW$ to an ordered basis that is rotationally equivalent to some permutation $\hU^\sigma$ of $\hU$. 
 \end{theorem}
@@ -5100,7 +5104,7 @@ The previous lemma can easily be generalized so that it holds for all dimensions
     
     We define the \textit{orientation of an orthonormal ordered basis $E$ of $V$} that is not a permutation of $\hU$ to be the orientation of the unique permuted orthonormal basis $\hU^\sigma$, $\sigma \in S^n$, of $\hU$ for which there exists an $n$-rotation taking $E$ to $\hU^\sigma$.
     
-    Then, we define the \textit{orientation of an arbitrary orthonormal ordered basis $E$ of $V$} to be the orientation of the unique orthonormal basis $\hU_E$ obtained from performing the Gram-Schmidt process on $E$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}).
+    Then, we define the \textit{orientation of an arbitrary orthonormal ordered basis $E$ of $V$} to be the orientation of the unique orthonormal basis $\hU_E$ obtained from performing the Gram-Schmidt algorithm on $E$ (see Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}).
 \end{defn}
 
 \begin{theorem}
@@ -5113,25 +5117,29 @@ The previous lemma can easily be generalized so that it holds for all dimensions
 \begin{proof}
    This proof has two overarching steps. First, we pass the definition of orientation for arbitrary ordered bases of $V$ to the definition of orthonormal ordered bases of $V$ by obtaining an orthonormal ordered basis $\hU_E$ from $E$. Then we pass the definition of orientation for orthonormal ordered bases of $V$ that are not permutations of $\hU$ to the definition of orientation for orthonormal ordered bases of $V$ that are permutations of $\hU$.
    
-   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. Recall from Theorem \ref{ch::lin_alg::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, performing Gram-Schmidt does not change the determinant. That is, if $\hU_E = (\hww_1, ..., \hww_n)$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
+   To begin the first step, consider $\det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$, and perform Gram-Schmidt on $([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})$. In the $i$th step of Gram-Schmidt, a linear combination of the vectors $[\ee_1]_{\hU}, ..., \cancel{[\ee_i]_{\hU}}, ..., [\ee_n]_{\hU}$ is added to $[\ee_i]_{\hU}$. In Gram-Schmidt, vectors are first linearly combined into each other in various ways. Recall from Theorem \ref{ch::lin_alg::thm::consequent_det_props} that the determinant is invariant under linearly combining input vectors into a different input vector. Therefore, this first part of the Gram-Schmidt algorithm does not change the determinant of the list of vectors. After this first part of Gram-Schmidt, the vectors are normalized. This step may change the determinant but still preserves its sign.
+
+   Thus, if $\hU_E = (\hww_1, ..., \hww_n)$ is the orthonormal basis obtained by performing Gram-Schmidt on $E$, then 
    
    \begin{align*}
-       \det([\EE]_{\hU}) = \det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU}) = \det([\hww_1]_{\hU}, ..., [\hww_n]_{\hU})
+       \text{sign}(\det([\EE]_{\hU})) = \text{sign}(\det([\ee_1]_{\hU}, ..., [\ee_n]_{\hU})) = \text{sign}(\det([\hww_1]_{\hU}, ..., [\hww_n]_{\hU}))
        =
-       \det([\hU_E]_{\hU}).
+       \text{sign}(\det([\hU_E]_{\hU})).
    \end{align*}
    
-   In performing this first step of the proof, the determinant has stayed the same as we've passed from $E$ to $\hU_E$. We now show that the determinant continues to stay the same as we pass from  $\hU_E$ to some permutation $\hU^\sigma$ of $\hU$.
+   In performing this first step of the proof, sign of the determinant has stayed the same as we've passed from $E$ to $\hU_E$. We now show that the determinant continues to stay the same as we pass from  $\hU_E$ to some permutation $\hU^\sigma$ of $\hU$.
    
    Theorem \ref{ch::lin_alg::thm::n_rot_acts_on_orthonormal_basis} says that there is a $n$-rotation $\RR$ taking $\hU_E$ to $\hU^\sigma$, for some $\sigma \in S_n$, and Theorem \ref{ch::lin_alg::thm::n_dim_rot_det_1} guarantees that $\det(\RR) = 1$. Thus, since $\hU^\sigma = \RR(\hU_E)$, we have
    
    \begin{align*}
         \det([\hU_E]_{\hU}) 
-        = \det([\RR(\hU_E)]_{\hU}) \det([\hU_E]_{\hU})
-        = \det([(\RR \circ \II)(\hU_E)]_{\hU})
+        = 1 \cdot \det([\hU_E]_{\hU})
+        = \det(\RR) \det([\hU_E]_{\hU})
         = \det([\RR(\hU_E)]_{\hU})
         = \det([\hU^\sigma]_{\hU}).
    \end{align*}
+
+   (The second to last equation is true because in general\footnote{Proof: $\det(\gg) \det([F]_H) = \det([\gg(F)]_H) \det([F]_H) = \det([\gg(F)]_H) \det([\II(F)]_H) = \det([(\gg \circ \II)(F)]_H) = \det([\gg(F)]_H)$.}, if $\gg:Y \rightarrow Y$ is linear and $F, H$ are bases for $Y$, then $\det(\gg) \det([F]_H) = \det([\gg(F)]_H)$.)
    
    To conclude the proof, we will show that $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$; once we have shown this, we are done, since $\sgn(\sigma) \det([\hU]_{\hU}) = \sgn(\sigma) \det(\II) = \sgn(\sigma)$. Since any permutation is a composition of transpositions, then $\hU^\sigma$ can be obtained from $\hU$ by repeatedly swapping vectors in $\hU$. Whenever vectors are swapped in the determinant, the sign of the determinant is multiplied by $-1$. This accounts for the $\sgn(\sigma)$ factor in the equation $\det([\hU^\sigma]_{\hU}) = \sgn(\sigma) \det([\hU]_{\hU})$.
 \end{proof}
