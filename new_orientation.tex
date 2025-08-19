@@ -1,0 +1,89 @@
+\section{Orientation}
+
+\begin{defn}
+    (Orientation).
+    
+    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$} is the element of $\{-1, 1\}^{n - 1}$ whose $i$th component is $1$ whenever the counterclockwise angle from $\ee_i$ to $\ee_{i + 1}$ is less than or equal to than the corresponding clockwise angle, and whose $i$th component is $-1$ otherwise. In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{n - 1}$.
+
+    We define the \textit{standard orientation for $V$} to be $(1, 1, ..., 1) \in \{-1, 1\}^{n - 1}$.
+\end{defn}
+
+\begin{theorem}
+    (Taking an arbitrary ordered basis to an orthonormal ordered basis).
+
+    \begin{enumerate}
+        \item Orthonormalization (Gram-Schmidt) preserves orientation.
+        \item Orthonormalization (Gram-Schmidt) takes an arbitrary ordered basis to an orthonormal ordered basis.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+     \mbox{} \\
+    \begin{enumerate}
+        \item Gram-Schmidt preserves the nonnegativity of $\proj(\vv \rightarrow \huu_i)$ for all $i$. Therefore it preserves orientation.
+        \item This was shown in Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}.
+    \end{enumerate}
+\end{proof}
+
+\begin{defn}
+    ($2$-dimensional rotation).
+
+    A \textit{$2$-dimensional rotation} is a linear function whose restriction to some $2$-dimensional subspace is a rotation and whose restriction elsewhere is the identity.
+\end{defn}
+
+\begin{theorem}
+    (Taking an orthonormal ordered bases to a permutation of a chosen orthonormal ordered basis).
+
+    \begin{enumerate}
+        \item There exists an orthonormal ordered basis $\hU$ that induces the standard orientation.
+
+        \item For every chosen orthonormal ordered basis $\hU$ there exists a composition of 2-dimensional rotations that takes an arbitrary orthonormal ordered basis $\hW$ to a permutation $\hU^\sigma$ of the chosen orthonormal ordered basis.
+
+        \item From the previous two items it follows that every arbitrary orthonormal ordered basis $\hW$ induces one of two orientations: an orientation either equal to the standard orientation, or an orientation that's not.
+
+        \item Defn: identify these orientations with $1$ and $-1$ 
+
+        \item $\text{orn}(\hU^\sigma) = \sgn(\sigma)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof} \mbox{} \\
+    \begin{enumerate}
+        \item See book.
+        \item This is because a CCW or CW 2-rotation by $\pi/2$ preserves orientation, and is the same as swap-negating.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    The sign of the determinant of an ordered basis is equal to its orientation.
+\end{theorem}
+
+\subsection*{Rotations in $\R^n$}
+
+\begin{theorem}
+    signed angle in $\R^2$ is equal to the product of orientation and unsigned angle.
+\end{theorem}
+
+\begin{defn}
+    (Signed angle in $\R^n$).
+
+    $\theta_s(\vv, \ww) := \text{orn}((\vv, \ww)) \theta_u(\vv, \ww)$, where $\text{orn}((\vv, \ww))$ is the orientation of $(\vv, \ww)$
+\end{defn}
+
+This definition allows for an easy generalization of the concept of rotation.
+
+\begin{defn}
+    (rotation in $\R^n$).
+
+    A function $\R^n \rightarrow \R^n$ is a \textit{rotation in $\R^n$} if it fixes the origin, preserves length, and preserves signed angle in $\R^n$. Equivalently\footnote{Since length-preserving functions fix the origin iff they are linear.}, a function is a rotation in $\R^n$ iff it is linear, preserves length, and preserves orientation. 
+\end{defn}
+
+\begin{deriv}
+    ($\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$).
+
+    A rotation in $\R^n$ is a linear function that preserves length and signed angle.
+
+    If a function preserves signed angle then it obviously preserves whether the smaller angle between two vectors is counterclockwise or clockwise, and therefore preserves orientation. So every rotation is a linear function that preserves length and orientation.
+
+    Is the converse true? Is is every linear function that preserves length and orientation a rotation? Well, suppose $\ff:\R^n \rightarrow \R^n$ is linear,  preserves length, and preserves orientation. Then [reference Theorem about preserved quantities] it also preserves unsigned angle. Since $\ff$ preserves orientation and unsigned angle, and since signed angle is the product of orientation and signed angle, then $\ff$ preserves signed angle. Thus $\ff$ is linear, preserves length, and preserves signed angle; $\ff$ is a rotation. The converse is true!
+\end{deriv}
