@@ -3,13 +3,12 @@
 \begin{defn}
     (Orientation).
     
-    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$ for $V$} is the element of $\{-1, 1\}^{\times(n - 1)}$ whose $i$th component is $1$ whenever the counterclockwise angle from $\ee_i$ to $\ee_{i + 1}$ is less than or equal to than the corresponding clockwise angle, and whose $i$th component is $-1$ otherwise. We denote the orientation for $V$ induced by a basis $E$ for $V$ by $\iorn(E)$.
-    
-    In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{\times(n - 1)}$.
+    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$} is the element of $\{-1, 1\}^{n - 1}$ whose $i$th component is $1$ whenever the counterclockwise angle from $\ee_i$ to $\ee_{i + 1}$ is less than or equal to than the corresponding clockwise angle, and whose $i$th component is $-1$ otherwise. In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{n - 1}$.
 
     We define the \textit{standard orientation for $V$} to be $(1, 1, ..., 1) \in \{-1, 1\}^{n - 1}$.
 \end{defn}
 
+<<<<<<< HEAD
 \begin{defn}
     ($2$-dimensional rotation).
 
@@ -217,6 +216,8 @@
     For every chosen orthonormal ordered basis $\hU$ there exists a composition of 2-dimensional rotations that takes an arbitrary orthonormal ordered basis $\hW$ to a permutation $\hU^\sigma$ of the chosen orthonormal ordered basis.
 \end{theorem}
 
+=======
+>>>>>>> parent of 352b613 (New approach on orientation)
 \begin{theorem}
     (Taking an arbitrary ordered basis to an orthonormal ordered basis).
 
@@ -234,13 +235,38 @@
     \end{enumerate}
 \end{proof}
 
+\begin{defn}
+    ($2$-dimensional rotation).
+
+    A \textit{$2$-dimensional rotation} is a linear function whose restriction to some $2$-dimensional subspace is a rotation and whose restriction elsewhere is the identity.
+\end{defn}
+
+\begin{theorem}
+    (Taking an orthonormal ordered bases to a permutation of a chosen orthonormal ordered basis).
+
+    \begin{enumerate}
+        \item There exists an orthonormal ordered basis $\hU$ that induces the standard orientation.
+
+        \item For every chosen orthonormal ordered basis $\hU$ there exists a composition of 2-dimensional rotations that takes an arbitrary orthonormal ordered basis $\hW$ to a permutation $\hU^\sigma$ of the chosen orthonormal ordered basis.
+
+        \item From the previous two items it follows that every arbitrary orthonormal ordered basis $\hW$ induces one of two orientations: an orientation either equal to the standard orientation, or an orientation that's not.
+
+        \item Defn: identify these orientations with $1$ and $-1$ 
+
+        \item $\text{orn}(\hU^\sigma) = \sgn(\sigma)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof} \mbox{} \\
+    \begin{enumerate}
+        \item See book.
+        \item This is because a CCW or CW 2-rotation by $\pi/2$ preserves orientation, and is the same as swap-negating.
+    \end{enumerate}
+\end{proof}
+
 \begin{theorem}
     The sign of the determinant of an ordered basis is equal to its orientation.
 \end{theorem}
-
-\begin{proof}
-    take an arbitrary orthonormal ordered basis to a $\hU^\sigma$ for some $\sigma$, where $\hU$ is positively oriented. ...
-\end{proof}
 
 \subsection*{Rotations in $\R^n$}
 
@@ -251,7 +277,7 @@
 \begin{defn}
     (Signed angle in $\R^n$).
 
-    $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$, where $\orn((\vv, \ww))$ is the orientation of $(\vv, \ww)$
+    $\theta_s(\vv, \ww) := \text{orn}((\vv, \ww)) \theta_u(\vv, \ww)$, where $\text{orn}((\vv, \ww))$ is the orientation of $(\vv, \ww)$
 \end{defn}
 
 This definition allows for an easy generalization of the concept of rotation.
