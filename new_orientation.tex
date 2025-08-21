@@ -13,10 +13,10 @@
 \begin{defn}
     ($2$-dimensional rotation).
 
-    Let $V$ be an $n$-dimensional inner product space, and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. In analogy to the closed form for the standard matrix of a rotation in $\R^2$ (recall Theorem     \ref{ch::lin_alg::defn::standard_matrix_rotation}), we define
+    Let $V$ be an $n$-dimensional inner product space, and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. In analogy to the closed form for the standard matrix of a rotation in $\R^2$ (recall Theorem     \ref{ch::lin_alg::defn::standard_matrix_rotation}), we define matrices $\RR_{ij;t}$ and $\widetilde{\RR}_{ij;t}$, which describe rotation in the $2$-dimensional subspace $\spann(\huu_i, \huu_j)$:
     
     \begin{align*}
-        \RR_t &:=
+        \RR_{ij;t} &:=
         \kbordermatrix
         {
              & & & \text{$i$th column} &  & \text{$j$th column}   \\
@@ -26,10 +26,10 @@
              & \vdots & & 0 & \vdots & 0 & \vdots \\
              & 0 & \hdots & \sin(t)  & 0 & \cos(t) & 1
         }, \\
-        \widetilde{\RR}_t &:= \RR_{2\pi - t}.
+        \widetilde{\RR}_{ij;t} &:= \RR_{ij; 2\pi - t}.
     \end{align*}
 
-    A \textit{$2$-dimensional rotation (in $V$)} is a linear function $\RR$ such that there exist $i, j$ for which the matrix $[\RR(\hU)]_{\hU}$ of $\RR$ relative to $\hU$ and $\hU$ is $\RR_t$. Note, since $\RR_t = \RR_{2\pi - t}$, we can think of a $2$-dimensional rotation in $V$ as being either counterclockwise or clockwise.
+    A \textit{$2$-dimensional rotation (in $V$)} is a linear function $\RR$ such that there exist $i, j$ for which the matrix $[\RR(\hU)]_{\hU}$ of $\RR$ relative to $\hU$ and $\hU$ is $\RR_{ij;t}$. Note, since $\RR_t = \RR_{ij;2\pi - t}$, we can think of a $2$-dimensional rotation in $V$ as being either counterclockwise or clockwise.
 \end{defn}
 
 \begin{deriv}
@@ -49,7 +49,7 @@
 \end{deriv}
 
 \begin{proof}
-    We need to prove that $\RR_{\pi/2}$ and $\widetilde{\RR}_{\pi/2}$ preserve induced orientation, i.e., that $\iorn(\RR_{\pi/2}(E)) = \iorn(E)$ and $\iorn(\widetilde{\RR}_{\pi/2}(E)) = \iorn(E)$ for any ordered basis $E$ of $V$. We show $\iorn(\RR_{\pi/2}(E)) = \iorn(E)$; the proof of the second fact is similar.
+    We need to prove that $\RR_{ij;\pi/2}$ and $\widetilde{\RR}_{ij;\pi/2}$ preserve induced orientation for all $i$ and $j$, i.e., that $\iorn(\RR_{ij;\pi/2}(E)) = \iorn(E)$ and $\iorn(\widetilde{\RR}_{ij;\pi/2}(E)) = \iorn(E)$ for all $i, j$ and any ordered basis $E$ of $V$. We show $\iorn(\RR_{ij;\pi/2}(E)) = \iorn(E)$; the proof of the second fact is similar.
 
     [TO-DO]
 \end{proof}
