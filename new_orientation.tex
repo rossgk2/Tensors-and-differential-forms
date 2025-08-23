@@ -2,20 +2,53 @@
 
 \begin{defn}
     (Orientation).
-    
-    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$} is the element of $\{-1, 1\}^{n - 1}$ whose $i$th component is $1$ whenever the counterclockwise angle from $\ee_i$ to $\ee_{i + 1}$ is less than or equal to than the corresponding clockwise angle, and whose $i$th component is $-1$ otherwise. In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{n - 1}$.
 
-    We define the \textit{standard orientation for $V$} to be $(1, 1, ..., 1) \in \{-1, 1\}^{n - 1}$.
+    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$ for $V$} is the element of $\{-1, 1\}^{\times(n - 1)}$ whose $i$th component is $1$ iff $|\theta_s(\ee_i, \ee_{i + 1})| \leq |\tttheta_s(\ee_i, \ee_{i + 1})|$, and whose $i$th component is $-1$ iff $|\theta_s(\ee_i, \ee_{i + 1})| > |\tttheta_s(\ee_i, \ee_{i + 1})|$.
+    
+    We denote the orientation for $V$ induced by an ordered basis $E$ for $V$ by $\orn(E)$, and write $E \sim F$ iff $\orn(E) = \orn(F)$.
+    
+    In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{\times(n - 1)}$.
+
+    We define the \textit{standard orientation for $V$} to be $(1, 1, ..., 1) \in \{-1, 1\}^{\times(n - 1)}$.
 \end{defn}
 
-<<<<<<< HEAD
+\begin{theorem}
+    Every orientation is induced by some ordered basis.
+
+    ..might not be true actually..
+\end{theorem}
+
+\begin{proof}
+    Consider an orientation $o = (s_1, ..., s_n) \in \{-1, 1\}^{\times (n - 1)}$, of an $n$-dimensional inner product space. We must produce an ordered basis $E$ whose induced orientation is $o$.
+
+    To do so, take any ordered basis $F = (\ff_1, ..., \ff_n)$ of the inner product space; it will have some orientation $(\widetilde{s}_1, ..., \widetilde{s}_n) \in \{-1, 1\}^{\times (n - 1)}$.
+    
+    Compare $o$ to $\orn(F)$ entry by entry. Whenever there is a difference, 
+\end{proof}
+
+\begin{theorem}
+    The orthonormalization algorithm from Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt} preserves induced orientation.
+\end{theorem}
+
+\begin{proof}
+    %In general, we have $\cos(\theta_u(\vv, \ww)) = \sproj(\vv \rightarrow \ww)/||\vv||$, and thus $\theta_u(\vv, \ww) = \arccos(\sproj(\vv \rightarrow \ww)/||\vv||)$. Therefore
+
+    %$\theta_u(\ee_i, \ee_{i + 1}) = \arccos(\sproj(\ee_i \rightarrow \ee_{i + 1})/||\ee_i||)$
+
+    %$\theta_u(\ee_{i + 1}, \ee_i) = \arccos(\sproj(\ee_{i + 1} \rightarrow \ee_i)/||\ee_{i + 1}||)$
+
+    %The orthonormalization algorithm preserves the nonnegativity of ${\proj(\ee_{i + 1} \rightarrow \ee_i)}$ for all $i$. 
+\end{proof}
+
+\subsection*{Investigation into orientation via orthonormal ordered bases}
+
 \begin{defn}
     ($2$-dimensional rotation).
 
-    Let $V$ be an $n$-dimensional inner product space, and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. In analogy to the closed form for the standard matrix of a rotation in $\R^2$ (recall Theorem     \ref{ch::lin_alg::defn::standard_matrix_rotation}), we define matrices $\RR_{ij;t}$ and $\widetilde{\RR}_{ij;t}$, which describe rotation in the $2$-dimensional subspace $\spann(\huu_i, \huu_j)$:
+    Let $V$ be an $n$-dimensional inner product space, and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. In analogy to the closed form for the standard matrix of a rotation in $\R^2$ (recall Theorem     \ref{ch::lin_alg::defn::standard_matrix_rotation}), we define
     
     \begin{align*}
-        \RR_{ij;t} &:=
+        \RR_t &:=
         \kbordermatrix
         {
              & & & \text{$i$th column} &  & \text{$j$th column}   \\
@@ -25,247 +58,41 @@
              & \vdots & & 0 & \vdots & 0 & \vdots \\
              & 0 & \hdots & \sin(t)  & 0 & \cos(t) & 1
         }, \\
-        \widetilde{\RR}_{ij;t} &:= \RR_{ij; 2\pi - t}.
+        \widetilde{\RR}_t &:= \RR_{2\pi - t}.
     \end{align*}
 
-    A \textit{$2$-dimensional rotation (in $V$)} is a linear function $\RR$ such that there exist $i, j$ for which the matrix $[\RR(\hU)]_{\hU}$ of $\RR$ relative to $\hU$ and $\hU$ is $\RR_{ij;t}$. Note, since $\RR_t = \RR_{ij;2\pi - t}$, we can think of a $2$-dimensional rotation in $V$ as being either counterclockwise or clockwise.
-\end{defn}
-
-\begin{deriv}
-    (Antisymmetry of induced orientation).
-
-    Let $V$ be an $n$-dimensional inner product space. Hopefully, it is intuitive that counterclockwise $2$-dimensional rotations by $\pi/2$ and clockwise $2$-dimensional rotations by $\pi/2$ preserve induced orientation. (We prove this below, of course). Such rotations correspond to swap-and-negating vectors in ordered bases. Therefore, swap-and-negating vectors in a standard basis preserves induced orientation. More explicitly, for any ordered basis $E = (\ee_1, ..., \ee_n)$ of an $n$-dimensional inner product space, we have
-
-    \begin{align*}
-        \iorn((\ee_1, ..., \ee_i, ..., \ee_j, ..., \ee_n))
-        =
-        \iorn((\ee_1, ..., -\ee_j, ..., \ee_i, ..., \ee_n))
-        =
-        \iorn((\ee_1, ..., \ee_j, ..., -\ee_i, ..., \ee_n)) \text{ for all $i, j \in \{1, ..., n\}$}.
-    \end{align*}
-    
-    That is, swapping and negating vectors in an ordered basis preserves the induced orientation.
-\end{deriv}
-
-\begin{proof}
-    We need to prove that $\RR_{ij;\pi/2}$ and $\widetilde{\RR}_{ij;\pi/2}$ preserve induced orientation for all $i$ and $j$, i.e., that $\iorn(\RR_{ij;\pi/2}(E)) = \iorn(E)$ and $\iorn(\widetilde{\RR}_{ij;\pi/2}(E)) = \iorn(E)$ for all $i, j$ and any ordered basis $E$ of $V$. We show $\iorn(\RR_{ij;\pi/2}(E)) = \iorn(E)$; the proof of the second fact is similar.
-
-    [TO-DO]
-\end{proof}
-
-\begin{theorem}
-    \label{ch::lin_alg::thm::antisymmetry_ordered_bases_signs}
-
-    (Ordered bases of signed vectors).
-    
-    Let $E = (\ee_1, ..., \ee_n)$ be an ordered basis of an $n$-dimensional inner product space. If $s_1, ..., s_n \in \{-1, 1\}$, then
-
-    \begin{align*}
-        &\iorn((s_1 \ee_1, ..., s_n \ee_n)) = \\
-        &\begin{cases}
-            \iorn((\ee_1, ..., \ee_n)), & \text{the number of $s_i$ equal to $-1$ is $-1$ is even} \\
-            \iorn((\ee_1, ..., \ee_{j - 1}, -\ee_j, \ee_{j + 1}, ..., \ee_n)) \text{ for any $j \in \{1, ..., n\}$}, & \text{the number of $s_i$ equal to $-1$ is $-1$ is odd} 
-        \end{cases}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    \mbox{} \\
-    
-    (Case: the number of $s_i$ equal to $-1$ is even). Since the number of $s_i$ equal to $-1$ is even, we can pair every $s_i \ee_i$ with $s_i = -1$ to some $s_j \ee_j$ with $s_j = -1$, so that all $s_i \ee_i$ with $s_i = -1$ appear as a member of only one pair. If we swap the vectors in each pair twice, then, as illustrated by the example $\iorn((-\ee_i, -\ee_j)) = \iorn((\ee_j, -\ee_i)) = \iorn((\ee_i, \ee_j))$, the coefficients on these vectors in the rightmost ordered basis will be $1$, with the order of the vectors being the same as in the original pair. Thus $(s_1 \ee_1, ..., s_n \ee_n)$ induces the same orientation as does $(\ee_1, ..., \ee_n)$.
-
-    (Case: the number of $s_i$ equal to $-1$ is odd). Since the number of $s_i$ equal to $-1$ is odd, we can pair every $s_i \ee_i$ with $s_i = -1$ to some $s_j \ee_j$ with $s_j = -1$, so that all but one $s_i \ee_i$ with $s_i = -1$ appear as a member of only one pair. Let $s_k \ee_k$ be the vector with $s_k = -1$ that is not a member of a pair. Applying the same reasoning as in the previous case, we see that $(s_1 \ee_1, ..., s_n \ee_n)$ induces the same orientation as does $(\ee_1, ..., \ee_{k - 1}, -\ee_k, \ee_{k + 1}, ... \ee_n)$. Making use of the example $\iorn((-\ee_k, \ee_\ell)) = \iorn((\ee_\ell, \ee_k)) = \iorn((\ee_k, -\ee_\ell))$, we see that this ordered basis induces the same orientation as does $(\ee_1, \ee_2, ..., \ee_{\ell - 1}, -\ee_\ell, \ee_{\ell + 1}, ..., \ee_n)$ for any $\ell \in \{1, ..., n\}$. Thus, when the number of $s_i$ equal to $-1$ is odd, the ordered basis $(s_1 \ee_1, ..., s_n \ee_n)$ induces the same orientation as does $(\ee_1, ..., \ee_{\ell - 1}, -\ee_\ell, \ee_{\ell + 1}, ..., \ee_n)$ for any $\ell \in \{1, ..., n\}$. Replace $\ell$ with $j$ to obtain the result.
-\end{proof}
-
-\begin{defn}
-    (Permutation acting on a tuple). 
-    
-    Let $X = (x_1, ..., x_n)$ be an $n$-tuple. Given a permutation $\sigma \in S_n$, we define $X^\sigma := (x_{\sigma(1)}, ..., x_{\sigma(n)})$. For example, if $E = (\ee_1, ..., \ee_n)$ is an ordered basis of a finite-dimensional vector space, then $E^\sigma = (\ee_{\sigma(1)}, ..., \ee_{\sigma(n)})$.
+    A \textit{$2$-dimensional rotation (in $V$)} is a linear function $\RR$ such that there exist $i, j$ for which the matrix $[\RR(\hU)]_{\hU}$ of $\RR$ relative to $\hU$ and $\hU$ is $\RR_t$. Note, since $\RR_t = \widetilde{\RR}_{2\pi - t}$, we can think of a $2$-dimensional rotation in $V$ as being either counterclockwise or clockwise.
 \end{defn}
 
 \begin{theorem}
-    \label{ch::lin_alg::thm::permutations_preserve_induced_orientation}
-
-    (Permutations preserve induced orientation).
-    
-    If $E$ and $F$ are ordered bases of an $n$-dimensional inner product space, then ${\iorn(E) = \iorn(F) \iff \iorn(E^\sigma) = \iorn(F^\sigma)}$ for all permutations $\sigma \in S_n$.
+    Every composition of $2$-dimensional rotations preserves induced orientation.
 \end{theorem}
 
-\begin{proof}
-    Let $E = (\ee_1, ..., \ee_n)$ and $F = (\ff_1, ..., \ff_n)$. [TO-DO]
-\end{proof}
-
-\begin{lemma}
-    Let $E$ be an ordered basis of an $n$-dimensional inner product space. We have $\sgn(\sigma) = 1 \implies \iorn(E^\sigma) = \iorn(E)$ for all $\sigma \in S_n$.
-\end{lemma}
-
-\begin{proof}
-    Let $E = (\ee_1, ..., \ee_n)$. The sign of a permutation is $1$ iff the permutation consists of an even number of swaps. So, an equivalent statement to the theorem is: for all $n$, if $\sigma$ consists of $2n$ transpositions, then $\iorn(E^\sigma) = \iorn(E)$. We prove this statement by induction on $n$.
-    
-    (Base case). Consider $E^\sigma$, where $\sigma = \tau \circ \pi$, and where $\pi, \tau$ are transpositions. 
-    
-    The permutation $\pi$ swaps some $i, j$. Using the example $\iorn((\ee_j, \ee_i)) = \iorn((-\ee_i, \ee_j))$, we see \\ $\iorn(E^\pi) = \iorn((\ee_1, ..., \ee_{i - 1}, -\ee_i, \ee_{i + 1}, ..., \ee_n))$. Since this ordered basis has only one basis vector with a coefficient of $-1$, it follows from the previous theorem that it induces the same orientation as does every other such ordered basis; in particular, it induces the same orientation as does $\hW :=  (-\ee_1, ..., \ee_n)$.
-
-    So far, we've shown $\iorn(E^\pi) = \iorn(\hW)$. Since permutations preserve rotational equivalence (see Theorem \ref{ch::lin_alg::thm::permutations_preserve_induced_orientation}), we may apply the permutation $\tau$ to each side of the equation $\iorn(E^\pi) = \iorn(\hW)$ and use the fact $(E^\pi)^\tau = E^{\tau \circ \pi} = E^\sigma$ to obtain $\iorn(E^\sigma) = \iorn(\hW^\tau)$.
-
-    We now compute the right side of this equation, $\iorn(\hW^\tau)$.
-
-    \fullindent
-    {
-        (Case: $\tau$ swaps $1$ with some $\ell > 1$). By studying the example $\iorn((\ee_\ell, -\ee_1)) = \iorn((\ee_1, \ee_\ell))$, we see $\iorn(\hW) = \iorn((-\ee_1, ..., \ee_n)^\tau) = \iorn ((\ee_1, ..., \ee_n)) = \iorn(E)$.
-    }
-    \fullindent
-    {
-        (Case: $\tau$ swaps $k \neq 1$ with some $\ell > k$). By studying the example $\iorn((\ee_\ell, \ee_k)) = \iorn((-\ee_k, \ee_\ell))$, we see $\iorn(\hW^\tau) = \iorn((-\ee_1, ..., \ee_n)^\tau) = \iorn((-\ee_1, ..., \ee_{k - 1}, -\ee_k, \ee_{k + 1}, ..., \ee_n))$. In this last ordered basis, the number of basis vectors with a coefficient of $-1$ is even. It follows from the previous theorem that this last ordered basis induces the same orientation as does $E$.
-    }
-
-    We've shown that $\iorn(\hW^\tau) = \iorn(E)$ for all $\tau \in S_n$. Therefore, we have $\iorn(E^\sigma) = \iorn(\hW^\tau) = \iorn(E)$, as desired.
-    
-    (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ transpositions, then $\iorn(E^\sigma) = \iorn(E)$. We need to prove that if $\sigma$ consists of $2(n + 1)$ transpositions, then $\iorn(E^\sigma) = \iorn(E)$.
-
-    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ transpositions. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ transpositions and $\tau$ consists of $2$ transpositions. By the inductive hypothesis, $\iorn(E^\pi) = \iorn(E)$. Since permutations preserve induced orientation (see Theorem \ref{ch::lin_alg::thm::permutations_preserve_induced_orientation}), and since $(E^\pi)^\tau = E^{\tau \circ \pi} = E^\sigma$, we have $\iorn(E^\sigma) = \iorn(E^\tau)$. Since $\tau$ consists of $2$ transpositions, then from the base case it follows that $\iorn(E^\tau) = \iorn(E)$. Thus $\iorn(E^\sigma) = \iorn (E^\tau) = \iorn(E)$, as desired.
+\begin{proof} 
+    ...if there is such a composition of $2$-rotations, then that composition won't change the angles between vectors, and thus won't change the min of $|\theta_s(\ee_i, \ee_{i + 1})|$ and $|\tttheta_s(\ee_i, \ee_{i + 1})|$, let alone the argmin...
 \end{proof}
 
 \begin{theorem}
-    \begin{align*}
-        E^\sigma \sim E^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}.
-    \end{align*}
-\end{theorem}
-
-\begin{proof}
-    \mbox{} \\ \indent
-    ($\impliedby$).
-    
-    The reverse implication is true when the following two statements are:
-    
-    \begin{enumerate}
-        \item If $\sgn(\pi) = 1$, then $\sgn(\sigma) = 1 \implies \iorn(E^\sigma) = \iorn(E^\pi)$ for all $\sigma \in S_n$.
-        \item If $\sgn(\pi) = -1$, then $\sgn(\sigma) = -1 \implies \iorn(E^\sigma) = \iorn(E^\pi)$ for all $\sigma \in S_n$.
-    \end{enumerate}
-
-    We restate the previous lemma for convenience:
-
-    \begin{itemize}
-        \item $\sgn(\sigma) = 1 \implies \iorn(E^\sigma) = \iorn(E)$ for all $\sigma \in S_n$.
-    \end{itemize}
-
-    Now we prove (1) and (2).
-
-    \begin{enumerate}
-        \item If $\sgn(\sigma) = \sgn(\pi) = 1$, then $\iorn(E^\sigma) = \iorn(E) = \iorn (E^\pi)$ by the above bullet.
-        \item Let $\pi$ be any odd permutation. If $\sigma$ is an even permutation, then applying the above bullet yields $\iorn((E^\pi)^\sigma) = \iorn(E^\pi)$, i.e. $\iorn(E^{\sigma \circ \pi}) = \iorn(E^\pi)$. Thus $\sgn(\sigma) = 1 \implies \iorn(E^{\sigma \circ \pi}) = \iorn(E^\pi)$. In general, every odd permutation is of the form $\sigma \circ \pi$, where $\sigma$ is some even permutation. Thus, as $\sigma$ varies over the even permutations, the permutation $\tau := \sigma \circ \pi$ varies over the odd permutations. This makes the statement $\sgn(\sigma) = 1 \implies \iorn(E^{\sigma \circ \pi}) = \iorn(E^\pi)$ equivalent to the statement $\sgn(\tau) = -1 \implies \iorn(E^\tau) = \iorn(E^\pi)$. Since the former statement is true, so is the later, as desired.
-    \end{enumerate}
-
-   ($\implies$).
-
-    The forward implication is true when the following two statements are:
-
-    \begin{enumerate}
-        \item[3.] If $\sgn(\pi) = 1$, then $\iorn(E^\sigma) = \iorn(E^\pi) \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
-        \item[4.] If $\sgn(\pi) = -1$, then $\iorn(E^\sigma) = \iorn(E^\pi) \implies \sgn(\sigma) = -1$ for all $\sigma \in S_n$.
-    \end{enumerate}
-
-    Before we can prove (3) and (4), we need to prove the following bullet point:
-
-    \begin{itemize}
-        \item $\iorn(E) = \iorn(E^\sigma) \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
-
-        We show the contrapositive, $\sgn(\sigma) = -1 \implies \iorn(E) \neq \iorn(E^\sigma)$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $\iorn(E) \nsim \iorn(E^\sigma)$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$.
-
-        Since $\sgn(\transp{1}{2}) = -1$, we will show that $\iorn(E) \neq \iorn(E^{(1 \spc 2)})$.
-            
-        Suppose for contradiction that $\iorn(E) = \iorn(E^{(1 \spc 2)})$, i.e., that $\iorn((\ee_1, \ee_2, \ee_3 ..., \ee_n)) = \iorn((\ee_2, \ee_1, \ee_3 ..., \ee_n))$. [TO-DO; write new contradiction proof]
-
-        % Old contradiction proof, from when I thought orientation should be defined only in terms of rotational equivalence (which is of course wrong):
-        
-        %Then there exists $t \in [0, 2\pi)$ such that ${\RR_t(E) = (\RR_t(\ee_1), \RR_t(\ee_2), \RR_t(\ee_3), ..., \RR_t(\ee_n)) = (\ee_2, \ee_1, \ee_3, ..., \ee_n) = E^{(1 \spc 2)}}$. From the first two entries of these tuples, we have $[\RR_t(\ee_1)]_{E} = [\ee_2]_{E} = (0, 1)^\top$ and $[\RR_t(\ee_2)]_{E} = [\ee_1]_{E} = (1, 0)^\top$.
-            
-        % Since $[\RR_t(\ee_1)]_{E} = (\cos(t), \sin(t))^\top$ and ${[\RR_t(\ee_2)]_{E} = (-\sin(t), \cos(t))^\top}$, then this is equivalent to $((\cos(t), \sin(t))^\top = (0, 1)^\top \text{ and } (-\sin(t), \cos(t))^\top = (1, 0)^\top)$, which further implies $\sin(t) = 1$ and $\sin(t) = -1$. Since $\sin$ is a well-defined function, this is a contradiction.
-    \end{itemize}
-
-    Now we prove (3) and (4).
-    
-    \begin{enumerate}
-        \item[3.] Let $\pi$ be any even permutation. If $\sigma$ is an even permutation, then applying the above bullet yields $\iorn((E^\pi)^\sigma) = \iorn(E^\pi) \implies \sgn(\sigma) = 1$, i.e., $\iorn(E^{\sigma \circ \pi}) = \iorn(E^\pi) \implies \sgn(\sigma) = 1$. If we allow $\pi$ to vary over the even permutations, then since $\sigma$ varies over the even permutations, $\tau := \sigma \circ \pi$ varies over the even permutations, and we obtain the statement $\iorn(E^\tau) = \iorn(E^\pi) \implies \sgn(\tau) = 1$ for all $\tau \in S_n$, as desired.
-        \item[4.] The proof is analogous to that of (3). Begin the proof with ``Let $\pi$ be any odd permutation'', and use the fact that since $\sigma$ varies over the even permutations, $\tau := \sigma \circ \pi$ varies over the odd permutations.
-    \end{enumerate}
-\end{proof}
-
-\begin{theorem}
-    (Orientation and parity).
-
-    \begin{enumerate}
-
-        \item Since parities of permutations can only take on two values, there are only two orientations. [\textit{positive} orientation and \textit{negative} orientation]
-        
-        \item (Identification of orientation with sign). We define $\orn(E)$ to be $1$ when $E$ induces positive orientation and $-1$ when $E$ induces negative orientation.
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof}
-
-\end{proof}
-
-\begin{theorem}    
-    $\orn(\hU^\sigma) = \sgn(\sigma)$.
+    For any orthonormal ordered basis there is a composition of $2$-dimensional rotations taking that basis to a permutation $\hU^\sigma$ of an orthonormal ordered basis $\hU$ with the standard orientation.
 \end{theorem}
 
 \begin{theorem}
-    (Taking an arbitrary orthonormal ordered basis to a permutation of a chosen orthonormal ordered basis).
-    
-    For every chosen orthonormal ordered basis $\hU$ there exists a composition of 2-dimensional rotations that takes an arbitrary orthonormal ordered basis $\hW$ to a permutation $\hU^\sigma$ of the chosen orthonormal ordered basis.
+    (
+
+    \begin{enumerate}
+        \item A $2$-dimensional counterclockwise or clockwise rotation by $\pi/2$ takes an ordered basis to an ordered basis, inducing the same orientation as the original, that can be obtained from the original by swapping two vectors in the original and then negating one of them.
+
+        \item $\hU^\sigma \sim \hU^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}$
+    \end{enumerate}    
 \end{theorem}
 
-=======
->>>>>>> parent of 352b613 (New approach on orientation)
 \begin{theorem}
-    (Taking an arbitrary ordered basis to an orthonormal ordered basis).
-
-    \begin{enumerate}
-        \item Orthonormalization (Gram-Schmidt) preserves orientation.
-        \item Orthonormalization (Gram-Schmidt) takes an arbitrary ordered basis to an orthonormal ordered basis.
-    \end{enumerate}
+    $\text{sorn}(\hU^\sigma) = \text{sgn}(\sigma)$
 \end{theorem}
 
-\begin{proof}
-     \mbox{} \\
-    \begin{enumerate}
-        \item Gram-Schmidt preserves the nonnegativity of $\proj(\vv \rightarrow \huu_i)$ for all $i$. Therefore it preserves orientation.
-        \item This was shown in Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}.
-    \end{enumerate}
-\end{proof}
-
-\begin{defn}
-    ($2$-dimensional rotation).
-
-    A \textit{$2$-dimensional rotation} is a linear function whose restriction to some $2$-dimensional subspace is a rotation and whose restriction elsewhere is the identity.
-\end{defn}
 
 \begin{theorem}
-    (Taking an orthonormal ordered bases to a permutation of a chosen orthonormal ordered basis).
-
-    \begin{enumerate}
-        \item There exists an orthonormal ordered basis $\hU$ that induces the standard orientation.
-
-        \item For every chosen orthonormal ordered basis $\hU$ there exists a composition of 2-dimensional rotations that takes an arbitrary orthonormal ordered basis $\hW$ to a permutation $\hU^\sigma$ of the chosen orthonormal ordered basis.
-
-        \item From the previous two items it follows that every arbitrary orthonormal ordered basis $\hW$ induces one of two orientations: an orientation either equal to the standard orientation, or an orientation that's not.
-
-        \item Defn: identify these orientations with $1$ and $-1$ 
-
-        \item $\text{orn}(\hU^\sigma) = \sgn(\sigma)$
-    \end{enumerate}
-\end{theorem}
-
-\begin{proof} \mbox{} \\
-    \begin{enumerate}
-        \item See book.
-        \item This is because a CCW or CW 2-rotation by $\pi/2$ preserves orientation, and is the same as swap-negating.
-    \end{enumerate}
-\end{proof}
-
-\begin{theorem}
-    The sign of the determinant of an ordered basis is equal to its orientation.
+    The sign of the determinant of an ordered basis is its orientation.
 \end{theorem}
 
 \subsection*{Rotations in $\R^n$}
@@ -277,7 +104,7 @@
 \begin{defn}
     (Signed angle in $\R^n$).
 
-    $\theta_s(\vv, \ww) := \text{orn}((\vv, \ww)) \theta_u(\vv, \ww)$, where $\text{orn}((\vv, \ww))$ is the orientation of $(\vv, \ww)$
+    $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$, where $\orn((\vv, \ww))$ is the orientation of $(\vv, \ww)$
 \end{defn}
 
 This definition allows for an easy generalization of the concept of rotation.

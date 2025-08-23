@@ -3189,15 +3189,15 @@ In the case of $n = 2$, we could have proved the following theorem immediately a
     \begin{align*}
         \boxed
         {
-            \proj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||} \hww = \frac{\vv \cdot \ww}{\ww \cdot \ww} \ww
+            \proj(\vv \rightarrow \ww) = (\vv \cdot \hww) \hww
         }
     \end{align*}
     
-    In the case $n = 2$, if we didn't know the algebraic characterization of the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic characterization of the dot product allows for easy computation of the expressions $\vv \cdot \ww$ and $\ww \cdot \ww$ whenever we know the coordinates of $\vv$ and $\ww$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv$ and $\ww$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.} for $\R^2$.
+    In the case $n = 2$, if we didn't know the algebraic characterization of the dot product, this theorem would be a bit of a tautology. However, knowing the algebraic characterization of the dot product allows for easy computation of the expression $\vv \cdot \hww$ in terms of the coordinates of $\vv$ and $\ww$ relative to the standard basis\footnote{Actually, we only need to know the coordinates of $\vv$ and $\ww$ relative to some \textit{orthonormal} basis! Orthonormal bases, also known as \textit{self-dual bases}, are discussed in Section \ref{ch::bilinear_forms_metric_tensors::section::self-duality}.}, and that makes this theorem incredibly useful.
 \end{theorem}
 
 \begin{proof}
-   Since $\vv \cdot \ww = \sproj(\vv \rightarrow \ww) \spc ||\ww||$, then $\sproj(\vv \rightarrow \ww) = \frac{\vv \cdot \ww}{||\ww||}$, and, by the first fact of Theorem \ref{ch::lin_alg::thm::vector_proj_Signed_magnitude}, $\proj(\vv \rightarrow \ww) = \sproj(\vv \rightarrow \ww) \hww = \frac{\vv \cdot \ww}{||\ww||} \hww$.
+   Since $\vv \cdot \ww = \sproj(\vv \rightarrow \ww) \spc ||\ww||$, then $\sproj(\vv \rightarrow \ww) = \vv \cdot \frac{\ww}{||\ww||} = \vv \cdot \hww$, and, by the first fact of Theorem \ref{ch::lin_alg::thm::vector_proj_Signed_magnitude}, $\proj(\vv \rightarrow \ww) = \sproj(\vv \rightarrow \ww) \hww = (\vv \cdot \hww) \hww$.
 \end{proof}
 
 \subsubsection*{The law of cosines}
