@@ -1,46 +1,45 @@
 \section{Orientation}
 
+in inner product spaces over $\R$
+
 \begin{defn}
-    (Orientation).
+    (Orientation in $\R^2$).
 
-    Let $V$ be an $n$-dimensional inner product space. The \textit{orientation for $V$ induced by the ordered basis $E = (\ee_1, ..., \ee_n)$ for $V$} is the element of $\{-1, 1\}^{\times(n - 1)}$ whose $i$th component is $1$ iff $|\theta_s(\ee_i, \ee_{i + 1})| \leq |\tttheta_s(\ee_i, \ee_{i + 1})|$, and whose $i$th component is $-1$ iff $|\theta_s(\ee_i, \ee_{i + 1})| > |\tttheta_s(\ee_i, \ee_{i + 1})|$.
-    
-    We denote the orientation for $V$ induced by an ordered basis $E$ for $V$ by $\orn(E)$, and write $E \sim F$ iff $\orn(E) = \orn(F)$.
-    
-    In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{\times(n - 1)}$.
-
-    We define the \textit{standard orientation for $V$} to be $(1, 1, ..., 1) \in \{-1, 1\}^{\times(n - 1)}$.
+    An ordered basis $\{\ee_1, \ee_2\}$ of $\R^2$ is said to be \textit{counterclockwise-oriented} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise-oriented} iff $|\theta_s(\ee_1, \ee_2)| > |\tttheta_s(\ee_1, \ee_2)|$.
 \end{defn}
 
 \begin{theorem}
-    Every orientation is induced by some ordered basis.
-
-    ..might not be true actually..
+    (Orientation in $\R^2$ in terms of signed projections).
+    
+    An ordered basis $\{\ee_1, \ee_2\}$ of $\R^2$ is counterclockwise-oriented iff $\sproj(\ee_2 \rightarrow \ee_1) > 0$ and clockwise oriented iff $\sproj(\ee_2 \rightarrow \ee_1) < 0$.
 \end{theorem}
 
 \begin{proof}
-    Consider an orientation $o = (s_1, ..., s_n) \in \{-1, 1\}^{\times (n - 1)}$, of an $n$-dimensional inner product space. We must produce an ordered basis $E$ whose induced orientation is $o$.
-
-    To do so, take any ordered basis $F = (\ff_1, ..., \ff_n)$ of the inner product space; it will have some orientation $(\widetilde{s}_1, ..., \widetilde{s}_n) \in \{-1, 1\}^{\times (n - 1)}$.
-    
-    Compare $o$ to $\orn(F)$ entry by entry. Whenever there is a difference, 
+    [TO-DO]
 \end{proof}
+
+\begin{defn}
+    (Orientation).
+
+    Let $V$ be a $n$-dimensional inner product space over $\R$. The \textit{orientation} for $V$ induced by an ordered basis $E = (\ee_1, ..., \ee_n)$ for $V$ is the vector in $\{-1, 1\}^{n - 1}$ whose $i$th component is $\sgn(\sproj(\ee_{i + 1} \rightarrow \ee_i))$.
+
+    In general, an \textit{orientation for $V$} is an element of $\{-1, 1\}^{\times(n - 1)}$.
+
+    We define the \textit{standard orientation for $V$} to be the orientation of the standard basis, which is $(1, ..., 1) \in \{-1, 1\}^{\times(n - 1)}$.
+\end{defn}
 
 \begin{theorem}
     The orthonormalization algorithm from Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt} preserves induced orientation.
 \end{theorem}
 
 \begin{proof}
-    %In general, we have $\cos(\theta_u(\vv, \ww)) = \sproj(\vv \rightarrow \ww)/||\vv||$, and thus $\theta_u(\vv, \ww) = \arccos(\sproj(\vv \rightarrow \ww)/||\vv||)$. Therefore
 
-    %$\theta_u(\ee_i, \ee_{i + 1}) = \arccos(\sproj(\ee_i \rightarrow \ee_{i + 1})/||\ee_i||)$
-
-    %$\theta_u(\ee_{i + 1}, \ee_i) = \arccos(\sproj(\ee_{i + 1} \rightarrow \ee_i)/||\ee_{i + 1}||)$
-
-    %The orthonormalization algorithm preserves the nonnegativity of ${\proj(\ee_{i + 1} \rightarrow \ee_i)}$ for all $i$. 
 \end{proof}
 
-\subsection*{Investigation into orientation via orthonormal ordered bases}
+The previous theorem allows us to study the orientation of arbitrary ordered bases by only considering the orientation of orthonormal ordered bases.
+
+\subsection*{Orientation of orthonormal ordered bases}
+
 
 \begin{defn}
     ($2$-dimensional rotation).
@@ -76,20 +75,21 @@
     For any orthonormal ordered basis there is a composition of $2$-dimensional rotations taking that basis to a permutation $\hU^\sigma$ of an orthonormal ordered basis $\hU$ with the standard orientation.
 \end{theorem}
 
+\subsection*{Orientation of permuted orthonormal ordered bases}
+
 \begin{theorem}
-    (
+    A $2$-dimensional counterclockwise or clockwise rotation by $\pi/2$ takes an ordered basis to an ordered basis, inducing the same orientation as the original, that can be obtained from the original by swapping two vectors in the original and then negating one of them.
+\end{theorem}
 
-    \begin{enumerate}
-        \item A $2$-dimensional counterclockwise or clockwise rotation by $\pi/2$ takes an ordered basis to an ordered basis, inducing the same orientation as the original, that can be obtained from the original by swapping two vectors in the original and then negating one of them.
-
-        \item $\hU^\sigma \sim \hU^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}$
-    \end{enumerate}    
+\begin{theorem}
+    $\hU^\sigma \sim \hU^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}$
 \end{theorem}
 
 \begin{theorem}
     $\text{sorn}(\hU^\sigma) = \text{sgn}(\sigma)$
 \end{theorem}
 
+\subsection*{Orientation and the determinant}
 
 \begin{theorem}
     The sign of the determinant of an ordered basis is its orientation.
@@ -98,7 +98,7 @@
 \subsection*{Rotations in $\R^n$}
 
 \begin{theorem}
-    signed angle in $\R^2$ is equal to the product of orientation and unsigned angle.
+    in $\R^2$, signed angle is equal to the product of orientation and unsigned angle.
 \end{theorem}
 
 \begin{defn}
@@ -120,7 +120,12 @@ This definition allows for an easy generalization of the concept of rotation.
 
     A rotation in $\R^n$ is a linear function that preserves length and signed angle.
 
-    If a function preserves signed angle then it obviously preserves whether the smaller angle between two vectors is counterclockwise or clockwise, and therefore preserves orientation. So every rotation is a linear function that preserves length and orientation.
+    If a function preserves length and signed angle then it also preserves signed projections, since the signed projection $\sproj(\vv \rightarrow \ww) = ||\vv|| \cos(\theta_u(\vv, \ww))$ is a function of length ($||\vv||$) and \textbf{not signed} angle \textbf{???} ($\cos(\theta_u(\vv, \ww))$). So every rotation is a linear function that preserves length and orientation.
 
-    Is the converse true? Is is every linear function that preserves length and orientation a rotation? Well, suppose $\ff:\R^n \rightarrow \R^n$ is linear,  preserves length, and preserves orientation. Then [reference Theorem about preserved quantities] it also preserves unsigned angle. Since $\ff$ preserves orientation and unsigned angle, and since signed angle is the product of orientation and signed angle, then $\ff$ preserves signed angle. Thus $\ff$ is linear, preserves length, and preserves signed angle; $\ff$ is a rotation. The converse is true!
+    Is the converse true? Is is every linear function that preserves length and orientation a rotation? Well, suppose $\ff:\R^n \rightarrow \R^n$ is linear, preserves length, and preserves orientation. Then [reference Theorem about preserved quantities] it also preserves unsigned angle. Since $\ff$ preserves orientation and unsigned angle, and since signed angle is the product of orientation and signed angle, then $\ff$ preserves signed angle. Thus $\ff$ is linear, preserves length, and preserves signed angle; $\ff$ is a rotation. The converse is true!
 \end{deriv}
+
+
+
+
+
