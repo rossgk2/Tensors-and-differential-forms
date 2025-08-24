@@ -185,18 +185,28 @@ ADD A CHAPTER ON ORTHOGONAL COMPLEMENTS.
 \subsection*{Orientation}
 
 \begin{itemize}
-    \item Add intro to orientation section describing what orientation intuitively is and how it connects to notions of clockwise and counterclockwise. (Orientation is a mapping of axes in a diagram to axes in “actual” space. For some reason rotations don’t change orientation.)
-    \item Add theorem that an ordered basis $(\vv, \ww)$ is positively oriented iff $|\theta_s(\vv, \ww)| < |\tttheta_s(\vv, \ww)|$ iff $|\theta_s(\vv, \ww)| < \pi$
-    \item Show that two ordered bases are rotationally equivalent $\iff$ there is a CCW rotation taking one to the other $\iff$ there is a CW rotation taking one to the other
+    \item improve bullet point in GitHub readme about how this book does orientation so much better 
+    \begin{itemize}
+        \item we use signed angle to define orientation in $2$ dimensions, find an equivalent definition that's generalizable, and then prove theorems about this definition, instead of just defining that orientation coorresp. to the determinant out of thin air 
+        \item mention clear defn of $n$ dimensional rotation
+    \end{itemize}
+    \item change all mention of inner product spaces to be inner product spaces over $\R$
+    \item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
+    \item move first mention of orthonormalization (Gram-Schmidt) algorithm to linear algebra chapter- probably in orthogonal complements section- since is a prerequisite for orientation section
+    \item redo proof that $\det$ tracks orientation (more specifically, $\sgn(\det(\FF))$ is orientation of $F$)
+    \item add defn of $\text{orn}$ function that returns $-1$ or $1$
+    \item interesting, but not really necessary right now: https://analyticphysics.com/Higher\%20Dimensions/Rotations\%20in\%20Higher\%20Dimensions.htm
 \end{itemize}
 
-\subsubsection*{Probably already done}
+Wondering if could do this better, overall. If we have $\ee_1, \ee_2 \in \R^3$ it seems intuitive that we should be able to determine the orientation of $(\ee_1, \ee_2)$ by making use of the standard basis of $\R^3$ somehow.
 
-\begin{itemize}
-    \item Remove definition that an “n rotation” is a composition of extensions to 2-rotations. Gives the idea that rotations about arbitrary axes are such compositions, which is true, but isn’t proven at the time of the definition, or even soon after. We don’t need to know that rotations about arbitrary axes are compositions of extensions to 2-rotations to benefit from how they help us formalize the idea of orientation.
-    \item Probably get rid of “extension of 2 rotation” and just say “2-rotation”
-    \item Could be of help: https://analyticphysics.com/Higher%20Dimensions/Rotations%20in%20Higher%20Dimensions.htm
-\end{itemize}
+How about...
+
+$(\ee_1, \ee_2)$ is positively oriented iff $\sproj(\ee_2 \rightarrow \see_2) > 0$, i.e., iff $\ee_2$ is above $\spann(\{\see_2\})$
+
+$(\ee_1, \ee_2, \ee_3)$ is positively oriented iff $\ee_3$ is above $\spann((\ee_1, \ee_2))$
+
+$(\ee_1, ..., \ee_{n - 1}, \ee_n)$ is positively oriented iff $\ee_n$ is above $\spann((\ee_1, ..., \ee_{n - 1}))$
 
 \section*{Manifolds and differential forms}
 

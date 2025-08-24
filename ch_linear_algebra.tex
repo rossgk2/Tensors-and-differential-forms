@@ -4014,7 +4014,7 @@ misc.
 
 \newpage
 
-\section{The determinant and orientation}
+\section{The determinant}
 
 \subsection*{Permutations}
 
@@ -4486,7 +4486,696 @@ Now, we can show that the determinant of a linear function $\ff$ does not depend
 
 \newpage
 
+\section*{Orientation}
+\label{ch::lin_alg::section::orientation}
 
+%\begin{itemize}
+%    \item \url{https://arxiv.org/pdf/1103.5263.pdf}
+%    \item \url{https://en.wikipedia.org/wiki/Cartan\%E2\%80\%93Dieudonn\%C3\%A9_theorem}
+%    \item \url{https://en.wikipedia.org/wiki/Rotor_(mathematics)#:~:text=A\%20rotor\%20is\%20an\%20object,the\%20Cartan\%E2\%80\%93Dieudonn\%C3\%A9\%20theorem).}
+%    \item \url{https://en.wikipedia.org/wiki/Geometric_algebra#Rotating_systems}
+%    \item \url{https://www.euclideanspace.com/maths/algebra/clifford/d4/transforms/index.htm}
+%\end{itemize}
+
+\begin{defn}
+    (Ordered basis).
+    
+    An \textit{ordered basis} for a vector space is a simply a tuple containing some ordering of the basis vectors for that space.
+    
+    The difference between ordered bases and ``regular'' bases is that ordered bases are tuples of vectors, and are thus ordered, while ``regular'' bases are sets of vectors, and are thus unordered. For example, if $V$ is a 2-dimensional vector space and has basis $E = \{\ee_1, \ee_2\}$, then $(\ee_1, \ee_2)$ and $(\ee_2, \ee_1)$ are both ordered bases of $V$, and $(\ee_1, \ee_2) \neq (\ee_2, \ee_1)$.
+\end{defn}
+
+\begin{defn}
+    (Orientation in $\R^2$).
+    
+    The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
+
+    Notice, the orientation of $(\ee_1, \ee_2)$ is counterclockwise iff the orientation of $(\ee_2, \ee_1)$ is clockwise.
+\end{defn}
+
+We would like to extend this definition to $\R^n$ and to finite-dimensional inner product spaces over $\R$. Unfortunately, this is not possible as of now since we don't have a notion of $n$-dimensional signed angle $\theta_s$. Recall that we earlier defined the signed counterclockwise angle between same-length vectors to involve the length of one of the two possible paths on the circular arc between the vectors, and defined the signed clockwise angle to involve the length of the other of the two arcs. In $n$ dimensions, we have not just two possible arcs on a circle between vectors, but infinitely many arcs on an $n$-sphere. In this situation, there is no obvious way to classify an arbitrary arc between the vectors as being ``counterclockwise'' or ``clockwise''. One might think there is hope for a second, since one way to pick a particular arc between the two vectors is to choose the shortest one, but, unfortunately this arc corresponds to unsigned angle.
+
+The best way to generalize this definition is to search for an equivalent one. We will do this by characterizing what preserves orientation in the next theorem.
+
+\begin{theorem}
+    (Preserving orientation in $\R^2$).
+
+    The orientation of an ordered basis in $\R^2$ is preserved by orthonormalization (recall Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt}) and by rotations in $\R^2$.
+\end{theorem}
+
+\begin{proof}
+    [TO-DO]
+\end{proof}
+
+The characterization of orientation in $\R^2$ by the above theorem does generalize well to $n$ dimensions. Though, in preparation for the definition of $n$-dimensional orientation, we must first define a notion of rotation in $n$ dimensions.
+
+\begin{defn}
+\label{ch::lin_alg::defn::2_dimensional_rotation}
+    ($2$-dimensional rotation).
+
+    Let $V$ be an $n$-dimensional inner product space over $\R$ and let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis for $V$. In analogy to the closed form for the standard matrix of a rotation in $\R^2$ (recall Theorem     \ref{ch::lin_alg::defn::standard_matrix_rotation}), we define matrices $\RR_{ij;t}$ and $\widetilde{\RR}_{ij;t}$ to describe the counterclockwise and clockwise rotations by $t$ in the plane $\spann((\huu_i, \huu_j))$:
+    
+    \begin{align*}
+        \RR_{ij;t} &:=
+            \kbordermatrix{
+                & & & \text{$i$th column} & & \text{$j$th column} \\
+                & \vdots & & \vdots & \vdots & \vdots & \vdots \\
+                \text{$i$th row} & 1 & \hdots & \cos(t) & 0 & -\sin(t) & 0 \\
+                & 0 & & 0 & \vdots & 0 & \vdots \\
+                & 0 & & \vdots & 0 & \vdots & \vdots \\
+                & \vdots & & 0 & \vdots & 0 & \vdots \\
+                \text{$j$th row} & 0 & \hdots & \sin(t) & 0 & \cos(t) & 1 \\
+                & \vdots & & \vdots & \vdots & \vdots & \vdots
+            }
+        \\
+        \widetilde{\RR}_{ij;t} &:= \RR_{ij;2\pi - t}.
+    \end{align*}
+
+    We define a \textit{$2$-dimensional rotation (in $V$)} to be a linear function $V \rightarrow V$ whose matrix relative to $\hU$ and $\hU$ is of the above form.
+\end{defn}
+
+\begin{defn}
+    (Orientation).
+    
+    We define ordered bases $E$ and $F$ finite-dimensional inner product space over $\R$ to have the same \textit{orientation}, and write $E \sim F$, iff either of the following is true:
+
+    \begin{enumerate}
+        \item $E = \text{orthonormalize}(F)$ or $F = \text{orthonormalize}(E)$, where for a basis $G$, we use $\text{orthonormalize}(G)$ to denote the orthonormal basis obtained by performing the orthonormalization algorithm of Theorem \ref{ch::bilinear_forms_metric_tensors::theorem::Gram-Schmidt} on $G$.
+        \item There exists a composition $\RR = \RR_k \circ ... \circ \RR_1$ of $2$-dimensional rotations such that $F = \RR(E)$.
+    \end{enumerate}
+    
+    Note, $\sim$ is an equivalence relation.
+\end{defn}
+
+==========================================
+
+\begin{defn}
+    (Permutation acting on a tuple). 
+    
+    Let $X = (x_1, ..., x_n)$ be an $n$-tuple. Given a permutation $\sigma \in S_n$, we define $X^\sigma := (x_{\sigma(1)}, ..., x_{\sigma(n)})$. For example, if $E = (\ee_1, ..., \ee_n)$ is a basis of a finite-dimensional vector space, then $E^\sigma = (\ee_{\sigma(1)}, ..., \ee_{\sigma(n)})$.
+\end{defn}
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::permutations_preserve_rotational_equivalence}
+
+    (Permutations preserve orientation).
+    
+    If $\hU$ and $\hW$ are orthonormal ordered bases of an $n$-dimensional inner product space, then ${\hU \sim \hW \iff \hU^\sigma \sim \hW^\sigma}$ for all permutations $\sigma \in S_n$.
+\end{theorem}
+
+\begin{proof}
+    Let $E = (\ee_1, ..., \ee_n)$ and $F = (\ff_1, ..., \ff_n)$. Since $E \sim F$, we have the following cases.
+
+    \fullindent
+    {
+        (Case: $E = \text{orthonormalize}(F)$ or $F = \text{orthonormalize}(E)$). [TO-DO]
+    }
+
+    \fullindent
+    {
+        (Case: there exists a composition $\RR$ of $2$-dimensional rotations such that $F = \RR(E)$. Then $\ff_i = \RR(\ee_i)$ for all $i$. For all $\sigma \in S_n$ we have $\ff_{\sigma(i)} = \RR_t(\ee_{\sigma(i)})$. This is equivalent to $E^\sigma \sim F^\sigma$, as desired.
+    }
+\end{proof}
+
+==========================================
+
+[Since orientation is preserved by orthonormalization, we can study the orientation of arbtirary ordered bases by only considering orthonormal ordered bases.]
+
+\begin{deriv}
+    \label{ch::lin_alg::thm::antisymmetry_ordered_bases_general}
+
+    (Antisymmetry of orthonormal ordered bases).
+
+    Let $\hU = (\huu_1, ..., \huu_n)$ be an orthonormal ordered basis of an $n$-dimensional inner product space. Consider applying a $2$-dimensional counterclockwise rotation by $\pi/2$ to $\hU$. We have
+
+    \begin{align*}
+        \RR_{ij;\pi/2}(\hU) = (\RR_{ij;\pi/2}(\huu_1), ..., \RR_{ij;\pi/2}(\huu_i), ..., \RR_{ij;\pi/2}(\huu_j), ..., \RR_{ij;\pi/2}(\huu_n)).
+    \end{align*}
+
+    Since the columns of $\RR_{ij,\pi/2}$ other than the $i$th and $j$th columns are the columns of the identity matrix $\II$, then $\RR_{ij,\pi/2}$ acts as the identity on most of the above vectors:
+
+    \begin{align*}
+        \RR_{ij;\pi/2}(\hU) = (\huu_1, ..., \RR_{ij;\pi/2}(\huu_i), ..., \RR_{ij;\pi/2}(\huu_j), ..., \huu_n).
+    \end{align*}
+
+    It remains to determine $\RR_{ij;\pi/2}(\huu_i)$ and $\RR_{ij;\pi/2}(\huu_j)$. We have
+    
+    \begin{align*}
+        [\RR_{ij;\pi/2}(\huu_i)]_{\hU} = [\RR_{ij;\pi/2}(\hU)]_{\hU} [\huu_i]_{\hU} = [\RR_{ij;\pi/2}(\hU)]_{\hU} \see_i, \\
+        [\RR_{ij;\pi/2}(\huu_j)]_{\hU} = [\RR_{ij;\pi/2}(\hU)]_{\hU} [\huu_j]_{\hU} = [\RR_{ij;\pi/2}(\hU)]_{\hU} \see_j.
+    \end{align*}
+
+    We see that to determine $\RR_{ij;\pi/2}(\huu_i)$ and $\RR_{ij;\pi/2}(\huu_j)$ we will have to perform some matrix-vector multplications. Of course, to do this, we need to determine the matrix $[\RR_{ij;\pi/2}(\hU)]_{\hU}$ involved in the multiplications. Substituting $\pi/2$ into the matrix from Definition \ref{ch::lin_alg::defn::2_dimensional_rotation}, we have
+
+    \begin{align*}
+        [\RR_{ij; \pi/2}(\hU)]_{\hU} =
+        \kbordermatrix{
+            & & & \text{$i$th column} & & \text{$j$th column} \\
+            & \vdots & & \vdots & \vdots & \vdots & \vdots \\
+            \text{$i$th row} & 1 & \hdots & 0 & 0 & -1 & 0 \\
+            & 0 & & 0 & \vdots & 0 & \vdots \\
+            & 0 & & \vdots & 0 & \vdots & \vdots \\
+            & \vdots & & 0 & \vdots & 0 & \vdots \\
+            \text{$j$th row} & 0 & \hdots & 1 & 0 & 0 & 1 \\
+            & \vdots & & \vdots & \vdots & \vdots & \vdots
+        }
+        \text{ for some $i, j$}.
+    \end{align*}
+
+    Now we evaluate the matrix-vector multiplications. From above, we know that $[\RR_{ij;\pi/2}(\huu_i)]_{\hU}$ is the result of multiplying this matrix by $\see_i$. Multiplying a matrix by $\see_i$ picks out its $i$th column, so $[\RR_{ij;\pi/2}(\huu_i)]_{\hU}$ is the $i$th column of the above matrix, which is $\see_j$. Thus $[\RR_{ij;\pi/2}(\huu_i)]_{\hU} = \see_j$. 
+    
+    Similarly, $[\RR_{ij;\pi/2}(\huu_i)]_{\hU}$ is the result of multiplying the above matrix by $\see_j$. Multiplication by $\see_j$ picks out the $j$th column of a matrix, and the $j$th column of the above matrix is $-\see_i$, so $[\RR_{ij;\pi/2}(\huu_j)]_{\hU} = -\see_i$.
+    
+    Therefore, we have
+
+    \begin{align*}
+        [\RR_{ij;\pi/2}(\huu_i)]_{\hU} &= \see_j \\
+        [\RR_{ij;\pi/2}(\huu_j)]_{\hU} &= -\see_i.
+    \end{align*}
+
+    It immediately follows that $\RR_{ij;\pi/2}(\huu_i) = \huu_j$ and $\RR_{ij;\pi/2}(\huu_j) = -\huu_i$. Ultimately, this tells us
+
+    \begin{align*}
+        \RR_{ij;\pi/2}(\hU) = (\huu_1, ..., \huu_j, ..., -\huu_i, ..., \huu_n).
+    \end{align*}
+
+    We can go through a similar computation to see that if we apply a clockwise (rather than counterclockwise) $2$-dimensional rotation by $\pi/2$ to $\hU$, we have
+
+     \begin{align*}
+        \widetilde{\RR}_{ij;\pi/2}(\hU) = (\huu_1, ..., -\huu_j, ..., \huu_i, ..., \huu_n).
+    \end{align*}
+
+    Since $\hU$ has the same orientation as do the results of applying these $2$-dimensional rotations to i, we have $\hU \sim \RR_{ij;\pi/2}(\hU) \sim \widetilde{\RR}_{ij;\pi/2}(\hU)$. More explicitly,
+    
+    \begin{align*}
+        (\huu_1, ..., \huu_i, ..., \huu_j, ..., \huu_n)
+        \sim
+        (\huu_1, ..., -\huu_j, ..., \huu_i, ..., \huu_n)
+        \sim
+        (\huu_1, ..., \huu_j, ..., -\huu_i, ..., \huu_n) \text{ for all $i, j \in \{1, ..., n\}$}.
+    \end{align*}
+
+    We have arrived at an extremely fundamental result: when working with an orthonormal ordered basis $\hU$, we can swap two of the vectors in $\hU$ and then negate one of the swapped vectors to obtain an orthonormal ordered basis that has the same orientation as $\hU$.
+\end{deriv}
+
+We can expand the result of the above derivation from orthonormal ordered bases to arbitrary ordered bases.
+
+\begin{theorem}
+    (Antisymmetry of ordered bases).
+
+    If $(\ee_1, ..., \ee_n)$ is an ordered basis of an $n$-dimensional inner product space, then
+    
+    \begin{align*}
+        (\ee_1, ..., \ee_i, ..., \ee_j, ..., \ee_n)
+        \sim
+        (\ee_1, ..., -\ee_j, ..., \ee_i, ..., \ee_n)
+        \sim
+        (\ee_1, ..., \ee_j, ..., -\ee_i, ..., \ee_n) \text{ for all $i, j \in \{1, ..., n\}$}.
+    \end{align*}
+
+    That is working with an ordered basis $E$, we can swap two of the vectors in $E$ and then negate one of the swapped vectors to obtain an orthonormal ordered basis that has the same orientation as $E$.
+\end{theorem}
+
+\begin{proof}
+    Set $E := (\ee_1, ..., \ee_n)$ for convenience. The above derivation proved the theorem for the case when $E$ is an orthonormal ordered basis. For the case when $E$ isn't necessarily orthonormal, we rely on the following claim: if $\RR$ is a composition of $2$-dimensional rotations and $E$ is an ordered basis, then $\text{orthonormalize}(\RR(E)) = \RR(\text{orthonormalize}(E))$.
+
+    If the claim is true, then we have $\RR(E) \sim \text{orthonormalize}(\RR(E)) = \RR(\text{orthonormalize}(E)) \sim \text{orthonormalize}(E) \sim E$. Substituting $\RR_{ij;\pi/2}$ and $\widetilde{\RR}_{ij;\pi/2}$ in for $\RR$ then result in matrix-vector products of the kind seen in the previous derivation, which give the result of the above theorem.
+
+    So it remains to prove the claim, that if $\RR$ is a composition of $2$-dimensional rotations and $E$ is an ordered basis, then $\text{orthonormalize}(\RR(E)) = \RR(\text{orthonormalize}(E))$.
+
+    [TO-DO]
+\end{proof}
+
+This fundamental result leads to the following [...].
+
+\begin{theorem}
+    \label{ch::lin_alg::thm::antisymmetry_ordered_bases_signs}
+
+    (Ordered bases of signed vectors).
+    
+    Let $E = (\ee_1, ..., \ee_n)$ be an ordered basis of an $n$-dimensional inner product space. If $s_1, ..., s_n \in \{-1, 1\}$, then
+
+    \begin{align*}
+        (s_1 \ee_1, ..., s_n \ee_n) \sim
+        \begin{cases}
+            (\ee_1, ..., \ee_n), & \text{the number of $s_i$ equal to $-1$ is $-1$ is even} \\
+            (-\ee_1, \ee_2, ..., \ee_n) \text{ for any $j \in \{1, ..., n\}$}, & \text{the number of $s_i$ equal to $-1$ is $-1$ is odd} 
+        \end{cases}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\
+    
+    (Case: the number of $s_i$ equal to $-1$ is even). Since the number of $s_i$ equal to $-1$ is even, we can pair every $s_i \ee_i$ with $s_i = -1$ to some $s_j \ee_j$ with $s_j = -1$, so that all $s_i \ee_i$ with $s_i = -1$ appear as a member of only one pair. If we swap the vectors in each pair twice, then, as illustrated by the example $(-\ee_i, -\ee_j) \sim (\ee_j, -\ee_i) \sim (\ee_i, \ee_j)$, the coefficients on these vectors in the new basis with the same orientation will be $1$, with the order of the vectors being the same as in the original pair. Thus $(s_1 \ee_1, ..., s_n \ee_n)$ has the same orientation as $(\ee_1, ..., \ee_n)$.
+
+    (Case: the number of $s_i$ equal to $-1$ is odd). Since the number of $s_i$ equal to $-1$ is odd, we can pair every $s_i \ee_i$ with $s_i = -1$ to some $s_j \ee_j$ with $s_j = -1$, so that all but one $s_i \ee_i$ with $s_i = -1$ appear as a member of only one pair. Let $s_k \ee_k$ be the vector with $s_k = -1$ that is not a member of a pair. Applying the same reasoning as in the previous case, we see that $(s_1 \ee_1, ..., s_n \ee_n)$ has the same orientation as $(\ee_1, ..., \ee_{k - 1}, -\ee_k, \ee_{k + 1}, ... \ee_n)$. Making use of the example $(-\ee_k, \ee_\ell) \sim (\ee_\ell, \ee_k) \sim (\ee_k, -\ee_\ell)$, we see that this ordered basis has the same orientation as $(\ee_1, \ee_2, ..., \ee_{\ell - 1}, -\ee_\ell, \ee_{\ell + 1}, ..., \ee_n)$ for any $\ell \in \{1, ..., n\}$. Thus, when the number of $s_i$ equal to $-1$ is odd, the ordered basis $(s_1 \ee_1, ..., s_n \ee_n)$ has the same orientation as $(\ee_1, ..., \ee_{\ell - 1}, -\ee_\ell, \ee_{\ell + 1}, ..., \ee_n)$ for any $\ell \in \{1, ..., n\}$. In particular it has the same orientation as $(-\ee_1, \ee_2, ..., \ee_n)$, as desired.
+\end{proof}
+
+\begin{lemma}
+    Let $E$ be an ordered basis of an $n$-dimensional inner product space. We have $\sgn(\sigma) = 1 \implies E^\sigma \sim E$ for all $\sigma \in S_n$.
+\end{lemma}
+
+\begin{proof}
+    Let $E = (\ee_1, ..., \ee_n)$. The sign of a permutation is $1$ iff the permutation consists of an even number of swaps. So, an equivalent statement to the theorem is: for all $n$, if $\sigma$ consists of $2n$ transpositions, then $E^\sigma \sim E$. We prove this statement by induction on $n$.
+    
+    (Base case). Consider $E^\sigma$, where $\sigma = \tau \circ \pi$, and where $\pi, \tau$ are transpositions. 
+    
+    The permutation $\pi$ swaps some $i, j$. Using the example $(\ee_j, \ee_i) \sim (-\ee_i, \ee_j)$, we see \\ $E^\pi \sim (\ee_1, ..., -\ee_i, ..., \ee_j, ..., \ee_n)$. Since this ordered basis has only one basis vector with a coefficient of $-1$, it follows from the previous theorem that it has the same orientation as $F :=  (-\ee_1, \ee_2, ..., \ee_n)$.
+
+    So far, we've shown $E^\pi \sim F$. Since permutations preserve orientation (see Theorem \ref{ch::lin_alg::thm::permutations_preserve_rotational_equivalence}), we may apply the permutation $\tau$ to each side of the equivalence $E^\pi \sim F$ to obtain $(E^\pi)^\tau = E^{\tau \circ \pi}  = E^\sigma \sim F^\tau$.
+
+    We now compute the right side of this equivalence, $F^\tau$.
+
+    \fullindent
+    {
+        (Case: $\tau$ swaps $1$ with some $\ell > 1$). By studying the example $(\ee_\ell, -\ee_1) \sim (\ee_1, \ee_\ell)$, we see $F^\tau = (-\ee_1, \ee_2, ..., \ee_n)^\tau \sim (\ee_1, ..., \ee_n) = E$.
+    }
+    \fullindent
+    {
+        (Case: $\tau$ swaps $k \neq 1$ with some $\ell > k$). By studying the example $(\ee_\ell, \ee_k) \sim (-\ee_k, \ee_\ell)$, we see $F^\tau = (-\ee_1, ..., \ee_n)^\tau \sim (-\ee_1, ..., \ee_{k - 1}, -\ee_k, \ee_{k + 1}, ..., \ee_n)$. In this last ordered basis, the number of basis vectors with a coefficient of $-1$ is even. It follows from the previous theorem that this last ordered basis has the same orientation as $E$. Therefore $F^\tau \sim E$.
+    }
+    \fullindent
+    {
+        (Case: $\tau$ swaps $k \neq 1$ with some $\ell < k$). Performing a similar argument as in the previous case, we see that $F^\tau \sim E$.
+    }
+
+    We've shown that $F^\tau = E$ for all $\tau \in S_n$. Therefore, we have $E^\sigma \sim F^\tau \sim E$, as desired.
+    
+    (Inductive case). Assume as the inductive hypothesis if $\sigma$ consists of $2n$ transpositions, then $E^\sigma \sim E$. We need to prove that if $\sigma$ consists of $2(n + 1)$ transpositions, then $E^\sigma \sim E$.
+
+    So, assume $\sigma$ consists of $2(n + 1) = 2n + 2$ transpositions. Then $\sigma = \tau \circ \pi$, where $\pi$ consists of $2n$ transpositions and $\tau$ consists of $2$ transpositions. By the inductive hypothesis, $E^\pi \sim E$. Since permutations preserve orientation (see Theorem \ref{ch::lin_alg::thm::permutations_preserve_rotational_equivalence}), then $(E^\pi)^\tau = E^{\tau \circ \pi} = E^\sigma \sim E^\tau$. Since $\tau$ consists of $2$ transpositions, then from the base case it follows that $E^\tau \sim E$. Thus $E^\sigma \sim E^\tau \sim E$, as desired.
+\end{proof}
+
+\begin{theorem}
+    For any ordered basis $E$ of a finite-dimensional inner product space over $\R$, we have
+
+    \begin{align*}
+        E^\sigma \sim E^\pi \iff \sgn(\sigma) = \sgn(\pi) \text{ for all $\sigma, \pi \in S_n$}.
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \mbox{} \\ \indent
+    ($\impliedby$).
+    
+    The reverse implication is true when the following two statements are:
+    
+    \begin{enumerate}
+        \item If $\sgn(\pi) = 1$, then $\sgn(\sigma) = 1 \implies E^\sigma \sim E^\pi$ for all $\sigma \in S_n$.
+        \item If $\sgn(\pi) = -1$, then $\sgn(\sigma) = -1 \implies E^\sigma \sim E^\pi$ for all $\sigma \in S_n$.
+    \end{enumerate}
+
+    We restate the previous lemma for convenience:
+
+    \begin{itemize}
+        \item $\sgn(\sigma) = 1 \implies E^\sigma \sim E$ for all $\sigma \in S_n$.
+    \end{itemize}
+
+    Now we prove (1) and (2).
+
+    \begin{enumerate}
+        \item If $\sgn(\sigma) = \sgn(\pi) = 1$, then $E^\sigma \sim E \sim E^\pi$ by the above bullet.
+        \item Let $\pi$ be any odd permutation. If $\sigma$ is an even permutation, then applying the above bullet yields $(E^\pi)^\sigma \sim E^\pi$, i.e. $E^{\sigma \circ \pi} \sim E^\pi$. Thus $\sgn(\sigma) = 1 \implies E^{\sigma \circ \pi} = E^\pi$. In general, every odd permutation is of the form $\sigma \circ \pi$, where $\sigma$ is some even permutation. Thus, as $\sigma$ varies over the even permutations, the permutation $\tau := \sigma \circ \pi$ varies over the odd permutations. This makes the statement $\sgn(\sigma) = 1 \implies E^{\sigma \circ \pi} \sim E^\pi$ equivalent to the statement $\sgn(\tau) = -1 \implies E^\tau \sim E^\pi$. Since the former statement is true, so is the later, as desired.
+    \end{enumerate}
+
+   ($\implies$).
+
+    The forward implication is true when the following two statements are:
+
+    \begin{enumerate}
+        \item[3.] If $\sgn(\pi) = 1$, then $E^\sigma \sim E^\pi \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
+        \item[4.] If $\sgn(\pi) = -1$, then $E^\sigma \sim E^\pi \implies \sgn(\sigma) = -1$ for all $\sigma \in S_n$.
+    \end{enumerate}
+
+    Before we can prove (3) and (4), we need to prove the following bullet point:
+
+    \begin{itemize}
+        \item $E \sim E^\sigma \implies \sgn(\sigma) = 1$ for all $\sigma \in S_n$.
+
+        We show the contrapositive, $\sgn(\sigma) = -1 \implies E \nsim E^\sigma$ for all $\sigma \in S_n$. Because of (2), it suffices to show that $E \nsim E^\sigma$ for \textit{any} $\sigma$ with $\sgn(\sigma) = -1$. So, we will show that $E \nsim E^{(1 \spc 2)}$.
+
+        It's quick to check that, in general, if $F = (\ff_1, ..., \ff_n)$ and $G = (\gg_1, ..., \gg_n)$ are ordered bases then $F \sim G$ iff $(\ff_1, ..., \ff_i) = (\gg_1, ..., \gg_i)$ for all $i \in [1, n]$. Applying this principle, we see that $E:= (\ee_1, \ee_2, \ee_3, ..., \ee_n) \sim E^{(1 \spc 2)} = (\ee_2, \ee_1, \ee_3, ..., \ee_n)$ iff $(\ee_1, \ee_2) \sim (\ee_2, \ee_1)$. So, it suffices to show $(\ee_1, \ee_2) \sim (\ee_2, \ee_1)$
+
+        [TO-DO: show that the orthonormalizations are not equal and that there is no composition of $2$-rotations from one to the other. note: since in a $2$-dim inner product space, any composition of $2$-dim rotations is just one $2$-dim rotation]
+    \end{itemize}
+
+    Now we prove (3) and (4).
+    
+    \begin{enumerate}
+        \item[3.] Let $\pi$ be any even permutation. If $\sigma$ is an even permutation, then applying the above bullet yields $(E^\pi)^\sigma \sim E^\pi \implies \sgn(\sigma) = 1$, i.e., $E^{\sigma \circ \pi} \sim E^\pi \implies \sgn(\sigma) = 1$. If we allow $\pi$ to vary over the even permutations, then since $\sigma$ varies over the even permutations, $\tau := \sigma \circ \pi$ varies over the even permutations, and we obtain the statement $E^\tau \sim E^\pi \implies \sgn(\tau) = 1$ for all $\tau \in S_n$, as desired.
+        \item[4.] The proof is analogous to that of (3). Begin the proof with ``Let $\pi$ be any odd permutation'', and use the fact that since $\sigma$ varies over the even permutations, $\tau := \sigma \circ \pi$ varies over the odd permutations.
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}
+    (Orientation of permuted ordered bases).
+
+    By the previous theorem, a permutation $E^\sigma$ of an ordered basis $E$ for a finite-dimensional inner product space over $\R$ has one of two\footnotemark orientations: if $\sgn(\sigma) > 0$, then $E^\sigma = E$, and if $\sgn(\sigma) < 0$, then $E^\sigma \sim E^{(1 \spc 2)}$.    
+    
+    \footnotetext{This might be relatively suprising! Intuition could be that there is something like $2^n$ or $n!$ equivalence classes in $n$ dimensions.}
+\end{theorem}
+
+\begin{defn}
+    (Positive and negative orientation).
+
+    We say that $E^\sigma$ is \textit{counterclockwise oriented (relative to $E$)} or \textit{positively oriented (relative to $E$)} iff $\sgn(\sigma) > 0$ and that $E^\sigma$ is \textit{clockwise oriented (relative to $E$)} or \textit{negatively oriented (relative to $E$)} iff $\sgn(\sigma) < 0$.
+\end{defn}
+
+\subsection*{The determinant and orientation}
+
+\begin{lemma}
+    (In three dimensions, there is a composition of $2$-dimensional rotations taking any nonzero vector to any other vector).
+
+    Let $V$ be a $3$-dimensional inner product space. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists a composition of $2$-dimensional rotations $\RR$ such that $\RR(\vv) = \ww$.
+\end{lemma}
+
+\begin{proof}
+    Let $\hU = (\huu_1, \huu_2, \huu_3)$ be an orthornormal ordered basis of $V$. If we can find angles $\alpha_1, \beta_1$ that rotate $\vv$ to align with $\huu_3$, $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3$, and angles $\alpha_2, \beta_2$ that rotate $\huu_3$ to align with $\ww$, $(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww$, then the composition of $2$-dimensional rotations $\RR := \RR_{2, \beta_2} \circ \RR_{1, \alpha_2} \circ \RR_{2, \beta_1} \circ \RR_{1, \alpha_1}$ satisfies $\RR(\vv) = \ww$, and the lemma is proven.
+
+    \vspace{.5cm}
+
+    First, we find $\alpha_1$ and $\beta_1$ such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3$.
+
+    Letting $(v_1, v_2, v_3)^\top := [\vv]_{\hU}$, we have
+    
+    \begin{align*}
+        [\RR_{1, \alpha_1}(\vv)]_{\hU} =
+        \underbrace
+        {
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & \cos(\alpha_1) & -\sin(\alpha_1) \\
+                0 & \sin(\alpha_1) & \cos(\alpha_1)
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_1}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                v_1 \\ v_2 \\ v_3
+            \end{pmatrix}
+        }_{[\vv]_{\hU}}
+        =
+        \begin{pmatrix}
+            v_1 \\
+            v_2 \cos(\alpha_1) - v_3 \sin(\alpha_1) \\
+            v_2 \sin(\alpha_1) + v_3 \cos(\alpha_1)
+        \end{pmatrix}.
+    \end{align*}
+
+    $\alpha_1$ is such that the second component of the above is zero,
+
+    \begin{align*}
+        v_2 \cos(\alpha_1) - v_3 \sin(\alpha_1) = 0.
+    \end{align*}
+    
+    One value of $\alpha_1$ that solves this equation is $\alpha_1 = \arctan(v_2/v_3)$; with this choice of $\alpha_1$, we have \\ ${\cos(\alpha_1) = v_3/\sqrt{v_2^2 + v_3^2}}$ and ${\sin(\alpha_1) = v_2/\sqrt{v_2^2 + v_3^2}}$. Thus the above is
+    
+    \begin{align*}
+        [\RR_{1, \alpha_1}(\vv)]_{\hU} =
+        \begin{pmatrix}
+            v_1 \\
+            (v_2 v_3)/\sqrt{v_2^2 + v_3^2} - (v_3 v_2)/\sqrt{v_2^2 + v_3^2} \\
+            (v_2^2 + v_3^2)/\sqrt{v_2^2 + v_3^2}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            v_1 \\
+            0 \\
+            \sqrt{v_2^2 + v_3^2}
+        \end{pmatrix}.
+    \end{align*}
+
+    Now we have
+
+    \begin{align*}
+        [(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv)]_{\hU} &=
+        [\RR_{2, \beta_1}(\RR_{1, \alpha_1}(\vv))]_{\hU} = [\RR_{2, \beta_1}(\hU)]_{\hU} [\RR_{1, \alpha_1}(\vv)]_{\hU} \\
+        &=
+        \underbrace
+        {
+            \begin{pmatrix}
+                \cos(\beta_1) & 0 & -\sin(\beta_1) \\
+                0 & 1 & 0 \\
+                \sin(\beta_1) & 0 & \cos(\beta_1)
+            \end{pmatrix}
+        }_{[\RR_{2, \beta_1}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                v_1 \\
+                0 \\
+                \sqrt{v_2^2 + v_3^2}
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_1}(\vv)]_{\hU}}
+        =
+        \begin{pmatrix}
+            v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) \\
+            0 \\
+            v_1 \sin(\beta_1) + \sqrt{v_2^2 + v_3^2} \cos(\beta_1)
+        \end{pmatrix}.
+    \end{align*}
+
+    $\beta_1$ is such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3 \iff [(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv)]_{\hU} = ||\vv||\see_3$. So $\beta_1$ satisfies the following system of equations:
+
+    \begin{align*}
+        \begin{cases}
+            v_1 \cos(\beta_1) - \sqrt{v_2^2 + v_3^2} \sin(\beta_1) = 0 \\
+            0 = 0 \\
+            v_1 \sin(\beta_1) + \sqrt{v_2^2 + v_3^2} \cos(\beta_1) = ||\vv||
+        \end{cases}.
+    \end{align*}
+
+    One value of $\beta_1$ that solves the first equation is $\beta_1 = \arctan(v_1/ \sqrt{v_2^2 + v_3^2})$. 
+    
+    Since $\cos(\beta_1) = \sqrt{v_2^2 + v_3^2}/||\vv||$ and $\sin(\beta_1) = v_1/||\vv||$, the third equation is also satisfied:
+
+    \begin{align*}
+        \frac{v_1^2}{||\vv||} + \frac{\sqrt{v_2^2 + v_3^2}^2}{||\vv||} = \frac{v_1^2 + v_2^2 + v_3^2}{||\vv||} = \frac{||\vv||^2}{||\vv||} = ||\vv||.
+    \end{align*}
+
+    Thus we have found $\alpha_1$ and $\beta_1$ such that $(\RR_{2, \beta_1} \circ \RR_{1, \alpha_1})(\vv) = ||\vv||\huu_3$.
+
+    \vspace{.5cm}
+
+    Now, we find $\alpha_2$ and $\beta_2$ such that $(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww$.
+    
+    We have
+
+    \begin{align*}
+        [(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3)]_{\hU} &=
+        [\RR_{2, \beta_2}(\hU)]_{\hU} [\RR_{1, \alpha_2}(\hU)]_{\hU} \huu_3 \\
+        &=
+        \underbrace
+        {
+            \begin{pmatrix}
+                \cos(\beta_2) & 0 & -\sin(\beta_2) \\
+                0 & 1 & 0 \\
+                \sin(\beta_2) & 0 & \cos(\beta_2)
+            \end{pmatrix}
+        }_{[\RR_{2, \beta_2}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                1 & 0 & 0 \\
+                0 & \cos(\alpha_2) & -\sin(\alpha_2) \\
+                0 & \sin(\alpha_2) & \cos(\alpha_2)
+            \end{pmatrix}
+        }_{[\RR_{1, \alpha_2}(\hU)]_{\hU}}
+        \underbrace
+        {
+            \begin{pmatrix}
+                0 \\ 0 \\ 1
+            \end{pmatrix}
+        }_{\huu_3} \\
+        &=
+        \begin{pmatrix}
+            \cos(\beta_2) & 0 & -\sin(\beta_2) \\
+            0 & 1 & 0 \\
+            \sin(\beta_2) & 0 & \cos(\beta_2)
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 \\
+            -\sin(\alpha_2) \\
+            \cos(\alpha_2)
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            -\cos(\alpha_2) \sin(\beta_2) \\
+            -\sin(\alpha_2) \\
+            \cos(\alpha_2) \cos(\beta_2)
+        \end{pmatrix}.
+    \end{align*}
+
+    \newcommand{\hw}{\hat{w}}
+
+    $\alpha_2$ and $\beta_2$ are such that $\hww = (\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) \iff [\hww]_{\hU} = [(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3)]_{\hU}$. Letting $\hw_i$ denote the $i$th component of $[\hww]_{\hU}$, we see $\alpha_2$ and $\beta_2$ must satisfy the following system of equations:
+
+    \begin{align*}
+        \begin{cases}
+            \hw_1 = -\cos(\alpha_2) \sin(\beta_2) \\
+            \hw_2 = -\sin(\alpha_2) \\
+            \hw_3 = \cos(\alpha_2) \cos(\beta_2)
+        \end{cases}.
+    \end{align*}
+
+    One value of $\alpha_2$ that solves the second equation is $\alpha_2 = -\arcsin(\hw_2)$. Dividing the first equation by the third, we have $\hw_1/\hw_3 = -\tan(\beta_2)$, and thus one value of $\beta_2$ that solves the first equation is $\beta_2 = \arctan(-\hw_1/\hw_3) = -\arctan(\hw_1/\hw_3)$.
+
+    Thus we have found $\alpha_2$ and $\beta_2$ such that $(\RR_{2, \beta_2} \circ \RR_{1, \alpha_2})(\huu_3) = \hww$.
+\end{proof}
+
+The previous lemma can easily be generalized so that it holds for all dimensions greater than or equal to $2$.
+
+\begin{lemma}
+    (There is a composition of $2$-dimensional rotations taking any nonzero vector to any other vector).
+    
+    Let $V$ be an $n$-dimensional inner product space. If $\vv \neq \mathbf{0}$, then for all $\ww \in V$ with $||\ww|| = ||\vv||$ there exists a composition of $2$-dimensional rotations $\RR$ such that $\RR(\vv) = \ww$.
+\end{lemma}
+
+\begin{proof}
+    \mbox{} \\
+
+    (Case: $n = 2$). The rotation $\RR_{\theta(\vv, \ww)}$ by $\theta(\vv, \ww)$ sends $\vv$ to $\ww$.
+    
+    (Case: $n = 3$). See the previous lemma.
+    
+    (Case: $n > 3$).
+    
+    \indent (Case: $n$ is even). [TO-DO]
+    
+    \indent (Case: $n$ is odd). [TO-DO]
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::n_rot_acts_on_orthonormal_basis}
+     (Any orthonormal ordered basis has the same orientation as some permutation $\hU^\sigma$ of a given orthonormal ordered basis $\hU$).
+     
+     Let $V$ be an finite-dimensional inner product space. If $\hW$ and $\hU$ are orthonormal ordered bases of subspaces of $V$, then there exists $\sigma \in S_k$ such that $\hW \sim \hU^\sigma$. 
+\end{theorem}
+
+\begin{proof}
+    Let $\hU := (\huu_1, ..., \huu_k)$ and $\hW := (\hww_1, ..., \hww_k)$. 
+    
+    By the previous lemma, we know there is a composition of $2$-dimensional rotations $\RR$ that satisfies $\RR(\hww_1) = \huu_1$. 
+    
+    We first prove that for all $i$ we have $\RR(\hww_i) = s_i \huu_i$, where $s_i \in \{-1, 1\}$. And we show this by using induction to show that for all $i$, $\text{when $j \leq i$, we have $\RR(\hww_j) = s_j \huu_j$, where $s_j \in \{-1, 1\}$}$.
+
+    (Base case). We have $R(\hww_1) = \huu_1 = s_1 u_1$, where $s_1 = 1$.
+
+    (Inductive case). Assume that $\text{when $j \leq i$, we have $\RR(\hww_j) = s_j \huu_j$, where $s_j \in \{-1, 1\}$}$.
+
+    Since $\RR$ is an orthogonal linear function, it preserves orthonormality (\textbf{see Theorem [...]}), and so $(\RR(\hww_1), ..., \RR(\hww_k))$ is orthonormal. Thus, for each $j$, $\RR(\hww_j)$ is perpendicular to all of $\RR(\hww_1), ..., \cancel{\RR(\hww_j)}, ..., \RR(\hww_k)$. In particular, when $j \geq i + 1$, each $\RR(\hww_j)$ is perpendicular to all of $\RR(\hww_1), ..., \RR(\hww_i)$. By the inductive hypothesis, $\RR(\hww_1) = s_1 \huu_1, ..., \RR(\hww_i) = s_i \huu_i$, where $s_1, ..., s_i \in \{-1, 1\}$. So when $j \geq i + 1$, each $\RR(\hww_j)$ is perpendicular to all of $s_1 \huu_1, ..., s_i \huu_i$; it follows that each $\RR(\hww_j)$ with $j \geq i + 1$ is perpendicular to all of $\huu_1, ..., \huu_i$. This means that each $\RR(\hww_j)$ with $j \geq i + 1$ is in the orthogonal complement of $\spann((\huu_1, …, \huu_i))$.
+    
+    This orthogonal complement is equal to $\spann((\huu_{i + 1}, …, \huu_k)$. Therefore $\RR(\hww_{i + 1}), ..., \RR(\hww_k) \in \spann(\huu_{i + 1}, ..., \huu_k)$. Since $\RR$ preserves orthonormality (\textbf{again, see Theorem [...]}), then $\RR(\hww_{i + 1}), ..., \RR(\hww_k)$ are also orthonormal.
+    
+    Since $\RR(\hww_{i + 1}) \in \spann(\huu_{i + 1}, ..., \huu_k)$, then $\RR(\hww_{i + 1}) = c_{i + 1} \huu_{i + 1} + c_{i + 2} \huu_{i + 2} + ... + c_k \huu_k$ for some scalars $c_{i + 1}, ..., c_k$. We claim that we must have $c_{i + 2} = ... = c_k = 0$; assume for contradiction that $c_{\ell_1}, ..., c_{\ell_p}$ are nonzero scalars with $\ell_1, ..., \ell_p > i + 1$. A quick inner product computation shows that $\RR(\hww_{i + 1})$ is not perpendicular to any of $\huu_{\ell_1}, ..., \huu_{\ell_p}$. Since $\RR(\hww_{i + 2}), ..., \RR(\hww_k)$ must all be perpendicular to $\RR(\hww_{i + 1})$, it follows that $\RR(\hww_{i + 2}), ..., \RR(\hww_k) \notin \spann((\huu_{\ell_1}, ..., \huu_{\ell_p}))$. Thus $\RR(\hww_{i + 2}), ..., \RR(\hww_k) \in \spann((\huu_{i + 2}, ..., \huu_k) - (\huu_{\ell_1}, ..., \huu_{\ell_p}))$, which is a subspace of dimension $|[i + 2, k] \cap \Z| - p$. On the other hand, since $(\RR(\hww_{i + 2}, ..., \RR(\hww_k))$ is an orthonormal basis, then $(\RR(\hww_{i + 2}), ..., \RR(\hww_k))$ span a $|[i + 2, k]|$-dimensional space. This is a contradiction; vectors cannot be in a space that has a lesser dimension than their span. Therefore, $c_{i + 2} = ... = c_k = 0$, and $\RR(\hww_{i + 1}) = c_{i + 1} \huu_{i + 1}$, i.e., $\RR(\hww_{i + 1}) \in \spann(\huu_{i + 1})$. Since $\RR(\hww_{i + 1})$ is a unit vector, then $||\RR(\hww_{i + 1})|| = ||s_{i + 1} \huu_{i + 1}|| = |s_{i + 1}| = 1$. Thus $s_{i + 1} \in \{-1, 1\}$, and $\RR(\hww_{i + 1}) = s_{i + 1} \huu_{i + 1}$, as desired.
+
+    \vspace{.25cm}
+
+    Since $\RR(\hww_i) = s_i \huu_i$ for all $i$, where $s_i \in \{-1, 1\}$, then $\RR(\hW) = (s_1 \huu_1, ..., s_k \huu_k)$, where $s_1, ..., s_k \in \{-1, 1\}$. 
+
+    If the number of $s_i$ equal to $-1$ is even, then ${(s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for all $\sigma$ with $\sgn(\sigma) = 1$, and if the number of $s_i$ equal to $-1$ is odd, then ${(s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for all $\sigma$ with $\sgn(\sigma) = -1$. (Recall Derivation     \ref{ch::lin_alg::thm::antisymmetry_ordered_bases_signs}). We see that in either case, ${\RR(\hW) = (s_1 \huu_1, ..., s_k \huu_k) \sim \hU^\sigma}$ for some $\sigma \in S_k$. This proves the theorem.
+\end{proof}
+
+\begin{theorem}
+\label{ch::lin_alg::thm::det_tracks_orientation}
+    (The determinant tracks orientation). 
+    
+    Let $V$ be an $n$-dimensional inner product space with an orientation given by an ordered basis $E$. The orientation of an ordered basis $F = (\ff_1, ..., \ff_n)$ relative to $E$ is $\sgn(\det([\FF]_E))$, where $\FF$ is the matrix whose $i$th column is $\ff_i$.
+\end{theorem}
+
+\begin{proof} \mbox{} \\
+    \fullindent
+    {
+        (Case: $V = \R^n$, $F = E$, $E = \sE$). We need to show that the orientation of $E$ is $\sgn(\det(\EE))$, where $\EE$ is the matrix whose $i$th column is $\ee_i$.
+
+        [in each step, show that orientation is preserved and that det is preserved]
+    }
+
+    \fullindent
+    {
+        (Case: otherwise).
+    }
+\end{proof}
+
+\subsection*{Orientation of finite-dimensional vector spaces}
+
+\label{ch::lin_alg::orientation_finite_dim_vector_space}
+
+The fact that the determinant tracks orientation is the main result of our discussion of orientation. Because determinants do not rely on the existence of an inner product, the determinant can be used to generalize the notion of orientation to any finite-dimensional vector space.
+
+\begin{defn}
+\label{ch::lin_alg::defn::orientation_finite_dim_vector_space}
+    (Orientation of a finite-dimensional vector space).
+    
+    Let $V$ be a finite-dimensional vector space (not necessarily an inner product space). An \textit{orientation on $V$} is a choice of ordered basis $E$ for $V$. (Notice here that $E$ is not necessarily orthonormal, because $V$ might not have an inner product!). If we have given $V$ the orientation $E$, then we say that an ordered basis $F$ of $V$ is \textit{positively oriented (relative to $E$)} iff $\det([\FF]_E) > 0$, and that $F$ is \textit{negatively oriented (relative to $E$)} iff $\det([\FF]_E) < 0$.
+    
+    A finite-dimensional vector space that has an orientation is called an \textit{oriented (finite-dimensional) vector space}.
+\end{defn}
+ 
+\begin{remark}
+    (Antisymmetry of orthonormal ordered bases).
+    
+    Notice that we still have the previous antisymmetry of orthonormal ordered bases due to the antisymmetry of the determinant.
+\end{remark}
+
+\subsection*{Rotations in $n$ dimensions}
+
+\begin{theorem}
+    in $\R^2$, $\theta_s(\vv, \ww) = \orn((\vv, \ww)) \theta_u(\vv, \ww)$
+\end{theorem}
+
+\begin{defn}
+    (Signed angle in $\R^n$).
+
+    $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$, where $\orn((\vv, \ww))$ is the orientation of $(\vv, \ww)$
+\end{defn}
+
+This definition allows for an easy generalization of the concept of rotation.
+
+\begin{defn}
+    (rotation in $\R^n$).
+
+    A function $\R^n \rightarrow \R^n$ is a \textit{rotation in $\R^n$} if it fixes the origin, preserves length, and preserves signed angle in $\R^n$. Equivalently\footnote{Since length-preserving functions fix the origin iff they are linear.}, a function is a rotation in $\R^n$ iff it is linear, preserves length, and preserves orientation. 
+\end{defn}
+
+\begin{deriv}
+    ($\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$).
+
+    A rotation in $\R^n$ is a linear function that preserves length and signed angle.
+
+    If a function preserves length and signed angle, then it must preserve orientation. Orientation is the sign of signed angle, so if orientation is not preserved, then the sign of signed angle is not preserved, and thus signed angle is not preserved.
+    
+    Is the converse true? Is is every linear function that preserves length and orientation a rotation? Well, suppose $\ff:\R^n \rightarrow \R^n$ is linear, preserves length, and preserves orientation. Then [reference Theorem about preserved quantities] it also preserves unsigned angle. Since $\ff$ preserves orientation and unsigned angle, and since signed angle is the product of orientation and signed angle, then $\ff$ preserves signed angle. Thus $\ff$ is linear, preserves length, and preserves signed angle; $\ff$ is a rotation. The converse is true!
+\end{deriv}
+
+As a last sidenote, the following theorem gives some retroactive justification for involving compositions of $2$-dimensional rotations in the definition of orientation.
+
+\begin{theorem} 
+    \begin{align*}
+        \{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\}
+    \end{align*}
+\end{theorem}
+
+\begin{proof}
+    \scriptsize Proof idea is from jagr2808. 
+    \fontsize{10pt}{12pt}\selectfont \\
+    \indent ($\subseteq$). Because their actions are given by matrix-vector products, $2$-dimensional rotations are linear functions. A quick computation shows that $\det(\RR_{ij;t}) = 1$ for all $i, j$. Thus $2$-dimensional rotations are linear functions preserving length and orientation; they are rotations in $\R^n$.
+    
+    \indent ($\supseteq$). If $\ff:V \rightarrow V$ is an orthogonal linear function, then $\ff$ sends an arbitrary orthonormal basis $\hU = (\huu_1, ..., \huu_n)$ of $V$ to another orthonormal basis $\ff(\hU) = (\ff(\huu_1), ..., \ff(\huu_n))$.
+
+    Let $\RR_1$ be the $2$-dimensional rotation sending $\ff(\huu_1)$ to $\huu_1$. Then $\RR_2 := \RR_1 \circ \ff:V \rightarrow V$ fixes $\huu_1$, so we can think of it as a function from $\spann(\huu_2, ..., \huu_n)$ to $\spann(\huu_2, ..., \huu_n)$. 
+    
+    We now use the above idea finitely many times. Define $\RR_{i + 1}$ to be the $2$-dimensional rotation sending ${(\RR_i \circ \RR_{i - 1})(\huu_i)}$ to $\huu_i$. We know that such a $2$-dimensional rotation always exists because $\det(\ff) = 1$ implies that $(\ff(\huu_1), ..., \ff(\huu_n))$ has the same orientation as $(\huu_1, ..., \huu_n)$. By induction, $\RR_n \circ \ff$ is a composition of $2$-dimensional rotations.
+    
+    Thus, since $\ff = \RR_n^{-1} \circ (\RR_n \circ \ff)$, we see $\ff$ is a composition of the $2$-dimensional rotations $\RR_n^{-1}$ and $\RR_n^{-1} \circ \ff$.
+    
+    %If T is an orthogonal endomorphism then T maps the standard basis e_1, ..., e_n to an orthonormal basis u_1, ..., u_n.
+
+    %Let R be the 2-rotation sending u_1 to e_1. Then RT is an endomorphism in SO(n) that fixes e_1, so we can think of it as an endomorphism in SO(n-1) on the orthogonal complement. By induction RT is the composition of 2-rotations. And T = R-1RT, so T is as well.
+\end{proof}
+
+\newpage
 
 \section{Eigenvectors and eigenvalues}
 
