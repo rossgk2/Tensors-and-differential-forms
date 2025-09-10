@@ -181,17 +181,35 @@ This section enables us to talk about hyperplanes in the systems of linear equat
 
 \subsection*{Orientation}
 
+Implement alternative $1$. First step is to add ``Thm 1'' and ``Defn 2'' described below to \\section\{Orientation*\} in linear\_algebra.tex. Of course, first take a moment to refamiliarize and double check that the definition of orientation from ``Defn 2'' actually works.
+
+Then add alternative $2$ to the appendix and finish the footnote directing readers to the appendix.
+
+\vspace{.25cm}
+
+After that:
+
 \begin{itemize}
-    \item improve bullet point in GitHub readme about how this book does orientation so much better 
-    \begin{itemize}
-        \item we use signed angle to define orientation in $2$ dimensions, find an equivalent definition that's generalizable, and then prove theorems about this definition, instead of just defining that orientation coorresp. to the determinant out of thin air 
-        \item mention clear defn of $n$ dimensional rotation
-    \end{itemize}
-    \item change all mention of inner product spaces to be inner product spaces over $\R$
-    \item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
     \item move first mention of orthonormalization (Gram-Schmidt) algorithm to linear algebra chapter- probably in orthogonal complements section- since is a prerequisite for orientation section
     \item redo proof that $\det$ tracks orientation (more specifically, $\sgn(\det(\FF))$ is orientation of $F$)
     \item add defn of $\text{orn}$ function that returns $-1$ or $1$
+\end{itemize}
+
+Then of course:
+
+\begin{itemize}
+    \item improve bullet point in GitHub readme about how this book does orientation and rotation so much better 
+    \begin{itemize}
+        \item we use signed angle to define orientation in $2$ dimensions, find an equivalent definition that's generalizable, and then prove theorems about this definition, instead of just defining that orientation coorresp. to the determinant out of thin air 
+        \item for the comment on rotation, see the below ``Rotation'' section
+    \end{itemize}
+\end{itemize}
+
+Tie up lose ends:
+
+\begin{itemize}
+    \item change all mention of inner product spaces to be inner product spaces over $\R$
+    \item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
     \item interesting, but not really necessary right now: https://analyticphysics.com/Higher\%20Dimensions/Rotations\%20in\%20Higher\%20Dimensions.htm
 \end{itemize}
 
@@ -200,9 +218,9 @@ This section enables us to talk about hyperplanes in the systems of linear equat
 Define orientation in $\R^n$ by making use of projections onto standard basis. This approach can be extended to finite-dimensional inner product spaces with a given orthonormal ordered basis.
 
 \begin{itemize}
-    \item Defn. Current definition of orientation in $\R^2$. The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
-    \item Thm. $(\ee_1, \ee_2)$ is positively oriented iff $\sproj(\ee_2 \rightarrow \see_2) > 0$, i.e., iff $\ee_2$ is above $\spann(\{\see_2\})$.
-    \item Defn. $(\ee_1, ..., \ee_{n - 1}, \ee_n)$ is positively oriented iff $(\ee_1, ..., \ee_{n - 1})$ is positively oriented and $\sproj(\ee_n \rightarrow \see_n) > 0$
+    \item Defn 1. Current definition of orientation in $\R^2$. The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
+    \item Thm 1. $(\ee_1, \ee_2)$ is positively oriented iff $\sproj(\ee_2 \rightarrow \see_2) > 0$, i.e., iff $\ee_2$ is above $\spann(\{\see_2\})$.
+    \item Defn 2. $(\ee_1, ..., \ee_{n - 1}, \ee_n)$ is positively oriented iff $(\ee_1, ..., \ee_{n - 1})$ is positively oriented and $\sproj(\ee_n \rightarrow \see_n) > 0$
     \item Thm. There are only two orientations*. For an ordered basis $E$ of $\R^n$ we define $\text{orn}(E)$ to be $1$ iff $E$ is positively oriented and $-1$ if $E$ is negatively oriented.
     \begin{itemize}
         \item *This result is not suprising in this approach. It is suprising in the current approach and the other alternative approach.
@@ -227,6 +245,18 @@ Define orientation in $\R^n$ by making use of $n$-dimensional spherical coordina
     \item Defn. Define a parameterization of the $n$-sphere, $(r, \theta_2, ..., \theta_n) \mapsto \rr_n(r, \theta_2, ..., \theta_n)$, where $\theta_2 \in [0, 2\pi)$ and $\theta_3, ..., \theta_n \in (0, \pi)$.
     \item Defn. For $\vv, \ww \in \R^n$ define signed counterclockwise angle $\theta_s(\vv, \ww)$ to be the tuple $(\theta_s(\vv, \ww), \Delta \theta_2, ..., \Delta \theta_n)$, where $\Delta \theta_i$ is the difference between the $\theta_i$ of $\ww$ and the $\theta_i$ of $\vv$. Define $\tttheta_s(\vv, \ww)$ to be $-\theta_s(\vv, \ww) \bmod 2\pi$.
     \item Defn. Define orientation of an ordered basis $(\ee_1, ..., \ee_n)$ of $\R^n$ to be an ordered tuple of signed angles, i.e., $(n - 1) \times (n - 1)$ matrix of signs. The $ij$th sign is $1$ iff $|\theta_s(\ee_i, \ee_{i + 1})_j| < |\tttheta_s(\ee_i, \ee_{i + 1})_j|$ and is $-1$ otherwise. 
+\end{itemize}
+
+\section*{Rotations}
+
+As a reminder, here are how rotations are handled presently (so, the following is not a to-do list, just a list of things that should be kept in mind and preserved):
+
+\begin{itemize}
+    \item define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin
+    \item derive matrix of a rotation in $\R^2$
+    \item (compositions of 2-rotations are used in orientation section)
+    \item after we know how to orient ordered bases, we know how to orient an ordered basis of two vecors, and automatically get a definition of $n$-dimensional signed angle as the product of $n$-dimensional unsigned angle (which we have from the dot product) and orientation: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$. this allows us to prove a very useful fact: $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$
+    \item knowing that the determinant gives orientation allows us to prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): \{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\} 
 \end{itemize}
 
 \section*{Manifolds and differential forms}
