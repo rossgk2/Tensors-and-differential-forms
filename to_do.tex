@@ -198,10 +198,10 @@ After that:
 Then of course:
 
 \begin{itemize}
-    \item improve bullet point in GitHub readme about how this book does orientation so much better 
+    \item improve bullet point in GitHub readme about how this book does orientation and rotation so much better 
     \begin{itemize}
         \item we use signed angle to define orientation in $2$ dimensions, find an equivalent definition that's generalizable, and then prove theorems about this definition, instead of just defining that orientation coorresp. to the determinant out of thin air 
-        \item mention clear defn of $n$ dimensional rotation
+        \item for the comment on rotation, see the below ``Rotation'' section
     \end{itemize}
 \end{itemize}
 
@@ -245,6 +245,18 @@ Define orientation in $\R^n$ by making use of $n$-dimensional spherical coordina
     \item Defn. Define a parameterization of the $n$-sphere, $(r, \theta_2, ..., \theta_n) \mapsto \rr_n(r, \theta_2, ..., \theta_n)$, where $\theta_2 \in [0, 2\pi)$ and $\theta_3, ..., \theta_n \in (0, \pi)$.
     \item Defn. For $\vv, \ww \in \R^n$ define signed counterclockwise angle $\theta_s(\vv, \ww)$ to be the tuple $(\theta_s(\vv, \ww), \Delta \theta_2, ..., \Delta \theta_n)$, where $\Delta \theta_i$ is the difference between the $\theta_i$ of $\ww$ and the $\theta_i$ of $\vv$. Define $\tttheta_s(\vv, \ww)$ to be $-\theta_s(\vv, \ww) \bmod 2\pi$.
     \item Defn. Define orientation of an ordered basis $(\ee_1, ..., \ee_n)$ of $\R^n$ to be an ordered tuple of signed angles, i.e., $(n - 1) \times (n - 1)$ matrix of signs. The $ij$th sign is $1$ iff $|\theta_s(\ee_i, \ee_{i + 1})_j| < |\tttheta_s(\ee_i, \ee_{i + 1})_j|$ and is $-1$ otherwise. 
+\end{itemize}
+
+\section*{Rotations}
+
+As a reminder, here are how rotations are handled presently (so, the following is not a to-do list, just a list of things that should be kept in mind and preserved):
+
+\begin{itemize}
+    \item define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin
+    \item derive matrix of a rotation in $\R^2$
+    \item (compositions of 2-rotations are used in orientation section)
+    \item after we know how to orient ordered bases, we know how to orient an ordered basis of two vecors, and automatically get a definition of $n$-dimensional signed angle as the product of $n$-dimensional unsigned angle (which we have from the dot product) and orientation: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$. this allows us to prove a very useful fact: $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$
+    \item knowing that the determinant gives orientation allows us to prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): \{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\} 
 \end{itemize}
 
 \section*{Manifolds and differential forms}
