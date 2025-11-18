@@ -104,15 +104,38 @@ Cleanup
     \item Remove all mention of unit speed curves; redid defn of trig so don't need unit speed curves for that anymore
 \end{itemize}
 
-\subsubsection*{Rotations}
-
 \section*{Inner product spaces}
 
 Add a section on inner product spaces, right after the dot product, to set up for talking about orthogonal complements.
 
+\begin{itemize}
+	\item remark that inner product called such because the $\top$ in $\vv^\top \ww$ is ``inside'' the $\vv$ and $\ww$
+\end{itemize}
+
 \subsection*{Orthogonal complements}
 
-This section enables us to talk about hyperplanes in the systems of linear equations section.
+\subsubsection*{Planes}
+
+I'm deciding which of three characterizations of planes to use as the definition of a plane. (The below is restricted to $\R^n$ rather than inner product spaces for simplicity. Of course after choosing an approach we'll eventually show how it applies to inner product spaces.)
+
+\begin{enumerate}
+	\item (Calculus characterization). A plane in $\R^n$ is the graph of a function $f:\R^n \rightarrow \R$ that satisfies $\frac{\pd f(x_1, ..., x_i, ..., x_n)}{\pd x_i} = \text{const}$ for all $i$.
+	\item ($(n - 1)$-dimensional subspace characterization). A plane in $\R^n$ is a vector space of the form $\pp + W$, where $\pp \in \R^n$ and $W$ is a $(n - 1)$-dimensional subspace of $\R^n$.
+	\item (Orthogonal complement of a $1$-dimensional subspace characterization). A plane in $\R^n$ is a vector space of the form $\pp + \{\ww\}^\top$, where $\ww \in \R^n$.
+\end{enumerate}
+
+One intermediary characterization is helpful for proving the equivalence of the above:
+\begin{enumerate}
+	\item[4.] (Implicit equation in $n$ variables characterization). A plane in $\R^n$ is a solution set to an equation of the form $(c_1 x_1 + ... + c_n x_n = 0, \text{ where $x_1, ..., x_n \in \R$})$.
+\end{enumerate}
+
+It's easy to prove the calculus characterization implies the implicit equation characterization. And obviously the implicit equation characterization is equivalent to the orthogonal complement characterization. A little harder is proving that the implicit equation characterization implies the subspace characterization (CTRL-F ``Implicit to span'' in the linear algebra chapter). The most opaque proof of all is required for proving that the subspace characterization implies the orthogonal complement characterization (CTRL-F ``Span to implicit'' in the linear algebra chapter).
+
+At first, the subspace characterization is the most tempting- but that's only until I remember that not just any subspace is involved, but specifically an $(n - 1)$-dimensional one.
+
+If I continue to forget about the ``$n - 1$'' constraint, I might think the calculus characterization is also tempting, since one can prove calculus characterization $\implies$ implicit equation characterization $\implies$ subspace characterization without much difficulty to calculus students. (The proof of subspace characterization $\implies$ implicit equation characterization is the only one they wouldn't be able to understand.)
+
+But when I do remember ``$n - 1$'', the most intuitive definition seems to be the orthogonal complement one. It makes it clear \textit{why} a plane in $\R^n$ is spanned by $n - 1$ vectors, as opposed to some other number of vectors.
 
 \section*{Systems of linear equations}
 
@@ -182,26 +205,21 @@ This section enables us to talk about hyperplanes in the systems of linear equat
 \subsection*{Orientation}
 
 \begin{itemize}
-    \item improve bullet point in GitHub readme about how this book does orientation so much better 
-    \begin{itemize}
-        \item we use signed angle to define orientation in $2$ dimensions, find an equivalent definition that's generalizable, and then prove theorems about this definition, instead of just defining that orientation coorresp. to the determinant out of thin air 
-        \item mention clear defn of $n$ dimensional rotation
-    \end{itemize}
-    \item change all mention of inner product spaces to be inner product spaces over $\R$
-    \item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
-    \item move first mention of orthonormalization (Gram-Schmidt) algorithm to linear algebra chapter- probably in orthogonal complements section- since is a prerequisite for orientation section
-    \item redo proof that $\det$ tracks orientation (more specifically, $\sgn(\det(\FF))$ is orientation of $F$)
-    \item add defn of $\text{orn}$ function that returns $-1$ or $1$
-    \item interesting, but not really necessary right now: https://analyticphysics.com/Higher\%20Dimensions/Rotations\%20in\%20Higher\%20Dimensions.htm
+	\item Implement the below ``New approach''.
+	\begin{itemize}
+		\item redo proof that $\det$ tracks orientation (more specifically, $\sgn(\det(\FF))$ is orientation of $F$)
+		\item add defn of $\text{orn}$ function that returns $-1$ or $1$
+	\end{itemize}
+	\item Also think about the approach with the $n$-sphere. As detailed in the write-up there, my previous idea involving the $n$-sphere wasn't an improvement over the new approach, but there might be something to the new thoughts I wrote down.
 \end{itemize}
 
-\subsubsection*{Alternative 1}
+\subsubsection*{New approach}
 
 Define orientation in $\R^n$ by making use of projections onto standard basis. This approach can be extended to finite-dimensional inner product spaces with a given orthonormal ordered basis.
 
 \begin{itemize}
-    \item Defn. Current definition of orientation in $\R^2$. The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
-    \item Thm. $(\ee_1, \ee_2)$ is positively oriented iff $\sproj(\ee_2 \rightarrow \see_2) > 0$, i.e., iff $\ee_2$ is above $\spann(\{\see_2\})$.
+    \item Defn. [This definition is actually the one currently used right now.] The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
+    \item Thm. [This theorem and the rest of the outline have not been implemented yet.] $(\ee_1, \ee_2)$ is positively oriented iff $\sproj(\ee_2 \rightarrow \see_2) > 0$, i.e., iff $\ee_2$ is above $\spann(\{\see_2\})$.
     \item Defn. $(\ee_1, ..., \ee_{n - 1}, \ee_n)$ is positively oriented iff $(\ee_1, ..., \ee_{n - 1})$ is positively oriented and $\sproj(\ee_n \rightarrow \see_n) > 0$
     \item Thm. There are only two orientations*. For an ordered basis $E$ of $\R^n$ we define $\text{orn}(E)$ to be $1$ iff $E$ is positively oriented and $-1$ if $E$ is negatively oriented.
     \begin{itemize}
@@ -211,22 +229,59 @@ Define orientation in $\R^n$ by making use of projections onto standard basis. T
     \item Lemma 2. $(\ee_1, ..., c\ee_i, ..., \ee_n) \sim \sgn(c)(\ee_1, ..., \ee_i, ..., \ee_n)$.
     \item Lemma 3.1. Rotations preserve orientation.
     \item Lemma 3.2. A $2$-dimensional counterclockwise rotation by $\pi/2$ and a $2$-dimensional clockwise rotation by $\pi/2$ correspond to antisymmetry.
-    \item Thm. Orientation is the sign of a multilinear function.
+    \item Thm. Orientation is the sign of a multilinear function. Therefore orientation is the sign of the determinant of a multilinear function.
     \begin{proof}
         Use lemmas 1 and 2 for multilinearity. Use lemma 3 for antisymmetry. 
     \end{proof}
 \end{itemize}
 
-\subsubsection*{Alternative 2}
+The key to my approach is to realize the importance of signed angle. My approach is guided by the overarching principle that the relationship between orientation and signed angle should always be this: orientation is the sign of signed angle.
 
-Define orientation in $\R^n$ by making use of $n$-dimensional spherical coordinates. As with the other alternative, this approach can be extended to finite-dimensional inner product spaces with a given orthonormal basis.
+\subsubsection*{Potential approach using the $n$-sphere}
+
+In the new treatment, $n$-dimensional unsigned angle emerges from the dot product (as before), and $n$-dimensional orientation emerges from 2-dimensional orientation.
+
+For a while I was interested in a more general treatment that defined $n$-dimensional \textit{signed} angle, and thus unified unsigned angle and orientation, since signed angle is the product of these two. The idea was, since $2$-dimensional signed angle is arclength on one of two parameterizations of a 2-sphere, maybe $n$-dimensional signed angle could be arclength on a particular parameterization of an n-sphere.
+
+I found implementing this idea to be difficult. Yes, things are easy on a 2-sphere, since there are only two unit-speed parameterizations of the path between two points on a 2-sphere. But on an $n$-sphere, there are infinitely many such paths.
+
+Because of this difficulty I resorted to splitting up the definition of signed angle into a definition of unsigned angle and a definition of orientation. This would make things similar to before, except at least now, hopefully each of these definitions would have something to do with $n$-spheres.
 
 \begin{itemize}
-    \item Defn. Current definition of orientation in $\R^2$. The \textit{orientation} of an ordered basis $(\ee_1, \ee_2)$ of $\R^2$ is said to be \textit{counterclockwise}, or \textit{positive} iff $|\theta_s(\ee_1, \ee_2)| < |\tttheta_s(\ee_1, \ee_2)|$ and \textit{clockwise}, or \textit{negative}, iff $|\tttheta_s(\ee_1, \ee_2)| < |\theta_s(\ee_1, \ee_2)|$.
-    \item Thm. $(\ee_1, \ee_2)$ is positively oriented iff $\theta_s(\ee_1, \ee_2) < \pi$.
-    \item Defn. Define a parameterization of the $n$-sphere, $(r, \theta_2, ..., \theta_n) \mapsto \rr_n(r, \theta_2, ..., \theta_n)$, where $\theta_2 \in [0, 2\pi)$ and $\theta_3, ..., \theta_n \in (0, \pi)$.
-    \item Defn. For $\vv, \ww \in \R^n$ define signed counterclockwise angle $\theta_s(\vv, \ww)$ to be the tuple $(\theta_s(\vv, \ww), \Delta \theta_2, ..., \Delta \theta_n)$, where $\Delta \theta_i$ is the difference between the $\theta_i$ of $\ww$ and the $\theta_i$ of $\vv$. Define $\tttheta_s(\vv, \ww)$ to be $-\theta_s(\vv, \ww) \bmod 2\pi$.
-    \item Defn. Define orientation of an ordered basis $(\ee_1, ..., \ee_n)$ of $\R^n$ to be an ordered tuple of signed angles, i.e., $(n - 1) \times (n - 1)$ matrix of signs. The $ij$th sign is $1$ iff $|\theta_s(\ee_i, \ee_{i + 1})_j| < |\tttheta_s(\ee_i, \ee_{i + 1})_j|$ and is $-1$ otherwise. 
+	\item I came up with a definition of unsigned angle that does have something to do with $n$-spheres: ``unsigned angle is the minimal arclength between two points on an $n$-sphere''. (One can use the EL equations to prove that the curve of minimal length between two points on an n-sphere is a ``great circle''.)
+	\item And, because I was getting lost in the complexity of all of this, I came up with a definition of the orientation of an ordered basis of two vectors that doesn't really have anything to do with $n$-spheres, and relies on the definition of orientation in $\R^2$: ``The orientation of an ordered basis of vectors $\vv, \ww \in \R^n$ is a tuple of signs, the $i$th sign being $\text{orn}\Big(\proj(\vv, \spann(\see_i, \see_{i + 1})), \proj(\ww, \spann(\see_i, \see_{i + 1}))\Big)$.''
+\end{itemize}
+
+After taking a step back, I'm wondering if there is a way that the difficulty of there being infinitely unit-speed parameterizations of the $n$-sphere.
+
+Maybe one could define an equivalence relation on parameterizations, so that two of them are considered to be equal if their arclength functions are the same, and so that the negation of a parameterization is its reverse parameterization.
+
+Three things have to be shown at this point: (1) orthonormalization preserves orientation, (2) rotation preserves orientation, and (3) the antisymmetry property of ordered bases' orientations. (Perhaps slight rephrasings of these facts more amenable to this presentation will be required. Though, it doesn't seem like that much rephrasing will be necessary...)
+
+I suspect that (1) is taken care of, since one uses orthonormal coordinate systems when considering parameterizations.
+
+Maybe (2) comes into play in showing that the signed angle between $\vv\in \R^3$ and $\ww \in \R^3$ can be computed by rotating $\spann(\vv, \ww)$ so that the image of $\vv$ aligns with $\see_1$ and the image of $\ww$ aligns with some vector in $\spann(\see_1, \see_2)$; then $2$-dimensional orientation can be invoked. (This would require defining $2$-dimensional rotations in $\R^n$, which is easy to do.) So, the usefulness of rotation preserving the equivalence relation would be that the computation of $\theta_s(\vv, \ww)$ for $\vv, \ww \in \R^3$ is equal to $\theta_s(\RR(\vv), \RR(\ww))$ for $\RR(\vv), \RR(\ww) \in \R^2$. Maybe a similar thing can be done with vectors in $\R^n$.
+
+If this is true, then (3) follows once everything is reduced to the case of $\R^2$, since (3) is true in $\R^2$.
+
+\subsubsection*{GitHub rant}
+
+I need to improve the rant about orientation in tensors GitHub readme, adding bits about how defn of rotations gets negatively affected by the typical tangle. The typical approach is:
+
+\begin{itemize}
+	\item Define orientation of an ordered basis to be sign of the determinant of the ordered basis. (The typical explanation for this is: determinants should be antisymmetric since, if you investigate simple examples, the orientation of ordered bases related by antisymmetry should be the same. A deeper explanation explains that ordered bases related by antisymmetry should be the same because rotations should preserve orientation; the antisymmetry relation is obtained by using a rotation of angle pi/2. Both explanations, including the deeper one, are circular. We can't rigorously know that rotations preserve orientation since orientation hasn’t been defined yet.)
+	\item Define rotations to be linear functions with determinant 1. (No rigorous argument is given for why rotations must be linear.)
+	\item Prove that rotations preserve orientation.
+	\item There is no distinguishment between signed and unsigned angle.
+\end{itemize}
+
+\subsubsection*{Misc. cleanup}
+
+\begin{itemize}
+	\item change all mention of inner product spaces to be inner product spaces over $\R$
+	\item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
+	\item move first mention of orthonormalization (Gram-Schmidt) algorithm to linear algebra chapter- probably in orthogonal complements section- since is a prerequisite for orientation section
+	\item interesting, but not really necessary right now: https://analyticphysics.com/Higher\%20Dimensions/Rotations\%20in\%20Higher\%20Dimensions.htm
 \end{itemize}
 
 \section*{Manifolds and differential forms}

@@ -5,3 +5,5 @@
 *.blg
 *.out
 *.toc
+*.fls
+book.fdb_latexmk

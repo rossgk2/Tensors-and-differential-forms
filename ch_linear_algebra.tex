@@ -3380,11 +3380,13 @@ The following characterization of hyperplanes is immediate.
 
 % The main reason we need this orthogonal complements section is so that we know that an expression of the form c_1 x_1 + ... + c_n x_n + b = 0 is a hyperplane. The above establishes all we need to know on this in the most elegant way. 
 %
-% Previously, I thought it would be better to define a hyperplane to be a sum $\pp + W$, where W is an (n - 1)-dimensional subspace, and then derive that hyperplanes can be described by implicit equations such as $c_1 x_1 + ... + c_n x_n + b = 0$. This definition seems to be less natural than the one above (a hyperplane is $\pp + W^\perp$).
+% Previously, I thought it would be best to define a hyperplane in $n$-dimensions to be a sum of $\pp + W$, where W is an (n - 1)-dimensional subspace. From there we can derive that hyperplanes can be described by implicit equations such as $c_1 x_1 + ... + c_n x_n + b = 0$.
 %
-% Actually, no, it doesn't... But anyway at least this is now all in one place so I can organize it later
+% This might be less natural than "a hyperplane is $\pp + \{\ww\}^\perp$ for some $\ww \in V".
+%
+
 \begin{comment}
-	\subsection*{Span to implicit}
+	\subsection*{Implicit to span}
 	
 	$(\xx - \pp) \cdot \widehat{\nn} = 0 \iff \xx \cdot \widehat{\nn} + d = 0 \iff (x, y, z) \cdot (a, b, c) = 0 \iff ax + by + cz + d = 0$.
 	
@@ -3431,7 +3433,7 @@ The following characterization of hyperplanes is immediate.
 		\right)
 	\end{align*}
 	
-	\subsection*{Implicit to span: example}
+	\subsection*{Span to implicit: example}
 	
 	Example: $P = \{\pp\} + \spann(\{\vv_1, \vv_2\})$, where $\pp = (1, 2, 0)^\top$, $\vv_1 = (1, 0, 1)^\top$, $\vv_2 = (0, 1, 1)^\top$.
 	
@@ -3487,7 +3489,7 @@ The following characterization of hyperplanes is immediate.
 	
 	which is an implicit equation, as desired.
 	
-	\subsection*{Implicit to span: general theory}
+	\subsection*{Span to implicit: general theory}
 	
 	Let $\pp, \vv_1, ..., \vv_k \in \R^n$, where $k < n$, and define $P := \{\pp\} + \spann(\{\vv_1, ..., \vv_k\})$. Suppose $\xx \in P$, so $\xx = \pp + c_1 \vv_1 + ... + c_k \vv_k$. Then if $\EE = (\vv_1, ..., \vv_k)$ and $\cc = (c_1, ..., c_k)^\top$ we have $\xx = \pp + \EE \cc$ and thus $\EE \cc = \xx - \pp$. This matrix-vector equation corresponds to the the augmented matrix
 	
