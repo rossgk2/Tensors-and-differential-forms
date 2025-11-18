@@ -74,18 +74,53 @@ More things about this book that are original that I should call attention to:
 
 \section*{Dot product}
 
+After much thought, I've determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t quickly give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask ``why?'', since it’s clearly established that it is so.
+
+The best approach will be to go back to the geometric $\implies$ algebraic via linearity and algebraic $\implies$ geometric due to invariance under rotation.
+
+\subsubsection*{Overview of work in progress}
+
+As I've worked on it, I've found that the best approach has a lot to do with rotation, since the notion of rotation is fundamentally derived from the notion of signed angle. Here's an overview of the dot-product-related sections of the book that are in progress:
+
+\vspace{.25cm}
+
+\textbf{Geometry in $\R^2$}
 \begin{itemize}
-    \item Rewrite dot product section. My ||proj|| doesn’t work. Need to use sproj; projection must be signed, and $n$-dimensional angle approach isn’t actually easier for the beginner to understand; way more inductive proofs with complicated functions are required than I thought.
-    \item \textbf{After more thought, have determined that approach in which angle is defined first is too pedagogically confusing. Said approach quickly establishes that the geometric and algebraic formulas for the dot product are equal, but it doesn’t quickly give a sense as to why these formulas must be equal. A beginner using this approach isn’t guaranteed to be strongly motivated to ask “why?”, since it’s clearly established that it is so.}
-    \item \textbf{Best approach will be to start in $\R^2$. Define angle between two vectors to be the minimum ratio of arc length to radius on the arc of the circle between the corresponding unit vectors. This implies that $\theta(\vv, \ww) \in [0, \pi]$ for all $\vv, \ww \in \R^2$. Define geometric dot product and appeal to physical work for motivation. Show geometric => algebraic by using linearity. Then show algebraic => geometric by using invariance of dot product under rotation. Then generalize to $\R^n$ by using the algebraic formula.}
-    \item Will need to define rotations so that can show algebraic => geometric. So work on rotation section.
+	\item length subsection: very short, defines the usual Euclidean norm. there's a great inductive derivation of the Euclidean norm later on that should be used here. \textit{pretty much complete! just needs a copy-paste.}
+	\item angle subsection: defines signed angle and unsigned angle. \textit{has a couple proofs that need finishing and details that need checking, noted in brackets [], but essentially done.} 
+	\begin{itemize}
+		\item end of angle section includes a ``For dot product section'' subsubsection; keep this in mind
+	\end{itemize}
+	\item rotations subsection: rotations are defined as preserving signed angle. \textit{pretty much complete! only one very easy result needs to be proved.}
+	\item trigonometry subsection: existence of circular coordinates ($\cos$, $\sin$) derived from existence theorem about signed angles \textit{some minor details need finishing; essentially done.}
+	\item projections subsection. \textit{about halfway done}
+	\begin{itemize}
+		\item beginning includes outline of how to define orthogonality and vector projections. need to implement this outline
+		\item end has an unfinished proof that $\sproj(\vv \rightarrow \ww) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$
+		\item otherwise, it's done!
+	\end{itemize}
+	\item dot product subsection
+	\begin{itemize}
+		\item proof of geometric $\implies$ algebraic subsubsection. \textit{seems complete; just needs commentary}
+		\item proof of geometric $\impliedby$ algebraic subsubection. \textit{almost done, just needs simplification of the ``preserved quantities'' theorem.}
+		\begin{itemize}
+			\item requires knowing that algebraic dot product is preserved by rotation. currently, a ``preserved quantities'' theorem is at the beginning of the subsubsection. I got a little lost here, and didn't realize that it's simple: ``if length is preserved, then since algebraic dot product is a function of length, so is algebraic dot product''. since rotations preserve length they preserve algebraic dot product. so, really only a single line of the stated preserved quantities theorem is needed. state that as a lemma and find a better place for the preserved quantities theorem.
+			\item remove the remark after the preserved quantities theorem
+		\end{itemize}
+	\end{itemize}
 \end{itemize}
 
-currently working on:
+\textbf{Geometry in $\R^n$}
 \begin{itemize}
-    \item figure out whether signed or unsigned angle (or both) should appear in the theorem about preserved quantities
-    \item figure out definition for perpendicular. don't want it to be circular
+	\item move the inductive derivation of the Euclidean norm to the length subsection in ``Geometry of $\R^2$'
 \end{itemize}
+
+\textbf{Length and angle [relocate the below to new updated sections above]}
+\begin{itemize}
+	\item has content that should be reorganized... obviously
+\end{itemize}
+
+When both the dot product and orientation sections are done, I want to make some final edits that clarify how both are about different aspects of signed angle. Dot product happens to be the easiest way to generalize unsigned angle. Orientation is just the sign of signed angle.
 
 \subsubsection*{Angle}
 
@@ -126,14 +161,14 @@ I'm deciding which of three characterizations of planes to use as the definition
 
 One intermediary characterization is helpful for proving the equivalence of the above:
 \begin{enumerate}
-	\item[4.] (Implicit equation in $n$ variables characterization). A plane in $\R^n$ is a solution set to an equation of the form $(c_1 x_1 + ... + c_n x_n = 0, \text{ where $x_1, ..., x_n \in \R$})$.
+	\item[4.] (Implicit equation characterization). A plane in $\R^n$ is a solution set to an equation of the form $(c_1 x_1 + ... + c_n x_n = 0, \text{ where $x_1, ..., x_n \in \R$})$.
 \end{enumerate}
 
-It's easy to prove the calculus characterization implies the implicit equation characterization. And obviously the implicit equation characterization is equivalent to the orthogonal complement characterization. A little harder is proving that the implicit equation characterization implies the subspace characterization (CTRL-F ``Implicit to span'' in the linear algebra chapter). The most opaque proof of all is required for proving that the subspace characterization implies the orthogonal complement characterization (CTRL-F ``Span to implicit'' in the linear algebra chapter).
+It's easy to prove calculus characterization $\iff$ implicit equation characterization. And obviously implicit equation characterization $\iff$ orthogonal complement characterization. A little harder is proving implicit equation characterization $\implies$ subspace characterization (CTRL-F ``Implicit to span'' in the linear algebra chapter). The most opaque proof of all, involving row reduction, is required for proving implicit equation characterization $\impliedby$ subspace characterization (CTRL-F ``Span to implicit'' in the linear algebra chapter).
 
 At first, the subspace characterization is the most tempting- but that's only until I remember that not just any subspace is involved, but specifically an $(n - 1)$-dimensional one.
 
-If I continue to forget about the ``$n - 1$'' constraint, I might think the calculus characterization is also tempting, since one can prove calculus characterization $\implies$ implicit equation characterization $\implies$ subspace characterization without much difficulty to calculus students. (The proof of subspace characterization $\implies$ implicit equation characterization is the only one they wouldn't be able to understand.)
+If I continue to forget about the ``$n - 1$'' constraint, I might think the calculus characterization is also tempting, since one can prove calculus characterization $\implies$ implicit equation characterization $\implies$ subspace characterization without much difficulty to calculus students. (The proof of implicit equation characterization $\impliedby$ subspace characterization is the only one they wouldn't be able to understand.)
 
 But when I do remember ``$n - 1$'', the most intuitive definition seems to be the orthogonal complement one. It makes it clear \textit{why} a plane in $\R^n$ is spanned by $n - 1$ vectors, as opposed to some other number of vectors.
 
@@ -204,22 +239,12 @@ But when I do remember ``$n - 1$'', the most intuitive definition seems to be th
 
 \subsection*{Orientation}
 
-Implement alternative $1$. First step is to add ``Thm 1'' and ``Defn 2'' described below to \\section\{Orientation*\} in linear\_algebra.tex. Of course, first take a moment to refamiliarize and double check that the definition of orientation from ``Defn 2'' actually works.
-
-Then add alternative $2$ to the appendix and finish the footnote directing readers to the appendix.
-
-\vspace{.25cm}
-
-After that:
-
 \begin{itemize}
 	\item Implement the below ``New approach''.
-	\begin{itemize}
-		\item redo proof that $\det$ tracks orientation (more specifically, $\sgn(\det(\FF))$ is orientation of $F$)
-		\item add defn of $\text{orn}$ function that returns $-1$ or $1$
-	\end{itemize}
 	\item Also think about the approach with the $n$-sphere. As detailed in the write-up there, my previous idea involving the $n$-sphere wasn't an improvement over the new approach, but there might be something to the new thoughts I wrote down.
 \end{itemize}
+
+When both the dot product and orientation sections are done, I want to make some final edits that clarify how both are about different aspects of signed angle. Dot product happens to be the easiest way to generalize unsigned angle. Orientation is just the sign of signed angle.
 
 \subsubsection*{New approach}
 

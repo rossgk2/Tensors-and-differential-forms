@@ -2832,7 +2832,7 @@ The next theorem is an immediate consequence of the previous one.
     \label{ch::lin_alg::lemma::rotated_projection}
     (Rotated projection is projection of rotated vectors). 
     
-    Let $\vv, \ww \in \R^2$. For any $t \in [0, 2\pi)$ we have $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. It immediately follows that for any $t \in [0, 2\pi)$ we have $\RR_t(\sproj(\vv \rightarrow \ww)) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
+    Let $\vv, \ww \in \R^2$. For any $t \in [0, 2\pi)$ we have $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
 \end{lemma}
 
 \begin{proof}
@@ -2842,13 +2842,23 @@ The next theorem is an immediate consequence of the previous one.
         \RR_t(\vv) = v_{||} \RR_t(\hww) + v_\perp \RR_t(\hww_\perp) = v_{||} \widehat{\RR_t(\hww)} + v_\perp \widehat{\RR_t(\ww)}_\perp
     \end{align*}
 
-    Of course, $v_{||} \RR_t(\hww) = \RR_t(v_{||} \hww) = \RR_t(\proj(\vv \rightarrow \ww))$. Also, since $v_{||}\widehat{\RR_t(\hww)}$ is the parallel term in the orthogonal decomposition of $\RR_t(\vv)$ onto $\RR_t(\ww)$, it must be $\proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Rewriting both sides in terms of these projections, we have
+    Now we compare the second and third expressions in the above. On one hand, $v_{||} \RR_t(\hww) = \RR_t(v_{||} \hww) = \RR_t(\proj(\vv \rightarrow \ww))$. On the other hand, since $v_{||}\widehat{\RR_t(\hww)}$ is the parallel term in the orthogonal decomposition of $\RR_t(\vv)$ onto $\RR_t(\ww)$, it must be $\proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$. Rewriting both sides in terms of these projections, we have
 
     \begin{align*}
         \RR_t(\proj(\vv \rightarrow \ww)) + v_\perp \RR_t(\hww_\perp) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww)) + v_\perp \widehat{\RR_t(\ww)}_\perp.
     \end{align*}
 
     Using again the fact that $\RR_t(\hww_\perp) = \widehat{\RR_t(\hww)}_\perp$, we obtain $\RR_t(\proj(\vv \rightarrow \ww)) = \proj(\RR_t(\vv) \rightarrow \RR_t(\ww))$, as desired. 
+\end{proof}
+
+\begin{lemma}
+	(Scalar projection between rotated vectors).
+	
+	For any $t \in [0, 2\pi)$ we have $\sproj(\vv \rightarrow \ww) = \sproj(\RR_t(\vv) \rightarrow \RR_t(\ww))$.
+\end{lemma}
+
+\begin{proof}
+	TO-DO
 \end{proof}
 
 \newpage
