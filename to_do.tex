@@ -204,6 +204,14 @@ But when I do remember ``$n - 1$'', the most intuitive definition seems to be th
 
 \subsection*{Orientation}
 
+Implement alternative $1$. First step is to add ``Thm 1'' and ``Defn 2'' described below to \\section\{Orientation*\} in linear\_algebra.tex. Of course, first take a moment to refamiliarize and double check that the definition of orientation from ``Defn 2'' actually works.
+
+Then add alternative $2$ to the appendix and finish the footnote directing readers to the appendix.
+
+\vspace{.25cm}
+
+After that:
+
 \begin{itemize}
 	\item Implement the below ``New approach''.
 	\begin{itemize}
@@ -282,6 +290,18 @@ I need to improve the rant about orientation in tensors GitHub readme, adding bi
 	\item make sure ``finite-dimensional'' or ``$n$-dimensional'' mentioned as necessary; only specify $n$ if a dimension is needed for theorem statement
 	\item move first mention of orthonormalization (Gram-Schmidt) algorithm to linear algebra chapter- probably in orthogonal complements section- since is a prerequisite for orientation section
 	\item interesting, but not really necessary right now: https://analyticphysics.com/Higher\%20Dimensions/Rotations\%20in\%20Higher\%20Dimensions.htm
+\end{itemize}
+
+\section*{Rotations}
+
+As a reminder, here are how rotations are handled presently (so, the following is not a to-do list, just a list of things that should be kept in mind and preserved):
+
+\begin{itemize}
+    \item define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin
+    \item derive matrix of a rotation in $\R^2$
+    \item (compositions of 2-rotations are used in orientation section)
+    \item after we know how to orient ordered bases, we know how to orient an ordered basis of two vecors, and automatically get a definition of $n$-dimensional signed angle as the product of $n$-dimensional unsigned angle (which we have from the dot product) and orientation: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$. this allows us to prove a very useful fact: $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$
+    \item knowing that the determinant gives orientation allows us to prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): \{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\} 
 \end{itemize}
 
 \section*{Manifolds and differential forms}
