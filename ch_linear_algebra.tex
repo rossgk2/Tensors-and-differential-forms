@@ -3354,46 +3354,7 @@ This section generalizes the notion of the dot product, which we only know to be
 
 \newpage
 
-\section{Inner product spaces}
-
-\subsection*{Orthogonal complements}
-
-\begin{defn}
-	(Orthogonal complement).
-	
-	Let $V$ be a vector space with inner product $\langle \cdot, \cdot \rangle$, and consider a vector subspace $W$ of $V$. The \textit{orthogonal complement} $W^\perp$ of $W$ is defined to be the vector space of all vectors in $V$ perpendicular to $W$, $W^\perp := {\{\vv \in V \mid \langle \vv, \ww \rangle = 0 \}}$.
-	
-	Below, we prove that orthogonal complements are in fact vector spaces. 
-\end{defn}
-
-\begin{proof}
-	
-\end{proof}
-
-\begin{defn}
-	(Hyperplane).
-	
-	Let $V$ be a vector space. An \textit{hyperplane (in $V$)} is a set of the form $\pp + W^\perp$, where $\pp \in V$ and $W$ is a one-dimensional vector subspace of $V$.
-\end{defn}
-
-The following characterization of hyperplanes is immediate.
-
-\begin{theorem}
-	(Characterization of hyperplanes).
-	
-	Let $V$ be a vector space over a field $K$. If $W$ is a hyperplane in $V$ then there exists $\widehat{\nn} \in V$ and $c \in K$ such that $W = \{\vv \in V \mid \vv \cdot \widehat{\nn} + c = 0 \}$. 
-\end{theorem}
-
-\begin{proof}
-	
-\end{proof}
-
-% The main reason we need this orthogonal complements section is so that we know that an expression of the form c_1 x_1 + ... + c_n x_n + b = 0 is a hyperplane. The above establishes all we need to know on this in the most elegant way. 
-%
-% Previously, I thought it would be best to define a hyperplane in $n$-dimensions to be a sum of $\pp + W$, where W is an (n - 1)-dimensional subspace. From there we can derive that hyperplanes can be described by implicit equations such as $c_1 x_1 + ... + c_n x_n + b = 0$.
-%
-% This might be less natural than "a hyperplane is $\pp + \{\ww\}^\perp$ for some $\ww \in V".
-%
+\section*{Planes [reorganize this]}
 
 \begin{comment}
 	\subsection*{Implicit to span}
@@ -4145,13 +4106,7 @@ We address this now. In order to solve a linear equation, we will transform it i
     \item deriv. linear equations <-> linear matrix equations <-> systems of linear equations
     \item Remark. (Using intuition about planes with systems of linear equations). 
     
-    Notice that a linear equation in $n$ variables $v_1, ..., v_n$ is of the form $\vv \cdot \nn = 0$ for some $\nn \in \R^n$ and $c \in K$. 
-
-    \textbf{not all linear equations are of this form. some are of the form $\vv \cdot \nn = c$ for $c \neq 0$}
-    
-    In general, the \textit{orthogonal complement} to a vector subspace $W$ of vector space $V$ with inner product $\langle \cdot, \cdot \rangle$, is defined to be the vector subspace $W^\perp := \{ \langle \vv, \ww \rangle = 0 \mid \vv \in V \text{ and } \ww \in W \}$ of vectors in $V$ perpendicular to all vectors in $W$. An \textit{$(n - 1)$-dimensional plane in $\R^n$} is then defined to be the the orthogonal complement of $\spann(\nn)^\top = \{ \vv \cdot \ww = 0 \mid \vv \in \R^n \text{ and } \ww \in \spann(\nn)\} = \{ \vv \cdot \nn = 0 \mid \vv \in V\}$ for some $\nn \in \R^n$.
-    
-    Thus, a linear equation in $n$ variables is the equation of an $(n - 1)$-dimensional plane, and so a system of $m$ linear equations in $n$ variables can be interpreted to be an intersection of $m$ many $(n - 1)$-dimensional planes.
+  	A linear equation in $n$ variables is the equation of an $(n - 1)$-dimensional plane, and so a system of $m$ linear equations in $n$ variables can be interpreted to be an intersection of $m$ many $(n - 1)$-dimensional planes.
 
     Intuition about $2$-dimensional planes in $\R^3$ can therefore be used to gain intuition about the number of solutions to a system of linear equations.
 \end{enumerate}
