@@ -229,7 +229,7 @@ We now establish a last few basic facts about wedge products.
 \end{theorem}
 
 \begin{proof}
-     To show the first equation in the box, show that the function sending an alternating bilinear function to its unique linear counterpart defined on wedge product spaces (which is guaranteed to exist by the universal property for exterior powers) is a linear isomorphism. (This is what we did when we proved the coorresponding fact for tensor product spaces; those steps can essentially be repeated for this proof. See Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}). This proves the first equation for the case $k = 2$. The general result follows by induction.  
+     To show the first equation in the box, show that the function sending an alternating bilinear function to its unique linear counterpart defined on wedge product spaces (which is guaranteed to exist by the universal property for exterior powers) is a linear isomorphism. (This is what we did when we proved the corresponding fact for tensor product spaces; those steps can essentially be repeated for this proof. See Theorem \ref{ch::motivated_intro::thm::multilin_fns_iso_lin_fns}). This proves the first equation for the case $k = 2$. The general result follows by induction.  
      
     To prove the second line, use a similar isomorphism as was presented at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}, when we derived the natural isomorphism $\LLLL(V \rightarrow W) \cong W \otimes V^*$. That is, take an element $\ff \in (\alt \LLLL)(V \rightarrow W)$, decompose it into a linear combination of ``alternating elementary compositions'', and then send each alternating elementary composition $\ww \circ \phi \mapsto \ww \wedge \phi$. The formal check that this function is a linear isomorphism is essentially the same as the check described at the end of Section \ref{ch::motivated_intro::sec::motivated_intro}.
     
@@ -269,7 +269,7 @@ We now establish a last few basic facts about wedge products.
 \begin{theorem}
     (Antisymmetric tensors are a vector space).
 
-    Let $V$ be a finite-dimensional vector space. The set of alternating tensors in $V^{\otimes k}$ is a vector subspace of $V^{\otimes k}$.
+    Let $V$ be a finite-dimensional vector space. The set of antisymmetric tensors in $V^{\otimes k}$ is a vector subspace of $V^{\otimes k}$.
 \end{theorem}
 
 \begin{proof}
@@ -299,7 +299,7 @@ Now, we generalize the pattern shown in the previous example to define a functio
         \alt(\TT) := \frac{1}{k!} \sum_{\sigma \in S_k} \sgn(\sigma) \TT^\sigma.
     \end{align*}
 
-    In the below, we give proof that $\alt(\TT)$ is antisymmetric for all $\TT \in V^{\otimes k}$.
+    In the below, we give proof that $\alt(\TT)$  $\TT \in V^{\otimes k}$.
     
     Note that $\TT$ is antisymmetric, then the sum argument is $\sgn(\sigma) \TT^\sigma = \sgn(\sigma)^2 \TT = \TT$, and so the sum is $k! \TT$. Thus, the division by $k!$ ensures that $\alt(\TT) = \TT$ when $\TT$ is an antisymmetric tensor.
 \end{defn}
@@ -321,9 +321,9 @@ Now, we generalize the pattern shown in the previous example to define a functio
 \end{proof}
 
 \begin{remark}
-    (Alternating tensors exist).
+    (Antisymmetric tensors exist).
 
-    Since $\alt(\TT)$ is antisymmetric for all tensors $\TT$, we can conclude that alternating tensors exist.
+    Since $\alt(\TT)$ is antisymmetric for all tensors $\TT$, we can conclude that antisymmetric tensors exist.
 \end{remark}
 
 \begin{theorem}
@@ -336,7 +336,7 @@ Now, we generalize the pattern shown in the previous example to define a functio
     This follows from the fact that the function $\TT \mapsto \TT^\sigma$ is linear.
 \end{proof}
 
-[The properties of the alternization function can be restated in the following significant way.] 
+[The properties of the antisymmetrization function can be restated in the following significant way.] 
 
 \begin{lemma}
     (The antisymmetric tensors are the antisymmetrized tensors).
