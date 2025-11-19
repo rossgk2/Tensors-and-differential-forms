@@ -79,7 +79,7 @@ After much thought, I've determined that approach in which angle is defined firs
 
 The best approach will be to go back to the geometric $\implies$ algebraic via linearity and algebraic $\implies$ geometric due to invariance under rotation.
 
-\subsubsection*{Overview of work in progress}
+\subsubsection*{Overview of in-progress sections on dot product}
 
 As I've worked on it, I've found that the best approach has a lot to do with rotation, since the notion of rotation is fundamentally derived from the notion of signed angle. Here's an overview of the dot-product-related sections of the book that are in progress:
 
@@ -142,18 +142,18 @@ Cleanup
 
 \section*{Planes}
 
-I'm deciding which of three characterizations of planes to use as the definition of a plane. (The below is restricted to $\R^n$ rather than inner product spaces for simplicity. Of course after choosing an approach we'll eventually show how it applies to inner product spaces.) Whichever characterization I choose, be sure to add this remark:
+I'm deciding which of three characterizations of planes to use as the definition of a plane. Whichever characterization I choose, be sure to add this remark:
 
 \begin{center}
-	Planes in $\R^n$ where $n > 3$ are sometimes called \textit{hyperplanes}.
+	Planes in $\R^n$ are sometimes called \textit{hyperplanes} when $n > 3$.
 \end{center}
 
-It's very easy to show that these three characterizations are equivalent:
+Here are the three characterizations. (Note, the below is restricted to $\R^n$ rather than inner product spaces for simplicity. Of course after choosing an approach we'll eventually show how it applies to inner product spaces.)
 
 \begin{enumerate}
-	\item (Calculus characterization). A plane in $\R^n$ is the graph of a function $f:\R^n \rightarrow \R$ that satisfies $\frac{\pd f(x_1, ..., x_i, ..., x_n)}{\pd x_i} = \text{const}$ for all $i$.
+	\item (Calculus characterization). A plane in $\R^n$ is the graph of a function $f:\R^{n - 1} \rightarrow \R$ that satisfies $\frac{\pd f(x_1, ..., x_i, ..., x_{n - 1})}{\pd x_i} = \text{const}$ for all $i$.
 	\item (Implicit equation characterization). A plane in $\R^n$ is a solution set to an equation of the form $(c_1 x_1 + ... + c_n x_n + d = 0, \text{ where $x_1, ..., x_n \in \R$})$.
-	\item (Special case of orthogonal complement characterization). A plane in $\R^n$ is a vector space of the form $\pp + \{\ww \in \R^n \mid \hat{\nn} \cdot \ww = 0 \}^\top$ for some $\hat{\nn} \in \R^n$.
+	\item (Special case of orthogonal complement characterization). A plane in $\R^n$ is a vector space of the form $\pp + \{\ww \in \R^n \mid \hat{\nn} \cdot \ww = 0 \}$ for some $\hat{\nn} \in \R^n$.
 \end{enumerate}
 
 If we define the concept of orthogonal complements, and prove that orthogonal complements are vector subspaces, then we get two more equivalent characterizations:
@@ -167,15 +167,174 @@ So which characterization is best to start with?
 
 The subspace characterization (4.2.) is the most tempting, but that's only because I forget that it's specifically an $(n - 1)$-dimensional subspace that's involved, not an arbitrary one. (``Plane'' isn't just another word for ``vector space''!)
 
-Keeping this in mind, I first thought that since the orthogonal complement characterization makes clear something that might otherwise be easily overlooked (the ``$n - 1$ constraint''), it must be the best.
+Keeping this in mind, I first thought that since the orthogonal complement characterization makes clear something that might otherwise be easily overlooked- the $n - 1$ stipulation-, it must be the best.
 
-But then I realized, in order to know the orthogonal complement characterization easily communicates something that might otherwise be lost, one has to be aware of the existence of that thing that might be lost. One would only know of the that thing which might be lost in the first place if they had already stumbled upon it by starting with a more natural definition and working out the consequences!
+But then I realized, in order to know the orthogonal complement characterization easily communicates something that might otherwise be lost, one has to be aware of the existence of that thing that might be lost. And one would only know of the that thing which might be lost in the first place if they had already stumbled upon it by starting with a more natural definition and working out the consequences!
 
-So, I ask myself again, what is the most \textit{natural} definition? Well, ``a plane is a set spanned by some number of vectors'', which, as I said, is what's most tempting, is intuitive- but it's also incorrect. The calculus characterization is both intuitive and correct. \textit{So the calculus characterization is the correct first definition of a plane.}
+So, I ask myself again, what is the most \textit{natural} definition? Well, as I noted above, ``a plane is a set spanned by some number of vectors'', is what's most tempting and intuitive- but it's also incorrect. The calculus characterization is both intuitive and correct. \textit{So the calculus characterization is the correct first definition of a plane.}
 
 \subsubsection*{Constructive proofs}
 
-The obvious proofs of the equivalence between the different characterizations of planes aren't constructive. To see how to compute the span of the subspace characterization from an implicit equation and vice-versa, constructive proofs are necessary. For these, CTRL-F ``Implicit to span'' and ``Span to implicit'' in the linear algebra chapter and look at the commented out stuff.
+The most obvious proofs of (4.2) isn't constructive; it's just an invocation of the facts that an orthogonal complement is a vector space and that when $W$ is a vector subspace of a vector space $V$ we have $\dim(W^\perp) = \dim(V) - \dim(W)$.
+
+To see how to compute the span of the subspace characterization from an implicit equation and vice-versa, constructive proofs are necessary. See the commented out proofs here:
+
+\vspace{.25cm}
+
+\textit{See commented out proofs in the .tex file that generated this PDF.}
+\begin{comment}
+	\subsection*{(3) $\implies$ (4.2)}
+	
+	$(\xx - \pp) \cdot \widehat{\nn} = 0 \iff \xx \cdot \widehat{\nn} + d = 0 \iff (x, y, z) \cdot (a, b, c) = 0 \iff ax + by + cz + d = 0$.
+	
+	$ax + by + cz + d = 0 \iff z = -(a/c)x - (b/c)y - d \iff$
+	
+	\begin{align*}
+		\begin{pmatrix}
+			x \\ y \\ z
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x \\ y \\ -(a/c)x - (b/c)y - d
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			1 \\ 0 \\ -a/c
+		\end{pmatrix}
+		x
+		+
+		\begin{pmatrix}
+			0 \\ 1 \\ -b/c
+		\end{pmatrix}
+		y
+		-
+		\begin{pmatrix}
+			0 \\ 0 \\ d
+		\end{pmatrix} \\
+	\end{align*}
+	
+	$\iff$
+	
+	\begin{align*}
+		\begin{pmatrix}
+			x \\ y \\ z
+		\end{pmatrix}
+		\in
+		\left\{-d \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}\right\}
+		+
+		\spann\left(
+		\left\{
+		\begin{pmatrix} 1 \\ 0 \\ -a/c \end{pmatrix},
+		\begin{pmatrix} 0 \\ 1 \\ -b/c \end{pmatrix}
+		\right\}
+		\right)
+	\end{align*}
+	
+	\subsection*{(4.2) $\implies$ (3): example}
+	
+	Example: $P = \{\pp\} + \spann(\{\vv_1, \vv_2\})$, where $\pp = (1, 2, 0)^\top$, $\vv_1 = (1, 0, 1)^\top$, $\vv_2 = (0, 1, 1)^\top$.
+	
+	We have $(x, y, z)^\top \in P$ iff there exist $c_1, c_2$ such that $(x, y, z) = (0, 1, 1) + c_1(1, 0, 1)^\top + c_2(0, 1, 1)^\top$, iff there exist $c_1, c_2$ such that $(x, y, z) - (0, 1, 1) = c_1(1, 0, 1)^\top + c_2(0, 1, 1)^\top$, iff there exist $c_1, c_2$ such that
+	
+	\begin{align*}
+		\begin{pmatrix}
+			1 & 0 \\
+			0 & 1 \\
+			1 & 1
+		\end{pmatrix}
+		\begin{pmatrix}
+			c_1 \\ c_2
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			x-1 \\ y-2 \\ z
+		\end{pmatrix}
+	\end{align*}
+	
+	The augmented matrix is:
+	
+	\begin{align*}
+		\left(\begin{array}{cc|c}
+			1 & 0 & x-1 \\
+			0 & 1 & y-2 \\
+			1 & 1 & z
+		\end{array}\right)
+	\end{align*}
+	
+	And its RREF is
+	
+	\begin{align*}
+		\text{rref}
+		\left(\begin{array}{cc|c}
+			1 & 0 & x-1 \\
+			0 & 1 & y-2 \\
+			1 & 1 & z
+		\end{array}\right)
+		=
+		\left(\begin{array}{cc|c}
+			1 & 0 & x-1 \\
+			0 & 1 & y-2 \\
+			0 & 0 & z - x - y + 3
+		\end{array}\right)
+	\end{align*}
+	
+	Since $(x, y, z)^\top \in P$, the corresponding system must have solutions. Therefore there cannot be any rows of all zeros, and we must have
+	
+	\begin{align*}
+		z - x - y + 3 = 0,
+	\end{align*}
+	
+	which is an implicit equation, as desired.
+	
+	\subsection*{(4.2) $\implies$ 3: general theory}
+	
+	Let $\pp, \vv_1, ..., \vv_k \in \R^n$, where $k < n$, and define $P := \{\pp\} + \spann(\{\vv_1, ..., \vv_k\})$. Suppose $\xx \in P$, so $\xx = \pp + c_1 \vv_1 + ... + c_k \vv_k$. Then if $\EE = (\vv_1, ..., \vv_k)$ and $\cc = (c_1, ..., c_k)^\top$ we have $\xx = \pp + \EE \cc$ and thus $\EE \cc = \xx - \pp$. This matrix-vector equation corresponds to the the augmented matrix
+	
+	\begin{align*}
+		\begin{pmatrix}
+			\EE \cc & \mid & \xx - \pp
+		\end{pmatrix}.
+	\end{align*}
+	
+	Row-reduce this matrix to obtain
+	
+	\begin{align*}
+		\text{rref}
+		\begin{pmatrix}
+			\EE \cc & \mid & \xx - \pp
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			\FF & \mid & \yy
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			f_{11} & f_{21} & \hdots & f_{1n} & y_1 \\
+			f_{21} & f_{22} & \hdots & f_{2n} & y_2 \\
+			\vdots & \vdots &  & \vdots \\
+			0 & 0 & \hdots & 0 & y_{r + 1} \\
+			\vdots & \vdots & \hdots & \vdots & \vdots  \\
+			0 & 0 & \hdots & 0 & y_m
+		\end{pmatrix}.
+	\end{align*}
+	
+	Notice that $k < n$, then there are infinitely many solutions to $\FF \xx = \mathbf{0}$, and so $\FF$ must have some rows filled with zeros at the bottom of its RREF.
+	
+	Since $\xx \in P$, there must be a solution to the system of equations described by the augmented matrix, and thus we cannot have a row of the form $(0, 0, ..., 0, y_s)$ for any $y_s \neq 0$; we must have $y_s = 0$ for all $s \in [r + 1, m]$.
+	
+	\subsection*{Conclusions}
+	
+	\begin{itemize}
+		\item \textit{Hyperplanes} are ``affine spans'' of the above kind for which $n - k = 1$. I.e. they are sets described by exactly one implicit equation of the above kind. I.e. are those for which $n - k = 1$.
+		\item $\{ \text{hyperplanes} \} = \{ \text{sets described by $\sum_i (c_i x_i) + d = 0$}\}$.
+		\begin{itemize}
+			\item Above shows $\subseteq$. ``Span to implicit'' shows $\supseteq$.
+		\end{itemize}
+		\item if $\vv_1, \vv_2 \in \R^4$ then $\spann(\{\vv_1, \vv_2\})$ is described by $4 - 2 = 2$ implicit equations, i.e. by $2$ hyperplanes
+	\end{itemize}
+\end{comment}
+
+\vspace{.25cm}
 
 These constructive proofs also provide a bridge between (1), (2), (3) and (4.1), (4.2) that isn't orthogonal complements, if orthogonal complements are to be avoided for some reason. (One possible reason: maybe introducing an entire new concept just for the sake of facilitating one proof isn't really worth it! Though, in the below ``Planes in the system of linear equations section'', we will later see there is actually one more reason to introduce orthogonal complements...)
 
@@ -185,7 +344,7 @@ I believe that the current situation in the systems of linear equations chapter 
 
 I would really like to use planes to prove this theorem, since this theorem is most intuitively remembered by thinking about intersections of planes. That might not be better, though, since the existing proof is much more elegant than the one with planes would be.
 
-At the very least, make sure there's a remark on how the solution set to a system of linear equations is an intersection of planes. (If we have chosen to introduce orthogonal complements, then this is equivalent to saying \textit{any} vector space is an intersection of planes\footnote{Every vector subspace $W$ is the kernel of some linear function, namely, the function $\vv \mapsto \proj(\vv \rightarrow W^\perp)$.}.)
+At the very least, make sure there's a remark on how the solution set to a system of linear equations is an intersection of planes. (If we have chosen to introduce orthogonal complements, then this is equivalent to saying \textit{any} vector space is an intersection of planes, because eEvery vector subspace $W$ is the kernel of some linear function, namely, the function $\vv \mapsto \proj(\vv \rightarrow W^\perp)$.)
 
 \section*{Systems of linear equations}
 
@@ -334,15 +493,19 @@ I need to improve the rant about orientation in tensors GitHub readme, adding bi
 
 \section*{Rotations}
 
-As a reminder, here are how rotations are handled presently (so, the following is not a to-do list, just a list of things that should be kept in mind and preserved):
+Also need to make sure that rotations are handled properly. Most of the below is implemented, but I need to make sure that the items (5) - (9) from the below are represented in ``Rotations in $n$ dimensions'', which is right after the presentation of orientation is finished.
 
-\begin{itemize}
-    \item define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation} iff it preserves length, signed angle, and fixes the origin
-    \item derive matrix of a rotation in $\R^2$
-    \item (compositions of 2-rotations are used in orientation section)
-    \item after we know how to orient ordered bases, we know how to orient an ordered basis of two vecors, and automatically get a definition of $n$-dimensional signed angle as the product of $n$-dimensional unsigned angle (which we have from the dot product) and orientation: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$. this allows us to prove a very useful fact: $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^2$ that preserve length and orientation} \}$
-    \item knowing that the determinant gives orientation allows us to prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): \{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\} 
-\end{itemize}
+\begin{enumerate}
+    \item Define rotation in $\R^2$: a function $\R^2 \rightarrow \R^2$ is a \textit{rotation in $\R^2$} iff it preserves length, signed angle, and fixes the origin.
+    \item Derive matrix of a rotation in $\R^2$.
+    \item (Compositions of 2-rotations are used in orientation section).
+    \item Generalize unsigned angle via the dot product; generalize the sign of signed angle, which is orientation, by finding an equivalent characterization of orientation that easily generalizes (see ``New approach'' in above ``Orientation'' subsection).
+    \item Define signed angle in $\R^n$: $\theta_s(\vv, \ww) := \orn((\vv, \ww)) \theta_u(\vv, \ww)$.
+    \item Define rotation in $\R^n$: a function $\R^n \rightarrow \R^n$ is a \textit{rotation in $\R^n$} iff it preserves length, singed angle, and fixes the origin.
+    \item Prove that $\{\text{rotations in $\R^n$}\} = \{ \text{linear functions on $\R^n$ that preserve length and orientation} \}$
+    \item Of course we have $\{\text{linear functions on $\R^n$ that preserve length and orientation}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$. So $\{\text{rotations in $\R^n$}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$.
+    \item We can also prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): $\{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\}$. 
+\end{enumerate}
 
 \section*{Manifolds and differential forms}
 
