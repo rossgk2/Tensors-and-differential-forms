@@ -133,6 +133,8 @@ Has content that should be reorganized... obviously...
 
 When both the dot product and orientation sections are done, I want to make some final edits that clarify how both are about different aspects of signed angle. Dot product happens to be the easiest way to generalize unsigned angle. Orientation is just the sign of signed angle.
 
+\newpage
+
 \section*{Orientation}
 
 After thinking a lot about how to communicate what orientation really is, I realized that there's actually a definition that says everything that needs to be said- no exposition necessary! This definition, the first one in the below ``New approach'', is equivalent to a characterization of orientation in $2$ dimensions (given in the first theorem in the below ``New approach'') that generalizes easily to $n$ dimensions. I need to rewrite the orientation section so that it follows this new approach.
@@ -228,6 +230,8 @@ I need to make sure that rotations are handled properly. Most of the below is im
 	\item Of course we have $\{\text{linear functions on $\R^n$ that preserve length and orientation}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$. So $\{\text{rotations in $\R^n$}\} \\ = \{\text{linear functions on $\R^n$ with determinant $1$}\}$.
 	\item We can also prove a retroactively satisfying fact (since compositions of 2-rotations were helpful in our exploration of orientation): $\{\text{compositions of $2$-dimensional rotations in $\R^n$}\} = \{\text{rotations in $\R^n$}\}$. 
 \end{enumerate}
+
+\newpage
 
 \section*{Planes}
 
@@ -489,16 +493,22 @@ To-dos for this chapter:
     \item Make sure this remark is included: $\phi^{\see_1} \wedge ... \wedge \phi^{\see_k}(\vv_1, ..., \vv_k)$ is the volume of the projection of the parallelapiped spanned by $\vv_1, ..., \vv_k$ onto $\spann(\see_{i_1}, …, \see_{i_k})$.
 \end{itemize}
 
-\subsubsection{Cross product}
+\subsection*{Cross product}
 
 \begin{itemize}
     \item Do \textit{not} introduce the cross product as the vector with a magnitude equal to the area of the spanned parallelogram and direction perpendicular and positively oriented. This is very contrived. Instead, in the linear algebra chapter, after determinants and orientation, introduce the cross product as a natural object that comes out of thinking about the oriented volume of parallelepiped: $(\vv \times \ww)^\top$ is the matrix of the linear function $\uu \mapsto \det(\uu, \vv, \ww)$. That is $(\vv \times \ww) \cdot \uu = \det(\uu, \vv, \ww)$. 
 \end{itemize}
 
-\subsubsection{Hodge dual}
+\subsection*{Hodge dual}
+
+The Hodge dual should definitely at first be defined to be the isomorphism $*:\R^3 \wedge \R^3 \rightarrow \R^3$ such that $*(\vv \wedge \ww) = \vv \times \ww$. I was thinking for a second that then perhaps the cross product would somehow induce the formula $\TT \wedge *\SS = \langle \TT, \SS \rangle \spc \see_1 \wedge \see_2 \wedge \see_3$, where here $\langle \cdot, \cdot \rangle$ is the induced inner product on $\R^3 \wedge \R^3$, but, working backwards, we see we'd need ``$\vv \wedge *\ww = (\vv \cdot \ww) \spc \see_1 \wedge \see_2 \wedge \see_3$'', which doesn't make sense, because $*\ww$ isn't a defined notion. So, it seems the best thing to do is this:
 
 \begin{itemize}
-    \item Emphasize that Hodge-dual is basically a generalized cross product. This perspective implies the abstract definition of the Hodge-dual that involves orthogonal subspaces, which is often pulled out of thin air in other presentations. (So maybe prove that the Hodge-dual satisfies this condition involving orthogonal subspaces as a result of it satisfying cross-product like condition. Now that I think about it, this proof will be analogous to proving that $\vv \times \ww$ is perpendicular to $\vv$ and $\ww$ by using the defn of $\times$. This means that definition of Hodge dual will be in cross product section, so can remove definition snear vector calculus stuff).
+	\item (Somewhere earlier in the wedge products section). Any oriented subspace spanned by an ordered basis $(\ee_1, ..., \ee_k)$ can be represented by the wedge product $\ee_1 \wedge ... \wedge \ee_k$. (This is actually already in place, in Definition \ref{ch::exterior_powers::defn::orientation_with_top_degree_wedges}.)
+	\item In $\R^3$ Compare the decomposition of $\vv \wedge \ww$ in the standard basis with the decomposition of $\vv \times \ww$ in the standard basis. This leads us to define the Hodge dual $*$ to be such that $*(\vv \wedge \ww) = \vv \times \ww$. This implies that $*(\see_{\sigma(1)} \wedge \see_{\sigma(2)}) = \see_{\sigma(3)}$ for all cyclic permutations $\sigma \in S_3$.
+	\item Recall that any oriented subspace spanned by an ordered basis $(\ee_1, ..., \ee_k)$ can be represented by the wedge product $\ee_1 \wedge ... \wedge \ee_k$. Now, notice that if $\TT$ represents a subspace $W$, then the Hodge $*\TT$ represents the subspace $W^\perp$.
+	\item In an $n$-dimensional inner product space $V$ with positively oriented ordered basis $(\ee_1, ..., \ee_n)$, define the Hodge dual $*$ to be such that $\TT \wedge *\TT = \ee_1 \wedge ... \wedge \ee_n$ for any wedge product $\TT$ of $k \leq n$ orthonormal vectors.
+	\item Somehow extend this definition to arbitrary wedge products $\TT$ and $\SS$, and show that in the situation of the previous bullet point, $\TT \wedge *\SS = \langle \TT, \SS \rangle \spc \ee_1 \wedge ... \wedge \ee_n$.
 \end{itemize}
 
 \section*{Manifolds and differential forms}
