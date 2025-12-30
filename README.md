@@ -25,7 +25,7 @@ The reason is because the pedagogy in this book is superior, at least from the p
 
 ### Orientation
 * We fully explain the concepts of orientation and rotation by building them from the ground up. We define orientation and rotation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that yes, orientation does indeed correspond to the sign of the determinant, and yes, rotations do indeed have determinant 1. We do *not* just out of the blue state these facts without motivation, as most books do, since this leads to circular reasoning.
-  * It's worth having an idea of what's avoided by the correct approach. In the typical way of doing things, we would have the following circular series of questions and answers.
+  * It's worth having an idea of what's avoided by the correct approach. In the typical way of doing things, we would have the following circular series of questions and answers. Regarding orientation, we have:
     * Q: "Why is orientation defined to correspond to the sign of the determinant?".
     * A: "Because orientation should have antisymmetric behaivor. Since the determinant exhibits antisymmetric behaivor, we can use it to define orientation."
     * Q: "But why should orientation have antisymmetric behaivor?"
@@ -33,6 +33,11 @@ The reason is because the pedagogy in this book is superior, at least from the p
     * A:" But why do rotations preserve orientation?"
     * Q: "Because rotations are defined to have determinant 1. Since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that the orientation of a rotated ordered basis is just 1 times the orientation of the original ordered basis."
     * A: "Okay. But why is orientation defined to correspond to the sign of the determinant?"🤦‍♂️
+  
+  Regarding rotations, we have:
+    * Q: "Why are rotations defined to be linear functions with determinant $1$?"
+    * A: "Rotations preserve the absolute value of volume, so every rotation $\mathbf{R}$ satisfies $\det(\mathbf{R}) = \pm 1$. Since rotations also preserve orientation, and since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that rotations $\mathbf{R}$ must in particular satisfy $\det(\mathbf{R}) = 1$."
+    * A: "But why is orientation defined to correspond to the sign of the determinant?" 🤦‍♂️🤦‍♂️
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
  
