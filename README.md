@@ -24,7 +24,8 @@ The reason is because the pedagogy in this book is superior, at least from the p
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the permutation formula.
 
 ### Orientation
-* We fully explain the concepts of orientation and rotation by building it up from the ground up. We define orientation and rotation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that yes, orientation does indeed correspond to the sign of the determinant. We do *not* just out of the blue define the sign of the determinant to correspond to orientation, as most books do, since this leads to circular reasoning. In the typical way of doing things, we would have the following circular series of questions and answers.
+* We fully explain the concepts of orientation and rotation by building them from the ground up. We define orientation and rotation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that yes, orientation does indeed correspond to the sign of the determinant, and yes, rotations do indeed have determinant 1. We do *not* just out of the blue state these facts without motivation, as most books do, since this leads to circular reasoning.
+  * It's worth having an idea of what's avoided by the correct approach. In the typical way of doing things, we would have the following circular series of questions and answers.
     * Q: "Why is orientation defined to correspond to the sign of the determinant?".
     * A: "Because orientation should have antisymmetric behaivor. Since the determinant exhibits antisymmetric behaivor, we can use it to define orientation."
     * Q: "But why should orientation have antisymmetric behaivor?"
