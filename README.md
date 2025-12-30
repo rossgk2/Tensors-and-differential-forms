@@ -29,7 +29,7 @@ The reason is because the pedagogy in this book is superior, at least from the p
     * Q: "Why is orientation defined to correspond to the sign of the determinant?".
     * A: "Because orientation should be preserved by antisymmetry (swapping and negating vectors). Since the determinant is preserved by antisymmetry, we can use it to define orientation."
     * Q: "But why should orientation be preserved by antisymmetry?"
-    * A: "Notice that whenever one ordered basis is antisymmetrically related to another, it is also a rotation of the other. Since orientation should be preserved by rotation, it follows that ordered bases with the same orientation should be antisymmetrically related. Thus antisymmetry preserves orientation."
+    * A: "Notice that whenever one ordered basis is antisymmetrically related to another, it is also a rotation of the other. Since orientation should be preserved by rotation, it follows that ordered bases with the same orientation should be antisymmetrically related. Thus orientation should be preserved by antisymmetry."
     * A:" But why do rotations preserve orientation?"
     * Q: "Because rotations are defined to have determinant 1. Since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that the orientation of a rotated ordered basis is just 1 times the orientation of the original ordered basis."
     * A: "Okay. But why is orientation defined to correspond to the sign of the determinant?"🤦‍♂️
