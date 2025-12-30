@@ -40,6 +40,8 @@ The reason is because the pedagogy in this book is superior, at least from the p
     * Q: "But why is orientation defined to correspond to the sign of the determinant?" 🤦‍♂️🤦‍♂️
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
+
+  You can see that this topic can become quite a tangle. This book elucidates the matter. 
  
 ## Manifolds
 * The differential $d\mathbf{F}$ of a map $\mathbf{F}:U \subseteq M \rightarrow V \subseteq N$ between smooth charts on smooth manifolds is not simply defined, without motivation, to be $d\mathbf{F}\_\mathbf{p}(v_\mathbf{p})(f) = v_\mathbf{p}(f \circ \mathbf{F})$. Instead, we define $d\mathbf{F}\_\mathbf{p}$ to be the function $T\_\mathbf{p}(U) \rightarrow T\_{\mathbf{F}(\mathbf{p})}(V)$ whose matrix relative to the charts' coordinate bases is the Jacobian matrix of the coordinate representation of $\mathbf{F}(\mathbf{p})$.
