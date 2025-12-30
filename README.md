@@ -36,10 +36,10 @@ I aim to give a *best* presentation of every topic covered. There are many examp
     * Q: "Because rotations are defined to have determinant 1. Since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that the orientation of a rotated ordered basis is just 1 times the orientation of the original ordered basis."
     * A: "Okay. But why is orientation defined to correspond to the sign of the determinant?"🤦‍♂️
   
-  Regarding rotations, we have:
-    * Q: "Why are rotations defined to be linear functions with determinant $1$?"
-    * A: "Because they should preserve volume and orientation, and, since orientation corresponds to the determinant, and because of the product rule for determinants, having a determinant of $1$ is the same as preserving orientation."
-    * Q: "But why is orientation defined to correspond to the sign of the determinant?" 🤦‍♂️🤦‍♂️
+    Regarding rotations, we have:
+      * Q: "Why are rotations defined to be linear functions with determinant $1$?"
+      * A: "Because they should preserve volume and orientation, and, since orientation corresponds to the determinant, and because of the product rule for determinants, having a determinant of $1$ is the same as preserving orientation."
+      * Q: "But why is orientation defined to correspond to the sign of the determinant?" 🤦‍♂️🤦‍♂️
   
   You can see that this topic can become quite a tangle. This book elucidates the matter. 
 
