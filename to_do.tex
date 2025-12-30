@@ -168,9 +168,9 @@ The key to my approach is to realize the importance of signed angle. My approach
 
 \subsection*{Possible approach using the $n$-sphere}
 
-In the new treatment, $n$-dimensional unsigned angle emerges from the dot product (as before), and $n$-dimensional orientation emerges from 2-dimensional orientation.
+In the above new approach, $n$-dimensional unsigned angle emerges from the dot product (as before), and $n$-dimensional orientation emerges from 2-dimensional orientation.
 
-For a while I was interested in a more general treatment that defined $n$-dimensional \textit{signed} angle, and thus unified unsigned angle and orientation, since signed angle is the product of these two. The idea was, since $2$-dimensional signed angle is arclength on one of two parameterizations of a 2-sphere, maybe $n$-dimensional signed angle could be arclength on a particular parameterization of an n-sphere.
+For a while, though, I was interested in a more general treatment that defined $n$-dimensional \textit{signed} angle, and thus unified unsigned angle and orientation, since signed angle is the product of these two. The idea was, since $2$-dimensional signed angle is arclength on one of two parameterizations of a 2-sphere, maybe $n$-dimensional signed angle could be arclength on a particular parameterization of an $n$-sphere.
 
 I found implementing this idea to be difficult. Yes, things are easy on a 2-sphere, since there are only two unit-speed parameterizations of the path between two points on a 2-sphere. But on an $n$-sphere, there are infinitely many such paths.
 
@@ -181,7 +181,7 @@ Because of this difficulty I resorted to splitting up the definition of signed a
 	\item And, because I was getting lost in the complexity of all of this, I came up with a definition of the orientation of an ordered basis of two vectors that doesn't really have anything to do with $n$-spheres, and relies on the definition of orientation in $\R^2$: ``The orientation of an ordered basis of vectors $\vv, \ww \in \R^n$ is a tuple of signs, the $i$th sign being $\text{orn}\Big(\proj(\vv, \spann(\see_i, \see_{i + 1})), \proj(\ww, \spann(\see_i, \see_{i + 1}))\Big)$.''
 \end{itemize}
 
-After taking a step back, I'm wondering if there is a way that the difficulty of there being infinitely unit-speed parameterizations of the $n$-sphere.
+After taking a step back, I'm wondering if there might actually be a way to handle the difficulty of there being infinitely many unit-speed parameterizations of the $n$-sphere.
 
 Maybe one could define an equivalence relation on parameterizations, so that two of them are considered to be equal if their arclength functions are the same, and so that the negation of a parameterization is its reverse parameterization.
 
@@ -203,6 +203,8 @@ I need to improve the rant about orientation in tensors GitHub readme, adding bi
 	\item Prove that rotations preserve orientation.
 	\item There is no distinguishment between signed and unsigned angle.
 \end{itemize}
+
+[About a month after I comprehensively updated this to-do, I edited the rant on the GitHub readme. I think it's good now. But I should double check of course.]
 
 \subsection*{Misc. cleanup}
 
