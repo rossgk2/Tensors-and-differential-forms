@@ -24,7 +24,14 @@ The reason is because the pedagogy in this book is superior, at least from the p
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the permutation formula.
 
 ### Orientation
-* We fully explain the concept of orientation by building it up from the ground up. We define orientation *without* the determinant, and then develop a series of theorems that formalize intuition and show how orientation corresponds to the sign of the determinant. We do *not* just define the sign of the determinant to correspond to orientation with little motivation, as most books do, since this leads to circular reasoning. (With the typical definition, we would have the following circular series of questiosn and answers. Q: "Why is orientation defined to correspond to the sign of the determinant?". A: "Because orientation should have antisymmetric behaivor. Since the determinant exhibits antisymmetric behaivor, we can use it to define orientation." Q: "But why should orientation have antisymmetric behaivor?" A: "Because it's defined with the determinant, and the determinant exhibits antisymmetric behaivor."🤦‍♂️)
+* We fully explain the concepts of orientation and rotation by building it up from the ground up. We define orientation and rotation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that yes, orientation does indeed correspond to the sign of the determinant. We do *not* just out of the blue define the sign of the determinant to correspond to orientation, as most books do, since this leads to circular reasoning. In the typical way of doing things, we would have the following circular series of questions and answers.
+    * Q: "Why is orientation defined to correspond to the sign of the determinant?".
+    * A: "Because orientation should have antisymmetric behaivor. Since the determinant exhibits antisymmetric behaivor, we can use it to define orientation."
+    * Q: "But why should orientation have antisymmetric behaivor?"
+    * A: "Notice that whenever one ordered basis is antisymmetrically related to another, it is also a rotation of the other. Since orientation should be preserved by rotation, it follows that antisymmetrically related ordered bases should have the same orientation."
+    * A:" But why do rotations preserve orientation?"
+    * Q: "Because rotations are defined to have determinant 1. Since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that the orientation of a rotated ordered basis is just 1 times the orientation of the original ordered basis."
+    * A: "Okay. But why is orientation defined to correspond to the sign of the determinant?"🤦‍♂️
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
  
