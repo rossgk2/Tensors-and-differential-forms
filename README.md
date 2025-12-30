@@ -2,7 +2,9 @@
 
 There are many books about tensors and/or differential forms, and probably all of them are written by people who know more about these concepts than me. So why read this book?
 
-The reason is because the pedagogy in this book is superior, at least from the perspective of those who are dissatisfied with [presentations of mathematics that sacrifice understanding for logical or technical efficiency](https://github.com/rossgk2/physmath?tab=readme-ov-file#the-dreaded-efficency-pedagogy). I aim to give a *best* presentation of every topic covered. There are many examples of this in each of the topics the book covers:
+The reason is because the pedagogy in this book is superior, at least from the perspective of those who are dissatisfied with [presentations of mathematics that sacrifice understanding for logical or technical efficiency](https://github.com/rossgk2/physmath?tab=readme-ov-file#the-dreaded-efficency-pedagogy).
+
+I aim to give a *best* presentation of every topic covered. There are many examples of this in each of the topics the book covers:
 
 ## Tensors
 * Tensors are presented in a linear algebra context before moving to the manifold context. Trying to learn tensors all at once in the manifold context is too much, in my opinion; there is plenty that needs investigation in the simpler setting of vector spaces. Most books on tensors take the approach that is "too much".
