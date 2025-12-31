@@ -26,23 +26,13 @@ I aim to give a *best* presentation of every topic covered. There are many examp
 * The determinant is not immediately defined as the factor of multiplication on the top exterior power, as is done in most books that present this abstract characterization. Instead, the abstract characterization is proved as a theorem after establishing the permutation formula.
 
 ### Orientation
-* We fully explain the concepts of orientation and rotation by building them from the ground up. We define orientation and rotation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that yes, orientation does indeed correspond to the sign of the determinant, and yes, rotations do indeed have determinant 1. We do *not* just out of the blue state these facts without motivation, as most books do, since this leads to circular reasoning.
-  * It's worth having an idea of what's avoided by the correct approach. In the typical way of doing things, we would have the following circular series of questions and answers. Regarding orientation, we have:
-    * Q: "Why is orientation defined to correspond to the sign of the determinant?".
-    * A: "Because orientation should be preserved by antisymmetry (swapping and negating vectors). Since the determinant is preserved by antisymmetry, we can use it to define orientation."
-    * Q: "But why should orientation be preserved by antisymmetry?"
-    * A: "Notice that whenever one ordered basis is antisymmetrically related to another, it is also a rotation of the other. Since orientation should be preserved by rotation, it follows that ordered bases with the same orientation should be antisymmetrically related. Thus orientation should be preserved by antisymmetry."
-    * A:" But why do rotations preserve orientation?"
-    * Q: "Because rotations are defined to have determinant 1. Since orientation corresponds to the sign of the determinant, it follows from the product rule for determinants that the orientation of a rotated ordered basis is just 1 times the orientation of the original ordered basis."
-    * A: "Okay. But why is orientation defined to correspond to the sign of the determinant?"🤦‍♂️
-  
-    Regarding rotations, we have:
-      * Q: "Why are rotations defined to be linear functions with determinant $1$?"
-      * A: "Because they should preserve volume and orientation, and, since orientation corresponds to the determinant, and because of the product rule for determinants, having a determinant of $1$ is the same as preserving orientation."
-      * Q: "But why is orientation defined to correspond to the sign of the determinant?" 🤦‍♂️🤦‍♂️
-  
-  You can see that this topic can become quite a tangle. This book elucidates the matter. 
-
+* We fully explain the concept of orientation by building them from the ground up. We define orientation *without* the determinant, and then develop a series of theorems that formalize intuition and *prove* that orientation corresponds to the sign of the determinant. We do not just define orientation to satisfy this characterization out of the blue, as most books do. We do things as follows:
+  * The orientation of two vectors in $\mathbb{R}^2$ is defined to be 1 (or *positive*) iff the signed counterclockwise angle between the vectors is smallest, and -1 (or *negative*) iff the signed clockwise angle between the vectors is smallest.
+  * The orientation of vectors $\mathbf{v}_1, ..., \mathbf{v}_k \in \mathbb{R}^n$ is defined to be positive iff $(\mathbf{v}\_1, ..., \mathbf{v}\_{k - 1})$ is positively oriented and $\text{sproj}(\mathbf{v}\_k \rightarrow \mathfrak{e}\_k) > 0$, where $\mathfrak{e}_i$ is the $i$th standard basis vector.
+  * We can show that orientation is preserved whenever signed angle is preserved. Since rotations preserve signed angle, rotations preserve orientation.
+  * Now, notice that that one ordered basis is the rotation by some angle of another ordered basis if and only if the one can be obtained by swapping and negating vectors in the other. Therefore, orientation is preserved by swapping and negating vectors.
+  * Since the determinant is preserved by swapping and negating vectors, it is quick to show that if $E^{\sigma}$ is a permutation of the standard ordered basis by $\sigma$, then the orientation of $E^\sigma$ is the sign of $\text{det}(E^{\sigma})$.
+  * We can extend the previous fact, which applies to permutations of the standard ordered basis, to arbitrary orthonormal ordered bases (by using the fact that rotations preserve orientation), and then to arbitrary ordered bases (by using Gram-Schmidt). Thus the orientation of an ordered basis is the sign of the determinant of that ordered basis.
 * Differential forms are defined by using an abstract wedge product analagous to the abstract tensor product.
   * The equivalence to the usual definition of differential form is also explained.
  
